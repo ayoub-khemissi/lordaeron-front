@@ -41,6 +41,7 @@ export async function getVoteSitesWithStatus(
 
   // Check IP-based cooldown: last successful vote from this IP on each site
   let ipCooldowns: Map<number, Date> = new Map();
+
   if (voterIp) {
     const [ipRows] = await websiteDb.execute<RowDataPacket[]>(
       `SELECT site_id, MAX(created_at) AS last_ip_vote
@@ -49,6 +50,7 @@ export async function getVoteSitesWithStatus(
        GROUP BY site_id`,
       [voterIp],
     );
+
     for (const row of ipRows) {
       ipCooldowns.set(row.site_id, new Date(row.last_ip_vote));
     }

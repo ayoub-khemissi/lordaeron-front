@@ -131,8 +131,8 @@ export default function HowToContent() {
                     {"download" in step && step.download && (
                       <div className="mt-5">
                         <a
-                          className="inline-flex items-center gap-2 glass-gold glow-gold rounded-lg px-5 py-2.5 text-wow-gold font-semibold text-sm hover:brightness-125 transition-all"
                           download
+                          className="inline-flex items-center gap-2 glass-gold glow-gold rounded-lg px-5 py-2.5 text-wow-gold font-semibold text-sm hover:brightness-125 transition-all"
                           href={step.download}
                         >
                           <svg
