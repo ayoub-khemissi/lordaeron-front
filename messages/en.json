@@ -161,10 +161,8 @@
     "epicProgressionDesc": "Defeat every final boss of each raid in release order — from Vanilla through TBC to WotLK. You must clear each tier before unlocking the next.",
     "tankAsDps": "Tank as DPS",
     "tankAsDpsDesc": "In dungeons, you can queue as Tank while staying in your DPS spec. You'll find a group much faster and receive an automatic bonus to health and threat, but your damage will be reduced. Not available in raids.",
-    "dungeonNoLock": "Dungeons No Lock",
-    "dungeonNoLockDesc": "No lockout on dungeons, run them as many times as you want",
-    "raidReset": "Raid Reset (2x/week)",
-    "raidResetDesc": "All raids reset every Wednesday and Sunday at 5 AM for faster progression",
+    "dungeonNoLock": "No Instance Lock",
+    "dungeonNoLockDesc": "No lockout on dungeons or raids — run them as many times as you want and reset from your character portrait via \"Reset all instances\"",
     "crossfaction": "Crossfaction",
     "crossfactionDesc": "Group up with players from both Alliance and Horde",
     "aoeLoot": "AOE Loot",
@@ -875,7 +873,7 @@
   "branding": {
     "sectionTitle": "Server Description",
     "desc1": "Lordaeron is a free-to-play Epic Progressive WoW server running on patch 3.3.5a. Players progress through every raid tier in release order — from Vanilla through The Burning Crusade to Wrath of the Lich King — by defeating the final boss(es) of each tier to unlock the next.",
-    "desc2": "The server features enhanced rates (x5 XP, x2 Honor, x2 Professions, x2 Reputation) for a faster but balanced leveling experience. Raids reset every Wednesday and Sunday at 5 AM to keep progression moving, and dungeons have no lockout so you can run them as many times as you want.",
+    "desc2": "The server features enhanced rates (x5 XP, x2 Honor, x2 Professions, x2 Reputation) for a faster but balanced leveling experience. There is no lockout on dungeons or raids — run them as many times as you want and reset any instance at will from your character portrait.",
     "desc3": "Quality-of-life features include Transmogrification, Crossfaction grouping (Alliance and Horde play together), AOE Loot, Autolearn Spells, and a unique Tank as DPS system — queue as Tank in dungeons while staying in your DPS spec for faster group finding, with an automatic bonus to health and threat.",
     "desc4": "An optional cosmetic shop powered by Soul Shards offers mounts, transmog sets, heirlooms, bags, pets, toys, and character services. No purchase is required to enjoy the full game experience."
   },
