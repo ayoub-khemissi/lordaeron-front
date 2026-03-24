@@ -37,8 +37,13 @@ const features: {
     bg: "/img/World of Warcraft Classic 1920x1080/ClassicDungeon.jpg",
   },
   {
-    key: "dungeonNoLock",
+    key: "raidReset",
     icon: `${WOWHEAD_ICON}/inv_misc_idol_02.jpg`,
+    bg: "/img/Wrath of the Lich King Classic Call of the Crusade Screenshots/Wrath_Classic_Call_of_the_Crusade_Trial_of_the_Crusader_003.jpg",
+  },
+  {
+    key: "dungeonNoLock",
+    icon: `${WOWHEAD_ICON}/inv_misc_key_08.jpg`,
     bg: "/img/World of Warcraft Classic 1920x1080/ClassicDungeon.jpg",
   },
   {
