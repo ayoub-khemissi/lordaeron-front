@@ -42,7 +42,7 @@ export async function GET(request: NextRequest) {
     // Pick 1 random active item from each of the 7 categories
     for (const category of ITEM_CATEGORIES) {
       const [rows] = await websiteDb.execute<RowDataPacket[]>(
-        "SELECT id FROM shop_items WHERE is_active = 1 AND category = ? ORDER BY RAND() LIMIT 1",
+        "SELECT id FROM shop_items WHERE is_active = 1 AND category = ? AND min_level <= 60 ORDER BY RAND() LIMIT 1",
         [category],
       );
 
