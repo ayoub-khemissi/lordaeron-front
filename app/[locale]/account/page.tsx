@@ -16,6 +16,7 @@ import {
   TableCell,
 } from "@heroui/table";
 import { Tabs, Tab } from "@heroui/tabs";
+import { Select, SelectItem } from "@heroui/select";
 import { Chip } from "@heroui/chip";
 import { Button } from "@heroui/button";
 import NextLink from "next/link";
@@ -237,21 +238,45 @@ export default function AccountPage() {
           </motion.div>
         )}
 
-        <Tabs
-          classNames={{
-            tabList: "gap-4 w-full relative rounded-none p-0 border-b border-wow-gold/10 mb-8 overflow-x-auto scrollbar-hide",
-            cursor: "w-full bg-wow-gold",
-            tab: "max-w-fit px-0 h-10",
-            tabContent: "group-data-[selected=true]:text-wow-gold text-gray-400",
-          }}
-          selectedKey={activeTab}
-          variant="underlined"
-          onSelectionChange={(key) => setActiveTab(key as string)}
-        >
-          <Tab key="account" title={t("info")} />
-          <Tab key="characters" title={t("characters")} />
-          <Tab key="purchases" title={t("purchaseHistory")} />
-        </Tabs>
+        {/* Desktop — tabs */}
+        <div className="hidden sm:block mb-8">
+          <Tabs
+            classNames={{
+              tabList: "gap-4 w-full relative rounded-none p-0 border-b border-wow-gold/10",
+              cursor: "w-full bg-wow-gold",
+              tab: "max-w-fit px-0 h-10",
+              tabContent: "group-data-[selected=true]:text-wow-gold text-gray-400",
+            }}
+            selectedKey={activeTab}
+            variant="underlined"
+            onSelectionChange={(key) => setActiveTab(key as string)}
+          >
+            <Tab key="account" title={t("info")} />
+            <Tab key="characters" title={t("characters")} />
+            <Tab key="purchases" title={t("purchaseHistory")} />
+          </Tabs>
+        </div>
+
+        {/* Mobile — select */}
+        <div className="sm:hidden mb-6">
+          <Select
+            className="w-full"
+            classNames={{
+              trigger: "glass border-wow-gold/20 hover:border-wow-gold/30",
+              popoverContent: "bg-[#161b22] border border-wow-gold/15",
+            }}
+            selectedKeys={[activeTab]}
+            size="sm"
+            onSelectionChange={(keys) => {
+              const key = Array.from(keys)[0] as string;
+              if (key) setActiveTab(key);
+            }}
+          >
+            <SelectItem key="account">{t("info")}</SelectItem>
+            <SelectItem key="characters">{t("characters")}</SelectItem>
+            <SelectItem key="purchases">{t("purchaseHistory")}</SelectItem>
+          </Select>
+        </div>
 
         {activeTab === "account" && (
           <div className="max-w-2xl mx-auto w-full space-y-6">
