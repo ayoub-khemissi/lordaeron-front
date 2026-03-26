@@ -49,7 +49,7 @@ export function CategoryFilterBar({
           onValueChange={onSearchChange}
         />
         <Select
-          className="w-48"
+          className="w-full sm:w-48"
           classNames={{
             trigger: "glass border-wow-gold/20 hover:border-wow-gold/30",
             popoverContent: "bg-[#161b22] border border-wow-gold/15",

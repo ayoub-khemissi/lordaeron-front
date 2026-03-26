@@ -50,9 +50,10 @@ export default function ShopContent() {
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
     null,
   );
-  const [selectedCategory, setSelectedCategory] = useState<ShopCategory | "highlighted" | "history" | null>(
+  const [selectedCategory, setSelectedCategory] = useState<ShopCategory | "highlighted" | null>(
     null,
   );
+  const [showHistory, setShowHistory] = useState(false);
   const [balance, setBalance] = useState(0);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -163,8 +164,8 @@ export default function ShopContent() {
   }, [user]);
 
   useEffect(() => {
-    if (selectedCategory === "history") fetchPurchases();
-  }, [selectedCategory, fetchPurchases]);
+    if (showHistory) fetchPurchases();
+  }, [showHistory, fetchPurchases]);
 
   // Restore preferences from localStorage on mount
   useEffect(() => {
@@ -497,9 +498,16 @@ export default function ShopContent() {
         characters={characters}
         selectedCharacter={selectedCharacter}
         onCharacterSelect={setSelectedCharacter}
+        onHistoryClick={() => setShowHistory(!showHistory)}
       />
 
-      {selectedCategory !== "history" ? (
+      {showHistory ? (
+        <PurchaseHistory
+          locale={locale}
+          purchases={purchases}
+          onRefund={setRefundTarget}
+        />
+      ) : (
         <>
           <CategoryNav
             selectedCategory={selectedCategory}
@@ -572,18 +580,6 @@ export default function ShopContent() {
               })}
             </>
           )}
-        </>
-      ) : (
-        <>
-          <CategoryNav
-            selectedCategory={selectedCategory}
-            onCategoryChange={setSelectedCategory}
-          />
-          <PurchaseHistory
-            locale={locale}
-            purchases={purchases}
-            onRefund={setRefundTarget}
-          />
         </>
       )}
 

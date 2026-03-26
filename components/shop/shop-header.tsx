@@ -38,14 +38,9 @@ export function ShopHeader({ balance, onBuyShards }: ShopHeaderProps) {
               src="/img/icons/soul-shard.svg"
               width={28}
             />
-            <div>
-              <p className="text-xs text-gray-400 uppercase tracking-wider">
-                {t("balance")}
-              </p>
-              <p className="text-2xl font-bold text-purple-400">
-                {balance.toLocaleString()}
-              </p>
-            </div>
+            <p className="text-2xl font-bold text-purple-400">
+              {balance.toLocaleString()}
+            </p>
           </div>
         </div>
       </div>
