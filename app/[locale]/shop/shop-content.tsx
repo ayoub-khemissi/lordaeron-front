@@ -12,7 +12,6 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Spinner } from "@heroui/spinner";
-import { Tabs, Tab } from "@heroui/tabs";
 import {
   Modal,
   ModalContent,
@@ -29,7 +28,6 @@ import { RealmCharacterSelector } from "@/components/shop/realm-character-select
 import { CategoryNav } from "@/components/shop/category-nav";
 import { ItemGrid } from "@/components/shop/item-grid";
 import { SetGrid } from "@/components/shop/set-grid";
-import { HighlightsCarousel } from "@/components/shop/highlights-carousel";
 import { ItemDetailModal } from "@/components/shop/item-detail-modal";
 import { SetDetailModal } from "@/components/shop/set-detail-modal";
 import { PurchaseModal } from "@/components/shop/purchase-modal";
@@ -51,14 +49,13 @@ export default function ShopContent() {
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
     null,
   );
-  const [selectedCategory, setSelectedCategory] = useState<ShopCategory | null>(
+  const [selectedCategory, setSelectedCategory] = useState<ShopCategory | "highlighted" | "history" | null>(
     null,
   );
   const [balance, setBalance] = useState(0);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("price_desc");
-  const [activeTab, setActiveTab] = useState("shop");
   const [showSetFilter, setShowSetFilter] = useState(true);
   const [showItemFilter, setShowItemFilter] = useState(true);
   const [showUnavailable, setShowUnavailable] = useState(false);
@@ -101,7 +98,7 @@ export default function ShopContent() {
     try {
       const params = new URLSearchParams({ locale });
 
-      if (selectedCategory) params.set("category", selectedCategory);
+      if (selectedCategory && selectedCategory !== "highlighted") params.set("category", selectedCategory);
       if (selectedCharacter) {
         params.set("race_id", String(selectedCharacter.race));
         params.set("class_id", String(selectedCharacter.class));
@@ -165,8 +162,8 @@ export default function ShopContent() {
   }, [user]);
 
   useEffect(() => {
-    if (activeTab === "history") fetchPurchases();
-  }, [activeTab, fetchPurchases]);
+    if (selectedCategory === "history") fetchPurchases();
+  }, [selectedCategory, fetchPurchases]);
 
   // Restore preferences from localStorage on mount
   useEffect(() => {
@@ -397,12 +394,6 @@ export default function ShopContent() {
     })
     .sort(sortFn);
 
-  const highlightedItems = items.filter(
-    (i) => i.is_highlighted && (showUnavailable || i.eligible !== false),
-  );
-  const highlightedSets = sets.filter(
-    (s) => s.is_highlighted && (showUnavailable || s.eligible !== false),
-  );
   // Show sets only on the transmog category, combined with user filter
   const showSetsSection = selectedCategory === "transmog" && showSetFilter;
 
@@ -507,34 +498,8 @@ export default function ShopContent() {
         onCharacterSelect={setSelectedCharacter}
       />
 
-      <Tabs
-        classNames={{
-          tabList:
-            "gap-4 w-full relative rounded-none p-0 border-b border-wow-gold/10 mb-6",
-          cursor: "w-full bg-wow-gold",
-          tab: "max-w-fit px-0 h-10",
-          tabContent: "group-data-[selected=true]:text-wow-gold text-gray-400",
-        }}
-        selectedKey={activeTab}
-        variant="underlined"
-        onSelectionChange={(key) => setActiveTab(key as string)}
-      >
-        <Tab key="shop" title={t("title")} />
-        <Tab key="history" title={t("history")} />
-      </Tabs>
-
-      {activeTab === "shop" ? (
+      {selectedCategory !== "history" ? (
         <>
-          {!selectedCategory &&
-            (highlightedItems.length > 0 || highlightedSets.length > 0) && (
-              <HighlightsCarousel
-                items={highlightedItems}
-                sets={highlightedSets}
-                onItemClick={setDetailItem}
-                onSetClick={setDetailSet}
-              />
-            )}
-
           <CategoryNav
             selectedCategory={selectedCategory}
             onCategoryChange={setSelectedCategory}
@@ -561,9 +526,12 @@ export default function ShopContent() {
             <div className="flex justify-center py-16">
               <Spinner color="warning" size="lg" />
             </div>
-          ) : (
+          ) : selectedCategory === "highlighted" ? (
+            /* ── Highlighted tab ── */
+            <ItemGrid items={filteredItems.filter((i) => i.is_highlighted)} onItemClick={setDetailItem} />
+          ) : selectedCategory ? (
+            /* ── Single category tab ── */
             <>
-              {/* Item sets section */}
               {showSetsSection && filteredSets.length > 0 && (
                 <div className="mb-8 pb-6 border-b border-wow-gold/10">
                   <h2 className="text-lg font-heading text-purple-400 mb-4">
@@ -572,27 +540,50 @@ export default function ShopContent() {
                   <SetGrid sets={filteredSets} onSetClick={setDetailSet} />
                 </div>
               )}
-
-              {/* Individual items — on transmog, respect showItemFilter; other categories always show */}
               {(selectedCategory !== "transmog" || showItemFilter) && (
-                <div>
-                  {showSetsSection && filteredSets.length > 0 && (
-                    <h2 className="text-lg font-heading text-wow-gold mb-4 mt-6">
-                      {t("allItems")}
-                    </h2>
-                  )}
-                  <ItemGrid items={filteredItems} onItemClick={setDetailItem} />
+                <ItemGrid items={filteredItems} onItemClick={setDetailItem} />
+              )}
+            </>
+          ) : (
+            /* ── All items — grouped by section ── */
+            <>
+              {/* Highlighted section */}
+              {filteredItems.filter((i) => i.is_highlighted).length > 0 && (
+                <div className="mb-8 pb-6 border-b border-wow-gold/10">
+                  <h2 className="text-lg font-heading wow-gradient-text mb-4 flex items-center gap-2">
+                    <span>{"\u2B50"}</span> {t("highlights")}
+                  </h2>
+                  <ItemGrid items={filteredItems.filter((i) => i.is_highlighted)} onItemClick={setDetailItem} />
                 </div>
               )}
+              {/* Each category section */}
+              {(["services", "bags", "heirlooms", "transmog", "mounts", "tabards", "pets", "toys"] as const).map((cat) => {
+                const catItems = filteredItems.filter((i) => i.category === cat);
+                if (catItems.length === 0) return null;
+                return (
+                  <div key={cat} className="mb-8 pb-6 border-b border-wow-gold/10 last:border-b-0">
+                    <h2 className="text-lg font-heading text-wow-gold mb-4">
+                      {t(`categories.${cat}`)}
+                    </h2>
+                    <ItemGrid items={catItems} onItemClick={setDetailItem} />
+                  </div>
+                );
+              })}
             </>
           )}
         </>
       ) : (
-        <PurchaseHistory
-          locale={locale}
-          purchases={purchases}
-          onRefund={setRefundTarget}
-        />
+        <>
+          <CategoryNav
+            selectedCategory={selectedCategory}
+            onCategoryChange={setSelectedCategory}
+          />
+          <PurchaseHistory
+            locale={locale}
+            purchases={purchases}
+            onRefund={setRefundTarget}
+          />
+        </>
       )}
 
       <ItemDetailModal

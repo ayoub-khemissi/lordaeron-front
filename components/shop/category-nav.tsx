@@ -8,11 +8,12 @@ import { useTranslations } from "next-intl";
 import { SHOP_CATEGORIES } from "@/lib/shop-utils";
 
 interface CategoryNavProps {
-  selectedCategory: ShopCategory | null;
-  onCategoryChange: (category: ShopCategory | null) => void;
+  selectedCategory: ShopCategory | "highlighted" | "history" | null;
+  onCategoryChange: (category: ShopCategory | "highlighted" | "history" | null) => void;
 }
 
 const CATEGORY_ICONS: Record<string, string> = {
+  highlighted: "\u2B50",
   services: "\u2699\uFE0F",
   bags: "\uD83C\uDF92",
   heirlooms: "\uD83D\uDDE1\uFE0F",
@@ -46,6 +47,15 @@ export function CategoryNav({
         }}
       >
         <Tab key="all" title={t("allItems")} />
+        <Tab
+          key="highlighted"
+          title={
+            <div className="flex items-center gap-2">
+              <span>{CATEGORY_ICONS.highlighted}</span>
+              <span>{t("highlights")}</span>
+            </div>
+          }
+        />
         {SHOP_CATEGORIES.map((cat) => (
           <Tab
             key={cat}
@@ -57,6 +67,15 @@ export function CategoryNav({
             }
           />
         ))}
+        <Tab
+          key="history"
+          title={
+            <div className="flex items-center gap-2">
+              <span>{"\uD83D\uDCDC"}</span>
+              <span>{t("history")}</span>
+            </div>
+          }
+        />
       </Tabs>
     </div>
   );
