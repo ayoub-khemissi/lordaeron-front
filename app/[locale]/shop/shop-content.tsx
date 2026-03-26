@@ -134,12 +134,13 @@ export default function ShopContent() {
 
       const chars = charsData.characters || [];
 
-      setItems(itemsData.items || []);
-      setSets(setsData.sets || []);
       setCharacters(chars);
       if (!selectedCharacter && chars.length > 0) {
         setSelectedCharacter(chars[0]);
+        return; // Re-fetch will trigger with character params
       }
+      setItems(itemsData.items || []);
+      setSets(setsData.sets || []);
       setBalance(accountData.soulShards || 0);
     } catch {
       // Silent fail
