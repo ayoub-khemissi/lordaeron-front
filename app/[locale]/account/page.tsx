@@ -254,7 +254,7 @@ export default function AccountPage() {
         </Tabs>
 
         {activeTab === "account" && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="max-w-2xl mx-auto w-full space-y-6">
           {/* Account Info Card */}
           <motion.div
             animate={{ opacity: 1, y: 0 }}
