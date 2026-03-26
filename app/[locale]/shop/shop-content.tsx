@@ -32,7 +32,6 @@ import { ItemDetailModal } from "@/components/shop/item-detail-modal";
 import { SetDetailModal } from "@/components/shop/set-detail-modal";
 import { PurchaseModal } from "@/components/shop/purchase-modal";
 import { GiftModal } from "@/components/shop/gift-modal";
-import { PurchaseHistory } from "@/components/shop/purchase-history";
 import { CategoryFilterBar } from "@/components/shop/category-filter-bar";
 import { BuyShardsModal } from "@/components/shop/buy-shards-modal";
 import { CATEGORY_ICONS } from "@/lib/shop-utils";
@@ -53,7 +52,6 @@ export default function ShopContent() {
   const [selectedCategory, setSelectedCategory] = useState<ShopCategory | "highlighted" | null>(
     null,
   );
-  const [showHistory, setShowHistory] = useState(false);
   const [balance, setBalance] = useState(0);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -150,22 +148,6 @@ export default function ShopContent() {
   useEffect(() => {
     fetchData();
   }, [fetchData]);
-
-  const fetchPurchases = useCallback(async () => {
-    if (!user) return;
-    try {
-      const res = await fetch("/api/shop/purchases");
-      const data = await res.json();
-
-      setPurchases(data.purchases || []);
-    } catch {
-      // Silent fail
-    }
-  }, [user]);
-
-  useEffect(() => {
-    if (showHistory) fetchPurchases();
-  }, [showHistory, fetchPurchases]);
 
   // Restore preferences from localStorage on mount
   useEffect(() => {
@@ -325,7 +307,6 @@ export default function ShopContent() {
         setRefundError(data.error || "serverError");
       } else {
         setRefundResult("success");
-        fetchPurchases();
         fetchData();
       }
     } catch {
@@ -498,18 +479,9 @@ export default function ShopContent() {
         characters={characters}
         selectedCharacter={selectedCharacter}
         onCharacterSelect={setSelectedCharacter}
-        onHistoryClick={() => setShowHistory(!showHistory)}
       />
 
-      {showHistory ? (
-        <PurchaseHistory
-          locale={locale}
-          purchases={purchases}
-          onRefund={setRefundTarget}
-        />
-      ) : (
-        <>
-          <CategoryNav
+      <CategoryNav
             selectedCategory={selectedCategory}
             onCategoryChange={setSelectedCategory}
           />
@@ -580,8 +552,6 @@ export default function ShopContent() {
               })}
             </>
           )}
-        </>
-      )}
 
       <ItemDetailModal
         hasCharacter={!!selectedCharacter}

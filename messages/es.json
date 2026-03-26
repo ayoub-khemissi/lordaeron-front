@@ -256,6 +256,7 @@
     "search": "Buscar",
     "searchPlaceholder": "Nombre del artículo...",
     "sortBy": "Ordenar por",
+    "categoryLabel": "Categoría",
     "sortPriceAsc": "Precio: menor a mayor",
     "sortPriceDesc": "Precio: mayor a menor",
     "sortNameAsc": "Nombre: A a Z",

@@ -17,6 +17,7 @@
   "home": {
     "title": "Bem-vindo a Lordaeron",
     "subtitle": "A experiencia Epic Progressive WoW definitiva — de Vanilla a WotLK",
+    "purchaseHistory": "Histórico de compras",
     "cta": "Comecar a Jogar",
     "ctaRegister": "Criar Conta",
     "serverStatus": "Estado do Servidor",
@@ -36,6 +37,7 @@
   "howTo": {
     "title": "Como Conectar",
     "subtitle": "Segue estes passos simples para te juntares a Lordaeron",
+    "purchaseHistory": "Histórico de compras",
     "step1Title": "Descarregar o Cliente",
     "step1Desc": "Descarrega o World of Warcraft versao 3.3.5a (build 12340). Podes encontra-lo em sites populares de arquivo de WoW.",
     "step2Title": "Definir a Realmlist",
@@ -57,6 +59,7 @@
   "register": {
     "title": "Criar Conta",
     "subtitle": "Junta-te a Lordaeron e comeca a tua aventura",
+    "purchaseHistory": "Histórico de compras",
     "username": "Nome de utilizador",
     "email": "Email",
     "password": "Palavra-passe",
@@ -81,6 +84,7 @@
   "login": {
     "title": "Iniciar Sessao",
     "subtitle": "Acede a tua conta Lordaeron",
+    "purchaseHistory": "Histórico de compras",
     "username": "Nome de utilizador",
     "password": "Palavra-passe",
     "submit": "Entrar",
@@ -98,6 +102,7 @@
   "forgotPassword": {
     "title": "Esqueci a Palavra-passe",
     "subtitle": "Repoe a palavra-passe da tua conta",
+    "purchaseHistory": "Histórico de compras",
     "email": "Email",
     "submit": "Enviar Link de Reposicao",
     "success": "Se existir uma conta com este email, foi enviado um link de reposicao de palavra-passe.",
@@ -111,6 +116,7 @@
   "resetPassword": {
     "title": "Repor Palavra-passe",
     "subtitle": "Escolhe uma nova palavra-passe",
+    "purchaseHistory": "Histórico de compras",
     "password": "Nova Palavra-passe",
     "confirmPassword": "Confirmar Palavra-passe",
     "submit": "Repor Palavra-passe",
@@ -144,6 +150,7 @@
   "features": {
     "title": "Funcionalidades do Servidor",
     "subtitle": "Descobre o que torna Lordaeron unico",
+    "purchaseHistory": "Histórico de compras",
     "ratesTitle": "Taxas do Servidor",
     "ratesSubtitle": "Taxas equilibradas para uma experiencia melhorada",
     "featuresTitle": "Funcionalidades Epicas",
@@ -194,6 +201,7 @@
   "account": {
     "title": "Minha Conta",
     "subtitle": "Gere a tua conta Lordaeron",
+    "purchaseHistory": "Histórico de compras",
     "info": "Informacoes da Conta",
     "username": "Nome de utilizador",
     "email": "Email",
@@ -246,6 +254,7 @@
   "shop": {
     "title": "Loja",
     "subtitle": "Melhora a tua aventura com itens e servicos exclusivos",
+    "purchaseHistory": "Histórico de compras",
     "balance": "O Teu Saldo",
     "highlights": "Destaques",
     "allItems": "Todos os Itens",
@@ -256,6 +265,7 @@
     "search": "Pesquisar",
     "searchPlaceholder": "Nome do item...",
     "sortBy": "Ordenar por",
+    "categoryLabel": "Categoria",
     "sortPriceAsc": "Preco: Menor para Maior",
     "sortPriceDesc": "Preco: Maior para Menor",
     "sortNameAsc": "Nome: A a Z",
@@ -655,6 +665,7 @@
   "news": {
     "title": "Noticias",
     "subtitle": "Fica a par das ultimas noticias e atualizacoes de Lordaeron",
+    "purchaseHistory": "Histórico de compras",
     "loadMore": "Carregar mais",
     "backToNews": "Voltar as noticias",
     "by": "Por",
@@ -666,6 +677,7 @@
   "contact": {
     "title": "Contacta-nos",
     "subtitle": "Tens uma questao ou precisas de ajuda? Envia-nos uma mensagem.",
+    "purchaseHistory": "Histórico de compras",
     "sendingAs": "A enviar como: {username} ({email})",
     "subject": "Assunto",
     "subjectPlaceholder": "Sobre o que e a tua mensagem?",
@@ -687,6 +699,7 @@
   "cgu": {
     "title": "Termos de Utilizacao",
     "subtitle": "Le atentamente estes termos antes de utilizares Lordaeron.",
+    "purchaseHistory": "Histórico de compras",
     "lastUpdated": "Ultima atualizacao: fevereiro de 2026",
     "sections": {
       "acceptance": {
@@ -726,6 +739,7 @@
   "cgv": {
     "title": "Termos de Venda",
     "subtitle": "Termos que regem as compras efetuadas em Lordaeron.",
+    "purchaseHistory": "Histórico de compras",
     "lastUpdated": "Ultima atualizacao: fevereiro de 2026",
     "sections": {
       "general": {
@@ -765,6 +779,7 @@
   "rgpd": {
     "title": "Politica de Privacidade (RGPD)",
     "subtitle": "Como recolhemos, utilizamos e protegemos os teus dados pessoais.",
+    "purchaseHistory": "Histórico de compras",
     "lastUpdated": "Ultima atualizacao: fevereiro de 2026",
     "sections": {
       "controller": {
@@ -895,6 +910,7 @@
   "epicProgression": {
     "title": "Epic Progression",
     "subtitle": "Progride por todos os tiers de raid de WoW — de Molten Core a Icecrown Citadel",
+    "purchaseHistory": "Histórico de compras",
     "introTitle": "O que e Epic Progression?",
     "introDesc": "Epic Progression e o sistema de jogabilidade principal de Lordaeron. Cada personagem deve derrotar o(s) boss(es) final(ais) de um tier de raid para desbloquear o seguinte. A progressao e por personagem — nao por conta ou por servidor. Cada heroi escreve a sua propria historia, desde as profundezas de Molten Core ate ao trono gelado do Lich King. Tudo funciona numa configuracao WotLK 3.3.5a — feiticos, talentos, quests — mas o conteudo e desbloqueado progressivamente.",
     "dkTitle": "Death Knights e Vanilla",
@@ -979,6 +995,7 @@
   "raidScaling": {
     "title": "Escala de Dificuldade",
     "subtitle": "Raids e dungeons adaptam-se dinamicamente ao tamanho do teu grupo — joga com qualquer numero de jogadores",
+    "purchaseHistory": "Histórico de compras",
     "introTitle": "Como funciona?",
     "introDesc": "Quando o teu grupo entra numa instancia com menos jogadores do que a capacidade maxima, todas as criaturas sao automaticamente reduzidas. Vida, dano e loot ajustam-se em tempo real sempre que alguem entra, sai ou desconecta. Na capacidade maxima, tudo permanece a 100% — sem escala aplicada.",
     "simulatorTitle": "Simulador Interativo",

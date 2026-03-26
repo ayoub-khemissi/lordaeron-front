@@ -21,7 +21,7 @@ import { getQualityColor } from "@/lib/shop-utils";
 interface PurchaseHistoryProps {
   purchases: ShopPurchaseWithItem[];
   locale: string;
-  onRefund: (purchase: ShopPurchaseWithItem) => void;
+  onRefund?: (purchase: ShopPurchaseWithItem) => void;
 }
 
 const STATUS_COLORS: Record<string, string> = {
@@ -154,7 +154,7 @@ export function PurchaseHistory({
                     className="bg-orange-500/10 text-orange-400 hover:bg-orange-500/20"
                     size="sm"
                     variant="flat"
-                    onPress={() => onRefund(p)}
+                    onPress={() => onRefund?.(p)}
                   >
                     {t("refund")}
                   </Button>

@@ -194,6 +194,7 @@
   "account": {
     "title": "Il mio account",
     "subtitle": "Gestisci il tuo account Lordaeron",
+    "purchaseHistory": "Cronologia acquisti",
     "info": "Informazioni account",
     "username": "Nome utente",
     "email": "E-mail",
@@ -256,6 +257,7 @@
     "search": "Cerca",
     "searchPlaceholder": "Nome dell'articolo...",
     "sortBy": "Ordina per",
+    "categoryLabel": "Categoria",
     "sortPriceAsc": "Prezzo: crescente",
     "sortPriceDesc": "Prezzo: decrescente",
     "sortNameAsc": "Nome: A a Z",

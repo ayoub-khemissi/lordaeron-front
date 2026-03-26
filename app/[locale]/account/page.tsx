@@ -22,6 +22,7 @@ import NextLink from "next/link";
 import { useAuth } from "@/lib/auth-context";
 import { ChangePasswordForm } from "@/components/change-password-form";
 import { RestoreCharacterModal } from "@/components/restore-character-modal";
+import { PurchaseHistory } from "@/components/shop/purchase-history";
 import {
   RACE_NAMES,
   CLASS_NAMES,
@@ -70,6 +71,7 @@ export default function AccountPage() {
   >([]);
   const [restoreCost, setRestoreCost] = useState(0);
   const [restoreModalOpen, setRestoreModalOpen] = useState(false);
+  const [purchases, setPurchases] = useState<import("@/types").ShopPurchaseWithItem[]>([]);
   const [selectedDeletedChar, setSelectedDeletedChar] =
     useState<DeletedCharacter | null>(null);
 
@@ -83,9 +85,10 @@ export default function AccountPage() {
 
     const fetchAccount = async () => {
       try {
-        const [res, deletedRes] = await Promise.all([
+        const [res, deletedRes, purchasesRes] = await Promise.all([
           fetch("/api/account"),
           fetch("/api/account/deleted-characters"),
+          fetch("/api/shop/purchases"),
         ]);
 
         if (res.status === 401) {
@@ -107,6 +110,11 @@ export default function AccountPage() {
 
           setDeletedCharacters(deletedData.deletedCharacters || []);
           setRestoreCost(deletedData.restoreCost || 0);
+        }
+
+        if (purchasesRes.ok) {
+          const purchasesData = await purchasesRes.json();
+          setPurchases(purchasesData.purchases || []);
         }
       } catch {
         router.replace(`/${locale}/login`);
@@ -576,6 +584,29 @@ export default function AccountPage() {
             )}
           </motion.div>
         </div>
+
+        {/* Purchase History */}
+        {purchases.length > 0 && (
+          <motion.div
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-6"
+            id="purchases"
+            initial={{ opacity: 0, y: 20 }}
+            transition={{ delay: 0.3 }}
+          >
+            <div className="relative overflow-hidden rounded-2xl glow-gold">
+              <div className="relative glass border-wow-gold/15 rounded-2xl p-6">
+                <h2 className="text-lg font-bold wow-gradient-text mb-5">
+                  {t("purchaseHistory")}
+                </h2>
+                <PurchaseHistory
+                  locale={locale}
+                  purchases={purchases}
+                />
+              </div>
+            </div>
+          </motion.div>
+        )}
 
         {/* Restore Character Modal */}
         <RestoreCharacterModal

@@ -17,6 +17,7 @@
   "home": {
     "title": "Witaj w Lordaeron",
     "subtitle": "Najlepsze epickie progresywne doświadczenie WoW — od Vanilla po WotLK",
+    "purchaseHistory": "Historia zakupów",
     "cta": "Zacznij grać",
     "ctaRegister": "Utwórz konto",
     "serverStatus": "Status serwera",
@@ -36,6 +37,7 @@
   "howTo": {
     "title": "Jak się połączyć",
     "subtitle": "Wykonaj te proste kroki, aby dołączyć do Lordaeron",
+    "purchaseHistory": "Historia zakupów",
     "step1Title": "Pobierz klienta",
     "step1Desc": "Pobierz World of Warcraft w wersji 3.3.5a (build 12340). Znajdziesz go na popularnych stronach z archiwami WoW.",
     "step2Title": "Ustaw realmlist",
@@ -57,6 +59,7 @@
   "register": {
     "title": "Utwórz konto",
     "subtitle": "Dołącz do Lordaeron i rozpocznij swoją przygodę",
+    "purchaseHistory": "Historia zakupów",
     "username": "Nazwa użytkownika",
     "email": "E-mail",
     "password": "Hasło",
@@ -81,6 +84,7 @@
   "login": {
     "title": "Logowanie",
     "subtitle": "Uzyskaj dostęp do swojego konta Lordaeron",
+    "purchaseHistory": "Historia zakupów",
     "username": "Nazwa użytkownika",
     "password": "Hasło",
     "submit": "Zaloguj się",
@@ -98,6 +102,7 @@
   "forgotPassword": {
     "title": "Zapomniałeś hasła",
     "subtitle": "Zresetuj hasło do swojego konta",
+    "purchaseHistory": "Historia zakupów",
     "email": "E-mail",
     "submit": "Wyślij link do resetowania",
     "success": "Jeśli istnieje konto powiązane z tym adresem e-mail, link do resetowania hasła został wysłany.",
@@ -111,6 +116,7 @@
   "resetPassword": {
     "title": "Resetowanie hasła",
     "subtitle": "Wybierz nowe hasło",
+    "purchaseHistory": "Historia zakupów",
     "password": "Nowe hasło",
     "confirmPassword": "Potwierdź hasło",
     "submit": "Zresetuj hasło",
@@ -144,6 +150,7 @@
   "features": {
     "title": "Funkcje serwera",
     "subtitle": "Odkryj, co czyni Lordaeron wyjątkowym",
+    "purchaseHistory": "Historia zakupów",
     "ratesTitle": "Współczynniki serwera",
     "ratesSubtitle": "Zbalansowane współczynniki dla lepszego doświadczenia",
     "featuresTitle": "Epickie funkcje",
@@ -194,6 +201,7 @@
   "account": {
     "title": "Moje konto",
     "subtitle": "Zarządzaj swoim kontem Lordaeron",
+    "purchaseHistory": "Historia zakupów",
     "info": "Informacje o koncie",
     "username": "Nazwa użytkownika",
     "email": "E-mail",
@@ -246,6 +254,7 @@
   "shop": {
     "title": "Sklep",
     "subtitle": "Wzbogać swoją przygodę ekskluzywnymi przedmiotami i usługami",
+    "purchaseHistory": "Historia zakupów",
     "balance": "Twoje saldo",
     "highlights": "Wyróżnione",
     "allItems": "Wszystkie przedmioty",
@@ -256,6 +265,7 @@
     "search": "Szukaj",
     "searchPlaceholder": "Nazwa przedmiotu...",
     "sortBy": "Sortuj według",
+    "categoryLabel": "Kategoria",
     "sortPriceAsc": "Cena: od najniższej",
     "sortPriceDesc": "Cena: od najwyższej",
     "sortNameAsc": "Nazwa: A do Z",
@@ -655,6 +665,7 @@
   "news": {
     "title": "Aktualności",
     "subtitle": "Bądź na bieżąco z najnowszymi wiadomościami i aktualizacjami Lordaeron",
+    "purchaseHistory": "Historia zakupów",
     "loadMore": "Załaduj więcej",
     "backToNews": "Wróć do aktualności",
     "by": "Autor",
@@ -666,6 +677,7 @@
   "contact": {
     "title": "Kontakt",
     "subtitle": "Masz pytanie lub potrzebujesz pomocy? Wyślij nam wiadomość.",
+    "purchaseHistory": "Historia zakupów",
     "sendingAs": "Wysyłasz jako: {username} ({email})",
     "subject": "Temat",
     "subjectPlaceholder": "Czego dotyczy Twoja wiadomość?",
@@ -687,6 +699,7 @@
   "cgu": {
     "title": "Regulamin",
     "subtitle": "Proszę uważnie zapoznać się z regulaminem przed korzystaniem z Lordaeron.",
+    "purchaseHistory": "Historia zakupów",
     "lastUpdated": "Ostatnia aktualizacja: luty 2026",
     "sections": {
       "acceptance": {
@@ -726,6 +739,7 @@
   "cgv": {
     "title": "Warunki sprzedaży",
     "subtitle": "Warunki regulujące zakupy dokonywane na Lordaeron.",
+    "purchaseHistory": "Historia zakupów",
     "lastUpdated": "Ostatnia aktualizacja: luty 2026",
     "sections": {
       "general": {
@@ -765,6 +779,7 @@
   "rgpd": {
     "title": "Polityka prywatności (RODO)",
     "subtitle": "Jak zbieramy, wykorzystujemy i chronimy Twoje dane osobowe.",
+    "purchaseHistory": "Historia zakupów",
     "lastUpdated": "Ostatnia aktualizacja: luty 2026",
     "sections": {
       "controller": {
@@ -895,6 +910,7 @@
   "epicProgression": {
     "title": "Epicka Progresja",
     "subtitle": "Przejdź przez każdy tier rajdowy WoW — od Molten Core po Icecrown Citadel",
+    "purchaseHistory": "Historia zakupów",
     "introTitle": "Czym jest Epicka Progresja?",
     "introDesc": "Epicka Progresja to główny system rozgrywki Lordaeron. Każda postać musi pokonać ostatniego bossa(-ów) tieru rajdowego, aby odblokować kolejny. Progresja jest na postać — nie na konto ani serwer. Każdy bohater pisze swoją własną historię, od głębin Molten Core po lodowy tron Króla Lisza. Wszystko działa na konfiguracji WotLK 3.3.5a — zaklęcia, talenty, zadania — ale zawartość jest odblokowywana progresywnie.",
     "dkTitle": "Rycerze Śmierci i Vanilla",
@@ -979,6 +995,7 @@
   "raidScaling": {
     "title": "Skalowanie trudności",
     "subtitle": "Rajdy i lochy dynamicznie dostosowują się do wielkości twojej grupy — graj z dowolną liczbą graczy",
+    "purchaseHistory": "Historia zakupów",
     "introTitle": "Jak to działa?",
     "introDesc": "Gdy twoja grupa wchodzi do instancji z mniejszą liczbą graczy niż maksymalna pojemność, wszystkie stworzenia są automatycznie skalowane w dół. Zdrowie, obrażenia i łup dostosowują się w czasie rzeczywistym, gdy ktoś dołącza, opuszcza grupę lub się rozłącza. Przy pełnej pojemności wszystko pozostaje na 100% — brak skalowania.",
     "simulatorTitle": "Interaktywny symulator",

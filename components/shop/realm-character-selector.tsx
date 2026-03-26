@@ -3,7 +3,8 @@
 import type { Character } from "@/types";
 
 import { Select, SelectItem } from "@heroui/select";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import Link from "next/link";
 
 import { RACE_NAMES, CLASS_NAMES } from "@/lib/shop-utils";
 
@@ -11,16 +12,15 @@ interface RealmCharacterSelectorProps {
   characters: Character[];
   selectedCharacter: Character | null;
   onCharacterSelect: (character: Character) => void;
-  onHistoryClick?: () => void;
 }
 
 export function RealmCharacterSelector({
   characters,
   selectedCharacter,
   onCharacterSelect,
-  onHistoryClick,
 }: RealmCharacterSelectorProps) {
   const t = useTranslations("shop");
+  const locale = useLocale();
 
   if (characters.length === 0) {
     return (
@@ -81,16 +81,13 @@ export function RealmCharacterSelector({
           ))}
         </Select>
 
-        {onHistoryClick && (
-          <button
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg glass border border-wow-gold/20 hover:border-wow-gold/40 text-xs text-gray-400 hover:text-wow-gold transition-all whitespace-nowrap"
-            type="button"
-            onClick={onHistoryClick}
-          >
-            <span>{"\uD83D\uDCDC"}</span>
-            <span>{t("history")}</span>
-          </button>
-        )}
+        <Link
+          className="flex items-center gap-1.5 px-3 py-2 rounded-lg glass border border-wow-gold/20 hover:border-wow-gold/40 text-xs text-gray-400 hover:text-wow-gold transition-all whitespace-nowrap"
+          href={`/${locale}/account#purchases`}
+        >
+          <span>{"\uD83D\uDCDC"}</span>
+          <span>{t("history")}</span>
+        </Link>
       </div>
     </div>
   );

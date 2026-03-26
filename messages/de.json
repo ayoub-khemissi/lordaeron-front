@@ -194,6 +194,7 @@
   "account": {
     "title": "Mein Konto",
     "subtitle": "Verwalte dein Lordaeron-Konto",
+    "purchaseHistory": "Kaufhistorie",
     "info": "Kontoinformationen",
     "username": "Benutzername",
     "email": "E-Mail",
@@ -256,6 +257,7 @@
     "search": "Suchen",
     "searchPlaceholder": "Artikelname...",
     "sortBy": "Sortieren nach",
+    "categoryLabel": "Kategorie",
     "sortPriceAsc": "Preis: aufsteigend",
     "sortPriceDesc": "Preis: absteigend",
     "sortNameAsc": "Name: A bis Z",
