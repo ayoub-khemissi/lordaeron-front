@@ -184,7 +184,7 @@ export default function AccountPage() {
 
   return (
     <div
-      className="relative bg-cover bg-center bg-fixed"
+      className="relative bg-cover bg-center bg-fixed overflow-x-hidden"
       style={{
         backgroundImage:
           "url('/img/World of Warcraft Classic 1920x1080/ClassicLaunch_WoW_Andorhal_1920x1080.jpg')",
@@ -239,7 +239,7 @@ export default function AccountPage() {
 
         <Tabs
           classNames={{
-            tabList: "gap-4 w-full relative rounded-none p-0 border-b border-wow-gold/10 mb-8",
+            tabList: "gap-4 w-full relative rounded-none p-0 border-b border-wow-gold/10 mb-8 overflow-x-auto scrollbar-hide",
             cursor: "w-full bg-wow-gold",
             tab: "max-w-fit px-0 h-10",
             tabContent: "group-data-[selected=true]:text-wow-gold text-gray-400",
