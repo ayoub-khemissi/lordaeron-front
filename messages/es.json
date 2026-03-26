@@ -266,7 +266,7 @@
     "sortQualityDesc": "Calidad: mayor a menor",
     "filterSets": "Sets de items",
     "filterItems": "Artículos individuales",
-    "showUnavailable": "Mostrar objetos no disponibles",
+    "showUnavailable": "Objetos no disponibles",
     "restrictionLevel": "Requiere Nv. {level}",
     "restrictionClass": "Clase incompatible",
     "restrictionRace": "Raza incompatible",

@@ -266,7 +266,7 @@
     "sortQualityDesc": "Quality: High to Low",
     "filterSets": "Item Sets",
     "filterItems": "Individual Items",
-    "showUnavailable": "Show unavailable items",
+    "showUnavailable": "Unavailable items",
     "restrictionLevel": "Requires Lv. {level}",
     "restrictionClass": "Class restricted",
     "restrictionRace": "Race restricted",

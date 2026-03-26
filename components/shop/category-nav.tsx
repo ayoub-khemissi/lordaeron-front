@@ -5,24 +5,12 @@ import type { ShopCategory } from "@/types";
 import { Tabs, Tab } from "@heroui/tabs";
 import { useTranslations } from "next-intl";
 
-import { SHOP_CATEGORIES } from "@/lib/shop-utils";
+import { SHOP_CATEGORIES, CATEGORY_ICONS } from "@/lib/shop-utils";
 
 interface CategoryNavProps {
   selectedCategory: ShopCategory | "highlighted" | "history" | null;
   onCategoryChange: (category: ShopCategory | "highlighted" | "history" | null) => void;
 }
-
-const CATEGORY_ICONS: Record<string, string> = {
-  highlighted: "\u2B50",
-  services: "\u2699\uFE0F",
-  bags: "\uD83C\uDF92",
-  heirlooms: "\uD83D\uDDE1\uFE0F",
-  transmog: "\uD83D\uDC57",
-  mounts: "\uD83D\uDC0E",
-  tabards: "\uD83D\uDEE1\uFE0F",
-  pets: "\uD83D\uDC3E",
-  toys: "\uD83C\uDFAE",
-};
 
 export function CategoryNav({
   selectedCategory,
@@ -35,10 +23,10 @@ export function CategoryNav({
       <Tabs
         classNames={{
           tabList:
-            "gap-2 w-full relative rounded-none p-0 border-b border-wow-gold/10",
+            "gap-1 w-full relative rounded-none p-0 border-b border-wow-gold/10",
           cursor: "w-full bg-wow-gold",
-          tab: "max-w-fit px-4 h-10",
-          tabContent: "group-data-[selected=true]:text-wow-gold text-gray-400",
+          tab: "max-w-fit px-2 h-9",
+          tabContent: "group-data-[selected=true]:text-wow-gold text-gray-400 text-xs",
         }}
         selectedKey={selectedCategory || "all"}
         variant="underlined"
@@ -50,7 +38,7 @@ export function CategoryNav({
         <Tab
           key="highlighted"
           title={
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5">
               <span>{CATEGORY_ICONS.highlighted}</span>
               <span>{t("highlights")}</span>
             </div>
@@ -60,7 +48,7 @@ export function CategoryNav({
           <Tab
             key={cat}
             title={
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
                 <span>{CATEGORY_ICONS[cat]}</span>
                 <span>{t(`categories.${cat}`)}</span>
               </div>
@@ -70,8 +58,8 @@ export function CategoryNav({
         <Tab
           key="history"
           title={
-            <div className="flex items-center gap-2">
-              <span>{"\uD83D\uDCDC"}</span>
+            <div className="flex items-center gap-1.5">
+              <span>{CATEGORY_ICONS.history}</span>
               <span>{t("history")}</span>
             </div>
           }

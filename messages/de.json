@@ -266,7 +266,7 @@
     "sortQualityDesc": "Qualität: absteigend",
     "filterSets": "Item-Sets",
     "filterItems": "Einzelartikel",
-    "showUnavailable": "Nicht verfügbare Gegenstände anzeigen",
+    "showUnavailable": "Nicht verfügbare Gegenstände",
     "restrictionLevel": "Erfordert Stufe {level}",
     "restrictionClass": "Klasse inkompatibel",
     "restrictionRace": "Rasse inkompatibel",

@@ -266,7 +266,7 @@
     "sortQualityDesc": "Qualidade: Maior para Menor",
     "filterSets": "Conjuntos de Itens",
     "filterItems": "Itens Individuais",
-    "showUnavailable": "Mostrar itens indisponiveis",
+    "showUnavailable": "Itens indisponíveis",
     "restrictionLevel": "Requer Nv. {level}",
     "restrictionClass": "Restrito por classe",
     "restrictionRace": "Restrito por raca",

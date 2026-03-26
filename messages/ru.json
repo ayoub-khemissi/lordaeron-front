@@ -266,7 +266,7 @@
     "sortQualityDesc": "Качество: по убыванию",
     "filterSets": "Наборы предметов",
     "filterItems": "Отдельные предметы",
-    "showUnavailable": "Показать недоступные предметы",
+    "showUnavailable": "Недоступные предметы",
     "restrictionLevel": "Требуется ур. {level}",
     "restrictionClass": "Ограничение по классу",
     "restrictionRace": "Ограничение по расе",

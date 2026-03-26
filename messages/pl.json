@@ -266,7 +266,7 @@
     "sortQualityDesc": "Jakość: od najwyższej",
     "filterSets": "Zestawy przedmiotów",
     "filterItems": "Pojedyncze przedmioty",
-    "showUnavailable": "Pokaż niedostępne przedmioty",
+    "showUnavailable": "Niedostępne przedmioty",
     "restrictionLevel": "Wymaga poz. {level}",
     "restrictionClass": "Ograniczenie klasy",
     "restrictionRace": "Ograniczenie rasy",

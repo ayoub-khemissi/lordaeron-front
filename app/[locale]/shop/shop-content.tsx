@@ -35,6 +35,7 @@ import { GiftModal } from "@/components/shop/gift-modal";
 import { PurchaseHistory } from "@/components/shop/purchase-history";
 import { CategoryFilterBar } from "@/components/shop/category-filter-bar";
 import { BuyShardsModal } from "@/components/shop/buy-shards-modal";
+import { CATEGORY_ICONS } from "@/lib/shop-utils";
 
 export default function ShopContent() {
   const t = useTranslations("shop");
@@ -562,8 +563,8 @@ export default function ShopContent() {
                 if (catItems.length === 0) return null;
                 return (
                   <div key={cat} className="mb-8 pb-6 border-b border-wow-gold/10 last:border-b-0">
-                    <h2 className="text-lg font-heading text-wow-gold mb-4">
-                      {t(`categories.${cat}`)}
+                    <h2 className="text-lg font-heading text-wow-gold mb-4 flex items-center gap-2">
+                      <span>{CATEGORY_ICONS[cat]}</span> {t(`categories.${cat}`)}
                     </h2>
                     <ItemGrid items={catItems} onItemClick={setDetailItem} />
                   </div>
