@@ -265,6 +265,7 @@ export default function AccountPage() {
               trigger: "glass border-wow-gold/20 hover:border-wow-gold/30",
               popoverContent: "bg-[#161b22] border border-wow-gold/15",
             }}
+            label={t("title")}
             selectedKeys={[activeTab]}
             size="sm"
             onSelectionChange={(keys) => {

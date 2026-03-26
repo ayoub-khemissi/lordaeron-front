@@ -106,7 +106,7 @@ export function PurchaseHistory({
                   {p.item_icon_url && (
                     <img
                       alt=""
-                      className="w-6 h-6 rounded"
+                      className="w-6 h-6 rounded hidden sm:block"
                       src={p.item_icon_url}
                     />
                   )}
