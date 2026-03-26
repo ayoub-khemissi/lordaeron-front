@@ -226,7 +226,7 @@ function VoteSiteCard({
   );
 }
 
-function GuestPrompt() {
+function GuestPrompt({ onNavigate }: { onNavigate?: () => void }) {
   const t = useTranslations("vote");
   const locale = useLocale();
 
@@ -240,12 +240,14 @@ function GuestPrompt() {
         <Link
           className="flex-1 rounded-md py-1.5 text-[10px] font-semibold bg-purple-500/15 text-purple-400 border border-purple-400/25 hover:bg-purple-500/25 transition-all text-center"
           href={`/${locale}/login`}
+          onClick={onNavigate}
         >
           {t("login")}
         </Link>
         <Link
           className="flex-1 rounded-md py-1.5 text-[10px] font-semibold bg-wow-gold/10 text-wow-gold border border-wow-gold/20 hover:bg-wow-gold/20 transition-all text-center"
           href={`/${locale}/register`}
+          onClick={onNavigate}
         >
           {t("register")}
         </Link>
@@ -400,6 +402,7 @@ export function VotePanel() {
               <GuestPrompt />
             ) : (
               <div className="p-2 space-y-2">
+
                 {sites.map((site) => (
                   <VoteSiteCard
                     key={site.id}
@@ -468,7 +471,7 @@ export function VotePanel() {
               </div>
 
               {isGuest ? (
-                <GuestPrompt />
+                <GuestPrompt onNavigate={() => setMobileOpen(false)} />
               ) : (
                 <div className="p-4 space-y-2.5 max-h-[60vh] overflow-y-auto">
                   {sites.map((site) => (
