@@ -1,5 +1,5 @@
--- Character Services: Rename, Race Change, Faction Change
--- Prices in Soul Shards: 200, 300, 400
+-- Character Services: Appearance, Rename, Race Change, Faction Change
+-- Prices in Soul Shards: 250, 350, 500, 650
 
 INSERT INTO `shop_items` (
   `category`, `service_type`, `item_id`,
@@ -17,7 +17,7 @@ INSERT INTO `shop_items` (
   'Cambia el nombre de tu personaje. El cambio se aplicará en el próximo inicio de sesión.',
   'Ändere den Namen deines Charakters. Die Änderung wird beim nächsten Login wirksam.',
   'Cambia il nome del tuo personaggio. La modifica avrà effetto al prossimo accesso.',
-  200, 0, NULL, NULL, NULL, 'both',
+  350, 0, NULL, NULL, NULL, 'both',
   'https://wow.zamimg.com/images/wow/icons/large/inv_scroll_03.jpg',
   NULL, 0, 1, 0, 0, 10
 ),
@@ -30,7 +30,7 @@ INSERT INTO `shop_items` (
   'Cambia la raza de tu personaje dentro de la misma facción. El cambio se aplicará en el próximo inicio de sesión.',
   'Ändere die Rasse deines Charakters innerhalb derselben Fraktion. Die Änderung wird beim nächsten Login wirksam.',
   'Cambia la razza del tuo personaggio all''interno della stessa fazione. La modifica avrà effetto al prossimo accesso.',
-  300, 0, NULL, NULL, NULL, 'both',
+  500, 0, NULL, NULL, NULL, 'both',
   'https://wow.zamimg.com/images/wow/icons/large/achievement_character_orc_male.jpg',
   NULL, 0, 1, 0, 0, 20
 ),
@@ -43,7 +43,7 @@ INSERT INTO `shop_items` (
   'Transfiere tu personaje a la facción opuesta. El cambio se aplicará en el próximo inicio de sesión.',
   'Übertrage deinen Charakter zur gegnerischen Fraktion. Die Änderung wird beim nächsten Login wirksam.',
   'Trasferisci il tuo personaggio alla fazione opposta. La modifica avrà effetto al prossimo accesso.',
-  400, 0, NULL, NULL, NULL, 'both',
+  650, 0, NULL, NULL, NULL, 'both',
   'https://wow.zamimg.com/images/wow/icons/large/spell_shadow_charm.jpg',
   NULL, 0, 1, 0, 0, 30
 ),
@@ -56,7 +56,7 @@ INSERT INTO `shop_items` (
   'Cambia el peinado, color de pelo, rasgos faciales y color de piel de tu personaje. El cambio se aplicará en el próximo inicio de sesión.',
   'Ändere Frisur, Haarfarbe, Gesichtszüge und Hautfarbe deines Charakters. Die Änderung wird beim nächsten Login wirksam.',
   'Cambia acconciatura, colore dei capelli, tratti del viso e colore della pelle del tuo personaggio. La modifica avrà effetto al prossimo accesso.',
-  150, 0, NULL, NULL, NULL, 'both',
+  250, 0, NULL, NULL, NULL, 'both',
   'https://wow.zamimg.com/images/wow/icons/large/ability_rogue_disguise.jpg',
   NULL, 0, 1, 0, 0, 5
 );
