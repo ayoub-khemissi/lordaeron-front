@@ -137,10 +137,11 @@ export default function ShopContent() {
       setCharacters(chars);
       if (!selectedCharacter && chars.length > 0) {
         setSelectedCharacter(chars[0]);
-        return; // Re-fetch will trigger with character params
+        // Don't set items yet — the character change will re-trigger fetchData with proper filters
+      } else {
+        setItems(itemsData.items || []);
+        setSets(setsData.sets || []);
       }
-      setItems(itemsData.items || []);
-      setSets(setsData.sets || []);
       setBalance(accountData.soulShards || 0);
     } catch {
       // Silent fail
