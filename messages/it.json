@@ -195,6 +195,7 @@
     "title": "Il mio account",
     "subtitle": "Gestisci il tuo account Lordaeron",
     "purchaseHistory": "Cronologia acquisti",
+    "noPurchases": "Nessun acquisto ancora.",
     "info": "Informazioni account",
     "username": "Nome utente",
     "email": "E-mail",

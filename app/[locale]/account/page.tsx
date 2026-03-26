@@ -15,6 +15,7 @@ import {
   TableRow,
   TableCell,
 } from "@heroui/table";
+import { Tabs, Tab } from "@heroui/tabs";
 import { Chip } from "@heroui/chip";
 import { Button } from "@heroui/button";
 import NextLink from "next/link";
@@ -72,6 +73,10 @@ export default function AccountPage() {
   const [restoreCost, setRestoreCost] = useState(0);
   const [restoreModalOpen, setRestoreModalOpen] = useState(false);
   const [purchases, setPurchases] = useState<import("@/types").ShopPurchaseWithItem[]>([]);
+  const [activeTab, setActiveTab] = useState(() => {
+    if (typeof window !== "undefined" && window.location.hash === "#purchases") return "purchases";
+    return "account";
+  });
   const [selectedDeletedChar, setSelectedDeletedChar] =
     useState<DeletedCharacter | null>(null);
 
@@ -232,11 +237,27 @@ export default function AccountPage() {
           </motion.div>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <Tabs
+          classNames={{
+            tabList: "gap-4 w-full relative rounded-none p-0 border-b border-wow-gold/10 mb-8",
+            cursor: "w-full bg-wow-gold",
+            tab: "max-w-fit px-0 h-10",
+            tabContent: "group-data-[selected=true]:text-wow-gold text-gray-400",
+          }}
+          selectedKey={activeTab}
+          variant="underlined"
+          onSelectionChange={(key) => setActiveTab(key as string)}
+        >
+          <Tab key="account" title={t("info")} />
+          <Tab key="characters" title={t("characters")} />
+          <Tab key="purchases" title={t("purchaseHistory")} />
+        </Tabs>
+
+        {activeTab === "account" && (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Account Info Card */}
           <motion.div
             animate={{ opacity: 1, y: 0 }}
-            className="lg:col-span-1"
             initial={{ opacity: 0, y: 20 }}
             transition={{ delay: 0.1 }}
           >
@@ -334,13 +355,14 @@ export default function AccountPage() {
             {/* Change Password */}
             <ChangePasswordForm />
           </motion.div>
+          </div>
+        )}
 
-          {/* Characters Table */}
+        {activeTab === "characters" && (
           <motion.div
             animate={{ opacity: 1, y: 0 }}
-            className="lg:col-span-2"
             initial={{ opacity: 0, y: 20 }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.1 }}
           >
             <div className="relative overflow-hidden rounded-2xl glow-gold">
               <div
@@ -583,26 +605,27 @@ export default function AccountPage() {
               </div>
             )}
           </motion.div>
-        </div>
+        )}
 
-        {/* Purchase History */}
-        {purchases.length > 0 && (
+        {activeTab === "purchases" && (
           <motion.div
             animate={{ opacity: 1, y: 0 }}
-            className="mt-6"
             id="purchases"
             initial={{ opacity: 0, y: 20 }}
-            transition={{ delay: 0.3 }}
+            transition={{ delay: 0.1 }}
           >
             <div className="relative overflow-hidden rounded-2xl glow-gold">
               <div className="relative glass border-wow-gold/15 rounded-2xl p-6">
-                <h2 className="text-lg font-bold wow-gradient-text mb-5">
-                  {t("purchaseHistory")}
-                </h2>
-                <PurchaseHistory
-                  locale={locale}
-                  purchases={purchases}
-                />
+                {purchases.length > 0 ? (
+                  <PurchaseHistory
+                    locale={locale}
+                    purchases={purchases}
+                  />
+                ) : (
+                  <div className="text-center py-12">
+                    <p className="text-gray-400 text-sm">{t("noPurchases")}</p>
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>
