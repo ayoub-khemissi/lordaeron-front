@@ -11,7 +11,6 @@ import {
   ModalFooter,
 } from "@heroui/modal";
 import { Button } from "@heroui/button";
-import { Input } from "@heroui/input";
 import { Chip } from "@heroui/chip";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -29,10 +28,10 @@ interface RestoreCharacterModalProps {
   onClose: () => void;
   onRestore: (
     guid: number,
-    newName?: string,
   ) => Promise<{ success: boolean; error?: string; name?: string }>;
   balance: number;
   restoreCost: number;
+  characterCount: number;
 }
 
 export function RestoreCharacterModal({
@@ -42,56 +41,33 @@ export function RestoreCharacterModal({
   onRestore,
   balance,
   restoreCost,
+  characterCount,
 }: RestoreCharacterModalProps) {
   const t = useTranslations("account");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<"success" | "error" | null>(null);
   const [errorMsg, setErrorMsg] = useState("");
   const [restoredName, setRestoredName] = useState("");
-  const [needsRename, setNeedsRename] = useState(false);
-  const [newName, setNewName] = useState("");
-  const [nameError, setNameError] = useState("");
 
   if (!character) return null;
 
   const canAfford = balance >= restoreCost;
+  const isFull = characterCount >= 10;
   const faction = ALLIANCE_RACES.includes(character.race)
     ? "alliance"
     : "horde";
 
-  const validateName = (name: string): boolean => {
-    if (!/^[A-Za-z]{2,12}$/.test(name)) {
-      setNameError(t("invalidName"));
-
-      return false;
-    }
-    setNameError("");
-
-    return true;
-  };
-
   const handleRestore = async () => {
-    if (needsRename) {
-      if (!validateName(newName)) return;
-    }
-
     setLoading(true);
     try {
-      const res = await onRestore(
-        character.guid,
-        needsRename ? newName : undefined,
-      );
+      const res = await onRestore(character.guid);
 
       if (res.success) {
         setResult("success");
         setRestoredName(res.name || character.name);
       } else if (res.error === "originalNameTaken") {
-        setNeedsRename(true);
+        setResult("error");
         setErrorMsg(t("originalNameTaken"));
-      } else if (res.error === "nameTaken") {
-        setErrorMsg(t("nameTaken"));
-      } else if (res.error === "invalidName") {
-        setErrorMsg(t("invalidName"));
       } else if (res.error === "insufficientBalance") {
         setResult("error");
         setErrorMsg(t("insufficientShards"));
@@ -113,9 +89,6 @@ export function RestoreCharacterModal({
   const handleClose = () => {
     setResult(null);
     setErrorMsg("");
-    setNeedsRename(false);
-    setNewName("");
-    setNameError("");
     setRestoredName("");
     onClose();
   };
@@ -206,42 +179,17 @@ export function RestoreCharacterModal({
                     {t("insufficientShards")}
                   </p>
                 )}
+                {isFull && (
+                  <p className="text-red-400 text-sm mt-2">
+                    {t("tooManyCharacters")}
+                  </p>
+                )}
               </div>
 
               {/* Confirm message */}
               <p className="text-gray-300 text-sm mb-4">
                 {t("confirmRestore")}
               </p>
-
-              {/* Rename section */}
-              {needsRename && (
-                <div className="bg-[#161b22] rounded-lg p-4">
-                  <p className="text-amber-400 text-sm mb-3">{errorMsg}</p>
-                  <Input
-                    classNames={{
-                      inputWrapper:
-                        "bg-[#0d1117] border border-white/10 hover:border-wow-gold/30",
-                      input: "text-gray-200",
-                    }}
-                    description={t("newNameHint")}
-                    errorMessage={nameError}
-                    isInvalid={!!nameError}
-                    label={t("newName")}
-                    maxLength={12}
-                    value={newName}
-                    onValueChange={(val) => {
-                      setNewName(val);
-                      setNameError("");
-                      setErrorMsg("");
-                    }}
-                  />
-                </div>
-              )}
-
-              {/* Name taken error (not needing rename yet) */}
-              {errorMsg && !needsRename && (
-                <p className="text-red-400 text-sm mt-2">{errorMsg}</p>
-              )}
             </>
           )}
         </ModalBody>
@@ -264,7 +212,7 @@ export function RestoreCharacterModal({
               </Button>
               <Button
                 className="bg-gradient-to-r from-wow-gold to-wow-gold-light text-black font-bold"
-                isDisabled={!canAfford || (needsRename && !newName)}
+                isDisabled={!canAfford || isFull}
                 isLoading={loading}
                 onPress={handleRestore}
               >

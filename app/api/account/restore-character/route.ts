@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { guid, newName } = body;
+    const { guid } = body;
 
     if (!guid || typeof guid !== "number") {
       return NextResponse.json({ error: "missingFields" }, { status: 400 });
@@ -47,28 +47,11 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "tooManyCharacters" }, { status: 400 });
     }
 
-    // Determine final name
-    let finalName: string;
+    // Check name availability — no rename allowed (rename is a paid service)
+    const finalName = deletedChar.name;
 
-    if (newName) {
-      if (!/^[A-Za-z]{2,12}$/.test(newName)) {
-        return NextResponse.json({ error: "invalidName" }, { status: 400 });
-      }
-      finalName =
-        newName.charAt(0).toUpperCase() + newName.slice(1).toLowerCase();
-
-      if (await isCharacterNameTaken(finalName)) {
-        return NextResponse.json({ error: "nameTaken" }, { status: 409 });
-      }
-    } else {
-      finalName = deletedChar.name;
-
-      if (await isCharacterNameTaken(finalName)) {
-        return NextResponse.json(
-          { error: "originalNameTaken" },
-          { status: 409 },
-        );
-      }
+    if (await isCharacterNameTaken(finalName)) {
+      return NextResponse.json({ error: "originalNameTaken" }, { status: 409 });
     }
 
     // Deduct soul shards (transaction on websiteDb)

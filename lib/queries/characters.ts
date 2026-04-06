@@ -8,11 +8,53 @@ export async function getCharactersByAccount(
   accountId: number,
 ): Promise<Character[]> {
   const [rows] = await charactersDb.execute<RowDataPacket[]>(
-    "SELECT guid, name, race, class, level, gender, online, totaltime, zone FROM characters WHERE account = ? ORDER BY level DESC",
+    "SELECT guid, name, race, class, level, gender, online, totaltime, zone, slot FROM characters WHERE account = ? AND deleteInfos_Name IS NULL ORDER BY slot, guid",
     [accountId],
   );
 
-  return rows as Character[];
+  const chars = rows as (Character & { slot: number })[];
+
+  // Check if slots need normalization (gaps, duplicates from new/deleted chars)
+  const needsNormalize = chars.some((c, i) => c.slot !== i);
+
+  if (needsNormalize && chars.length > 0) {
+    // Separate known-order chars from new ones (duplicate slots)
+    const seen = new Set<number>();
+    const ordered: typeof chars = [];
+    const unordered: typeof chars = [];
+
+    for (const c of chars) {
+      if (seen.has(c.slot)) {
+        unordered.push(c);
+      } else {
+        seen.add(c.slot);
+        ordered.push(c);
+      }
+    }
+
+    // New chars go to the end
+    const normalized = [...ordered, ...unordered];
+
+    // Write back compact slots 0..N-1
+    const updates = normalized
+      .map((c, i) => (c.slot !== i ? { guid: c.guid, slot: i } : null))
+      .filter(Boolean) as { guid: number; slot: number }[];
+
+    if (updates.length > 0) {
+      await Promise.all(
+        updates.map(({ guid, slot }) =>
+          charactersDb.execute(
+            "UPDATE characters SET slot = ? WHERE guid = ?",
+            [slot, guid],
+          ),
+        ),
+      );
+    }
+
+    return normalized.map(({ slot: _slot, ...rest }) => rest);
+  }
+
+  return chars.map(({ slot: _slot, ...rest }) => rest);
 }
 
 export async function getCharacterByGuid(
@@ -268,12 +310,19 @@ export async function restoreCharacter(
   name: string,
   accountId: number,
 ): Promise<boolean> {
+  // Get next slot position
+  const [slotRows] = await charactersDb.execute<RowDataPacket[]>(
+    "SELECT COALESCE(MAX(slot), -1) + 1 AS nextSlot FROM characters WHERE account = ? AND deleteInfos_Name IS NULL",
+    [accountId],
+  );
+  const nextSlot = slotRows[0].nextSlot;
+
   const [result] = await charactersDb.execute<RowDataPacket[]>(
     `UPDATE characters
-     SET name = ?, account = ?, deleteDate = NULL,
+     SET name = ?, account = ?, slot = ?, deleteDate = NULL,
          deleteInfos_Name = NULL, deleteInfos_Account = NULL
      WHERE guid = ? AND deleteDate IS NOT NULL AND deleteInfos_Account = ?`,
-    [name, accountId, guid, accountId],
+    [name, accountId, nextSlot, guid, accountId],
   );
 
   return (result as unknown as { affectedRows: number }).affectedRows > 0;

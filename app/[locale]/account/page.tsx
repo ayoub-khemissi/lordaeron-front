@@ -164,12 +164,11 @@ export default function AccountPage() {
 
   const handleRestore = async (
     guid: number,
-    newName?: string,
   ): Promise<{ success: boolean; error?: string; name?: string }> => {
     const res = await fetch("/api/account/restore-character", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ guid, newName }),
+      body: JSON.stringify({ guid }),
     });
 
     const data = await res.json();
@@ -810,14 +809,21 @@ export default function AccountPage() {
                               </TableCell>
                               <TableCell>
                                 <Button
-                                  className="bg-gradient-to-r from-wow-gold to-wow-gold-light text-black font-bold text-xs"
+                                  className={
+                                    characters.length >= 10
+                                      ? "bg-default-100 text-gray-500 text-xs"
+                                      : "bg-gradient-to-r from-wow-gold to-wow-gold-light text-black font-bold text-xs"
+                                  }
+                                  isDisabled={characters.length >= 10}
                                   size="sm"
                                   onPress={() => {
                                     setSelectedDeletedChar(char);
                                     setRestoreModalOpen(true);
                                   }}
                                 >
-                                  {t("restoreCharacter")}
+                                  {characters.length >= 10
+                                    ? t("tooManyCharacters")
+                                    : t("restoreCharacter")}
                                 </Button>
                               </TableCell>
                             </TableRow>
@@ -857,6 +863,7 @@ export default function AccountPage() {
         <RestoreCharacterModal
           balance={soulShards}
           character={selectedDeletedChar}
+          characterCount={characters.length}
           isOpen={restoreModalOpen}
           restoreCost={restoreCost}
           onClose={() => {
