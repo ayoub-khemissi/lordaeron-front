@@ -44,7 +44,7 @@ export function RealmCharacterSelector({
           }}
           label={t("selectCharacter")}
           placeholder={t("selectCharacter")}
-          renderValue={(items) => {
+          renderValue={(_items) => {
             const char = selectedCharacter;
 
             if (!char) return null;

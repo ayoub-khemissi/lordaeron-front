@@ -70,8 +70,6 @@ export default function ShopContent() {
   const [detailSet, setDetailSet] = useState<ShopSetLocalized | null>(null);
   const [purchaseSet, setPurchaseSet] = useState<ShopSetLocalized | null>(null);
   const [giftSet, setGiftSet] = useState<ShopSetLocalized | null>(null);
-  const [purchases, setPurchases] = useState<ShopPurchaseWithItem[]>([]);
-
   // Buy Shards states
   const [buyShardOpen, setBuyShardOpen] = useState(false);
   const [recommendedShards, setRecommendedShards] = useState<
