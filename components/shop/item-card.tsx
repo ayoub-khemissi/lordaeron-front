@@ -85,21 +85,23 @@ export function ItemCard({ item, onClick }: ItemCardProps) {
         )}
 
         <div className="flex flex-wrap gap-1">
-          {isIneligible && item.restriction_reason && item.restriction_reason !== "level" && (
-            <Chip
-              className="bg-red-500/20 text-red-400 border-red-500/30"
-              size="sm"
-              variant="bordered"
-            >
-              {item.restriction_reason === "heirloom_max_level"
-                ? t("restrictionHeirloomMaxLevel")
-                : item.restriction_reason === "class"
-                  ? t("restrictionClass")
-                  : item.restriction_reason === "race"
-                    ? t("restrictionRace")
-                    : t("restrictionFaction")}
-            </Chip>
-          )}
+          {isIneligible &&
+            item.restriction_reason &&
+            item.restriction_reason !== "level" && (
+              <Chip
+                className="bg-red-500/20 text-red-400 border-red-500/30"
+                size="sm"
+                variant="bordered"
+              >
+                {item.restriction_reason === "heirloom_max_level"
+                  ? t("restrictionHeirloomMaxLevel")
+                  : item.restriction_reason === "class"
+                    ? t("restrictionClass")
+                    : item.restriction_reason === "race"
+                      ? t("restrictionRace")
+                      : t("restrictionFaction")}
+              </Chip>
+            )}
           {item.faction !== "both" && (
             <Chip
               className={

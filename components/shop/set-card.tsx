@@ -95,17 +95,19 @@ export function SetCard({ set, onClick }: SetCardProps) {
         set.faction !== "both" ||
         set.min_level > 0) && (
         <div className="flex flex-wrap gap-1 mb-3">
-          {isIneligible && set.restriction_reason && set.restriction_reason !== "level" && (
-            <Chip
-              className="bg-red-500/20 text-red-400 border-red-500/30 text-[10px]"
-              size="sm"
-              variant="bordered"
-            >
-              {set.restriction_reason === "class"
-                ? t("restrictionClass")
-                : t("restrictionFaction")}
-            </Chip>
-          )}
+          {isIneligible &&
+            set.restriction_reason &&
+            set.restriction_reason !== "level" && (
+              <Chip
+                className="bg-red-500/20 text-red-400 border-red-500/30 text-[10px]"
+                size="sm"
+                variant="bordered"
+              >
+                {set.restriction_reason === "class"
+                  ? t("restrictionClass")
+                  : t("restrictionFaction")}
+              </Chip>
+            )}
           {set.min_level > 0 && (
             <Chip
               className="bg-orange-500/10 text-orange-300 text-[10px]"

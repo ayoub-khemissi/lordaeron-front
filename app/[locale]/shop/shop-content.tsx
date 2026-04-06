@@ -49,9 +49,9 @@ export default function ShopContent() {
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
     null,
   );
-  const [selectedCategory, setSelectedCategory] = useState<ShopCategory | "highlighted" | null>(
-    null,
-  );
+  const [selectedCategory, setSelectedCategory] = useState<
+    ShopCategory | "highlighted" | null
+  >(null);
   const [balance, setBalance] = useState(0);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -98,7 +98,8 @@ export default function ShopContent() {
     try {
       const params = new URLSearchParams({ locale });
 
-      if (selectedCategory && selectedCategory !== "highlighted") params.set("category", selectedCategory);
+      if (selectedCategory && selectedCategory !== "highlighted")
+        params.set("category", selectedCategory);
       if (selectedCharacter) {
         params.set("race_id", String(selectedCharacter.race));
         params.set("class_id", String(selectedCharacter.class));
@@ -482,76 +483,98 @@ export default function ShopContent() {
       />
 
       <CategoryNav
-            selectedCategory={selectedCategory}
-            onCategoryChange={setSelectedCategory}
-          />
+        selectedCategory={selectedCategory}
+        onCategoryChange={setSelectedCategory}
+      />
 
-          <CategoryFilterBar
-            search={search}
-            showUnavailable={showUnavailable}
-            sortBy={sortBy}
-            onSearchChange={setSearch}
-            onShowUnavailableChange={setShowUnavailable}
-            onSortChange={setSortBy}
-            {...(selectedCategory === "transmog"
-              ? {
-                  showSets: showSetFilter,
-                  onShowSetsChange: setShowSetFilter,
-                  showItems: showItemFilter,
-                  onShowItemsChange: setShowItemFilter,
-                }
-              : {})}
-          />
+      <CategoryFilterBar
+        search={search}
+        showUnavailable={showUnavailable}
+        sortBy={sortBy}
+        onSearchChange={setSearch}
+        onShowUnavailableChange={setShowUnavailable}
+        onSortChange={setSortBy}
+        {...(selectedCategory === "transmog"
+          ? {
+              showSets: showSetFilter,
+              onShowSetsChange: setShowSetFilter,
+              showItems: showItemFilter,
+              onShowItemsChange: setShowItemFilter,
+            }
+          : {})}
+      />
 
-          {loading ? (
-            <div className="flex justify-center py-16">
-              <Spinner color="warning" size="lg" />
+      {loading ? (
+        <div className="flex justify-center py-16">
+          <Spinner color="warning" size="lg" />
+        </div>
+      ) : selectedCategory === "highlighted" ? (
+        /* ── Highlighted tab ── */
+        <ItemGrid
+          items={filteredItems.filter((i) => i.is_highlighted)}
+          onItemClick={setDetailItem}
+        />
+      ) : selectedCategory ? (
+        /* ── Single category tab ── */
+        <>
+          {showSetsSection && filteredSets.length > 0 && (
+            <div className="mb-8 pb-6 border-b border-wow-gold/10">
+              <h2 className="text-lg font-heading text-purple-400 mb-4">
+                {t("itemSets")}
+              </h2>
+              <SetGrid sets={filteredSets} onSetClick={setDetailSet} />
             </div>
-          ) : selectedCategory === "highlighted" ? (
-            /* ── Highlighted tab ── */
-            <ItemGrid items={filteredItems.filter((i) => i.is_highlighted)} onItemClick={setDetailItem} />
-          ) : selectedCategory ? (
-            /* ── Single category tab ── */
-            <>
-              {showSetsSection && filteredSets.length > 0 && (
-                <div className="mb-8 pb-6 border-b border-wow-gold/10">
-                  <h2 className="text-lg font-heading text-purple-400 mb-4">
-                    {t("itemSets")}
-                  </h2>
-                  <SetGrid sets={filteredSets} onSetClick={setDetailSet} />
-                </div>
-              )}
-              {(selectedCategory !== "transmog" || showItemFilter) && (
-                <ItemGrid items={filteredItems} onItemClick={setDetailItem} />
-              )}
-            </>
-          ) : (
-            /* ── All items — grouped by section ── */
-            <>
-              {/* Highlighted section */}
-              {filteredItems.filter((i) => i.is_highlighted).length > 0 && (
-                <div className="mb-8 pb-6 border-b border-wow-gold/10">
-                  <h2 className="text-lg font-heading wow-gradient-text mb-4 flex items-center gap-2">
-                    <span>{"\u2B50"}</span> {t("highlights")}
-                  </h2>
-                  <ItemGrid items={filteredItems.filter((i) => i.is_highlighted)} onItemClick={setDetailItem} />
-                </div>
-              )}
-              {/* Each category section */}
-              {(["services", "bags", "heirlooms", "transmog", "mounts", "tabards", "pets", "toys"] as const).map((cat) => {
-                const catItems = filteredItems.filter((i) => i.category === cat);
-                if (catItems.length === 0) return null;
-                return (
-                  <div key={cat} className="mb-8 pb-6 border-b border-wow-gold/10 last:border-b-0">
-                    <h2 className="text-lg font-heading text-wow-gold mb-4 flex items-center gap-2">
-                      <span>{CATEGORY_ICONS[cat]}</span> {t(`categories.${cat}`)}
-                    </h2>
-                    <ItemGrid items={catItems} onItemClick={setDetailItem} />
-                  </div>
-                );
-              })}
-            </>
           )}
+          {(selectedCategory !== "transmog" || showItemFilter) && (
+            <ItemGrid items={filteredItems} onItemClick={setDetailItem} />
+          )}
+        </>
+      ) : (
+        /* ── All items — grouped by section ── */
+        <>
+          {/* Highlighted section */}
+          {filteredItems.filter((i) => i.is_highlighted).length > 0 && (
+            <div className="mb-8 pb-6 border-b border-wow-gold/10">
+              <h2 className="text-lg font-heading wow-gradient-text mb-4 flex items-center gap-2">
+                <span>{"\u2B50"}</span> {t("highlights")}
+              </h2>
+              <ItemGrid
+                items={filteredItems.filter((i) => i.is_highlighted)}
+                onItemClick={setDetailItem}
+              />
+            </div>
+          )}
+          {/* Each category section */}
+          {(
+            [
+              "services",
+              "bags",
+              "heirlooms",
+              "transmog",
+              "mounts",
+              "tabards",
+              "pets",
+              "toys",
+            ] as const
+          ).map((cat) => {
+            const catItems = filteredItems.filter((i) => i.category === cat);
+
+            if (catItems.length === 0) return null;
+
+            return (
+              <div
+                key={cat}
+                className="mb-8 pb-6 border-b border-wow-gold/10 last:border-b-0"
+              >
+                <h2 className="text-lg font-heading text-wow-gold mb-4 flex items-center gap-2">
+                  <span>{CATEGORY_ICONS[cat]}</span> {t(`categories.${cat}`)}
+                </h2>
+                <ItemGrid items={catItems} onItemClick={setDetailItem} />
+              </div>
+            );
+          })}
+        </>
+      )}
 
       <ItemDetailModal
         hasCharacter={!!selectedCharacter}

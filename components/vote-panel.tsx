@@ -402,7 +402,6 @@ export function VotePanel() {
               <GuestPrompt />
             ) : (
               <div className="p-2 space-y-2">
-
                 {sites.map((site) => (
                   <VoteSiteCard
                     key={site.id}

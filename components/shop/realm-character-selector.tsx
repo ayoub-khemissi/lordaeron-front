@@ -44,13 +44,11 @@ export function RealmCharacterSelector({
           }}
           label={t("selectCharacter")}
           placeholder={t("selectCharacter")}
-          selectedKeys={
-            selectedCharacter ? [String(selectedCharacter.guid)] : []
-          }
-          size="sm"
           renderValue={(items) => {
             const char = selectedCharacter;
+
             if (!char) return null;
+
             return (
               <div className="flex items-center gap-2">
                 <span className="font-medium text-wow-gold">{char.name}</span>
@@ -61,6 +59,10 @@ export function RealmCharacterSelector({
               </div>
             );
           }}
+          selectedKeys={
+            selectedCharacter ? [String(selectedCharacter.guid)] : []
+          }
+          size="sm"
           onSelectionChange={(keys) => {
             const key = Array.from(keys)[0] as string;
             const char = characters.find((c) => String(c.guid) === key);
@@ -69,7 +71,10 @@ export function RealmCharacterSelector({
           }}
         >
           {characters.map((char) => (
-            <SelectItem key={String(char.guid)} textValue={`${char.name} Lv.${char.level} ${RACE_NAMES[char.race]} ${CLASS_NAMES[char.class]}`}>
+            <SelectItem
+              key={String(char.guid)}
+              textValue={`${char.name} Lv.${char.level} ${RACE_NAMES[char.race]} ${CLASS_NAMES[char.class]}`}
+            >
               <div className="flex items-center gap-2">
                 <span className="font-medium text-wow-gold">{char.name}</span>
                 <span className="text-xs text-gray-400">

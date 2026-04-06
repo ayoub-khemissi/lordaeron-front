@@ -24,6 +24,7 @@ export function CategoryNav({
   const getLabel = (key: string) => {
     if (key === "all") return t("allItems");
     if (key === "highlighted") return t("highlights");
+
     return t(`categories.${key}`);
   };
 
@@ -37,12 +38,15 @@ export function CategoryNav({
               "gap-1 w-full relative rounded-none p-0 border-b border-wow-gold/10",
             cursor: "w-full bg-wow-gold",
             tab: "max-w-fit px-2 h-9",
-            tabContent: "group-data-[selected=true]:text-wow-gold text-gray-400 text-xs",
+            tabContent:
+              "group-data-[selected=true]:text-wow-gold text-gray-400 text-xs",
           }}
           selectedKey={selectedCategory || "all"}
           variant="underlined"
           onSelectionChange={(key) => {
-            onCategoryChange(key === "all" ? null : (key as ShopCategory | "highlighted"));
+            onCategoryChange(
+              key === "all" ? null : (key as ShopCategory | "highlighted"),
+            );
           }}
         >
           <Tab key="all" title={t("allItems")} />
@@ -82,7 +86,10 @@ export function CategoryNav({
           size="sm"
           onSelectionChange={(keys) => {
             const key = Array.from(keys)[0] as string;
-            onCategoryChange(key === "all" ? null : (key as ShopCategory | "highlighted"));
+
+            onCategoryChange(
+              key === "all" ? null : (key as ShopCategory | "highlighted"),
+            );
           }}
         >
           {ALL_KEYS.map((key) => (
