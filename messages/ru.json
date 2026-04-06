@@ -257,7 +257,16 @@
     "tooManyCharacters": "У вас уже максимальное количество персонажей (10).",
     "deletedOn": "Удалён",
     "daysRemaining": "Осталось {days} дн.",
-    "cancel": "Отмена"
+    "cancel": "Отмена",
+    "reorderCharacters": "Порядок отображения",
+    "reorderDescription": "Измените порядок отображения ваших персонажей на экране выбора в игре.",
+    "reorder": "Изменить порядок",
+    "saveOrder": "Сохранить",
+    "cancelReorder": "Отмена",
+    "reorderSuccess": "Порядок персонажей обновлен!",
+    "reorderError": "Ошибка при обновлении порядка.",
+    "moveUp": "Вверх",
+    "moveDown": "Вниз"
   },
   "shop": {
     "title": "Магазин",

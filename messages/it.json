@@ -243,7 +243,16 @@
     "tooManyCharacters": "Hai già il numero massimo di personaggi (10).",
     "deletedOn": "Eliminato il",
     "daysRemaining": "{days}g rimanenti",
-    "cancel": "Annulla"
+    "cancel": "Annulla",
+    "reorderCharacters": "Ordine di visualizzazione",
+    "reorderDescription": "Riorganizza l'ordine di visualizzazione dei tuoi personaggi nella schermata di selezione nel gioco.",
+    "reorder": "Riordina",
+    "saveOrder": "Salva",
+    "cancelReorder": "Annulla",
+    "reorderSuccess": "Ordine dei personaggi aggiornato!",
+    "reorderError": "Errore durante l'aggiornamento dell'ordine.",
+    "moveUp": "Sposta su",
+    "moveDown": "Sposta giu"
   },
   "shop": {
     "title": "Negozio",

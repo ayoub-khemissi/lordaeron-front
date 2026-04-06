@@ -257,7 +257,16 @@
     "tooManyCharacters": "Masz już maksymalną liczbę postaci (10).",
     "deletedOn": "Usunięto",
     "daysRemaining": "Pozostało {days} dni",
-    "cancel": "Anuluj"
+    "cancel": "Anuluj",
+    "reorderCharacters": "Kolejnosc wyswietlania",
+    "reorderDescription": "Zmien kolejnosc wyswietlania postaci na ekranie wyboru w grze.",
+    "reorder": "Zmien kolejnosc",
+    "saveOrder": "Zapisz",
+    "cancelReorder": "Anuluj",
+    "reorderSuccess": "Kolejnosc postaci zaktualizowana!",
+    "reorderError": "Blad podczas aktualizacji kolejnosci.",
+    "moveUp": "W gore",
+    "moveDown": "W dol"
   },
   "shop": {
     "title": "Sklep",

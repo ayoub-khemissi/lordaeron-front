@@ -243,7 +243,16 @@
     "tooManyCharacters": "Du hast bereits die maximale Anzahl an Charakteren (10).",
     "deletedOn": "Gelöscht am",
     "daysRemaining": "{days}T verbleibend",
-    "cancel": "Abbrechen"
+    "cancel": "Abbrechen",
+    "reorderCharacters": "Anzeigereihenfolge",
+    "reorderDescription": "Ordne die Anzeigereihenfolge deiner Charaktere auf dem Auswahlbildschirm im Spiel neu an.",
+    "reorder": "Neu ordnen",
+    "saveOrder": "Speichern",
+    "cancelReorder": "Abbrechen",
+    "reorderSuccess": "Charakterreihenfolge aktualisiert!",
+    "reorderError": "Fehler beim Aktualisieren der Reihenfolge.",
+    "moveUp": "Nach oben",
+    "moveDown": "Nach unten"
   },
   "shop": {
     "title": "Shop",

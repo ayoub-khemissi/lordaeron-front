@@ -218,6 +218,51 @@ export async function setAtLoginFlag(
   return (result as unknown as { affectedRows: number }).affectedRows > 0;
 }
 
+export async function getCharacterGuidsForAccount(
+  accountId: number,
+): Promise<number[]> {
+  const [rows] = await charactersDb.execute<RowDataPacket[]>(
+    "SELECT guid FROM characters WHERE account = ? AND deleteInfos_Name IS NULL ORDER BY slot, guid",
+    [accountId],
+  );
+
+  return rows.map((r) => r.guid);
+}
+
+export async function updateCharacterSlots(
+  accountId: number,
+  guidOrder: number[],
+): Promise<boolean> {
+  const connection = await charactersDb.getConnection();
+
+  try {
+    await connection.beginTransaction();
+
+    for (let i = 0; i < guidOrder.length; i++) {
+      const [result] = await connection.execute<RowDataPacket[]>(
+        "UPDATE characters SET slot = ? WHERE guid = ? AND account = ? AND deleteInfos_Name IS NULL",
+        [i, guidOrder[i], accountId],
+      );
+
+      if ((result as unknown as { affectedRows: number }).affectedRows === 0) {
+        await connection.rollback();
+
+        return false;
+      }
+    }
+
+    await connection.commit();
+
+    return true;
+  } catch {
+    await connection.rollback();
+
+    return false;
+  } finally {
+    connection.release();
+  }
+}
+
 export async function restoreCharacter(
   guid: number,
   name: string,

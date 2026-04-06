@@ -243,7 +243,16 @@
     "tooManyCharacters": "Vous avez déjà le nombre maximum de personnages (10).",
     "deletedOn": "Supprimé le",
     "daysRemaining": "{days}j restants",
-    "cancel": "Annuler"
+    "cancel": "Annuler",
+    "reorderCharacters": "Ordre d'affichage",
+    "reorderDescription": "Réorganisez l'ordre d'affichage de vos personnages sur l'écran de sélection en jeu.",
+    "reorder": "Réorganiser",
+    "saveOrder": "Sauvegarder",
+    "cancelReorder": "Annuler",
+    "reorderSuccess": "Ordre des personnages mis à jour !",
+    "reorderError": "Erreur lors de la mise à jour de l'ordre.",
+    "moveUp": "Monter",
+    "moveDown": "Descendre"
   },
   "shop": {
     "title": "Boutique",

@@ -243,7 +243,16 @@
     "tooManyCharacters": "You already have the maximum number of characters (10).",
     "deletedOn": "Deleted on",
     "daysRemaining": "{days}d left",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "reorderCharacters": "Display Order",
+    "reorderDescription": "Rearrange the display order of your characters on the in-game selection screen.",
+    "reorder": "Reorder",
+    "saveOrder": "Save",
+    "cancelReorder": "Cancel",
+    "reorderSuccess": "Character order updated!",
+    "reorderError": "Failed to update character order.",
+    "moveUp": "Move up",
+    "moveDown": "Move down"
   },
   "shop": {
     "title": "Shop",
