@@ -261,7 +261,19 @@ export default function EpicProgressionContent() {
             </div>
 
             <motion.div
-              className="mt-8 glass-gold rounded-2xl p-6 sm:p-8"
+              className="mt-8 glass-lite border-green-500/20 rounded-2xl p-6 sm:p-8"
+              initial={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0.45 }}
+              viewport={{ once: true }}
+              whileInView={{ opacity: 1, y: 0 }}
+            >
+              <p className="text-gray-200 text-sm leading-relaxed text-center">
+                ✓ {t("restrictionsWithinExpansion")}
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="mt-4 glass-gold rounded-2xl p-6 sm:p-8"
               initial={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.5 }}
               viewport={{ once: true }}
