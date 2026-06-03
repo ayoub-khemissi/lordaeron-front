@@ -31,7 +31,7 @@
     "live": "Live",
     "total": "Gesamt",
     "epicProgressionTitle": "Epic Progression",
-    "epicProgressionDesc": "Besiege den letzten Boss jeder Stufe, um die nächste freizuschalten. Durchlaufe alle WoW-Raids der Reihe nach — von Vanilla über TBC bis Wrath of the Lich King."
+    "epicProgressionDesc": "Besiege den letzten Boss jedes Raid-Tiers, um den nächsten freizuschalten. Durchlaufe alle WoW-Raids der Reihe nach — von Vanilla über TBC bis Wrath of the Lich King."
   },
   "howTo": {
     "title": "Wie man sich verbindet",
@@ -158,7 +158,7 @@
     "transmog": "Transmogrifikation",
     "transmogDesc": "Passe das Aussehen deiner Ausrüstung mit dem Transmog-System an",
     "epicProgression": "Epic Progression",
-    "epicProgressionDesc": "Besiege den Endboss jedes Raids in der Erscheinungsreihenfolge — von Vanilla über TBC bis WotLK. Du musst jede Stufe abschließen, um die nächste freizuschalten.",
+    "epicProgressionDesc": "Besiege den Endboss jedes Raids in der Erscheinungsreihenfolge — von Vanilla über TBC bis WotLK. Du musst jeden Raid-Tier abschließen, um den nächsten freizuschalten.",
     "raidScaling": "Schwierigkeitsskalierung",
     "raidScalingDesc": "Raids und Dungeons passen sich dynamisch an deine Gruppengröße an. Weniger Spieler bedeutet schwächere Kreaturen und angepasste Beute — spiele mit jeder Gruppengröße.",
     "tankAsDps": "Tank als DPS",
@@ -771,7 +771,7 @@
     },
     "epicProgression": {
       "title": "Epic Progression — Lordaeron WoW Server",
-      "description": "Entdecke Lordaerons Epic Progression System: Besiege jeden Raid-Endboss der Reihe nach, von Vanilla über TBC bis WotLK. Progression pro Charakter, Stufen-Beschränkungen und Fraktionsführer-Quests."
+      "description": "Entdecke Lordaerons Epic Progression System: Besiege jeden Raid-Endboss der Reihe nach, von Vanilla über TBC bis WotLK. Progression pro Charakter, Beschränkungen zwischen Erweiterungen und Fraktionsführer-Quests."
     },
     "raidScaling": {
       "title": "Schwierigkeitsskalierung — Lordaeron WoW Server",
@@ -780,7 +780,7 @@
   },
   "branding": {
     "sectionTitle": "Serverbeschreibung",
-    "desc1": "Lordaeron ist ein kostenloser (Free-to-Play) Epic Progressive WoW-Server auf Patch 3.3.5a. Spieler durchlaufen jeden Raid-Stufe in der Erscheinungsreihenfolge — von Vanilla über The Burning Crusade bis Wrath of the Lich King — indem sie den/die Endboss(e) jeder Stufe besiegen, um die nächste freizuschalten.",
+    "desc1": "Lordaeron ist ein kostenloser (Free-to-Play) Epic Progressive WoW-Server auf Patch 3.3.5a. Spieler durchlaufen jeden Raid-Tier in der Erscheinungsreihenfolge — von Vanilla über The Burning Crusade bis Wrath of the Lich King — indem sie den/die Endboss(e) jedes Raid-Tiers besiegen, um den nächsten freizuschalten.",
     "desc2": "Der Server bietet verbesserte Raten (x5 XP, x2 Ehre, x2 Berufe, x2 Ruf) für ein schnelleres aber ausgewogenes Leveling-Erlebnis. Raids werden jeden Mittwoch und Sonntag um 5 Uhr morgens zurückgesetzt, um die Progression voranzutreiben, und Dungeons haben keine Sperre — du kannst sie so oft machen wie du willst.",
     "desc3": "Komfort-Features umfassen Transmogrifikation, Crossfaction-Gruppen (Allianz und Horde spielen zusammen), AOE-Beute, automatisches Zauberlernen und ein einzigartiges Tank-als-DPS-System — als Tank in Dungeons anmelden, während man in der DPS-Spezialisierung bleibt, für schnelleres Gruppenfinden mit automatischem Bonus auf Leben und Bedrohung.",
     "desc4": "Ein optionaler kosmetischer Shop mit Seelensplittern bietet Reittiere, Transmog-Sets, Erbstücke, Taschen, Begleiter, Spielzeug und Charakter-Dienste. Kein Kauf ist erforderlich, um das volle Spielerlebnis zu genießen."

@@ -31,7 +31,7 @@
     "live": "En direct",
     "total": "Total",
     "epicProgressionTitle": "Epic Progression",
-    "epicProgressionDesc": "Terrassez le dernier boss de chaque palier pour débloquer le suivant. Progressez à travers tous les raids WoW dans l'ordre — de Vanilla en passant par TBC jusqu'à Wrath of the Lich King."
+    "epicProgressionDesc": "Terrassez le dernier boss de chaque tier pour débloquer le suivant. Progressez à travers tous les raids WoW dans l'ordre — de Vanilla en passant par TBC jusqu'à Wrath of the Lich King."
   },
   "howTo": {
     "title": "Comment se connecter",
@@ -158,7 +158,7 @@
     "transmog": "Transmogrification",
     "transmogDesc": "Personnalisez l'apparence de votre équipement avec le système de transmog",
     "epicProgression": "Epic Progression",
-    "epicProgressionDesc": "Terrassez le boss final de chaque raid dans l'ordre de sortie — du Vanilla en passant par TBC jusqu'à WotLK. Vous devez compléter chaque palier pour débloquer le suivant.",
+    "epicProgressionDesc": "Terrassez le boss final de chaque raid dans l'ordre de sortie — du Vanilla en passant par TBC jusqu'à WotLK. Vous devez compléter chaque tier pour débloquer le suivant.",
     "tankAsDps": "Tank en tant que DPS",
     "tankAsDpsDesc": "En donjon, tu peux taguer en Tank tout en restant en spé DPS. Tu trouveras un groupe bien plus vite et tu recevras un bonus automatique de vie et de menace, mais tes dégâts seront réduits. Non disponible en raid.",
     "dungeonNoLock": "Donjons sans verrouillage",
@@ -771,7 +771,7 @@
     },
     "epicProgression": {
       "title": "Epic Progression — Serveur WoW Lordaeron",
-      "description": "Découvrez le système Epic Progression de Lordaeron : terrassez chaque boss final de raid dans l'ordre, de Vanilla à TBC puis WotLK. Progression par personnage, restrictions inter-paliers et quêtes de chefs de faction."
+      "description": "Découvrez le système Epic Progression de Lordaeron : terrassez chaque boss final de raid dans l'ordre, de Vanilla à TBC puis WotLK. Progression par personnage, restrictions entre extensions et quêtes de chefs de faction."
     },
     "raidScaling": {
       "title": "Scaling de difficulté — Serveur WoW Lordaeron",
@@ -780,7 +780,7 @@
   },
   "branding": {
     "sectionTitle": "Description du serveur",
-    "desc1": "Lordaeron est un serveur WoW Epic Progressive gratuit (free-to-play) sous le patch 3.3.5a. Les joueurs progressent à travers chaque palier de raid dans l'ordre de sortie — de Vanilla en passant par The Burning Crusade jusqu'à Wrath of the Lich King — en battant le(s) boss final(aux) de chaque palier pour débloquer le suivant.",
+    "desc1": "Lordaeron est un serveur WoW Epic Progressive gratuit (free-to-play) sous le patch 3.3.5a. Les joueurs progressent à travers chaque tier de raid dans l'ordre de sortie — de Vanilla en passant par The Burning Crusade jusqu'à Wrath of the Lich King — en battant le(s) boss final(aux) de chaque tier pour débloquer le suivant.",
     "desc2": "Le serveur propose des rates améliorés (x5 XP, x2 Honneur, x2 Professions, x2 Réputation) pour une expérience de montée de niveau plus rapide mais équilibrée. Les raids sont réinitialisés chaque mercredi et dimanche à 5h avec un loot complet à chaque fois, et les donjons n'ont pas de verrouillage pour pouvoir les faire autant de fois que souhaité.",
     "desc3": "Les fonctionnalités de confort incluent la Transmogrification, le groupage Crossfaction (Alliance et Horde jouent ensemble), le Loot AOE, l'apprentissage automatique des sorts, et un système unique de Tank en DPS — s'inscrire en Tank en donjon tout en restant en spé DPS pour trouver un groupe plus vite, avec un bonus automatique de vie et de menace.",
     "desc4": "Une boutique cosmétique optionnelle alimentée par les Éclats d'âme propose des montures, sets de transmog, héritage, sacs, mascottes, jouets et services de personnage. Aucun achat n'est requis pour profiter pleinement de l'expérience de jeu."
