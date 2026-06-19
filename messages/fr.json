@@ -75,7 +75,9 @@
       "passwordLength": "Le mot de passe doit contenir 6 à 16 caractères",
       "passwordMismatch": "Les mots de passe ne correspondent pas",
       "usernameTaken": "Ce nom d'utilisateur est déjà pris",
-      "serverError": "Erreur serveur. Veuillez réessayer."
+      "serverError": "Erreur serveur. Veuillez réessayer.",
+      "purchaseNotRefundable": "Cet achat n'est pas remboursable.",
+      "recipientNotFound": "Personnage destinataire introuvable."
     }
   },
   "login": {

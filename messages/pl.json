@@ -81,7 +81,9 @@
       "passwordLength": "Hasło musi mieć od 6 do 16 znaków",
       "passwordMismatch": "Hasła nie są zgodne",
       "usernameTaken": "Nazwa użytkownika jest już zajęta",
-      "serverError": "Błąd serwera. Spróbuj ponownie."
+      "serverError": "Błąd serwera. Spróbuj ponownie.",
+      "purchaseNotRefundable": "Ten zakup nie podlega zwrotowi.",
+      "recipientNotFound": "Nie znaleziono postaci odbiorcy."
     }
   },
   "login": {

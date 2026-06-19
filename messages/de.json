@@ -75,7 +75,9 @@
       "passwordLength": "Passwort muss 6-16 Zeichen lang sein",
       "passwordMismatch": "Passwörter stimmen nicht überein",
       "usernameTaken": "Benutzername ist bereits vergeben",
-      "serverError": "Serverfehler. Bitte versuche es erneut."
+      "serverError": "Serverfehler. Bitte versuche es erneut.",
+      "purchaseNotRefundable": "Dieser Kauf ist nicht erstattungsfähig.",
+      "recipientNotFound": "Empfänger-Charakter nicht gefunden."
     }
   },
   "login": {

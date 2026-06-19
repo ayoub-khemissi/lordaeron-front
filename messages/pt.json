@@ -81,7 +81,9 @@
       "passwordLength": "A palavra-passe deve ter entre 6 e 16 caracteres",
       "passwordMismatch": "As palavras-passe nao coincidem",
       "usernameTaken": "O nome de utilizador ja esta em uso",
-      "serverError": "Erro no servidor. Por favor, tenta novamente."
+      "serverError": "Erro no servidor. Por favor, tenta novamente.",
+      "purchaseNotRefundable": "Esta compra nao e reembolsavel.",
+      "recipientNotFound": "Personagem destinatario nao encontrado."
     }
   },
   "login": {

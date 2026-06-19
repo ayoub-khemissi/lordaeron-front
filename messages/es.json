@@ -426,7 +426,9 @@
       "giftRecipientLevelRestricted": "El nivel del destinatario es demasiado bajo para este artículo.",
       "setNotFound": "Set no encontrado",
       "heirloomMaxLevelRequired": "Debes tener un personaje nivel 80 para comprar objetos reliquia.",
-      "serverError": "Error del servidor. Inténtalo de nuevo."
+      "serverError": "Error del servidor. Inténtalo de nuevo.",
+      "purchaseNotRefundable": "Esta compra no es reembolsable.",
+      "recipientNotFound": "Personaje destinatario no encontrado."
     }
   },
   "admin": {

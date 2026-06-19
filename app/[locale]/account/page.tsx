@@ -1,12 +1,25 @@
 "use client";
 
-import type { Character, AccountInfo, DeletedCharacter } from "@/types";
+import type {
+  Character,
+  AccountInfo,
+  DeletedCharacter,
+  ShopPurchaseWithItem,
+} from "@/types";
 
 import { useEffect, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Spinner } from "@heroui/spinner";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from "@heroui/modal";
 import {
   Table,
   TableHeader,
@@ -45,6 +58,7 @@ function formatPlayTime(seconds: number): string {
 export default function AccountPage() {
   const t = useTranslations("account");
   const tCommon = useTranslations("common");
+  const tShop = useTranslations("shop");
   const locale = useLocale();
   const router = useRouter();
   const { user: authUser, loading: authLoading } = useAuth();
@@ -73,9 +87,15 @@ export default function AccountPage() {
   >([]);
   const [restoreCost, setRestoreCost] = useState(0);
   const [restoreModalOpen, setRestoreModalOpen] = useState(false);
-  const [purchases, setPurchases] = useState<
-    import("@/types").ShopPurchaseWithItem[]
-  >([]);
+  const [purchases, setPurchases] = useState<ShopPurchaseWithItem[]>([]);
+  const [refundTarget, setRefundTarget] = useState<ShopPurchaseWithItem | null>(
+    null,
+  );
+  const [refundLoading, setRefundLoading] = useState(false);
+  const [refundResult, setRefundResult] = useState<"success" | "error" | null>(
+    null,
+  );
+  const [refundError, setRefundError] = useState("");
   const [activeTab, setActiveTab] = useState(() => {
     if (typeof window !== "undefined" && window.location.hash === "#purchases")
       return "purchases";
@@ -160,6 +180,54 @@ export default function AccountPage() {
 
       setDeletedCharacters(deletedData.deletedCharacters || []);
     }
+  };
+
+  const refreshPurchases = async () => {
+    const res = await fetch("/api/shop/purchases");
+
+    if (res.ok) {
+      const data = await res.json();
+
+      setPurchases(data.purchases || []);
+    }
+    // Soul shard balance changes after a refund
+    const accRes = await fetch("/api/account");
+
+    if (accRes.ok) {
+      const data = await accRes.json();
+
+      setSoulShards(data.soulShards ?? 0);
+    }
+  };
+
+  const handleRefund = async () => {
+    if (!refundTarget) return;
+    setRefundLoading(true);
+    try {
+      const res = await fetch(`/api/shop/purchases/${refundTarget.id}/refund`, {
+        method: "POST",
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        setRefundResult("error");
+        setRefundError(data.error || "serverError");
+      } else {
+        setRefundResult("success");
+        await refreshPurchases();
+      }
+    } catch {
+      setRefundResult("error");
+      setRefundError("serverError");
+    } finally {
+      setRefundLoading(false);
+    }
+  };
+
+  const handleRefundClose = () => {
+    setRefundTarget(null);
+    setRefundResult(null);
+    setRefundError("");
   };
 
   const handleRestore = async (
@@ -848,7 +916,11 @@ export default function AccountPage() {
             <div className="relative overflow-hidden rounded-2xl glow-gold">
               <div className="relative glass border-wow-gold/15 rounded-2xl p-6">
                 {purchases.length > 0 ? (
-                  <PurchaseHistory locale={locale} purchases={purchases} />
+                  <PurchaseHistory
+                    locale={locale}
+                    purchases={purchases}
+                    onRefund={setRefundTarget}
+                  />
                 ) : (
                   <div className="text-center py-12">
                     <p className="text-gray-400 text-sm">{t("noPurchases")}</p>
@@ -872,6 +944,109 @@ export default function AccountPage() {
           }}
           onRestore={handleRestore}
         />
+
+        {/* Refund Modal */}
+        <Modal
+          classNames={{
+            base: "bg-[#0d1117] border border-wow-gold/20",
+            header: "border-b border-wow-gold/10",
+            footer: "border-t border-wow-gold/10",
+          }}
+          isOpen={!!refundTarget}
+          onClose={handleRefundClose}
+        >
+          <ModalContent>
+            <ModalHeader>{tShop("confirmRefund")}</ModalHeader>
+            <ModalBody className="py-6">
+              {refundResult === "success" ? (
+                <div className="text-center py-4">
+                  <div className="text-4xl mb-3">&#x2705;</div>
+                  <h3 className="text-lg font-medium text-green-400 mb-1">
+                    {tShop("refundSuccess")}
+                  </h3>
+                  <p className="text-gray-400 text-sm">
+                    {tShop("refundSuccessDesc")}
+                  </p>
+                </div>
+              ) : refundResult === "error" ? (
+                <div className="text-center py-4">
+                  <div className="text-4xl mb-3">&#x274C;</div>
+                  <p className="text-red-400">
+                    {tShop(`errors.${refundError}`)}
+                  </p>
+                </div>
+              ) : refundTarget ? (
+                <>
+                  <p className="text-gray-300 text-sm mb-4">
+                    {tShop("confirmRefundDesc")}
+                  </p>
+                  <div className="bg-[#161b22] rounded-lg p-4 mb-4">
+                    <p className="text-sm text-gray-400 mb-1">
+                      {tShop("item")}
+                    </p>
+                    <div className="flex items-center gap-2">
+                      {refundTarget.item_icon_url && (
+                        <img
+                          alt=""
+                          className="w-6 h-6 rounded"
+                          src={refundTarget.item_icon_url}
+                        />
+                      )}
+                      <p className="text-gray-100 font-medium">
+                        {(refundTarget[
+                          `item_name_${locale}` as keyof ShopPurchaseWithItem
+                        ] as string) || refundTarget.item_name_en}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="bg-[#161b22] rounded-lg p-4">
+                    <p className="text-sm text-gray-400 mb-2">
+                      {tShop("pricePaid")}
+                    </p>
+                    <div className="flex items-center gap-1">
+                      <Image
+                        alt=""
+                        height={18}
+                        src="/img/icons/soul-shard.svg"
+                        width={18}
+                      />
+                      <span className="text-lg text-purple-400 font-bold">
+                        {refundTarget.price_paid}
+                      </span>
+                    </div>
+                  </div>
+                </>
+              ) : null}
+            </ModalBody>
+            <ModalFooter>
+              {refundResult ? (
+                <Button
+                  className="bg-wow-gold text-black font-bold"
+                  onPress={handleRefundClose}
+                >
+                  {tShop("close")}
+                </Button>
+              ) : (
+                <>
+                  <Button
+                    className="text-gray-400"
+                    variant="light"
+                    onPress={handleRefundClose}
+                  >
+                    {tShop("cancel")}
+                  </Button>
+                  <Button
+                    className="bg-gradient-to-r from-orange-500 to-orange-400 text-black font-bold"
+                    isLoading={refundLoading}
+                    onPress={handleRefund}
+                  >
+                    {tShop("confirmRefund")}
+                  </Button>
+                </>
+              )}
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
       </div>
     </div>
   );

@@ -75,7 +75,9 @@
       "passwordLength": "La password deve avere 6-16 caratteri",
       "passwordMismatch": "Le password non corrispondono",
       "usernameTaken": "Il nome utente è già in uso",
-      "serverError": "Errore del server. Riprova."
+      "serverError": "Errore del server. Riprova.",
+      "purchaseNotRefundable": "Questo acquisto non è rimborsabile.",
+      "recipientNotFound": "Personaggio destinatario non trovato."
     }
   },
   "login": {
