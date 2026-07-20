@@ -31,7 +31,7 @@
     "live": "Live",
     "total": "Gesamt",
     "epicProgressionTitle": "Epic Progression",
-    "epicProgressionDesc": "Besiege den letzten Boss jedes Raid-Tiers, um den nächsten freizuschalten. Durchlaufe alle WoW-Raids der Reihe nach — von Vanilla über TBC bis Wrath of the Lich King."
+    "epicProgressionDesc": "Besteht die Prüfungen jeder Stufe, um die nächste freizuschalten — mit vollem Schlachtzug oder solo und in kleinen Gruppen über den Pfad des Einsamen Champions. Von Vanilla über TBC bis Wrath of the Lich King."
   },
   "howTo": {
     "title": "Wie man sich verbindet",
@@ -160,7 +160,7 @@
     "transmog": "Transmogrifikation",
     "transmogDesc": "Passe das Aussehen deiner Ausrüstung mit dem Transmog-System an",
     "epicProgression": "Epic Progression",
-    "epicProgressionDesc": "Besiege den Endboss jedes Raids in der Erscheinungsreihenfolge — von Vanilla über TBC bis WotLK. Du musst jeden Raid-Tier abschließen, um den nächsten freizuschalten.",
+    "epicProgressionDesc": "Besiege den Endboss jedes Raids in der Erscheinungsreihenfolge — von Vanilla über TBC bis WotLK. Du musst jeden Raid-Tier abschließen, um den nächsten freizuschalten. Zwei Wege führen dorthin: die großen Schlachtzüge oder der Pfad des Einsamen Champions.",
     "raidScaling": "Schwierigkeitsskalierung",
     "raidScalingDesc": "Raids und Dungeons passen sich dynamisch an deine Gruppengröße an. Weniger Spieler bedeutet schwächere Kreaturen und angepasste Beute — spiele mit jeder Gruppengröße.",
     "tankAsDps": "Tank als DPS",
@@ -176,7 +176,9 @@
     "soloQueue": "Solo-Queue Dungeons",
     "soloQueueDesc": "Keine Gruppe nötig — allein für jeden bestimmten oder zufälligen Dungeon anmelden und sofort hinein teleportiert werden.",
     "autolearnSpells": "Auto-Zauberlernen",
-    "autolearnSpellsDesc": "Lerne automatisch neue Zauber beim Aufleveln"
+    "autolearnSpellsDesc": "Lerne automatisch neue Zauber beim Aufleveln",
+    "loneChampion": "Pfad des Einsamen Champions",
+    "loneChampionDesc": "Kein Schlachtzugsroster? Kommt solo oder mit wenigen Freunden voran: heroische Dungeonprüfungen, Sammelaufträge und die Archivare — Händler mit schlachtzugsexklusiven Rezepten und Materialien für Gold und Embleme."
   },
   "common": {
     "online": "Online",
@@ -434,11 +436,53 @@
     }
   },
   "admin": {
-    "login": { "title": "Admin Login", "username": "Benutzername", "password": "Passwort", "submit": "Anmelden", "error": "Ungültige Anmeldedaten" },
-    "nav": { "dashboard": "Dashboard", "items": "Artikel", "sets": "Sets", "purchases": "Käufe", "bans": "Sperren", "audit": "Protokoll", "contactMessages": "Kontaktnachrichten", "news": "Neuigkeiten", "realMoney": "Echtgeld", "logout": "Abmelden" },
-    "dashboard": { "title": "Dashboard", "totalRevenue": "Gesamtumsatz", "totalPurchases": "Gesamtkäufe", "averageOrder": "Durchschnitt", "activeItems": "Aktive Artikel", "salesTrend": "Verkaufstrend", "topItems": "Top Artikel", "recentPurchases": "Letzte Käufe" },
-    "items": { "title": "Shop-Artikel", "addItem": "Artikel hinzufügen", "editItem": "Artikel bearbeiten", "name": "Name", "category": "Kategorie", "price": "Preis", "discount": "Rabatt", "status": "Status", "active": "Aktiv", "inactive": "Inaktiv", "highlighted": "Hervorgehoben", "actions": "Aktionen", "save": "Speichern", "delete": "Deaktivieren", "refundable": "Erstattbar",
-      "confirmDelete": "Diesen Artikel wirklich deaktivieren?" },
+    "login": {
+      "title": "Admin Login",
+      "username": "Benutzername",
+      "password": "Passwort",
+      "submit": "Anmelden",
+      "error": "Ungültige Anmeldedaten"
+    },
+    "nav": {
+      "dashboard": "Dashboard",
+      "items": "Artikel",
+      "sets": "Sets",
+      "purchases": "Käufe",
+      "bans": "Sperren",
+      "audit": "Protokoll",
+      "contactMessages": "Kontaktnachrichten",
+      "news": "Neuigkeiten",
+      "realMoney": "Echtgeld",
+      "logout": "Abmelden"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "totalRevenue": "Gesamtumsatz",
+      "totalPurchases": "Gesamtkäufe",
+      "averageOrder": "Durchschnitt",
+      "activeItems": "Aktive Artikel",
+      "salesTrend": "Verkaufstrend",
+      "topItems": "Top Artikel",
+      "recentPurchases": "Letzte Käufe"
+    },
+    "items": {
+      "title": "Shop-Artikel",
+      "addItem": "Artikel hinzufügen",
+      "editItem": "Artikel bearbeiten",
+      "name": "Name",
+      "category": "Kategorie",
+      "price": "Preis",
+      "discount": "Rabatt",
+      "status": "Status",
+      "active": "Aktiv",
+      "inactive": "Inaktiv",
+      "highlighted": "Hervorgehoben",
+      "actions": "Aktionen",
+      "save": "Speichern",
+      "delete": "Deaktivieren",
+      "refundable": "Erstattbar",
+      "confirmDelete": "Diesen Artikel wirklich deaktivieren?"
+    },
     "sets": {
       "title": "Item-Sets",
       "addSet": "Set hinzufügen",
@@ -460,9 +504,73 @@
       "removePiece": "Entfernen",
       "setNotFound": "Set nicht gefunden"
     },
-    "purchases": { "title": "Kaufhistorie", "account": "Konto", "character": "Charakter", "item": "Artikel", "price": "Preis", "status": "Status", "date": "Datum", "refund": "Erstatten", "confirmRefund": "Diesen Kauf wirklich erstatten?", "refundSuccess": "Kauf erfolgreich erstattet", "actions": "Aktionen", "retry": "Wiederholen", "retrySuccess": "Zustellungswiederholung erfolgreich", "retryFailed": "Zustellungswiederholung fehlgeschlagen", "status_completed": "Abgeschlossen", "status_refunded": "Erstattet", "status_pending_refund": "Erstattung ausstehend", "status_pending_delivery": "Lieferung ausstehend", "status_cancelled": "Storniert", "reason_itemNotRefundable": "Nicht erstattbar", "reason_refundExpired": "2h-Frist abgelaufen", "reason_itemNotInInventory": "Gegenstand nicht im Inventar", "reason_purchaseNotRefundable": "Kauf nicht erstattbar", "reason_recipientNotFound": "Empfänger nicht gefunden", "reason_serverError": "Serverfehler", "reason_characterOnline": "Charakter ist online", "soulShards": "Seelensplitter" },
-    "bans": { "title": "Shop-Sperren", "addBan": "Sperre hinzufügen", "accountId": "Konto-ID", "reason": "Grund", "expiresAt": "Läuft ab am", "permanent": "Permanent", "active": "Aktiv", "actions": "Aktionen", "remove": "Entfernen" },
-    "audit": { "title": "Audit-Protokoll", "admin": "Admin", "action": "Aktion", "target": "Ziel", "details": "Details", "date": "Datum", "action_create_item": "Artikel erstellen", "action_update_item": "Artikel bearbeiten", "action_deactivate_item": "Artikel deaktivieren", "action_create_set": "Set erstellen", "action_update_set": "Set bearbeiten", "action_deactivate_set": "Set deaktivieren", "action_create_ban": "Sperre erstellen", "action_update_ban": "Sperre bearbeiten", "action_delete_ban": "Sperre löschen", "action_retry_delivery": "Zustellung wiederholen", "action_refund_purchase": "Erstattung", "target_shop_item": "Artikel", "target_shop_set": "Set", "target_shop_ban": "Sperre", "target_shop_purchase": "Kauf", "action_create_news": "Artikel erstellen", "action_update_news": "Artikel bearbeiten", "action_delete_news": "Artikel löschen", "target_news": "Neuigkeit" },
+    "purchases": {
+      "title": "Kaufhistorie",
+      "account": "Konto",
+      "character": "Charakter",
+      "item": "Artikel",
+      "price": "Preis",
+      "status": "Status",
+      "date": "Datum",
+      "refund": "Erstatten",
+      "confirmRefund": "Diesen Kauf wirklich erstatten?",
+      "refundSuccess": "Kauf erfolgreich erstattet",
+      "actions": "Aktionen",
+      "retry": "Wiederholen",
+      "retrySuccess": "Zustellungswiederholung erfolgreich",
+      "retryFailed": "Zustellungswiederholung fehlgeschlagen",
+      "status_completed": "Abgeschlossen",
+      "status_refunded": "Erstattet",
+      "status_pending_refund": "Erstattung ausstehend",
+      "status_pending_delivery": "Lieferung ausstehend",
+      "status_cancelled": "Storniert",
+      "reason_itemNotRefundable": "Nicht erstattbar",
+      "reason_refundExpired": "2h-Frist abgelaufen",
+      "reason_itemNotInInventory": "Gegenstand nicht im Inventar",
+      "reason_purchaseNotRefundable": "Kauf nicht erstattbar",
+      "reason_recipientNotFound": "Empfänger nicht gefunden",
+      "reason_serverError": "Serverfehler",
+      "reason_characterOnline": "Charakter ist online",
+      "soulShards": "Seelensplitter"
+    },
+    "bans": {
+      "title": "Shop-Sperren",
+      "addBan": "Sperre hinzufügen",
+      "accountId": "Konto-ID",
+      "reason": "Grund",
+      "expiresAt": "Läuft ab am",
+      "permanent": "Permanent",
+      "active": "Aktiv",
+      "actions": "Aktionen",
+      "remove": "Entfernen"
+    },
+    "audit": {
+      "title": "Audit-Protokoll",
+      "admin": "Admin",
+      "action": "Aktion",
+      "target": "Ziel",
+      "details": "Details",
+      "date": "Datum",
+      "action_create_item": "Artikel erstellen",
+      "action_update_item": "Artikel bearbeiten",
+      "action_deactivate_item": "Artikel deaktivieren",
+      "action_create_set": "Set erstellen",
+      "action_update_set": "Set bearbeiten",
+      "action_deactivate_set": "Set deaktivieren",
+      "action_create_ban": "Sperre erstellen",
+      "action_update_ban": "Sperre bearbeiten",
+      "action_delete_ban": "Sperre löschen",
+      "action_retry_delivery": "Zustellung wiederholen",
+      "action_refund_purchase": "Erstattung",
+      "target_shop_item": "Artikel",
+      "target_shop_set": "Set",
+      "target_shop_ban": "Sperre",
+      "target_shop_purchase": "Kauf",
+      "action_create_news": "Artikel erstellen",
+      "action_update_news": "Artikel bearbeiten",
+      "action_delete_news": "Artikel löschen",
+      "target_news": "Neuigkeit"
+    },
     "news": {
       "title": "Nachrichtenartikel",
       "addArticle": "Artikel hinzufügen",
@@ -619,7 +727,7 @@
       },
       "liability": {
         "title": "6. Haftungsbeschränkungen",
-        "content": "Lordaeron wird \u201Ewie besehen\u201C ohne jegliche Garantien, weder ausdrücklich noch stillschweigend, bereitgestellt. Wir garantieren keinen ununterbrochenen oder fehlerfreien Dienst.\n\nDas Lordaeron-Team haftet nicht für den Verlust von Spielfortschritt, Gegenständen, Charakteren oder Daten, die durch Serverprobleme, Wartungsarbeiten, Rollbacks oder andere Umstände entstehen.\n\nWir behalten uns das Recht vor, Serverwartungen, Updates oder Zurücksetzungen nach Bedarf ohne vorherige Ankündigung durchzuführen."
+        "content": "Lordaeron wird „wie besehen“ ohne jegliche Garantien, weder ausdrücklich noch stillschweigend, bereitgestellt. Wir garantieren keinen ununterbrochenen oder fehlerfreien Dienst.\n\nDas Lordaeron-Team haftet nicht für den Verlust von Spielfortschritt, Gegenständen, Charakteren oder Daten, die durch Serverprobleme, Wartungsarbeiten, Rollbacks oder andere Umstände entstehen.\n\nWir behalten uns das Recht vor, Serverwartungen, Updates oder Zurücksetzungen nach Bedarf ohne vorherige Ankündigung durchzuführen."
       },
       "termination": {
         "title": "7. Kontokündigung",
@@ -802,9 +910,9 @@
   },
   "epicProgression": {
     "title": "Epic Progression",
-    "subtitle": "Durchlaufe jeden WoW-Raid-Tier — vom Geschmolzenen Kern bis zur Eiskronenzitadelle",
+    "subtitle": "Meistert jede WoW-Stufe — im Schlachtzug oder auf dem Pfad des Einsamen Champions",
     "introTitle": "Was ist Epic Progression?",
-    "introDesc": "Epic Progression ist Lordaerons zentrales Spielsystem. Jeder Charakter muss den/die Endboss(e) eines Raid-Tiers besiegen, um den nächsten freizuschalten. Die Progression ist pro Charakter — nicht pro Account oder pro Server. Jeder Held schreibt seine eigene Geschichte, von den Tiefen des Geschmolzenen Kerns bis zum eisigen Thron des Lichkönigs. Der Server läuft auf einer WotLK 3.3.5a-Konfiguration — Zauber, Talente, Quests — aber der Inhalt wird schrittweise freigeschaltet.",
+    "introDesc": "Epic Progression ist Lordaerons zentrales Spielsystem. Jeder Charakter muss den/die Endboss(e) eines Raid-Tiers besiegen, um den nächsten freizuschalten. Die Progression ist pro Charakter — nicht pro Account oder pro Server. Jeder Held schreibt seine eigene Geschichte, von den Tiefen des Geschmolzenen Kerns bis zum eisigen Thron des Lichkönigs. Der Server läuft auf einer WotLK 3.3.5a-Konfiguration — Zauber, Talente, Quests — aber der Inhalt wird schrittweise freigeschaltet. Zwei Wege führen durch jede Erweiterung: die großen Schlachtzüge oder der Pfad des Einsamen Champions für Solospieler und kleine Gruppen.",
     "dkTitle": "Todesritter & Vanilla",
     "dkDesc": "Todesritter sind wie gewohnt ab Stufe 55 verfügbar, unterliegen aber ebenfalls der Epic Progression. Die Werte ihrer Startausrüstung wurden angepasst, damit sie während der Vanilla-Erweiterung nicht zu stark sind.",
     "stayOnTierTitle": "Auf deiner Erweiterung bleiben",
@@ -832,9 +940,18 @@
     "restrictionsWhy": "Diese Beschränkungen existieren, um die Integrität der Progression zu bewahren. Sie verhindern Boosting, stellen sicher, dass jeder Spieler seinen Fortschritt verdient, und erhalten die Herausforderung jeder Erweiterung.",
     "restrictionsWithinExpansion": "Innerhalb derselben Erweiterung können alle Spieler frei zusammen spielen, unabhängig von ihrem aktuellen Raid-Tier.",
     "questTitle": "Wie man fortschreitet",
-    "questDesc": "Um von einer Erweiterung zur nächsten aufzusteigen, musst du eine Quest deines Fraktionsanführers abschließen. Nachdem du den Endboss einer Erweiterung besiegt hast, kehre zum Quest-NPC zurück, um deinen Kill zu bestätigen und die nächste Erweiterung freizuschalten. In Vanilla sprich mit Varian Wrynn (Allianz) oder Thrall (Horde). In TBC findest du A'dal in Shattrath. In WotLK gehe zu Rhonin in Dalaran.",
+    "questDesc": "Um von einer Erweiterung zur nächsten aufzusteigen, musst du eine Quest deines Fraktionsanführers abschließen. Nachdem du den Endboss einer Erweiterung besiegt hast, kehre zum Quest-NPC zurück, um deinen Kill zu bestätigen und die nächste Erweiterung freizuschalten. In Vanilla sprich mit Varian Wrynn (Allianz) oder Thrall (Horde). In TBC findest du A'dal in Shattrath. In WotLK gehe zu Rhonin in Dalaran. Auf dem Pfad des Einsamen Champions kommen dieselben Freischaltungen über Questreihen durch heroische Dungeons und Sammelaufträge, geführt von den Archivaren.",
     "timelineTitle": "Progressions-Zeitachse",
-    "learnMore": "Mehr erfahren"
+    "learnMore": "Mehr erfahren",
+    "pathsTitle": "Zwei Wege zum Ruhm",
+    "pathsDesc": "Jede Erweiterung lässt sich auf zwei Arten erobern. Wählt euren Weg — und wechselt an jeder Erweiterungsgrenze.",
+    "raidPathTitle": "Der Schlachtzugsweg",
+    "raidPathDesc": "Der klassische Weg: Sammelt eure Gilde und besiegt die Endbosse jedes Schlachtzugs, vom Geschmolzenen Kern bis zum Rubinsanktum, in Schlachten mit 10/25/40 Spielern.",
+    "lcpPathTitle": "Der Pfad des Einsamen Champions",
+    "lcpPathDesc": "Kein Schlachtzugsroster? Geht den Weg des Champions: allein oder mit wenigen Vertrauten heroische Dungeonprüfungen meistern, Sammelaufträge in aller Welt erfüllen und die Embleme jeder Ära verdienen. Dieselben Freischaltungen, in eurem Tempo.",
+    "archivistsTitle": "Die Archivare",
+    "archivistsDesc": "Ein neuer Händlerorden steht in Sturmwind, Orgrimmar, Shattrath und Dalaran: Die Archivare verkaufen schlachtzugsexklusive Berufsrezepte und Materialien für Gold und Embleme, vergeben Sammelaufträge und zahlen feste Sätze für mitgebrachte Komponenten. Beide Wege beginnen bei ihnen — jeder Champion wird zum Archivar seiner Ära geschickt.",
+    "pathSwitchNote": "Ihr könnt an jeder Erweiterungsgrenze zwischen dem Schlachtzugsweg und dem Pfad des Einsamen Champions wechseln."
   },
   "armory": {
     "title": "Waffenkammer",
@@ -911,7 +1028,6 @@
     "colLoot": "Beute",
     "scaledTitle": "Was wird skaliert",
     "scaled_health": "Leben — von der Basis berechnet, aktueller LP-% bleibt erhalten",
-
     "scaled_melee": "Nahkampfschaden — vor der Kampflog-Anzeige reduziert",
     "scaled_spell": "Zauberschaden — vor der Kampflog-Anzeige reduziert",
     "scaled_dot": "DoT / HoT — periodische Effekte proportional reduziert",

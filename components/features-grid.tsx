@@ -21,6 +21,12 @@ const features: {
     link: "/epic-progression",
   },
   {
+    key: "loneChampion",
+    icon: `${WOWHEAD_ICON}/spell_holy_avenginewrath.jpg`,
+    bg: "/img/World of Warcraft Classic 1920x1080/ClassicDungeon.jpg",
+    link: "/epic-progression",
+  },
+  {
     key: "raidScaling",
     icon: `${WOWHEAD_ICON}/inv_misc_head_dragon_01.jpg`,
     bg: "/img/World of Warcraft Classic 1920x1080/ClassicLaunch_WoW_Onyxia_1920x1080.jpg",

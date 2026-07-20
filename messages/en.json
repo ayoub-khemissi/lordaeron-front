@@ -31,7 +31,7 @@
     "live": "Live",
     "total": "Total",
     "epicProgressionTitle": "Epic Progression",
-    "epicProgressionDesc": "Defeat the final boss of each tier to unlock the next. Progress through every WoW raid in order — from Vanilla through TBC to Wrath of the Lich King."
+    "epicProgressionDesc": "Defeat the trials of each tier to unlock the next — with a full raid, or solo and in small groups via the Lone Champion's Path. Progress through every WoW tier from Vanilla through TBC to Wrath of the Lich King."
   },
   "howTo": {
     "title": "How to Connect",
@@ -160,7 +160,7 @@
     "transmog": "Transmogrification",
     "transmogDesc": "Customize your gear appearance with the transmog system",
     "epicProgression": "Epic Progression",
-    "epicProgressionDesc": "Defeat every final boss of each raid in release order — from Vanilla through TBC to WotLK. You must clear each tier before unlocking the next.",
+    "epicProgressionDesc": "Defeat every final boss of each raid in release order — from Vanilla through TBC to WotLK. You must clear each tier before unlocking the next. Two roads lead there: the great raids, or the Lone Champion's Path.",
     "tankAsDps": "Tank as DPS",
     "tankAsDpsDesc": "In dungeons, you can queue as Tank while staying in your DPS spec. You'll find a group much faster and receive an automatic bonus to health and threat, but your damage will be reduced. Not available in raids.",
     "dungeonNoLock": "Dungeons No Lock",
@@ -176,7 +176,9 @@
     "soloQueue": "Solo Queue Dungeons",
     "soloQueueDesc": "No group needed — queue solo for any specific dungeon or random dungeon and get teleported inside instantly.",
     "autolearnSpells": "Autolearn Spells",
-    "autolearnSpellsDesc": "Automatically learn new spells as you level up"
+    "autolearnSpellsDesc": "Automatically learn new spells as you level up",
+    "loneChampion": "Lone Champion's Path",
+    "loneChampionDesc": "No raid roster? Progress solo or with a few friends: heroic dungeon trials, farming commissions, and the Archivists — vendors selling raid-only recipes and materials for gold and emblems."
   },
   "common": {
     "online": "Online",
@@ -908,9 +910,9 @@
   },
   "epicProgression": {
     "title": "Epic Progression",
-    "subtitle": "Progress through every WoW raid tier — from Molten Core to Icecrown Citadel",
+    "subtitle": "Progress through every WoW tier — by raid, or by the Lone Champion's Path",
     "introTitle": "What is Epic Progression?",
-    "introDesc": "Epic Progression is Lordaeron's core gameplay system. Each character must defeat the final boss(es) of a raid tier to unlock the next one. Progression is per-character — not per-account or per-server. Each hero writes their own story, from the depths of Molten Core to the icy throne of the Lich King. The whole server runs on a WotLK 3.3.5a setup — spells, talents, quests — but content is unlocked progressively.",
+    "introDesc": "Epic Progression is Lordaeron's core gameplay system. Each character must defeat the final boss(es) of a raid tier to unlock the next one. Progression is per-character — not per-account or per-server. Each hero writes their own story, from the depths of Molten Core to the icy throne of the Lich King. The whole server runs on a WotLK 3.3.5a setup — spells, talents, quests — but content is unlocked progressively. Two roads lead through each expansion: the great raids, or the Lone Champion's Path for solo players and small groups.",
     "dkTitle": "Death Knights & Vanilla",
     "dkDesc": "Death Knights are available as usual from level 55, but they are also subject to Epic Progression. Their starting gear stats have been rebalanced so they are not overpowered during the Vanilla expansion.",
     "stayOnTierTitle": "Stay on Your Expansion",
@@ -938,9 +940,18 @@
     "restrictionsWhy": "These restrictions exist to preserve the integrity of progression. They prevent boosting, ensure every player earns their progress, and maintain the challenge of each expansion.",
     "restrictionsWithinExpansion": "Within the same expansion, all players can freely play together regardless of their current raid tier.",
     "questTitle": "How to Progress",
-    "questDesc": "To advance from one expansion to the next, you must complete a quest given by your faction's leader. After defeating the final boss of an expansion, return to the quest NPC to validate your kill and unlock the next expansion. In Vanilla, speak to Varian Wrynn (Alliance) or Thrall (Horde). In TBC, find A'dal in Shattrath. In WotLK, head to Rhonin in Dalaran.",
+    "questDesc": "To advance from one expansion to the next, you must complete a quest given by your faction's leader. After defeating the final boss of an expansion, return to the quest NPC to validate your kill and unlock the next expansion. In Vanilla, speak to Varian Wrynn (Alliance) or Thrall (Horde). In TBC, find A'dal in Shattrath. In WotLK, head to Rhonin in Dalaran. On the Lone Champion's Path, the same unlocks come from quest chains through heroic dungeons and world farming, guided by the Archivists.",
     "timelineTitle": "Progression Timeline",
-    "learnMore": "Learn more"
+    "learnMore": "Learn more",
+    "pathsTitle": "Two Roads to Glory",
+    "pathsDesc": "Every expansion can be conquered in two ways. Pick your road — and switch at every expansion boundary.",
+    "raidPathTitle": "The Raid Path",
+    "raidPathDesc": "The classic road: gather your guild and defeat the final bosses of each raid tier, from Molten Core to the Ruby Sanctum, in full 10/25/40-player battles.",
+    "lcpPathTitle": "The Lone Champion's Path",
+    "lcpPathDesc": "No raid roster? Walk the champion's road: solo or with a trusted few, clear heroic dungeon trials, fill farming commissions across the world and earn the emblems of each era. Same expansion unlocks, at your own pace.",
+    "archivistsTitle": "The Archivists",
+    "archivistsDesc": "A new order of vendors stands in Stormwind, Orgrimmar, Shattrath and Dalaran: the Archivists sell raid-only profession recipes and crafting materials for gold and emblems, hand out farming commissions, and pay standing rates for the components you bring back. Both roads begin with them — every champion is sent to meet their era's Archivist.",
+    "pathSwitchNote": "You can switch between the raid path and the Lone Champion's Path at every expansion boundary."
   },
   "armory": {
     "title": "Armory",
@@ -1017,7 +1028,6 @@
     "colLoot": "Loot",
     "scaledTitle": "What Gets Scaled",
     "scaled_health": "Health — scaled from base, preserving current HP %",
-
     "scaled_melee": "Melee damage — reduced before combat log display",
     "scaled_spell": "Spell damage — reduced before combat log display",
     "scaled_dot": "DoT / HoT ticks — periodic effects scaled proportionally",

@@ -33,7 +33,7 @@
     "live": "Na żywo",
     "total": "Łącznie",
     "epicProgressionTitle": "Epicka Progresja",
-    "epicProgressionDesc": "Pokonaj ostatniego bossa każdego tieru, aby odblokować kolejny. Przejdź przez wszystkie rajdy WoW po kolei — od Vanilla przez TBC po Wrath of the Lich King."
+    "epicProgressionDesc": "Zalicz próby każdego poziomu, by odblokować następny — pełnym rajdem albo solo i w małych grupach dzięki Ścieżce Samotnego Czempiona. Od Vanilli przez TBC po Wrath of the Lich King."
   },
   "howTo": {
     "title": "Jak się połączyć",
@@ -174,7 +174,7 @@
     "transmog": "Transmogryfikacja",
     "transmogDesc": "Dostosuj wygląd swojego ekwipunku dzięki systemowi transmogryfikacji",
     "epicProgression": "Epicka Progresja",
-    "epicProgressionDesc": "Pokonaj ostatniego bossa każdego rajdu w kolejności wydawania — od Vanilla przez TBC po WotLK. Musisz ukończyć każdy tier, zanim odblokujesz kolejny.",
+    "epicProgressionDesc": "Pokonaj ostatniego bossa każdego rajdu w kolejności wydawania — od Vanilla przez TBC po WotLK. Musisz ukończyć każdy tier, zanim odblokujesz kolejny. Prowadzą tam dwie drogi: wielkie rajdy albo Ścieżka Samotnego Czempiona.",
     "tankAsDps": "Tank jako DPS",
     "tankAsDpsDesc": "W lochach możesz dołączyć do kolejki jako Tank, pozostając w specjalizacji DPS. Znajdziesz grupę znacznie szybciej i otrzymasz automatyczny bonus do zdrowia i zagrożenia, ale twoje obrażenia zostaną zmniejszone. Niedostępne w rajdach.",
     "dungeonNoLock": "Lochy bez blokady",
@@ -190,7 +190,9 @@
     "soloQueue": "Kolejka solo do lochów",
     "soloQueueDesc": "Grupa nie jest potrzebna — dołącz solo do kolejki na dowolny konkretny loch lub losowy loch i zostań natychmiast teleportowany do środka.",
     "autolearnSpells": "Automatyczne uczenie zaklęć",
-    "autolearnSpellsDesc": "Automatycznie ucz się nowych zaklęć wraz z awansem na wyższy poziom"
+    "autolearnSpellsDesc": "Automatycznie ucz się nowych zaklęć wraz z awansem na wyższy poziom",
+    "loneChampion": "Ścieżka Samotnego Czempiona",
+    "loneChampionDesc": "Brak składu rajdowego? Rozwijaj się solo lub z przyjaciółmi: próby heroicznych lochów, zlecenia zbierackie i Archiwiści — kupcy sprzedający rajdowe przepisy i materiały za złoto i emblematy."
   },
   "common": {
     "online": "Online",
@@ -934,11 +936,11 @@
   },
   "epicProgression": {
     "title": "Epicka Progresja",
-    "subtitle": "Przejdź przez każdy tier rajdowy WoW — od Molten Core po Icecrown Citadel",
+    "subtitle": "Przejdź każdy poziom WoW — rajdem albo Ścieżką Samotnego Czempiona",
     "purchaseHistory": "Historia zakupów",
     "noPurchases": "Brak zakupów.",
     "introTitle": "Czym jest Epicka Progresja?",
-    "introDesc": "Epicka Progresja to główny system rozgrywki Lordaeron. Każda postać musi pokonać ostatniego bossa(-ów) tieru rajdowego, aby odblokować kolejny. Progresja jest na postać — nie na konto ani serwer. Każdy bohater pisze własną historię, od głębin Molten Core do lodowego tronu Króla Lisza. Cały serwer działa na konfiguracji WotLK 3.3.5a — czary, talenty, zadania — ale zawartość jest odblokowywana stopniowo.",
+    "introDesc": "Epicka Progresja to główny system rozgrywki Lordaeron. Każda postać musi pokonać ostatniego bossa(-ów) tieru rajdowego, aby odblokować kolejny. Progresja jest na postać — nie na konto ani serwer. Każdy bohater pisze własną historię, od głębin Molten Core do lodowego tronu Króla Lisza. Cały serwer działa na konfiguracji WotLK 3.3.5a — czary, talenty, zadania — ale zawartość jest odblokowywana stopniowo. Przez każdy dodatek prowadzą dwie drogi: wielkie rajdy albo Ścieżka Samotnego Czempiona dla graczy solo i małych grup.",
     "dkTitle": "Rycerze Śmierci i Vanilla",
     "dkDesc": "Rycerze Śmierci są dostępni jak zwykle od poziomu 55, ale podlegają również Epickiej Progresji. Statystyki ich startowego ekwipunku zostały rebalansowane, aby nie byli zbyt potężni w dodatku Vanilla.",
     "stayOnTierTitle": "Zostań w swoim dodatku",
@@ -966,9 +968,18 @@
     "restrictionsWhy": "Te ograniczenia istnieją, aby zachować integralność progresji. Zapobiegają boostowaniu, zapewniają, że każdy gracz sam zdobywa swoje postępy, i utrzymują wyzwanie każdego dodatku.",
     "restrictionsWithinExpansion": "W ramach tego samego dodatku wszyscy gracze mogą swobodnie grać razem, niezależnie od swojego aktualnego tieru rajdów.",
     "questTitle": "Jak progresować",
-    "questDesc": "Aby przejść z jednego dodatku do następnego, musisz ukończyć zadanie od przywódcy swojej frakcji. Po pokonaniu ostatniego bossa dodatku wróć do NPC zadań, aby zweryfikować swoje zabójstwo i odblokować kolejny dodatek. W Vanilli porozmawiaj z Varianem Wrynnem (Przymierze) lub Thrallem (Horda). W TBC znajdź A'dala w Shattrath. W WotLK udaj się do Rhonina w Dalaran.",
+    "questDesc": "Aby przejść z jednego dodatku do następnego, musisz ukończyć zadanie od przywódcy swojej frakcji. Po pokonaniu ostatniego bossa dodatku wróć do NPC zadań, aby zweryfikować swoje zabójstwo i odblokować kolejny dodatek. W Vanilli porozmawiaj z Varianem Wrynnem (Przymierze) lub Thrallem (Horda). W TBC znajdź A'dala w Shattrath. W WotLK udaj się do Rhonina w Dalaran. Na Ścieżce Samotnego Czempiona te same odblokowania zdobywa się poprzez łańcuchy zadań w heroicznych lochach i zbieractwo, prowadzone przez Archiwistów.",
     "timelineTitle": "Oś czasu progresji",
-    "learnMore": "Dowiedz się więcej"
+    "learnMore": "Dowiedz się więcej",
+    "pathsTitle": "Dwie drogi do chwały",
+    "pathsDesc": "Każdy dodatek można zdobyć na dwa sposoby. Wybierz swoją drogę — i zmieniaj ją na każdej granicy dodatku.",
+    "raidPathTitle": "Droga rajdów",
+    "raidPathDesc": "Klasyczna droga: zbierz gildię i pokonaj finałowych bossów każdego poziomu rajdowego, od Ognistych Czeluści po Rubinowe Sanktuarium, w bitwach na 10/25/40 graczy.",
+    "lcpPathTitle": "Ścieżka Samotnego Czempiona",
+    "lcpPathDesc": "Brak składu rajdowego? Idź ścieżką czempiona: solo lub z garstką zaufanych, zaliczaj próby heroicznych lochów, wypełniaj zlecenia zbierackie po całym świecie i zdobywaj emblematy każdej ery. Te same odblokowania, we własnym tempie.",
+    "archivistsTitle": "Archiwiści",
+    "archivistsDesc": "Nowy zakon kupców stoi w Stormwind, Orgrimmarze, Shattrath i Dalaranie: Archiwiści sprzedają rajdowe przepisy i materiały rzemieślnicze za złoto i emblematy, zlecają zadania zbierackie i płacą stałe stawki za przyniesione komponenty. Obie drogi zaczynają się u nich — każdy czempion zostaje wysłany do Archiwisty swojej ery.",
+    "pathSwitchNote": "Możesz przełączać się między drogą rajdów a Ścieżką Samotnego Czempiona na każdej granicy dodatku."
   },
   "armory": {
     "title": "Zbrojownia",

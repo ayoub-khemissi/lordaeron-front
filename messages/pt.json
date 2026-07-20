@@ -33,7 +33,7 @@
     "live": "Ao Vivo",
     "total": "Total",
     "epicProgressionTitle": "Epic Progression",
-    "epicProgressionDesc": "Derrota o boss final de cada tier para desbloquear o seguinte. Progride por todos os raids de WoW por ordem — de Vanilla passando por TBC ate Wrath of the Lich King."
+    "epicProgressionDesc": "Supere as provas de cada nível para desbloquear o próximo — com uma raide completa, ou sozinho e em grupos pequenos pela Senda do Campeão Solitário. De Vanilla a Wrath of the Lich King, passando por TBC."
   },
   "howTo": {
     "title": "Como Conectar",
@@ -174,7 +174,7 @@
     "transmog": "Transmogrificacao",
     "transmogDesc": "Personaliza a aparencia do teu equipamento com o sistema de transmog",
     "epicProgression": "Epic Progression",
-    "epicProgressionDesc": "Derrota todos os bosses finais de cada raid por ordem de lancamento — de Vanilla passando por TBC ate WotLK. Tens de completar cada tier antes de desbloquear o seguinte.",
+    "epicProgressionDesc": "Derrota todos os bosses finais de cada raid por ordem de lancamento — de Vanilla passando por TBC ate WotLK. Tens de completar cada tier antes de desbloquear o seguinte. Dois caminhos levam até lá: as grandes raides, ou a Senda do Campeão Solitário.",
     "tankAsDps": "Tank como DPS",
     "tankAsDpsDesc": "Em dungeons, podes entrar na fila como Tank enquanto mantenhas a tua spec de DPS. Encontras grupo muito mais rapido e recebes um bonus automatico de vida e threat, mas o teu dano sera reduzido. Nao disponivel em raids.",
     "dungeonNoLock": "Dungeons Sem Lockout",
@@ -190,7 +190,9 @@
     "soloQueue": "Fila Solo para Dungeons",
     "soloQueueDesc": "Nao precisas de grupo — entra na fila sozinho para qualquer dungeon especifica ou dungeon aleatoria e seras teleportado para dentro instantaneamente.",
     "autolearnSpells": "Aprendizagem Automatica de Feiticos",
-    "autolearnSpellsDesc": "Aprende automaticamente novos feiticos ao subir de nivel"
+    "autolearnSpellsDesc": "Aprende automaticamente novos feiticos ao subir de nivel",
+    "loneChampion": "Senda do Campeão Solitário",
+    "loneChampionDesc": "Sem grupo de raide? Progrida sozinho ou com amigos: provas de masmorras heroicas, encomendas de coleta e os Arquivistas — mercadores com receitas e materiais exclusivos de raide por ouro e emblemas."
   },
   "common": {
     "online": "Online",
@@ -934,11 +936,11 @@
   },
   "epicProgression": {
     "title": "Epic Progression",
-    "subtitle": "Progride por todos os tiers de raid de WoW — de Molten Core a Icecrown Citadel",
+    "subtitle": "Progrida por todos os níveis do WoW — em raide, ou pela Senda do Campeão Solitário",
     "purchaseHistory": "Histórico de compras",
     "noPurchases": "Nenhuma compra ainda.",
     "introTitle": "O que e Epic Progression?",
-    "introDesc": "Epic Progression e o sistema de jogabilidade principal de Lordaeron. Cada personagem deve derrotar o(s) boss(es) final(ais) de um tier de raid para desbloquear o seguinte. A progressao e por personagem — nao por conta nem por servidor. Cada heroi escreve a sua propria historia, das profundezas de Molten Core ao trono gelado do Lich King. O servidor corre numa configuracao WotLK 3.3.5a — feiticos, talentos, quests — mas o conteudo e desbloqueado progressivamente.",
+    "introDesc": "Epic Progression e o sistema de jogabilidade principal de Lordaeron. Cada personagem deve derrotar o(s) boss(es) final(ais) de um tier de raid para desbloquear o seguinte. A progressao e por personagem — nao por conta nem por servidor. Cada heroi escreve a sua propria historia, das profundezas de Molten Core ao trono gelado do Lich King. O servidor corre numa configuracao WotLK 3.3.5a — feiticos, talentos, quests — mas o conteudo e desbloqueado progressivamente. Dois caminhos atravessam cada expansão: as grandes raides, ou a Senda do Campeão Solitário para jogadores solo e grupos pequenos.",
     "dkTitle": "Death Knights e Vanilla",
     "dkDesc": "Os Death Knights estao disponiveis como habitualmente a partir do nivel 55, mas tambem estao sujeitos ao Epic Progression. As estatisticas do seu equipamento inicial foram reequilibradas para que nao sejam demasiado fortes durante a expansao Vanilla.",
     "stayOnTierTitle": "Fica na tua expansao",
@@ -966,9 +968,18 @@
     "restrictionsWhy": "Estas restricoes existem para preservar a integridade da progressao. Previnem boosting, garantem que cada jogador conquista o seu progresso e mantem o desafio de cada expansao.",
     "restrictionsWithinExpansion": "Dentro da mesma expansao, todos os jogadores podem jogar livremente juntos, independentemente do seu tier de raid atual.",
     "questTitle": "Como Progredir",
-    "questDesc": "Para avancar de uma expansao para a seguinte, deves completar uma quest dada pelo lider da tua faccao. Apos derrotar o boss final de uma expansao, regressa ao NPC de quest para validar a tua kill e desbloquear a expansao seguinte. Em Vanilla, fala com Varian Wrynn (Alianca) ou Thrall (Horda). Em TBC, encontra A'dal em Shattrath. Em WotLK, dirige-te a Rhonin em Dalaran.",
+    "questDesc": "Para avancar de uma expansao para a seguinte, deves completar uma quest dada pelo lider da tua faccao. Apos derrotar o boss final de uma expansao, regressa ao NPC de quest para validar a tua kill e desbloquear a expansao seguinte. Em Vanilla, fala com Varian Wrynn (Alianca) ou Thrall (Horda). Em TBC, encontra A'dal em Shattrath. Em WotLK, dirige-te a Rhonin em Dalaran. Na Senda do Campeão Solitário, os mesmos desbloqueios vêm de cadeias de missões em masmorras heroicas e coleta, guiadas pelos Arquivistas.",
     "timelineTitle": "Linha Temporal de Progressao",
-    "learnMore": "Saber mais"
+    "learnMore": "Saber mais",
+    "pathsTitle": "Dois caminhos para a glória",
+    "pathsDesc": "Cada expansão pode ser conquistada de duas formas. Escolha o seu caminho — e mude-o em cada fronteira de expansão.",
+    "raidPathTitle": "O caminho das raides",
+    "raidPathDesc": "O caminho clássico: reúna a sua guilda e derrote os chefes finais de cada nível de raide, do Núcleo Derretido ao Santuário Rubi, em batalhas de 10/25/40 jogadores.",
+    "lcpPathTitle": "A Senda do Campeão Solitário",
+    "lcpPathDesc": "Sem grupo de raide? Percorra a senda do campeão: sozinho ou com poucos aliados de confiança, supere as provas das masmorras heroicas, cumpra encomendas de coleta pelo mundo e ganhe os emblemas de cada era. Os mesmos desbloqueios, no seu ritmo.",
+    "archivistsTitle": "Os Arquivistas",
+    "archivistsDesc": "Uma nova ordem de mercadores está em Stormwind, Orgrimmar, Shattrath e Dalaran: os Arquivistas vendem receitas e materiais exclusivos de raide por ouro e emblemas, confiam encomendas de coleta e pagam tarifas fixas pelos componentes que você trouxer. Os dois caminhos começam com eles — todo campeão é enviado ao Arquivista de sua era.",
+    "pathSwitchNote": "Você pode alternar entre o caminho das raides e a Senda do Campeão Solitário em cada fronteira de expansão."
   },
   "armory": {
     "title": "Arsenal",

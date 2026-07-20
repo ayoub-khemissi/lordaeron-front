@@ -221,6 +221,112 @@ export default function EpicProgressionContent() {
             </div>
           </motion.section>
 
+          {/* ── Two Roads: Raid path & Lone Champion's Path ── */}
+          <motion.section
+            className="mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            viewport={{ once: true }}
+            whileInView={{ opacity: 1, y: 0 }}
+          >
+            <h2 className="text-3xl font-bold wow-gradient-text text-center mb-3">
+              {t("pathsTitle")}
+            </h2>
+            <div className="shimmer-line w-24 mx-auto mb-4" />
+            <p className="text-gray-400 text-center max-w-2xl mx-auto mb-10">
+              {t("pathsDesc")}
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <motion.div
+                className="glass-lite border-wow-gold/15 rounded-2xl p-6 sm:p-8"
+                initial={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                whileInView={{ opacity: 1, x: 0 }}
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-lg overflow-hidden border border-wow-gold/30 bg-wow-darker/50 flex-shrink-0">
+                    <img
+                      alt=""
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                      src={`${WOWHEAD_ICON}/inv_misc_groupneedmore.jpg`}
+                    />
+                  </div>
+                  <h3 className="text-lg font-bold wow-gradient-text">
+                    {t("raidPathTitle")}
+                  </h3>
+                </div>
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  {t("raidPathDesc")}
+                </p>
+              </motion.div>
+
+              <motion.div
+                className="glass-lite border-sky-400/15 rounded-2xl p-6 sm:p-8"
+                initial={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.5, delay: 0.15 }}
+                viewport={{ once: true }}
+                whileInView={{ opacity: 1, x: 0 }}
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-lg overflow-hidden border border-sky-400/30 bg-wow-darker/50 flex-shrink-0">
+                    <img
+                      alt=""
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                      src={`${WOWHEAD_ICON}/spell_holy_avenginewrath.jpg`}
+                    />
+                  </div>
+                  <h3 className="text-lg font-bold wow-ice-text">
+                    {t("lcpPathTitle")}
+                  </h3>
+                </div>
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  {t("lcpPathDesc")}
+                </p>
+              </motion.div>
+            </div>
+
+            <motion.div
+              className="glass-gold rounded-2xl p-6 sm:p-8 mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              whileInView={{ opacity: 1, y: 0 }}
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-lg overflow-hidden border border-wow-gold/30 bg-wow-darker/50 flex-shrink-0">
+                  <img
+                    alt=""
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    src={`${WOWHEAD_ICON}/inv_misc_book_11.jpg`}
+                  />
+                </div>
+                <h3 className="text-lg font-bold wow-gradient-text">
+                  {t("archivistsTitle")}
+                </h3>
+              </div>
+              <p className="text-gray-300 text-sm leading-relaxed">
+                {t("archivistsDesc")}
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="glass-lite border-green-500/20 rounded-2xl p-6"
+              initial={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0.25 }}
+              viewport={{ once: true }}
+              whileInView={{ opacity: 1, y: 0 }}
+            >
+              <p className="text-gray-200 text-sm leading-relaxed text-center">
+                ✓ {t("pathSwitchNote")}
+              </p>
+            </motion.div>
+          </motion.section>
+
           {/* ── Cross-Tier Restrictions ── */}
           <motion.section
             className="mb-16"
