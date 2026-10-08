@@ -32,6 +32,7 @@ import {
 } from "./content";
 import {
   classSpellRefs,
+  refByCardIcon,
   refByIcon,
   refByInlineText,
   refByName,
@@ -136,7 +137,13 @@ function Card({
     >
       <span className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-wow-gold/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
       {icon && (
-        <WowIcon className="mb-5" glow={glow} icon={icon} size={52} tip={tip} />
+        <WowIcon
+          className="mb-5"
+          glow={glow}
+          icon={icon}
+          size={52}
+          tip={tip ?? refByCardIcon[icon.toLowerCase()]}
+        />
       )}
       {tag && (
         <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-wow-blue-ice/80">
@@ -1140,7 +1147,11 @@ function TreasureMount({
         {entry && <WowIcon glow="none" icon={entry.icon} size={52} />}
         <div className="min-w-0">
           <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-wow-gold/80">
-            Phase {phase}
+            {phase === 0
+              ? lang === "fr"
+                ? "Prélude"
+                : "Prelude"
+              : `Phase ${phase}`}
           </p>
           <p className="font-heading text-lg leading-tight text-[#c69bff]">
             {name[lang]}

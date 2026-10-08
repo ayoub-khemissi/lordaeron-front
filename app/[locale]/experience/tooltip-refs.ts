@@ -146,6 +146,11 @@ export const refByInlineText: Record<string, string> = {
 };
 
 // icon name (as used in content.ts marquee lists collections.marquee / collections.marquee2, lowercase) -> ref
+// a card's icon that pictures one item of a card about several things: the tooltip on the icon only (lowercase icon name -> ref)
+export const refByCardIcon: Record<string, string> = {
+  inv_mace_37: "item:900204", // Master Mason's Trowel (Deadmines), on the "Deadmines and Molten Core revisited" card
+};
+
 export const refByIcon: Record<string, string> = {
   ability_mount_spectraltiger: "item:902161", // Reins of the Azure Spirit Tiger
   ability_mount_netherdrakeelite: "item:902181", // Reins of the Dragonmaw Fel Drake

@@ -85,7 +85,7 @@ export const manifesto = {
   ),
   stats: [
     {
-      value: 6,
+      value: 5,
       suffix: "",
       label: L("phases de progression", "progression phases"),
     },
@@ -119,7 +119,10 @@ export const phases = {
   id: "phases",
   numeral: "I",
   eyebrow: L("Royaume progressif", "Progressive realm"),
-  title: L("Six phases. Trois mois chacune.", "Six phases. Three months each."),
+  title: L(
+    "Cinq phases. Trois mois chacune.",
+    "Five phases. Three months each.",
+  ),
   lede: L(
     "Revivez l'extension comme à sa sortie. Instances, butin, recettes, vendeurs, quêtes, emblèmes et saisons d'arène s'ouvrent au rythme des phases, sans jamais d'avance. Chaque ouverture est annoncée en jeu.",
     "Relive the expansion as it launched. Instances, loot, recipes, vendors, quests, emblems and arena seasons open with each phase, never ahead of time. Every opening is announced in game.",
@@ -127,11 +130,11 @@ export const phases = {
   steps: [
     {
       n: "0",
-      title: L("Le Norfendre", "Northrend"),
+      title: L("Le prélude", "The prelude"),
       image: IMG.fjord,
       text: L(
-        "Les 12 donjons du Norfendre en normal et héroïque, champs de bataille, arènes et Joug-d'hiver.",
-        "The 12 Northrend dungeons, normal and heroic, battlegrounds, arenas and Wintergrasp.",
+        "2 à 3 semaines pour s'équiper : les 12 donjons du Norfendre en normal et héroïque, champs de bataille, arènes et Joug-d'hiver.",
+        "2 to 3 weeks to gear up: the 12 Northrend dungeons, normal and heroic, battlegrounds, arenas and Wintergrasp.",
       ),
     },
     {
