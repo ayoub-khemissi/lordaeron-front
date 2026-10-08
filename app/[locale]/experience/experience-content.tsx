@@ -30,12 +30,26 @@ import {
   type Lang,
   type T,
 } from "./content";
+import {
+  classSpellRefs,
+  refByIcon,
+  refByInlineText,
+  refByName,
+  surgeRef,
+} from "./tooltip-refs";
 
+import {
+  Tip,
+  TooltipProvider,
+  useTipText,
+} from "@/components/experience/game-tooltip";
 import { ChapterNav, ExperienceHero } from "@/components/experience/hero";
 import {
+  BgImg,
   Carousel,
   ChapterHeading,
   Counter,
+  EdgeFade,
   IconMarquee,
   ParallaxImage,
   Reveal,
@@ -44,12 +58,56 @@ import {
 
 const container = "mx-auto w-full max-w-7xl px-5 sm:px-8";
 
+/* ── in-game tooltips: the ref of a card from its FR text (tooltip-refs.ts) ── */
+const tipOf = (t: T) => refByName[t.fr];
+const tipText =
+  "underline decoration-wow-gold/50 decoration-dotted underline-offset-4";
+
+// item names inside longer texts; the English page uses the names of content.ts's English texts
+const inlineEn: Record<string, string> = {
+  "Chronicle Fragments": refByInlineText["Fragments de chronique"],
+  "Fel-Touched Defias Palfrey": refByInlineText["Palefroi gangrené défias"],
+  "Ember Nightmare": refByInlineText["Cauchemar de braise"],
+  "Stone Keeper's Shards": refByInlineText["Éclats du gardien de pierre"],
+  "Old Frostfin": refByInlineText["Vieille Nageoire-de-givre"],
+  "Deadwater Leviathan": refByInlineText["Léviathan des eaux mortes"],
+  "Kalu'ak Harpoon": refByInlineText["Harpon kalu'ak"],
+  "Saronite Harpoon": refByInlineText["Harpon de saronite"],
+  "Drakkari Flood": refByInlineText["Crue drakkari"],
+  "Kirin Tor rod": refByInlineText["canne du Kirin Tor"],
+  "Lucky Gnome": refByInlineText["Gnome porte-bonheur"],
+};
+const inlineAll: Record<string, string> = { ...refByInlineText, ...inlineEn };
+const inlineRe = new RegExp(
+  `(${Object.keys(inlineAll)
+    .sort((a, b) => b.length - a.length)
+    .map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+    .join("|")})`,
+);
+
+function Rich({ text }: { text: string }) {
+  return (
+    <>
+      {text.split(inlineRe).map((part, i) =>
+        inlineAll[part] ? (
+          <Tip key={i} className={tipText} id={inlineAll[part]}>
+            {part}
+          </Tip>
+        ) : (
+          part
+        ),
+      )}
+    </>
+  );
+}
+
 /* ── small shared pieces ── */
 function Card({
   icon,
   title,
   text,
   tag,
+  tip,
   glow = "gold",
   className,
 }: {
@@ -57,6 +115,7 @@ function Card({
   title: string;
   text: string;
   tag?: string;
+  tip?: string;
   glow?: "gold" | "ice" | "fel";
   className?: string;
 }) {
@@ -70,16 +129,20 @@ function Card({
       whileHover={{ y: -6 }}
     >
       <span className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-wow-gold/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
-      {icon && <WowIcon className="mb-5" glow={glow} icon={icon} size={52} />}
+      {icon && (
+        <WowIcon className="mb-5" glow={glow} icon={icon} size={52} tip={tip} />
+      )}
       {tag && (
         <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-wow-blue-ice/80">
           {tag}
         </p>
       )}
       <h3 className="font-heading text-xl text-wow-gold-light sm:text-2xl">
-        {title}
+        <Tip id={tip}>{title}</Tip>
       </h3>
-      <p className="mt-3 leading-relaxed text-white/65">{text}</p>
+      <p className="mt-3 leading-relaxed text-white/65">
+        <Rich text={text} />
+      </p>
     </motion.div>
   );
 }
@@ -390,6 +453,7 @@ function Artifact({ lang }: { lang: Lang }) {
               <Card
                 icon={artifact.token.icon}
                 text={artifact.token.text[lang]}
+                tip={tipOf(artifact.token.title)}
                 title={artifact.token.title[lang]}
               />
             </Reveal>
@@ -397,6 +461,58 @@ function Artifact({ lang }: { lang: Lang }) {
         </div>
       </section>
     </ParallaxImage>
+  );
+}
+
+/* a new class spell: its icon (full tooltip on hover) and what it does, readable without hovering */
+function ClassSpell({
+  spell,
+  name,
+  spec,
+  color,
+  lang,
+}: {
+  spell?: { ref: string; icon: string };
+  name: string;
+  spec: string;
+  color: string;
+  lang: Lang;
+}) {
+  const tip = useTipText(spell?.ref);
+  // the effect: the gold lines of the tooltip (the description), after cost, range and cast time
+  const effect = tip?.lines
+    .filter((l) => l.color === "gold" || l.color === "yellow")
+    .map((l) => l.left)
+    .join(" ");
+
+  return (
+    <div className="relative h-full overflow-hidden rounded-xl border border-white/10 bg-white/[0.04] p-6">
+      <span
+        className="absolute inset-x-0 top-0 h-0.5"
+        style={{
+          background: `linear-gradient(90deg, transparent, ${color}, transparent)`,
+        }}
+      />
+      <div className="flex items-center gap-4">
+        {spell && (
+          <WowIcon glow="none" icon={spell.icon} size={48} tip={spell.ref} />
+        )}
+        <div className="min-w-0">
+          <p
+            className="text-[11px] uppercase tracking-[0.25em]"
+            style={{ color }}
+          >
+            {spec}
+          </p>
+          <h3 className="mt-1 font-heading text-xl leading-tight text-white sm:text-2xl">
+            <Tip id={spell?.ref}>{name}</Tip>
+          </h3>
+        </div>
+      </div>
+      <p className="mt-4 min-h-[4.5rem] text-sm leading-relaxed text-[#ffd100]/85">
+        {effect ?? (lang === "fr" ? "…" : "…")}
+      </p>
+    </div>
   );
 }
 
@@ -413,13 +529,13 @@ function Classes({ lang }: { lang: Lang }) {
           numeral={classes.numeral}
           title={classes.title[lang]}
         />
-        <div className="no-scrollbar -mx-5 mt-12 flex gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:flex-wrap sm:px-0">
+        <div className="no-scrollbar -mx-5 mt-12 flex gap-3 overflow-x-auto px-5 py-2 sm:mx-0 sm:flex-wrap sm:px-0">
           {classes.list.map((k, i) => (
             <button
               key={k.key}
               aria-pressed={i === active}
               className={clsx(
-                "flex shrink-0 items-center gap-3 rounded-full border py-1.5 pl-1.5 pr-4 text-sm transition",
+                "flex shrink-0 items-center gap-3 rounded-lg border py-1.5 pl-1.5 pr-4 text-sm transition",
                 i === active
                   ? "border-transparent bg-white/10 text-white"
                   : "border-white/10 text-white/50 hover:text-white/80",
@@ -431,7 +547,14 @@ function Classes({ lang }: { lang: Lang }) {
               }
               onClick={() => setActive(i)}
             >
-              <WowIcon glow="none" icon={k.icon} size={30} />
+              {}
+              <img
+                alt=""
+                className="h-8 w-8 rounded-[5px]"
+                height={32}
+                src={`/img/experience/icons/classicon_${k.key}.png`}
+                width={32}
+              />
               {k.name[lang]}
             </button>
           ))}
@@ -446,26 +569,14 @@ function Classes({ lang }: { lang: Lang }) {
             transition={{ duration: 0.35 }}
           >
             {c.spells.map((s, i) => (
-              <div
+              <ClassSpell
                 key={i}
-                className="relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.04] p-6"
-              >
-                <span
-                  className="absolute inset-x-0 top-0 h-0.5"
-                  style={{
-                    background: `linear-gradient(90deg, transparent, ${c.color}, transparent)`,
-                  }}
-                />
-                <p
-                  className="text-[11px] uppercase tracking-[0.25em]"
-                  style={{ color: c.color }}
-                >
-                  {s.spec[lang]}
-                </p>
-                <h3 className="mt-3 font-heading text-2xl text-white">
-                  {s.name[lang]}
-                </h3>
-              </div>
+                color={c.color}
+                lang={lang}
+                name={s.name[lang]}
+                spec={s.spec[lang]}
+                spell={classSpellRefs[c.key]?.[i]}
+              />
             ))}
             <p className="text-lg italic text-white/55 md:col-span-3">
               « {c.flavor[lang]} »
@@ -474,7 +585,12 @@ function Classes({ lang }: { lang: Lang }) {
         </AnimatePresence>
         <Reveal className="mt-14">
           <div className="flex flex-col gap-6 rounded-2xl border border-wow-blue/30 bg-gradient-to-r from-wow-blue-dark/60 to-transparent p-6 sm:flex-row sm:items-center sm:p-8">
-            <WowIcon glow="ice" icon={classes.surge.icon} size={64} />
+            <WowIcon
+              glow="ice"
+              icon={classes.surge.icon}
+              size={64}
+              tip={surgeRef}
+            />
             <div>
               <h3 className="font-heading text-2xl text-wow-blue-ice">
                 {classes.surge.title[lang]}
@@ -510,7 +626,12 @@ function Raids({ lang }: { lang: Lang }) {
         <div className="mt-10 grid gap-5 sm:grid-cols-2">
           {raids.cards.map((c, i) => (
             <Reveal key={i} delay={i * 0.06}>
-              <Card icon={c.icon} text={c.text[lang]} title={c.title[lang]} />
+              <Card
+                icon={c.icon}
+                text={c.text[lang]}
+                tip={tipOf(c.title)}
+                title={c.title[lang]}
+              />
             </Reveal>
           ))}
         </div>
@@ -534,6 +655,7 @@ function Raids({ lang }: { lang: Lang }) {
             <Card
               icon="achievement_reputation_argentcrusader"
               text={raids.trial.text[lang]}
+              tip={tipOf(raids.trial.title)}
               title={raids.trial.title[lang]}
             />
           </Reveal>
@@ -555,19 +677,13 @@ function Eye({ lang }: { lang: Lang }) {
       >
         <Reveal className="order-2 lg:order-1">
           <div className="relative">
-            <div className="aspect-[16/10] overflow-hidden rounded-2xl border border-green-400/20 shadow-[0_0_60px_rgba(74,222,128,0.12)]">
-              <div
-                className="h-full w-full bg-cover bg-center"
-                style={{ backgroundImage: `url("${encodeURI(eye.image)}")` }}
-              />
+            <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-green-400/20 shadow-[0_0_60px_rgba(74,222,128,0.12)]">
+              <BgImg sizes="(min-width: 1024px) 50vw, 100vw" src={eye.image} />
             </div>
             <div className="absolute -bottom-8 -right-4 hidden w-1/2 overflow-hidden rounded-xl border border-orange-300/30 shadow-2xl sm:block">
-              <div
-                className="aspect-[16/10] bg-cover bg-center"
-                style={{
-                  backgroundImage: `url("${encodeURI(eye.mountImage)}")`,
-                }}
-              />
+              <div className="relative aspect-[16/10]">
+                <BgImg sizes="25vw" src={eye.mountImage} />
+              </div>
             </div>
           </div>
         </Reveal>
@@ -583,7 +699,12 @@ function Eye({ lang }: { lang: Lang }) {
             {eye.points.map((p, i) => (
               <Reveal key={i} delay={i * 0.06}>
                 <li className="flex items-center gap-4 text-white/75">
-                  <WowIcon glow="fel" icon={p.icon} size={40} />
+                  <WowIcon
+                    glow="fel"
+                    icon={p.icon}
+                    size={40}
+                    tip={tipOf(p.text)}
+                  />
                   {p.text[lang]}
                 </li>
               </Reveal>
@@ -614,9 +735,10 @@ function WorldBosses({ lang }: { lang: Lang }) {
                 className="group relative flex min-h-[520px] flex-col justify-end overflow-hidden rounded-2xl border border-white/10"
                 whileHover={{ y: -6 }}
               >
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-[1.2s] group-hover:scale-110"
-                  style={{ backgroundImage: `url("${encodeURI(b.image)}")` }}
+                <BgImg
+                  className="transition-transform duration-[1.2s] group-hover:scale-110"
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  src={b.image}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/10" />
                 <div className="relative p-7 sm:p-9">
@@ -635,7 +757,7 @@ function WorldBosses({ lang }: { lang: Lang }) {
                         key={j}
                         className="rounded-md bg-white/10 px-3 py-1.5 text-xs text-white/80 backdrop-blur-sm"
                       >
-                        {t[lang]}
+                        <Tip id={tipOf(t)}>{t[lang]}</Tip>
                       </span>
                     ))}
                   </div>
@@ -646,6 +768,128 @@ function WorldBosses({ lang }: { lang: Lang }) {
         </div>
       </div>
     </Section>
+  );
+}
+
+/* the loot priority, played as an epic item looking for its owner, step after step */
+function LootCascade({ lang }: { lang: Lang }) {
+  const steps = raidRules.steps;
+  const [step, setStep] = useState(0);
+  const [running, setRunning] = useState(false);
+
+  useEffect(() => {
+    if (!running) return;
+    const id = setInterval(() => setStep((s) => (s + 1) % steps.length), 1700);
+
+    return () => clearInterval(id);
+  }, [running, steps.length]);
+
+  return (
+    <motion.div
+      className="relative mt-16 rounded-2xl border border-wow-gold/15 bg-gradient-to-b from-wow-gold/[0.06] to-transparent px-5 py-10 sm:px-10"
+      viewport={{ once: true, margin: "-120px" }}
+      onViewportEnter={() => setRunning(true)}
+    >
+      <ol className="relative grid gap-6 sm:grid-cols-5 sm:gap-4">
+        {/* the rail and its light, behind the medallions */}
+        <span className="absolute bottom-8 left-[38px] top-8 w-px bg-wow-gold/15 sm:bottom-auto sm:left-[10%] sm:right-[10%] sm:top-[38px] sm:h-px sm:w-auto" />
+        <motion.span
+          animate={{ scaleY: step / (steps.length - 1) }}
+          className="absolute left-[38px] top-8 h-[calc(100%-4rem)] w-px origin-top bg-gradient-to-b from-wow-gold to-wow-gold-light shadow-[0_0_12px_rgba(199,156,62,0.8)] sm:hidden"
+          initial={{ scaleY: 0 }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        />
+        <motion.span
+          animate={{ scaleX: step / (steps.length - 1) }}
+          className="absolute left-[10%] top-[38px] hidden h-px w-[80%] origin-left bg-gradient-to-r from-wow-gold to-wow-gold-light shadow-[0_0_12px_rgba(199,156,62,0.8)] sm:block"
+          initial={{ scaleX: 0 }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        />
+        {steps.map((s, i) => {
+          const on = i === step;
+          const past = i < step;
+
+          return (
+            <li
+              key={i}
+              className="relative flex cursor-pointer items-center gap-5 sm:flex-col sm:gap-4 sm:text-center"
+              onMouseEnter={() => {
+                setRunning(false);
+                setStep(i);
+              }}
+              onMouseLeave={() => setRunning(true)}
+            >
+              <div className="relative">
+                <motion.div
+                  animate={{ scale: on ? 1.12 : 1 }}
+                  className={clsx(
+                    "relative grid h-[76px] w-[76px] place-items-center rounded-full border-2 bg-wow-darker transition-colors duration-500",
+                    on
+                      ? "border-wow-gold shadow-[0_0_35px_rgba(199,156,62,0.55)]"
+                      : past
+                        ? "border-wow-gold/50"
+                        : "border-white/15",
+                  )}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <span
+                    className={clsx(
+                      "overflow-hidden rounded-full transition-all duration-500",
+                      on || past
+                        ? "opacity-100 grayscale-0"
+                        : "opacity-50 grayscale",
+                    )}
+                  >
+                    <WowIcon
+                      className="!rounded-full !ring-0 !ring-offset-0"
+                      glow="none"
+                      icon={s.icon}
+                      size={56}
+                    />
+                  </span>
+                  <span
+                    className={clsx(
+                      "absolute -right-1 -top-1 grid h-6 w-6 place-items-center rounded-full font-heading text-xs transition-colors duration-500",
+                      on || past
+                        ? "bg-wow-gold text-black"
+                        : "bg-white/10 text-white/60",
+                    )}
+                  >
+                    {i + 1}
+                  </span>
+                </motion.div>
+                {on && (
+                  <motion.div
+                    className="absolute -top-12 left-1/2 hidden -translate-x-1/2 sm:block"
+                    layoutId="loot-item"
+                    transition={{ type: "spring", stiffness: 220, damping: 24 }}
+                  >
+                    <motion.div
+                      animate={{ y: [0, -5, 0] }}
+                      transition={{ duration: 1.6, repeat: Infinity }}
+                    >
+                      <WowIcon glow="fel" icon="inv_sword_133" size={34} />
+                    </motion.div>
+                  </motion.div>
+                )}
+              </div>
+              <p
+                className={clsx(
+                  "font-heading text-base leading-snug transition-colors duration-500 sm:text-lg",
+                  on
+                    ? "text-wow-gold-light"
+                    : past
+                      ? "text-white/70"
+                      : "text-white/40",
+                )}
+              >
+                {s.label[lang]}
+              </p>
+            </li>
+          );
+        })}
+      </ol>
+    </motion.div>
   );
 }
 
@@ -662,23 +906,7 @@ function Loot({ lang }: { lang: Lang }) {
           numeral={raidRules.numeral}
           title={raidRules.title[lang]}
         />
-        <ol className="mt-14 grid gap-3 sm:grid-cols-5">
-          {raidRules.steps.map((s, i) => (
-            <Reveal key={i} delay={i * 0.08}>
-              <li className="relative flex h-full items-center gap-4 rounded-xl border border-wow-gold/20 bg-wow-darker/80 px-5 py-3 sm:block sm:py-5">
-                <span className="font-heading text-3xl text-wow-gold/60">
-                  {i + 1}
-                </span>
-                <p className="text-sm font-medium text-white/85 sm:mt-2">
-                  {s[lang]}
-                </p>
-                {i < raidRules.steps.length - 1 && (
-                  <span className="absolute -right-3 top-1/2 hidden h-px w-3 bg-wow-gold/40 sm:block" />
-                )}
-              </li>
-            </Reveal>
-          ))}
-        </ol>
+        <LootCascade lang={lang} />
         <div className="mt-10 grid gap-10 lg:grid-cols-2">
           <ul className="space-y-3">
             {raidRules.points.map((p, i) => (
@@ -694,6 +922,7 @@ function Loot({ lang }: { lang: Lang }) {
             <Card
               icon="spell_shadow_soulleech_3"
               text={raidRules.fight.text[lang]}
+              tip={tipOf(raidRules.fight.title)}
               title={raidRules.fight.title[lang]}
             />
           </Reveal>
@@ -725,7 +954,7 @@ function Archivists({ lang }: { lang: Lang }) {
           {archivists.rewards.map((r, i) => (
             <Reveal key={i} delay={i * 0.07}>
               <div className="flex h-full items-center gap-4 rounded-xl border border-white/10 bg-white/[0.04] p-5">
-                <WowIcon icon={r.icon} size={46} />
+                <WowIcon icon={r.icon} size={46} tip={tipOf(r.title)} />
                 <div>
                   <h3 className="font-heading text-lg text-wow-gold-light">
                     {r.title[lang]}
@@ -739,7 +968,12 @@ function Archivists({ lang }: { lang: Lang }) {
         <div className="mt-6 grid gap-5 lg:grid-cols-3">
           {archivists.extras.map((e, i) => (
             <Reveal key={i} delay={i * 0.07}>
-              <Card icon={e.icon} text={e.text[lang]} title={e.title[lang]} />
+              <Card
+                icon={e.icon}
+                text={e.text[lang]}
+                tip={tipOf(e.title)}
+                title={e.title[lang]}
+              />
             </Reveal>
           ))}
         </div>
@@ -783,7 +1017,12 @@ function Professions({ lang }: { lang: Lang }) {
                       className="flex gap-3 text-sm leading-relaxed text-white/70"
                     >
                       <Check />
-                      {h[lang]}
+                      <Tip
+                        className={tipOf(h) ? tipText : undefined}
+                        id={tipOf(h)}
+                      >
+                        {h[lang]}
+                      </Tip>
                     </li>
                   ))}
                 </ul>
@@ -814,13 +1053,8 @@ function Fishing({ lang }: { lang: Lang }) {
             tone="ice"
           />
           <Reveal className="mt-10 hidden lg:block">
-            <div className="aspect-[16/10] overflow-hidden rounded-2xl border border-wow-blue/20">
-              <div
-                className="h-full w-full bg-cover bg-center"
-                style={{
-                  backgroundImage: `url("${encodeURI(fishing.image)}")`,
-                }}
-              />
+            <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-wow-blue/20">
+              <BgImg sizes="40vw" src={fishing.image} />
             </div>
           </Reveal>
         </div>
@@ -835,6 +1069,7 @@ function Fishing({ lang }: { lang: Lang }) {
                 glow="ice"
                 icon={c.icon}
                 text={c.text[lang]}
+                tip={tipOf(c.title)}
                 title={c.title[lang]}
               />
             </Reveal>
@@ -866,7 +1101,12 @@ function Treasures({ lang }: { lang: Lang }) {
             {treasures.steps.map((s, i) => (
               <Reveal key={i} delay={i * 0.12}>
                 <div className="relative text-center">
-                  <WowIcon className="mx-auto" icon={s.icon} size={64} />
+                  <WowIcon
+                    className="mx-auto"
+                    icon={s.icon}
+                    size={64}
+                    tip={tipOf(s.title)}
+                  />
                   <p className="mt-2 font-heading text-sm text-wow-gold/60">
                     {i + 1}
                   </p>
@@ -891,7 +1131,7 @@ function Treasures({ lang }: { lang: Lang }) {
                   className="rounded-full border border-wow-gold/30 bg-black/40 px-4 py-2 text-sm text-white/85 backdrop-blur-sm"
                 >
                   <span className="mr-2 font-heading text-wow-gold">{i}</span>
-                  {m[lang]}
+                  <Tip id={tipOf(m)}>{m[lang]}</Tip>
                 </span>
               ))}
             </div>
@@ -915,13 +1155,23 @@ function Collections({ lang }: { lang: Lang }) {
         <StatRow className="mt-12" lang={lang} stats={collections.stats} />
       </div>
       <div className="mt-12 space-y-4">
-        <IconMarquee icons={collections.marquee} speed={45} />
-        <IconMarquee reverse icons={collections.marquee2} speed={55} />
+        <IconMarquee icons={collections.marquee} speed={45} tips={refByIcon} />
+        <IconMarquee
+          reverse
+          icons={collections.marquee2}
+          speed={55}
+          tips={refByIcon}
+        />
       </div>
       <div className={clsx(container, "mt-12 grid gap-5 md:grid-cols-3")}>
         {collections.highlights.map((h, i) => (
           <Reveal key={i} delay={i * 0.08}>
-            <Card icon={h.icon} text={h.text[lang]} title={h.title[lang]} />
+            <Card
+              icon={h.icon}
+              text={h.text[lang]}
+              tip={tipOf(h.title)}
+              title={h.title[lang]}
+            />
           </Reveal>
         ))}
       </div>
@@ -953,6 +1203,7 @@ function Economy({ lang }: { lang: Lang }) {
                   icon={c.icon}
                   tag={c.tag[lang]}
                   text={c.text[lang]}
+                  tip={tipOf(c.title)}
                   title={c.title[lang]}
                 />
               </Reveal>
@@ -1054,11 +1305,9 @@ function Transmog({ lang }: { lang: Lang }) {
   return (
     <Section className="overflow-hidden" id={transmog.id}>
       <div className="absolute inset-y-0 right-0 hidden w-1/2 lg:block">
-        <div
-          className="h-full w-full bg-cover bg-center opacity-50"
-          style={{ backgroundImage: `url("${encodeURI(transmog.image)}")` }}
-        />
+        <BgImg className="opacity-50" sizes="50vw" src={transmog.image} />
         <div className="absolute inset-0 bg-gradient-to-r from-wow-darker via-wow-darker/40 to-transparent" />
+        <EdgeFade />
       </div>
       <div className={clsx(container, "relative")}>
         <div className="max-w-2xl">
@@ -1102,7 +1351,12 @@ function PvP({ lang }: { lang: Lang }) {
           <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {pvp.cards.map((c, i) => (
               <Reveal key={i} delay={i * 0.07}>
-                <Card icon={c.icon} text={c.text[lang]} title={c.title[lang]} />
+                <Card
+                  icon={c.icon}
+                  text={c.text[lang]}
+                  tip={tipOf(c.title)}
+                  title={c.title[lang]}
+                />
               </Reveal>
             ))}
           </div>
@@ -1127,7 +1381,7 @@ function Guilds({ lang }: { lang: Lang }) {
             <Reveal key={i} delay={i * 0.05}>
               <li className="flex h-full items-center gap-4 rounded-xl border border-white/10 bg-white/[0.04] p-4">
                 <div className="relative">
-                  <WowIcon icon={p.icon} size={44} />
+                  <WowIcon icon={p.icon} size={44} tip={tipOf(p.text)} />
                   <span className="absolute -right-2 -top-2 grid h-6 min-w-6 place-items-center rounded-full bg-wow-gold px-1 font-heading text-xs text-black">
                     {p.lvl}
                   </span>
@@ -1180,11 +1434,17 @@ function Glory({ lang }: { lang: Lang }) {
           <ul className="space-y-3 self-end">
             {glory.firsts.map((f, i) => (
               <Reveal key={i} delay={i * 0.07}>
-                <li className="flex items-center gap-4 rounded-xl border border-white/10 bg-black/40 px-5 py-4 backdrop-blur-sm">
-                  <span className="font-heading text-2xl text-wow-gold/70">
-                    #1
+                <li className="flex items-center gap-4 rounded-xl border border-white/10 bg-black/40 px-4 py-3 backdrop-blur-sm transition-colors hover:border-wow-gold/40 sm:px-5">
+                  <WowIcon icon={f.icon} size={44} />
+                  <div className="min-w-0 flex-1">
+                    <p className="font-heading text-lg leading-tight text-wow-gold-light">
+                      {f.name[lang]}
+                    </p>
+                    <p className="text-sm text-white/60">{f.text[lang]}</p>
+                  </div>
+                  <span className="hidden shrink-0 rounded-full border border-wow-gold/40 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-wow-gold sm:block">
+                    {lang === "fr" ? "Prem's" : "Realm First"}
                   </span>
-                  <span className="text-white/80">{f[lang]}</span>
                 </li>
               </Reveal>
             ))}
@@ -1198,11 +1458,9 @@ function Glory({ lang }: { lang: Lang }) {
 function Finale({ lang, joinHref }: { lang: Lang; joinHref: string }) {
   return (
     <section className="relative flex min-h-[80vh] items-center overflow-hidden">
-      <div
-        className="animate-ken-burns absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url("${encodeURI(finale.image)}")` }}
-      />
+      <BgImg className="animate-ken-burns" src={finale.image} />
       <div className="absolute inset-0 bg-gradient-to-t from-wow-darker via-wow-darker/70 to-wow-darker/40" />
+      <EdgeFade bottom={false} />
       <div className={clsx(container, "relative text-center")}>
         <Reveal>
           <h2 className="font-heading text-5xl text-white sm:text-7xl">
@@ -1232,43 +1490,45 @@ export default function ExperienceContent({ locale }: { locale: string }) {
   const joinHref = `/${locale}/register`;
 
   return (
-    <div className="relative overflow-x-clip bg-wow-darker text-white">
-      <ChapterNav
-        chapters={nav.map((n) => ({ id: n.id, label: n.label[lang] }))}
-      />
-      <ExperienceHero
-        content={{
-          kicker: hero.kicker[lang],
-          title: hero.title[lang],
-          titleAccent: hero.titleAccent[lang],
-          subtitle: hero.subtitle[lang],
-          ctaPrimary: hero.ctaPrimary[lang],
-          ctaSecondary: hero.ctaSecondary[lang],
-          scroll: hero.scroll[lang],
-        }}
-        image="/img/Wrath of the Lich King Classic Cinematic Stills/Wrath_of_the_Lich_King_Classic_Cinematic_Still__(4).jpg"
-        joinHref={joinHref}
-      />
-      <Manifesto lang={lang} />
-      <Phases lang={lang} />
-      <Artifact lang={lang} />
-      <Classes lang={lang} />
-      <Raids lang={lang} />
-      <Eye lang={lang} />
-      <WorldBosses lang={lang} />
-      <Loot lang={lang} />
-      <Archivists lang={lang} />
-      <Professions lang={lang} />
-      <Fishing lang={lang} />
-      <Treasures lang={lang} />
-      <Collections lang={lang} />
-      <Economy lang={lang} />
-      <Quiz lang={lang} />
-      <Transmog lang={lang} />
-      <PvP lang={lang} />
-      <Guilds lang={lang} />
-      <Glory lang={lang} />
-      <Finale joinHref={joinHref} lang={lang} />
-    </div>
+    <TooltipProvider lang={lang}>
+      <div className="relative overflow-x-clip bg-wow-darker text-white">
+        <ChapterNav
+          chapters={nav.map((n) => ({ id: n.id, label: n.label[lang] }))}
+        />
+        <ExperienceHero
+          content={{
+            kicker: hero.kicker[lang],
+            title: hero.title[lang],
+            titleAccent: hero.titleAccent[lang],
+            subtitle: hero.subtitle[lang],
+            ctaPrimary: hero.ctaPrimary[lang],
+            ctaSecondary: hero.ctaSecondary[lang],
+            scroll: hero.scroll[lang],
+          }}
+          image="/img/Wrath of the Lich King Classic Cinematic Stills/Wrath_of_the_Lich_King_Classic_Cinematic_Still__(4).jpg"
+          joinHref={joinHref}
+        />
+        <Manifesto lang={lang} />
+        <Phases lang={lang} />
+        <Artifact lang={lang} />
+        <Classes lang={lang} />
+        <Raids lang={lang} />
+        <Eye lang={lang} />
+        <WorldBosses lang={lang} />
+        <Loot lang={lang} />
+        <Archivists lang={lang} />
+        <Professions lang={lang} />
+        <Fishing lang={lang} />
+        <Treasures lang={lang} />
+        <Collections lang={lang} />
+        <Economy lang={lang} />
+        <Quiz lang={lang} />
+        <Transmog lang={lang} />
+        <PvP lang={lang} />
+        <Guilds lang={lang} />
+        <Glory lang={lang} />
+        <Finale joinHref={joinHref} lang={lang} />
+      </div>
+    </TooltipProvider>
   );
 }

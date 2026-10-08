@@ -11,6 +11,71 @@ import {
 } from "framer-motion";
 import clsx from "clsx";
 
+import { Tip } from "./game-tooltip";
+
+/* ── Web-sized backgrounds (scripts/optimize-experience-images.py writes them) ── */
+export function bgSrc(src: string, size: "" | "-sm" | "-xl" = "") {
+  const name = src
+    .split("/")
+    .pop()!
+    .replace(/\.[a-z]+$/i, "");
+  const slug = name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+  return `/img/experience/bg/${slug}${size}.webp`;
+}
+
+/* ── A cover picture, lazy and sized for the screen ── */
+export function BgImg({
+  src,
+  className,
+  eager = false,
+  xl = false,
+  sizes = "100vw",
+}: {
+  src: string;
+  className?: string;
+  eager?: boolean;
+  xl?: boolean;
+  sizes?: string;
+}) {
+  return (
+    <img
+      aria-hidden
+      alt=""
+      className={clsx("absolute inset-0 h-full w-full object-cover", className)}
+      decoding="async"
+      fetchPriority={eager ? "high" : "auto"}
+      loading={eager ? "eager" : "lazy"}
+      sizes={sizes}
+      src={bgSrc(src)}
+      srcSet={`${bgSrc(src, "-sm")} 960w, ${bgSrc(src)} 1920w${xl ? `, ${bgSrc(src, "-xl")} 2880w` : ""}`}
+    />
+  );
+}
+
+/* ── Soft edges so a picture band melts into the page ── */
+export function EdgeFade({
+  top = true,
+  bottom = true,
+}: {
+  top?: boolean;
+  bottom?: boolean;
+}) {
+  return (
+    <>
+      {top && (
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-wow-darker to-transparent sm:h-56" />
+      )}
+      {bottom && (
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-wow-darker to-transparent sm:h-56" />
+      )}
+    </>
+  );
+}
+
 /* ── Reveal on scroll: rise and fade, staggered by index ── */
 export function Reveal({
   children,
@@ -104,12 +169,14 @@ export function ParallaxImage({
     <div ref={ref} className={clsx("relative overflow-hidden", className)}>
       <motion.div
         aria-hidden
-        className="absolute inset-[-140px_0] bg-cover bg-center"
-        style={{ y, backgroundImage: `url("${encodeURI(src)}")` }}
+        className="absolute inset-[-140px_0]"
+        style={{ y }}
       >
+        <BgImg src={src} />
         <span className="sr-only">{alt}</span>
       </motion.div>
       <div className={clsx("absolute inset-0 bg-gradient-to-b", overlay)} />
+      <EdgeFade />
       <div className="relative w-full">{children}</div>
     </div>
   );
@@ -121,11 +188,13 @@ export function WowIcon({
   size = 56,
   className,
   glow = "gold",
+  tip,
 }: {
   icon: string;
   size?: number;
   className?: string;
   glow?: "gold" | "ice" | "fel" | "none";
+  tip?: string;
 }) {
   const ring =
     glow === "ice"
@@ -136,7 +205,7 @@ export function WowIcon({
           ? "ring-white/10"
           : "ring-wow-gold/70 shadow-[0_0_18px_rgba(199,156,62,0.35)]";
 
-  return (
+  const frame = (
     <span
       className={clsx(
         "relative inline-block shrink-0 overflow-hidden rounded-md ring-2 ring-offset-2 ring-offset-black/80",
@@ -156,6 +225,14 @@ export function WowIcon({
       />
       <span className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-black/30" />
     </span>
+  );
+
+  return tip ? (
+    <Tip className={clsx("inline-block shrink-0", className)} id={tip}>
+      {frame}
+    </Tip>
+  ) : (
+    frame
   );
 }
 
@@ -364,24 +441,35 @@ export function IconMarquee({
   icons,
   reverse = false,
   speed = 40,
+  tips = {},
 }: {
   icons: string[];
   reverse?: boolean;
   speed?: number;
+  tips?: Record<string, string>;
 }) {
   const row = [...icons, ...icons];
 
+  // CSS animation: it pauses under the pointer, so an icon can be read
   return (
-    <div className="relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_10%,black_90%,transparent)]">
-      <motion.div
-        animate={{ x: reverse ? ["-50%", "0%"] : ["0%", "-50%"] }}
-        className="flex w-max gap-5 py-3"
-        transition={{ duration: speed, ease: "linear", repeat: Infinity }}
+    <div className="group/marquee relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_10%,black_90%,transparent)]">
+      <div
+        className="animate-marquee flex w-max gap-5 py-3 group-hover/marquee:[animation-play-state:paused]"
+        style={{
+          animationDuration: `${speed}s`,
+          animationDirection: reverse ? "reverse" : "normal",
+        }}
       >
         {row.map((icon, i) => (
-          <WowIcon key={`${icon}-${i}`} glow="none" icon={icon} size={64} />
+          <WowIcon
+            key={`${icon}-${i}`}
+            glow="none"
+            icon={icon}
+            size={64}
+            tip={tips[icon.toLowerCase()]}
+          />
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }

@@ -65,8 +65,8 @@ export const hero = {
   title: L("Le Norfendre", "Northrend"),
   titleAccent: L("comme jamais vécu.", "as never lived before."),
   subtitle: L(
-    "Un royaume progressif fidèle à la 3.3.5, augmenté de centaines de nouveautés pensées pour les joueurs : raids héroïques, qualité Artefact, boss du monde, métiers réinventés, collections, économie vivante. Six phases. Un seul royaume.",
-    "A progressive realm true to 3.3.5, enriched with hundreds of additions made for players: heroic raids, Artifact quality, world bosses, reinvented professions, collections, a living economy. Six phases. One realm.",
+    "Un royaume progressif fidèle à la 3.3.5, et des centaines de nouveautés introuvables ailleurs.",
+    "A progressive realm true to 3.3.5, with hundreds of additions found nowhere else.",
   ),
   ctaPrimary: L("Rejoindre l'aventure", "Join the adventure"),
   ctaSecondary: L("Découvrir le royaume", "Discover the realm"),
@@ -223,8 +223,8 @@ export const artifact = {
     icon: "INV_Misc_Token_ArgentDawn3",
     title: L("Le Jeton d'ascension", "The Ascension Token"),
     text: L(
-      "L'objet de vos rêves, en doré. Cinq secondes de mains dorées, un feu d'artifice, et votre arme ou votre armure monte d'un rang de qualité. Toujours réussi, enchantements et gemmes conservés. Chez les Archivistes, au rang Exalté.",
-      "Your dream item, in gold. Five seconds of golden hands, a burst of fireworks, and your weapon or armor rises one quality step. Always successful, enchantments and gems kept. From the Archivists, at Exalted.",
+      "Quand la chance ne suffit plus. Le jeton élève l'arme ou la pièce d'armure de votre choix d'un rang de qualité : jamais d'échec, enchantements et gemmes conservés. L'Ordre des Archivistes ne le confie qu'à ses membres exaltés.",
+      "For when luck is not enough. The token raises the weapon or armor piece of your choice by one quality rank: it never fails, and every enchantment and gem stays. The Archivist Order entrusts it only to its Exalted.",
     ),
   },
 };
@@ -631,7 +631,7 @@ export const worldBosses = {
     {
       name: L("Lazulygos, Siphon tellurique", "Lazulygos, Ley Siphon"),
       phase: L("Phase 1", "Phase 1"),
-      image: IMG.sindragosaFight,
+      image: "/img/experience/coldarra.webp",
       text: L(
         "Un grand dragon bleu se bat sur les plateformes flottantes de Frimarra et projette le raid de plateforme en plateforme. À sa mort, Malygos en personne apparaît.",
         "A great blue dragon fights on Coldarra's floating platforms and hurls the raid from one to the next. At its death, Malygos himself appears.",
@@ -672,11 +672,26 @@ export const raidRules = {
     "Boss loot goes straight into the bag of whoever needs it. No rolls, no master looter: a fair, transparent distribution that rewards everyone.",
   ),
   steps: [
-    L("Spécialisation principale", "Main specialization"),
-    L("Seconde spécialisation", "Off specialization"),
-    L("Désenchantement automatique", "Automatic disenchant"),
-    L("Classe qui peut l'utiliser", "Classes that can use it"),
-    L("Tout le monde", "Everyone"),
+    {
+      icon: "ability_marksmanship",
+      label: L("Spécialisation principale", "Main specialization"),
+    },
+    {
+      icon: "ability_dualwieldspecialization",
+      label: L("Seconde spécialisation", "Off specialization"),
+    },
+    {
+      icon: "inv_enchant_disenchant",
+      label: L("Désenchantement automatique", "Automatic disenchant"),
+    },
+    {
+      icon: "inv_chest_plate16",
+      label: L("Classe qui peut l'utiliser", "Classes that can use it"),
+    },
+    {
+      icon: "spell_holy_prayeroffortitude",
+      label: L("Tout le monde", "Everyone"),
+    },
   ],
   points: [
     L(
@@ -954,8 +969,8 @@ export const professions = {
       ),
       highlights: [
         L(
-          "Sauvez 15 croisés blessés pour devenir Grand maître",
-          "Save 15 wounded crusaders to become Grand Master",
+          "Sauvez 8 croisés blessés pour devenir Grand maître",
+          "Save 8 wounded crusaders to become Grand Master",
         ),
         L(
           "Un bandage par phase, jusqu'à 9 800 points de vie",
@@ -1374,17 +1389,54 @@ export const glory = {
     'A "Lordaeron" tab of 228 achievements, and the realm\'s Firsts: feats that only one player or one group will ever earn.',
   ),
   firsts: [
-    L("Première victoire sur un boss du monde", "First world boss kill"),
-    L("Première guilde de niveau 10", "First level 10 guild"),
-    L(
-      "Premier spécialiste de chaque métier",
-      "First specialist of every profession",
-    ),
-    L("Se noyer dans la fontaine du Brunant", "Drown in the Eventide fountain"),
-    L(
-      "Perdre un duel en moins de 5 secondes",
-      "Lose a duel in under 5 seconds",
-    ),
+    {
+      icon: "inv_misc_head_dragon_blue",
+      name: L("Les colosses", "The colossi"),
+      text: L(
+        "Premier raid à vaincre chaque boss du monde",
+        "First raid to defeat each world boss",
+      ),
+    },
+    {
+      icon: "achievement_reputation_08",
+      name: L("Guilde de Lordaeron", "Guild of Lordaeron"),
+      text: L(
+        "Première guilde au niveau 10 de renommée",
+        "First guild to reach renown level 10",
+      ),
+    },
+    {
+      icon: "inv_misc_book_11",
+      name: L("Archiviste exalté", "Exalted Archivist"),
+      text: L(
+        "Premier exalté auprès de l'Ordre des Archivistes",
+        "First to be Exalted with the Archivist Order",
+      ),
+    },
+    {
+      icon: "inv_misc_token_argentdawn3",
+      name: L("Ascension", "Ascended"),
+      text: L(
+        "Premier à utiliser un jeton d'ascension",
+        "First to use an Ascension Token",
+      ),
+    },
+    {
+      icon: "inv_misc_fish_20",
+      name: L("Prise légendaire", "Legendary Catch"),
+      text: L(
+        "Premier poisson légendaire rapporté à Marcia Chase",
+        "First legendary fish brought to Marcia Chase",
+      ),
+    },
+    {
+      icon: "inv_misc_coin_02",
+      name: L("Trésor d'or", "Golden Hoard"),
+      text: L(
+        "Premier à posséder 200 000 pièces d'or",
+        "First to own 200,000 gold",
+      ),
+    },
   ],
   titles: [
     L("le Précurseur", "the Forerunner"),
