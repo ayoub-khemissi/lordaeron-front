@@ -19,6 +19,7 @@ export type HeroContent = {
   ctaPrimary: string;
   ctaSecondary: string;
   scroll: string;
+  status: string;
 };
 
 export function ExperienceHero({
@@ -139,6 +140,10 @@ export function ExperienceHero({
           <CtaButton href="#story" variant="secondary">
             {content.ctaSecondary}
           </CtaButton>
+          <span className="flex basis-full items-center gap-3 text-xs font-semibold uppercase tracking-[0.25em] text-wow-blue-ice/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] sm:text-sm">
+            <span className="h-2 w-2 animate-pulse rounded-full bg-wow-blue-ice shadow-[0_0_10px_#4fc3f7]" />
+            {content.status}
+          </span>
         </motion.div>
       </motion.div>
 

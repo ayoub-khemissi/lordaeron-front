@@ -1639,6 +1639,7 @@ export default function ExperienceContent({ locale }: { locale: string }) {
             ctaPrimary: hero.ctaPrimary[lang],
             ctaSecondary: hero.ctaSecondary[lang],
             scroll: hero.scroll[lang],
+            status: hero.status[lang],
           }}
           image="/img/Wrath of the Lich King Classic Cinematic Stills/Wrath_of_the_Lich_King_Classic_Cinematic_Still__(4).jpg"
           joinHref={joinHref}

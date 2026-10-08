@@ -13,8 +13,8 @@ export async function generateMetadata({
   return {
     title:
       locale === "fr"
-        ? "Lordaeron · Le Norfendre comme jamais vécu"
-        : "Lordaeron · Northrend as never lived before",
+        ? "Rimeheart · Le Norfendre comme jamais vécu"
+        : "Rimeheart · Northrend as never lived before",
     robots: { index: false, follow: false },
   };
 }

@@ -59,8 +59,13 @@ export { IMG };
 
 export const hero = {
   kicker: L(
-    "Lordaeron · Wrath of the Lich King 3.3.5",
-    "Lordaeron · Wrath of the Lich King 3.3.5",
+    "Rimeheart · Wrath of the Lich King 3.3.5",
+    "Rimeheart · Wrath of the Lich King 3.3.5",
+  ),
+  // the realm is not open yet (Ayoub, 08/10/2026: in development, no date)
+  status: L(
+    "Nouveau royaume · En développement · Ouverture prochaine",
+    "New realm · In development · Coming soon",
   ),
   title: L("Le Norfendre", "Northrend"),
   titleAccent: L("comme jamais vécu.", "as never lived before."),
