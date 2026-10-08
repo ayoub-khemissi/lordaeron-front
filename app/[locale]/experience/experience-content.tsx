@@ -748,6 +748,25 @@ function Eye({ lang }: { lang: Lang }) {
               </Reveal>
             ))}
           </ul>
+          <Reveal className="mt-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-green-300/70">
+              {eye.nextTitle[lang]}
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {eye.next.map((n) => (
+                <span
+                  key={n.phase}
+                  className="flex items-center gap-2.5 rounded-lg border border-green-400/20 bg-black/40 py-1.5 pl-1.5 pr-3 text-sm text-white/80"
+                >
+                  <WowIcon glow="none" icon={n.icon} size={28} />
+                  {n.name[lang]}
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-green-300/70">
+                    Phase {n.phase}
+                  </span>
+                </span>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </div>
     </Section>

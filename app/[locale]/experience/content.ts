@@ -160,8 +160,8 @@ export const phases = {
       title: L("L'Épreuve", "The Trial"),
       image: IMG.boss("onyxia"),
       text: L(
-        "Épreuve du croisé, Onyxia niveau 80, Koralon, gemmes épiques. Saison 7.",
-        "Trial of the Crusader, level 80 Onyxia, Koralon, epic gems. Season 7.",
+        "Épreuve du croisé, Onyxia niveau 80, Koralon, gemmes épiques. Karazhan au niveau 80. Saison 7.",
+        "Trial of the Crusader, level 80 Onyxia, Koralon, epic gems. Karazhan at level 80. Season 7.",
       ),
     },
     {
@@ -169,8 +169,8 @@ export const phases = {
       title: L("La Citadelle", "The Citadel"),
       image: IMG.boss("lichking"),
       text: L(
-        "La Citadelle de la Couronne de glace et les Salles gelées. Toravon. Saison 8.",
-        "Icecrown Citadel and the Frozen Halls. Toravon. Season 8.",
+        "La Citadelle de la Couronne de glace et les Salles gelées. Toravon. Le Temple noir au niveau 80. Saison 8.",
+        "Icecrown Citadel and the Frozen Halls. Toravon. Black Temple at level 80. Season 8.",
       ),
     },
     {
@@ -178,8 +178,8 @@ export const phases = {
       title: L("Le Crépuscule", "Twilight"),
       image: IMG.boss("halion"),
       text: L(
-        "Le Sanctum rubis et Halion, le Destructeur du Crépuscule.",
-        "The Ruby Sanctum and Halion, the Twilight Destroyer.",
+        "Le Sanctum rubis et Halion, le Destructeur du Crépuscule. Le Plateau du Puits de soleil au niveau 80.",
+        "The Ruby Sanctum and Halion, the Twilight Destroyer. Sunwell Plateau at level 80.",
       ),
     },
   ],
@@ -614,6 +614,25 @@ export const eye = {
         "324 objets niveau 80, 38 ensembles, 10 hauts faits.",
         "324 level 80 items, 38 sets, 10 achievements.",
       ),
+    },
+  ],
+  // the next Burning Crusade raids brought to level 80, one per phase (design/raids-classiques.md)
+  nextTitle: L("Et la suite, au niveau 80", "And next, at level 80"),
+  next: [
+    {
+      phase: 3,
+      icon: "achievement_boss_princemalchezaar_02",
+      name: L("Karazhan", "Karazhan"),
+    },
+    {
+      phase: 4,
+      icon: "achievement_boss_illidan",
+      name: L("Le Temple noir", "Black Temple"),
+    },
+    {
+      phase: 5,
+      icon: "achievement_boss_kiljaedan",
+      name: L("Le Plateau du Puits de soleil", "Sunwell Plateau"),
     },
   ],
   image:
