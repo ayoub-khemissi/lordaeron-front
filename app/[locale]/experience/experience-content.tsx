@@ -333,7 +333,7 @@ function ArtifactItem({ lang }: { lang: Lang }) {
           {artifact.tiers.map((x, i) => (
             <span
               key={i}
-              className="flex-1 rounded-sm py-1 text-center transition-all duration-700"
+              className="flex-auto whitespace-nowrap rounded-sm px-1.5 py-1 text-center transition-all duration-700"
               style={{
                 color: x.color,
                 backgroundColor: `${x.color}1f`,
