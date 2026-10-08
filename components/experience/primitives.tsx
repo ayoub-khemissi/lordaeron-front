@@ -247,7 +247,7 @@ export function ChapterHeading({
   numeral: string;
   eyebrow: string;
   title: string;
-  lede?: string;
+  lede?: ReactNode;
   tone?: "gold" | "ice" | "fel" | "blood";
   align?: "left" | "center";
 }) {

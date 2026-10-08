@@ -62,7 +62,7 @@ import {
 const container = "mx-auto w-full max-w-7xl px-5 sm:px-8";
 
 /* ── in-game tooltips: the ref of a card from its FR text (tooltip-refs.ts) ── */
-const tipOf = (t: T) => refByName[t.fr];
+const tipOf = (t: T) => refByName[t.fr.replace(/\*\*/g, "")];
 const tipText =
   "underline decoration-wow-gold/50 decoration-dotted underline-offset-4";
 
@@ -92,16 +92,28 @@ const inlineRe = new RegExp(
     .join("|")})`,
 );
 
+// a text of content.ts: **key facts** in gold, item names with their tooltip
 function Rich({ text }: { text: string }) {
+  const names = (part: string, key: number) =>
+    part.split(inlineRe).map((bit, i) =>
+      inlineAll[bit] ? (
+        <Tip key={`${key}-${i}`} className={tipText} id={inlineAll[bit]}>
+          {bit}
+        </Tip>
+      ) : (
+        bit
+      ),
+    );
+
   return (
     <>
-      {text.split(inlineRe).map((part, i) =>
-        inlineAll[part] ? (
-          <Tip key={i} className={tipText} id={inlineAll[part]}>
-            {part}
-          </Tip>
+      {text.split("**").map((part, i) =>
+        i % 2 ? (
+          <strong key={i} className="font-semibold text-wow-gold-light">
+            {names(part, i)}
+          </strong>
         ) : (
-          part
+          names(part, i)
         ),
       )}
     </>
@@ -254,7 +266,7 @@ function Manifesto({ lang }: { lang: Lang }) {
           </Reveal>
           <Reveal delay={0.16}>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-white/70">
-              {manifesto.text[lang]}
+              <Rich text={manifesto.text[lang]} />
             </p>
           </Reveal>
         </div>
@@ -284,7 +296,7 @@ function Phases({ lang }: { lang: Lang }) {
       <div className={container}>
         <ChapterHeading
           eyebrow={phases.eyebrow[lang]}
-          lede={phases.lede[lang]}
+          lede={<Rich text={phases.lede[lang]} />}
           numeral={phases.numeral}
           title={phases.title[lang]}
           tone="ice"
@@ -312,7 +324,7 @@ function Phases({ lang }: { lang: Lang }) {
                       {s.title[lang]}
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-white/60">
-                      {s.text[lang]}
+                      <Rich text={s.text[lang]} />
                     </p>
                   </div>
                 </li>
@@ -322,7 +334,7 @@ function Phases({ lang }: { lang: Lang }) {
         </div>
         <Reveal>
           <p className="mt-14 border-l-2 border-wow-gold/50 pl-5 text-white/60">
-            {phases.footnote[lang]}
+            <Rich text={phases.footnote[lang]} />
           </p>
         </Reveal>
       </div>
@@ -443,7 +455,7 @@ function Artifact({ lang }: { lang: Lang }) {
           <div>
             <ChapterHeading
               eyebrow={artifact.eyebrow[lang]}
-              lede={artifact.lede[lang]}
+              lede={<Rich text={artifact.lede[lang]} />}
               numeral={artifact.numeral}
               title={artifact.title[lang]}
             />
@@ -452,7 +464,7 @@ function Artifact({ lang }: { lang: Lang }) {
                 <Reveal key={i} delay={i * 0.06}>
                   <li className="flex gap-3 text-white/75">
                     <Check />
-                    {p[lang]}
+                    <Rich text={p[lang]} />
                   </li>
                 </Reveal>
               ))}
@@ -561,7 +573,7 @@ function Classes({ lang }: { lang: Lang }) {
       <div className={container}>
         <ChapterHeading
           eyebrow={classes.eyebrow[lang]}
-          lede={classes.lede[lang]}
+          lede={<Rich text={classes.lede[lang]} />}
           numeral={classes.numeral}
           title={classes.title[lang]}
         />
@@ -633,7 +645,9 @@ function Classes({ lang }: { lang: Lang }) {
               <h3 className="font-heading text-2xl text-wow-blue-ice">
                 {classes.surge.title[lang]}
               </h3>
-              <p className="mt-2 text-white/70">{classes.surge.text[lang]}</p>
+              <p className="mt-2 text-white/70">
+                <Rich text={classes.surge.text[lang]} />
+              </p>
             </div>
           </div>
         </Reveal>
@@ -653,7 +667,7 @@ function Raids({ lang }: { lang: Lang }) {
         <div className={container}>
           <ChapterHeading
             eyebrow={raids.eyebrow[lang]}
-            lede={raids.lede[lang]}
+            lede={<Rich text={raids.lede[lang]} />}
             numeral={raids.numeral}
             title={raids.title[lang]}
           />
@@ -683,7 +697,7 @@ function Raids({ lang }: { lang: Lang }) {
                 {raids.how.map((h, i) => (
                   <li key={i} className="flex gap-3 text-white/75">
                     <Check />
-                    {h[lang]}
+                    <Rich text={h[lang]} />
                   </li>
                 ))}
               </ul>
@@ -728,7 +742,7 @@ function Eye({ lang }: { lang: Lang }) {
         <div className="order-1 lg:order-2">
           <ChapterHeading
             eyebrow={eye.eyebrow[lang]}
-            lede={eye.lede[lang]}
+            lede={<Rich text={eye.lede[lang]} />}
             numeral={eye.numeral}
             title={eye.title[lang]}
             tone="fel"
@@ -743,7 +757,7 @@ function Eye({ lang }: { lang: Lang }) {
                     size={40}
                     tip={tipOf(p.text)}
                   />
-                  {p.text[lang]}
+                  <Rich text={p.text[lang]} />
                 </li>
               </Reveal>
             ))}
@@ -780,7 +794,7 @@ function WorldBosses({ lang }: { lang: Lang }) {
         <ChapterHeading
           align="center"
           eyebrow={worldBosses.eyebrow[lang]}
-          lede={worldBosses.lede[lang]}
+          lede={<Rich text={worldBosses.lede[lang]} />}
           numeral={worldBosses.numeral}
           title={worldBosses.title[lang]}
           tone="ice"
@@ -806,7 +820,7 @@ function WorldBosses({ lang }: { lang: Lang }) {
                     {b.name[lang]}
                   </h3>
                   <p className="mt-4 leading-relaxed text-white/70">
-                    {b.text[lang]}
+                    <Rich text={b.text[lang]} />
                   </p>
                   <div className="mt-6 flex flex-wrap gap-2">
                     {b.tags.map((t, j) => (
@@ -964,7 +978,7 @@ function Loot({ lang }: { lang: Lang }) {
       <div className={container}>
         <ChapterHeading
           eyebrow={raidRules.eyebrow[lang]}
-          lede={raidRules.lede[lang]}
+          lede={<Rich text={raidRules.lede[lang]} />}
           numeral={raidRules.numeral}
           title={raidRules.title[lang]}
         />
@@ -975,7 +989,7 @@ function Loot({ lang }: { lang: Lang }) {
               <Reveal key={i} delay={i * 0.06}>
                 <li className="flex gap-3 text-white/75">
                   <Check />
-                  {p[lang]}
+                  <Rich text={p[lang]} />
                 </li>
               </Reveal>
             ))}
@@ -1005,7 +1019,7 @@ function Archivists({ lang }: { lang: Lang }) {
         <div className={container}>
           <ChapterHeading
             eyebrow={archivists.eyebrow[lang]}
-            lede={archivists.lede[lang]}
+            lede={<Rich text={archivists.lede[lang]} />}
             numeral={archivists.numeral}
             title={archivists.title[lang]}
           />
@@ -1021,7 +1035,9 @@ function Archivists({ lang }: { lang: Lang }) {
                   <h3 className="font-heading text-lg text-wow-gold-light">
                     {r.title[lang]}
                   </h3>
-                  <p className="text-sm text-white/55">{r.text[lang]}</p>
+                  <p className="text-sm text-white/55">
+                    <Rich text={r.text[lang]} />
+                  </p>
                 </div>
               </div>
             </Reveal>
@@ -1050,7 +1066,7 @@ function Professions({ lang }: { lang: Lang }) {
       <div className={container}>
         <ChapterHeading
           eyebrow={professions.eyebrow[lang]}
-          lede={professions.lede[lang]}
+          lede={<Rich text={professions.lede[lang]} />}
           numeral={professions.numeral}
           title={professions.title[lang]}
         />
@@ -1067,11 +1083,25 @@ function Professions({ lang }: { lang: Lang }) {
                     <h3 className="font-heading text-2xl text-white">
                       {p.name[lang]}
                     </h3>
-                    <p className="text-xs uppercase tracking-[0.15em] text-wow-gold-light/70">
-                      {p.specs[lang]}
-                    </p>
                   </div>
                 </div>
+                {/* the specializations, the heart of each profession */}
+                {!p.specs[lang].includes(" · ") ? (
+                  <p className="mt-3 text-xs uppercase tracking-[0.15em] text-wow-gold-light/70">
+                    {p.specs[lang]}
+                  </p>
+                ) : (
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {p.specs[lang].split(" · ").map((spec) => (
+                      <span
+                        key={spec}
+                        className="rounded-md border border-wow-gold/40 bg-wow-gold/10 px-2.5 py-1 font-heading text-sm text-wow-gold-light"
+                      >
+                        {spec}
+                      </span>
+                    ))}
+                  </div>
+                )}
                 <ul className="mt-6 space-y-3">
                   {p.highlights.map((h, i) => (
                     <li
@@ -1083,7 +1113,7 @@ function Professions({ lang }: { lang: Lang }) {
                         className={tipOf(h) ? tipText : undefined}
                         id={tipOf(h)}
                       >
-                        {h[lang]}
+                        <Rich text={h[lang]} />
                       </Tip>
                     </li>
                   ))}
@@ -1109,7 +1139,7 @@ function Fishing({ lang }: { lang: Lang }) {
         <div className="lg:sticky lg:top-28">
           <ChapterHeading
             eyebrow={fishing.eyebrow[lang]}
-            lede={fishing.lede[lang]}
+            lede={<Rich text={fishing.lede[lang]} />}
             numeral={fishing.numeral}
             title={fishing.title[lang]}
             tone="ice"
@@ -1204,7 +1234,7 @@ function Treasures({ lang }: { lang: Lang }) {
           <ChapterHeading
             align="center"
             eyebrow={treasures.eyebrow[lang]}
-            lede={treasures.lede[lang]}
+            lede={<Rich text={treasures.lede[lang]} />}
             numeral={treasures.numeral}
             title={treasures.title[lang]}
           />
@@ -1226,7 +1256,7 @@ function Treasures({ lang }: { lang: Lang }) {
                     {s.title[lang]}
                   </h3>
                   <p className="mx-auto mt-3 max-w-xs text-white/65">
-                    {s.text[lang]}
+                    <Rich text={s.text[lang]} />
                   </p>
                 </div>
               </Reveal>
@@ -1254,7 +1284,7 @@ function Collections({ lang }: { lang: Lang }) {
       <div className={container}>
         <ChapterHeading
           eyebrow={collections.eyebrow[lang]}
-          lede={collections.lede[lang]}
+          lede={<Rich text={collections.lede[lang]} />}
           numeral={collections.numeral}
           title={collections.title[lang]}
         />
@@ -1296,7 +1326,7 @@ function Economy({ lang }: { lang: Lang }) {
         <div className={container}>
           <ChapterHeading
             eyebrow={economy.eyebrow[lang]}
-            lede={economy.lede[lang]}
+            lede={<Rich text={economy.lede[lang]} />}
             numeral={economy.numeral}
             title={economy.title[lang]}
             tone="fel"
@@ -1337,7 +1367,7 @@ function Quiz({ lang }: { lang: Lang }) {
         <div>
           <ChapterHeading
             eyebrow={quiz.eyebrow[lang]}
-            lede={quiz.lede[lang]}
+            lede={<Rich text={quiz.lede[lang]} />}
             numeral={quiz.numeral}
             title={quiz.title[lang]}
             tone="ice"
@@ -1419,7 +1449,7 @@ function Transmog({ lang }: { lang: Lang }) {
         <div className="max-w-2xl">
           <ChapterHeading
             eyebrow={transmog.eyebrow[lang]}
-            lede={transmog.lede[lang]}
+            lede={<Rich text={transmog.lede[lang]} />}
             numeral={transmog.numeral}
             title={transmog.title[lang]}
           />
@@ -1449,7 +1479,7 @@ function PvP({ lang }: { lang: Lang }) {
         <div className={container}>
           <ChapterHeading
             eyebrow={pvp.eyebrow[lang]}
-            lede={pvp.lede[lang]}
+            lede={<Rich text={pvp.lede[lang]} />}
             numeral={pvp.numeral}
             title={pvp.title[lang]}
             tone="blood"
@@ -1478,7 +1508,7 @@ function Guilds({ lang }: { lang: Lang }) {
       <div className={container}>
         <ChapterHeading
           eyebrow={guilds.eyebrow[lang]}
-          lede={guilds.lede[lang]}
+          lede={<Rich text={guilds.lede[lang]} />}
           numeral={guilds.numeral}
           title={guilds.title[lang]}
         />
@@ -1493,7 +1523,7 @@ function Guilds({ lang }: { lang: Lang }) {
                   </span>
                 </div>
                 <p className="text-sm leading-snug text-white/75">
-                  {p.text[lang]}
+                  <Rich text={p.text[lang]} />
                 </p>
               </li>
             </Reveal>
@@ -1501,7 +1531,7 @@ function Guilds({ lang }: { lang: Lang }) {
         </ol>
         <Reveal>
           <p className="mt-10 border-l-2 border-wow-gold/50 pl-5 text-white/65">
-            {guilds.extra[lang]}
+            <Rich text={guilds.extra[lang]} />
           </p>
         </Reveal>
       </div>
@@ -1521,7 +1551,7 @@ function Glory({ lang }: { lang: Lang }) {
           <div>
             <ChapterHeading
               eyebrow={glory.eyebrow[lang]}
-              lede={glory.lede[lang]}
+              lede={<Rich text={glory.lede[lang]} />}
               numeral={glory.numeral}
               title={glory.title[lang]}
               tone="ice"
@@ -1546,7 +1576,9 @@ function Glory({ lang }: { lang: Lang }) {
                     <p className="font-heading text-lg leading-tight text-wow-gold-light">
                       {f.name[lang]}
                     </p>
-                    <p className="text-sm text-white/60">{f.text[lang]}</p>
+                    <p className="text-sm text-white/60">
+                      <Rich text={f.text[lang]} />
+                    </p>
                   </div>
                   <span className="hidden shrink-0 rounded-full border border-wow-gold/40 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-wow-gold sm:block">
                     {lang === "fr" ? "Prem's" : "Realm First"}
@@ -1575,7 +1607,7 @@ function Finale({ lang, joinHref }: { lang: Lang; joinHref: string }) {
         </Reveal>
         <Reveal delay={0.1}>
           <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-white/75">
-            {finale.text[lang]}
+            <Rich text={finale.text[lang]} />
           </p>
         </Reveal>
         <Reveal delay={0.2}>

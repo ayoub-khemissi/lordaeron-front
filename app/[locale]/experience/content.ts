@@ -80,8 +80,8 @@ export const manifesto = {
     "True to the legend.\nUnseen anywhere else.",
   ),
   text: L(
-    "Lordaeron rejoue l'extension palier par palier, comme à sa sortie, sur une base 3.3.5 fidèle. Et à chaque palier, du contenu neuf : chaque création est pensée dans le lore, équilibrée pour chaque spécialisation, traduite dans cinq langues.",
-    "Lordaeron replays the expansion tier by tier, as at launch, on a faithful 3.3.5 base. And at every tier, new content: every creation is rooted in the lore, balanced for every specialization, translated into five languages.",
+    "Lordaeron rejoue l'extension **palier par palier**, comme à sa sortie, sur une base 3.3.5 fidèle. Et à chaque palier, **du contenu neuf** : chaque création est pensée dans le lore, équilibrée pour chaque spécialisation, **traduite dans cinq langues**.",
+    "Lordaeron replays the expansion **tier by tier**, as at launch, on a faithful 3.3.5 base. And at every tier, **new content**: every creation is rooted in the lore, balanced for every specialization, **translated into five languages**.",
   ),
   stats: [
     {
@@ -124,8 +124,8 @@ export const phases = {
     "Five phases. Three months each.",
   ),
   lede: L(
-    "Revivez l'extension comme à sa sortie. Instances, butin, recettes, vendeurs, quêtes, emblèmes et saisons d'arène s'ouvrent au rythme des phases, sans jamais d'avance. Chaque ouverture est annoncée en jeu.",
-    "Relive the expansion as it launched. Instances, loot, recipes, vendors, quests, emblems and arena seasons open with each phase, never ahead of time. Every opening is announced in game.",
+    "Revivez l'extension comme à sa sortie. Instances, butin, recettes, vendeurs, quêtes, emblèmes et saisons d'arène s'ouvrent au rythme des phases, **sans jamais d'avance**. Chaque ouverture est **annoncée en jeu**.",
+    "Relive the expansion as it launched. Instances, loot, recipes, vendors, quests, emblems and arena seasons open with each phase, **never ahead of time**. Every opening is **announced in game**.",
   ),
   steps: [
     {
@@ -133,8 +133,8 @@ export const phases = {
       title: L("Le prélude", "The prelude"),
       image: IMG.fjord,
       text: L(
-        "2 à 3 semaines pour s'équiper : les 12 donjons du Norfendre en normal et héroïque, champs de bataille, arènes et Joug-d'hiver.",
-        "2 to 3 weeks to gear up: the 12 Northrend dungeons, normal and heroic, battlegrounds, arenas and Wintergrasp.",
+        "**2 à 3 semaines** pour s'équiper : les 12 donjons du Norfendre en normal et héroïque, champs de bataille, arènes et Joug-d'hiver.",
+        "**2 to 3 weeks** to gear up: the 12 Northrend dungeons, normal and heroic, battlegrounds, arenas and Wintergrasp.",
       ),
     },
     {
@@ -151,8 +151,8 @@ export const phases = {
       title: L("Ulduar", "Ulduar"),
       image: IMG.boss("yoggsaron"),
       text: L(
-        "Ulduar, Emalon, le Tournoi d'argent. L'Œil de Kael'thas au niveau 80. Saison 6.",
-        "Ulduar, Emalon, the Argent Tournament. Kael'thas's Eye at level 80. Season 6.",
+        "Ulduar, Emalon, le Tournoi d'argent. **L'Œil de Kael'thas au niveau 80**. Saison 6.",
+        "Ulduar, Emalon, the Argent Tournament. **Kael'thas's Eye at level 80**. Season 6.",
       ),
     },
     {
@@ -160,8 +160,8 @@ export const phases = {
       title: L("L'Épreuve", "The Trial"),
       image: IMG.boss("onyxia"),
       text: L(
-        "Épreuve du croisé, Onyxia niveau 80, Koralon, gemmes épiques. Karazhan au niveau 80. Saison 7.",
-        "Trial of the Crusader, level 80 Onyxia, Koralon, epic gems. Karazhan at level 80. Season 7.",
+        "Épreuve du croisé, Onyxia niveau 80, Koralon, gemmes épiques. **Karazhan au niveau 80**. Saison 7.",
+        "Trial of the Crusader, level 80 Onyxia, Koralon, epic gems. **Karazhan at level 80**. Season 7.",
       ),
     },
     {
@@ -169,8 +169,8 @@ export const phases = {
       title: L("La Citadelle", "The Citadel"),
       image: IMG.boss("lichking"),
       text: L(
-        "La Citadelle de la Couronne de glace et les Salles gelées. Toravon. Le Temple noir au niveau 80. Saison 8.",
-        "Icecrown Citadel and the Frozen Halls. Toravon. Black Temple at level 80. Season 8.",
+        "La Citadelle de la Couronne de glace et les Salles gelées. Toravon. **Le Temple noir au niveau 80**. Saison 8.",
+        "Icecrown Citadel and the Frozen Halls. Toravon. **Black Temple at level 80**. Season 8.",
       ),
     },
     {
@@ -178,14 +178,14 @@ export const phases = {
       title: L("Le Crépuscule", "Twilight"),
       image: IMG.boss("halion"),
       text: L(
-        "Le Sanctum rubis et Halion, le Destructeur du Crépuscule. Le Plateau du Puits de soleil au niveau 80.",
-        "The Ruby Sanctum and Halion, the Twilight Destroyer. Sunwell Plateau at level 80.",
+        "Le Sanctum rubis et Halion, le Destructeur du Crépuscule. **Le Plateau du Puits de soleil au niveau 80**.",
+        "The Ruby Sanctum and Halion, the Twilight Destroyer. **Sunwell Plateau at level 80**.",
       ),
     },
   ],
   footnote: L(
-    "Les raids classiques et de Burning Crusade restent ouverts dès le premier jour, comme la double spécialisation et la Recherche de donjons.",
-    "Classic and Burning Crusade raids stay open from day one, as do dual specialization and the Dungeon Finder.",
+    "Les raids classiques et de Burning Crusade **restent ouverts dès le premier jour**, comme la double spécialisation et la Recherche de donjons.",
+    "Classic and Burning Crusade raids **stay open from day one**, as do dual specialization and the Dungeon Finder.",
   ),
 };
 
@@ -195,8 +195,8 @@ export const artifact = {
   eyebrow: L("Qualité Artefact", "Artifact quality"),
   title: L("Plus haut que l'épique.", "Beyond epic."),
   lede: L(
-    "Chaque objet ramassé, fabriqué, pêché ou reçu en récompense peut sortir un cran au-dessus. Vert, bleu, épique… et Artefact, le rang doré.",
-    "Every item looted, crafted, fished or earned can drop one step higher. Green, blue, epic… and Artifact, the golden rank.",
+    "Chaque objet ramassé, fabriqué, pêché ou reçu en récompense peut sortir **un cran au-dessus**. Vert, bleu, épique… et **Artefact, le rang doré**.",
+    "Every item looted, crafted, fished or earned can drop **one step higher**. Green, blue, epic… and **Artifact, the golden rank**.",
   ),
   tiers: [
     { color: "#1eff00", label: L("Peu commun", "Uncommon") },
@@ -226,8 +226,8 @@ export const artifact = {
     icon: "INV_Misc_Token_ArgentDawn3",
     title: L("Le Jeton d'ascension", "The Ascension Token"),
     text: L(
-      "Quand la chance ne suffit plus. Le jeton élève l'arme ou la pièce d'armure de votre choix d'un rang de qualité : jamais d'échec, enchantements et gemmes conservés. L'Ordre des Archivistes ne le confie qu'à ses membres exaltés.",
-      "For when luck is not enough. The token raises the weapon or armor piece of your choice by one quality rank: it never fails, and every enchantment and gem stays. The Archivist Order entrusts it only to its Exalted.",
+      "Quand la chance ne suffit plus. Le jeton élève l'arme ou la pièce d'armure de votre choix d'un rang de qualité : **jamais d'échec**, **enchantements et gemmes conservés**. L'Ordre des Archivistes ne le confie qu'à ses membres exaltés.",
+      "For when luck is not enough. The token raises the weapon or armor piece of your choice by one quality rank: **it never fails**, and **every enchantment and gem stays**. The Archivist Order entrusts it only to its Exalted.",
     ),
   },
 };
@@ -250,8 +250,8 @@ export const classes = {
     "Every specialization gets its moment.",
   ),
   lede: L(
-    "Les dix classes reçoivent chacune trois nouveaux sorts (un par arbre), trois talents réécrits et deux glyphes. Pensés pour leur identité et leur lore, équilibrés entre eux, jamais une copie d'un sort existant.",
-    "All ten classes receive three new spells (one per tree), three rewritten talents and two glyphs. Built for their identity and lore, balanced against each other, never a copy of an existing spell.",
+    "Les dix classes reçoivent chacune **trois nouveaux sorts** (un par arbre), **trois talents réécrits** et **deux glyphes**. Pensés pour leur identité et leur lore, équilibrés entre eux, **jamais une copie d'un sort existant**.",
+    "All ten classes receive **three new spells** (one per tree), **three rewritten talents** and **two glyphs**. Built for their identity and lore, balanced against each other, **never a copy of an existing spell**.",
   ),
   list: [
     {
@@ -488,8 +488,8 @@ export const classes = {
     icon: "spell_nature_timestop",
     title: L("Afflux chronique", "Chronal Surge"),
     text: L(
-      "Le Kirin Tor plie le temps : les mages deviennent la deuxième classe à porter la hâte de raid. +30 % de hâte pour tout le raid pendant 40 secondes.",
-      "The Kirin Tor bends time: mages become the second class to bring raid haste. +30% haste for the whole raid for 40 seconds.",
+      "Le Kirin Tor plie le temps : les mages deviennent la deuxième classe à porter la hâte de raid. **+30 % de hâte pour tout le raid** pendant 40 secondes.",
+      "The Kirin Tor bends time: mages become the second class to bring raid haste. **+30% haste for the whole raid** for 40 seconds.",
     ),
   },
 };
@@ -500,8 +500,8 @@ export const raids = {
   eyebrow: L("Raids héroïques", "Heroic raids"),
   title: L("Naxxramas, Ulduar… en héroïque.", "Naxxramas, Ulduar… in heroic."),
   lede: L(
-    "Les raids des premières phases gagnent un vrai mode héroïque en 10 et en 25, sur le modèle de la Citadelle : le chef de raid change de difficulté sans quitter l'instance, et chaque objet a sa version Héroïque.",
-    "The early raids gain a true heroic mode in 10 and 25, on the Icecrown Citadel model: the raid leader switches difficulty without leaving the instance, and every item has its Heroic version.",
+    "Les raids des premières phases gagnent un **vrai mode héroïque en 10 et en 25**, sur le modèle de la Citadelle : le chef de raid change de difficulté **sans quitter l'instance**, et chaque objet a sa version Héroïque.",
+    "The early raids gain a **true heroic mode in 10 and 25**, on the Icecrown Citadel model: the raid leader switches difficulty **without leaving the instance**, and every item has its Heroic version.",
   ),
   stats: [
     { value: 4, label: L("raids en héroïque", "raids in heroic") },
@@ -513,16 +513,16 @@ export const raids = {
       icon: "achievement_dungeon_naxxramas_normal",
       title: L("Naxxramas", "Naxxramas"),
       text: L(
-        "Les quatre quartiers et Kel'Thuzad, plus forts : ×1,4 points de vie, ×1,25 dégâts.",
-        "The four quarters and Kel'Thuzad, stronger: ×1.4 health, ×1.25 damage.",
+        "Les quatre quartiers et Kel'Thuzad, plus forts : **×1,4 points de vie, ×1,25 dégâts**.",
+        "The four quarters and Kel'Thuzad, stronger: **×1.4 health, ×1.25 damage**.",
       ),
     },
     {
       icon: "achievement_dungeon_ulduarraid_misc_01",
       title: L("Ulduar", "Ulduar"),
       text: L(
-        "Héroïque et modes difficiles se cumulent. Butin jusqu'au niveau d'objet 252.",
-        "Heroic and hard modes stack. Loot up to item level 252.",
+        "Héroïque et modes difficiles se cumulent. Butin jusqu'au **niveau d'objet 252**.",
+        "Heroic and hard modes stack. Loot up to **item level 252**.",
       ),
     },
     {
@@ -570,8 +570,8 @@ export const raids = {
       "The Trial of the Crusader, as it was",
     ),
     text: L(
-      "Dialogues de Tirion, Varian, Garrosh et Thrall restaurés, 50 tentatives en héroïque et un tribut selon les tentatives restantes.",
-      "Tirion, Varian, Garrosh and Thrall's dialogue restored, 50 attempts in heroic, and a tribute based on the attempts left.",
+      "Dialogues de Tirion, Varian, Garrosh et Thrall restaurés, **50 tentatives en héroïque** et un tribut selon les tentatives restantes.",
+      "Tirion, Varian, Garrosh and Thrall's dialogue restored, **50 attempts in heroic**, and a tribute based on the attempts left.",
     ),
   },
   image: IMG.ulduarIron,
@@ -583,8 +583,8 @@ export const eye = {
   eyebrow: L("Raid classique au niveau 80", "Classic raid at level 80"),
   title: L("L'Œil de Kael'thas renaît.", "Kael'thas's Eye reborn."),
   lede: L(
-    "Le Donjon de la Tempête revient au niveau 80, en 10 et 25 joueurs, aux côtés d'Ulduar. Boss de niveau 83, T5 refait, et les armes légendaires de Kael'thas remises à niveau.",
-    "Tempest Keep returns at level 80, for 10 and 25 players, alongside Ulduar. Level 83 bosses, a remade Tier 5, and Kael'thas's legendary weapons brought up to date.",
+    "Le Donjon de la Tempête **revient au niveau 80**, en 10 et 25 joueurs, aux côtés d'Ulduar. **Boss de niveau 83**, **T5 refait**, et les armes légendaires de Kael'thas remises à niveau.",
+    "Tempest Keep **returns at level 80**, for 10 and 25 players, alongside Ulduar. **Level 83 bosses**, **a remade Tier 5**, and Kael'thas's legendary weapons brought up to date.",
   ),
   points: [
     {
@@ -647,8 +647,8 @@ export const worldBosses = {
   eyebrow: L("Boss du monde", "World bosses"),
   title: L("Des colosses à ciel ouvert.", "Colossi under the open sky."),
   lede: L(
-    "De 10 à 40 joueurs, personne ne « marque » le boss : chaque participant est récompensé, avec un objet de sa spécialisation garanti à chaque période de raid.",
-    "From 10 to 40 players, nobody tags the boss: every participant is rewarded, with an item for their specialization guaranteed each raid lockout.",
+    "De 10 à 40 joueurs, personne ne « marque » le boss : **chaque participant est récompensé**, avec **un objet de sa spécialisation garanti** à chaque période de raid.",
+    "From 10 to 40 players, nobody tags the boss: **every participant is rewarded**, with **an item for their specialization guaranteed** each raid lockout.",
   ),
   bosses: [
     {
@@ -691,8 +691,8 @@ export const raidRules = {
   eyebrow: L("Butin et combats", "Loot and fights"),
   title: L("Fini les ninjas.", "No more ninjas."),
   lede: L(
-    "Le butin des boss arrive directement dans le sac de celui à qui il sert. Pas de dés, pas de maître du butin : une répartition juste, transparente, qui récompense tout le monde.",
-    "Boss loot goes straight into the bag of whoever needs it. No rolls, no master looter: a fair, transparent distribution that rewards everyone.",
+    "Le butin des boss arrive **directement dans le sac de celui à qui il sert**. **Pas de dés, pas de maître du butin** : une répartition juste, transparente, qui récompense tout le monde.",
+    "Boss loot goes **straight into the bag of whoever needs it**. **No rolls, no master looter**: a fair, transparent distribution that rewards everyone.",
   ),
   steps: [
     {
@@ -737,8 +737,8 @@ export const raidRules = {
   fight: {
     title: L("Chaque combat compte", "Every fight counts"),
     text: L(
-      "À la fin d'un combat de boss, tous les temps de recharge de classe repartent à zéro et l'Épuisement disparaît. Et pendant le combat, un mort ne peut pas libérer son esprit : on reste avec son raid.",
-      "When a boss fight ends, every class cooldown resets and Exhaustion fades. And during the fight, the dead cannot release: you stay with your raid.",
+      "À la fin d'un combat de boss, **tous les temps de recharge de classe repartent à zéro** et l'Épuisement disparaît. Et pendant le combat, un mort ne peut pas libérer son esprit : on reste avec son raid.",
+      "When a boss fight ends, **every class cooldown resets** and Exhaustion fades. And during the fight, the dead cannot release: you stay with your raid.",
     ),
   },
 };
@@ -752,8 +752,8 @@ export const archivists = {
     "Every fallen boss leaves a page of history.",
   ),
   lede: L(
-    "Les Fragments de chronique tombent sur plus de 600 boss, de donjon comme de raid. Les Archivistes les paient en réputation, en tabards, en monture… et en Jetons d'ascension.",
-    "Chronicle Fragments drop from more than 600 bosses, dungeons and raids alike. The Archivists pay for them in reputation, tabards, a mount… and Ascension Tokens.",
+    "Les Fragments de chronique tombent sur **plus de 600 boss**, de donjon comme de raid. Les Archivistes les paient en réputation, en tabards, en monture… et en Jetons d'ascension.",
+    "Chronicle Fragments drop from **more than 600 bosses**, dungeons and raids alike. The Archivists pay for them in reputation, tabards, a mount… and Ascension Tokens.",
   ),
   rewards: [
     {
@@ -826,8 +826,8 @@ export const professions = {
   eyebrow: L("Métiers", "Professions"),
   title: L("Les métiers réinventés.", "Professions reinvented."),
   lede: L(
-    "277 nouvelles recettes réparties sur les phases et 28 spécialisations, chacune avec ses « coups de maître ». Chaque métier gagne une identité et une raison de compter à chaque palier.",
-    "277 new recipes spread across the phases and 28 specializations, each with its own masterworks. Every profession gains an identity and a reason to matter at every tier.",
+    "**277 nouvelles recettes** réparties sur les phases et **28 spécialisations**, chacune avec ses **« coups de maître »**. Chaque métier gagne une identité et une raison de compter à chaque palier.",
+    "**277 new recipes** spread across the phases and **28 specializations**, each with its own **masterworks**. Every profession gains an identity and a reason to matter at every tier.",
   ),
   list: [
     {
@@ -851,7 +851,10 @@ export const professions = {
       key: "ench",
       icon: "spell_fire_enchantweapon",
       name: L("Enchantement", "Enchanting"),
-      specs: L("Enchanteur d'armes · d'armures", "Weapon · Armor Enchanter"),
+      specs: L(
+        "Enchanteur d'armes · Enchanteur d'armures",
+        "Weapon Enchanter · Armor Enchanter",
+      ),
       highlights: [
         L(
           "Colère de Thorim, Écho du sablier, Rempart de Hodir",
@@ -1017,8 +1020,8 @@ export const fishing = {
     "Every cast can change a life.",
   ),
   lede: L(
-    "Onze zones de pêche, chacune avec son poisson rare, ses trouvailles, son épique par phase… et un poisson légendaire. Des filons et des fleurs rares, des trophées de bêtes, des commandes des Archives.",
-    "Eleven fishing zones, each with its rare fish, its finds, an epic per phase… and a legendary fish. Rare veins and flowers, beast trophies, Archive orders.",
+    "**Onze zones de pêche**, chacune avec son poisson rare, ses trouvailles, son épique par phase… et **un poisson légendaire**. Des filons et des fleurs rares, des trophées de bêtes, des commandes des Archives.",
+    "**Eleven fishing zones**, each with its rare fish, its finds, an epic per phase… and **a legendary fish**. Rare veins and flowers, beast trophies, Archive orders.",
   ),
   cards: [
     {
@@ -1033,8 +1036,8 @@ export const fishing = {
       icon: "achievement_profession_fishing_northrendangler",
       title: L("130 équipements pêchés", "130 fished pieces of gear"),
       text: L(
-        "Dont 97 épiques, et 55 avec un effet en jeu : Harpon kalu'ak, Harpon de saronite, Crue drakkari…",
-        "Including 97 epics, 55 with an in-game effect: Kalu'ak Harpoon, Saronite Harpoon, Drakkari Flood…",
+        "Dont **97 épiques**, et **55 avec un effet en jeu** : Harpon kalu'ak, Harpon de saronite, Crue drakkari…",
+        "Including **97 epics**, **55 with an in-game effect**: Kalu'ak Harpoon, Saronite Harpoon, Drakkari Flood…",
       ),
     },
     {
@@ -1063,8 +1066,8 @@ export const treasures = {
   eyebrow: L("Trésors", "Treasures"),
   title: L("Le Norfendre cache ses secrets.", "Northrend hides its secrets."),
   lede: L(
-    "Des caches d'expédition, des coffres scellés et dix cartes au trésor à énigme. Déchiffrez l'énigme, trouvez le lieu, creusez… et peut-être, une monture.",
-    "Expedition caches, sealed chests and ten riddle treasure maps. Solve the riddle, find the place, dig… and maybe, a mount.",
+    "Des caches d'expédition, des coffres scellés et **dix cartes au trésor à énigme**. Déchiffrez l'énigme, trouvez le lieu, creusez… et peut-être, une monture.",
+    "Expedition caches, sealed chests and **ten riddle treasure maps**. Solve the riddle, find the place, dig… and maybe, a mount.",
   ),
   steps: [
     {
@@ -1087,8 +1090,8 @@ export const treasures = {
       icon: "inv_misc_ornatebox",
       title: L("Le Grand coffre enfoui", "The Buried Coffer"),
       text: L(
-        "Or, fragments, une bourse, de la camelote de prix… et une monture par phase.",
-        "Gold, fragments, a purse, valuable trinkets… and one mount per phase.",
+        "Or, fragments, une bourse, de la camelote de prix… et **une monture par phase**.",
+        "Gold, fragments, a purse, valuable trinkets… and **one mount per phase**.",
       ),
     },
   ],
@@ -1113,8 +1116,8 @@ export const collections = {
     "Mounts no one has ever ridden.",
   ),
   lede: L(
-    "Mei Francis, à Dalaran, propose 34 montures tirées de modèles jamais montés par des joueurs, avec leurs vrais cris. Et ce n'est qu'un début.",
-    "Mei Francis, in Dalaran, offers 34 mounts drawn from models no player has ever ridden, with their real calls. And that's just the beginning.",
+    "Mei Francis, à Dalaran, propose **34 montures** tirées de modèles **jamais montés par des joueurs**, avec leurs vrais cris. Et ce n'est qu'un début.",
+    "Mei Francis, in Dalaran, offers **34 mounts** drawn from models **no player has ever ridden**, with their real calls. And that's just the beginning.",
   ),
   stats: [
     { value: 62, label: L("montures", "mounts") },
@@ -1155,8 +1158,8 @@ export const collections = {
       icon: "inv_misc_horn_02",
       title: L("Le Cornet acoustique", "The Ear Trumpet"),
       text: L(
-        "Pointez-le vers un garde, un aubergiste, un Archiviste… huit sortes de PNJ vous répondent.",
-        "Point it at a guard, an innkeeper, an Archivist… eight kinds of NPCs answer you.",
+        "Pointez-le vers un garde, un aubergiste, un Archiviste… **huit sortes de PNJ** vous répondent.",
+        "Point it at a guard, an innkeeper, an Archivist… **eight kinds of NPCs** answer you.",
       ),
     },
     {
@@ -1194,8 +1197,8 @@ export const economy = {
       title: L("Le marché noir", "The black market"),
       tag: L("Zar'haam, du Consortium", "Zar'haam, of the Consortium"),
       text: L(
-        "Gagnez la confiance de l'éthérien, puis découvrez sa vitrine deux fois par semaine : montures uniques, apparences légendaires (Sulfuras, Thori'dal, les Glaives d'Azzinoth) et, une livraison sur quatre, Atiesh, le Porte-cendres ou Deuillegivre.",
-        "Earn the ethereal's trust, then browse his showcase twice a week: unique mounts, legendary appearances (Sulfuras, Thori'dal, the Warglaives of Azzinoth) and, one delivery in four, Atiesh, the Ashbringer or Frostmourne.",
+        "Gagnez la confiance de l'éthérien, puis découvrez sa vitrine **deux fois par semaine** : montures uniques, apparences légendaires (Sulfuras, Thori'dal, les Glaives d'Azzinoth) et, une livraison sur quatre, **Atiesh, le Porte-cendres ou Deuillegivre**.",
+        "Earn the ethereal's trust, then browse his showcase **twice a week**: unique mounts, legendary appearances (Sulfuras, Thori'dal, the Warglaives of Azzinoth) and, one delivery in four, **Atiesh, the Ashbringer or Frostmourne**.",
       ),
     },
     {
@@ -1203,8 +1206,8 @@ export const economy = {
       title: L("La loterie de Gentepression", "The Steamwheedle lottery"),
       tag: L("Lixxa Pochechance", "Lixxa Luckpocket"),
       text: L(
-        "Une grande loterie tirée à chaque remise à zéro des raids, et des billets à gratter qui peuvent rapporter 1 000 pièces d'or… ou le Gnome porte-bonheur.",
-        "A grand lottery drawn at every raid reset, and scratch tickets that can pay 1,000 gold… or the Lucky Gnome.",
+        "Une grande loterie tirée à chaque remise à zéro des raids, et des billets à gratter qui peuvent rapporter **1 000 pièces d'or… ou le Gnome** porte-bonheur.",
+        "A grand lottery drawn at every raid reset, and scratch tickets that can pay **1,000 gold… or the Lucky Gnome**.",
       ),
     },
     {
@@ -1212,8 +1215,8 @@ export const economy = {
       title: L("Les dés gobelins", "Goblin dice"),
       tag: L("Grizzle Double-Six", "Grizzle Doublesix"),
       text: L(
-        "Défiez un autre joueur à la table, de 10 à 1 000 pièces d'or. Deux dés chacun, le plus gros total rafle le pot.",
-        "Challenge another player at the table, from 10 to 1,000 gold. Two dice each, the highest total takes the pot.",
+        "Défiez un autre joueur à la table, **de 10 à 1 000 pièces d'or**. Deux dés chacun, le plus gros total rafle le pot.",
+        "Challenge another player at the table, **from 10 to 1,000 gold**. Two dice each, the highest total takes the pot.",
       ),
     },
     {
@@ -1221,8 +1224,8 @@ export const economy = {
       title: L("L'antiquaire", "The antiquarian"),
       tag: L("Brodric Barbepoussière", "Brodric Dustbeard"),
       text: L(
-        "La camelote du Norfendre vaut de l'or : couronnes vrykules, idoles nérubiennes, trophées de bêtes rares. Chaque semaine, trois pièces recherchées valent 50 % de plus.",
-        "Northrend's junk is worth gold: vrykul crowns, nerubian idols, rare beast trophies. Each week, three sought-after pieces are worth 50% more.",
+        "La camelote du Norfendre vaut de l'or : couronnes vrykules, idoles nérubiennes, trophées de bêtes rares. Chaque semaine, trois pièces recherchées valent **50 % de plus**.",
+        "Northrend's junk is worth gold: vrykul crowns, nerubian idols, rare beast trophies. Each week, three sought-after pieces are worth **50% more**.",
       ),
     },
   ],
@@ -1235,8 +1238,8 @@ export const quiz = {
   eyebrow: L("Le quiz du Kirin Tor", "The Kirin Tor quiz"),
   title: L("Connaissez-vous vraiment Azeroth ?", "Do you really know Azeroth?"),
   lede: L(
-    "Chaque jour, l'examinatrice Elaria Murmeplume vous pose cinq questions de lore, de la plus facile à celle réservée aux érudits. Une bonne réponse rapporte des Fragments de chronique ; une erreur vous apprend la bonne.",
-    "Every day, examiner Elaria Quillwhisper asks you five lore questions, from the easiest to one for true scholars. A right answer earns Chronicle Fragments; a wrong one teaches you the truth.",
+    "Chaque jour, l'examinatrice Elaria Murmeplume vous pose **cinq questions de lore**, de la plus facile à celle réservée aux érudits. Une bonne réponse rapporte des Fragments de chronique ; une erreur vous apprend la bonne.",
+    "Every day, examiner Elaria Quillwhisper asks you **five lore questions**, from the easiest to one for true scholars. A right answer earns Chronicle Fragments; a wrong one teaches you the truth.",
   ),
   sample: {
     question: L(
@@ -1265,8 +1268,8 @@ export const transmog = {
   eyebrow: L("Transmogrification", "Transmogrification"),
   title: L("16 302 façons d'être unique.", "16,302 ways to stand out."),
   lede: L(
-    "Une boutique d'apparences payée en Fragments de chronique, dont plus de 7 000 modèles de PNJ jamais portés par des joueurs. Et 45 effets d'enchantement d'arme au choix.",
-    "An appearance shop paid in Chronicle Fragments, with more than 7,000 NPC models no player has ever worn. And 45 weapon enchant effects to choose from.",
+    "Une boutique d'apparences payée en Fragments de chronique, dont **plus de 7 000 modèles de PNJ** jamais portés par des joueurs. Et **45 effets d'enchantement d'arme** au choix.",
+    "An appearance shop paid in Chronicle Fragments, with **more than 7,000 NPC models** no player has ever worn. And **45 weapon enchant effects** to choose from.",
   ),
   categories: [
     L("Donjons", "Dungeons"),
@@ -1296,24 +1299,24 @@ export const pvp = {
       icon: "achievement_pvp_a_12",
       title: L("Campagnes et classements", "Campaigns and rankings"),
       text: L(
-        "Les 10 meilleurs de chaque faction deviennent Maréchal ou Seigneur de guerre de campagne.",
-        "The top 10 of each faction become Campaign Marshal or Warlord.",
+        "Les 10 meilleurs de chaque faction deviennent **Maréchal ou Seigneur de guerre de campagne**.",
+        "The top 10 of each faction become **Campaign Marshal or Warlord**.",
       ),
     },
     {
       icon: "inv_misc_coin_17",
       title: L("Récompenses exclusives", "Exclusive rewards"),
       text: L(
-        "12 montures de campagne, des mascottes et 1 107 répliques des équipements des saisons d'arène 1 à 8.",
-        "12 campaign mounts, pets and 1,107 replicas of arena seasons 1 to 8 gear.",
+        "**12 montures de campagne**, des mascottes et **1 107 répliques** des équipements des saisons d'arène 1 à 8.",
+        "**12 campaign mounts**, pets and **1,107 replicas** of arena seasons 1 to 8 gear.",
       ),
     },
     {
       icon: "ability_dualwield",
       title: L("Le tournoi des égouts", "The Sewer Tournament"),
       text: L(
-        "Deux fois par semaine, à 19 h : duels à élimination directe dans les égouts de Dalaran. Gladiateur, Duelliste, Rival.",
-        "Twice a week, at 7 PM: knockout duels in Dalaran's sewers. Gladiator, Duelist, Rival.",
+        "**Deux fois par semaine, à 19 h** : duels à élimination directe dans les égouts de Dalaran. Gladiateur, Duelliste, Rival.",
+        "**Twice a week, at 7 PM**: knockout duels in Dalaran's sewers. Gladiator, Duelist, Rival.",
       ),
     },
     {
@@ -1334,8 +1337,8 @@ export const guilds = {
   eyebrow: L("Guildes", "Guilds"),
   title: L("Votre guilde grandit avec vous.", "Your guild grows with you."),
   lede: L(
-    "Donjons, raids, boss du monde, JcJ, quêtes : en groupe de guilde, tout fait monter votre guilde du niveau 1 au niveau 10, et chaque niveau débloque un avantage pour tous.",
-    "Dungeons, raids, world bosses, PvP, quests: in a guild group, everything raises your guild from level 1 to 10, and every level unlocks a perk for everyone.",
+    "Donjons, raids, boss du monde, JcJ, quêtes : en groupe de guilde, tout fait monter votre guilde **du niveau 1 au niveau 10**, et chaque niveau débloque un avantage pour tous.",
+    "Dungeons, raids, world bosses, PvP, quests: in a guild group, everything raises your guild **from level 1 to 10**, and every level unlocks a perk for everyone.",
   ),
   perks: [
     {
@@ -1400,8 +1403,8 @@ export const guilds = {
     },
   ],
   extra: L(
-    "16 hauts faits de guilde versent plus de 21 000 pièces d'or à la banque. Étendards et chaudrons chez l'intendant de guilde.",
-    "16 guild achievements pay more than 21,000 gold to the bank. Banners and cauldrons from the guild quartermaster.",
+    "16 hauts faits de guilde versent **plus de 21 000 pièces d'or** à la banque. Étendards et chaudrons chez l'intendant de guilde.",
+    "16 guild achievements pay **more than 21,000 gold** to the bank. Banners and cauldrons from the guild quartermaster.",
   ),
   image: IMG.icecrownGate,
 };
@@ -1412,8 +1415,8 @@ export const glory = {
   eyebrow: L("Hauts faits", "Achievements"),
   title: L("Entrez dans l'histoire du royaume.", "Make the realm's history."),
   lede: L(
-    "Un onglet « Lordaeron » de 228 hauts faits, et les « Prem's » du royaume : des exploits qu'un seul joueur ou un seul groupe pourra jamais obtenir.",
-    'A "Lordaeron" tab of 228 achievements, and the realm\'s Firsts: feats that only one player or one group will ever earn.',
+    "Un onglet « Lordaeron » de **228 hauts faits**, et les « Prem's » du royaume : des exploits qu'un seul joueur ou un seul groupe pourra jamais obtenir.",
+    'A "Lordaeron" tab of **228 achievements**, and the realm\'s Firsts: feats that only one player or one group will ever earn.',
   ),
   firsts: [
     {
@@ -1479,8 +1482,8 @@ export const glory = {
 export const finale = {
   title: L("Le Norfendre vous attend.", "Northrend awaits."),
   text: L(
-    "Un serveur fidèle, des butins vérifiés boss par boss, des textes traduits d'après les versions officielles. Et des centaines de nouveautés qui n'existent nulle part ailleurs.",
-    "A faithful server, loot verified boss by boss, texts translated from the official versions. And hundreds of additions found nowhere else.",
+    "Un serveur fidèle, des butins vérifiés boss par boss, des textes traduits d'après les versions officielles. Et **des centaines de nouveautés** qui n'existent nulle part ailleurs.",
+    "A faithful server, loot verified boss by boss, texts translated from the official versions. And **hundreds of additions** found nowhere else.",
   ),
   cta: L("Rejoindre Lordaeron", "Join Lordaeron"),
   image: IMG.throne,
