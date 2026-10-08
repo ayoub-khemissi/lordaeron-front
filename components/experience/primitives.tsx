@@ -214,7 +214,6 @@ export function WowIcon({
       )}
       style={{ width: size, height: size }}
     >
-      {}
       <img
         alt=""
         className="h-full w-full scale-[1.08] object-cover"
@@ -471,5 +470,66 @@ export function IconMarquee({
         ))}
       </div>
     </div>
+  );
+}
+
+/* ── Call to action: gold plate with a moving sheen and a breathing halo, or an ice outline ── */
+export function CtaButton({
+  href,
+  children,
+  variant = "primary",
+  className,
+}: {
+  href: string;
+  children: ReactNode;
+  variant?: "primary" | "secondary";
+  className?: string;
+}) {
+  if (variant === "secondary")
+    return (
+      <a
+        className={clsx(
+          "group relative inline-flex items-center justify-center gap-3 rounded-md border-2 border-wow-blue-ice/60 bg-[#06121f]/70 px-8 py-4 font-heading text-base font-bold uppercase tracking-[0.14em] text-wow-blue-ice shadow-[0_0_24px_-6px_rgba(79,195,247,0.55),inset_0_0_18px_-8px_rgba(79,195,247,0.6)] backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:border-wow-blue-ice hover:bg-wow-blue-ice/10 hover:shadow-[0_0_36px_-4px_rgba(79,195,247,0.8),inset_0_0_22px_-6px_rgba(79,195,247,0.7)] sm:px-10 sm:py-5 sm:text-lg",
+          className,
+        )}
+        href={href}
+      >
+        <span className="drop-shadow-[0_0_10px_rgba(79,195,247,0.7)]">
+          {children}
+        </span>
+      </a>
+    );
+
+  return (
+    <span className={clsx("relative inline-flex", className)}>
+      <span
+        aria-hidden
+        className="animate-cta-glow pointer-events-none absolute -inset-3 rounded-xl bg-wow-gold/40 blur-2xl"
+      />
+      <a
+        className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-md px-9 py-4 font-heading text-lg font-bold uppercase tracking-[0.14em] text-[#2b1a04] shadow-[0_0_0_1px_rgba(255,232,170,0.7),0_12px_40px_-8px_rgba(199,156,62,0.9)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_0_1px_rgba(255,240,200,0.9),0_16px_50px_-6px_rgba(230,190,90,1)] sm:px-12 sm:py-5 sm:text-xl"
+        href={href}
+        style={{
+          background:
+            "linear-gradient(180deg, #fff3c9 0%, #f0cd74 30%, #cf9d3c 62%, #8e621d 100%)",
+        }}
+      >
+        <span className="pointer-events-none absolute inset-[3px] rounded-[4px] border border-[#fff7dc]/60" />
+        <span className="animate-cta-sheen pointer-events-none absolute inset-y-0 w-1/4 -skew-x-[20deg] bg-gradient-to-r from-transparent via-white/70 to-transparent" />
+        <span className="relative drop-shadow-[0_1px_0_rgba(255,250,230,0.6)]">
+          {children}
+        </span>
+        <svg
+          aria-hidden
+          className="relative h-5 w-5 transition-transform duration-300 group-hover:translate-x-1.5"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.6"
+          viewBox="0 0 24 24"
+        >
+          <path d="M5 12h14M13 6l6 6-6 6" />
+        </svg>
+      </a>
+    </span>
   );
 }

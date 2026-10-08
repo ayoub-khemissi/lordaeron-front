@@ -59,7 +59,6 @@ export const refByName: Record<string, string> = {
   "Plume de l'Archiviste": "item:900103", // Archivist's Quill
   "Destrier de l'Archive": "item:900104", // Reins of the Archive Steed
   "Jeton d'ascension": "item:901960", // Ascension Token
-  "Mortemines et Cœur du Magma revisités": "item:900311", // Cloak of Searing Mist
   "Caveau d'Archavon": "item:43228", // Stone Keeper's Shard
   // Professions (highlights)
   "8 diamants méta des Titans": "item:900620", // Relentless Titansiege Diamond
@@ -140,6 +139,10 @@ export const refByInlineText: Record<string, string> = {
   "Crue drakkari": "item:80174", // Totem of the Drakkari Flood
   "canne du Kirin Tor": "item:900981", // Kirin Tor Enchanted Fishing Pole
   "Gnome porte-bonheur": "item:902383", // Lucky Gnome
+  "cape légendaire": "item:900311", // Cloak of Searing Mist (Molten Core, Duke Hydraxis's quest)
+  "Veine de saronite murmurante": "item:900500", // Whispering Saronite (from the vein)
+  "Fleur des Gardiens": "item:900511", // Keepers' Petal
+  "Rose des aurores": "item:900512", // Aurora Petal
 };
 
 // icon name (as used in content.ts marquee lists collections.marquee / collections.marquee2, lowercase) -> ref

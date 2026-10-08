@@ -252,54 +252,6 @@ export const classes = {
   ),
   list: [
     {
-      key: "paladin",
-      name: L("Paladin", "Paladin"),
-      color: "#F58CBA",
-      icon: "spell_holy_proclaimchampion",
-      flavor: L(
-        "L'Aube d'argent brandit sa bannière.",
-        "The Argent Dawn raises its banner.",
-      ),
-      spells: [
-        {
-          name: L("Bannière de l'Aube d'argent", "Banner of the Argent Dawn"),
-          spec: L("Sacré", "Holy"),
-        },
-        {
-          name: L("Veillée du chevalier", "Knight's Vigil"),
-          spec: L("Vindicte", "Retribution"),
-        },
-        {
-          name: L("Serment de protection", "Oath of Protection"),
-          spec: L("Protection", "Protection"),
-        },
-      ],
-    },
-    {
-      key: "priest",
-      name: L("Prêtre", "Priest"),
-      color: "#FFFFFF",
-      icon: "spell_holy_borrowedtime",
-      flavor: L(
-        "L'esprit d'Alonsus Faol veille sur vous.",
-        "The spirit of Alonsus Faol watches over you.",
-      ),
-      spells: [
-        {
-          name: L("Vertu de ténacité", "Virtue of Tenacity"),
-          spec: L("Discipline", "Discipline"),
-        },
-        {
-          name: L("Litanie de Faol", "Litany of Faol"),
-          spec: L("Sacré", "Holy"),
-        },
-        {
-          name: L("Fracture de l'esprit", "Mind Fracture"),
-          spec: L("Ombre", "Shadow"),
-        },
-      ],
-    },
-    {
       key: "warrior",
       name: L("Guerrier", "Warrior"),
       color: "#C79C6E",
@@ -324,44 +276,26 @@ export const classes = {
       ],
     },
     {
-      key: "deathknight",
-      name: L("Chevalier de la mort", "Death Knight"),
-      color: "#C41F3B",
-      icon: "achievement_boss_lanathel",
+      key: "paladin",
+      name: L("Paladin", "Paladin"),
+      color: "#F58CBA",
+      icon: "spell_holy_proclaimchampion",
       flavor: L(
-        "Les ombres des San'layn vous suivent.",
-        "The shadows of the San'layn follow you.",
+        "L'Aube d'argent brandit sa bannière.",
+        "The Argent Dawn raises its banner.",
       ),
       spells: [
         {
-          name: L("Ombres des San'layn", "Shadows of the San'layn"),
-          spec: L("Sang", "Blood"),
-        },
-        { name: L("Sillage gelé", "Frozen Wake"), spec: L("Givre", "Frost") },
-        { name: L("Esprits vils", "Vile Spirits"), spec: L("Impie", "Unholy") },
-      ],
-    },
-    {
-      key: "druid",
-      name: L("Druide", "Druid"),
-      color: "#FF7D0A",
-      icon: "spell_nature_starfall",
-      flavor: L(
-        "Une étoile tombe, le bosquet répond.",
-        "A star falls, the grove answers.",
-      ),
-      spells: [
-        {
-          name: L("Graine d'étoile", "Starseed"),
-          spec: L("Équilibre", "Balance"),
+          name: L("Bannière de l'Aube d'argent", "Banner of the Argent Dawn"),
+          spec: L("Sacré", "Holy"),
         },
         {
-          name: L("Bonds du prédateur", "Predator's Leaps"),
-          spec: L("Combat farouche", "Feral"),
+          name: L("Veillée du chevalier", "Knight's Vigil"),
+          spec: L("Vindicte", "Retribution"),
         },
         {
-          name: L("Feu follet du bosquet", "Grove Wisp"),
-          spec: L("Restauration", "Restoration"),
+          name: L("Serment de protection", "Oath of Protection"),
+          spec: L("Protection", "Protection"),
         },
       ],
     },
@@ -390,27 +324,6 @@ export const classes = {
       ],
     },
     {
-      key: "mage",
-      name: L("Mage", "Mage"),
-      color: "#69CCF0",
-      icon: "inv_misc_orb_04",
-      flavor: L(
-        "Le trou noir d'Algalon, entre vos mains.",
-        "Algalon's black hole, in your hands.",
-      ),
-      spells: [
-        {
-          name: L("Singularité céleste", "Celestial Singularity"),
-          spec: L("Arcanes", "Arcane"),
-        },
-        { name: L("Terre brûlée", "Scorched Earth"), spec: L("Feu", "Fire") },
-        {
-          name: L("Marque de l'hiver", "Winter's Mark"),
-          spec: L("Givre", "Frost"),
-        },
-      ],
-    },
-    {
       key: "rogue",
       name: L("Voleur", "Rogue"),
       color: "#FFF569",
@@ -435,6 +348,48 @@ export const classes = {
       ],
     },
     {
+      key: "priest",
+      name: L("Prêtre", "Priest"),
+      color: "#FFFFFF",
+      icon: "spell_holy_borrowedtime",
+      flavor: L(
+        "L'esprit d'Alonsus Faol veille sur vous.",
+        "The spirit of Alonsus Faol watches over you.",
+      ),
+      spells: [
+        {
+          name: L("Vertu de ténacité", "Virtue of Tenacity"),
+          spec: L("Discipline", "Discipline"),
+        },
+        {
+          name: L("Litanie de Faol", "Litany of Faol"),
+          spec: L("Sacré", "Holy"),
+        },
+        {
+          name: L("Fracture de l'esprit", "Mind Fracture"),
+          spec: L("Ombre", "Shadow"),
+        },
+      ],
+    },
+    {
+      key: "deathknight",
+      name: L("Chevalier de la mort", "Death Knight"),
+      color: "#C41F3B",
+      icon: "achievement_boss_lanathel",
+      flavor: L(
+        "Les ombres des San'layn vous suivent.",
+        "The shadows of the San'layn follow you.",
+      ),
+      spells: [
+        {
+          name: L("Ombres des San'layn", "Shadows of the San'layn"),
+          spec: L("Sang", "Blood"),
+        },
+        { name: L("Sillage gelé", "Frozen Wake"), spec: L("Givre", "Frost") },
+        { name: L("Esprits vils", "Vile Spirits"), spec: L("Impie", "Unholy") },
+      ],
+    },
+    {
       key: "shaman",
       name: L("Chaman", "Shaman"),
       color: "#0070DE",
@@ -452,6 +407,27 @@ export const classes = {
         {
           name: L("Ressac", "Undertow"),
           spec: L("Restauration", "Restoration"),
+        },
+      ],
+    },
+    {
+      key: "mage",
+      name: L("Mage", "Mage"),
+      color: "#69CCF0",
+      icon: "inv_misc_orb_04",
+      flavor: L(
+        "Le trou noir d'Algalon, entre vos mains.",
+        "Algalon's black hole, in your hands.",
+      ),
+      spells: [
+        {
+          name: L("Singularité céleste", "Celestial Singularity"),
+          spec: L("Arcanes", "Arcane"),
+        },
+        { name: L("Terre brûlée", "Scorched Earth"), spec: L("Feu", "Fire") },
+        {
+          name: L("Marque de l'hiver", "Winter's Mark"),
+          spec: L("Givre", "Frost"),
         },
       ],
     },
@@ -476,6 +452,31 @@ export const classes = {
         {
           name: L("Faille ardente", "Searing Rift"),
           spec: L("Destruction", "Destruction"),
+        },
+      ],
+    },
+
+    {
+      key: "druid",
+      name: L("Druide", "Druid"),
+      color: "#FF7D0A",
+      icon: "spell_nature_starfall",
+      flavor: L(
+        "Une étoile tombe, le bosquet répond.",
+        "A star falls, the grove answers.",
+      ),
+      spells: [
+        {
+          name: L("Graine d'étoile", "Starseed"),
+          spec: L("Équilibre", "Balance"),
+        },
+        {
+          name: L("Bonds du prédateur", "Predator's Leaps"),
+          spec: L("Combat farouche", "Feral"),
+        },
+        {
+          name: L("Feu follet du bosquet", "Grove Wisp"),
+          spec: L("Restauration", "Restoration"),
         },
       ],
     },
@@ -648,7 +649,7 @@ export const worldBosses = {
         "Thul'gorah, Whisper of Yogg-Saron",
       ),
       phase: L("Phase 2", "Phase 2"),
-      image: IMG.ulduarAlgalon,
+      image: "/img/experience/thorim-arena.jpg",
       text: L(
         "Un sans-visage né du sang de Yogg-Saron envahit l'arène du trône de Thorim. Thorim et Veranus combattent à vos côtés. Cachez-vous derrière la saronite… ou devenez fou.",
         "A Faceless One born of Yogg-Saron's blood invades the arena of Thorim's throne. Thorim and Veranus fight at your side. Hide behind the saronite… or go mad.",
@@ -705,6 +706,10 @@ export const raidRules = {
     L(
       "Tout le groupe voit qui reçoit quoi. L'échange reste possible pendant 2 heures.",
       "The whole group sees who gets what. Trading stays open for 2 hours.",
+    ),
+    L(
+      "Les « meilleurs en slot » de chaque spécialisation sont reconnus, même hors de leur type d'armure : les brassards en cuir du guerrier, le tissu du paladin sacré…",
+      "Each specialization's best-in-slot pieces count too, even outside their armor type: a warrior's leather bracers, a Holy paladin's cloth…",
     ),
   ],
   fight: {

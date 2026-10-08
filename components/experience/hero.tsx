@@ -9,7 +9,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 
-import { BgImg, bgSrc, Snow } from "./primitives";
+import { BgImg, bgSrc, CtaButton, Snow } from "./primitives";
 
 export type HeroContent = {
   kicker: string;
@@ -68,7 +68,6 @@ export function ExperienceHero({
             initial={{ opacity: 1 }}
           >
             <div className="text-center">
-              {}
               <img
                 alt=""
                 className="mx-auto h-16 w-16 animate-pulse"
@@ -132,23 +131,14 @@ export function ExperienceHero({
         </motion.p>
         <motion.div
           animate={ready ? { opacity: 1 } : {}}
-          className="mt-10 flex flex-wrap gap-4"
+          className="mt-10 flex flex-wrap items-center gap-5"
           initial={{ opacity: 0 }}
           transition={{ duration: 1, delay: 0.95 }}
         >
-          <a
-            className="group relative overflow-hidden rounded-md bg-gradient-to-b from-wow-gold-light to-wow-gold-dark px-8 py-4 font-heading text-lg text-black shadow-[0_0_30px_rgba(199,156,62,0.45)] transition hover:shadow-[0_0_45px_rgba(199,156,62,0.7)]"
-            href={joinHref}
-          >
-            <span className="relative z-10">{content.ctaPrimary}</span>
-            <span className="shimmer-gold absolute inset-0 opacity-0 transition group-hover:opacity-60" />
-          </a>
-          <a
-            className="rounded-md border border-wow-blue-ice/50 bg-black/30 px-8 py-4 font-heading text-lg text-wow-blue-ice backdrop-blur-sm transition hover:border-wow-blue-ice hover:bg-wow-blue/10"
-            href="#story"
-          >
+          <CtaButton href={joinHref}>{content.ctaPrimary}</CtaButton>
+          <CtaButton href="#story" variant="secondary">
             {content.ctaSecondary}
-          </a>
+          </CtaButton>
         </motion.div>
       </motion.div>
 

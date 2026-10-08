@@ -479,3 +479,22 @@ h4 {
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee { animation: none; }
 }
+
+/* /experience: calls to action */
+@keyframes cta-sheen {
+  0% { left: -40%; }
+  55%, 100% { left: 130%; }
+}
+.animate-cta-sheen {
+  animation: cta-sheen 3.4s ease-in-out infinite;
+}
+@keyframes cta-glow {
+  0%, 100% { opacity: 0.35; transform: scale(0.96); }
+  50% { opacity: 0.85; transform: scale(1.04); }
+}
+.animate-cta-glow {
+  animation: cta-glow 2.8s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-cta-sheen, .animate-cta-glow { animation: none; }
+}

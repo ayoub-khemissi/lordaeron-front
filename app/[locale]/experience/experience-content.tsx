@@ -41,6 +41,7 @@ import {
 import {
   Tip,
   TooltipProvider,
+  useTipEntry,
   useTipText,
 } from "@/components/experience/game-tooltip";
 import { ChapterNav, ExperienceHero } from "@/components/experience/hero";
@@ -49,6 +50,7 @@ import {
   Carousel,
   ChapterHeading,
   Counter,
+  CtaButton,
   EdgeFade,
   IconMarquee,
   ParallaxImage,
@@ -76,6 +78,10 @@ const inlineEn: Record<string, string> = {
   "Drakkari Flood": refByInlineText["Crue drakkari"],
   "Kirin Tor rod": refByInlineText["canne du Kirin Tor"],
   "Lucky Gnome": refByInlineText["Gnome porte-bonheur"],
+  "legendary cloak": refByInlineText["cape légendaire"],
+  "Whispering Saronite Vein": refByInlineText["Veine de saronite murmurante"],
+  "Keepers' Bloom": refByInlineText["Fleur des Gardiens"],
+  "Aurora Rose": refByInlineText["Rose des aurores"],
 };
 const inlineAll: Record<string, string> = { ...refByInlineText, ...inlineEn };
 const inlineRe = new RegExp(
@@ -464,6 +470,20 @@ function Artifact({ lang }: { lang: Lang }) {
   );
 }
 
+// the class trainers' level of the 30 new spells (lab_world trainer_spell, 08/10/2026), in classes.list's order
+const TRAINER_LEVEL: Record<string, number[]> = {
+  paladin: [24, 40, 50],
+  priest: [20, 30, 44],
+  warrior: [20, 36, 50],
+  deathknight: [58, 64, 72],
+  druid: [30, 40, 50],
+  hunter: [30, 40, 50],
+  mage: [30, 40, 50],
+  rogue: [30, 40, 50],
+  shaman: [30, 40, 50],
+  warlock: [30, 40, 50],
+};
+
 /* a new class spell: its icon (full tooltip on hover) and what it does, readable without hovering */
 function ClassSpell({
   spell,
@@ -471,8 +491,10 @@ function ClassSpell({
   spec,
   color,
   lang,
+  level,
 }: {
   spell?: { ref: string; icon: string };
+  level?: number;
   name: string;
   spec: string;
   color: string;
@@ -510,8 +532,15 @@ function ClassSpell({
         </div>
       </div>
       <p className="mt-4 min-h-[4.5rem] text-sm leading-relaxed text-[#ffd100]/85">
-        {effect ?? (lang === "fr" ? "…" : "…")}
+        {effect ?? "…"}
       </p>
+      {level && (
+        <p className="mt-4 border-t border-white/10 pt-3 text-xs uppercase tracking-[0.18em] text-white/45">
+          {lang === "fr"
+            ? `Maître de classe · niveau ${level}`
+            : `Class trainer · level ${level}`}
+        </p>
+      )}
     </div>
   );
 }
@@ -529,13 +558,13 @@ function Classes({ lang }: { lang: Lang }) {
           numeral={classes.numeral}
           title={classes.title[lang]}
         />
-        <div className="no-scrollbar -mx-5 mt-12 flex gap-3 overflow-x-auto px-5 py-2 sm:mx-0 sm:flex-wrap sm:px-0">
+        <div className="no-scrollbar -mx-5 mt-12 flex gap-3 overflow-x-auto px-6 py-2 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
           {classes.list.map((k, i) => (
             <button
               key={k.key}
               aria-pressed={i === active}
               className={clsx(
-                "flex shrink-0 items-center gap-3 rounded-lg border py-1.5 pl-1.5 pr-4 text-sm transition",
+                "flex shrink-0 items-center gap-3 rounded-lg border py-1.5 pl-2.5 pr-4 text-sm transition",
                 i === active
                   ? "border-transparent bg-white/10 text-white"
                   : "border-white/10 text-white/50 hover:text-white/80",
@@ -547,14 +576,15 @@ function Classes({ lang }: { lang: Lang }) {
               }
               onClick={() => setActive(i)}
             >
-              {}
-              <img
-                alt=""
-                className="h-8 w-8 rounded-[5px]"
-                height={32}
-                src={`/img/experience/icons/classicon_${k.key}.png`}
-                width={32}
-              />
+              <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-[5px] ring-1 ring-white/25 ring-offset-1 ring-offset-black/70">
+                <img
+                  alt=""
+                  className="h-full w-full scale-[1.14] object-cover"
+                  height={32}
+                  src={`/img/experience/icons/classicon_${k.key}.png`}
+                  width={32}
+                />
+              </span>
               {k.name[lang]}
             </button>
           ))}
@@ -573,6 +603,7 @@ function Classes({ lang }: { lang: Lang }) {
                 key={i}
                 color={c.color}
                 lang={lang}
+                level={TRAINER_LEVEL[c.key]?.[i]}
                 name={s.name[lang]}
                 spec={s.spec[lang]}
                 spell={classSpellRefs[c.key]?.[i]}
@@ -757,7 +788,12 @@ function WorldBosses({ lang }: { lang: Lang }) {
                         key={j}
                         className="rounded-md bg-white/10 px-3 py-1.5 text-xs text-white/80 backdrop-blur-sm"
                       >
-                        <Tip id={tipOf(t)}>{t[lang]}</Tip>
+                        <Tip
+                          className={tipOf(t) ? tipText : undefined}
+                          id={tipOf(t)}
+                        >
+                          {t[lang]}
+                        </Tip>
                       </span>
                     ))}
                   </div>
@@ -1080,6 +1116,52 @@ function Fishing({ lang }: { lang: Lang }) {
   );
 }
 
+/* a treasure mount: its real icon and requirements, the full tooltip on hover */
+function TreasureMount({
+  name,
+  phase,
+  lang,
+}: {
+  name: T;
+  phase: number;
+  lang: Lang;
+}) {
+  const ref = tipOf(name);
+  const entry = useTipEntry(ref);
+  const lines = entry?.[lang]?.lines.map((l) => l.left) ?? [];
+  const flying = lines.some((l) => /volante|Outland or Northrend/.test(l));
+  const level = lines
+    .map((l) => l.match(/(?:Niveau|Requires level) (\d+)/i)?.[1])
+    .find(Boolean);
+
+  return (
+    <Tip className="block h-full" id={ref}>
+      <div className="group flex h-full items-center gap-4 rounded-xl border border-wow-gold/20 bg-black/45 p-4 backdrop-blur-sm transition-colors hover:border-wow-gold/50">
+        {entry && <WowIcon glow="none" icon={entry.icon} size={52} />}
+        <div className="min-w-0">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-wow-gold/80">
+            Phase {phase}
+          </p>
+          <p className="font-heading text-lg leading-tight text-[#c69bff]">
+            {name[lang]}
+          </p>
+          <p className="text-xs text-white/55">
+            {flying
+              ? lang === "fr"
+                ? "Monture volante"
+                : "Flying mount"
+              : lang === "fr"
+                ? "Monture terrestre"
+                : "Ground mount"}
+            {level &&
+              (lang === "fr" ? ` · niveau ${level}` : ` · level ${level}`)}
+          </p>
+        </div>
+      </div>
+    </Tip>
+  );
+}
+
 function Treasures({ lang }: { lang: Lang }) {
   return (
     <section className="scroll-mt-20" id={treasures.id}>
@@ -1124,15 +1206,9 @@ function Treasures({ lang }: { lang: Lang }) {
             <p className="text-center text-xs uppercase tracking-[0.3em] text-wow-gold-light/70">
               {treasures.mountsTitle[lang]}
             </p>
-            <div className="mt-5 flex flex-wrap justify-center gap-3">
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {treasures.mounts.map((m, i) => (
-                <span
-                  key={i}
-                  className="rounded-full border border-wow-gold/30 bg-black/40 px-4 py-2 text-sm text-white/85 backdrop-blur-sm"
-                >
-                  <span className="mr-2 font-heading text-wow-gold">{i}</span>
-                  <Tip id={tipOf(m)}>{m[lang]}</Tip>
-                </span>
+                <TreasureMount key={i} lang={lang} name={m} phase={i} />
               ))}
             </div>
           </Reveal>
@@ -1473,12 +1549,9 @@ function Finale({ lang, joinHref }: { lang: Lang; joinHref: string }) {
           </p>
         </Reveal>
         <Reveal delay={0.2}>
-          <a
-            className="mt-12 inline-block rounded-md bg-gradient-to-b from-wow-gold-light to-wow-gold-dark px-10 py-5 font-heading text-xl text-black shadow-[0_0_40px_rgba(199,156,62,0.5)] transition hover:shadow-[0_0_60px_rgba(199,156,62,0.8)]"
-            href={joinHref}
-          >
+          <CtaButton className="mt-12" href={joinHref}>
             {finale.cta[lang]}
-          </a>
+          </CtaButton>
         </Reveal>
       </div>
     </section>

@@ -234,3 +234,15 @@ export function useTipText(id?: string) {
 
   return entry && ctx ? (entry[ctx.lang] ?? entry.en) : undefined;
 }
+
+/* The whole entry (icon, quality, texts), for cards built from the game data */
+export function useTipEntry(id?: string) {
+  const [entry, setEntry] = useState<TipEntry | undefined>();
+
+  useEffect(() => {
+    if (!id) return;
+    loadTips().then((d) => setEntry(d[id]));
+  }, [id]);
+
+  return entry;
+}
