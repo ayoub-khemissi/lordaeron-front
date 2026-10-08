@@ -422,3 +422,48 @@ h4 {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(199, 156, 62, 0.5);
 }
+/* ── Realm showcase (app/[locale]/experience) ── */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1.08) translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: scale(1.22) translate3d(-2%, -1.5%, 0);
+  }
+}
+
+.animate-ken-burns {
+  animation: ken-burns 26s ease-out both;
+}
+
+@keyframes shimmer-line {
+  from {
+    background-position: -200% 0;
+  }
+
+  to {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-gold {
+  background: linear-gradient(90deg, transparent, rgba(240, 214, 138, 0.9), transparent);
+  background-size: 200% 100%;
+  animation: shimmer-line 3.5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ken-burns,
+  .shimmer-gold {
+    animation: none;
+  }
+}
