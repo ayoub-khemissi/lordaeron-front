@@ -449,7 +449,7 @@ export const classes = {
           spec: L("Affliction", "Affliction"),
         },
         {
-          name: L("Échange démoniaque", "Demonic Swap"),
+          name: L("Curée démoniaque", "Demon's Quarry"),
           spec: L("Démonologie", "Demonology"),
         },
         {

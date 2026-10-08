@@ -37,7 +37,7 @@ export const refByName: Record<string, string> = {
   "Fureur d'Al'Akir": "spell:100853", // Al'Akir's Fury
   Ressac: "spell:100855", // Undertow
   "Chaînes de tourment": "spell:100900", // Chains of Torment
-  "Échange démoniaque": "spell:100903", // Demonic Swap
+  "Curée démoniaque": "spell:100903", // Demon's Quarry
   "Faille ardente": "spell:100904", // Searing Rift
   "Afflux chronique": "spell:100771", // Chronal Surge
   // Heroic raids
@@ -227,7 +227,7 @@ export const classSpellRefs: Record<string, { ref: string; icon: string }[]> = {
   ],
   warlock: [
     { ref: "spell:100900", icon: "spell_shadow_lastingafflictions" }, // Chains of Torment
-    { ref: "spell:100903", icon: "ability_warlock_demonicpower" }, // Demonic Swap
+    { ref: "spell:100903", icon: "ability_warlock_demonicpower" }, // Demon's Quarry
     { ref: "spell:100904", icon: "spell_fire_felflamering" }, // Searing Rift
   ],
 };
