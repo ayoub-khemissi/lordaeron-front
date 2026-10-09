@@ -18,7 +18,7 @@ import Image from "next/image";
 import NextLink from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 
-import { WowheadLink } from "@/components/wowhead-link";
+import { GameTipLink } from "@/components/game-tooltip";
 import { getLocalizedName } from "@/lib/shop-utils";
 
 export default function AdminItemsPage() {
@@ -103,12 +103,12 @@ export default function AdminItemsPage() {
                     />
                   )}
                   {item.item_id ? (
-                    <WowheadLink
+                    <GameTipLink
                       className="text-gray-300 hover:text-wow-gold"
                       itemId={item.item_id}
                     >
                       {getLocalizedName(item, locale)}
-                    </WowheadLink>
+                    </GameTipLink>
                   ) : (
                     <span>{getLocalizedName(item, locale)}</span>
                   )}

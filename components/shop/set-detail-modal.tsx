@@ -15,7 +15,7 @@ import { useTranslations } from "next-intl";
 
 import { PriceDisplay } from "./price-display";
 
-import { WowheadLink } from "@/components/wowhead-link";
+import { GameTipLink } from "@/components/game-tooltip";
 import { getQualityColor } from "@/lib/shop-utils";
 import { useRealm } from "@/lib/realm-context";
 
@@ -98,7 +98,7 @@ export function SetDetailModal({
                 <div key={piece.id} className="flex items-center gap-3">
                   {piece.icon_url && (
                     <div className="w-8 h-8 rounded bg-wow-dark/30 border border-gray-700/50 flex items-center justify-center overflow-hidden shrink-0">
-                      <WowheadLink
+                      <GameTipLink
                         className="flex items-center justify-center"
                         itemId={piece.item_id}
                       >
@@ -107,16 +107,16 @@ export function SetDetailModal({
                           className="w-7 h-7 object-contain"
                           src={piece.icon_url}
                         />
-                      </WowheadLink>
+                      </GameTipLink>
                     </div>
                   )}
                   <div className="flex-1 min-w-0">
-                    <WowheadLink
+                    <GameTipLink
                       className={`text-sm hover:text-wow-gold transition-colors ${getQualityColor(piece.quality)}`}
                       itemId={piece.item_id}
                     >
                       {piece.name}
-                    </WowheadLink>
+                    </GameTipLink>
                   </div>
                 </div>
               ))}

@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 
 import { PriceDisplay } from "./price-display";
 
-import { WowheadLink } from "@/components/wowhead-link";
+import { GameTipLink } from "@/components/game-tooltip";
 
 interface SetCardProps {
   set: ShopSetLocalized;
@@ -66,7 +66,7 @@ export function SetCard({ set, onClick }: SetCardProps) {
             }`}
           >
             {piece.icon_url && piece.item_id ? (
-              <WowheadLink
+              <GameTipLink
                 className="flex items-center justify-center"
                 itemId={piece.item_id}
               >
@@ -75,7 +75,7 @@ export function SetCard({ set, onClick }: SetCardProps) {
                   className="w-6 h-6 object-contain"
                   src={piece.icon_url}
                 />
-              </WowheadLink>
+              </GameTipLink>
             ) : piece.icon_url ? (
               <img
                 alt=""

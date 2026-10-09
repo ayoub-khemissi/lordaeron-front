@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
 
 import { PriceDisplay } from "./price-display";
 
-import { WowheadLink } from "@/components/wowhead-link";
+import { GameTipLink } from "@/components/game-tooltip";
 import { getQualityColor } from "@/lib/shop-utils";
 
 interface ItemCardProps {
@@ -33,7 +33,7 @@ export function ItemCard({ item, onClick }: ItemCardProps) {
             {item.icon_url && (
               <div className="w-12 h-12 rounded-lg bg-wow-dark/50 border border-wow-gold/20 flex items-center justify-center mb-2 overflow-hidden">
                 {item.item_id ? (
-                  <WowheadLink
+                  <GameTipLink
                     className="flex items-center justify-center"
                     itemId={item.item_id}
                   >
@@ -42,7 +42,7 @@ export function ItemCard({ item, onClick }: ItemCardProps) {
                       className="w-10 h-10 object-contain"
                       src={item.icon_url}
                     />
-                  </WowheadLink>
+                  </GameTipLink>
                 ) : (
                   <img
                     alt={item.name}
@@ -56,12 +56,12 @@ export function ItemCard({ item, onClick }: ItemCardProps) {
               className={`font-medium ${getQualityColor(item.quality)} ${item.quality == null ? "group-hover:text-wow-gold" : ""} transition-colors line-clamp-2`}
             >
               {item.item_id ? (
-                <WowheadLink
+                <GameTipLink
                   className="text-inherit hover:text-wow-gold"
                   itemId={item.item_id}
                 >
                   {item.name}
-                </WowheadLink>
+                </GameTipLink>
               ) : (
                 item.name
               )}

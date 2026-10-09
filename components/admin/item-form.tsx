@@ -12,7 +12,7 @@ import { Spinner } from "@heroui/spinner";
 import { useTranslations } from "next-intl";
 
 import { SHOP_CATEGORIES, SERVICE_TYPES } from "@/lib/shop-utils";
-import { WowheadLink } from "@/components/wowhead-link";
+import { GameTipLink } from "@/components/game-tooltip";
 import { DEFAULT_REALM, REALMS, REALM_SLUGS } from "@/lib/realms";
 
 interface ItemFormProps {
@@ -262,7 +262,7 @@ export function ItemForm({ item, onSubmit, loading }: ItemFormProps) {
             form.icon_url &&
             form.item_id &&
             parseInt(form.item_id) > 0 && (
-              <WowheadLink
+              <GameTipLink
                 className="shrink-0 mb-1"
                 itemId={parseInt(form.item_id)}
               >
@@ -273,7 +273,7 @@ export function ItemForm({ item, onSubmit, loading }: ItemFormProps) {
                     src={form.icon_url}
                   />
                 </div>
-              </WowheadLink>
+              </GameTipLink>
             )}
         </div>
         {fetchError && (

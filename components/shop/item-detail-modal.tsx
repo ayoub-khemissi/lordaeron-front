@@ -15,7 +15,7 @@ import { useTranslations } from "next-intl";
 
 import { PriceDisplay } from "./price-display";
 
-import { WowheadLink } from "@/components/wowhead-link";
+import { GameTipLink } from "@/components/game-tooltip";
 import { RACE_NAMES, getQualityColor } from "@/lib/shop-utils";
 import { useRealm } from "@/lib/realm-context";
 
@@ -60,7 +60,7 @@ export function ItemDetailModal({
           {item.icon_url && (
             <div className="w-12 h-12 rounded-lg bg-wow-dark/50 border border-wow-gold/20 flex items-center justify-center overflow-hidden">
               {item.item_id ? (
-                <WowheadLink
+                <GameTipLink
                   className="flex items-center justify-center"
                   itemId={item.item_id}
                 >
@@ -69,7 +69,7 @@ export function ItemDetailModal({
                     className="w-10 h-10 object-contain"
                     src={item.icon_url}
                   />
-                </WowheadLink>
+                </GameTipLink>
               ) : (
                 <img
                   alt={item.name}
@@ -84,12 +84,12 @@ export function ItemDetailModal({
               className={`text-lg font-medium ${getQualityColor(item.quality)}`}
             >
               {item.item_id ? (
-                <WowheadLink
+                <GameTipLink
                   className="text-inherit hover:text-wow-gold"
                   itemId={item.item_id}
                 >
                   {item.name}
-                </WowheadLink>
+                </GameTipLink>
               ) : (
                 item.name
               )}

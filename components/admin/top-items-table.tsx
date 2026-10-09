@@ -11,7 +11,7 @@ import {
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 
-import { WowheadLink } from "@/components/wowhead-link";
+import { GameTipLink } from "@/components/game-tooltip";
 import { getLocalizedName } from "@/lib/shop-utils";
 
 interface TopItemsTableProps {
@@ -59,12 +59,12 @@ export function TopItemsTable({ items }: TopItemsTableProps) {
               <TableCell className="text-gray-500">{index + 1}</TableCell>
               <TableCell className="font-medium">
                 {item.item_id ? (
-                  <WowheadLink
+                  <GameTipLink
                     className="text-gray-300 hover:text-wow-gold"
                     itemId={item.item_id}
                   >
                     {getLocalizedName(item, locale)}
-                  </WowheadLink>
+                  </GameTipLink>
                 ) : (
                   getLocalizedName(item, locale)
                 )}

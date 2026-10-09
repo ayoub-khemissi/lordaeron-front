@@ -16,7 +16,8 @@ import { Tooltip } from "@heroui/tooltip";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 
-import { WowheadLink } from "@/components/wowhead-link";
+import { GameTipLink } from "@/components/game-tooltip";
+import { realmSlugById } from "@/lib/realms";
 import { getLocalizedName } from "@/lib/shop-utils";
 
 interface PurchaseTableProps {
@@ -90,12 +91,13 @@ export function PurchaseTable({
                   />
                 )}
                 {p.wow_item_id ? (
-                  <WowheadLink
+                  <GameTipLink
                     className="text-sm text-gray-300 hover:text-wow-gold"
                     itemId={p.wow_item_id}
+                    realm={realmSlugById(p.realm_id)}
                   >
                     {getLocalizedName(p, locale, "item_name")}
-                  </WowheadLink>
+                  </GameTipLink>
                 ) : (
                   <span className="text-sm">
                     {getLocalizedName(p, locale, "item_name")}
