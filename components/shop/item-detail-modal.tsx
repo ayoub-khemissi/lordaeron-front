@@ -17,6 +17,7 @@ import { PriceDisplay } from "./price-display";
 
 import { WowheadLink } from "@/components/wowhead-link";
 import { RACE_NAMES, getQualityColor } from "@/lib/shop-utils";
+import { useRealm } from "@/lib/realm-context";
 
 interface ItemDetailModalProps {
   item: ShopItemLocalized | null;
@@ -36,6 +37,8 @@ export function ItemDetailModal({
   hasCharacter,
 }: ItemDetailModalProps) {
   const t = useTranslations("shop");
+  // a realm not open yet: the catalogue only (lib/realms.ts)
+  const realmClosed = useRealm().status !== "open";
 
   if (!item) return null;
 
@@ -181,7 +184,9 @@ export function ItemDetailModal({
             {item.category !== "services" && (
               <Button
                 className="border-purple-500/30 text-purple-400"
-                isDisabled={!hasCharacter || item.eligible === false}
+                isDisabled={
+                  realmClosed || !hasCharacter || item.eligible === false
+                }
                 variant="bordered"
                 onPress={onGift}
               >
@@ -190,10 +195,12 @@ export function ItemDetailModal({
             )}
             <Button
               className="bg-gradient-to-r from-wow-gold to-wow-gold-light text-black font-bold"
-              isDisabled={!hasCharacter || item.eligible === false}
+              isDisabled={
+                realmClosed || !hasCharacter || item.eligible === false
+              }
               onPress={onBuy}
             >
-              {t("buyNow")}
+              {realmClosed ? t("comingSoon") : t("buyNow")}
             </Button>
           </div>
         </ModalFooter>

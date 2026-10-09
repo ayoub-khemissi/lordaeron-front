@@ -432,8 +432,12 @@
       "giftRecipientLevelRestricted": "Die Stufe des Empfängers ist zu niedrig für diesen Gegenstand.",
       "setNotFound": "Set nicht gefunden",
       "heirloomMaxLevelRequired": "Du musst einen Charakter auf Stufe 80 haben, um Erbstücke zu kaufen.",
-      "serverError": "Serverfehler. Bitte versuche es erneut."
-    }
+      "serverError": "Serverfehler. Bitte versuche es erneut.",
+      "realmNotOpen": "Dieser Realm ist noch nicht geöffnet"
+    },
+    "comingSoon": "Demnächst",
+    "realmSoonTitle": "Der Shop von {realm} öffnet mit dem Realm",
+    "realmSoonText": "Entdecke, was dich erwartet: Käufe sind ab dem Tag möglich, an dem {realm} öffnet."
   },
   "admin": {
     "login": {
@@ -1081,6 +1085,7 @@
         "Heroische frühe Schlachtzüge, Artefaktqualität, Weltbosse",
         "30 neue Klassenzauber, 277 neue Rezepte"
       ]
-    }
+    },
+    "label": "Realms"
   }
 }

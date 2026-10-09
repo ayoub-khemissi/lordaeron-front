@@ -432,8 +432,12 @@
       "giftRecipientLevelRestricted": "Il livello del destinatario è troppo basso per questo articolo.",
       "setNotFound": "Set non trovato",
       "heirloomMaxLevelRequired": "Devi avere un personaggio livello 80 per acquistare oggetti cimelio.",
-      "serverError": "Errore del server. Riprova."
-    }
+      "serverError": "Errore del server. Riprova.",
+      "realmNotOpen": "Questo reame non è ancora aperto"
+    },
+    "comingSoon": "Prossimamente",
+    "realmSoonTitle": "Il negozio di {realm} aprirà con il reame",
+    "realmSoonText": "Scopri cosa ti aspetta: gli acquisti apriranno il giorno dell'apertura di {realm}."
   },
   "admin": {
     "login": {
@@ -1081,6 +1085,7 @@
         "Incursioni eroiche, qualità Artefatto, boss del mondo",
         "30 nuovi incantesimi di classe, 277 nuove ricette"
       ]
-    }
+    },
+    "label": "Reami"
   }
 }

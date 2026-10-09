@@ -432,8 +432,12 @@
       "giftRecipientLevelRestricted": "The gift recipient's level is too low for this item.",
       "setNotFound": "Set not found",
       "heirloomMaxLevelRequired": "You must have a level 80 character to purchase heirloom items.",
-      "serverError": "Server error. Please try again."
-    }
+      "serverError": "Server error. Please try again.",
+      "realmNotOpen": "This realm is not open yet"
+    },
+    "comingSoon": "Coming soon",
+    "realmSoonTitle": "The {realm} shop opens with the realm",
+    "realmSoonText": "Browse what awaits you: purchases open on the day {realm} opens."
   },
   "admin": {
     "login": {
@@ -1081,6 +1085,7 @@
         "Heroic early raids, Artifact quality, world bosses",
         "30 new class spells, 277 new recipes"
       ]
-    }
+    },
+    "label": "Realms"
   }
 }

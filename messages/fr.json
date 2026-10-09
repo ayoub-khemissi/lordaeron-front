@@ -432,8 +432,12 @@
       "giftRecipientLevelRestricted": "Le niveau du destinataire est trop bas pour cet article.",
       "setNotFound": "Set introuvable",
       "heirloomMaxLevelRequired": "Vous devez avoir un personnage niveau 80 pour acheter des objets héritage.",
-      "serverError": "Erreur serveur. Veuillez réessayer."
-    }
+      "serverError": "Erreur serveur. Veuillez réessayer.",
+      "realmNotOpen": "Ce royaume n'est pas encore ouvert"
+    },
+    "comingSoon": "Bientôt disponible",
+    "realmSoonTitle": "La boutique de {realm} ouvrira avec le royaume",
+    "realmSoonText": "Découvrez ce qui vous attend : les achats ouvriront le jour de l'ouverture de {realm}."
   },
   "admin": {
     "login": {
@@ -1081,6 +1085,7 @@
         "Raids héroïques, qualité Artefact, boss du monde",
         "30 nouveaux sorts de classe, 277 nouvelles recettes"
       ]
-    }
+    },
+    "label": "Royaumes"
   }
 }

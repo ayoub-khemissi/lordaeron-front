@@ -13,6 +13,7 @@ import { useTranslations } from "next-intl";
 
 import { SHOP_CATEGORIES, SERVICE_TYPES } from "@/lib/shop-utils";
 import { WowheadLink } from "@/components/wowhead-link";
+import { DEFAULT_REALM, REALMS, REALM_SLUGS } from "@/lib/realms";
 
 interface ItemFormProps {
   item?: ShopItem;
@@ -23,6 +24,7 @@ interface ItemFormProps {
 export function ItemForm({ item, onSubmit, loading }: ItemFormProps) {
   const t = useTranslations("admin.items");
   const tc = useTranslations("admin.common");
+  const tRealms = useTranslations("realms");
   const tCat = useTranslations("shop.categories");
   const tSvc = useTranslations("shop.serviceTypes");
   const tQuality = useTranslations("shop.qualities");
@@ -52,6 +54,11 @@ export function ItemForm({ item, onSubmit, loading }: ItemFormProps) {
     price: item?.price?.toString() || "",
     discount_percentage: item?.discount_percentage?.toString() || "0",
     faction: item?.faction || "both",
+    // the realms that sell it; an item from before the realms (none) is Lordaeron's (lib/realms.ts offeredOnRealm)
+    realm_ids: (item?.realm_ids?.length
+      ? item.realm_ids
+      : [REALMS[DEFAULT_REALM].realmId]
+    ).map(String),
     icon_url: item?.icon_url || "",
     quality: item?.quality?.toString() ?? "4",
     sort_order: item?.sort_order?.toString() || "0",
@@ -80,6 +87,7 @@ export function ItemForm({ item, onSubmit, loading }: ItemFormProps) {
       price: parseInt(form.price) || 0,
       discount_percentage: parseInt(form.discount_percentage) || 0,
       faction: form.faction as ShopItem["faction"],
+      realm_ids: form.realm_ids.map(Number),
       icon_url: form.icon_url || null,
       quality: form.quality !== "" ? parseInt(form.quality) : null,
       sort_order: parseInt(form.sort_order) || 0,
@@ -181,6 +189,24 @@ export function ItemForm({ item, onSubmit, loading }: ItemFormProps) {
           <SelectItem key="both">{tc("both")}</SelectItem>
           <SelectItem key="alliance">{tc("alliance")}</SelectItem>
           <SelectItem key="horde">{tc("horde")}</SelectItem>
+        </Select>
+
+        <Select
+          classNames={{ trigger: inputClass }}
+          label={tRealms("label")}
+          selectedKeys={form.realm_ids}
+          selectionMode="multiple"
+          onSelectionChange={(keys) => {
+            const ids = Array.from(keys).map(String);
+
+            if (ids.length) setForm({ ...form, realm_ids: ids });
+          }}
+        >
+          {REALM_SLUGS.map((slug) => (
+            <SelectItem key={String(REALMS[slug].realmId)}>
+              {REALMS[slug].name}
+            </SelectItem>
+          ))}
         </Select>
       </div>
 

@@ -56,7 +56,8 @@ export const REALMS: Record<RealmSlug, RealmInfo> = {
     realmId: Number(process.env.RIMEHEART_REALM_ID || 3),
     name: "Rimeheart",
     status: "soon",
-    sections: ["home", "how-to", "armory", "shop"],
+    // its how-to (the client patch to download) comes with its opening
+    sections: ["home", "armory", "shop"],
     accent: "ice",
   },
 };
@@ -84,4 +85,19 @@ export function realmById(realmId: number): RealmInfo | null {
 // a page of a realm: realmPath("fr", "rimeheart", "/shop/mounts") -> "/fr/rimeheart/shop/mounts"
 export function realmPath(locale: string, slug: RealmSlug, path = "") {
   return `/${locale}/${slug}${path === "/" ? "" : path}`;
+}
+
+// a shop item or set for a realm: its realm list, or Lordaeron's alone when it has none (every item from before the realms)
+export function offeredOnRealm(
+  realmIds: number[] | null | undefined,
+  slug: RealmSlug,
+) {
+  return realmIds && realmIds.length
+    ? realmIds.includes(REALMS[slug].realmId)
+    : slug === DEFAULT_REALM;
+}
+
+// the realm a shop request is about (?realm=<slug>), Lordaeron's by default
+export function requestRealm(value: string | null | undefined): RealmSlug {
+  return isRealmSlug(value) ? value : DEFAULT_REALM;
 }

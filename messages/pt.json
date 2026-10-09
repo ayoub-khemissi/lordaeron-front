@@ -448,8 +448,12 @@
       "giftRecipientLevelRestricted": "O nivel do personagem destinatario e demasiado baixo para este item.",
       "setNotFound": "Conjunto nao encontrado",
       "heirloomMaxLevelRequired": "Deves ter um personagem de nivel 80 para comprar itens de reliquia.",
-      "serverError": "Erro no servidor. Por favor, tenta novamente."
-    }
+      "serverError": "Erro no servidor. Por favor, tenta novamente.",
+      "realmNotOpen": "Este reino ainda não está aberto"
+    },
+    "comingSoon": "Em breve",
+    "realmSoonTitle": "A loja de {realm} abrirá com o reino",
+    "realmSoonText": "Descubra o que o espera: as compras abrem no dia em que {realm} abrir."
   },
   "admin": {
     "login": {
@@ -1111,6 +1115,7 @@
         "Raides heroicas iniciais, qualidade Artefato, chefes mundiais",
         "30 novos feitiços de classe, 277 novas receitas"
       ]
-    }
+    },
+    "label": "Reinos"
   }
 }

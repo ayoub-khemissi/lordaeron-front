@@ -17,12 +17,13 @@ import { PurchaseModal } from "@/components/shop/purchase-modal";
 import { GiftModal } from "@/components/shop/gift-modal";
 import { CategoryFilterBar } from "@/components/shop/category-filter-bar";
 import { SHOP_CATEGORIES } from "@/lib/shop-utils";
-import { useRealmHref } from "@/lib/realm-context";
+import { useRealm, useRealmHref } from "@/lib/realm-context";
 
 export default function CategoryContent() {
   const t = useTranslations("shop");
   const locale = useLocale();
   const realmHref = useRealmHref();
+  const realm = useRealm();
   const router = useRouter();
   const params = useParams();
   const category = params.category as ShopCategory;
@@ -57,7 +58,11 @@ export default function CategoryContent() {
     if (!user) return;
     setLoading(true);
     try {
-      const searchParams = new URLSearchParams({ locale, category });
+      const searchParams = new URLSearchParams({
+        locale,
+        category,
+        realm: realm.slug,
+      });
 
       if (selectedCharacter) {
         searchParams.set("race_id", String(selectedCharacter.race));
@@ -66,7 +71,9 @@ export default function CategoryContent() {
 
       const [itemsRes, charsRes, accountRes] = await Promise.all([
         fetch(`/api/shop/items?${searchParams}`),
-        fetch("/api/shop/characters"),
+        realm.status === "open"
+          ? fetch(`/api/shop/characters?realm=${realm.slug}`)
+          : Promise.resolve(Response.json({ characters: [] })),
         fetch("/api/account"),
       ]);
 
@@ -87,7 +94,7 @@ export default function CategoryContent() {
     } finally {
       setLoading(false);
     }
-  }, [user, locale, category, selectedCharacter]);
+  }, [user, locale, realm, category, selectedCharacter]);
 
   useEffect(() => {
     fetchData();
@@ -102,7 +109,7 @@ export default function CategoryContent() {
         item_id: purchaseItem.id,
         character_guid: selectedCharacter.guid,
         character_name: selectedCharacter.name,
-        realm_id: 1,
+        realm_id: realm.realmId,
       }),
     });
     const data = await res.json();
@@ -120,7 +127,7 @@ export default function CategoryContent() {
         item_id: giftItem.id,
         character_guid: selectedCharacter.guid,
         character_name: selectedCharacter.name,
-        realm_id: 1,
+        realm_id: realm.realmId,
         is_gift: true,
         gift_to_character_name: giftToName,
       }),

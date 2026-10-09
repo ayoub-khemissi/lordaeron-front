@@ -325,6 +325,8 @@ export interface ShopSet {
   is_active: boolean;
   min_level: number;
   sort_order: number;
+  // the realms that sell it (a future column of shop_sets): none, Lordaeron's alone (lib/realms.ts offeredOnRealm)
+  realm_ids?: number[] | null;
   created_at: string;
   updated_at: string;
 }

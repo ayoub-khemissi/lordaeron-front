@@ -17,6 +17,7 @@ import { PriceDisplay } from "./price-display";
 
 import { WowheadLink } from "@/components/wowhead-link";
 import { getQualityColor } from "@/lib/shop-utils";
+import { useRealm } from "@/lib/realm-context";
 
 interface SetDetailModalProps {
   set: ShopSetLocalized | null;
@@ -36,6 +37,8 @@ export function SetDetailModal({
   hasCharacter,
 }: SetDetailModalProps) {
   const t = useTranslations("shop");
+  // a realm not open yet: the catalogue only (lib/realms.ts)
+  const realmClosed = useRealm().status !== "open";
 
   if (!set) return null;
 
@@ -162,7 +165,7 @@ export function SetDetailModal({
             </Button>
             <Button
               className="border-purple-500/30 text-purple-400"
-              isDisabled={!hasCharacter}
+              isDisabled={realmClosed || !hasCharacter}
               variant="bordered"
               onPress={onGift}
             >
@@ -170,10 +173,10 @@ export function SetDetailModal({
             </Button>
             <Button
               className="bg-gradient-to-r from-wow-gold to-wow-gold-light text-black font-bold"
-              isDisabled={!hasCharacter}
+              isDisabled={realmClosed || !hasCharacter}
               onPress={onBuy}
             >
-              {t("buySet")}
+              {realmClosed ? t("comingSoon") : t("buySet")}
             </Button>
           </div>
         </ModalFooter>

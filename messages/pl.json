@@ -448,8 +448,12 @@
       "giftRecipientLevelRestricted": "Poziom postaci odbiorcy jest zbyt niski dla tego przedmiotu.",
       "setNotFound": "Nie znaleziono zestawu",
       "heirloomMaxLevelRequired": "Musisz mieć postać na poziomie 80, aby kupić przedmioty dziedzictwa.",
-      "serverError": "Błąd serwera. Spróbuj ponownie."
-    }
+      "serverError": "Błąd serwera. Spróbuj ponownie.",
+      "realmNotOpen": "Ten świat nie jest jeszcze otwarty"
+    },
+    "comingSoon": "Wkrótce",
+    "realmSoonTitle": "Sklep {realm} otworzy się wraz ze światem",
+    "realmSoonText": "Zobacz, co na ciebie czeka: zakupy ruszą w dniu otwarcia {realm}."
   },
   "admin": {
     "login": {
@@ -1111,6 +1115,7 @@
         "Heroiczne wczesne rajdy, jakość Artefakt, światowi bossowie",
         "30 nowych zaklęć klasowych, 277 nowych przepisów"
       ]
-    }
+    },
+    "label": "Światy"
   }
 }

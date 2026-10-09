@@ -35,12 +35,14 @@ import { GiftModal } from "@/components/shop/gift-modal";
 import { CategoryFilterBar } from "@/components/shop/category-filter-bar";
 import { BuyShardsModal } from "@/components/shop/buy-shards-modal";
 import { CATEGORY_ICONS } from "@/lib/shop-utils";
-import { useRealmHref } from "@/lib/realm-context";
+import { useRealm, useRealmHref } from "@/lib/realm-context";
+import { RealmSoonBanner } from "@/components/shop/realm-soon-banner";
 
 export default function ShopContent() {
   const t = useTranslations("shop");
   const locale = useLocale();
   const realmHref = useRealmHref();
+  const realm = useRealm();
   const { user, loading: authLoading } = useAuth();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -96,7 +98,7 @@ export default function ShopContent() {
     if (!user) return;
     setLoading(true);
     try {
-      const params = new URLSearchParams({ locale });
+      const params = new URLSearchParams({ locale, realm: realm.slug });
 
       if (selectedCategory && selectedCategory !== "highlighted")
         params.set("category", selectedCategory);
@@ -110,7 +112,7 @@ export default function ShopContent() {
 
       params.set("has_max_level", String(hasMaxLevel));
 
-      const setParams = new URLSearchParams({ locale });
+      const setParams = new URLSearchParams({ locale, realm: realm.slug });
 
       if (selectedCharacter) {
         setParams.set("race_id", String(selectedCharacter.race));
@@ -121,7 +123,10 @@ export default function ShopContent() {
       const [itemsRes, setsRes, charsRes, accountRes] = await Promise.all([
         fetch(`/api/shop/items?${params}`),
         fetch(`/api/shop/sets?${setParams}`),
-        fetch("/api/shop/characters"),
+        // a realm not open yet: its catalogue only, nobody to deliver to
+        realm.status === "open"
+          ? fetch(`/api/shop/characters?realm=${realm.slug}`)
+          : Promise.resolve(Response.json({ characters: [] })),
         fetch("/api/account"),
       ]);
 
@@ -144,7 +149,7 @@ export default function ShopContent() {
     } finally {
       setLoading(false);
     }
-  }, [user, locale, selectedCategory, selectedCharacter]);
+  }, [user, locale, realm, selectedCategory, selectedCharacter]);
 
   useEffect(() => {
     fetchData();
@@ -225,7 +230,7 @@ export default function ShopContent() {
         item_id: purchaseItem.id,
         character_guid: selectedCharacter.guid,
         character_name: selectedCharacter.name,
-        realm_id: 1,
+        realm_id: realm.realmId,
       }),
     });
     const data = await res.json();
@@ -243,7 +248,7 @@ export default function ShopContent() {
         set_id: purchaseSet.id,
         character_guid: selectedCharacter.guid,
         character_name: selectedCharacter.name,
-        realm_id: 1,
+        realm_id: realm.realmId,
       }),
     });
     const data = await res.json();
@@ -261,7 +266,7 @@ export default function ShopContent() {
         item_id: giftItem.id,
         character_guid: selectedCharacter.guid,
         character_name: selectedCharacter.name,
-        realm_id: 1,
+        realm_id: realm.realmId,
         is_gift: true,
         gift_to_character_name: giftToName,
         gift_message: giftMessage,
@@ -282,7 +287,7 @@ export default function ShopContent() {
         set_id: giftSet.id,
         character_guid: selectedCharacter.guid,
         character_name: selectedCharacter.name,
-        realm_id: 1,
+        realm_id: realm.realmId,
         is_gift: true,
         gift_to_character_name: giftToName,
         gift_message: giftMessage,
@@ -476,11 +481,15 @@ export default function ShopContent() {
 
       <ShopHeader balance={balance} onBuyShards={() => handleBuyShards()} />
 
-      <RealmCharacterSelector
-        characters={characters}
-        selectedCharacter={selectedCharacter}
-        onCharacterSelect={setSelectedCharacter}
-      />
+      {realm.status === "open" ? (
+        <RealmCharacterSelector
+          characters={characters}
+          selectedCharacter={selectedCharacter}
+          onCharacterSelect={setSelectedCharacter}
+        />
+      ) : (
+        <RealmSoonBanner />
+      )}
 
       <CategoryNav
         selectedCategory={selectedCategory}

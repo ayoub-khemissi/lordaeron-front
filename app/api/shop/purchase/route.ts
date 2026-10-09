@@ -18,6 +18,7 @@ import {
 } from "@/lib/queries/characters";
 import { ALLIANCE_RACES } from "@/lib/shop-utils";
 import { sendItem, sendItems } from "@/lib/soap";
+import { offeredOnRealm, realmById } from "@/lib/realms";
 
 function checkFaction(faction: string, characterRace: number): string | null {
   if (faction === "both") return null;
@@ -38,6 +39,13 @@ async function handleSetPurchase(
 
   if (!set || !set.is_active) {
     return NextResponse.json({ error: "setNotFound" }, { status: 404 });
+  }
+
+  // a set with no realm list is Lordaeron's (the realm itself was checked open by the caller)
+  const realm = realmById(body.realm_id);
+
+  if (!realm || !offeredOnRealm(set.realm_ids, realm.slug)) {
+    return NextResponse.json({ error: "realmRestricted" }, { status: 400 });
   }
 
   // Check min level
@@ -179,6 +187,16 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "missingFields" }, { status: 400 });
     }
 
+    // a realm that is not open yet shows its catalogue but sells nothing (lib/realms.ts)
+    const realm = realmById(body.realm_id);
+
+    if (!realm) {
+      return NextResponse.json({ error: "realmRestricted" }, { status: 400 });
+    }
+    if (realm.status !== "open") {
+      return NextResponse.json({ error: "realmNotOpen" }, { status: 403 });
+    }
+
     // Verify character belongs to account
     const characters = await getCharactersByAccount(session.id);
     const character = characters.find((c) => c.guid === body.character_guid);
@@ -210,8 +228,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check realm restriction
-    if (item.realm_ids && !item.realm_ids.includes(body.realm_id)) {
+    // Check realm restriction (an item with no realm list is Lordaeron's)
+    if (!offeredOnRealm(item.realm_ids, realm.slug)) {
       return NextResponse.json({ error: "realmRestricted" }, { status: 400 });
     }
 

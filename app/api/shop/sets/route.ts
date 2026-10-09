@@ -6,6 +6,7 @@ import { verifySession } from "@/lib/auth";
 import { getShopSets } from "@/lib/queries/shop-sets";
 import { getShopSetItems } from "@/lib/queries/shop-sets";
 import { localizeShopSet, ALLIANCE_RACES, HORDE_RACES } from "@/lib/shop-utils";
+import { offeredOnRealm, requestRealm } from "@/lib/realms";
 
 export const dynamic = "force-dynamic";
 
@@ -29,7 +30,11 @@ export async function GET(request: NextRequest) {
       ? parseInt(searchParams.get("level")!)
       : null;
 
-    const sets = await getShopSets({ activeOnly: true });
+    const realm = requestRealm(searchParams.get("realm"));
+    // the realm's own sets
+    const sets = (await getShopSets({ activeOnly: true })).filter((set) =>
+      offeredOnRealm(set.realm_ids, realm),
+    );
 
     // Fetch items for each set
     const setsWithItems: ShopSetWithItems[] = await Promise.all(

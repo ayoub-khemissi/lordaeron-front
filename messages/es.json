@@ -430,8 +430,12 @@
       "heirloomMaxLevelRequired": "Debes tener un personaje nivel 80 para comprar objetos reliquia.",
       "serverError": "Error del servidor. Inténtalo de nuevo.",
       "purchaseNotRefundable": "Esta compra no es reembolsable.",
-      "recipientNotFound": "Personaje destinatario no encontrado."
-    }
+      "recipientNotFound": "Personaje destinatario no encontrado.",
+      "realmNotOpen": "Este reino aún no está abierto"
+    },
+    "comingSoon": "Próximamente",
+    "realmSoonTitle": "La tienda de {realm} abrirá con el reino",
+    "realmSoonText": "Descubre lo que te espera: las compras se abrirán el día en que abra {realm}."
   },
   "admin": {
     "login": {
@@ -1079,6 +1083,7 @@
         "Bandas heroicas, calidad Artefacto, jefes del mundo",
         "30 hechizos de clase nuevos, 277 recetas nuevas"
       ]
-    }
+    },
+    "label": "Reinos"
   }
 }
