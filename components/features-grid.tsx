@@ -3,8 +3,10 @@
 import React from "react";
 import Image from "next/image";
 import NextLink from "next/link";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
+
+import { useRealmHref } from "@/lib/realm-context";
 
 const WOWHEAD_ICON = "https://wow.zamimg.com/images/wow/icons/large";
 
@@ -94,7 +96,7 @@ const FeatureCard = React.memo(function FeatureCard({
 }) {
   const t = useTranslations("features");
   const te = useTranslations("epicProgression");
-  const locale = useLocale();
+  const realmHref = useRealmHref();
 
   return (
     <motion.div
@@ -135,7 +137,7 @@ const FeatureCard = React.memo(function FeatureCard({
           {link && (
             <NextLink
               className="mt-4 text-sm text-wow-gold hover:text-wow-gold-light transition-colors underline underline-offset-4"
-              href={`/${locale}${link}`}
+              href={realmHref(link)}
             >
               {te("learnMore")} &rarr;
             </NextLink>

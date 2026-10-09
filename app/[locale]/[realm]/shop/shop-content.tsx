@@ -35,10 +35,12 @@ import { GiftModal } from "@/components/shop/gift-modal";
 import { CategoryFilterBar } from "@/components/shop/category-filter-bar";
 import { BuyShardsModal } from "@/components/shop/buy-shards-modal";
 import { CATEGORY_ICONS } from "@/lib/shop-utils";
+import { useRealmHref } from "@/lib/realm-context";
 
 export default function ShopContent() {
   const t = useTranslations("shop");
   const locale = useLocale();
+  const realmHref = useRealmHref();
   const { user, loading: authLoading } = useAuth();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -197,7 +199,7 @@ export default function ShopContent() {
       checkoutHandled.current = true;
       setCheckoutResult(checkout);
       // Clean URL
-      router.replace(`/${locale}/shop`, { scroll: false });
+      router.replace(realmHref("/shop"), { scroll: false });
       if (checkout === "success") {
         // Refetch balance after successful payment
         fetchData();

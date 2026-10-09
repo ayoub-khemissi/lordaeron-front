@@ -6,10 +6,12 @@ import NextLink from "next/link";
 import { motion } from "framer-motion";
 
 import { useAuth } from "@/lib/auth-context";
+import { useRealmHref } from "@/lib/realm-context";
 
 export const HeroBannerContent = () => {
   const t = useTranslations("home");
   const locale = useLocale();
+  const realmHref = useRealmHref();
   const { user } = useAuth();
 
   return (
@@ -58,7 +60,7 @@ export const HeroBannerContent = () => {
         <Button
           as={NextLink}
           className="bg-gradient-to-r from-wow-gold to-wow-gold-light text-black font-bold text-lg px-10 h-14 glow-gold-strong hover:shadow-[0_0_40px_rgba(199,156,62,0.5)] transition-all duration-300"
-          href={`/${locale}/how-to`}
+          href={realmHref("/how-to")}
           size="lg"
         >
           {t("cta")}

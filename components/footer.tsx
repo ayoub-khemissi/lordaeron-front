@@ -7,11 +7,13 @@ import Image from "next/image";
 
 import { DiscordIcon } from "@/components/icons";
 import { useAuth } from "@/lib/auth-context";
+import { useRealmHref } from "@/lib/realm-context";
 
 export const Footer = () => {
   const t = useTranslations("footer");
   const tNav = useTranslations("nav");
   const locale = useLocale();
+  const realmHref = useRealmHref();
   const { user } = useAuth();
 
   return (
@@ -57,11 +59,11 @@ export const Footer = () => {
               </h4>
               <ul className="space-y-2">
                 {[
-                  { label: tNav("howTo"), href: `/${locale}/how-to` },
-                  { label: tNav("features"), href: `/${locale}/features` },
+                  { label: tNav("howTo"), href: realmHref("/how-to") },
+                  { label: tNav("features"), href: realmHref("/features") },
                   {
                     label: tNav("epicProgression"),
-                    href: `/${locale}/epic-progression`,
+                    href: realmHref("/epic-progression"),
                   },
                   user
                     ? { label: tNav("account"), href: `/${locale}/account` }

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { getTranslations } from "next-intl/server";
 
-import RaidScalingContent from "./raid-scaling-content";
+import HowToContent from "./how-to-content";
 
 import { JsonLd } from "@/components/json-ld";
 import { buildPageMetadata } from "@/lib/seo";
@@ -11,26 +11,23 @@ import { siteConfig } from "@/config/site";
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: string; realm: string }>;
 }): Promise<Metadata> {
-  const { locale } = await params;
-  const t = await getTranslations({
-    locale,
-    namespace: "meta.raidScaling",
-  });
+  const { locale, realm } = await params;
+  const t = await getTranslations({ locale, namespace: "meta.howTo" });
 
-  return buildPageMetadata(locale, "/raid-scaling", {
+  return buildPageMetadata(locale, `/${realm}/how-to`, {
     title: t("title"),
     description: t("description"),
   });
 }
 
-export default async function RaidScalingPage({
+export default async function HowToPage({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: string; realm: string }>;
 }) {
-  const { locale } = await params;
+  const { locale, realm } = await params;
 
   return (
     <>
@@ -48,13 +45,13 @@ export default async function RaidScalingPage({
             {
               "@type": "ListItem",
               position: 2,
-              name: "Raid Scaling",
-              item: `${siteConfig.baseUrl}/${locale}/raid-scaling`,
+              name: "How to Connect",
+              item: `${siteConfig.baseUrl}/${locale}/${realm}/how-to`,
             },
           ],
         }}
       />
-      <RaidScalingContent />
+      <HowToContent />
     </>
   );
 }

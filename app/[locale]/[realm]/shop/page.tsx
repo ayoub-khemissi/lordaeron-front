@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { getTranslations } from "next-intl/server";
 
-import EpicProgressionContent from "./epic-progression-content";
+import ShopContent from "./shop-content";
 
 import { JsonLd } from "@/components/json-ld";
 import { buildPageMetadata } from "@/lib/seo";
@@ -11,26 +11,23 @@ import { siteConfig } from "@/config/site";
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: string; realm: string }>;
 }): Promise<Metadata> {
-  const { locale } = await params;
-  const t = await getTranslations({
-    locale,
-    namespace: "meta.epicProgression",
-  });
+  const { locale, realm } = await params;
+  const t = await getTranslations({ locale, namespace: "meta.shop" });
 
-  return buildPageMetadata(locale, "/epic-progression", {
+  return buildPageMetadata(locale, `/${realm}/shop`, {
     title: t("title"),
     description: t("description"),
   });
 }
 
-export default async function EpicProgressionPage({
+export default async function ShopPage({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: string; realm: string }>;
 }) {
-  const { locale } = await params;
+  const { locale, realm } = await params;
 
   return (
     <>
@@ -48,13 +45,13 @@ export default async function EpicProgressionPage({
             {
               "@type": "ListItem",
               position: 2,
-              name: "Epic Progression",
-              item: `${siteConfig.baseUrl}/${locale}/epic-progression`,
+              name: "Shop",
+              item: `${siteConfig.baseUrl}/${locale}/${realm}/shop`,
             },
           ],
         }}
       />
-      <EpicProgressionContent />
+      <ShopContent />
     </>
   );
 }

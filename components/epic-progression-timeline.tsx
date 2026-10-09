@@ -3,8 +3,10 @@
 import { Fragment } from "react";
 import Image from "next/image";
 import NextLink from "next/link";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
+
+import { useRealmHref } from "@/lib/realm-context";
 
 const IMG = "/img/epic-progressive";
 
@@ -217,7 +219,7 @@ export const EpicProgressionTimeline = ({
 }) => {
   const t = useTranslations("home");
   const te = useTranslations("epicProgression");
-  const locale = useLocale();
+  const realmHref = useRealmHref();
 
   return (
     <section className="relative overflow-hidden">
@@ -254,7 +256,7 @@ export const EpicProgressionTimeline = ({
                 <div className="shimmer-line w-24 mx-auto mb-5" />
                 <NextLink
                   className="inline-block text-sm text-wow-gold hover:text-wow-gold-light transition-colors underline underline-offset-4"
-                  href={`/${locale}/epic-progression`}
+                  href={realmHref("/epic-progression")}
                 >
                   {te("learnMore")} &rarr;
                 </NextLink>

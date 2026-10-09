@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { Input } from "@heroui/input";
 import { Spinner } from "@heroui/spinner";
 import NextLink from "next/link";
@@ -13,9 +13,10 @@ import {
   ALLIANCE_RACES,
 } from "@/lib/armory-constants";
 import { ArmorySearchResult } from "@/types/armory";
+import { useRealmHref } from "@/lib/realm-context";
 
 export function ArmoryContent() {
-  const locale = useLocale();
+  const realmHref = useRealmHref();
   const t = useTranslations("armory");
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<ArmorySearchResult[]>([]);
@@ -89,7 +90,7 @@ export function ArmoryContent() {
               <NextLink
                 key={char.guid}
                 className="block group"
-                href={`/${locale}/armory/${char.name}`}
+                href={realmHref(`/armory/${char.name}`)}
               >
                 <div className="glass rounded-xl px-4 py-3 border border-white/5 hover:border-wow-gold/30 transition-colors flex items-center gap-4">
                   {/* Online indicator */}

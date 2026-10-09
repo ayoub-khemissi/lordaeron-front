@@ -1083,5 +1083,34 @@
     "cfgScaleXP": "Skaluj XP",
     "cfgScaleDungeons": "Skaluj lochy",
     "cfgEnabled": "Włączone"
+  },
+  "realms": {
+    "portal": {
+      "kicker": "Jedno konto · dwa światy",
+      "title": "Wybierz swój świat",
+      "subtitle": "Jedno konto, jeden sklep, dwa sposoby na przeżycie Azeroth."
+    },
+    "switch": "Zmień świat",
+    "allRealms": "Wszystkie światy",
+    "soon": "Wkrótce",
+    "open": "Otwarty",
+    "enter": "Wejdź",
+    "discover": "Odkryj",
+    "lordaeron": {
+      "tagline": "Epic Progressive · od Vanilla do WotLK",
+      "points": [
+        "Vanilla, potem TBC, potem WotLK: każdy etap odblokowuje się po kolei",
+        "XP x5, transmogryfikacja, międzyfrakcyjność",
+        "Reset rajdów dwa razy w tygodniu, solowa ścieżka Samotnego Czempiona"
+      ]
+    },
+    "rimeheart": {
+      "tagline": "Wrath of the Lich King · setki nowości",
+      "points": [
+        "Pięć faz po trzy miesiące",
+        "Heroiczne wczesne rajdy, jakość Artefakt, światowi bossowie",
+        "30 nowych zaklęć klasowych, 277 nowych przepisów"
+      ]
+    }
   }
 }

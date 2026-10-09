@@ -44,6 +44,7 @@ import {
   CLASS_COLORS,
   ALLIANCE_RACES,
 } from "@/lib/shop-utils";
+import { DEFAULT_REALM, realmPath } from "@/lib/realms";
 
 function formatPlayTime(seconds: number): string {
   const days = Math.floor(seconds / 86400);
@@ -703,7 +704,11 @@ export default function AccountPage() {
                               <TableCell>
                                 <NextLink
                                   className="font-semibold text-gray-200 hover:text-wow-gold transition-colors"
-                                  href={`/${locale}/armory/${char.name}`}
+                                  href={realmPath(
+                                    locale,
+                                    DEFAULT_REALM,
+                                    `/armory/${char.name}`,
+                                  )}
                                 >
                                   {char.name}
                                 </NextLink>

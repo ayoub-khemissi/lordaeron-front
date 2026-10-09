@@ -11,12 +11,12 @@ import { siteConfig } from "@/config/site";
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: string; realm: string }>;
 }): Promise<Metadata> {
-  const { locale } = await params;
+  const { locale, realm } = await params;
   const t = await getTranslations({ locale, namespace: "meta.features" });
 
-  return buildPageMetadata(locale, "/features", {
+  return buildPageMetadata(locale, `/${realm}/features`, {
     title: t("title"),
     description: t("description"),
   });
@@ -25,9 +25,9 @@ export async function generateMetadata({
 export default async function FeaturesPage({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: string; realm: string }>;
 }) {
-  const { locale } = await params;
+  const { locale, realm } = await params;
 
   return (
     <div
@@ -54,7 +54,7 @@ export default async function FeaturesPage({
               "@type": "ListItem",
               position: 2,
               name: "Features",
-              item: `${siteConfig.baseUrl}/${locale}/features`,
+              item: `${siteConfig.baseUrl}/${locale}/${realm}/features`,
             },
           ],
         }}

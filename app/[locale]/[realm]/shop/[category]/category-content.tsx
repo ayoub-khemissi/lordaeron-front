@@ -17,10 +17,12 @@ import { PurchaseModal } from "@/components/shop/purchase-modal";
 import { GiftModal } from "@/components/shop/gift-modal";
 import { CategoryFilterBar } from "@/components/shop/category-filter-bar";
 import { SHOP_CATEGORIES } from "@/lib/shop-utils";
+import { useRealmHref } from "@/lib/realm-context";
 
 export default function CategoryContent() {
   const t = useTranslations("shop");
   const locale = useLocale();
+  const realmHref = useRealmHref();
   const router = useRouter();
   const params = useParams();
   const category = params.category as ShopCategory;
@@ -47,7 +49,7 @@ export default function CategoryContent() {
     if (
       !SHOP_CATEGORIES.includes(category as (typeof SHOP_CATEGORIES)[number])
     ) {
-      router.push(`/${locale}/shop`);
+      router.push(realmHref("/shop"));
     }
   }, [category, locale, router]);
 
@@ -182,7 +184,7 @@ export default function CategoryContent() {
           className="text-gray-400 hover:text-wow-gold"
           size="sm"
           variant="light"
-          onPress={() => router.push(`/${locale}/shop`)}
+          onPress={() => router.push(realmHref("/shop"))}
         >
           ← {t("allItems")}
         </Button>

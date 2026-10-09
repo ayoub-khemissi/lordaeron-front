@@ -1053,5 +1053,34 @@
     "cfgScaleXP": "XP-Skalierung",
     "cfgScaleDungeons": "Dungeon-Skalierung",
     "cfgEnabled": "Aktiviert"
+  },
+  "realms": {
+    "portal": {
+      "kicker": "Ein Konto · zwei Realms",
+      "title": "Wähle deinen Realm",
+      "subtitle": "Ein Konto, ein Shop, zwei Arten, Azeroth zu erleben."
+    },
+    "switch": "Realm wechseln",
+    "allRealms": "Alle Realms",
+    "soon": "Demnächst",
+    "open": "Offen",
+    "enter": "Betreten",
+    "discover": "Entdecken",
+    "lordaeron": {
+      "tagline": "Epic Progressive · von Vanilla bis WotLK",
+      "points": [
+        "Vanilla, dann TBC, dann WotLK: jede Stufe wird nacheinander freigeschaltet",
+        "XP x5, Transmogrifikation, fraktionsübergreifend",
+        "Schlachtzüge zweimal pro Woche zurückgesetzt, Solo-Weg des Einsamen Champions"
+      ]
+    },
+    "rimeheart": {
+      "tagline": "Wrath of the Lich King · Hunderte Neuerungen",
+      "points": [
+        "Fünf Phasen zu je drei Monaten",
+        "Heroische frühe Schlachtzüge, Artefaktqualität, Weltbosse",
+        "30 neue Klassenzauber, 277 neue Rezepte"
+      ]
+    }
   }
 }

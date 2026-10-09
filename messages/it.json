@@ -1053,5 +1053,34 @@
     "cfgScaleXP": "Scaling dell'XP",
     "cfgScaleDungeons": "Scaling dei dungeon",
     "cfgEnabled": "Attivato"
+  },
+  "realms": {
+    "portal": {
+      "kicker": "Un account · due reami",
+      "title": "Scegli il tuo reame",
+      "subtitle": "Un account, un negozio, due modi di vivere Azeroth."
+    },
+    "switch": "Cambia reame",
+    "allRealms": "Tutti i reami",
+    "soon": "Prossimamente",
+    "open": "Aperto",
+    "enter": "Entra",
+    "discover": "Scopri",
+    "lordaeron": {
+      "tagline": "Epic Progressive · da Vanilla a WotLK",
+      "points": [
+        "Vanilla, poi TBC, poi WotLK: ogni livello si sblocca a turno",
+        "XP x5, trasmogrificazione, interfazione",
+        "Reset delle incursioni due volte a settimana, via in solitario del Campione solitario"
+      ]
+    },
+    "rimeheart": {
+      "tagline": "Wrath of the Lich King · centinaia di novità",
+      "points": [
+        "Cinque fasi da tre mesi",
+        "Incursioni eroiche, qualità Artefatto, boss del mondo",
+        "30 nuovi incantesimi di classe, 277 nuove ricette"
+      ]
+    }
   }
 }
