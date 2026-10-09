@@ -11,6 +11,7 @@ import { usePathname, useRouter } from "next/navigation";
 import clsx from "clsx";
 
 import { usePathRealm, useRealmPreview } from "@/lib/realm-context";
+import { OVERLAY_MOTION } from "@/lib/overlay-motion";
 import {
   REALMS,
   REALM_SLUGS,
@@ -53,7 +54,11 @@ export function RealmSwitcher({ onNavigate }: { onNavigate?: () => void }) {
   };
 
   return (
-    <Dropdown placement="bottom-start">
+    <Dropdown
+      motionProps={OVERLAY_MOTION}
+      placement="bottom-start"
+      shouldBlockScroll={false}
+    >
       <DropdownTrigger>
         <button
           className={clsx(

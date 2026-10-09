@@ -10,6 +10,8 @@ import {
 } from "@heroui/dropdown";
 import { Button } from "@heroui/button";
 
+import { OVERLAY_MOTION } from "@/lib/overlay-motion";
+
 const locales = [
   { code: "en", label: "English", flag: "🇬🇧" },
   { code: "fr", label: "Français", flag: "🇫🇷" },
@@ -36,7 +38,7 @@ export function LocaleSwitcher() {
   };
 
   return (
-    <Dropdown>
+    <Dropdown motionProps={OVERLAY_MOTION} shouldBlockScroll={false}>
       <DropdownTrigger>
         <Button
           className="min-w-[40px] text-gray-400"

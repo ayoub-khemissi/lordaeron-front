@@ -17,6 +17,7 @@ import {
   type ShopFacets,
 } from "@/lib/shop-utils";
 import { useRealm } from "@/lib/realm-context";
+import { OVERLAY_POPOVER } from "@/lib/overlay-motion";
 
 export type ShopView = ShopCategory | "highlighted" | null;
 
@@ -154,6 +155,7 @@ export function ShopToolbar({
             trigger: field,
             popoverContent: "bg-[#161b22] border border-wow-gold/15",
           }}
+          popoverProps={OVERLAY_POPOVER}
           selectedKeys={[category ?? "all"]}
           onSelectionChange={(keys) => {
             const key = Array.from(keys)[0] as string | undefined;
@@ -175,7 +177,7 @@ export function ShopToolbar({
             )),
           ]}
         </Select>
-        <Popover placement="bottom-end">
+        <Popover {...OVERLAY_POPOVER} placement="bottom-end">
           <PopoverTrigger>
             <Button
               className={clsx(

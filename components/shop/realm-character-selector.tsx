@@ -7,6 +7,7 @@ import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 
 import { RACE_NAMES, CLASS_NAMES } from "@/lib/shop-utils";
+import { OVERLAY_POPOVER } from "@/lib/overlay-motion";
 
 interface RealmCharacterSelectorProps {
   characters: Character[];
@@ -44,6 +45,7 @@ export function RealmCharacterSelector({
           }}
           label={t("selectCharacter")}
           placeholder={t("selectCharacter")}
+          popoverProps={OVERLAY_POPOVER}
           renderValue={(_items) => {
             const char = selectedCharacter;
 

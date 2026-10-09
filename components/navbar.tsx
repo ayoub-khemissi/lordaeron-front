@@ -31,6 +31,7 @@ import { useAuth } from "@/lib/auth-context";
 import { RealmSwitcher } from "@/components/realm-switcher";
 import { usePathRealm, useRealmPreview } from "@/lib/realm-context";
 import { REALMS, REALM_SLUGS, realmPath, realmView } from "@/lib/realms";
+import { OVERLAY_MOTION } from "@/lib/overlay-motion";
 
 export const Navbar = () => {
   const t = useTranslations();
@@ -171,7 +172,11 @@ export const Navbar = () => {
             <div className="w-24 h-8 rounded-lg bg-white/5 animate-pulse" />
           ) : user ? (
             /* Logged in: user dropdown */
-            <Dropdown placement="bottom-end">
+            <Dropdown
+              motionProps={OVERLAY_MOTION}
+              placement="bottom-end"
+              shouldBlockScroll={false}
+            >
               <DropdownTrigger>
                 <Button
                   className="glass border-wow-gold/20 hover:border-wow-gold/40 transition-colors gap-2 px-3"

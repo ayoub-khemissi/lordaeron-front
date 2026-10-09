@@ -6,6 +6,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* the scrollbar's room is always kept: a modal's scroll lock no longer shifts the page by its width */
+html {
+  scrollbar-gutter: stable;
+}
+
 @theme {
   --font-sans: "Lexend", sans-serif;
   --font-heading: "Friz Quadrata", serif;

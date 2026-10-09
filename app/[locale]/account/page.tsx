@@ -45,6 +45,7 @@ import {
   ALLIANCE_RACES,
 } from "@/lib/shop-utils";
 import { DEFAULT_REALM, realmPath } from "@/lib/realms";
+import { OVERLAY_POPOVER } from "@/lib/overlay-motion";
 
 function formatPlayTime(seconds: number): string {
   const days = Math.floor(seconds / 86400);
@@ -406,6 +407,7 @@ export default function AccountPage() {
               popoverContent: "bg-[#161b22] border border-wow-gold/15",
             }}
             label={t("title")}
+            popoverProps={OVERLAY_POPOVER}
             selectedKeys={[activeTab]}
             size="sm"
             onSelectionChange={(keys) => {
