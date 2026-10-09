@@ -3,11 +3,12 @@ import type { ShopAdminJWTPayload } from "@/types";
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 
-const secret = new TextEncoder().encode(
-  process.env.ADMIN_JWT_SECRET || "changeme-admin-secret-key-2024",
-);
+import { ADMIN_SESSION_COOKIE, adminSecret } from "@/lib/admin-secret";
+import { ADMIN_PREVIEW_COOKIE } from "@/lib/realms";
 
-const COOKIE_NAME = "lordaeron_admin_session";
+const secret = adminSecret;
+
+const COOKIE_NAME = ADMIN_SESSION_COOKIE;
 
 export async function createAdminSession(
   payload: ShopAdminJWTPayload,
@@ -44,6 +45,19 @@ export function getAdminSessionCookieOptions(token: string) {
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax" as const,
     maxAge: 60 * 60 * 8, // 8 hours
+    path: "/",
+  };
+}
+
+// the pages' hint of an administrator's view of the realms (lib/realms.ts realmView), as long as the session
+export function getAdminPreviewCookieOptions(on: boolean) {
+  return {
+    name: ADMIN_PREVIEW_COOKIE,
+    value: on ? "1" : "",
+    httpOnly: false,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax" as const,
+    maxAge: on ? 60 * 60 * 8 : 0,
     path: "/",
   };
 }

@@ -29,8 +29,8 @@ import { LocaleSwitcher } from "@/components/locale-switcher";
 import { DiscordIcon } from "@/components/icons";
 import { useAuth } from "@/lib/auth-context";
 import { RealmSwitcher } from "@/components/realm-switcher";
-import { usePathRealm } from "@/lib/realm-context";
-import { REALMS, REALM_SLUGS, realmHasSection, realmPath } from "@/lib/realms";
+import { usePathRealm, useRealmPreview } from "@/lib/realm-context";
+import { REALMS, REALM_SLUGS, realmPath, realmView } from "@/lib/realms";
 
 export const Navbar = () => {
   const t = useTranslations();
@@ -39,6 +39,9 @@ export const Navbar = () => {
   const { user, loading, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathRealm = usePathRealm();
+  // an administrator sees every section of every realm (lib/realms.ts realmView)
+  const preview = useRealmPreview();
+  const view = pathRealm ? realmView(pathRealm, preview) : null;
 
   // inside a realm: its sections and the shared pages; outside (the portal, the account, news): the realms and the shared pages
   const menu: {
@@ -51,7 +54,7 @@ export const Navbar = () => {
         .filter(
           (item) =>
             item.scope === "shared" ||
-            (item.section && realmHasSection(pathRealm, item.section)),
+            (item.section && view!.sections.includes(item.section)),
         )
         .filter((item) => item.href !== "/shop" || user)
         .map((item) => ({
@@ -61,7 +64,7 @@ export const Navbar = () => {
             item.scope === "realm"
               ? realmPath(locale, pathRealm, item.href)
               : `/${locale}${item.href}`,
-          comingSoon: item.comingSoon,
+          comingSoon: item.comingSoon && !preview,
         }))
     : [
         ...REALM_SLUGS.map((slug) => ({
@@ -134,7 +137,7 @@ export const Navbar = () => {
             ) : (
               <NavbarItem key={item.key}>
                 <NextLink
-                  className="text-gray-200 hover:text-wow-gold px-2.5 py-2 rounded-lg hover:bg-wow-gold/5 transition-all duration-300 text-sm font-medium whitespace-nowrap"
+                  className="text-gray-200 hover:text-wow-gold px-2 2xl:px-2.5 py-2 rounded-lg hover:bg-wow-gold/5 transition-all duration-300 text-sm font-medium whitespace-nowrap"
                   href={item.href}
                 >
                   {item.label}

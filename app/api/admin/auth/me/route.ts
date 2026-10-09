@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
 
-import { verifyAdminSession } from "@/lib/admin-auth";
+import {
+  getAdminPreviewCookieOptions,
+  verifyAdminSession,
+} from "@/lib/admin-auth";
 import { findAdminById } from "@/lib/queries/shop-admin";
 
 export const dynamic = "force-dynamic";
@@ -8,6 +12,9 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   try {
     const session = await verifyAdminSession();
+
+    // the pages' hint of the administrators' view, in step with the session
+    (await cookies()).set(getAdminPreviewCookieOptions(!!session));
 
     if (!session) {
       return NextResponse.json({ admin: null });

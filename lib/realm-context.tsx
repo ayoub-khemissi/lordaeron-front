@@ -1,13 +1,20 @@
 "use client";
 
-import { createContext, useContext, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 import { useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
 
 import {
+  ADMIN_PREVIEW_COOKIE,
   DEFAULT_REALM,
-  REALMS,
   isRealmSlug,
+  realmView,
   realmPath,
   type RealmInfo,
   type RealmSlug,
@@ -36,11 +43,27 @@ export function usePathRealm(): RealmSlug | null {
   return isRealmSlug(segment) ? segment : null;
 }
 
+// an administrator's view of the realms (lib/realms.ts realmView), known after the first render (the cookie is the browser's)
+export function useRealmPreview(): boolean {
+  const [preview, setPreview] = useState(false);
+
+  useEffect(() => {
+    setPreview(
+      document.cookie
+        .split("; ")
+        .some((c) => c === `${ADMIN_PREVIEW_COOKIE}=1`),
+    );
+  }, []);
+
+  return preview;
+}
+
 export function useRealm(): RealmInfo {
   const fromContext = useContext(RealmContext);
   const fromPath = usePathRealm();
+  const preview = useRealmPreview();
 
-  return REALMS[fromContext ?? fromPath ?? DEFAULT_REALM];
+  return realmView(fromContext ?? fromPath ?? DEFAULT_REALM, preview);
 }
 
 // a page of the current realm: href("/shop/mounts") -> "/fr/rimeheart/shop/mounts"

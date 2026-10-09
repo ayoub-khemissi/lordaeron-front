@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 
 import {
   createAdminSession,
+  getAdminPreviewCookieOptions,
   getAdminSessionCookieOptions,
 } from "@/lib/admin-auth";
 import {
@@ -51,6 +52,7 @@ export async function POST(request: NextRequest) {
     const cookieStore = await cookies();
 
     cookieStore.set(getAdminSessionCookieOptions(token));
+    cookieStore.set(getAdminPreviewCookieOptions(true));
 
     return NextResponse.json({
       success: true,

@@ -31,7 +31,22 @@ export interface RealmInfo {
   sections: RealmSection[];
   // the realm's colors on the portal and its pages
   accent: "gold" | "ice";
+  // an administrator's view of it (realmView): everything open, as on its opening day
+  preview?: boolean;
 }
+
+export const ALL_SECTIONS: RealmSection[] = [
+  "home",
+  "how-to",
+  "features",
+  "epic-progression",
+  "raid-scaling",
+  "armory",
+  "shop",
+];
+
+// set (not httpOnly) beside the admin session so the pages know to show the administrators' view; the server checks the session itself
+export const ADMIN_PREVIEW_COOKIE = "lordaeron_admin_preview";
 
 export const REALMS: Record<RealmSlug, RealmInfo> = {
   lordaeron: {
@@ -63,6 +78,18 @@ export const REALMS: Record<RealmSlug, RealmInfo> = {
 };
 
 export const DEFAULT_REALM: RealmSlug = "lordaeron";
+
+// what an administrator sees of a realm (Ayoub, 09/10/2026: to build a realm's site as if it were open): every section, its shop selling
+const PREVIEWS = Object.fromEntries(
+  Object.values(REALMS).map((realm) => [
+    realm.slug,
+    { ...realm, status: "open", sections: ALL_SECTIONS, preview: true },
+  ]),
+) as Record<RealmSlug, RealmInfo>;
+
+export function realmView(slug: RealmSlug, preview: boolean): RealmInfo {
+  return preview ? PREVIEWS[slug] : REALMS[slug];
+}
 
 export function isRealmSlug(
   value: string | undefined | null,

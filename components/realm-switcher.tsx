@@ -10,12 +10,12 @@ import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import clsx from "clsx";
 
-import { usePathRealm } from "@/lib/realm-context";
+import { usePathRealm, useRealmPreview } from "@/lib/realm-context";
 import {
   REALMS,
   REALM_SLUGS,
-  realmHasSection,
   realmPath,
+  realmView,
   type RealmSection,
   type RealmSlug,
 } from "@/lib/realms";
@@ -32,6 +32,7 @@ export function RealmSwitcher({ onNavigate }: { onNavigate?: () => void }) {
   const router = useRouter();
   const pathname = usePathname() ?? "";
   const current = usePathRealm();
+  const preview = useRealmPreview();
 
   if (!current) return null;
   const realm = REALMS[current];
@@ -45,7 +46,7 @@ export function RealmSwitcher({ onNavigate }: { onNavigate?: () => void }) {
     const target = key as RealmSlug;
 
     router.push(
-      realmHasSection(target, section) && rest
+      realmView(target, preview).sections.includes(section) && rest
         ? realmPath(locale, target, `/${rest}`)
         : realmPath(locale, target),
     );
@@ -68,6 +69,15 @@ export function RealmSwitcher({ onNavigate }: { onNavigate?: () => void }) {
             )}
           />
           {realm.name}
+          {/* an administrator's view: the realm as on its opening day */}
+          {preview && realm.status !== "open" && (
+            <span
+              className="rounded bg-wow-gold/20 px-1 py-px text-[9px] tracking-wider text-wow-gold-light"
+              title={t("adminPreview")}
+            >
+              Admin
+            </span>
+          )}
           <svg
             aria-hidden
             className="h-3 w-3 opacity-70"

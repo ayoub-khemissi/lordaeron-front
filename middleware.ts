@@ -4,6 +4,7 @@ import createMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
 
 import { DEFAULT_REALM, REALM_SLUGS } from "@/lib/realms";
+import { ADMIN_SESSION_COOKIE, isAdminToken } from "@/lib/admin-secret";
 
 const intlMiddleware = createMiddleware(routing);
 
@@ -28,7 +29,7 @@ const legacyRealmSections = [
 ];
 const REALM_PREFIX = new RegExp(`^/(${REALM_SLUGS.join("|")})(/|$)`);
 
-export default function middleware(request: NextRequest) {
+export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Strip locale prefix to get the raw path
@@ -68,7 +69,11 @@ export default function middleware(request: NextRequest) {
     ? pathWithoutLocale.slice(realmMatch[1].length + 1) || "/"
     : pathWithoutLocale;
 
-  const isBlocked = !!realm && blockedPaths.some((p) => under(sectionPath, p));
+  // an administrator sees the sections not open yet (lib/realms.ts realmView)
+  const isBlocked =
+    !!realm &&
+    blockedPaths.some((p) => under(sectionPath, p)) &&
+    !(await isAdminToken(request.cookies.get(ADMIN_SESSION_COOKIE)?.value));
 
   if (isBlocked) {
     return NextResponse.redirect(new URL(`/${locale}/${realm}`, request.url));

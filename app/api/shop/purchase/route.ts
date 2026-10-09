@@ -19,6 +19,7 @@ import {
 import { ALLIANCE_RACES } from "@/lib/shop-utils";
 import { sendItem, sendItems } from "@/lib/soap";
 import { offeredOnRealm, realmById, type RealmInfo } from "@/lib/realms";
+import { isRealmPreviewer } from "@/lib/realm-preview";
 
 function checkFaction(faction: string, characterRace: number): string | null {
   if (faction === "both") return null;
@@ -194,7 +195,8 @@ export async function POST(request: NextRequest) {
     if (!realm) {
       return NextResponse.json({ error: "realmRestricted" }, { status: 400 });
     }
-    if (realm.status !== "open") {
+    // an administrator buys on a realm not open yet, to try its shop (lib/realm-preview.ts)
+    if (realm.status !== "open" && !(await isRealmPreviewer())) {
       return NextResponse.json({ error: "realmNotOpen" }, { status: 403 });
     }
 

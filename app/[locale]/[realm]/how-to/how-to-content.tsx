@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import clsx from "clsx";
 
 import { useRealm } from "@/lib/realm-context";
+import { REALMS } from "@/lib/realms";
 
 const WOWHEAD_ICON = "https://wow.zamimg.com/images/wow/icons/large";
 
@@ -81,7 +82,7 @@ export default function HowToContent() {
             {t("subtitle", { realm: realm.name })}
           </p>
           <div className="shimmer-line w-32 mx-auto" />
-          {realm.status !== "open" && (
+          {REALMS[realm.slug].status !== "open" && (
             <p className="mx-auto mt-6 max-w-2xl rounded-xl border border-wow-blue-ice/30 bg-wow-blue-ice/10 px-5 py-3 text-sm text-wow-blue-ice">
               {t("realmSoon", { realm: realm.name })}
             </p>
