@@ -16,7 +16,14 @@ import { ItemDetailModal } from "@/components/shop/item-detail-modal";
 import { PurchaseModal } from "@/components/shop/purchase-modal";
 import { GiftModal } from "@/components/shop/gift-modal";
 import { CategoryFilterBar } from "@/components/shop/category-filter-bar";
-import { SHOP_CATEGORIES } from "@/lib/shop-utils";
+import {
+  NO_FACETS,
+  SHOP_CATEGORIES,
+  compareShopEntries,
+  matchesFacets,
+  type ShopFacets as ShopFacetsState,
+} from "@/lib/shop-utils";
+import { ShopFacets } from "@/components/shop/shop-facets";
 import { useRealm, useRealmHref } from "@/lib/realm-context";
 
 export default function CategoryContent() {
@@ -37,7 +44,9 @@ export default function CategoryContent() {
   const [balance, setBalance] = useState(0);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [sortBy, setSortBy] = useState("price");
+  const [sortBy, setSortBy] = useState("price_desc");
+  const [showUnavailable, setShowUnavailable] = useState(false);
+  const [facets, setFacets] = useState<ShopFacetsState>(NO_FACETS);
 
   const [detailItem, setDetailItem] = useState<ShopItemLocalized | null>(null);
   const [purchaseItem, setPurchaseItem] = useState<ShopItemLocalized | null>(
@@ -140,22 +149,13 @@ export default function CategoryContent() {
 
   const filteredItems = items
     .filter((item) => {
+      if (!showUnavailable && item.eligible === false) return false;
+      if (!matchesFacets(item, facets)) return false;
       if (!search) return true;
 
       return item.name.toLowerCase().includes(search.toLowerCase());
     })
-    .sort((a, b) => {
-      switch (sortBy) {
-        case "price":
-          return a.discounted_price - b.discounted_price;
-        case "name":
-          return a.name.localeCompare(b.name);
-        case "newest":
-          return b.id - a.id;
-        default:
-          return 0;
-      }
-    });
+    .sort(compareShopEntries(sortBy));
 
   if (authLoading) {
     return (
@@ -202,10 +202,13 @@ export default function CategoryContent() {
 
       <CategoryFilterBar
         search={search}
+        showUnavailable={showUnavailable}
         sortBy={sortBy}
         onSearchChange={setSearch}
+        onShowUnavailableChange={setShowUnavailable}
         onSortChange={setSortBy}
       />
+      <ShopFacets entries={items} facets={facets} onChange={setFacets} />
 
       {loading ? (
         <div className="flex justify-center py-16">

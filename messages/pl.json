@@ -454,7 +454,15 @@
     },
     "comingSoon": "Wkrótce",
     "realmSoonTitle": "Sklep {realm} otworzy się wraz ze światem",
-    "realmSoonText": "Zobacz, co na ciebie czeka: zakupy ruszą w dniu otwarcia {realm}."
+    "realmSoonText": "Zobacz, co na ciebie czeka: zakupy ruszą w dniu otwarcia {realm}.",
+    "facets": {
+      "all": "Wszystko",
+      "ground": "Naziemne",
+      "flying": "Latające",
+      "weapon": "Broń",
+      "armor": "Zbroje",
+      "exclusive": "Ekskluzywne na {realm}"
+    }
   },
   "admin": {
     "login": {

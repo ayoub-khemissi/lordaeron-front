@@ -215,7 +215,12 @@ export interface ShopItemLocalized {
   sort_order: number;
   eligible?: boolean;
   restriction_reason?: string | null;
+  // the shop's filters (app/api/shop/items): a mount's ground or flying, a transmog piece's weapon or armor; sold on this realm alone
+  kind?: ShopItemKind | null;
+  exclusive?: boolean;
 }
+
+export type ShopItemKind = "ground" | "flying" | "weapon" | "armor";
 
 export interface ShopPurchase {
   id: number;
@@ -363,6 +368,7 @@ export interface ShopSetLocalized {
   min_level: number;
   sort_order: number;
   items: ShopSetItemLocalized[];
+  exclusive?: boolean;
   eligible?: boolean;
   restriction_reason?: string | null;
 }

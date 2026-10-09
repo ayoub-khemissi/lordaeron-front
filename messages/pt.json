@@ -454,7 +454,15 @@
     },
     "comingSoon": "Em breve",
     "realmSoonTitle": "A loja de {realm} abrirá com o reino",
-    "realmSoonText": "Descubra o que o espera: as compras abrem no dia em que {realm} abrir."
+    "realmSoonText": "Descubra o que o espera: as compras abrem no dia em que {realm} abrir.",
+    "facets": {
+      "all": "Tudo",
+      "ground": "Terrestres",
+      "flying": "Voadoras",
+      "weapon": "Armas",
+      "armor": "Armaduras",
+      "exclusive": "Exclusivos de {realm}"
+    }
   },
   "admin": {
     "login": {

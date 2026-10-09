@@ -6,7 +6,7 @@ import { verifySession } from "@/lib/auth";
 import { getShopSets } from "@/lib/queries/shop-sets";
 import { getShopSetItems } from "@/lib/queries/shop-sets";
 import { localizeShopSet, ALLIANCE_RACES, HORDE_RACES } from "@/lib/shop-utils";
-import { offeredOnRealm, requestRealm } from "@/lib/realms";
+import { REALMS, offeredOnRealm, requestRealm } from "@/lib/realms";
 
 export const dynamic = "force-dynamic";
 
@@ -71,7 +71,14 @@ export async function GET(request: NextRequest) {
         }
       }
 
-      return { ...base, eligible, restriction_reason };
+      return {
+        ...base,
+        eligible,
+        restriction_reason,
+        // sold on this realm alone (the shop's "exclusives" filter)
+        exclusive:
+          s.realm_ids?.length === 1 && s.realm_ids[0] === REALMS[realm].realmId,
+      };
     });
 
     return NextResponse.json({ sets: localized });

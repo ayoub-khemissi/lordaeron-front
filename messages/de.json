@@ -438,7 +438,15 @@
     },
     "comingSoon": "Demnächst",
     "realmSoonTitle": "Der Shop von {realm} öffnet mit dem Realm",
-    "realmSoonText": "Entdecke, was dich erwartet: Käufe sind ab dem Tag möglich, an dem {realm} öffnet."
+    "realmSoonText": "Entdecke, was dich erwartet: Käufe sind ab dem Tag möglich, an dem {realm} öffnet.",
+    "facets": {
+      "all": "Alle",
+      "ground": "Boden",
+      "flying": "Flug",
+      "weapon": "Waffen",
+      "armor": "Rüstung",
+      "exclusive": "Exklusiv auf {realm}"
+    }
   },
   "admin": {
     "login": {

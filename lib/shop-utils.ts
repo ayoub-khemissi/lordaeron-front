@@ -1,4 +1,5 @@
 import type {
+  ShopItemKind,
   ShopItem,
   ShopItemLocalized,
   ShopSetWithItems,
@@ -211,3 +212,57 @@ export const CLASS_COLORS: Record<number, string> = {
 };
 
 export const RESTORE_CHARACTER_COST = 50;
+
+// the shop's sort orders (components/shop/category-filter-bar.tsx), for items and sets alike
+export function compareShopEntries(sortBy: string) {
+  return <
+    T extends {
+      discounted_price: number;
+      id: number;
+      name: string;
+      quality?: number | null;
+    },
+  >(
+    a: T,
+    b: T,
+  ) => {
+    switch (sortBy) {
+      case "price_asc":
+        return a.discounted_price - b.discounted_price;
+      case "price_desc":
+        return b.discounted_price - a.discounted_price;
+      case "name_asc":
+        return a.name.localeCompare(b.name);
+      case "name_desc":
+        return b.name.localeCompare(a.name);
+      case "quality_asc":
+        return (a.quality ?? 0) - (b.quality ?? 0);
+      case "quality_desc":
+        return (b.quality ?? 0) - (a.quality ?? 0);
+      case "newest":
+        return b.id - a.id;
+      case "oldest":
+        return a.id - b.id;
+      default:
+        return 0;
+    }
+  };
+}
+
+// the shop's facets (components/shop/shop-facets.tsx): a kind (null: any) and the realm's own articles only
+export interface ShopFacets {
+  kind: ShopItemKind | null;
+  exclusive: boolean;
+}
+
+export const NO_FACETS: ShopFacets = { kind: null, exclusive: false };
+
+export function matchesFacets(
+  entry: { kind?: ShopItemKind | null; exclusive?: boolean },
+  facets: ShopFacets,
+) {
+  return (
+    (!facets.kind || entry.kind === facets.kind) &&
+    (!facets.exclusive || !!entry.exclusive)
+  );
+}

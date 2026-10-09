@@ -34,7 +34,14 @@ import { PurchaseModal } from "@/components/shop/purchase-modal";
 import { GiftModal } from "@/components/shop/gift-modal";
 import { CategoryFilterBar } from "@/components/shop/category-filter-bar";
 import { BuyShardsModal } from "@/components/shop/buy-shards-modal";
-import { CATEGORY_ICONS } from "@/lib/shop-utils";
+import {
+  CATEGORY_ICONS,
+  NO_FACETS,
+  compareShopEntries,
+  matchesFacets,
+  type ShopFacets as ShopFacetsState,
+} from "@/lib/shop-utils";
+import { ShopFacets } from "@/components/shop/shop-facets";
 import { useRealm, useRealmHref } from "@/lib/realm-context";
 import { RealmSoonBanner } from "@/components/shop/realm-soon-banner";
 
@@ -63,6 +70,7 @@ export default function ShopContent() {
   const [showSetFilter, setShowSetFilter] = useState(true);
   const [showItemFilter, setShowItemFilter] = useState(true);
   const [showUnavailable, setShowUnavailable] = useState(false);
+  const [facets, setFacets] = useState<ShopFacetsState>(NO_FACETS);
   const [prefsLoaded, setPrefsLoaded] = useState(false);
 
   // Modal states
@@ -330,43 +338,13 @@ export default function ShopContent() {
   };
 
   // Sort function shared between items and sets
-  const sortFn = <
-    T extends {
-      discounted_price: number;
-      id: number;
-      name: string;
-      quality?: number | null;
-    },
-  >(
-    a: T,
-    b: T,
-  ) => {
-    switch (sortBy) {
-      case "price_asc":
-        return a.discounted_price - b.discounted_price;
-      case "price_desc":
-        return b.discounted_price - a.discounted_price;
-      case "name_asc":
-        return a.name.localeCompare(b.name);
-      case "name_desc":
-        return b.name.localeCompare(a.name);
-      case "quality_asc":
-        return (a.quality ?? 0) - (b.quality ?? 0);
-      case "quality_desc":
-        return (b.quality ?? 0) - (a.quality ?? 0);
-      case "newest":
-        return b.id - a.id;
-      case "oldest":
-        return a.id - b.id;
-      default:
-        return 0;
-    }
-  };
+  const sortFn = compareShopEntries(sortBy);
 
   // Filter & sort items
   const filteredItems = items
     .filter((item) => {
       if (!showUnavailable && item.eligible === false) return false;
+      if (!matchesFacets(item, facets)) return false;
       if (!search) return true;
 
       return item.name.toLowerCase().includes(search.toLowerCase());
@@ -377,6 +355,8 @@ export default function ShopContent() {
   const filteredSets = sets
     .filter((s) => {
       if (!showUnavailable && s.eligible === false) return false;
+      // a kind is a piece's (weapon, armor...): a set has none
+      if (facets.kind || !matchesFacets(s, facets)) return false;
       if (!search) return true;
 
       return s.name.toLowerCase().includes(search.toLowerCase());
@@ -493,7 +473,10 @@ export default function ShopContent() {
 
       <CategoryNav
         selectedCategory={selectedCategory}
-        onCategoryChange={setSelectedCategory}
+        onCategoryChange={(category) => {
+          setSelectedCategory(category);
+          setFacets(NO_FACETS);
+        }}
       />
 
       <CategoryFilterBar
@@ -511,6 +494,20 @@ export default function ShopContent() {
               onShowItemsChange: setShowItemFilter,
             }
           : {})}
+      />
+
+      <ShopFacets
+        entries={[
+          ...items.filter(
+            (i) =>
+              !selectedCategory ||
+              selectedCategory === "highlighted" ||
+              i.category === selectedCategory,
+          ),
+          ...(selectedCategory === "transmog" ? sets : []),
+        ]}
+        facets={facets}
+        onChange={setFacets}
       />
 
       {loading ? (

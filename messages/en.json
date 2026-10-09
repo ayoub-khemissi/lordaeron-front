@@ -438,7 +438,15 @@
     },
     "comingSoon": "Coming soon",
     "realmSoonTitle": "The {realm} shop opens with the realm",
-    "realmSoonText": "Browse what awaits you: purchases open on the day {realm} opens."
+    "realmSoonText": "Browse what awaits you: purchases open on the day {realm} opens.",
+    "facets": {
+      "all": "All",
+      "ground": "Ground",
+      "flying": "Flying",
+      "weapon": "Weapons",
+      "armor": "Armor",
+      "exclusive": "{realm} exclusives"
+    }
   },
   "admin": {
     "login": {
