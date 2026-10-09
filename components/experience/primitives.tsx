@@ -447,7 +447,12 @@ export function IconMarquee({
   speed?: number;
   tips?: Record<string, string>;
 }) {
-  const row = [...icons, ...icons];
+  // one half at least as wide as a big screen (26 icons of 64 px and their gaps), the second half its copy: the loop never shows a hole
+  const half = Array.from(
+    { length: Math.max(1, Math.ceil(26 / Math.max(1, icons.length))) },
+    () => icons,
+  ).flat();
+  const row = [...half, ...half];
 
   // CSS animation: it pauses under the pointer, so an icon can be read
   return (
@@ -455,7 +460,8 @@ export function IconMarquee({
       <div
         className="animate-marquee flex w-max gap-5 py-3 group-hover/marquee:[animation-play-state:paused]"
         style={{
-          animationDuration: `${speed}s`,
+          // the same pace whatever the repeats
+          animationDuration: `${(speed * half.length) / Math.max(1, icons.length)}s`,
           animationDirection: reverse ? "reverse" : "normal",
         }}
       >

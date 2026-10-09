@@ -120,7 +120,7 @@ export const Navbar = () => {
           </NextLink>
         </NavbarBrand>
         {pathRealm && (
-          <li className="ml-2 hidden shrink-0 sm:block">
+          <li className="ml-2 shrink-0">
             <RealmSwitcher />
           </li>
         )}

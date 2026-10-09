@@ -45,7 +45,6 @@ import {
   useTipEntry,
   useTipText,
 } from "@/components/experience/game-tooltip";
-import { ServerStatus } from "@/components/server-status";
 import { ChapterNav, ExperienceHero } from "@/components/experience/hero";
 import {
   BgImg,
@@ -182,16 +181,37 @@ function StatRow({
   lang: Lang;
   className?: string;
 }) {
+  // every cell filled: the columns follow the number of figures, and on a phone an odd last one takes the whole row (the gold of the
+  // gaps showed through an empty cell)
+  const cols =
+    stats.length === 3
+      ? "grid-cols-3"
+      : ({
+          2: "grid-cols-2",
+          4: "grid-cols-2 sm:grid-cols-4",
+          5: "grid-cols-2 sm:grid-cols-5",
+          6: "grid-cols-2 sm:grid-cols-3",
+        }[stats.length] ?? "grid-cols-2 sm:grid-cols-4");
+
   return (
     <div
       className={clsx(
         "grid gap-px overflow-hidden rounded-xl border border-wow-gold/15 bg-wow-gold/15",
-        stats.length === 3 ? "grid-cols-3" : "grid-cols-2 sm:grid-cols-4",
+        cols,
         className,
       )}
     >
       {stats.map((s, i) => (
-        <div key={i} className="bg-wow-darker/90 px-2 py-6 text-center sm:px-5">
+        <div
+          key={i}
+          className={clsx(
+            "bg-wow-darker/90 px-2 py-6 text-center sm:px-5",
+            stats.length !== 3 &&
+              stats.length % 2 === 1 &&
+              i === stats.length - 1 &&
+              "col-span-2 sm:col-span-1",
+          )}
+        >
           <Counter
             className="block font-heading text-3xl text-wow-gold-light sm:text-5xl"
             value={s.value}
@@ -382,7 +402,13 @@ function ArtifactItem({ lang }: { lang: Lang }) {
         style={{ borderColor: `${v.color}66` }}
       >
         <div className="flex items-start gap-4">
-          <WowIcon glow="none" icon="inv_sword_133" size={52} />
+          {/* the tooltip of the quality shown: the epic sabre, then its Artifact copy */}
+          <WowIcon
+            glow="none"
+            icon="inv_sword_133"
+            size={52}
+            tip={up ? "item:646036" : "item:46036"}
+          />
           <div className="min-w-0">
             <p
               className="text-lg font-semibold transition-colors duration-700"
@@ -1645,10 +1671,6 @@ export default function ExperienceContent({ locale }: { locale: string }) {
           image="/img/Wrath of the Lich King Classic Cinematic Stills/Wrath_of_the_Lich_King_Classic_Cinematic_Still__(4).jpg"
           joinHref={joinHref}
         />
-        {/* the realm's state in the realm list (offline until it opens), like Lordaeron's home */}
-        <div className="relative z-10 flex justify-center pt-8">
-          <ServerStatus />
-        </div>
         <Manifesto lang={lang} />
         <Phases lang={lang} />
         <Artifact lang={lang} />
