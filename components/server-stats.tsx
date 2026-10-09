@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 
+import { useRealm } from "@/lib/realm-context";
+
 const statImages = [
   "/img/Wrath of the Lich King Classic Reveal Screenshots 1080p/WoW_Wrath_Dalaran_004_1080p_png_jpgcopy.jpg",
   "/img/Wrath of the Lich King Classic Reveal Screenshots 1080p/WoW_Wrath_Dalaran_007_1080p_png_jpgcopy.jpg",
@@ -13,13 +15,14 @@ const statImages = [
 
 export const ServerStats = () => {
   const t = useTranslations("home");
+  const realm = useRealm();
   const [stats, setStats] = useState<ServerStatsType | null>(null);
   const [factionMode, setFactionMode] = useState<"live" | "total">("live");
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await fetch("/api/server/stats");
+        const res = await fetch(`/api/server/stats?realm=${realm.slug}`);
         const data = await res.json();
 
         setStats(data);
@@ -39,7 +42,7 @@ export const ServerStats = () => {
     const interval = setInterval(fetchStats, 30000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [realm.slug]);
 
   const alliance =
     factionMode === "live" ? stats?.alliance || 0 : stats?.totalAlliance || 0;

@@ -32,14 +32,6 @@ export const charactersDb = createPool({
   database: process.env.DB_CHARACTERS_NAME || "characters",
 });
 
-export const worldDb = createPool({
-  host: process.env.DB_WORLD_HOST || "localhost",
-  port: parseInt(process.env.DB_WORLD_PORT || "3306"),
-  user: process.env.DB_WORLD_USER || "root",
-  password: process.env.DB_WORLD_PASSWORD || "",
-  database: process.env.DB_WORLD_NAME || "world",
-});
-
 export const websiteDb = createPool({
   host: process.env.DB_WEBSITE_HOST || "localhost",
   port: parseInt(process.env.DB_WEBSITE_PORT || "3306"),

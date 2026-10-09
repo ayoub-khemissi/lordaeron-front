@@ -52,8 +52,8 @@ export const REALMS: Record<RealmSlug, RealmInfo> = {
   },
   rimeheart: {
     slug: "rimeheart",
-    // the Lab realm until Rimeheart opens on its own server
-    realmId: Number(process.env.RIMEHEART_REALM_ID || 3),
+    // its own row in auth.realmlist (offline until it opens); its data is still the Lab realm's (lib/realms-server.ts)
+    realmId: Number(process.env.RIMEHEART_REALM_ID || 4),
     name: "Rimeheart",
     status: "soon",
     // its how-to has no client patch yet (it comes with its opening)

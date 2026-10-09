@@ -5,6 +5,8 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Chip } from "@heroui/chip";
 
+import { useRealm } from "@/lib/realm-context";
+
 function formatUptime(seconds: number): string {
   const days = Math.floor(seconds / 86400);
   const hours = Math.floor((seconds % 86400) / 3600);
@@ -23,7 +25,8 @@ function formatUptime(seconds: number): string {
 export const ServerStatus = () => {
   const t = useTranslations("common");
   const [online, setOnline] = useState<boolean | null>(null);
-  const [realmName, setRealmName] = useState("Lordaeron");
+  const realm = useRealm();
+  const [realmName, setRealmName] = useState(realm.name);
   const [uptime, setUptime] = useState<number | null>(null);
   const starttimeRef = useRef<number | null>(null);
 
@@ -36,11 +39,11 @@ export const ServerStatus = () => {
   useEffect(() => {
     const fetchStatus = async () => {
       try {
-        const res = await fetch("/api/server/status");
+        const res = await fetch(`/api/server/status?realm=${realm.slug}`);
         const data = await res.json();
 
         setOnline(data.online);
-        setRealmName(data.name || "Lordaeron");
+        setRealmName(data.name || realm.name);
         starttimeRef.current = data.starttime ?? null;
         setUptime(computeUptime());
       } catch {
@@ -54,7 +57,7 @@ export const ServerStatus = () => {
     const fetchInterval = setInterval(fetchStatus, 30000);
 
     return () => clearInterval(fetchInterval);
-  }, [computeUptime]);
+  }, [computeUptime, realm.slug, realm.name]);
 
   useEffect(() => {
     if (starttimeRef.current === null) return;

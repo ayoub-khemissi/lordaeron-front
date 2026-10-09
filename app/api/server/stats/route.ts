@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import {
   getOnlineCount,
@@ -6,16 +6,20 @@ import {
   getTotalFactionBalance,
   getTotalAccounts,
 } from "@/lib/queries/server";
+import { requestRealm } from "@/lib/realms";
 
 export const dynamic = "force-dynamic";
 
-export async function GET() {
+// a realm's players (?realm=<slug>, Lordaeron's by default); the accounts are shared
+export async function GET(request: NextRequest) {
+  const realm = requestRealm(new URL(request.url).searchParams.get("realm"));
+
   try {
     const [onlineCount, factionBalance, totalFactionBalance, totalAccounts] =
       await Promise.all([
-        getOnlineCount(),
-        getFactionBalance(),
-        getTotalFactionBalance(),
+        getOnlineCount(realm),
+        getFactionBalance(realm),
+        getTotalFactionBalance(realm),
         getTotalAccounts(),
       ]);
 

@@ -45,6 +45,7 @@ import {
   useTipEntry,
   useTipText,
 } from "@/components/experience/game-tooltip";
+import { ServerStatus } from "@/components/server-status";
 import { ChapterNav, ExperienceHero } from "@/components/experience/hero";
 import {
   BgImg,
@@ -1644,6 +1645,10 @@ export default function ExperienceContent({ locale }: { locale: string }) {
           image="/img/Wrath of the Lich King Classic Cinematic Stills/Wrath_of_the_Lich_King_Classic_Cinematic_Still__(4).jpg"
           joinHref={joinHref}
         />
+        {/* the realm's state in the realm list (offline until it opens), like Lordaeron's home */}
+        <div className="relative z-10 flex justify-center pt-8">
+          <ServerStatus />
+        </div>
         <Manifesto lang={lang} />
         <Phases lang={lang} />
         <Artifact lang={lang} />

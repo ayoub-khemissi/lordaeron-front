@@ -1,6 +1,6 @@
 import mysql from "mysql2/promise";
 
-import { charactersDb, worldDb } from "@/lib/db";
+import { charactersDb } from "@/lib/db";
 import { DEFAULT_REALM, type RealmSlug } from "@/lib/realms";
 
 /*
@@ -69,11 +69,9 @@ function pool(database: string) {
   return p;
 }
 
-// Lordaeron's databases: the site's own pools (lib/db.ts) unless overridden
 export const realmWorldDb = (slug: RealmSlug) =>
-  slug === DEFAULT_REALM && !process.env.LORDAERON_DB_WORLD_NAME
-    ? worldDb
-    : pool(realmServer(slug).worldDbName);
+  pool(realmServer(slug).worldDbName);
+// Lordaeron's characters: the site's own pool (lib/db.ts) unless its database is overridden
 export const realmCharactersDb = (slug: RealmSlug) =>
   slug === DEFAULT_REALM && !process.env.LORDAERON_DB_CHARACTERS_NAME
     ? charactersDb
