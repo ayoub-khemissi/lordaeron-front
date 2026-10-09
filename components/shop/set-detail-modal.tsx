@@ -124,7 +124,7 @@ export function SetDetailModal({
           </div>
 
           {/* Restrictions */}
-          {(set.class_ids || set.faction !== "both") && (
+          {(!!set.class_ids?.length || set.faction !== "both") && (
             <div className="bg-[#161b22] rounded-lg p-4 mb-4">
               <p className="text-xs text-gray-400 uppercase tracking-wider mb-2">
                 {t("restrictions")}
@@ -142,7 +142,7 @@ export function SetDetailModal({
                     {t("factionRestriction")}: {set.faction}
                   </Chip>
                 )}
-                {set.class_ids && (
+                {!!set.class_ids?.length && (
                   <Chip className="bg-cyan-500/10 text-cyan-300" size="sm">
                     {t("classRestriction")}:{" "}
                     {set.class_ids.map((id) => t(`className_${id}`)).join(", ")}

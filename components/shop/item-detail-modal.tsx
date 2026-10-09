@@ -114,10 +114,9 @@ export function ItemDetailModal({
             />
           </div>
 
-          {/* Restrictions */}
-          {(item.realm_ids ||
-            item.race_ids ||
-            item.class_ids ||
+          {/* Restrictions: only those it has (its realms are the page's) */}
+          {(!!item.race_ids?.length ||
+            !!item.class_ids?.length ||
             item.faction !== "both") && (
             <div className="bg-[#161b22] rounded-lg p-4">
               <p className="text-xs text-gray-400 uppercase tracking-wider mb-2">
@@ -136,13 +135,13 @@ export function ItemDetailModal({
                     {t("factionRestriction")}: {item.faction}
                   </Chip>
                 )}
-                {item.race_ids && (
+                {!!item.race_ids?.length && (
                   <Chip className="bg-orange-500/10 text-orange-300" size="sm">
                     {t("raceRestriction")}:{" "}
                     {item.race_ids.map((id) => RACE_NAMES[id]).join(", ")}
                   </Chip>
                 )}
-                {item.class_ids && (
+                {!!item.class_ids?.length && (
                   <Chip className="bg-cyan-500/10 text-cyan-300" size="sm">
                     {t("classRestriction")}:{" "}
                     {item.class_ids
