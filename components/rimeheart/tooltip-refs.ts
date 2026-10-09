@@ -23,6 +23,7 @@ export const refByName: Record<string, string> = {
   "Esprits vils": "spell:100620", // Vile Spirits
   "Graine d'étoile": "spell:100650", // Starseed
   "Bonds du prédateur": "spell:100653", // Predator's Leaps
+  "Peau d'Ursoc": "spell:100652", // Ursoc's Hide
   "Feu follet du bosquet": "spell:100654", // Grove Wisp
   "Écho sauvage": "spell:100700", // Wild Echo
   "Tir de Nesingwary": "spell:100702", // Nesingwary's Trophy Shot
@@ -203,6 +204,7 @@ export const classSpellRefs: Record<string, { ref: string; icon: string }[]> = {
   druid: [
     { ref: "spell:100650", icon: "spell_nature_brilliance" }, // Starseed
     { ref: "spell:100653", icon: "ability_druid_catformattack" }, // Predator's Leaps
+    { ref: "spell:100652", icon: "inv_misc_pelt_bear_01" }, // Ursoc's Hide
     { ref: "spell:100654", icon: "inv_enchant_dustdream" }, // Grove Wisp
   ],
   hunter: [

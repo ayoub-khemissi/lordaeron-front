@@ -480,7 +480,11 @@ export const classes = {
         },
         {
           name: L("Bonds du prédateur", "Predator's Leaps"),
-          spec: L("Combat farouche", "Feral"),
+          spec: L("Combat farouche (félin)", "Feral (Cat)"),
+        },
+        {
+          name: L("Peau d'Ursoc", "Ursoc's Hide"),
+          spec: L("Combat farouche (ours)", "Feral (Bear)"),
         },
         {
           name: L("Feu follet du bosquet", "Grove Wisp"),

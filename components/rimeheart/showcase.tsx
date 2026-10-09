@@ -522,7 +522,7 @@ const TRAINER_LEVEL: Record<string, number[]> = {
   priest: [20, 30, 44],
   warrior: [20, 36, 50],
   deathknight: [58, 64, 72],
-  druid: [30, 40, 50],
+  druid: [30, 40, 40, 50],
   hunter: [30, 40, 50],
   mage: [30, 40, 50],
   rogue: [30, 40, 50],
@@ -639,7 +639,12 @@ function Classes({ lang }: { lang: Lang }) {
           <motion.div
             key={c.key}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-10 grid gap-5 md:grid-cols-3"
+            className={clsx(
+              "mt-10 grid gap-5",
+              c.spells.length === 4
+                ? "md:grid-cols-2 xl:grid-cols-4"
+                : "md:grid-cols-3",
+            )}
             exit={{ opacity: 0, y: -12 }}
             initial={{ opacity: 0, y: 16 }}
             transition={{ duration: 0.35 }}
