@@ -3,6 +3,9 @@
 import { Snippet } from "@heroui/snippet";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
+import clsx from "clsx";
+
+import { useRealm } from "@/lib/realm-context";
 
 const WOWHEAD_ICON = "https://wow.zamimg.com/images/wow/icons/large";
 
@@ -32,6 +35,8 @@ const steps = [
     icon: `${WOWHEAD_ICON}/inv_misc_wrench_01.jpg`,
     bg: "/img/Wrath of the Lich King Classic Reveal Screenshots 1080p/WoW_Wrath_Dalaran_007_1080p_png_jpgcopy.jpg",
     download: "/patches/patch-Z.MPQ",
+    // Lordaeron's client patch; Rimeheart's comes with its opening
+    realms: ["lordaeron"],
   },
   {
     key: "step6",
@@ -42,6 +47,10 @@ const steps = [
 
 export default function HowToContent() {
   const t = useTranslations("howTo");
+  const realm = useRealm();
+  const realmSteps = steps.filter(
+    (step) => !("realms" in step) || step.realms?.includes(realm.slug),
+  );
 
   return (
     <div
@@ -60,15 +69,27 @@ export default function HowToContent() {
           initial={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl sm:text-5xl font-black wow-gradient-text mb-3">
+          <h1
+            className={clsx(
+              "text-4xl sm:text-5xl font-black mb-3",
+              realm.accent === "ice" ? "wow-ice-text" : "wow-gradient-text",
+            )}
+          >
             {t("title")}
           </h1>
-          <p className="text-gray-300 mb-4">{t("subtitle")}</p>
+          <p className="text-gray-300 mb-4">
+            {t("subtitle", { realm: realm.name })}
+          </p>
           <div className="shimmer-line w-32 mx-auto" />
+          {realm.status !== "open" && (
+            <p className="mx-auto mt-6 max-w-2xl rounded-xl border border-wow-blue-ice/30 bg-wow-blue-ice/10 px-5 py-3 text-sm text-wow-blue-ice">
+              {t("realmSoon", { realm: realm.name })}
+            </p>
+          )}
         </motion.div>
 
         <div className="space-y-6">
-          {steps.map((step, index) => (
+          {realmSteps.map((step, index) => (
             <motion.div
               key={step.key}
               animate={{ opacity: 1, x: 0 }}
@@ -108,7 +129,7 @@ export default function HowToContent() {
                       </h3>
                     </div>
                     <p className="text-gray-300 text-sm leading-relaxed break-words">
-                      {t(`${step.key}Desc`)}
+                      {t(`${step.key}Desc`, { realm: realm.name })}
                     </p>
 
                     {step.key === "step2" && (

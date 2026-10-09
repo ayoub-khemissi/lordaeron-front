@@ -35,7 +35,8 @@
   },
   "howTo": {
     "title": "How to Connect",
-    "subtitle": "Follow these simple steps to join Lordaeron",
+    "subtitle": "Follow these simple steps to join {realm}",
+    "realmSoon": "{realm} opens soon: get your client ready now, the realm will appear in the realm list on opening day.",
     "step1Title": "Download the Client",
     "step1Desc": "Download World of Warcraft version 3.3.5a (build 12340). You can find it on popular WoW archive sites.",
     "step2Title": "Set the Realmlist",
@@ -48,7 +49,7 @@
     "step5Desc": "Download the patch-Z.MPQ file and place it in your WoW Data/ folder (next to the other .MPQ files). This patch adjusts the client to match the server's custom settings (guild bank tab prices, etc.). If you already have a patch-Z.MPQ, rename one of them to patch-Y.MPQ or patch-X.MPQ to keep both.",
     "step5Download": "Download patch-Z.MPQ",
     "step6Title": "Play!",
-    "step6Desc": "Launch WoW.exe, log in with your credentials, and enjoy Lordaeron!",
+    "step6Desc": "Launch WoW.exe, log in with your credentials, pick {realm} in the realm list and enjoy!",
     "realmlist": "set realmlist logon.lordaeron.eu",
     "copied": "Copied!",
     "copyRealmlist": "Click to copy",
@@ -844,8 +845,8 @@
       "description": "Join Lordaeron, a free-to-play WoW 3.3.5a private server with epic progressive raid progression from Vanilla to TBC to WotLK. Transmog, crossfaction, x5 XP, twice-weekly raid resets, AOE loot, and more."
     },
     "howTo": {
-      "title": "How to Connect to Lordaeron — WoW 3.3.5a Private Server",
-      "description": "Connect to Lordaeron WoW private server in 4 steps: download the 3.3.5a WotLK client, set the realmlist, create a free account, and start your epic progressive adventure."
+      "title": "How to Connect to {realm} — WoW 3.3.5a Private Server",
+      "description": "Connect to {realm} WoW private server in 4 steps: download the 3.3.5a WotLK client, set the realmlist, create a free account, and start your epic progressive adventure."
     },
     "features": {
       "title": "Server Features — Transmog, Crossfaction, Progressive Raids & More",

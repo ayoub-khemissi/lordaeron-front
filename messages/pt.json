@@ -37,7 +37,8 @@
   },
   "howTo": {
     "title": "Como Conectar",
-    "subtitle": "Segue estes passos simples para te juntares a Lordaeron",
+    "subtitle": "Segue estes passos simples para te juntares a {realm}",
+    "realmSoon": "{realm} abre em breve: prepara já o teu cliente, o reino aparecerá na lista de reinos no dia da abertura.",
     "purchaseHistory": "Histórico de compras",
     "noPurchases": "Nenhuma compra ainda.",
     "step1Title": "Descarregar o Cliente",
@@ -52,7 +53,7 @@
     "step5Desc": "Descarrega o ficheiro patch-Z.MPQ e coloca-o na pasta Data/ do teu WoW (junto aos outros ficheiros .MPQ). Este patch ajusta o cliente para corresponder às definições personalizadas do servidor (preços dos separadores do banco de guilda, etc.). Se já tiveres um patch-Z.MPQ, renomeia um deles para patch-Y.MPQ ou patch-X.MPQ para manteres os dois.",
     "step5Download": "Descarregar patch-Z.MPQ",
     "step6Title": "Jogar!",
-    "step6Desc": "Executa o WoW.exe, inicia sessao com as tuas credenciais e desfruta de Lordaeron!",
+    "step6Desc": "Executa o WoW.exe, inicia sessão com as tuas credenciais, escolhe {realm} na lista de reinos e diverte-te!",
     "realmlist": "set realmlist logon.lordaeron.eu",
     "copied": "Copiado!",
     "copyRealmlist": "Clica para copiar",
@@ -870,8 +871,8 @@
       "description": "Junta-te a Lordaeron, um servidor privado gratuito de WoW 3.3.5a com progressao epica de raids de Vanilla a TBC ate WotLK. Transmog, crossfaction, x5 XP, reset de raids duas vezes por semana, AOE loot e muito mais."
     },
     "howTo": {
-      "title": "Como Conectar a Lordaeron — Servidor Privado WoW 3.3.5a",
-      "description": "Conecta-te ao servidor privado de WoW Lordaeron em 4 passos: descarrega o cliente 3.3.5a WotLK, define a realmlist, cria uma conta gratuita e comeca a tua aventura de progressao epica."
+      "title": "Como Conectar a {realm} — Servidor Privado WoW 3.3.5a",
+      "description": "Conecta-te ao servidor privado de WoW {realm} em 4 passos: descarrega o cliente 3.3.5a WotLK, define a realmlist, cria uma conta gratuita e comeca a tua aventura de progressao epica."
     },
     "features": {
       "title": "Funcionalidades do Servidor — Transmog, Crossfaction, Raids Progressivos e Mais",

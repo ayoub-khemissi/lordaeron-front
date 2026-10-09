@@ -35,7 +35,8 @@
   },
   "howTo": {
     "title": "Wie man sich verbindet",
-    "subtitle": "Folge diesen einfachen Schritten, um Lordaeron beizutreten",
+    "subtitle": "Folge diesen einfachen Schritten, um {realm} beizutreten",
+    "realmSoon": "{realm} öffnet bald: Bereite deinen Client schon jetzt vor, der Realm erscheint am Eröffnungstag in der Realmliste.",
     "step1Title": "Client herunterladen",
     "step1Desc": "Lade World of Warcraft Version 3.3.5a (Build 12340) herunter. Du findest es auf beliebten WoW-Archivseiten.",
     "step2Title": "Realmlist konfigurieren",
@@ -48,7 +49,7 @@
     "step5Desc": "Lade die Datei patch-Z.MPQ herunter und lege sie in deinen WoW Data/-Ordner (neben den anderen .MPQ-Dateien). Dieser Patch passt den Client an die benutzerdefinierten Servereinstellungen an (Gildenbank-Tab-Preise usw.). Falls du bereits eine patch-Z.MPQ hast, benenne eine davon in patch-Y.MPQ oder patch-X.MPQ um, damit beide erhalten bleiben.",
     "step5Download": "patch-Z.MPQ herunterladen",
     "step6Title": "Spielen!",
-    "step6Desc": "Starte WoW.exe, melde dich mit deinen Zugangsdaten an und genieße Lordaeron!",
+    "step6Desc": "Starte WoW.exe, melde dich mit deinen Zugangsdaten an, wähle {realm} in der Realmliste und viel Spaß!",
     "realmlist": "set realmlist logon.lordaeron.eu",
     "copied": "Kopiert!",
     "copyRealmlist": "Klicken zum Kopieren",
@@ -844,8 +845,8 @@
       "description": "Tritt Lordaeron bei, einem kostenlosen WoW 3.3.5a Privatserver mit epischer Raid-Progression von Vanilla über TBC bis WotLK. Transmog, Crossfaction, x5 XP, 2x/Woche Raid-Resets, AOE-Loot und mehr."
     },
     "howTo": {
-      "title": "Verbindung zu Lordaeron — WoW 3.3.5a Privatserver",
-      "description": "Verbinde dich mit dem WoW-Privatserver Lordaeron in 4 Schritten: 3.3.5a WotLK-Client herunterladen, Realmlist einrichten, kostenloses Konto erstellen und das epische Abenteuer starten."
+      "title": "Verbindung zu {realm} — WoW 3.3.5a Privatserver",
+      "description": "Verbinde dich mit dem WoW-Privatserver {realm} in 4 Schritten: 3.3.5a WotLK-Client herunterladen, Realmlist einrichten, kostenloses Konto erstellen und das epische Abenteuer starten."
     },
     "features": {
       "title": "Server-Features — Transmog, Crossfaction, Progressive Raids & Mehr",

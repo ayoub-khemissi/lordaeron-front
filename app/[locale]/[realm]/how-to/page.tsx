@@ -7,6 +7,7 @@ import HowToContent from "./how-to-content";
 import { JsonLd } from "@/components/json-ld";
 import { buildPageMetadata } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
+import { DEFAULT_REALM, REALMS, realmBySlug } from "@/lib/realms";
 
 export async function generateMetadata({
   params,
@@ -15,10 +16,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, realm } = await params;
   const t = await getTranslations({ locale, namespace: "meta.howTo" });
+  const name = realmBySlug(realm)?.name ?? REALMS[DEFAULT_REALM].name;
 
   return buildPageMetadata(locale, `/${realm}/how-to`, {
-    title: t("title"),
-    description: t("description"),
+    title: t("title", { realm: name }),
+    description: t("description", { realm: name }),
   });
 }
 

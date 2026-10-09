@@ -35,7 +35,8 @@
   },
   "howTo": {
     "title": "Cómo conectarse",
-    "subtitle": "Sigue estos simples pasos para unirte a Lordaeron",
+    "subtitle": "Sigue estos simples pasos para unirte a {realm}",
+    "realmSoon": "{realm} abrirá pronto: prepara tu cliente desde ahora, el reino aparecerá en la lista de reinos el día de su apertura.",
     "step1Title": "Descargar el cliente",
     "step1Desc": "Descarga World of Warcraft versión 3.3.5a (build 12340). Puedes encontrarlo en sitios de archivos populares de WoW.",
     "step2Title": "Configurar el Realmlist",
@@ -48,7 +49,7 @@
     "step5Desc": "Descarga el archivo patch-Z.MPQ y colócalo en la carpeta Data/ de tu WoW (junto a los otros archivos .MPQ). Este parche ajusta el cliente para que coincida con la configuración personalizada del servidor (precios de pestañas del banco de hermandad, etc.). Si ya tienes un patch-Z.MPQ, renombra uno de ellos a patch-Y.MPQ o patch-X.MPQ para conservar ambos.",
     "step5Download": "Descargar patch-Z.MPQ",
     "step6Title": "¡Jugar!",
-    "step6Desc": "Inicia WoW.exe, inicia sesión con tus credenciales, ¡y disfruta de Lordaeron!",
+    "step6Desc": "Inicia WoW.exe, inicia sesión con tus credenciales, elige {realm} en la lista de reinos y ¡disfruta!",
     "realmlist": "set realmlist logon.lordaeron.eu",
     "copied": "¡Copiado!",
     "copyRealmlist": "Haz clic para copiar",
@@ -842,8 +843,8 @@
       "description": "Únete a Lordaeron, servidor privado WoW 3.3.5a gratuito con progresión épica de raids de Vanilla a TBC y WotLK. Transmog, crossfaction, x5 XP, resets de raids 2x/semana, loot AOE y más."
     },
     "howTo": {
-      "title": "Cómo conectarse a Lordaeron — Servidor Privado WoW 3.3.5a",
-      "description": "Conéctate al servidor privado WoW Lordaeron en 4 pasos: descarga el cliente 3.3.5a WotLK, configura el realmlist, crea una cuenta gratis y comienza tu aventura progresiva."
+      "title": "Cómo conectarse a {realm} — Servidor Privado WoW 3.3.5a",
+      "description": "Conéctate al servidor privado WoW {realm} en 4 pasos: descarga el cliente 3.3.5a WotLK, configura el realmlist, crea una cuenta gratis y comienza tu aventura progresiva."
     },
     "features": {
       "title": "Características — Transmog, Crossfaction, Raids Progresivos y Más",

@@ -37,7 +37,8 @@
   },
   "howTo": {
     "title": "Jak się połączyć",
-    "subtitle": "Wykonaj te proste kroki, aby dołączyć do Lordaeron",
+    "subtitle": "Wykonaj te proste kroki, aby dołączyć do {realm}",
+    "realmSoon": "{realm} wkrótce zostanie otwarty: przygotuj klienta już teraz, świat pojawi się na liście światów w dniu otwarcia.",
     "purchaseHistory": "Historia zakupów",
     "noPurchases": "Brak zakupów.",
     "step1Title": "Pobierz klienta",
@@ -52,7 +53,7 @@
     "step5Desc": "Pobierz plik patch-Z.MPQ i umieść go w folderze Data/ swojego WoW (obok innych plików .MPQ). Ta łatka dostosowuje klienta do niestandardowych ustawień serwera (ceny kart banku gildii itp.). Jeśli masz już plik patch-Z.MPQ, zmień nazwę jednego z nich na patch-Y.MPQ lub patch-X.MPQ, aby zachować oba.",
     "step5Download": "Pobierz patch-Z.MPQ",
     "step6Title": "Graj!",
-    "step6Desc": "Uruchom WoW.exe, zaloguj się swoimi danymi i ciesz się Lordaeron!",
+    "step6Desc": "Uruchom WoW.exe, zaloguj się swoimi danymi, wybierz {realm} z listy światów i baw się dobrze!",
     "realmlist": "set realmlist logon.lordaeron.eu",
     "copied": "Skopiowano!",
     "copyRealmlist": "Kliknij, aby skopiować",
@@ -870,8 +871,8 @@
       "description": "Dołącz do Lordaeron, darmowego prywatnego serwera WoW 3.3.5a z epicką progresywną progresją rajdową od Vanilla przez TBC po WotLK. Transmog, crossfaction, x5 XP, resety rajdów dwa razy w tygodniu, AOE loot i więcej."
     },
     "howTo": {
-      "title": "Jak się połączyć z Lordaeron — Prywatny serwer WoW 3.3.5a",
-      "description": "Połącz się z prywatnym serwerem Lordaeron WoW w 4 krokach: pobierz klienta 3.3.5a WotLK, ustaw realmlist, utwórz darmowe konto i rozpocznij swoją epicką progresywną przygodę."
+      "title": "Jak się połączyć z {realm} — Prywatny serwer WoW 3.3.5a",
+      "description": "Połącz się z prywatnym serwerem {realm} WoW w 4 krokach: pobierz klienta 3.3.5a WotLK, ustaw realmlist, utwórz darmowe konto i rozpocznij swoją epicką progresywną przygodę."
     },
     "features": {
       "title": "Funkcje serwera — Transmog, Crossfaction, Progresywne rajdy i więcej",
