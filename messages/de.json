@@ -446,6 +446,12 @@
       "weapon": "Waffen",
       "armor": "Rüstung",
       "exclusive": "Exklusiv auf {realm}"
+    },
+    "filters": {
+      "title": "Filter",
+      "type": "Typ",
+      "show": "Anzeigen",
+      "reset": "Zurücksetzen"
     }
   },
   "admin": {

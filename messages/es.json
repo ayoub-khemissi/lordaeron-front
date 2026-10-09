@@ -444,6 +444,12 @@
       "weapon": "Armas",
       "armor": "Armaduras",
       "exclusive": "Exclusivas de {realm}"
+    },
+    "filters": {
+      "title": "Filtros",
+      "type": "Tipo",
+      "show": "Mostrar",
+      "reset": "Restablecer"
     }
   },
   "admin": {

@@ -462,6 +462,12 @@
       "weapon": "Broń",
       "armor": "Zbroje",
       "exclusive": "Ekskluzywne na {realm}"
+    },
+    "filters": {
+      "title": "Filtry",
+      "type": "Typ",
+      "show": "Pokaż",
+      "reset": "Resetuj"
     }
   },
   "admin": {

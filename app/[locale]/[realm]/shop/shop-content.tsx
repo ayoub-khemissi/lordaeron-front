@@ -25,27 +25,31 @@ import Image from "next/image";
 import { useAuth } from "@/lib/auth-context";
 import { ShopHeader } from "@/components/shop/shop-header";
 import { RealmCharacterSelector } from "@/components/shop/realm-character-selector";
-import { CategoryNav } from "@/components/shop/category-nav";
 import { ItemGrid } from "@/components/shop/item-grid";
 import { SetGrid } from "@/components/shop/set-grid";
 import { ItemDetailModal } from "@/components/shop/item-detail-modal";
 import { SetDetailModal } from "@/components/shop/set-detail-modal";
 import { PurchaseModal } from "@/components/shop/purchase-modal";
 import { GiftModal } from "@/components/shop/gift-modal";
-import { CategoryFilterBar } from "@/components/shop/category-filter-bar";
 import { BuyShardsModal } from "@/components/shop/buy-shards-modal";
 import {
   CATEGORY_ICONS,
+  DEFAULT_SORT,
   NO_FACETS,
   compareShopEntries,
   matchesFacets,
   type ShopFacets as ShopFacetsState,
 } from "@/lib/shop-utils";
-import { ShopFacets } from "@/components/shop/shop-facets";
+import { ShopToolbar, type ShopView } from "@/components/shop/shop-toolbar";
 import { useRealm, useRealmHref } from "@/lib/realm-context";
 import { RealmSoonBanner } from "@/components/shop/realm-soon-banner";
 
-export default function ShopContent() {
+// the shop, all of it or one category (app/[locale]/[realm]/shop/[category]: the same page, opened on that category)
+export default function ShopContent({
+  initialCategory = null,
+}: {
+  initialCategory?: ShopCategory | null;
+}) {
   const t = useTranslations("shop");
   const locale = useLocale();
   const realmHref = useRealmHref();
@@ -60,13 +64,12 @@ export default function ShopContent() {
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
     null,
   );
-  const [selectedCategory, setSelectedCategory] = useState<
-    ShopCategory | "highlighted" | null
-  >(null);
+  const [selectedCategory, setSelectedCategory] =
+    useState<ShopView>(initialCategory);
   const [balance, setBalance] = useState(0);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [sortBy, setSortBy] = useState("price_desc");
+  const [sortBy, setSortBy] = useState(DEFAULT_SORT);
   const [showSetFilter, setShowSetFilter] = useState(true);
   const [showItemFilter, setShowItemFilter] = useState(true);
   const [showUnavailable, setShowUnavailable] = useState(false);
@@ -471,18 +474,36 @@ export default function ShopContent() {
         <RealmSoonBanner />
       )}
 
-      <CategoryNav
-        selectedCategory={selectedCategory}
-        onCategoryChange={(category) => {
-          setSelectedCategory(category);
-          setFacets(NO_FACETS);
-        }}
-      />
-
-      <CategoryFilterBar
+      <ShopToolbar
+        category={selectedCategory}
+        entries={[
+          ...items.filter(
+            (i) =>
+              !selectedCategory ||
+              selectedCategory === "highlighted" ||
+              i.category === selectedCategory,
+          ),
+          ...(selectedCategory === "transmog" ? sets : []),
+        ]}
+        facets={facets}
         search={search}
         showUnavailable={showUnavailable}
         sortBy={sortBy}
+        onCategoryChange={(category) => {
+          setSelectedCategory(category);
+          setFacets(NO_FACETS);
+          // the address follows the category (a category has its own page), without reloading the shop
+          window.history.replaceState(
+            null,
+            "",
+            realmHref(
+              category && category !== "highlighted"
+                ? `/shop/${category}`
+                : "/shop",
+            ),
+          );
+        }}
+        onFacetsChange={setFacets}
         onSearchChange={setSearch}
         onShowUnavailableChange={setShowUnavailable}
         onSortChange={setSortBy}
@@ -494,20 +515,6 @@ export default function ShopContent() {
               onShowItemsChange: setShowItemFilter,
             }
           : {})}
-      />
-
-      <ShopFacets
-        entries={[
-          ...items.filter(
-            (i) =>
-              !selectedCategory ||
-              selectedCategory === "highlighted" ||
-              i.category === selectedCategory,
-          ),
-          ...(selectedCategory === "transmog" ? sets : []),
-        ]}
-        facets={facets}
-        onChange={setFacets}
       />
 
       {loading ? (

@@ -462,6 +462,12 @@
       "weapon": "Armas",
       "armor": "Armaduras",
       "exclusive": "Exclusivos de {realm}"
+    },
+    "filters": {
+      "title": "Filtros",
+      "type": "Tipo",
+      "show": "Mostrar",
+      "reset": "Repor"
     }
   },
   "admin": {

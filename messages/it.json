@@ -446,6 +446,12 @@
       "weapon": "Armi",
       "armor": "Armature",
       "exclusive": "Esclusive di {realm}"
+    },
+    "filters": {
+      "title": "Filtri",
+      "type": "Tipo",
+      "show": "Mostra",
+      "reset": "Reimposta"
     }
   },
   "admin": {

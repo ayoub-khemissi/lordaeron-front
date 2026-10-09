@@ -213,7 +213,10 @@ export const CLASS_COLORS: Record<number, string> = {
 
 export const RESTORE_CHARACTER_COST = 50;
 
-// the shop's sort orders (components/shop/category-filter-bar.tsx), for items and sets alike
+// the shop's default sort order
+export const DEFAULT_SORT = "price_desc";
+
+// the shop's sort orders (components/shop/shop-toolbar.tsx), for items and sets alike
 export function compareShopEntries(sortBy: string) {
   return <
     T extends {
@@ -249,7 +252,7 @@ export function compareShopEntries(sortBy: string) {
   };
 }
 
-// the shop's facets (components/shop/shop-facets.tsx): a kind (null: any) and the realm's own articles only
+// the shop's facets (components/shop/shop-toolbar.tsx): a kind (null: any) and the realm's own articles only
 export interface ShopFacets {
   kind: ShopItemKind | null;
   exclusive: boolean;

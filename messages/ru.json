@@ -462,6 +462,12 @@
       "weapon": "Оружие",
       "armor": "Доспехи",
       "exclusive": "Эксклюзивы {realm}"
+    },
+    "filters": {
+      "title": "Фильтры",
+      "type": "Тип",
+      "show": "Показать",
+      "reset": "Сбросить"
     }
   },
   "admin": {
