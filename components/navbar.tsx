@@ -20,6 +20,7 @@ import {
 } from "@heroui/dropdown";
 import Image from "next/image";
 import NextLink from "next/link";
+import clsx from "clsx";
 import { useTranslations, useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 
@@ -90,30 +91,36 @@ export const Navbar = () => {
       onMenuOpenChange={setIsMenuOpen}
     >
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
-        <NavbarBrand as="li" className="gap-3 max-w-fit">
+        <NavbarBrand as="li" className="gap-3 max-w-fit shrink-0">
           <NextLink
-            className="flex justify-start items-center gap-2 group"
+            className="flex shrink-0 justify-start items-center gap-2 group"
             href={`/${locale}`}
             onClick={() => setIsMenuOpen(false)}
           >
             <Image
               alt="Lordaeron"
-              className="drop-shadow-[0_0_6px_rgba(199,156,62,0.4)]"
+              className="min-w-8 shrink-0 drop-shadow-[0_0_6px_rgba(199,156,62,0.4)]"
               height={32}
               src="/img/logo/logo.png"
               width={32}
             />
-            <span className="font-heading text-xl font-black wow-gradient-text tracking-widest uppercase">
+            {/* inside a realm the realm's pill says where one is (its name would repeat Lordaeron's) */}
+            <span
+              className={clsx(
+                "font-heading text-xl font-black wow-gradient-text tracking-widest uppercase",
+                pathRealm && "sr-only",
+              )}
+            >
               Lordaeron
             </span>
           </NextLink>
         </NavbarBrand>
         {pathRealm && (
-          <li className="hidden sm:block">
+          <li className="ml-2 hidden shrink-0 sm:block">
             <RealmSwitcher />
           </li>
         )}
-        <ul className="hidden lg:flex gap-1 justify-start items-center ml-4">
+        <ul className="hidden lg:flex gap-0.5 justify-start items-center ml-3">
           {menu.map((item) =>
             item.comingSoon ? (
               <NavbarItem key={item.key}>
@@ -127,7 +134,7 @@ export const Navbar = () => {
             ) : (
               <NavbarItem key={item.key}>
                 <NextLink
-                  className="text-gray-200 hover:text-wow-gold px-3 py-2 rounded-lg hover:bg-wow-gold/5 transition-all duration-300 text-sm font-medium"
+                  className="text-gray-200 hover:text-wow-gold px-2.5 py-2 rounded-lg hover:bg-wow-gold/5 transition-all duration-300 text-sm font-medium whitespace-nowrap"
                   href={item.href}
                 >
                   {item.label}
