@@ -38,6 +38,8 @@ export interface LocaleConfig {
 
 const EN = en as Strings;
 const FR = fr as Strings;
+// languages with client texts (DBC) but no client wordings: English wordings, except a neutral value range inside their sentences
+const LOCALIZED_TEXT_ONLY: Strings = { _VALUE_RANGE: "%s - %s" };
 
 // 3.3.5 client locale ids (DBC string slots)
 const SLOT = { enUS: 0, frFR: 2, deDE: 3, esES: 6, ruRU: 8 } as const;
@@ -61,21 +63,21 @@ export const LOCALES: Record<TooltipLocale, LocaleConfig> = {
     locale: "de",
     slot: SLOT.deDE,
     itemLocale: "deDE",
-    strings: EN,
+    strings: LOCALIZED_TEXT_ONLY,
     decimalComma: true,
   },
   es: {
     locale: "es",
     slot: SLOT.esES,
     itemLocale: "esES",
-    strings: EN,
+    strings: LOCALIZED_TEXT_ONLY,
     decimalComma: true,
   },
   ru: {
     locale: "ru",
     slot: SLOT.ruRU,
     itemLocale: "ruRU",
-    strings: EN,
+    strings: LOCALIZED_TEXT_ONLY,
     decimalComma: true,
   },
   // no client data in these languages: English

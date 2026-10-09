@@ -18,7 +18,11 @@ export function num(v: number, lc: LocaleConfig, decimals = 2): string {
 
 // Russian plural forms (one / few / many)
 function pluralRu(n: number, forms: string[]) {
-  const [one, few, many] = [forms[0], forms[1] ?? forms[0], forms[2] ?? forms[1] ?? forms[0]];
+  const [one, few, many] = [
+    forms[0],
+    forms[1] ?? forms[0],
+    forms[2] ?? forms[1] ?? forms[0],
+  ];
   const m10 = n % 10;
   const m100 = n % 100;
 
@@ -33,11 +37,22 @@ function pluralRu(n: number, forms: string[]) {
  * The client's string.format on a GlobalStrings wording: %d %s %c %.Nf %.3g, positional %1$d, %%; then its escapes: |4one:many; (the
  * plural of the number before it) and the French |2 (de / d'). A string given to %d is printed as is (an already formatted number).
  */
-export function fmt(lc: LocaleConfig, pattern: string, ...args: unknown[]): string {
+export function fmt(
+  lc: LocaleConfig,
+  pattern: string,
+  ...args: unknown[]
+): string {
   let next = 0;
   let out = pattern.replace(
     /%(?:(\d+)\$)?([-+ 0#]*)(\d*)(?:\.(\d+))?([dsfgc%])/g,
-    (m, pos: string | undefined, _flags, _width, prec: string | undefined, conv: string) => {
+    (
+      m,
+      pos: string | undefined,
+      _flags,
+      _width,
+      prec: string | undefined,
+      conv: string,
+    ) => {
       if (conv === "%") return "%";
       const arg = args[pos ? Number(pos) - 1 : next++];
 

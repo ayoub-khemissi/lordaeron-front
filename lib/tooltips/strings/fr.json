@@ -189,6 +189,8 @@
   ],
   "_MANA_COST_PCT": "%d%% du mana de base",
   "_SPELL_HOME": "<foyer>",
+  "_SPELL_RECAST_TIME_HOURS": "%d h de recharge",
+  "_VALUE_RANGE": "%s à %s",
   "_WEAPON_SUBCLASS": [
     "Hache",
     "Hache",

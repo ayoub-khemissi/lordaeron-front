@@ -189,6 +189,8 @@
   ],
   "_MANA_COST_PCT": "%d%% of base mana",
   "_SPELL_HOME": "<home>",
+  "_SPELL_RECAST_TIME_HOURS": "%d |4hour:hours; cooldown",
+  "_VALUE_RANGE": "%s to %s",
   "_WEAPON_SUBCLASS": [
     "Axe",
     "Axe",
