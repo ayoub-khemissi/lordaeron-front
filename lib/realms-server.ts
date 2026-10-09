@@ -1,6 +1,7 @@
 import mysql from "mysql2/promise";
 
-import { type RealmSlug } from "@/lib/realms";
+import { charactersDb, worldDb } from "@/lib/db";
+import { DEFAULT_REALM, type RealmSlug } from "@/lib/realms";
 
 /*
  * The server side of a realm (lib/realms.ts): its databases, its SOAP and its client data. Pools are made on first use and kept.
@@ -68,7 +69,12 @@ function pool(database: string) {
   return p;
 }
 
+// Lordaeron's databases: the site's own pools (lib/db.ts) unless overridden
 export const realmWorldDb = (slug: RealmSlug) =>
-  pool(realmServer(slug).worldDbName);
+  slug === DEFAULT_REALM && !process.env.LORDAERON_DB_WORLD_NAME
+    ? worldDb
+    : pool(realmServer(slug).worldDbName);
 export const realmCharactersDb = (slug: RealmSlug) =>
-  pool(realmServer(slug).charactersDbName);
+  slug === DEFAULT_REALM && !process.env.LORDAERON_DB_CHARACTERS_NAME
+    ? charactersDb
+    : pool(realmServer(slug).charactersDbName);

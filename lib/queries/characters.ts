@@ -3,11 +3,14 @@ import type { Character, DeletedCharacter } from "@/types";
 import { RowDataPacket } from "mysql2";
 
 import { charactersDb } from "@/lib/db";
+import { DEFAULT_REALM, type RealmSlug } from "@/lib/realms";
+import { realmCharactersDb } from "@/lib/realms-server";
 
 export async function getCharactersByAccount(
   accountId: number,
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<Character[]> {
-  const [rows] = await charactersDb.execute<RowDataPacket[]>(
+  const [rows] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
     "SELECT guid, name, race, class, level, gender, online, totaltime, zone, slot FROM characters WHERE account = ? AND deleteInfos_Name IS NULL ORDER BY slot, guid",
     [accountId],
   );
@@ -40,14 +43,17 @@ export async function getCharactersByAccount(
       .map((c, i) => (c.slot !== i ? { guid: c.guid, slot: i } : null))
       .filter(Boolean) as { guid: number; slot: number }[];
 
+    // best effort: a realm whose characters the site may only read (Rimeheart before it opens) keeps its slots, the list is ordered anyway
     if (updates.length > 0) {
       await Promise.all(
         updates.map(({ guid, slot }) =>
-          charactersDb.execute(
+          realmCharactersDb(realm).execute(
             "UPDATE characters SET slot = ? WHERE guid = ?",
             [slot, guid],
           ),
         ),
+      ).catch((error) =>
+        console.error(`Character slots not saved on ${realm}:`, error),
       );
     }
 
@@ -59,8 +65,9 @@ export async function getCharactersByAccount(
 
 export async function getCharacterByGuid(
   guid: number,
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<Character | null> {
-  const [rows] = await charactersDb.execute<RowDataPacket[]>(
+  const [rows] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
     "SELECT guid, name, race, class, level, gender, online, totaltime, zone FROM characters WHERE guid = ?",
     [guid],
   );
@@ -72,8 +79,9 @@ export async function getCharacterByGuid(
 
 export async function getCharacterByExactName(
   name: string,
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<Character | null> {
-  const [rows] = await charactersDb.execute<RowDataPacket[]>(
+  const [rows] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
     "SELECT guid, name, race, class, level, gender, online, totaltime, zone FROM characters WHERE name = ?",
     [name],
   );
@@ -106,8 +114,9 @@ export async function searchCharactersByName(
 export async function hasItemInInventory(
   characterGuid: number,
   itemEntry: number,
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<boolean> {
-  const [rows] = await charactersDb.execute<RowDataPacket[]>(
+  const [rows] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
     `SELECT 1 FROM character_inventory ci
      JOIN item_instance ii ON ci.item = ii.guid
      WHERE ci.guid = ? AND ii.itemEntry = ?
@@ -125,9 +134,10 @@ export type ItemLocation =
 export async function findItemLocation(
   characterGuid: number,
   itemEntry: number,
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<ItemLocation | null> {
   // Check mail first
-  const [mailRows] = await charactersDb.execute<RowDataPacket[]>(
+  const [mailRows] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
     `SELECT mi.mail_id, mi.item_guid
      FROM mail_items mi
      JOIN item_instance ii ON mi.item_guid = ii.guid
@@ -145,7 +155,7 @@ export async function findItemLocation(
   }
 
   // Check inventory
-  const [invRows] = await charactersDb.execute<RowDataPacket[]>(
+  const [invRows] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
     `SELECT ci.item as item_guid
      FROM character_inventory ci
      JOIN item_instance ii ON ci.item = ii.guid
@@ -164,28 +174,35 @@ export async function findItemLocation(
 export async function removeMailWithItem(
   mailId: number,
   itemGuid: number,
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<void> {
-  await charactersDb.execute(
+  await realmCharactersDb(realm).execute(
     "DELETE FROM mail_items WHERE mail_id = ? AND item_guid = ?",
     [mailId, itemGuid],
   );
-  await charactersDb.execute("DELETE FROM item_instance WHERE guid = ?", [
-    itemGuid,
-  ]);
+  await realmCharactersDb(realm).execute(
+    "DELETE FROM item_instance WHERE guid = ?",
+    [itemGuid],
+  );
   // Delete the mail if it has no remaining items
-  await charactersDb.execute(
+  await realmCharactersDb(realm).execute(
     `DELETE FROM mail WHERE id = ? AND NOT EXISTS (SELECT 1 FROM mail_items WHERE mail_id = ?)`,
     [mailId, mailId],
   );
 }
 
-export async function removeInventoryItem(itemGuid: number): Promise<void> {
-  await charactersDb.execute("DELETE FROM character_inventory WHERE item = ?", [
-    itemGuid,
-  ]);
-  await charactersDb.execute("DELETE FROM item_instance WHERE guid = ?", [
-    itemGuid,
-  ]);
+export async function removeInventoryItem(
+  itemGuid: number,
+  realm: RealmSlug = DEFAULT_REALM,
+): Promise<void> {
+  await realmCharactersDb(realm).execute(
+    "DELETE FROM character_inventory WHERE item = ?",
+    [itemGuid],
+  );
+  await realmCharactersDb(realm).execute(
+    "DELETE FROM item_instance WHERE guid = ?",
+    [itemGuid],
+  );
 }
 
 export async function getDeletedCharactersByAccount(
@@ -251,8 +268,9 @@ export const AT_LOGIN_FLAGS: Record<string, number> = {
 export async function setAtLoginFlag(
   characterGuid: number,
   flag: number,
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<boolean> {
-  const [result] = await charactersDb.execute<RowDataPacket[]>(
+  const [result] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
     "UPDATE characters SET at_login = at_login | ? WHERE guid = ? AND online = 0",
     [flag, characterGuid],
   );

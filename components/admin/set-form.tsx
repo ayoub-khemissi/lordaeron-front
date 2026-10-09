@@ -10,7 +10,8 @@ import { Switch } from "@heroui/switch";
 import { Spinner } from "@heroui/spinner";
 import { useTranslations } from "next-intl";
 
-import { WowheadLink } from "@/components/wowhead-link";
+import { GameTipLink } from "@/components/game-tooltip";
+import { DEFAULT_REALM, REALMS, REALM_SLUGS } from "@/lib/realms";
 
 interface SetFormProps {
   set?: ShopSetWithItems;
@@ -70,6 +71,7 @@ function itemToPieceForm(item: ShopSetItem): PieceForm {
 export function SetForm({ set, onSubmit, loading }: SetFormProps) {
   const t = useTranslations("admin.sets");
   const tc = useTranslations("admin.common");
+  const tRealms = useTranslations("realms");
   const isEdit = !!set;
 
   const [form, setForm] = useState({
@@ -86,6 +88,10 @@ export function SetForm({ set, onSubmit, loading }: SetFormProps) {
     price: set?.price?.toString() || "",
     discount_percentage: set?.discount_percentage?.toString() || "0",
     faction: set?.faction || "both",
+    realm_ids: (set?.realm_ids?.length
+      ? set.realm_ids
+      : [REALMS[DEFAULT_REALM].realmId]
+    ).map(String),
     icon_url: set?.icon_url || "",
     sort_order: set?.sort_order?.toString() || "0",
     min_level: set?.min_level?.toString() || "0",
@@ -196,6 +202,7 @@ export function SetForm({ set, onSubmit, loading }: SetFormProps) {
       price: parseInt(form.price) || 0,
       discount_percentage: parseInt(form.discount_percentage) || 0,
       faction: form.faction,
+      realm_ids: form.realm_ids.map(Number),
       icon_url: form.icon_url || null,
       sort_order: parseInt(form.sort_order) || 0,
       min_level: parseInt(form.min_level) || 0,
@@ -233,6 +240,24 @@ export function SetForm({ set, onSubmit, loading }: SetFormProps) {
           <SelectItem key="both">{tc("both")}</SelectItem>
           <SelectItem key="alliance">{tc("alliance")}</SelectItem>
           <SelectItem key="horde">{tc("horde")}</SelectItem>
+        </Select>
+
+        <Select
+          classNames={{ trigger: inputClass }}
+          label={tRealms("label")}
+          selectedKeys={form.realm_ids}
+          selectionMode="multiple"
+          onSelectionChange={(keys) => {
+            const ids = Array.from(keys).map(String);
+
+            if (ids.length) setForm({ ...form, realm_ids: ids });
+          }}
+        >
+          {REALM_SLUGS.map((slug) => (
+            <SelectItem key={String(REALMS[slug].realmId)}>
+              {REALMS[slug].name}
+            </SelectItem>
+          ))}
         </Select>
       </div>
 
@@ -457,7 +482,7 @@ export function SetForm({ set, onSubmit, loading }: SetFormProps) {
                     piece.found &&
                     piece.icon_url &&
                     parseInt(piece.item_id) > 0 && (
-                      <WowheadLink
+                      <GameTipLink
                         className="shrink-0 mb-1"
                         itemId={parseInt(piece.item_id)}
                       >
@@ -468,7 +493,7 @@ export function SetForm({ set, onSubmit, loading }: SetFormProps) {
                             src={piece.icon_url}
                           />
                         </div>
-                      </WowheadLink>
+                      </GameTipLink>
                     )}
                 </div>
               </div>

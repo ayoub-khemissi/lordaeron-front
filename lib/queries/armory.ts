@@ -9,7 +9,8 @@ import type {
 
 import { RowDataPacket } from "mysql2";
 
-import { charactersDb, worldDb } from "@/lib/db";
+import { DEFAULT_REALM, type RealmSlug } from "@/lib/realms";
+import { realmCharactersDb, realmWorldDb } from "@/lib/realms-server";
 
 const GM_FILTER = `AND c.account NOT IN (
   SELECT AccountID FROM auth.account_access WHERE SecurityLevel >= 1
@@ -18,8 +19,9 @@ const GM_FILTER = `AND c.account NOT IN (
 export async function searchArmoryCharacters(
   name: string,
   limit = 20,
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<ArmorySearchResult[]> {
-  const [rows] = await charactersDb.execute<RowDataPacket[]>(
+  const [rows] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
     `SELECT c.guid, c.name, c.race, c.class, c.level, c.gender, c.online
      FROM characters c
      WHERE c.name LIKE ? AND c.level > 0
@@ -34,8 +36,9 @@ export async function searchArmoryCharacters(
 
 export async function getArmoryCharacter(
   name: string,
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<ArmoryCharacter | null> {
-  const [rows] = await charactersDb.execute<RowDataPacket[]>(
+  const [rows] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
     `SELECT c.guid, c.name, c.race, c.class, c.gender, c.level, c.online,
        c.totaltime, c.zone, c.skin, c.face, c.hairStyle, c.hairColor, c.facialStyle,
        c.totalKills, c.totalHonorPoints, c.arenaPoints, c.equipmentCache,
@@ -57,8 +60,9 @@ export async function getArmoryCharacter(
 
 export async function getCharacterStats(
   guid: number,
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<ArmoryStats | null> {
-  const [rows] = await charactersDb.execute<RowDataPacket[]>(
+  const [rows] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
     `SELECT guid, maxhealth, maxpower1, maxpower2, maxpower3,
        strength, agility, stamina, intellect, spirit,
        armor, blockPct, dodgePct, parryPct, critPct,
@@ -75,8 +79,9 @@ export async function getCharacterStats(
 
 export async function getCharacterProfessions(
   guid: number,
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<ArmoryProfession[]> {
-  const [rows] = await charactersDb.execute<RowDataPacket[]>(
+  const [rows] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
     `SELECT skill, value, max FROM character_skills
      WHERE guid = ? AND skill IN (164,165,171,182,186,197,202,333,755,773,129,356,185)`,
     [guid],
@@ -87,8 +92,9 @@ export async function getCharacterProfessions(
 
 export async function getCharacterArenaTeams(
   guid: number,
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<ArenaTeamInfo[]> {
-  const [rows] = await charactersDb.execute<RowDataPacket[]>(
+  const [rows] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
     `SELECT at.name, at.type, at.rating, atm.personalRating,
        atm.seasonGames, atm.seasonWins, atm.weekGames, atm.weekWins
      FROM arena_team_member atm
@@ -102,8 +108,9 @@ export async function getCharacterArenaTeams(
 
 export async function getCharacterAchievementCount(
   guid: number,
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<number> {
-  const [rows] = await charactersDb.execute<RowDataPacket[]>(
+  const [rows] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
     `SELECT COUNT(*) AS count FROM character_achievement WHERE guid = ?`,
     [guid],
   );
@@ -114,11 +121,12 @@ export async function getCharacterAchievementCount(
 /** Fetch displayid from item_template for a list of item entries */
 export async function getItemDisplayIds(
   entries: number[],
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<Map<number, number>> {
   if (entries.length === 0) return new Map();
 
   const placeholders = entries.map(() => "?").join(",");
-  const [rows] = await worldDb.execute<RowDataPacket[]>(
+  const [rows] = await realmWorldDb(realm).execute<RowDataPacket[]>(
     `SELECT entry, displayid FROM item_template WHERE entry IN (${placeholders})`,
     entries.map(String),
   );

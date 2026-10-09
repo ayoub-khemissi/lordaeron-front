@@ -3,10 +3,10 @@ import type { ShopPurchase } from "@/types";
 import { updatePurchaseStatus } from "@/lib/queries/shop-purchases";
 import { getShopSetItems } from "@/lib/queries/shop-sets";
 import { setAtLoginFlag, AT_LOGIN_FLAGS } from "@/lib/queries/characters";
-import { charactersDb } from "@/lib/db";
+import { DEFAULT_REALM, realmSlugById, type RealmSlug } from "@/lib/realms";
+import { realmCharactersDb, realmServer } from "@/lib/realms-server";
 
-const SOAP_HOST = process.env.SOAP_HOST || "127.0.0.1";
-const SOAP_PORT = process.env.SOAP_PORT || "7878";
+// each realm's worldserver has its own SOAP (lib/realms-server.ts); the GM account is the same, from the shared auth database
 const SOAP_USERNAME = process.env.SOAP_USERNAME || "";
 const SOAP_PASSWORD = process.env.SOAP_PASSWORD || "";
 
@@ -41,8 +41,10 @@ function buildEnvelope(command: string): string {
 
 export async function executeCommand(
   command: string,
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<{ success: boolean; message: string }> {
-  const url = `http://${SOAP_HOST}:${SOAP_PORT}/`;
+  const { soapHost, soapPort } = realmServer(realm);
+  const url = `http://${soapHost}:${soapPort}/`;
   const body = buildEnvelope(command);
   const auth = Buffer.from(`${SOAP_USERNAME}:${SOAP_PASSWORD}`).toString(
     "base64",
@@ -92,6 +94,7 @@ export async function sendItem(
   body: string,
   itemId: number,
   count: number = 1,
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<{ success: boolean; message: string }> {
   const safeName = sanitizeInput(characterName);
   const safeSubject = sanitizeInput(subject);
@@ -99,10 +102,10 @@ export async function sendItem(
 
   const command = `.send items ${safeName} "${safeSubject}" "${safeBody}" ${itemId}:${count}`;
 
-  const result = await executeCommand(command);
+  const result = await executeCommand(command, realm);
 
   if (result.success) {
-    await markMailAsNonReturnable(safeName, safeSubject);
+    await markMailAsNonReturnable(safeName, safeSubject, realm);
   }
 
   return result;
@@ -113,6 +116,7 @@ export async function sendItems(
   subject: string,
   body: string,
   items: { itemId: number; count: number }[],
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<{ success: boolean; message: string }> {
   const safeName = sanitizeInput(characterName);
   const safeSubject = sanitizeInput(subject);
@@ -121,10 +125,10 @@ export async function sendItems(
   const itemPairs = items.map((i) => `${i.itemId}:${i.count}`).join(" ");
   const command = `.send items ${safeName} "${safeSubject}" "${safeBody}" ${itemPairs}`;
 
-  const result = await executeCommand(command);
+  const result = await executeCommand(command, realm);
 
   if (result.success) {
-    await markMailAsNonReturnable(safeName, safeSubject);
+    await markMailAsNonReturnable(safeName, safeSubject, realm);
   }
 
   return result;
@@ -133,9 +137,10 @@ export async function sendItems(
 async function markMailAsNonReturnable(
   characterName: string,
   subject: string,
+  realm: RealmSlug,
 ): Promise<void> {
   try {
-    await charactersDb.execute(
+    await realmCharactersDb(realm).execute(
       `UPDATE mail SET messageType = 3
        WHERE receiver = (SELECT guid FROM characters WHERE name = ?)
        AND subject = ?
@@ -150,6 +155,7 @@ async function markMailAsNonReturnable(
 export async function retryPurchaseDelivery(
   purchase: ShopPurchase,
 ): Promise<{ success: boolean; message: string }> {
+  const realm = realmSlugById(purchase.realm_id);
   const recipient =
     purchase.is_gift && purchase.gift_to_character_name
       ? purchase.gift_to_character_name
@@ -177,6 +183,7 @@ export async function retryPurchaseDelivery(
       subject,
       body,
       setItems.map((i) => ({ itemId: i.item_id, count: 1 })),
+      realm,
     );
 
     if (result.success) {
@@ -191,7 +198,11 @@ export async function retryPurchaseDelivery(
     const flag = AT_LOGIN_FLAGS[purchase.service_type];
 
     if (flag) {
-      const applied = await setAtLoginFlag(purchase.character_guid, flag);
+      const applied = await setAtLoginFlag(
+        purchase.character_guid,
+        flag,
+        realm,
+      );
 
       if (applied) {
         await updatePurchaseStatus(purchase.id, "completed");
@@ -217,6 +228,7 @@ export async function retryPurchaseDelivery(
     body,
     purchase.wow_item_id,
     1,
+    realm,
   );
 
   if (result.success) {

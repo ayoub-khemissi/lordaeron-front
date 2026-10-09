@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { searchArmoryCharacters } from "@/lib/queries/armory";
+import { requestRealm } from "@/lib/realms";
 
 export const dynamic = "force-dynamic";
 
@@ -13,7 +14,11 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ characters: [] });
     }
 
-    const characters = await searchArmoryCharacters(q);
+    const characters = await searchArmoryCharacters(
+      q,
+      20,
+      requestRealm(searchParams.get("realm")),
+    );
 
     return NextResponse.json({ characters });
   } catch (error) {

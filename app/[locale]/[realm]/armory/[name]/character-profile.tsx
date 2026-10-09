@@ -14,6 +14,7 @@ import {
 } from "@/lib/armory-constants";
 import { GuildInfo } from "@/components/armory/guild-info";
 import { EquipmentPanel } from "@/components/armory/equipment-panel";
+import { useRealm } from "@/lib/realm-context";
 import { StatsPanel } from "@/components/armory/stats-panel";
 import { PvpPanel } from "@/components/armory/pvp-panel";
 import { ProfessionsPanel } from "@/components/armory/professions-panel";
@@ -58,13 +59,14 @@ export function CharacterProfile({ name }: CharacterProfileProps) {
   const [data, setData] = useState<ProfileData | null>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
+  const realm = useRealm();
 
   useEffect(() => {
     const fetchProfile = async () => {
       setLoading(true);
       try {
         const res = await fetch(
-          `/api/armory/character/${encodeURIComponent(name)}`,
+          `/api/armory/character/${encodeURIComponent(name)}?realm=${realm.slug}`,
         );
 
         if (res.status === 404) {
@@ -83,7 +85,7 @@ export function CharacterProfile({ name }: CharacterProfileProps) {
     };
 
     fetchProfile();
-  }, [name]);
+  }, [name, realm.slug]);
 
   if (loading) {
     return (

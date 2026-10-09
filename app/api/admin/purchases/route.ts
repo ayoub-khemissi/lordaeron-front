@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { verifyAdminSession } from "@/lib/admin-auth";
+import { realmSlugById } from "@/lib/realms";
 import { getAllPurchases } from "@/lib/queries/shop-purchases";
 import { getShopSetItems } from "@/lib/queries/shop-sets";
 import {
@@ -69,6 +70,7 @@ export async function GET(request: NextRequest) {
           if (p.is_gift && p.gift_to_character_name) {
             const recipient = await getCharacterByExactName(
               p.gift_to_character_name,
+              realmSlugById(p.realm_id),
             );
 
             if (recipient) {
@@ -76,7 +78,10 @@ export async function GET(request: NextRequest) {
               recipientOnline = recipient.online;
             }
           } else {
-            const char = await getCharacterByGuid(recipientGuid);
+            const char = await getCharacterByGuid(
+              recipientGuid,
+              realmSlugById(p.realm_id),
+            );
 
             if (char) recipientOnline = char.online;
           }
@@ -93,6 +98,7 @@ export async function GET(request: NextRequest) {
               const location = await findItemLocation(
                 recipientGuid,
                 setItem.item_id,
+                realmSlugById(p.realm_id),
               );
 
               if (!location) {
@@ -103,6 +109,7 @@ export async function GET(request: NextRequest) {
             const location = await findItemLocation(
               recipientGuid,
               p.wow_item_id!,
+              realmSlugById(p.realm_id),
             );
 
             if (!location) {

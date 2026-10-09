@@ -11,6 +11,10 @@ function parseSetRow(row: ShopSet): ShopSet {
       typeof row.class_ids === "string"
         ? JSON.parse(row.class_ids)
         : row.class_ids,
+    realm_ids:
+      typeof row.realm_ids === "string"
+        ? JSON.parse(row.realm_ids)
+        : row.realm_ids,
     is_highlighted: Boolean(row.is_highlighted),
     is_active: Boolean(row.is_active),
     min_level: row.min_level ?? 0,
@@ -103,9 +107,9 @@ export async function createShopSet(
       `INSERT INTO shop_sets (
         name_en, name_fr, name_es, name_de, name_it,
         description_en, description_fr, description_es, description_de, description_it,
-        price, discount_percentage, class_ids, faction,
+        price, discount_percentage, class_ids, realm_ids, faction,
         icon_url, is_highlighted, is_active, min_level, sort_order
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         set.name_en,
         set.name_fr,
@@ -120,6 +124,7 @@ export async function createShopSet(
         set.price,
         set.discount_percentage,
         set.class_ids ? JSON.stringify(set.class_ids) : null,
+        set.realm_ids?.length ? JSON.stringify(set.realm_ids) : null,
         set.faction,
         set.icon_url,
         set.is_highlighted ? 1 : 0,
@@ -205,6 +210,10 @@ export async function updateShopSet(
     if (set.class_ids !== undefined) {
       fields.push("class_ids = ?");
       params.push(set.class_ids ? JSON.stringify(set.class_ids) : null);
+    }
+    if (set.realm_ids !== undefined) {
+      fields.push("realm_ids = ?");
+      params.push(set.realm_ids?.length ? JSON.stringify(set.realm_ids) : null);
     }
     if (set.is_highlighted !== undefined) {
       fields.push("is_highlighted = ?");

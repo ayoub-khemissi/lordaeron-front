@@ -56,8 +56,8 @@ export const REALMS: Record<RealmSlug, RealmInfo> = {
     realmId: Number(process.env.RIMEHEART_REALM_ID || 3),
     name: "Rimeheart",
     status: "soon",
-    // its how-to (the client patch to download) comes with its opening
-    sections: ["home", "armory", "shop"],
+    // its how-to has no client patch yet (it comes with its opening)
+    sections: ["home", "how-to", "armory", "shop"],
     accent: "ice",
   },
 };
@@ -80,6 +80,11 @@ export function realmBySlug(slug: string | undefined | null): RealmInfo | null {
 
 export function realmById(realmId: number): RealmInfo | null {
   return Object.values(REALMS).find((r) => r.realmId === realmId) ?? null;
+}
+
+// the realm of a recorded purchase (shop_purchases.realm_id), Lordaeron's for an unknown id
+export function realmSlugById(realmId: number | null | undefined): RealmSlug {
+  return (realmId != null && realmById(realmId)?.slug) || DEFAULT_REALM;
 }
 
 // a page of a realm: realmPath("fr", "rimeheart", "/shop/mounts") -> "/fr/rimeheart/shop/mounts"

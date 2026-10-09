@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { realmSlugById } from "@/lib/realms";
 import { verifySession } from "@/lib/auth";
 import { getPurchasesByAccount } from "@/lib/queries/shop-purchases";
 import {
@@ -49,6 +50,7 @@ export async function GET() {
         if (p.is_gift && p.gift_to_character_name) {
           const recipient = await getCharacterByExactName(
             p.gift_to_character_name,
+            realmSlugById(p.realm_id),
           );
 
           if (recipient) {
@@ -56,7 +58,10 @@ export async function GET() {
             recipientOnline = recipient.online;
           }
         } else {
-          const char = await getCharacterByGuid(recipientGuid);
+          const char = await getCharacterByGuid(
+            recipientGuid,
+            realmSlugById(p.realm_id),
+          );
 
           if (char) recipientOnline = char.online;
         }
@@ -65,7 +70,11 @@ export async function GET() {
           return { ...p, refund_blocked_reason: "characterOnline" };
         }
 
-        const location = await findItemLocation(recipientGuid, p.wow_item_id);
+        const location = await findItemLocation(
+          recipientGuid,
+          p.wow_item_id,
+          realmSlugById(p.realm_id),
+        );
 
         if (!location) {
           return { ...p, refund_blocked_reason: "itemNotInInventory" };

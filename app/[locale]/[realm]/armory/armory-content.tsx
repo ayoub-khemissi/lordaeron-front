@@ -13,10 +13,11 @@ import {
   ALLIANCE_RACES,
 } from "@/lib/armory-constants";
 import { ArmorySearchResult } from "@/types/armory";
-import { useRealmHref } from "@/lib/realm-context";
+import { useRealm, useRealmHref } from "@/lib/realm-context";
 
 export function ArmoryContent() {
   const realmHref = useRealmHref();
+  const realm = useRealm();
   const t = useTranslations("armory");
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<ArmorySearchResult[]>([]);
@@ -38,7 +39,7 @@ export function ArmoryContent() {
       setLoading(true);
       try {
         const res = await fetch(
-          `/api/armory/search?q=${encodeURIComponent(query.trim())}`,
+          `/api/armory/search?q=${encodeURIComponent(query.trim())}&realm=${realm.slug}`,
         );
         const data = await res.json();
 
@@ -54,7 +55,7 @@ export function ArmoryContent() {
     return () => {
       if (debounceRef.current) clearTimeout(debounceRef.current);
     };
-  }, [query]);
+  }, [query, realm.slug]);
 
   return (
     <div className="space-y-6">

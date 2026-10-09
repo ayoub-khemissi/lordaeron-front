@@ -58,6 +58,7 @@ export async function POST(request: NextRequest) {
         price: body.price,
         discount_percentage: body.discount_percentage || 0,
         class_ids: body.class_ids || null,
+        realm_ids: body.realm_ids || null,
         faction: body.faction || "both",
         icon_url: body.icon_url || null,
         is_highlighted: body.is_highlighted || false,

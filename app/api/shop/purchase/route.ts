@@ -18,7 +18,7 @@ import {
 } from "@/lib/queries/characters";
 import { ALLIANCE_RACES } from "@/lib/shop-utils";
 import { sendItem, sendItems } from "@/lib/soap";
-import { offeredOnRealm, realmById } from "@/lib/realms";
+import { offeredOnRealm, realmById, type RealmInfo } from "@/lib/realms";
 
 function checkFaction(faction: string, characterRace: number): string | null {
   if (faction === "both") return null;
@@ -34,6 +34,7 @@ async function handleSetPurchase(
   session: { id: number },
   body: PurchaseRequest,
   character: Character,
+  realm: RealmInfo,
 ) {
   const set = await getShopSetById(body.set_id!);
 
@@ -42,9 +43,7 @@ async function handleSetPurchase(
   }
 
   // a set with no realm list is Lordaeron's (the realm itself was checked open by the caller)
-  const realm = realmById(body.realm_id);
-
-  if (!realm || !offeredOnRealm(set.realm_ids, realm.slug)) {
+  if (!offeredOnRealm(set.realm_ids, realm.slug)) {
     return NextResponse.json({ error: "realmRestricted" }, { status: 400 });
   }
 
@@ -78,6 +77,7 @@ async function handleSetPurchase(
 
     const recipient = await getCharacterByExactName(
       body.gift_to_character_name,
+      realm.slug,
     );
 
     if (!recipient) {
@@ -142,6 +142,7 @@ async function handleSetPurchase(
       subject,
       mailBody,
       set.items.map((i) => ({ itemId: i.item_id, count: 1 })),
+      realm.slug,
     );
 
     if (!soapResult.success) {
@@ -198,7 +199,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Verify character belongs to account
-    const characters = await getCharactersByAccount(session.id);
+    const characters = await getCharactersByAccount(session.id, realm.slug);
     const character = characters.find((c) => c.guid === body.character_guid);
 
     if (!character) {
@@ -207,7 +208,7 @@ export async function POST(request: NextRequest) {
 
     // ── Set purchase branch ──
     if (body.set_id) {
-      return handleSetPurchase(session, body, character);
+      return handleSetPurchase(session, body, character, realm);
     }
 
     // ── Single item purchase ──
@@ -266,6 +267,7 @@ export async function POST(request: NextRequest) {
       // Verify recipient exists
       const recipient = await getCharacterByExactName(
         body.gift_to_character_name,
+        realm.slug,
       );
 
       if (!recipient) {
@@ -339,6 +341,7 @@ export async function POST(request: NextRequest) {
           mailBody,
           item.item_id,
           1,
+          realm.slug,
         );
 
         if (!soapResult.success) {
@@ -393,7 +396,11 @@ export async function POST(request: NextRequest) {
       const flag = AT_LOGIN_FLAGS[item.service_type];
 
       if (flag) {
-        const applied = await setAtLoginFlag(body.character_guid, flag);
+        const applied = await setAtLoginFlag(
+          body.character_guid,
+          flag,
+          realm.slug,
+        );
 
         if (!applied) {
           console.error("Failed to apply at_login flag:", item.service_type);
@@ -419,6 +426,7 @@ export async function POST(request: NextRequest) {
         mailBody,
         item.item_id,
         1,
+        realm.slug,
       );
 
       if (!soapResult.success) {

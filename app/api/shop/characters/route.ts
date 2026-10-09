@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { verifySession } from "@/lib/auth";
 import { getCharactersByAccount } from "@/lib/queries/characters";
-import { DEFAULT_REALM, requestRealm } from "@/lib/realms";
+import { requestRealm } from "@/lib/realms";
 
 export const dynamic = "force-dynamic";
 
@@ -14,15 +14,11 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "unauthorized" }, { status: 401 });
     }
 
-    // Lordaeron's characters; another realm's come with its own characters database when it opens (lib/realms-server.ts),
-    // until then its shop shows the catalogue only
-    if (
-      requestRealm(new URL(request.url).searchParams.get("realm")) !==
-      DEFAULT_REALM
-    )
-      return NextResponse.json({ characters: [] });
-
-    const characters = await getCharactersByAccount(session.id);
+    // the account's characters on the realm being browsed (its own characters database, lib/realms-server.ts)
+    const characters = await getCharactersByAccount(
+      session.id,
+      requestRealm(new URL(request.url).searchParams.get("realm")),
+    );
 
     return NextResponse.json({ characters });
   } catch (error) {
