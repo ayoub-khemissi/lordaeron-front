@@ -120,6 +120,19 @@ export const manifesto = {
   ],
 };
 
+/** A phase of the timeline, built like the banner shared on Reddit: up to three lines, a small-caps footer, the heroic
+    tab, and the Burning Crusade raid brought to level 80 in this phase (the gold track). */
+export type PhaseStep = {
+  n: string;
+  title: T;
+  icon: string;
+  length: T;
+  lines: T[];
+  meta: T;
+  heroic?: boolean;
+  classic?: { icon: string; name: T };
+};
+
 export const phases = {
   id: "phases",
   numeral: "I",
@@ -136,66 +149,98 @@ export const phases = {
     {
       n: "0",
       title: L("Le prélude", "The prelude"),
-      image: IMG.fjord,
-      text: L(
-        "**2 à 3 semaines** pour s'équiper : les 12 donjons du Norfendre en normal et héroïque, champs de bataille, arènes et Joug-d'hiver.",
-        "**2 to 3 weeks** to gear up: the 12 Northrend dungeons, normal and heroic, battlegrounds, arenas and Wintergrasp.",
-      ),
+      icon: "spell_frost_frozencore",
+      length: L("2 à 3 semaines", "2–3 weeks"),
+      lines: [
+        L("12 donjons du Norfendre", "12 Northrend dungeons"),
+        L("Normal et héroïque", "Normal & heroic"),
+        L("Joug-d'hiver", "Wintergrasp"),
+      ],
+      meta: L("Champs de bataille · Arènes", "Battlegrounds · Arenas"),
     },
     {
       n: "1",
       title: L("Naxxramas", "Naxxramas"),
-      image: IMG.boss("kelthuzad"),
-      text: L(
-        "Naxxramas, Sanctum obsidien, Œil de l'éternité, Archavon. Saison d'arène 5.",
-        "Naxxramas, Obsidian Sanctum, Eye of Eternity, Archavon. Arena season 5.",
-      ),
+      icon: "achievement_dungeon_naxxramas_normal",
+      length: L("3 mois", "3 months"),
+      lines: [
+        L("Naxxramas", "Naxxramas"),
+        L("Sanctum obsidien", "Obsidian Sanctum"),
+        L("L'Œil de l'éternité", "Eye of Eternity"),
+      ],
+      meta: L("Archavon · Arène S5", "Archavon · Arena S5"),
+      heroic: true,
     },
     {
       n: "2",
       title: L("Ulduar", "Ulduar"),
-      image: IMG.boss("yoggsaron"),
-      text: L(
-        "Ulduar, Emalon, le Tournoi d'argent. **L'Œil de Kael'thas au niveau 80**. Saison 6.",
-        "Ulduar, Emalon, the Argent Tournament. **Kael'thas's Eye at level 80**. Season 6.",
-      ),
+      icon: "achievement_dungeon_ulduarraid_misc_01",
+      length: L("3 mois", "3 months"),
+      lines: [
+        L("Ulduar", "Ulduar"),
+        L("Tournoi d'argent", "Argent Tournament"),
+      ],
+      meta: L("Emalon · Arène S6", "Emalon · Arena S6"),
+      heroic: true,
+      classic: {
+        icon: "achievement_boss_kaelthassunstrider_01",
+        name: L("L'Œil", "The Eye"),
+      },
     },
     {
       n: "3",
       title: L("L'Épreuve", "The Trial"),
-      image: IMG.boss("onyxia"),
-      text: L(
-        "Épreuve du croisé, Onyxia niveau 80, Koralon, gemmes épiques. **Karazhan au niveau 80**. Saison 7.",
-        "Trial of the Crusader, level 80 Onyxia, Koralon, epic gems. **Karazhan at level 80**. Season 7.",
-      ),
+      icon: "achievement_reputation_argentcrusader",
+      length: L("3 mois", "3 months"),
+      lines: [
+        L("Épreuve du croisé", "Trial of the Crusader"),
+        L("Onyxia · niveau 80", "Onyxia · level 80"),
+      ],
+      meta: L("Koralon · Arène S7", "Koralon · Arena S7"),
+      classic: {
+        icon: "achievement_boss_princemalchezaar_02",
+        name: L("Karazhan", "Karazhan"),
+      },
     },
     {
       n: "4",
       title: L("La Citadelle", "The Citadel"),
-      image: IMG.boss("lichking"),
-      text: L(
-        "La Citadelle de la Couronne de glace et les Salles gelées. Toravon. **Le Temple noir au niveau 80**. Saison 8.",
-        "Icecrown Citadel and the Frozen Halls. Toravon. **Black Temple at level 80**. Season 8.",
-      ),
+      icon: "achievement_boss_lichking",
+      length: L("3 mois", "3 months"),
+      lines: [
+        L("Citadelle de la Couronne de glace", "Icecrown Citadel"),
+        L("Salles gelées", "Frozen Halls"),
+      ],
+      meta: L("Toravon · Arène S8", "Toravon · Arena S8"),
+      classic: {
+        icon: "achievement_boss_illidan",
+        name: L("Temple noir", "Black Temple"),
+      },
     },
     {
       n: "5",
       title: L("Le Crépuscule", "Twilight"),
-      image: IMG.boss("halion"),
-      text: L(
-        "Le Sanctum rubis et Halion, le Destructeur du Crépuscule. **Le Plateau du Puits de soleil au niveau 80**.",
-        "The Ruby Sanctum and Halion, the Twilight Destroyer. **Sunwell Plateau at level 80**.",
-      ),
+      icon: "spell_shadow_twilight",
+      length: L("3 mois", "3 months"),
+      lines: [L("Sanctum rubis", "Ruby Sanctum"), L("Halion", "Halion")],
+      meta: L("Phase finale", "Final phase"),
+      classic: {
+        icon: "achievement_boss_kiljaedan",
+        name: L("Plateau du Puits de soleil", "Sunwell Plateau"),
+      },
     },
+  ] as PhaseStep[],
+  launchTag: L("Ouverture", "Launch"),
+  phaseTag: L("Phase", "Phase"),
+  heroicTag: L("Héroïque 10 et 25", "Heroic 10 & 25"),
+  // the gold track under the cards
+  track: [
+    L("Raids de Burning Crusade", "Burning Crusade raids"),
+    L("portés au niveau 80", "brought to level 80"),
   ],
   footnote: L(
     "Les raids classiques et de Burning Crusade **restent ouverts dès le premier jour**, comme la double spécialisation et la Recherche de donjons.",
     "Classic and Burning Crusade raids **stay open from day one**, as do dual specialization and the Dungeon Finder.",
-  ),
-  // the timeline banner under the steps (public/img/rimeheart/timeline-<lang>.jpg, rendered by the reel project)
-  bannerAlt: L(
-    "La chronologie de Rimeheart : ouverture le 16 octobre, puis cinq phases de trois mois, de Naxxramas au Sanctum rubis.",
-    "Rimeheart's timeline: launch on October 16, then five three-month phases, from Naxxramas to the Ruby Sanctum.",
   ),
 };
 

@@ -47,7 +47,7 @@ import {
 } from "@/components/experience/game-tooltip";
 import { ChapterNav, ExperienceHero } from "@/components/experience/hero";
 import { LaunchCountdown } from "@/components/launch-countdown";
-import { launchLine } from "@/lib/launch";
+import { launchLine, launchParts } from "@/lib/launch";
 import { REALMS } from "@/lib/realms";
 import {
   BgImg,
@@ -315,6 +315,11 @@ function Manifesto({ lang }: { lang: Lang }) {
 }
 
 function Phases({ lang }: { lang: Lang }) {
+  const launch = launchParts(LAUNCH_AT, lang);
+  const classics = phases.steps.flatMap((s) =>
+    s.classic ? [{ n: s.n, ...s.classic }] : [],
+  );
+
   return (
     <Section id={phases.id}>
       <div className={container}>
@@ -325,59 +330,125 @@ function Phases({ lang }: { lang: Lang }) {
           title={phases.title[lang]}
           tone="ice"
         />
+        {/* the timeline, built like the banner shared on Reddit: the phase over its icon on the line, then a card
+            (the same build for all six), then the gold track of the Burning Crusade raids brought to level 80 */}
         <div className="relative mt-16">
-          <span className="absolute left-[27px] top-0 h-full w-px bg-gradient-to-b from-wow-blue-ice/60 via-wow-gold/40 to-red-500/40 lg:left-0 lg:top-[27px] lg:h-px lg:w-full lg:bg-gradient-to-r" />
-          <ol className="grid gap-10 lg:grid-cols-6 lg:gap-5">
-            {phases.steps.map((s, i) => (
-              <Reveal key={s.n} delay={i * 0.08}>
-                <li className="relative flex gap-5 lg:block">
-                  <span className="relative z-10 grid h-14 w-14 shrink-0 place-items-center rounded-full border border-wow-blue-ice/50 bg-wow-darker font-heading text-xl text-wow-blue-ice shadow-[0_0_25px_rgba(79,195,247,0.25)]">
-                    {s.n}
-                  </span>
-                  <div className="lg:mt-6">
-                    <div className="group relative mb-4 hidden aspect-[4/5] overflow-hidden rounded-lg border border-white/10 lg:block">
-                      <div
-                        className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                        style={{
-                          backgroundImage: `url("${encodeURI(s.image)}")`,
-                        }}
+          <span
+            className="absolute top-[104px] hidden h-px bg-gradient-to-r from-wow-gold via-wow-blue-ice/60 to-wow-blue-ice/25 shadow-[0_0_12px_rgba(240,214,138,0.4)] lg:block"
+            style={{
+              left: "calc(100% / 12 - 7px)",
+              right: "calc(100% / 12 - 7px)",
+            }}
+          />
+          <ol className="grid gap-10 sm:grid-cols-2 lg:grid-cols-6 lg:gap-4">
+            {phases.steps.map((s, i) => {
+              const first = i === 0;
+
+              return (
+                <Reveal key={s.n} className="h-full" delay={i * 0.08}>
+                  <li className="flex h-full flex-col">
+                    <div className="flex items-center gap-4 lg:flex-col-reverse lg:gap-3">
+                      <WowIcon
+                        glow={first ? "gold" : "ice"}
+                        icon={s.icon}
+                        size={56}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-wow-darker via-transparent to-transparent" />
+                      <div className="lg:flex lg:h-16 lg:flex-col lg:items-center lg:justify-end lg:text-center">
+                        {first ? (
+                          <span className="inline-block rounded-full bg-gradient-to-b from-[#f6dc8f] to-[#c79c3e] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-[#2b1a04] shadow-[0_0_18px_rgba(240,214,138,0.5)]">
+                            {phases.launchTag[lang]} · {launch.short}
+                          </span>
+                        ) : (
+                          <span className="block text-xs font-bold uppercase tracking-[0.22em] text-wow-gold-light">
+                            {phases.phaseTag[lang]} {s.n}
+                          </span>
+                        )}
+                        <span className="mt-1 block text-sm text-white/65">
+                          {first
+                            ? `${phases.phaseTag[lang]} 0 · ${s.length[lang]}`
+                            : s.length[lang]}
+                        </span>
+                      </div>
                     </div>
-                    <h3 className="font-heading text-xl text-white">
-                      {s.title[lang]}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-white/60">
-                      <Rich text={s.text[lang]} />
-                    </p>
-                  </div>
-                </li>
+                    <div
+                      className={clsx(
+                        "relative mt-5 flex flex-1 flex-col rounded-xl border bg-white/[0.04] p-5 backdrop-blur-sm",
+                        first
+                          ? "border-wow-gold/60 shadow-[0_0_30px_rgba(240,214,138,0.15)]"
+                          : "border-white/10",
+                      )}
+                    >
+                      {s.heroic && (
+                        <span className="absolute -top-3 right-4 rounded-md border border-wow-blue-ice/70 bg-[#10324a] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#e6f6ff] shadow-[0_0_12px_rgba(79,195,247,0.4)]">
+                          {phases.heroicTag[lang]}
+                        </span>
+                      )}
+                      <h3
+                        className={clsx(
+                          "font-heading text-xl",
+                          first ? "text-wow-gold-light" : "wow-ice-text",
+                        )}
+                      >
+                        {s.title[lang]}
+                      </h3>
+                      <span className="mt-2 block h-px w-12 bg-gradient-to-r from-wow-gold to-transparent" />
+                      <ul className="mt-3 space-y-1 text-sm text-white/85">
+                        {s.lines.map((l) => (
+                          <li key={l.en} className="flex gap-2.5">
+                            <span
+                              className={clsx(
+                                "mt-[7px] h-1.5 w-1.5 shrink-0 rotate-45",
+                                first ? "bg-wow-gold-light" : "bg-wow-blue-ice",
+                              )}
+                            />
+                            {l[lang]}
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="mt-auto pt-4">
+                        <span className="block border-t border-white/10 pt-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/50">
+                          {s.meta[lang]}
+                        </span>
+                      </p>
+                    </div>
+                  </li>
+                </Reveal>
+              );
+            })}
+          </ol>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:mt-6 lg:grid-cols-6">
+            <div className="flex items-center gap-3 sm:col-span-2 lg:justify-end lg:pr-2 lg:text-right">
+              <p className="text-xs font-semibold uppercase leading-relaxed tracking-[0.16em] text-wow-gold-light">
+                {phases.track[0][lang]}
+                <br />
+                <span className="text-white/65">{phases.track[1][lang]}</span>
+              </p>
+              <span className="hidden text-2xl text-wow-gold-light lg:inline">
+                →
+              </span>
+            </div>
+            {classics.map((c, i) => (
+              <Reveal key={c.n} className="h-full" delay={0.4 + i * 0.08}>
+                <div className="relative flex h-full items-center gap-3 rounded-full border border-wow-gold/50 bg-gradient-to-r from-wow-gold/25 to-wow-gold/5 py-2 pl-2 pr-4 shadow-[0_12px_30px_rgba(0,0,0,0.45)]">
+                  <span className="absolute -top-6 left-1/2 hidden h-6 w-px bg-gradient-to-b from-wow-gold/10 to-wow-gold/80 lg:block" />
+                  <WowIcon glow="gold" icon={c.icon} size={40} />
+                  <span className="min-w-0">
+                    <span className="block font-heading text-base leading-tight text-wow-gold-light">
+                      {c.name[lang]}
+                    </span>
+                    <span className="block text-[10px] uppercase tracking-[0.14em] text-white/55 lg:hidden">
+                      {phases.phaseTag[lang]} {c.n}
+                    </span>
+                  </span>
+                </div>
               </Reveal>
             ))}
-          </ol>
+          </div>
         </div>
         <Reveal>
           <p className="mt-14 border-l-2 border-wow-gold/50 pl-5 text-white/60">
             <Rich text={phases.footnote[lang]} />
           </p>
-        </Reveal>
-        {/* the whole timeline in one image (the banner shared on Reddit and Discord); opens full size */}
-        <Reveal>
-          <a
-            className="mt-14 block overflow-hidden rounded-2xl border border-white/10 shadow-[0_30px_80px_rgba(0,0,0,0.6)] transition-colors hover:border-wow-blue-ice/40"
-            href={timelineBanner(lang)}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <img
-              alt={phases.bannerAlt[lang]}
-              className="h-auto w-full"
-              height={1080}
-              loading="lazy"
-              src={timelineBanner(lang)}
-              width={1920}
-            />
-          </a>
         </Reveal>
       </div>
     </Section>
@@ -1674,7 +1745,6 @@ function Finale({ lang, joinHref }: { lang: Lang; joinHref: string }) {
 }
 
 const LAUNCH_AT = REALMS.rimeheart.launchAt as string;
-const timelineBanner = (lang: Lang) => `/img/rimeheart/timeline-${lang}.jpg`;
 
 export default function ExperienceContent({ locale }: { locale: string }) {
   const lang: Lang = locale === "fr" ? "fr" : "en";
