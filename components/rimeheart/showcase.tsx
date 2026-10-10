@@ -361,6 +361,24 @@ function Phases({ lang }: { lang: Lang }) {
             <Rich text={phases.footnote[lang]} />
           </p>
         </Reveal>
+        {/* the whole timeline in one image (the banner shared on Reddit and Discord); opens full size */}
+        <Reveal>
+          <a
+            className="mt-14 block overflow-hidden rounded-2xl border border-white/10 shadow-[0_30px_80px_rgba(0,0,0,0.6)] transition-colors hover:border-wow-blue-ice/40"
+            href={timelineBanner(lang)}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img
+              alt={phases.bannerAlt[lang]}
+              className="h-auto w-full"
+              height={1080}
+              loading="lazy"
+              src={timelineBanner(lang)}
+              width={1920}
+            />
+          </a>
+        </Reveal>
       </div>
     </Section>
   );
@@ -1656,6 +1674,7 @@ function Finale({ lang, joinHref }: { lang: Lang; joinHref: string }) {
 }
 
 const LAUNCH_AT = REALMS.rimeheart.launchAt as string;
+const timelineBanner = (lang: Lang) => `/img/rimeheart/timeline-${lang}.jpg`;
 
 export default function ExperienceContent({ locale }: { locale: string }) {
   const lang: Lang = locale === "fr" ? "fr" : "en";

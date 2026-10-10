@@ -192,6 +192,11 @@ export const phases = {
     "Les raids classiques et de Burning Crusade **restent ouverts dès le premier jour**, comme la double spécialisation et la Recherche de donjons.",
     "Classic and Burning Crusade raids **stay open from day one**, as do dual specialization and the Dungeon Finder.",
   ),
+  // the timeline banner under the steps (public/img/rimeheart/timeline-<lang>.jpg, rendered by the reel project)
+  bannerAlt: L(
+    "La chronologie de Rimeheart : ouverture le 16 octobre, puis cinq phases de trois mois, de Naxxramas au Sanctum rubis.",
+    "Rimeheart's timeline: launch on October 16, then five three-month phases, from Naxxramas to the Ruby Sanctum.",
+  ),
 };
 
 export const artifact = {
