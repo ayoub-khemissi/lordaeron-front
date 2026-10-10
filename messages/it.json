@@ -1103,5 +1103,15 @@
     },
     "label": "Reami",
     "adminPreview": "Anteprima admin"
+  },
+  "launch": {
+    "title": "Apertura",
+    "opensOn": "Apre il {date}",
+    "days": "giorni",
+    "hours": "ore",
+    "minutes": "min",
+    "seconds": "s",
+    "yourTime": "La tua ora locale: {time}",
+    "live": "Il reame apre!"
   }
 }

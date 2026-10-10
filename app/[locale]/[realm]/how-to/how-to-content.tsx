@@ -1,10 +1,11 @@
 "use client";
 
 import { Snippet } from "@heroui/snippet";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import clsx from "clsx";
 
+import { launchLine } from "@/lib/launch";
 import { useRealm } from "@/lib/realm-context";
 import { REALMS } from "@/lib/realms";
 
@@ -48,6 +49,8 @@ const steps = [
 
 export default function HowToContent() {
   const t = useTranslations("howTo");
+  const tl = useTranslations("launch");
+  const locale = useLocale();
   const realm = useRealm();
   const realmSteps = steps.filter(
     (step) => !("realms" in step) || step.realms?.includes(realm.slug),
@@ -85,6 +88,16 @@ export default function HowToContent() {
           {REALMS[realm.slug].status !== "open" && (
             <p className="mx-auto mt-6 max-w-2xl rounded-xl border border-wow-blue-ice/30 bg-wow-blue-ice/10 px-5 py-3 text-sm text-wow-blue-ice">
               {t("realmSoon", { realm: realm.name })}
+              {REALMS[realm.slug].launchAt && (
+                <span className="mt-1 block font-semibold">
+                  {tl("opensOn", {
+                    date: launchLine(
+                      REALMS[realm.slug].launchAt as string,
+                      locale,
+                    ),
+                  })}
+                </span>
+              )}
             </p>
           )}
         </motion.div>

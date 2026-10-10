@@ -62,10 +62,10 @@ export const hero = {
     "Rimeheart · Wrath of the Lich King 3.3.5",
     "Rimeheart · Wrath of the Lich King 3.3.5",
   ),
-  // the realm is not open yet (Ayoub, 08/10/2026: in development, no date)
+  // the realm is not open yet (Ayoub, 10/10/2026: opens on 16 October 2026, 19:00 Paris time); {date}: lib/launch.ts
   status: L(
-    "Nouveau royaume · En développement · Ouverture prochaine",
-    "New realm · In development · Coming soon",
+    "Nouveau royaume · Ouverture le {date}",
+    "New realm · Opens {date}",
   ),
   title: L("Le Norfendre", "Northrend"),
   titleAccent: L("comme jamais vécu.", "as never lived before."),

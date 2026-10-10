@@ -1103,5 +1103,15 @@
     },
     "label": "Royaumes",
     "adminPreview": "Aperçu admin"
+  },
+  "launch": {
+    "title": "Ouverture",
+    "opensOn": "Ouverture le {date}",
+    "days": "jours",
+    "hours": "heures",
+    "minutes": "min",
+    "seconds": "s",
+    "yourTime": "Chez vous : {time}",
+    "live": "Le royaume ouvre !"
   }
 }

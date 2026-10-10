@@ -1133,5 +1133,15 @@
     },
     "label": "Światy",
     "adminPreview": "Podgląd admina"
+  },
+  "launch": {
+    "title": "Otwarcie",
+    "opensOn": "Otwarcie {date}",
+    "days": "dni",
+    "hours": "godz.",
+    "minutes": "min",
+    "seconds": "s",
+    "yourTime": "Twój czas lokalny: {time}",
+    "live": "Świat się otwiera!"
   }
 }

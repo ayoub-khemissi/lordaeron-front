@@ -1133,5 +1133,15 @@
     },
     "label": "Reinos",
     "adminPreview": "Pré-visualização admin"
+  },
+  "launch": {
+    "title": "Abertura",
+    "opensOn": "Abre a {date}",
+    "days": "dias",
+    "hours": "horas",
+    "minutes": "min",
+    "seconds": "s",
+    "yourTime": "A tua hora local: {time}",
+    "live": "O reino está a abrir!"
   }
 }

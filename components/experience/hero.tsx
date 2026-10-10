@@ -6,7 +6,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 
 import { BgImg, bgSrc, CtaButton, Snow } from "./primitives";
@@ -26,10 +26,13 @@ export function ExperienceHero({
   content,
   image,
   joinHref,
+  launch,
 }: {
   content: HeroContent;
   image: string;
   joinHref: string;
+  // under the status line: the opening countdown of a realm not open yet
+  launch?: ReactNode;
 }) {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -144,6 +147,7 @@ export function ExperienceHero({
             <span className="h-2 w-2 animate-pulse rounded-full bg-wow-blue-ice shadow-[0_0_10px_#4fc3f7]" />
             {content.status}
           </span>
+          {launch && <div className="basis-full">{launch}</div>}
         </motion.div>
       </motion.div>
 

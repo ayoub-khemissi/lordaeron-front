@@ -11,6 +11,7 @@ import { usePathname, useRouter } from "next/navigation";
 import clsx from "clsx";
 
 import { usePathRealm, useRealmPreview } from "@/lib/realm-context";
+import { launchParts } from "@/lib/launch";
 import { OVERLAY_MOTION } from "@/lib/overlay-motion";
 import {
   REALMS,
@@ -107,7 +108,10 @@ export function RealmSwitcher({ onNavigate }: { onNavigate?: () => void }) {
               endContent={
                 REALMS[slug].status === "soon" ? (
                   <span className="rounded border border-wow-blue-ice/30 px-1.5 py-0.5 text-[10px] uppercase text-wow-blue-ice">
-                    {t("soon")}
+                    {REALMS[slug].launchAt
+                      ? launchParts(REALMS[slug].launchAt as string, locale)
+                          .short
+                      : t("soon")}
                   </span>
                 ) : null
               }

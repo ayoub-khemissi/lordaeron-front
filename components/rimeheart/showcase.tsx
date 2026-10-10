@@ -46,6 +46,9 @@ import {
   useTipText,
 } from "@/components/experience/game-tooltip";
 import { ChapterNav, ExperienceHero } from "@/components/experience/hero";
+import { LaunchCountdown } from "@/components/launch-countdown";
+import { launchLine } from "@/lib/launch";
+import { REALMS } from "@/lib/realms";
 import {
   BgImg,
   Carousel,
@@ -1652,6 +1655,8 @@ function Finale({ lang, joinHref }: { lang: Lang; joinHref: string }) {
   );
 }
 
+const LAUNCH_AT = REALMS.rimeheart.launchAt as string;
+
 export default function ExperienceContent({ locale }: { locale: string }) {
   const lang: Lang = locale === "fr" ? "fr" : "en";
   const joinHref = `/${locale}/register`;
@@ -1671,10 +1676,21 @@ export default function ExperienceContent({ locale }: { locale: string }) {
             ctaPrimary: hero.ctaPrimary[lang],
             ctaSecondary: hero.ctaSecondary[lang],
             scroll: hero.scroll[lang],
-            status: hero.status[lang],
+            status: hero.status[lang].replace(
+              "{date}",
+              launchLine(LAUNCH_AT, lang),
+            ),
           }}
           image="/img/Wrath of the Lich King Classic Cinematic Stills/Wrath_of_the_Lich_King_Classic_Cinematic_Still__(4).jpg"
           joinHref={joinHref}
+          launch={
+            <LaunchCountdown
+              align="start"
+              className="mt-1"
+              iso={LAUNCH_AT}
+              showDate={false}
+            />
+          }
         />
         <Manifesto lang={lang} />
         <Phases lang={lang} />

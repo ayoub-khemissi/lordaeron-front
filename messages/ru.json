@@ -1133,5 +1133,15 @@
     },
     "label": "Миры",
     "adminPreview": "Просмотр админа"
+  },
+  "launch": {
+    "title": "Открытие",
+    "opensOn": "Открытие {date}",
+    "days": "дн.",
+    "hours": "ч",
+    "minutes": "мин",
+    "seconds": "с",
+    "yourTime": "Ваше местное время: {time}",
+    "live": "Мир открывается!"
   }
 }

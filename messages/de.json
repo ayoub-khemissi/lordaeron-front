@@ -1103,5 +1103,15 @@
     },
     "label": "Realms",
     "adminPreview": "Admin-Vorschau"
+  },
+  "launch": {
+    "title": "Eröffnung",
+    "opensOn": "Eröffnung am {date}",
+    "days": "Tage",
+    "hours": "Std.",
+    "minutes": "Min.",
+    "seconds": "Sek.",
+    "yourTime": "Deine Ortszeit: {time}",
+    "live": "Der Realm öffnet!"
   }
 }

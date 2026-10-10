@@ -33,6 +33,8 @@ export interface RealmInfo {
   accent: "gold" | "ice";
   // an administrator's view of it (realmView): everything open, as on its opening day
   preview?: boolean;
+  // its opening, an instant in UTC (shown in Paris time with UTC beside it, see lib/launch.ts); the status stays "soon" until switched
+  launchAt?: string;
 }
 
 export const ALL_SECTIONS: RealmSection[] = [
@@ -71,6 +73,8 @@ export const REALMS: Record<RealmSlug, RealmInfo> = {
     realmId: Number(process.env.RIMEHEART_REALM_ID || 4),
     name: "Rimeheart",
     status: "soon",
+    // Ayoub, 10/10/2026: opens on 16 October 2026 at 19:00 Paris time (CEST, UTC+2)
+    launchAt: "2026-10-16T17:00:00Z",
     // its how-to has no client patch yet (it comes with its opening)
     sections: ["home", "how-to", "armory", "shop"],
     accent: "ice",

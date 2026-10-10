@@ -5,8 +5,10 @@ import { getTranslations } from "next-intl/server";
 import clsx from "clsx";
 
 import { JsonLd } from "@/components/json-ld";
+import { LaunchCountdown } from "@/components/launch-countdown";
 import { siteConfig } from "@/config/site";
 import { REALMS, REALM_SLUGS, realmPath, type RealmSlug } from "@/lib/realms";
+import { launchParts } from "@/lib/launch";
 import { buildPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -66,6 +68,16 @@ export default async function RealmPortalPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "realms" });
+  const tl = await getTranslations({ locale, namespace: "launch" });
+  // a realm not open yet with a date: "Opens Oct 16 · 19:00 CEST"
+  const soonLabel = (slug: RealmSlug) => {
+    const at = REALMS[slug].launchAt;
+
+    if (!at) return t("soon");
+    const p = launchParts(at, locale);
+
+    return tl("opensOn", { date: `${p.short} · ${p.time}` });
+  };
 
   return (
     <div className="relative min-h-[calc(100vh-4rem)] overflow-hidden bg-wow-darker">
@@ -125,7 +137,7 @@ export default async function RealmPortalPage({
                 <div className="relative p-7 sm:p-10">
                   <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-white/85 backdrop-blur-sm">
                     <span className={clsx("h-2 w-2 rounded-full", card.dot)} />
-                    {realm.status === "open" ? t("open") : t("soon")}
+                    {realm.status === "open" ? t("open") : soonLabel(slug)}
                   </span>
                   <h2
                     className={clsx(
@@ -138,6 +150,13 @@ export default async function RealmPortalPage({
                   <p className="mt-3 font-heading text-lg text-white/90 sm:text-xl">
                     {t(`${slug}.tagline`)}
                   </p>
+                  {realm.status !== "open" && realm.launchAt && (
+                    <LaunchCountdown
+                      compact
+                      className="mt-3"
+                      iso={realm.launchAt}
+                    />
+                  )}
                   <ul className="mt-6 space-y-2">
                     {points.map((p) => (
                       <li

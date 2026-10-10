@@ -1,12 +1,15 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
+import { launchLine } from "@/lib/launch";
 import { useRealm } from "@/lib/realm-context";
 
 /* A realm that is not open yet: its shop shows the catalogue, purchases open with the realm (lib/realms.ts status) */
 export function RealmSoonBanner() {
   const t = useTranslations("shop");
+  const tl = useTranslations("launch");
+  const locale = useLocale();
   const realm = useRealm();
 
   return (
@@ -19,6 +22,11 @@ export function RealmSoonBanner() {
         <p className="text-sm text-white/65">
           {t("realmSoonText", { realm: realm.name })}
         </p>
+        {realm.launchAt && (
+          <p className="mt-1 text-sm font-semibold text-wow-blue-ice">
+            {tl("opensOn", { date: launchLine(realm.launchAt, locale) })}
+          </p>
+        )}
       </div>
     </div>
   );
