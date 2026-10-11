@@ -39,7 +39,6 @@ export function ExperienceHero({
     target: ref,
     offset: ["start start", "end start"],
   });
-  const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
   const lift = useTransform(scrollYProgress, [0, 1], [0, -160]);
   // the intro veil stays until the hero picture is decoded (2.5 s at most), so the page never shows half-built
   const [ready, setReady] = useState(false);
@@ -105,7 +104,7 @@ export function ExperienceHero({
 
       <motion.div
         className="relative mx-auto w-full max-w-7xl px-6 pb-24 pt-32 sm:pb-32 lg:pb-16 lg:pt-24"
-        style={{ opacity: fade, y: lift }}
+        style={{ y: lift }}
       >
         <motion.p
           animate={ready ? { opacity: 1, letterSpacing: "0.45em" } : {}}
