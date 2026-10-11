@@ -104,7 +104,7 @@ export async function getPurchasesByAccount(
       i.category as item_category,
       COALESCE(i.icon_url, s.icon_url) as item_icon_url,
       i.quality as item_quality,
-      CASE WHEN p.set_id_ref IS NOT NULL THEN 1 ELSE IFNULL(i.is_refundable, 0) END as is_refundable,
+      CASE WHEN p.set_id_ref IS NOT NULL THEN 0 ELSE IFNULL(i.is_refundable, 0) END as is_refundable,
       (SELECT COUNT(*) FROM shop_set_items si WHERE si.set_id = p.set_id_ref) as set_item_count
     FROM shop_purchases p
     LEFT JOIN shop_items i ON p.item_id_ref = i.id
@@ -136,7 +136,7 @@ export async function getAllPurchases(filters?: {
     i.category as item_category,
     COALESCE(i.icon_url, s.icon_url) as item_icon_url,
     i.quality as item_quality,
-    CASE WHEN p.set_id_ref IS NOT NULL THEN 1 ELSE IFNULL(i.is_refundable, 0) END as is_refundable,
+    CASE WHEN p.set_id_ref IS NOT NULL THEN 0 ELSE IFNULL(i.is_refundable, 0) END as is_refundable,
     (SELECT COUNT(*) FROM shop_set_items si WHERE si.set_id = p.set_id_ref) as set_item_count
   FROM shop_purchases p
   LEFT JOIN shop_items i ON p.item_id_ref = i.id
