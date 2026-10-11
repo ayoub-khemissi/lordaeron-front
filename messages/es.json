@@ -253,7 +253,9 @@
     "reorderSuccess": "Orden de personajes actualizado!",
     "reorderError": "Error al actualizar el orden.",
     "moveUp": "Subir",
-    "moveDown": "Bajar"
+    "moveDown": "Bajar",
+    "purchaseHistory": "Historial de compras",
+    "noPurchases": "Todavía no hay compras."
   },
   "shop": {
     "title": "Tienda",
@@ -1087,8 +1089,8 @@
       "tagline": "Epic Progressive · de Vanilla a WotLK",
       "points": [
         "Vanilla, luego TBC, luego WotLK: cada etapa se desbloquea a su vez",
-        "XP x5, transfiguración, interfacción",
-        "Reinicio de bandas dos veces por semana, vía en solitario del Campeón solitario"
+        "XP x5, transfiguración, juego entre facciones",
+        "Reinicio de bandas dos veces por semana, senda del Campeón Solitario"
       ]
     },
     "rimeheart": {

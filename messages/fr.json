@@ -76,9 +76,7 @@
       "passwordLength": "Le mot de passe doit contenir 6 à 16 caractères",
       "passwordMismatch": "Les mots de passe ne correspondent pas",
       "usernameTaken": "Ce nom d'utilisateur est déjà pris",
-      "serverError": "Erreur serveur. Veuillez réessayer.",
-      "purchaseNotRefundable": "Cet achat n'est pas remboursable.",
-      "recipientNotFound": "Personnage destinataire introuvable."
+      "serverError": "Erreur serveur. Veuillez réessayer."
     }
   },
   "login": {
@@ -434,7 +432,9 @@
       "setNotFound": "Set introuvable",
       "heirloomMaxLevelRequired": "Vous devez avoir un personnage niveau 80 pour acheter des objets héritage.",
       "serverError": "Erreur serveur. Veuillez réessayer.",
-      "realmNotOpen": "Ce royaume n'est pas encore ouvert"
+      "realmNotOpen": "Ce royaume n'est pas encore ouvert",
+      "purchaseNotRefundable": "Cet achat n'est pas remboursable.",
+      "recipientNotFound": "Personnage destinataire introuvable."
     },
     "comingSoon": "Bientôt disponible",
     "realmSoonTitle": "La boutique de {realm} ouvrira avec le royaume",

@@ -17,8 +17,6 @@
   "home": {
     "title": "Bem-vindo a Lordaeron",
     "subtitle": "A experiencia Epic Progressive WoW definitiva — de Vanilla a WotLK",
-    "purchaseHistory": "Histórico de compras",
-    "noPurchases": "Nenhuma compra ainda.",
     "cta": "Comecar a Jogar",
     "ctaRegister": "Criar Conta",
     "serverStatus": "Estado do Servidor",
@@ -39,8 +37,6 @@
     "title": "Como Conectar",
     "subtitle": "Segue estes passos simples para te juntares a {realm}",
     "realmSoon": "{realm} abre em breve: prepara já o teu cliente, o reino aparecerá na lista de reinos no dia da abertura.",
-    "purchaseHistory": "Histórico de compras",
-    "noPurchases": "Nenhuma compra ainda.",
     "step1Title": "Descarregar o Cliente",
     "step1Desc": "Descarrega o World of Warcraft versao 3.3.5a (build 12340). Podes encontra-lo em sites populares de arquivo de WoW.",
     "step2Title": "Definir a Realmlist",
@@ -62,8 +58,6 @@
   "register": {
     "title": "Criar Conta",
     "subtitle": "Junta-te a Lordaeron e comeca a tua aventura",
-    "purchaseHistory": "Histórico de compras",
-    "noPurchases": "Nenhuma compra ainda.",
     "username": "Nome de utilizador",
     "email": "Email",
     "password": "Palavra-passe",
@@ -82,16 +76,12 @@
       "passwordLength": "A palavra-passe deve ter entre 6 e 16 caracteres",
       "passwordMismatch": "As palavras-passe nao coincidem",
       "usernameTaken": "O nome de utilizador ja esta em uso",
-      "serverError": "Erro no servidor. Por favor, tenta novamente.",
-      "purchaseNotRefundable": "Esta compra nao e reembolsavel.",
-      "recipientNotFound": "Personagem destinatario nao encontrado."
+      "serverError": "Erro no servidor. Por favor, tenta novamente."
     }
   },
   "login": {
     "title": "Iniciar Sessao",
     "subtitle": "Acede a tua conta Lordaeron",
-    "purchaseHistory": "Histórico de compras",
-    "noPurchases": "Nenhuma compra ainda.",
     "username": "Nome de utilizador",
     "password": "Palavra-passe",
     "submit": "Entrar",
@@ -109,8 +99,6 @@
   "forgotPassword": {
     "title": "Esqueci a Palavra-passe",
     "subtitle": "Repoe a palavra-passe da tua conta",
-    "purchaseHistory": "Histórico de compras",
-    "noPurchases": "Nenhuma compra ainda.",
     "email": "Email",
     "submit": "Enviar Link de Reposicao",
     "success": "Se existir uma conta com este email, foi enviado um link de reposicao de palavra-passe.",
@@ -124,8 +112,6 @@
   "resetPassword": {
     "title": "Repor Palavra-passe",
     "subtitle": "Escolhe uma nova palavra-passe",
-    "purchaseHistory": "Histórico de compras",
-    "noPurchases": "Nenhuma compra ainda.",
     "password": "Nova Palavra-passe",
     "confirmPassword": "Confirmar Palavra-passe",
     "submit": "Repor Palavra-passe",
@@ -159,8 +145,6 @@
   "features": {
     "title": "Funcionalidades do Servidor",
     "subtitle": "Descobre o que torna Lordaeron unico",
-    "purchaseHistory": "Histórico de compras",
-    "noPurchases": "Nenhuma compra ainda.",
     "ratesTitle": "Taxas do Servidor",
     "ratesSubtitle": "Taxas equilibradas para uma experiencia melhorada",
     "featuresTitle": "Funcionalidades Epicas",
@@ -276,8 +260,6 @@
   "shop": {
     "title": "Loja",
     "subtitle": "Melhora a tua aventura com itens e servicos exclusivos",
-    "purchaseHistory": "Histórico de compras",
-    "noPurchases": "Nenhuma compra ainda.",
     "balance": "O Teu Saldo",
     "highlights": "Destaques",
     "allItems": "Todos os Itens",
@@ -450,7 +432,9 @@
       "setNotFound": "Conjunto nao encontrado",
       "heirloomMaxLevelRequired": "Deves ter um personagem de nivel 80 para comprar itens de reliquia.",
       "serverError": "Erro no servidor. Por favor, tenta novamente.",
-      "realmNotOpen": "Este reino ainda não está aberto"
+      "realmNotOpen": "Este reino ainda não está aberto",
+      "purchaseNotRefundable": "Esta compra nao e reembolsavel.",
+      "recipientNotFound": "Personagem destinatario nao encontrado."
     },
     "comingSoon": "Em breve",
     "realmSoonTitle": "A loja de {realm} abrirá com o reino",
@@ -706,8 +690,6 @@
   "news": {
     "title": "Noticias",
     "subtitle": "Fica a par das ultimas noticias e atualizacoes de Lordaeron",
-    "purchaseHistory": "Histórico de compras",
-    "noPurchases": "Nenhuma compra ainda.",
     "loadMore": "Carregar mais",
     "backToNews": "Voltar as noticias",
     "by": "Por",
@@ -719,8 +701,6 @@
   "contact": {
     "title": "Contacta-nos",
     "subtitle": "Tens uma questao ou precisas de ajuda? Envia-nos uma mensagem.",
-    "purchaseHistory": "Histórico de compras",
-    "noPurchases": "Nenhuma compra ainda.",
     "sendingAs": "A enviar como: {username} ({email})",
     "subject": "Assunto",
     "subjectPlaceholder": "Sobre o que e a tua mensagem?",
@@ -742,8 +722,6 @@
   "cgu": {
     "title": "Termos de Utilizacao",
     "subtitle": "Le atentamente estes termos antes de utilizares Lordaeron.",
-    "purchaseHistory": "Histórico de compras",
-    "noPurchases": "Nenhuma compra ainda.",
     "lastUpdated": "Ultima atualizacao: fevereiro de 2026",
     "sections": {
       "acceptance": {
@@ -783,8 +761,6 @@
   "cgv": {
     "title": "Termos de Venda",
     "subtitle": "Termos que regem as compras efetuadas em Lordaeron.",
-    "purchaseHistory": "Histórico de compras",
-    "noPurchases": "Nenhuma compra ainda.",
     "lastUpdated": "Ultima atualizacao: fevereiro de 2026",
     "sections": {
       "general": {
@@ -824,8 +800,6 @@
   "rgpd": {
     "title": "Politica de Privacidade (RGPD)",
     "subtitle": "Como recolhemos, utilizamos e protegemos os teus dados pessoais.",
-    "purchaseHistory": "Histórico de compras",
-    "noPurchases": "Nenhuma compra ainda.",
     "lastUpdated": "Ultima atualizacao: fevereiro de 2026",
     "sections": {
       "controller": {
@@ -956,8 +930,6 @@
   "epicProgression": {
     "title": "Epic Progression",
     "subtitle": "Progrida por todos os níveis do WoW — em raide, ou pela Senda do Campeão Solitário",
-    "purchaseHistory": "Histórico de compras",
-    "noPurchases": "Nenhuma compra ainda.",
     "introTitle": "O que e Epic Progression?",
     "introDesc": "Epic Progression e o sistema de jogabilidade principal de Lordaeron. Cada personagem deve derrotar o(s) boss(es) final(ais) de um tier de raid para desbloquear o seguinte. A progressao e por personagem — nao por conta nem por servidor. Cada heroi escreve a sua propria historia, das profundezas de Molten Core ao trono gelado do Lich King. O servidor corre numa configuracao WotLK 3.3.5a — feiticos, talentos, quests — mas o conteudo e desbloqueado progressivamente. Dois caminhos atravessam cada expansão: as grandes raides, ou a Senda do Campeão Solitário para jogadores solo e grupos pequenos.",
     "dkTitle": "Death Knights e Vanilla",
@@ -1052,8 +1024,6 @@
   "raidScaling": {
     "title": "Escala de Dificuldade",
     "subtitle": "Raids e dungeons adaptam-se dinamicamente ao tamanho do teu grupo — joga com qualquer numero de jogadores",
-    "purchaseHistory": "Histórico de compras",
-    "noPurchases": "Nenhuma compra ainda.",
     "introTitle": "Como funciona?",
     "introDesc": "Quando o teu grupo entra numa instancia com menos jogadores do que a capacidade maxima, todas as criaturas sao automaticamente reduzidas. Vida, dano e loot ajustam-se em tempo real sempre que alguem entra, sai ou desconecta. Na capacidade maxima, tudo permanece a 100% — sem escala aplicada.",
     "simulatorTitle": "Simulador Interativo",
@@ -1106,7 +1076,7 @@
   "realms": {
     "portal": {
       "kicker": "Uma conta · dois reinos",
-      "title": "Escolha seu reino",
+      "title": "Escolhe o teu reino",
       "subtitle": "Uma conta, uma loja, duas maneiras de viver Azeroth."
     },
     "switch": "Mudar de reino",
@@ -1118,16 +1088,16 @@
     "lordaeron": {
       "tagline": "Epic Progressive · de Vanilla a WotLK",
       "points": [
-        "Vanilla, depois TBC, depois WotLK: cada etapa se desbloqueia por vez",
+        "Vanilla, depois TBC, depois WotLK: cada etapa desbloqueia-se à vez",
         "XP x5, transmogrificação, entre facções",
-        "Reinício de raides duas vezes por semana, caminho solo do Campeão Solitário"
+        "Reinício de raides duas vezes por semana, Senda do Campeão Solitário"
       ]
     },
     "rimeheart": {
       "tagline": "Wrath of the Lich King · centenas de novidades",
       "points": [
         "Cinco fases de três meses",
-        "Raides heroicas iniciais, qualidade Artefato, chefes mundiais",
+        "Raides heroicas iniciais, qualidade Artefacto, world bosses",
         "30 novos feitiços de classe, 277 novas receitas",
         "28 especializações de profissão e as suas obras-primas"
       ]

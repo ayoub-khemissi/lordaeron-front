@@ -13,7 +13,8 @@ import {
 import clsx from "clsx";
 
 /* In-game tooltips of the realm's own items and spells (Wowhead does not know them).
-   Data: public/data/experience-tooltips.json, written by the generator's tools/site-tooltips.js. */
+   Data: public/data/experience-tooltips.<lang>.json (one per language of the 3.3.5 clients we have: English, French, German,
+   Spanish, Russian), written by the generator's tools/site-tooltips.js. The page loads its own language's file only. */
 
 export type TipLine = {
   left: string;
@@ -21,12 +22,18 @@ export type TipLine = {
   color?: string;
 };
 type TipText = { name: string; lines: TipLine[] };
+/** The languages the tooltips exist in; the site's other languages show the English ones (as in game). */
+export type TipLang = "fr" | "en" | "de" | "es" | "ru";
+export const TIP_LANGS: readonly TipLang[] = ["fr", "en", "de", "es", "ru"];
+export const tipLangOf = (lang: string): TipLang =>
+  (TIP_LANGS as readonly string[]).includes(lang) ? (lang as TipLang) : "en";
 export type TipEntry = {
   icon: string;
   quality?: number;
-  fr: TipText;
-  en: TipText;
-};
+  // language-free facts of an item (a treasure mount's card)
+  flying?: boolean;
+  reqLevel?: number;
+} & Partial<Record<TipLang, TipText>>;
 type TipData = Record<string, TipEntry>;
 
 /** Item quality colours (0 poor … 6 artifact), as in the game. */
@@ -56,18 +63,23 @@ const colorOf = (c?: string) =>
       "#ffffff")
     : "#ffffff";
 
-let cache: Promise<TipData> | null = null;
-const loadTips = () => {
-  cache ??= fetch("/data/experience-tooltips.json")
-    .then((r) => (r.ok ? r.json() : {}))
-    .catch(() => ({}));
+const cache: Partial<Record<TipLang, Promise<TipData>>> = {};
+const loadTips = (lang: TipLang): Promise<TipData> => {
+  // a language whose file is missing falls back to the English one
+  cache[lang] ??= fetch(`/data/experience-tooltips.${lang}.json`)
+    .then((r) => {
+      if (r.ok) return r.json();
 
-  return cache;
+      return lang === "en" ? {} : loadTips("en");
+    })
+    .catch(() => (lang === "en" ? {} : loadTips("en")));
+
+  return cache[lang];
 };
 
 type Shown = { id: string; x: number; y: number; pinned: boolean };
 const TipContext = createContext<{
-  lang: "fr" | "en";
+  lang: TipLang;
   show: (s: Shown) => void;
   hide: (id: string) => void;
 } | null>(null);
@@ -76,7 +88,7 @@ export function TooltipProvider({
   lang,
   children,
 }: {
-  lang: "fr" | "en";
+  lang: TipLang;
   children: ReactNode;
 }) {
   const [data, setData] = useState<TipData>({});
@@ -86,15 +98,18 @@ export function TooltipProvider({
 
   useEffect(() => {
     // after the first paint: the page never waits for the tooltips
-    const id = setTimeout(() => loadTips().then(setData), 1500);
+    const id = setTimeout(() => loadTips(lang).then(setData), 1500);
 
     return () => clearTimeout(id);
-  }, []);
+  }, [lang]);
 
-  const show = useCallback((s: Shown) => {
-    loadTips().then(setData);
-    setShown(s);
-  }, []);
+  const show = useCallback(
+    (s: Shown) => {
+      loadTips(lang).then(setData);
+      setShown(s);
+    },
+    [lang],
+  );
   const hide = useCallback(
     (id: string) => setShown((s) => (s && s.id === id && !s.pinned ? null : s)),
     [],
@@ -229,21 +244,22 @@ export function useTipText(id?: string) {
   const [entry, setEntry] = useState<TipEntry | undefined>();
 
   useEffect(() => {
-    if (!id) return;
-    loadTips().then((d) => setEntry(d[id]));
-  }, [id]);
+    if (!id || !ctx) return;
+    loadTips(ctx.lang).then((d) => setEntry(d[id]));
+  }, [id, ctx]);
 
   return entry && ctx ? (entry[ctx.lang] ?? entry.en) : undefined;
 }
 
 /* The whole entry (icon, quality, texts), for cards built from the game data */
 export function useTipEntry(id?: string) {
+  const ctx = useContext(TipContext);
   const [entry, setEntry] = useState<TipEntry | undefined>();
 
   useEffect(() => {
-    if (!id) return;
-    loadTips().then((d) => setEntry(d[id]));
-  }, [id]);
+    if (!id || !ctx) return;
+    loadTips(ctx.lang).then((d) => setEntry(d[id]));
+  }, [id, ctx]);
 
   return entry;
 }

@@ -1,13 +1,85 @@
 /*
- * The realm showcase (hidden page /[locale]/experience): every new feature of the Lordaeron realm, player-facing.
+ * The realm showcase (/[locale]/rimeheart): every new feature of the Rimeheart realm, player-facing.
  * Facts verified against the content generator and the test realm (contrib/wotlk-plus, inventory of 08/10/2026).
- * French and English; the other locales show the English text until translated.
+ * Written in French and English here; the six other site languages come from i18n/<lang>.json, keyed by the English
+ * text (official Blizzard names in German, Spanish and Russian; game names kept in English in Italian, Polish and
+ * Portuguese, which had no 3.3.5 client). A text missing from a dictionary shows in English.
  */
+import de from "./i18n/de.json";
+import es from "./i18n/es.json";
+import it from "./i18n/it.json";
+import pl from "./i18n/pl.json";
+import pt from "./i18n/pt.json";
+import ru from "./i18n/ru.json";
 
-export type Lang = "fr" | "en";
-export type T = { fr: string; en: string };
+export const LANGS = ["fr", "en", "de", "es", "it", "pl", "pt", "ru"] as const;
+export type Lang = (typeof LANGS)[number];
+export type T = Record<Lang, string>;
 
-const L = (fr: string, en: string): T => ({ fr, en });
+const DICTS: Record<Exclude<Lang, "fr" | "en">, Record<string, string>> = {
+  de,
+  es,
+  it,
+  pl,
+  pt,
+  ru,
+};
+
+const L = (fr: string, en: string): T => ({
+  fr,
+  en,
+  de: DICTS.de[en] ?? en,
+  es: DICTS.es[en] ?? en,
+  it: DICTS.it[en] ?? en,
+  pl: DICTS.pl[en] ?? en,
+  pt: DICTS.pt[en] ?? en,
+  ru: DICTS.ru[en] ?? en,
+});
+
+/** Short texts of the page's widgets (the Void Sabre tooltip, mount cards, the quiz, the glory board). */
+export const ui = {
+  voidSabre: L("Sabre du Vide", "Void Sabre"),
+  itemLevel: L("Niveau d'objet", "Item Level"),
+  bindsOnPickup: L("Lié quand ramassé", "Binds when picked up"),
+  oneHand: L("Une main", "One-Hand"),
+  sword: L("Épée", "Sword"),
+  damage: L("Dégâts", "Damage"),
+  speed: L("Vitesse 1,50", "Speed 1.50"),
+  dps: L("dégâts par seconde", "damage per second"),
+  agility: L("Agilité", "Agility"),
+  stamina: L("Endurance", "Stamina"),
+  classTrainer: L(
+    "Maître de classe · niveau {level}",
+    "Class trainer · level {level}",
+  ),
+  prelude: L("Prélude", "Prelude"),
+  phase: L("Phase", "Phase"),
+  flyingMount: L("Monture volante", "Flying mount"),
+  groundMount: L("Monture terrestre", "Ground mount"),
+  atLevel: L(" · niveau {level}", " · level {level}"),
+  easyQuestion: L("Une question facile", "An easy question"),
+  quizRight: L(
+    "Exact ! Le Kirin Tor récompense votre savoir.",
+    "Correct! The Kirin Tor rewards your knowledge.",
+  ),
+  quizWrong: L(
+    "Non… la réponse était : Désolation des dragons.",
+    "No… the answer was: Dragonblight.",
+  ),
+  realmFirst: L("Prem's", "Realm First"),
+};
+
+/** The Rimeheart page's title and description (app/[locale]/[realm]/page.tsx). */
+export const meta = {
+  title: L(
+    "Rimeheart · Le Norfendre comme jamais vécu",
+    "Rimeheart · Northrend as never lived before",
+  ),
+  description: L(
+    "Rimeheart, le nouveau royaume progressif Wrath of the Lich King de Lordaeron : raids héroïques, qualité Artefact, boss du monde, métiers réinventés. Ouverture le 16 octobre 2026 à 19h00 (heure de Paris).",
+    "Rimeheart, Lordaeron's new progressive Wrath of the Lich King realm: heroic raids, Artifact quality, world bosses, reinvented professions. Opens October 16, 2026 at 19:00 CEST (17:00 UTC).",
+  ),
+};
 
 const IMG = {
   lk: "/img/Wrath of the Lich King Classic Cinematic Stills/Wrath_of_the_Lich_King_Classic_Cinematic_Still__(4).jpg",

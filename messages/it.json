@@ -76,9 +76,7 @@
       "passwordLength": "La password deve avere 6-16 caratteri",
       "passwordMismatch": "Le password non corrispondono",
       "usernameTaken": "Il nome utente è già in uso",
-      "serverError": "Errore del server. Riprova.",
-      "purchaseNotRefundable": "Questo acquisto non è rimborsabile.",
-      "recipientNotFound": "Personaggio destinatario non trovato."
+      "serverError": "Errore del server. Riprova."
     }
   },
   "login": {
@@ -434,7 +432,9 @@
       "setNotFound": "Set non trovato",
       "heirloomMaxLevelRequired": "Devi avere un personaggio livello 80 per acquistare oggetti cimelio.",
       "serverError": "Errore del server. Riprova.",
-      "realmNotOpen": "Questo reame non è ancora aperto"
+      "realmNotOpen": "Questo reame non è ancora aperto",
+      "purchaseNotRefundable": "Questo acquisto non è rimborsabile.",
+      "recipientNotFound": "Personaggio destinatario non trovato."
     },
     "comingSoon": "Prossimamente",
     "realmSoonTitle": "Il negozio di {realm} aprirà con il reame",
@@ -1090,7 +1090,7 @@
       "points": [
         "Vanilla, poi TBC, poi WotLK: ogni livello si sblocca a turno",
         "XP x5, trasmogrificazione, interfazione",
-        "Reset delle incursioni due volte a settimana, via in solitario del Campione solitario"
+        "Reset delle incursioni due volte a settimana, Sentiero del Campione Solitario per chi gioca da solo"
       ]
     },
     "rimeheart": {

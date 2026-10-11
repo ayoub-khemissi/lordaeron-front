@@ -76,9 +76,7 @@
       "passwordLength": "Password must be 6-16 characters",
       "passwordMismatch": "Passwords do not match",
       "usernameTaken": "Username is already taken",
-      "serverError": "Server error. Please try again.",
-      "purchaseNotRefundable": "This purchase is not refundable.",
-      "recipientNotFound": "Recipient character not found."
+      "serverError": "Server error. Please try again."
     }
   },
   "login": {
@@ -434,7 +432,9 @@
       "setNotFound": "Set not found",
       "heirloomMaxLevelRequired": "You must have a level 80 character to purchase heirloom items.",
       "serverError": "Server error. Please try again.",
-      "realmNotOpen": "This realm is not open yet"
+      "realmNotOpen": "This realm is not open yet",
+      "purchaseNotRefundable": "This purchase is not refundable.",
+      "recipientNotFound": "Recipient character not found."
     },
     "comingSoon": "Coming soon",
     "realmSoonTitle": "The {realm} shop opens with the realm",

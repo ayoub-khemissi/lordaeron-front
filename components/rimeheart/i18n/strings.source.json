@@ -1,0 +1,3738 @@
+[
+ {
+  "en": "Void Sabre",
+  "fr": "Sabre du Vide",
+  "ctx": [
+   "ui.voidSabre"
+  ]
+ },
+ {
+  "en": "Item Level",
+  "fr": "Niveau d'objet",
+  "ctx": [
+   "ui.itemLevel"
+  ]
+ },
+ {
+  "en": "Binds when picked up",
+  "fr": "Lié quand ramassé",
+  "ctx": [
+   "ui.bindsOnPickup"
+  ]
+ },
+ {
+  "en": "One-Hand",
+  "fr": "Une main",
+  "ctx": [
+   "ui.oneHand"
+  ]
+ },
+ {
+  "en": "Sword",
+  "fr": "Épée",
+  "ctx": [
+   "ui.sword"
+  ]
+ },
+ {
+  "en": "Damage",
+  "fr": "Dégâts",
+  "ctx": [
+   "ui.damage"
+  ]
+ },
+ {
+  "en": "Speed 1.50",
+  "fr": "Vitesse 1,50",
+  "ctx": [
+   "ui.speed"
+  ]
+ },
+ {
+  "en": "damage per second",
+  "fr": "dégâts par seconde",
+  "ctx": [
+   "ui.dps"
+  ]
+ },
+ {
+  "en": "Agility",
+  "fr": "Agilité",
+  "ctx": [
+   "ui.agility"
+  ]
+ },
+ {
+  "en": "Stamina",
+  "fr": "Endurance",
+  "ctx": [
+   "ui.stamina"
+  ]
+ },
+ {
+  "en": "Class trainer · level {level}",
+  "fr": "Maître de classe · niveau {level}",
+  "ctx": [
+   "ui.classTrainer"
+  ]
+ },
+ {
+  "en": "Prelude",
+  "fr": "Prélude",
+  "ctx": [
+   "ui.prelude"
+  ]
+ },
+ {
+  "en": "Phase",
+  "fr": "Phase",
+  "ctx": [
+   "phases.phaseTag",
+   "ui.phase"
+  ]
+ },
+ {
+  "en": "Flying mount",
+  "fr": "Monture volante",
+  "ctx": [
+   "ui.flyingMount"
+  ]
+ },
+ {
+  "en": "Ground mount",
+  "fr": "Monture terrestre",
+  "ctx": [
+   "ui.groundMount"
+  ]
+ },
+ {
+  "en": " · level {level}",
+  "fr": " · niveau {level}",
+  "ctx": [
+   "ui.atLevel"
+  ]
+ },
+ {
+  "en": "An easy question",
+  "fr": "Une question facile",
+  "ctx": [
+   "ui.easyQuestion"
+  ]
+ },
+ {
+  "en": "Correct! The Kirin Tor rewards your knowledge.",
+  "fr": "Exact ! Le Kirin Tor récompense votre savoir.",
+  "ctx": [
+   "ui.quizRight"
+  ]
+ },
+ {
+  "en": "No… the answer was: Dragonblight.",
+  "fr": "Non… la réponse était : Désolation des dragons.",
+  "ctx": [
+   "ui.quizWrong"
+  ]
+ },
+ {
+  "en": "Realm First",
+  "fr": "Prem's",
+  "ctx": [
+   "ui.realmFirst"
+  ]
+ },
+ {
+  "en": "Rimeheart · Northrend as never lived before",
+  "fr": "Rimeheart · Le Norfendre comme jamais vécu",
+  "ctx": [
+   "meta.title"
+  ]
+ },
+ {
+  "en": "Rimeheart, Lordaeron's new progressive Wrath of the Lich King realm: heroic raids, Artifact quality, world bosses, reinvented professions. Opens October 16, 2026 at 19:00 CEST (17:00 UTC).",
+  "fr": "Rimeheart, le nouveau royaume progressif Wrath of the Lich King de Lordaeron : raids héroïques, qualité Artefact, boss du monde, métiers réinventés. Ouverture le 16 octobre 2026 à 19h00 (heure de Paris).",
+  "ctx": [
+   "meta.description"
+  ]
+ },
+ {
+  "en": "Rimeheart · Wrath of the Lich King 3.3.5",
+  "fr": "Rimeheart · Wrath of the Lich King 3.3.5",
+  "ctx": [
+   "hero.kicker"
+  ]
+ },
+ {
+  "en": "New realm · Opens {date}",
+  "fr": "Nouveau royaume · Ouverture le {date}",
+  "ctx": [
+   "hero.status"
+  ]
+ },
+ {
+  "en": "Northrend",
+  "fr": "Le Norfendre",
+  "ctx": [
+   "hero.title"
+  ]
+ },
+ {
+  "en": "as never lived before.",
+  "fr": "comme jamais vécu.",
+  "ctx": [
+   "hero.titleAccent"
+  ]
+ },
+ {
+  "en": "A progressive realm true to 3.3.5, with hundreds of additions found nowhere else.",
+  "fr": "Un royaume progressif fidèle à la 3.3.5, et des centaines de nouveautés introuvables ailleurs.",
+  "ctx": [
+   "hero.subtitle"
+  ]
+ },
+ {
+  "en": "Join the adventure",
+  "fr": "Rejoindre l'aventure",
+  "ctx": [
+   "hero.ctaPrimary"
+  ]
+ },
+ {
+  "en": "Discover the realm",
+  "fr": "Découvrir le royaume",
+  "ctx": [
+   "hero.ctaSecondary"
+  ]
+ },
+ {
+  "en": "Scroll",
+  "fr": "Défiler",
+  "ctx": [
+   "hero.scroll"
+  ]
+ },
+ {
+  "en": "The realm",
+  "fr": "Le royaume",
+  "ctx": [
+   "manifesto.eyebrow"
+  ]
+ },
+ {
+  "en": "True to the legend.\nUnseen anywhere else.",
+  "fr": "Fidèle à la légende.\nJamais vu ailleurs.",
+  "ctx": [
+   "manifesto.title"
+  ]
+ },
+ {
+  "en": "Lordaeron replays the expansion **tier by tier**, as at launch, on a faithful 3.3.5 base. And at every tier, **new content**: every creation is rooted in the lore, balanced for every specialization, **translated into five languages**.",
+  "fr": "Lordaeron rejoue l'extension **palier par palier**, comme à sa sortie, sur une base 3.3.5 fidèle. Et à chaque palier, **du contenu neuf** : chaque création est pensée dans le lore, équilibrée pour chaque spécialisation, **traduite dans cinq langues**.",
+  "ctx": [
+   "manifesto.text"
+  ]
+ },
+ {
+  "en": "progression phases",
+  "fr": "phases de progression",
+  "ctx": [
+   "manifesto.label"
+  ]
+ },
+ {
+  "en": "new achievements",
+  "fr": "nouveaux hauts faits",
+  "ctx": [
+   "manifesto.label"
+  ]
+ },
+ {
+  "en": "new mounts",
+  "fr": "nouvelles montures",
+  "ctx": [
+   "manifesto.label"
+  ]
+ },
+ {
+  "en": "profession recipes",
+  "fr": "recettes de métier",
+  "ctx": [
+   "manifesto.label"
+  ]
+ },
+ {
+  "en": "profession specializations",
+  "fr": "spécialisations de métier",
+  "ctx": [
+   "manifesto.label"
+  ]
+ },
+ {
+  "en": "brand-new class spells",
+  "fr": "sorts de classe inédits",
+  "ctx": [
+   "manifesto.label"
+  ]
+ },
+ {
+  "en": "transmog appearances",
+  "fr": "apparences de transmogrification",
+  "ctx": [
+   "manifesto.label"
+  ]
+ },
+ {
+  "en": "lore questions",
+  "fr": "questions de lore",
+  "ctx": [
+   "manifesto.label"
+  ]
+ },
+ {
+  "en": "new titles",
+  "fr": "nouveaux titres",
+  "ctx": [
+   "manifesto.label"
+  ]
+ },
+ {
+  "en": "Progressive realm",
+  "fr": "Royaume progressif",
+  "ctx": [
+   "phases.eyebrow"
+  ]
+ },
+ {
+  "en": "Five phases. Three months each.",
+  "fr": "Cinq phases. Trois mois chacune.",
+  "ctx": [
+   "phases.title"
+  ]
+ },
+ {
+  "en": "Relive the expansion as it launched. Instances, loot, recipes, vendors, quests, emblems and arena seasons open with each phase, **never ahead of time**. Every opening is **announced in game**.",
+  "fr": "Revivez l'extension comme à sa sortie. Instances, butin, recettes, vendeurs, quêtes, emblèmes et saisons d'arène s'ouvrent au rythme des phases, **sans jamais d'avance**. Chaque ouverture est **annoncée en jeu**.",
+  "ctx": [
+   "phases.lede"
+  ]
+ },
+ {
+  "en": "The prelude",
+  "fr": "Le prélude",
+  "ctx": [
+   "phases.title"
+  ]
+ },
+ {
+  "en": "2–3 weeks",
+  "fr": "2 à 3 semaines",
+  "ctx": [
+   "phases.length"
+  ]
+ },
+ {
+  "en": "12 Northrend dungeons",
+  "fr": "12 donjons du Norfendre",
+  "ctx": [
+   "phases.lines"
+  ]
+ },
+ {
+  "en": "Normal & heroic",
+  "fr": "Normal et héroïque",
+  "ctx": [
+   "phases"
+  ]
+ },
+ {
+  "en": "Wintergrasp",
+  "fr": "Joug-d'hiver",
+  "ctx": [
+   "phases"
+  ]
+ },
+ {
+  "en": "Battlegrounds · Arenas",
+  "fr": "Champs de bataille · Arènes",
+  "ctx": [
+   "phases.meta"
+  ]
+ },
+ {
+  "en": "Naxxramas",
+  "fr": "Naxxramas",
+  "ctx": [
+   "phases.lines",
+   "phases.title",
+   "raids.title"
+  ]
+ },
+ {
+  "en": "3 months",
+  "fr": "3 mois",
+  "ctx": [
+   "phases.length"
+  ]
+ },
+ {
+  "en": "Obsidian Sanctum",
+  "fr": "Sanctum obsidien",
+  "ctx": [
+   "phases"
+  ]
+ },
+ {
+  "en": "Eye of Eternity",
+  "fr": "L'Œil de l'éternité",
+  "ctx": [
+   "phases"
+  ]
+ },
+ {
+  "en": "Archavon · Arena S5",
+  "fr": "Archavon · Arène S5",
+  "ctx": [
+   "phases.meta"
+  ]
+ },
+ {
+  "en": "Ulduar",
+  "fr": "Ulduar",
+  "ctx": [
+   "phases.lines",
+   "phases.title",
+   "raids.title"
+  ]
+ },
+ {
+  "en": "Argent Tournament",
+  "fr": "Tournoi d'argent",
+  "ctx": [
+   "phases"
+  ]
+ },
+ {
+  "en": "Emalon · Arena S6",
+  "fr": "Emalon · Arène S6",
+  "ctx": [
+   "phases.meta"
+  ]
+ },
+ {
+  "en": "The Eye",
+  "fr": "L'Œil",
+  "ctx": [
+   "phases.name"
+  ]
+ },
+ {
+  "en": "The Trial",
+  "fr": "L'Épreuve",
+  "ctx": [
+   "phases.title"
+  ]
+ },
+ {
+  "en": "Trial of the Crusader",
+  "fr": "Épreuve du croisé",
+  "ctx": [
+   "phases.lines"
+  ]
+ },
+ {
+  "en": "Onyxia · level 80",
+  "fr": "Onyxia · niveau 80",
+  "ctx": [
+   "phases"
+  ]
+ },
+ {
+  "en": "Koralon · Arena S7",
+  "fr": "Koralon · Arène S7",
+  "ctx": [
+   "phases.meta"
+  ]
+ },
+ {
+  "en": "Karazhan",
+  "fr": "Karazhan",
+  "ctx": [
+   "eye.name",
+   "phases.name"
+  ]
+ },
+ {
+  "en": "The Citadel",
+  "fr": "La Citadelle",
+  "ctx": [
+   "phases.title"
+  ]
+ },
+ {
+  "en": "Icecrown Citadel",
+  "fr": "Citadelle de la Couronne de glace",
+  "ctx": [
+   "phases.lines"
+  ]
+ },
+ {
+  "en": "Frozen Halls",
+  "fr": "Salles gelées",
+  "ctx": [
+   "phases"
+  ]
+ },
+ {
+  "en": "Toravon · Arena S8",
+  "fr": "Toravon · Arène S8",
+  "ctx": [
+   "phases.meta"
+  ]
+ },
+ {
+  "en": "Black Temple",
+  "fr": "Temple noir",
+  "ctx": [
+   "eye.name",
+   "phases.name"
+  ]
+ },
+ {
+  "en": "Twilight",
+  "fr": "Le Crépuscule",
+  "ctx": [
+   "phases.title"
+  ]
+ },
+ {
+  "en": "Ruby Sanctum",
+  "fr": "Sanctum rubis",
+  "ctx": [
+   "phases.lines"
+  ]
+ },
+ {
+  "en": "Halion",
+  "fr": "Halion",
+  "ctx": [
+   "phases"
+  ]
+ },
+ {
+  "en": "Final phase",
+  "fr": "Phase finale",
+  "ctx": [
+   "phases.meta"
+  ]
+ },
+ {
+  "en": "Sunwell Plateau",
+  "fr": "Plateau du Puits de soleil",
+  "ctx": [
+   "eye.name",
+   "phases.name"
+  ]
+ },
+ {
+  "en": "Launch",
+  "fr": "Ouverture",
+  "ctx": [
+   "phases.launchTag"
+  ]
+ },
+ {
+  "en": "Heroic 10 & 25",
+  "fr": "Héroïque 10 et 25",
+  "ctx": [
+   "phases.heroicTag"
+  ]
+ },
+ {
+  "en": "Burning Crusade raids",
+  "fr": "Raids de Burning Crusade",
+  "ctx": [
+   "phases.track"
+  ]
+ },
+ {
+  "en": "brought to level 80",
+  "fr": "portés au niveau 80",
+  "ctx": [
+   "phases"
+  ]
+ },
+ {
+  "en": "Classic and Burning Crusade raids **stay open from day one**, as do dual specialization and the Dungeon Finder.",
+  "fr": "Les raids classiques et de Burning Crusade **restent ouverts dès le premier jour**, comme la double spécialisation et la Recherche de donjons.",
+  "ctx": [
+   "phases.footnote"
+  ]
+ },
+ {
+  "en": "Artifact quality",
+  "fr": "Qualité Artefact",
+  "ctx": [
+   "artifact.eyebrow"
+  ]
+ },
+ {
+  "en": "Beyond epic.",
+  "fr": "Plus haut que l'épique.",
+  "ctx": [
+   "artifact.title"
+  ]
+ },
+ {
+  "en": "Every item looted, crafted, fished or earned can drop **one step higher**. Green, blue, epic… and **Artifact, the golden rank**.",
+  "fr": "Chaque objet ramassé, fabriqué, pêché ou reçu en récompense peut sortir **un cran au-dessus**. Vert, bleu, épique… et **Artefact, le rang doré**.",
+  "ctx": [
+   "artifact.lede"
+  ]
+ },
+ {
+  "en": "Uncommon",
+  "fr": "Peu commun",
+  "ctx": [
+   "artifact.label"
+  ]
+ },
+ {
+  "en": "Rare",
+  "fr": "Rare",
+  "ctx": [
+   "artifact.label"
+  ]
+ },
+ {
+  "en": "Epic",
+  "fr": "Épique",
+  "ctx": [
+   "artifact.label"
+  ]
+ },
+ {
+  "en": "Artifact",
+  "fr": "Artefact",
+  "ctx": [
+   "artifact.label",
+   "nav.label"
+  ]
+ },
+ {
+  "en": "18,592 higher-quality versions of existing gear, 7,143 of them Artifact.",
+  "fr": "18 592 versions supérieures d'équipements existants, dont 7 143 en qualité Artefact.",
+  "ctx": [
+   "artifact.points"
+  ]
+ },
+ {
+  "en": "An Artifact has 15% more stats than an epic of the same level, and its effects grow with it.",
+  "fr": "Un Artefact a 15 % de statistiques en plus qu'un épique du même niveau, et ses effets montent avec lui.",
+  "ctx": [
+   "artifact"
+  ]
+ },
+ {
+  "en": "The roll happens on loot, while fishing, on every craft and on quest rewards.",
+  "fr": "Le tirage a lieu au butin, à la pêche, à chaque fabrication et aux récompenses de quête.",
+  "ctx": [
+   "artifact"
+  ]
+ },
+ {
+  "en": "Transmogrifiable, like everything else.",
+  "fr": "Transmogrifiable, comme tout le reste.",
+  "ctx": [
+   "artifact"
+  ]
+ },
+ {
+  "en": "The Ascension Token",
+  "fr": "Le Jeton d'ascension",
+  "ctx": [
+   "artifact.title"
+  ]
+ },
+ {
+  "en": "For when luck is not enough. The token raises the weapon or armor piece of your choice by one quality rank: **it never fails**, and **every enchantment and gem stays**. The Archivist Order entrusts it only to its Exalted.",
+  "fr": "Quand la chance ne suffit plus. Le jeton élève l'arme ou la pièce d'armure de votre choix d'un rang de qualité : **jamais d'échec**, **enchantements et gemmes conservés**. L'Ordre des Archivistes ne le confie qu'à ses membres exaltés.",
+  "ctx": [
+   "artifact.text"
+  ]
+ },
+ {
+  "en": "Classes",
+  "fr": "Classes",
+  "ctx": [
+   "classes.eyebrow",
+   "nav.label"
+  ]
+ },
+ {
+  "en": "Every specialization gets its moment.",
+  "fr": "Chaque spécialisation a son moment.",
+  "ctx": [
+   "classes.title"
+  ]
+ },
+ {
+  "en": "All ten classes receive **three new spells** (one per tree), **three rewritten talents** and **two glyphs**. Built for their identity and lore, balanced against each other, **never a copy of an existing spell**.",
+  "fr": "Les dix classes reçoivent chacune **trois nouveaux sorts** (un par arbre), **trois talents réécrits** et **deux glyphes**. Pensés pour leur identité et leur lore, équilibrés entre eux, **jamais une copie d'un sort existant**.",
+  "ctx": [
+   "classes.lede"
+  ]
+ },
+ {
+  "en": "Warrior",
+  "fr": "Guerrier",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "The axe flies out… and comes back.",
+  "fr": "La hache part… et revient.",
+  "ctx": [
+   "classes.flavor"
+  ]
+ },
+ {
+  "en": "Gladiator's Rush",
+  "fr": "Ruée du gladiateur",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Arms",
+  "fr": "Armes",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Whirling Axe",
+  "fr": "Hache tournoyante",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Fury",
+  "fr": "Fureur",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Broxigar's Wrath",
+  "fr": "Colère de Broxigar",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Protection",
+  "fr": "Protection",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Paladin",
+  "fr": "Paladin",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "The Argent Dawn raises its banner.",
+  "fr": "L'Aube d'argent brandit sa bannière.",
+  "ctx": [
+   "classes.flavor"
+  ]
+ },
+ {
+  "en": "Banner of the Argent Dawn",
+  "fr": "Bannière de l'Aube d'argent",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Holy",
+  "fr": "Sacré",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Knight's Vigil",
+  "fr": "Veillée du chevalier",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Retribution",
+  "fr": "Vindicte",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Oath of Protection",
+  "fr": "Serment de protection",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Hunter",
+  "fr": "Chasseur",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "A spectral double of your pet.",
+  "fr": "Un double spectral de votre familier.",
+  "ctx": [
+   "classes.flavor"
+  ]
+ },
+ {
+  "en": "Wild Echo",
+  "fr": "Écho sauvage",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Beast Mastery",
+  "fr": "Maîtrise des bêtes",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Nesingwary's Trophy Shot",
+  "fr": "Tir de Nesingwary",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Marksmanship",
+  "fr": "Précision",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Trapper's Decoy",
+  "fr": "Leurre du trappeur",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Survival",
+  "fr": "Survie",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Rogue",
+  "fr": "Voleur",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "A Ravenholdt contract, a bouncing knife.",
+  "fr": "Un contrat de Ravenholdt, un couteau qui rebondit.",
+  "ctx": [
+   "classes.flavor"
+  ]
+ },
+ {
+  "en": "Ravenholdt Contract",
+  "fr": "Contrat de Ravenholdt",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Assassination",
+  "fr": "Assassinat",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Ricochet Knife",
+  "fr": "Couteau rebondissant",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Combat",
+  "fr": "Combat",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Shadow Double",
+  "fr": "Double d'ombre",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Subtlety",
+  "fr": "Finesse",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Priest",
+  "fr": "Prêtre",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "The spirit of Alonsus Faol watches over you.",
+  "fr": "L'esprit d'Alonsus Faol veille sur vous.",
+  "ctx": [
+   "classes.flavor"
+  ]
+ },
+ {
+  "en": "Virtue of Tenacity",
+  "fr": "Vertu de ténacité",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Discipline",
+  "fr": "Discipline",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Litany of Faol",
+  "fr": "Litanie de Faol",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Mind Fracture",
+  "fr": "Fracture de l'esprit",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Shadow",
+  "fr": "Ombre",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Death Knight",
+  "fr": "Chevalier de la mort",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "The shadows of the San'layn follow you.",
+  "fr": "Les ombres des San'layn vous suivent.",
+  "ctx": [
+   "classes.flavor"
+  ]
+ },
+ {
+  "en": "Shadows of the San'layn",
+  "fr": "Ombres des San'layn",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Blood",
+  "fr": "Sang",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Frozen Wake",
+  "fr": "Sillage gelé",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Frost",
+  "fr": "Givre",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Vile Spirits",
+  "fr": "Esprits vils",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Unholy",
+  "fr": "Impie",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Shaman",
+  "fr": "Chaman",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Al'Akir's fury roars.",
+  "fr": "La fureur d'Al'Akir gronde.",
+  "ctx": [
+   "classes.flavor"
+  ]
+ },
+ {
+  "en": "Stormgust",
+  "fr": "Rafale orageuse",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Elemental",
+  "fr": "Élémentaire",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Al'Akir's Fury",
+  "fr": "Fureur d'Al'Akir",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Enhancement",
+  "fr": "Amélioration",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Undertow",
+  "fr": "Ressac",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Restoration",
+  "fr": "Restauration",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Mage",
+  "fr": "Mage",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Algalon's black hole, in your hands.",
+  "fr": "Le trou noir d'Algalon, entre vos mains.",
+  "ctx": [
+   "classes.flavor"
+  ]
+ },
+ {
+  "en": "Celestial Singularity",
+  "fr": "Singularité céleste",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Arcane",
+  "fr": "Arcanes",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Scorched Earth",
+  "fr": "Terre brûlée",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Fire",
+  "fr": "Feu",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Winter's Mark",
+  "fr": "Marque de l'hiver",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Warlock",
+  "fr": "Démoniste",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Interrupt him… if you dare.",
+  "fr": "Interrompez-le… si vous l'osez.",
+  "ctx": [
+   "classes.flavor"
+  ]
+ },
+ {
+  "en": "Chains of Torment",
+  "fr": "Chaînes de tourment",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Affliction",
+  "fr": "Affliction",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Demon's Quarry",
+  "fr": "Curée démoniaque",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Demonology",
+  "fr": "Démonologie",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Searing Rift",
+  "fr": "Faille ardente",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Destruction",
+  "fr": "Destruction",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Druid",
+  "fr": "Druide",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "A star falls, the grove answers.",
+  "fr": "Une étoile tombe, le bosquet répond.",
+  "ctx": [
+   "classes.flavor"
+  ]
+ },
+ {
+  "en": "Starseed",
+  "fr": "Graine d'étoile",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Balance",
+  "fr": "Équilibre",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Predator's Leaps",
+  "fr": "Bonds du prédateur",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Feral (Cat)",
+  "fr": "Combat farouche (félin)",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Ursoc's Hide",
+  "fr": "Peau d'Ursoc",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Feral (Bear)",
+  "fr": "Combat farouche (ours)",
+  "ctx": [
+   "classes.spec"
+  ]
+ },
+ {
+  "en": "Grove Wisp",
+  "fr": "Feu follet du bosquet",
+  "ctx": [
+   "classes.name"
+  ]
+ },
+ {
+  "en": "Chronal Surge",
+  "fr": "Afflux chronique",
+  "ctx": [
+   "classes.title"
+  ]
+ },
+ {
+  "en": "The Kirin Tor bends time: mages become the second class to bring raid haste. **+30% haste for the whole raid** for 40 seconds.",
+  "fr": "Le Kirin Tor plie le temps : les mages deviennent la deuxième classe à porter la hâte de raid. **+30 % de hâte pour tout le raid** pendant 40 secondes.",
+  "ctx": [
+   "classes.text"
+  ]
+ },
+ {
+  "en": "Heroic raids",
+  "fr": "Raids héroïques",
+  "ctx": [
+   "nav.label",
+   "raids.eyebrow"
+  ]
+ },
+ {
+  "en": "Naxxramas, Ulduar… in heroic.",
+  "fr": "Naxxramas, Ulduar… en héroïque.",
+  "ctx": [
+   "raids.title"
+  ]
+ },
+ {
+  "en": "The early raids gain a **true heroic mode in 10 and 25**, on the Icecrown Citadel model: the raid leader switches difficulty **without leaving the instance**, and every item has its Heroic version.",
+  "fr": "Les raids des premières phases gagnent un **vrai mode héroïque en 10 et en 25**, sur le modèle de la Citadelle : le chef de raid change de difficulté **sans quitter l'instance**, et chaque objet a sa version Héroïque.",
+  "ctx": [
+   "raids.lede"
+  ]
+ },
+ {
+  "en": "raids in heroic",
+  "fr": "raids en héroïque",
+  "ctx": [
+   "raids.label"
+  ]
+ },
+ {
+  "en": "heroic items",
+  "fr": "objets héroïques",
+  "ctx": [
+   "raids.label"
+  ]
+ },
+ {
+  "en": "heroic achievements",
+  "fr": "hauts faits héroïques",
+  "ctx": [
+   "raids.label"
+  ]
+ },
+ {
+  "en": "The four quarters and Kel'Thuzad, stronger: **×1.4 health, ×1.25 damage**.",
+  "fr": "Les quatre quartiers et Kel'Thuzad, plus forts : **×1,4 points de vie, ×1,25 dégâts**.",
+  "ctx": [
+   "raids.text"
+  ]
+ },
+ {
+  "en": "Heroic and hard modes stack. Loot up to **item level 252**.",
+  "fr": "Héroïque et modes difficiles se cumulent. Butin jusqu'au **niveau d'objet 252**.",
+  "ctx": [
+   "raids.text"
+  ]
+ },
+ {
+  "en": "Obsidian Sanctum & Eye of Eternity",
+  "fr": "Sanctum obsidien & Œil de l'éternité",
+  "ctx": [
+   "raids.title"
+  ]
+ },
+ {
+  "en": "Sartharion and his drakes, Malygos and his madness, in heroic.",
+  "fr": "Sartharion et ses drakes, Malygos et sa folie, en héroïque.",
+  "ctx": [
+   "raids.text"
+  ]
+ },
+ {
+  "en": "380 heroic tier pieces",
+  "fr": "380 pièces d'ensemble héroïques",
+  "ctx": [
+   "raids.title"
+  ]
+ },
+ {
+  "en": "Heroic T7 and T8 tokens at the tier vendors, laid out just like normal.",
+  "fr": "Les jetons T7 et T8 héroïques chez les marchands de palier, avec la même disposition que le normal.",
+  "ctx": [
+   "raids.text"
+  ]
+ },
+ {
+  "en": "Just like Icecrown Citadel",
+  "fr": "Comme à la Citadelle",
+  "ctx": [
+   "raids.howTitle"
+  ]
+ },
+ {
+  "en": "Heroic opens once the raid leader has defeated the last boss on normal.",
+  "fr": "Le mode héroïque s'ouvre quand le chef de raid a vaincu le dernier boss en normal.",
+  "ctx": [
+   "raids.how"
+  ]
+ },
+ {
+  "en": "Switch between normal and heroic mid-raid, out of combat, without losing progress.",
+  "fr": "On passe de normal à héroïque en plein raid, hors combat, sans rien perdre de son avancement.",
+  "ctx": [
+   "raids"
+  ]
+ },
+ {
+  "en": "One lockout for normal and heroic.",
+  "fr": "Un seul verrou pour le normal et l'héroïque.",
+  "ctx": [
+   "raids"
+  ]
+ },
+ {
+  "en": "Icecrown Citadel and the Ruby Sanctum work the same way.",
+  "fr": "La Citadelle et le Sanctum rubis fonctionnent de la même façon.",
+  "ctx": [
+   "raids"
+  ]
+ },
+ {
+  "en": "The Trial of the Crusader, as it was",
+  "fr": "L'Épreuve du croisé, comme à l'époque",
+  "ctx": [
+   "raids.title"
+  ]
+ },
+ {
+  "en": "Tirion, Varian, Garrosh and Thrall's dialogue restored, **50 attempts in heroic**, and a tribute based on the attempts left.",
+  "fr": "Dialogues de Tirion, Varian, Garrosh et Thrall restaurés, **50 tentatives en héroïque** et un tribut selon les tentatives restantes.",
+  "ctx": [
+   "raids.text"
+  ]
+ },
+ {
+  "en": "Classic raid at level 80",
+  "fr": "Raid classique au niveau 80",
+  "ctx": [
+   "eye.eyebrow"
+  ]
+ },
+ {
+  "en": "Kael'thas's Eye reborn.",
+  "fr": "L'Œil de Kael'thas renaît.",
+  "ctx": [
+   "eye.title"
+  ]
+ },
+ {
+  "en": "Tempest Keep **returns at level 80**, for 10 and 25 players, alongside Ulduar. **Level 83 bosses**, **a remade Tier 5**, and Kael'thas's legendary weapons brought up to date.",
+  "fr": "Le Donjon de la Tempête **revient au niveau 80**, en 10 et 25 joueurs, aux côtés d'Ulduar. **Boss de niveau 83**, **T5 refait**, et les armes légendaires de Kael'thas remises à niveau.",
+  "ctx": [
+   "eye.lede"
+  ]
+ },
+ {
+  "en": "Kael'thas's 7 legendary weapons, at item levels 251 and 258.",
+  "fr": "Les 7 armes légendaires de Kael'thas, au niveau d'objet 251 et 258.",
+  "ctx": [
+   "eye.text"
+  ]
+ },
+ {
+  "en": "The Ashes of Al'ar still drop.",
+  "fr": "Les Cendres d'Al'ar tombent toujours.",
+  "ctx": [
+   "eye.text"
+  ]
+ },
+ {
+  "en": "2 brand-new death knight sets: the Sunbane.",
+  "fr": "2 ensembles inédits pour chevalier de la mort : le Fléau-du-soleil.",
+  "ctx": [
+   "eye.text"
+  ]
+ },
+ {
+  "en": "324 level 80 items, 38 sets, 10 achievements.",
+  "fr": "324 objets niveau 80, 38 ensembles, 10 hauts faits.",
+  "ctx": [
+   "eye.text"
+  ]
+ },
+ {
+  "en": "And next, at level 80",
+  "fr": "Et la suite, au niveau 80",
+  "ctx": [
+   "eye.nextTitle"
+  ]
+ },
+ {
+  "en": "World bosses",
+  "fr": "Boss du monde",
+  "ctx": [
+   "nav.label",
+   "worldBosses.eyebrow"
+  ]
+ },
+ {
+  "en": "Colossi under the open sky.",
+  "fr": "Des colosses à ciel ouvert.",
+  "ctx": [
+   "worldBosses.title"
+  ]
+ },
+ {
+  "en": "From 10 to 40 players, nobody tags the boss: **every participant is rewarded**, with **an item for their specialization guaranteed** each raid lockout.",
+  "fr": "De 10 à 40 joueurs, personne ne « marque » le boss : **chaque participant est récompensé**, avec **un objet de sa spécialisation garanti** à chaque période de raid.",
+  "ctx": [
+   "worldBosses.lede"
+  ]
+ },
+ {
+  "en": "Lazulygos, Ley Siphon",
+  "fr": "Lazulygos, Siphon tellurique",
+  "ctx": [
+   "worldBosses.name"
+  ]
+ },
+ {
+  "en": "Phase 1",
+  "fr": "Phase 1",
+  "ctx": [
+   "worldBosses.phase"
+  ]
+ },
+ {
+  "en": "A great blue dragon fights on Coldarra's floating platforms and hurls the raid from one to the next. At its death, Malygos himself appears.",
+  "fr": "Un grand dragon bleu se bat sur les plateformes flottantes de Frimarra et projette le raid de plateforme en plateforme. À sa mort, Malygos en personne apparaît.",
+  "ctx": [
+   "worldBosses.text"
+  ]
+ },
+ {
+  "en": "Nexus Overload",
+  "fr": "Surcharge du Nexus",
+  "ctx": [
+   "worldBosses.tags"
+  ]
+ },
+ {
+  "en": "The Kirin Tor's Violet Aegis",
+  "fr": "Égide violette du Kirin Tor",
+  "ctx": [
+   "worldBosses"
+  ]
+ },
+ {
+  "en": "Pet: Ley Drakeling",
+  "fr": "Mascotte : Petit drake tellurique",
+  "ctx": [
+   "worldBosses"
+  ]
+ },
+ {
+  "en": "Thul'gorah, Whisper of Yogg-Saron",
+  "fr": "Thul'gorah, Murmure de Yogg-Saron",
+  "ctx": [
+   "worldBosses.name"
+  ]
+ },
+ {
+  "en": "Phase 2",
+  "fr": "Phase 2",
+  "ctx": [
+   "worldBosses.phase"
+  ]
+ },
+ {
+  "en": "A Faceless One born of Yogg-Saron's blood invades the arena of Thorim's throne. Thorim and Veranus fight at your side. Hide behind the saronite… or go mad.",
+  "fr": "Un sans-visage né du sang de Yogg-Saron envahit l'arène du trône de Thorim. Thorim et Veranus combattent à vos côtés. Cachez-vous derrière la saronite… ou devenez fou.",
+  "ctx": [
+   "worldBosses.text"
+  ]
+ },
+ {
+  "en": "Shath'Yar whispers, translated",
+  "fr": "Cris en Shath'Yar traduits",
+  "ctx": [
+   "worldBosses.tags"
+  ]
+ },
+ {
+  "en": "Faceless Gaze to share",
+  "fr": "Regard sans visage à partager",
+  "ctx": [
+   "worldBosses"
+  ]
+ },
+ {
+  "en": "Pet: Saronite Spawnling",
+  "fr": "Mascotte : Rejeton de saronite",
+  "ctx": [
+   "worldBosses"
+  ]
+ },
+ {
+  "en": "Loot and fights",
+  "fr": "Butin et combats",
+  "ctx": [
+   "raidRules.eyebrow"
+  ]
+ },
+ {
+  "en": "No more ninjas.",
+  "fr": "Fini les ninjas.",
+  "ctx": [
+   "raidRules.title"
+  ]
+ },
+ {
+  "en": "Boss loot goes **straight into the bag of whoever needs it**. **No rolls, no master looter**: a fair, transparent distribution that rewards everyone.",
+  "fr": "Le butin des boss arrive **directement dans le sac de celui à qui il sert**. **Pas de dés, pas de maître du butin** : une répartition juste, transparente, qui récompense tout le monde.",
+  "ctx": [
+   "raidRules.lede"
+  ]
+ },
+ {
+  "en": "Main specialization",
+  "fr": "Spécialisation principale",
+  "ctx": [
+   "raidRules.label"
+  ]
+ },
+ {
+  "en": "Off specialization",
+  "fr": "Seconde spécialisation",
+  "ctx": [
+   "raidRules.label"
+  ]
+ },
+ {
+  "en": "Automatic disenchant",
+  "fr": "Désenchantement automatique",
+  "ctx": [
+   "raidRules.label"
+  ]
+ },
+ {
+  "en": "Classes that can use it",
+  "fr": "Classe qui peut l'utiliser",
+  "ctx": [
+   "raidRules.label"
+  ]
+ },
+ {
+  "en": "Everyone",
+  "fr": "Tout le monde",
+  "ctx": [
+   "raidRules.label"
+  ]
+ },
+ {
+  "en": "At every step, the item must be an upgrade for you.",
+  "fr": "À chaque étape, l'objet doit être une amélioration pour vous.",
+  "ctx": [
+   "raidRules.points"
+  ]
+ },
+ {
+  "en": "On a tie, the least rewarded goes first, then the unluckiest.",
+  "fr": "En cas d'égalité, le moins servi passe d'abord, puis le plus malchanceux.",
+  "ctx": [
+   "raidRules"
+  ]
+ },
+ {
+  "en": "The whole group sees who gets what. Trading stays open for 2 hours.",
+  "fr": "Tout le groupe voit qui reçoit quoi. L'échange reste possible pendant 2 heures.",
+  "ctx": [
+   "raidRules"
+  ]
+ },
+ {
+  "en": "Each specialization's best-in-slot pieces count too, even outside their armor type: a warrior's leather bracers, a Holy paladin's cloth…",
+  "fr": "Les « meilleurs en slot » de chaque spécialisation sont reconnus, même hors de leur type d'armure : les brassards en cuir du guerrier, le tissu du paladin sacré…",
+  "ctx": [
+   "raidRules"
+  ]
+ },
+ {
+  "en": "Every fight counts",
+  "fr": "Chaque combat compte",
+  "ctx": [
+   "raidRules.title"
+  ]
+ },
+ {
+  "en": "When a boss fight ends, **every class cooldown resets** and Exhaustion fades. And during the fight, the dead cannot release: you stay with your raid.",
+  "fr": "À la fin d'un combat de boss, **tous les temps de recharge de classe repartent à zéro** et l'Épuisement disparaît. Et pendant le combat, un mort ne peut pas libérer son esprit : on reste avec son raid.",
+  "ctx": [
+   "raidRules.text"
+  ]
+ },
+ {
+  "en": "The Archivist Order",
+  "fr": "L'Ordre des Archivistes",
+  "ctx": [
+   "archivists.eyebrow"
+  ]
+ },
+ {
+  "en": "Every fallen boss leaves a page of history.",
+  "fr": "Chaque boss vaincu laisse une page d'histoire.",
+  "ctx": [
+   "archivists.title"
+  ]
+ },
+ {
+  "en": "Chronicle Fragments drop from **more than 600 bosses**, dungeons and raids alike. The Archivists pay for them in reputation, tabards, a mount… and Ascension Tokens.",
+  "fr": "Les Fragments de chronique tombent sur **plus de 600 boss**, de donjon comme de raid. Les Archivistes les paient en réputation, en tabards, en monture… et en Jetons d'ascension.",
+  "ctx": [
+   "archivists.lede"
+  ]
+ },
+ {
+  "en": "Tabard of the Archivists",
+  "fr": "Tabard des Archivistes",
+  "ctx": [
+   "archivists.title"
+  ]
+ },
+ {
+  "en": "Teleport to the Archivist.",
+  "fr": "Téléportez-vous auprès de l'Archiviste.",
+  "ctx": [
+   "archivists.text"
+  ]
+ },
+ {
+  "en": "Archivist's Quill",
+  "fr": "Plume de l'Archiviste",
+  "ctx": [
+   "archivists.title"
+  ]
+ },
+ {
+  "en": "At Revered.",
+  "fr": "Au rang Révéré.",
+  "ctx": [
+   "archivists.text"
+  ]
+ },
+ {
+  "en": "Archive Steed",
+  "fr": "Destrier de l'Archive",
+  "ctx": [
+   "archivists.title"
+  ]
+ },
+ {
+  "en": "The mount of the Exalted.",
+  "fr": "La monture des Exaltés.",
+  "ctx": [
+   "archivists.text"
+  ]
+ },
+ {
+  "en": "Ascension Token",
+  "fr": "Jeton d'ascension",
+  "ctx": [
+   "archivists.title"
+  ]
+ },
+ {
+  "en": "One more quality rank.",
+  "fr": "Un rang de qualité de plus.",
+  "ctx": [
+   "archivists.text"
+  ]
+ },
+ {
+  "en": "Dungeon dailies",
+  "fr": "Journalières de donjon",
+  "ctx": [
+   "archivists.title"
+  ]
+ },
+ {
+  "en": "Archmages Timear and Lan'dalock are back on duty, and a raid quest \"… Must Die!\" changes twice a week.",
+  "fr": "Les archimages Timear et Lan'dalock reprennent leur service, et une quête de raid « … doit mourir ! » change deux fois par semaine.",
+  "ctx": [
+   "archivists.text"
+  ]
+ },
+ {
+  "en": "Deadmines and Molten Core revisited",
+  "fr": "Mortemines et Cœur du Magma revisités",
+  "ctx": [
+   "archivists.title"
+  ]
+ },
+ {
+  "en": "Relics to collect, the Fel-Touched Defias Palfrey, the Ember Nightmare and a legendary cloak at the end of Duke Hydraxis's quest.",
+  "fr": "Reliques à collectionner, le Palefroi gangrené défias, le Cauchemar de braise et une cape légendaire au bout d'une quête du duc Hydraxis.",
+  "ctx": [
+   "archivists.text"
+  ]
+ },
+ {
+  "en": "Vault of Archavon",
+  "fr": "Caveau d'Archavon",
+  "ctx": [
+   "archivists.title"
+  ]
+ },
+ {
+  "en": "Its four watchers give Stone Keeper's Shards to the faction holding Wintergrasp.",
+  "fr": "Ses quatre gardiens donnent des Éclats du gardien de pierre à la faction qui tient le Joug-d'hiver.",
+  "ctx": [
+   "archivists.text"
+  ]
+ },
+ {
+  "en": "Professions",
+  "fr": "Métiers",
+  "ctx": [
+   "nav.label",
+   "professions.eyebrow"
+  ]
+ },
+ {
+  "en": "Professions reinvented.",
+  "fr": "Les métiers réinventés.",
+  "ctx": [
+   "professions.title"
+  ]
+ },
+ {
+  "en": "**277 new recipes** spread across the phases and **28 specializations**, each with its own **masterworks**. Every profession gains an identity and a reason to matter at every tier.",
+  "fr": "**277 nouvelles recettes** réparties sur les phases et **28 spécialisations**, chacune avec ses **« coups de maître »**. Chaque métier gagne une identité et une raison de compter à chaque palier.",
+  "ctx": [
+   "professions.lede"
+  ]
+ },
+ {
+  "en": "Jewelcrafting",
+  "fr": "Joaillerie",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Lapidary",
+  "fr": "Lapidaire",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Extra gems, Titan metas, prismatics and two-coloured Dragon's Eyes",
+  "fr": "Gemmes bonus, métas des Titans, prismatiques, Yeux de dragon bicolores",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Chaotic Titanflare Diamond",
+  "fr": "Diamant flamme-des-titans chaotique",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Runed Eternity Shard",
+  "fr": "Éclat d'éternité runique",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Deadly Dragon's Eye",
+  "fr": "Oeil de dragon mortel",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Goldsmith",
+  "fr": "Orfèvre",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Ulduar to Icecrown rings and necks, figurines, more quality upgrades",
+  "fr": "Bijoux d'Ulduar à la Citadelle, figurines, qualité supérieure accrue",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Dalaran Arcanist's Ring",
+  "fr": "Anneau de l'arcaniste de Dalaran",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Figurine - King's Amber Proto-Drake",
+  "fr": "Figurine de proto-drake d'ambre du roi",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Runed Titanium Warchain",
+  "fr": "Chaîne de guerre en titane runique",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Enchanting",
+  "fr": "Enchantement",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Weapon Enchanter",
+  "fr": "Enchanteur d'armes",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Exclusive weapon procs, master scrolls and richer weapon disenchants",
+  "fr": "Effets d'arme exclusifs, parchemins de maître, désenchantement d'armes",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Scroll of Enchant Weapon - Thorim's Wrath",
+  "fr": "Parchemin d'enchantement d'arme (Colère de Thorim)",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Scroll of Enchant Weapon - Life-Binder's Grace",
+  "fr": "Parchemin d'enchantement d'arme (Grâce de la Lieuse-de-vie)",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Scroll of Enchant Weapon - Hourglass Echo",
+  "fr": "Parchemin d'enchantement d'arme (Écho du sablier)",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Armor Enchanter",
+  "fr": "Enchanteur d'armures",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Exclusive armor enchants each tier, master scrolls, armor disenchants",
+  "fr": "Enchantements d'armure exclusifs par palier, parchemins de maître",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Scroll of Enchant Boots - Arcane Stride",
+  "fr": "Parchemin d'enchantement de bottes (Foulée arcanique)",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Scroll of Enchant Chest - Crusader's Aegis",
+  "fr": "Parchemin d'enchantement de plastron (Égide du croisé)",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Scroll of Enchant Gloves - Ashen Grip",
+  "fr": "Parchemin d'enchantement de gants (Poigne des cendres)",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Cooking",
+  "fr": "Cuisine",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Master of Feasts",
+  "fr": "Chef de festin",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "A feast for every role, bonus feasts and memorable 2-hour meals.",
+  "fr": "Un festin par rôle, festins en plus et festins mémorables de 2 h.",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Great Kalu'ak Banquet",
+  "fr": "Grand banquet kalu'ak",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Feast of the Sons of Hodir",
+  "fr": "Festin des Fils de Hodir",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Ruby Sanctum Feast",
+  "fr": "Festin du sanctum Rubis",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Gourmet",
+  "fr": "Gourmet",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Hybrid dishes, up to 3 bonus dishes and perfect 2-hour meals.",
+  "fr": "Plats hybrides, jusqu'à 3 plats en plus et plats parfaits de 2 h.",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Dalaran-Style Dragonfin",
+  "fr": "Filet d'aileron-de-dragon à la dalaranaise",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Northern-Spiced Nettlefish",
+  "fr": "Méduse aux épices du Nord",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Ashen Verdict Smoked Sturgeon",
+  "fr": "Esturgeon fumé du Verdict des cendres",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Blacksmithing",
+  "fr": "Forge",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Armorsmith",
+  "fr": "Fabricant d'armures",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Ilvl 264 plate and shields; ×1.5 upgrade odds on Northrend plate",
+  "fr": "Plaques et boucliers niv. 264 ; qualité supérieure ×1,5 sur la plaque",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Saronite Bastion Aegis",
+  "fr": "Égide du bastion de saronite",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Lifespring Shield",
+  "fr": "Écu de la source de vie",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Ashforged Girdle",
+  "fr": "Ceinturon cendreforgé",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Weaponsmith",
+  "fr": "Fabricant d'armes",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Nine ilvl 264 weapons, one per role; ×1.5 upgrade odds on weapons",
+  "fr": "Neuf armes niv. 264, une par rôle ; qualité supérieure ×1,5",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Ashforged Greatsword",
+  "fr": "Espadon cendreforgé",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Icestalker Guisarme",
+  "fr": "Guisarme du traqueur des glaces",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Thorim's Runed Mace",
+  "fr": "Masse runique de Thorim",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Master Swordsmith",
+  "fr": "Maître fabricant d'épées",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Master Hammersmith",
+  "fr": "Maître fabricant de marteaux",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Master Axesmith",
+  "fr": "Maître fabricant de haches",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Leatherworking",
+  "fr": "Travail du cuir",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Dragonscale Leatherworking",
+  "fr": "Travail du cuir d'écailles de dragon",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Ilvl 264 agility and spell mail; ×1.5 upgrade odds on Northrend mail",
+  "fr": "Mailles niv. 264 agilité et sorts ; qualité supérieure ×1,5",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Icestalker Waistguard",
+  "fr": "Sangle du traqueur des glaces",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Thorim's Tempest Waistguard",
+  "fr": "Sangle de la tempête de Thorim",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Frostwyrm Scale Wristguards",
+  "fr": "Garde-poignets en écailles de wyrm de givre",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Elemental Leatherworking",
+  "fr": "Travail du cuir élémentaire",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Ilvl 264 agility and bear leather; ×1.5 upgrade odds on that leather",
+  "fr": "Cuir niv. 264 agilité et ours ; qualité supérieure ×1,5 sur ce cuir",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Icestalker Belt",
+  "fr": "Ceinture du traqueur des glaces",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Frostbear Belt",
+  "fr": "Ceinture de l'ours du givre",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Stormhide Armwraps",
+  "fr": "Protège-bras en peau d'orage",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Tribal Leatherworking",
+  "fr": "Travail du cuir tribal",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Drums of the Taunka Spirit and ilvl 264 caster and healer leather",
+  "fr": "Tambours de l'esprit taunka et cuir niv. 264 de lanceur et soigneur",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Drums of the Taunka Spirit",
+  "fr": "Tambours de l'esprit taunka",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Vordrassil Sage's Belt",
+  "fr": "Ceinture du sage de Vordrassil",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Lifespring Armwraps",
+  "fr": "Protège-bras de la source de vie",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Tailoring",
+  "fr": "Couture",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Mooncloth Tailoring",
+  "fr": "Couture d'étoffe lunaire",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Ilvl 264 healer belt and cuffs; ×1.5 upgrade odds on healer cloth",
+  "fr": "Ceinture et manchettes 264 de soigneur ; qualité supérieure ×1,5",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Belt of the Abiding Light",
+  "fr": "Ceinture de la Lumière persistante",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Cuffs of the Abiding Light",
+  "fr": "Manchettes de la Lumière persistante",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Moonlit Cuffs",
+  "fr": "Manchettes clair-de-lune",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Spellfire Tailoring",
+  "fr": "Couture du feu-sorcier",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Ilvl 264 caster belt and bracers; ×1.5 upgrade odds on caster cloth",
+  "fr": "Ceinture et brassards 264 de lanceur ; qualité supérieure ×1,5",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Spellwoven Cord",
+  "fr": "Ceinture du sort tissé",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Spellwoven Bindings",
+  "fr": "Brassards du sort tissé",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Spellfire Wristwraps",
+  "fr": "Protège-poignets de feu-sorcier",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Shadoweave Tailoring",
+  "fr": "Couture de tisse-ombre",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "An ebonweave PvP piece every arena season, up to ilvl 264",
+  "fr": "Une pièce JcJ en tisse-ébène par saison d'arène, jusqu'au niv. 264",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Warmaster's Ebonweave Cord",
+  "fr": "Cordelière en tisse-ébène du maître de guerre",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Gladiator's Ebonweave Boots",
+  "fr": "Bottes en tisse-ébène du gladiateur",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Challenger's Ebonweave Cuffs",
+  "fr": "Manchettes en tisse-ébène du challengeur",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Engineering",
+  "fr": "Ingénierie",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Gnomish Engineer",
+  "fr": "Ingénieur gnome",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Ulduar transporter, party deflector, ×1.5 upgrade odds on goggles",
+  "fr": "Transporteur d'Ulduar, déflecteur ; qualité supérieure ×1,5 (lunettes)",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Ultrasafe Transporter: Ulduar",
+  "fr": "Transporteur ultra-sécurisé : Ulduar",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Gnomish Field Deflector",
+  "fr": "Déflecteur de champ gnome",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Goblin Engineer",
+  "fr": "Ingénieur gobelin",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "K3 dimensional ripper, pocket shredder, 15% more ammo and explosives",
+  "fr": "Déchiqueteurs K3 et de poche ; +15 % de munitions et d'explosifs",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Dimensional Ripper - K3",
+  "fr": "Déchiqueteur dimensionnel - K3",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Goblin Pocket Shredder",
+  "fr": "Déchiqueteur de poche gobelin",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Alchemy",
+  "fr": "Alchimie",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Elixir Master",
+  "fr": "Maître des élixirs",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Extra elixirs and flasks, plus master-only flasks at every tier",
+  "fr": "Élixirs et flacons en plus, et des flacons de maître à chaque palier",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Flask of Vordrassil's Heart",
+  "fr": "Flacon du cœur de Vordrassil",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Flask of the Aurora",
+  "fr": "Flacon de l'aurore",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Flask of the Coliseum",
+  "fr": "Flacon du Colisée",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Potion Master",
+  "fr": "Maître des potions",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Extra potions, endless potions never consumed, purification",
+  "fr": "Potions en plus, potions infinies jamais consommées, purification",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Endless Haste Potion",
+  "fr": "Potion de hâte infinie",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Northrend Purification Potion",
+  "fr": "Potion de purification de Norfendre",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Endless Frost Protection Potion",
+  "fr": "Potion de protection contre le Givre infinie",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Transmutation Master",
+  "fr": "Maître des transmutations",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Extra transmutes, new transmutations, stones more likely to upgrade",
+  "fr": "Transmutations en plus et inédites, pierres plus souvent supérieures",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Primordial Arcanist Alchemist Stone",
+  "fr": "Pierre d'alchimiste primordiale de l'arcaniste",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Northrend Prismatic Shard",
+  "fr": "Éclat prismatique de Norfendre",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Frozen Orb",
+  "fr": "Orbe gelé",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Inscription",
+  "fr": "Calligraphie",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Glyphist",
+  "fr": "Glyphiste",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Extra glyphs, a second daily research, master's shoulder inscriptions",
+  "fr": "Glyphes en plus, seconde recherche du jour, calligraphies du maître",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Master's Inscription of Triumph",
+  "fr": "Calligraphie de triomphe du maître",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Master's Inscription of the Stars",
+  "fr": "Calligraphie des étoiles du maître",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Master's Inscription of the Verdict",
+  "fr": "Calligraphie du Verdict du maître",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Arcane Scribe",
+  "fr": "Scribe des arcanes",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Raid-tier tomes, a second Darkmoon card and the Scribe's Draws",
+  "fr": "Ouvrages de raid, seconde carte de Sombrelune et Tirages du scribe",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Deciphered Scourge Treatise",
+  "fr": "Traité du Fléau déchiffré",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Folio of the Keepers",
+  "fr": "Folio des Gardiens",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Inscribed Gladiator's Codex",
+  "fr": "Codex du gladiateur calligraphié",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Darkmoon Cards",
+  "fr": "Cartes de Sombrelune",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "One card per raid tier",
+  "fr": "Une carte par palier de raid",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "A new card each raid tier: four role decks and their trinkets",
+  "fr": "Une carte par palier de raid : quatre suites de rôle et leurs bijoux",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Darkmoon Card: Barrage (Strength)",
+  "fr": "Carte de Sombrelune : Salve (Force)",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Darkmoon Card: Kinship",
+  "fr": "Carte de Sombrelune : Lien",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Darkmoon Card: Splinters",
+  "fr": "Carte de Sombrelune : Esquilles",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Darkmoon Card: Sanctuary",
+  "fr": "Carte de Sombrelune : Sanctuaire",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "First Aid",
+  "fr": "Secourisme",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Field Surgeon",
+  "fr": "Chirurgien de campagne",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Your Argent Crusade bandages heal 20% more.",
+  "fr": "Vos bandages de la Croisade d'argent soignent 20 % de plus.",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Ashen Frostweave Bandage",
+  "fr": "Bandage cendré en tisse-givre",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Dense Frostweave Bandage",
+  "fr": "Bandage dense en tisse-givre",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Crusader's Frostweave Bandage",
+  "fr": "Bandage de croisé en tisse-givre",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Field Apothecary",
+  "fr": "Apothicaire de campagne",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Your field kits' shared cooldown drops from 2 min to 1 min.",
+  "fr": "Les trousses de terrain se rechargent en 1 min au lieu de 2.",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Tourniquet",
+  "fr": "Garrot de campagne",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Crusade Serum",
+  "fr": "Sérum de la Croisade",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Azjol Antivenom",
+  "fr": "Antivenin d'Azjol",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Fishing",
+  "fr": "Pêche",
+  "ctx": [
+   "nav.label",
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Wreck Hunter",
+  "fr": "Chasseur d'épaves",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Twice the sunken coffers and 50% more blue finds in Northrend waters.",
+  "fr": "Coffres engloutis doublés, moitié plus de trouvailles bleues.",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Sunken Northrend Coffer",
+  "fr": "Coffre englouti du Norfendre",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Captain's Tricorne",
+  "fr": "Tricorne du capitaine",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Gundrak Talons",
+  "fr": "Serres de Gundrak",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Master of Northrend Waters",
+  "fr": "Maître des eaux du Norfendre",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Twice the rare fish of each zone and 50% more legendary fish.",
+  "fr": "Poissons rares doublés, moitié plus de poissons légendaires.",
+  "ctx": [
+   "professions.summary"
+  ]
+ },
+ {
+  "en": "Ice Behemoth",
+  "fr": "Béhémoth des glaces",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Reins of the Abyssal Ray",
+  "fr": "Rênes de la raie des abysses",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Abyssal Tuna",
+  "fr": "Thon des abysses",
+  "ctx": [
+   "professions.name"
+  ]
+ },
+ {
+  "en": "Masteries",
+  "fr": "Maîtrises",
+  "ctx": [
+   "professions.masteries"
+  ]
+ },
+ {
+  "en": "specializations",
+  "fr": "spécialisations",
+  "ctx": [
+   "professions.specsCount"
+  ]
+ },
+ {
+  "en": "Fishing and gathering",
+  "fr": "Pêche et récolte",
+  "ctx": [
+   "fishing.eyebrow"
+  ]
+ },
+ {
+  "en": "Every cast can change a life.",
+  "fr": "Chaque ligne lancée peut changer une vie.",
+  "ctx": [
+   "fishing.title"
+  ]
+ },
+ {
+  "en": "**Eleven fishing zones**, each with its rare fish, its finds, an epic per phase… and **a legendary fish**. Rare veins and flowers, beast trophies, Archive orders.",
+  "fr": "**Onze zones de pêche**, chacune avec son poisson rare, ses trouvailles, son épique par phase… et **un poisson légendaire**. Des filons et des fleurs rares, des trophées de bêtes, des commandes des Archives.",
+  "ctx": [
+   "fishing.lede"
+  ]
+ },
+ {
+  "en": "Legendary fish",
+  "fr": "Poissons légendaires",
+  "ctx": [
+   "fishing.title"
+  ]
+ },
+ {
+  "en": "\"Old Frostfin\", \"Deadwater Leviathan\"… Trade them for trinkets with Marcia Chase.",
+  "fr": "« Vieille Nageoire-de-givre », « Léviathan des eaux mortes »… À échanger contre des bijoux chez Marcia Chase.",
+  "ctx": [
+   "fishing.text"
+  ]
+ },
+ {
+  "en": "130 fished pieces of gear",
+  "fr": "130 équipements pêchés",
+  "ctx": [
+   "fishing.title"
+  ]
+ },
+ {
+  "en": "Including **97 epics**, **55 with an in-game effect**: Kalu'ak Harpoon, Saronite Harpoon, Drakkari Flood…",
+  "fr": "Dont **97 épiques**, et **55 avec un effet en jeu** : Harpon kalu'ak, Harpon de saronite, Crue drakkari…",
+  "ctx": [
+   "fishing.text"
+  ]
+ },
+ {
+  "en": "The Abyssal Ray",
+  "fr": "La Raie des abysses",
+  "ctx": [
+   "fishing.title"
+  ]
+ },
+ {
+  "en": "A very rare mount that rises from the water, and a Kirin Tor rod at +50 fishing.",
+  "fr": "Une monture rarissime qui sort de l'eau, et une canne du Kirin Tor à +50 en pêche.",
+  "ctx": [
+   "fishing.text"
+  ]
+ },
+ {
+  "en": "Rare veins and flowers",
+  "fr": "Filons et fleurs rares",
+  "ctx": [
+   "fishing.title"
+  ]
+ },
+ {
+  "en": "Whispering Saronite Vein, Keepers' Bloom, Aurora Rose… and one of each in Wintergrasp, to fight over.",
+  "fr": "Veine de saronite murmurante, Fleur des Gardiens, Rose des aurores… et un nœud de chaque au Joug-d'hiver, à disputer.",
+  "ctx": [
+   "fishing.text"
+  ]
+ },
+ {
+  "en": "Treasures",
+  "fr": "Trésors",
+  "ctx": [
+   "nav.label",
+   "treasures.eyebrow"
+  ]
+ },
+ {
+  "en": "Northrend hides its secrets.",
+  "fr": "Le Norfendre cache ses secrets.",
+  "ctx": [
+   "treasures.title"
+  ]
+ },
+ {
+  "en": "Expedition caches, sealed chests and **ten riddle treasure maps**. Solve the riddle, find the place, dig… and maybe, a mount.",
+  "fr": "Des caches d'expédition, des coffres scellés et **dix cartes au trésor à énigme**. Déchiffrez l'énigme, trouvez le lieu, creusez… et peut-être, une monture.",
+  "ctx": [
+   "treasures.lede"
+  ]
+ },
+ {
+  "en": "The map",
+  "fr": "La carte",
+  "ctx": [
+   "treasures.title"
+  ]
+ },
+ {
+  "en": "A riddle about a place in Northrend: Galakrond's Rest, Thrym's End…",
+  "fr": "Une énigme sur un lieu du Norfendre : Repos de Galakrond, Fin de Thrym…",
+  "ctx": [
+   "treasures.text"
+  ]
+ },
+ {
+  "en": "The dig",
+  "fr": "La fouille",
+  "ctx": [
+   "treasures.title"
+  ]
+ },
+ {
+  "en": "On site, you dig. Elsewhere, the map shows you where to go.",
+  "fr": "Sur place, on creuse. Ailleurs, la carte vous montre où aller.",
+  "ctx": [
+   "treasures.text"
+  ]
+ },
+ {
+  "en": "The Buried Coffer",
+  "fr": "Le Grand coffre enfoui",
+  "ctx": [
+   "treasures.title"
+  ]
+ },
+ {
+  "en": "Gold, fragments, a purse, valuable trinkets… and **one mount per phase**.",
+  "fr": "Or, fragments, une bourse, de la camelote de prix… et **une monture par phase**.",
+  "ctx": [
+   "treasures.text"
+  ]
+ },
+ {
+  "en": "Caravan Kodo",
+  "fr": "Kodo des caravanes",
+  "ctx": [
+   "treasures.mounts"
+  ]
+ },
+ {
+  "en": "Deathcharger",
+  "fr": "Destrier de la mort",
+  "ctx": [
+   "treasures"
+  ]
+ },
+ {
+  "en": "Blue Excavation Strider",
+  "fr": "Trotteur des fouilles bleu",
+  "ctx": [
+   "treasures"
+  ]
+ },
+ {
+  "en": "Falstad's Gryphon",
+  "fr": "Griffon de Falstad",
+  "ctx": [
+   "treasures"
+  ]
+ },
+ {
+  "en": "Icecrown Frost Wyrm",
+  "fr": "Wyrm de givre de la Couronne",
+  "ctx": [
+   "treasures"
+  ]
+ },
+ {
+  "en": "Ruby Twilight Drake",
+  "fr": "Drake crépusculaire rubis",
+  "ctx": [
+   "treasures"
+  ]
+ },
+ {
+  "en": "One mount per phase",
+  "fr": "Une monture par phase",
+  "ctx": [
+   "treasures.mountsTitle"
+  ]
+ },
+ {
+  "en": "Collections",
+  "fr": "Collections",
+  "ctx": [
+   "collections.eyebrow",
+   "nav.label"
+  ]
+ },
+ {
+  "en": "Mounts no one has ever ridden.",
+  "fr": "Des montures que personne n'a jamais montées.",
+  "ctx": [
+   "collections.title"
+  ]
+ },
+ {
+  "en": "Mei Francis, in Dalaran, offers **34 mounts** drawn from models **no player has ever ridden**, with their real calls. And that's just the beginning.",
+  "fr": "Mei Francis, à Dalaran, propose **34 montures** tirées de modèles **jamais montés par des joueurs**, avec leurs vrais cris. Et ce n'est qu'un début.",
+  "ctx": [
+   "collections.lede"
+  ]
+ },
+ {
+  "en": "mounts",
+  "fr": "montures",
+  "ctx": [
+   "collections.label"
+  ]
+ },
+ {
+  "en": "pets",
+  "fr": "mascottes",
+  "ctx": [
+   "collections.label"
+  ]
+ },
+ {
+  "en": "toys",
+  "fr": "jouets",
+  "ctx": [
+   "collections.label"
+  ]
+ },
+ {
+  "en": "tabards",
+  "fr": "tabards",
+  "ctx": [
+   "collections.label"
+  ]
+ },
+ {
+  "en": "The Ear Trumpet",
+  "fr": "Le Cornet acoustique",
+  "ctx": [
+   "collections.title"
+  ]
+ },
+ {
+  "en": "Point it at a guard, an innkeeper, an Archivist… **eight kinds of NPCs** answer you.",
+  "fr": "Pointez-le vers un garde, un aubergiste, un Archiviste… **huit sortes de PNJ** vous répondent.",
+  "ctx": [
+   "collections.text"
+  ]
+ },
+ {
+  "en": "The Mask of the Chronicles",
+  "fr": "Le Masque des Chroniques",
+  "ctx": [
+   "collections.title"
+  ]
+ },
+ {
+  "en": "Become a tuskarr, taunka, earthen, vrykul or Dalaran gnome.",
+  "fr": "Devenez rohart, taunka, terrestre, vrykul ou gnome de Dalaran.",
+  "ctx": [
+   "collections.text"
+  ]
+ },
+ {
+  "en": "Tabards of lost kingdoms",
+  "fr": "Tabards des royaumes perdus",
+  "ctx": [
+   "collections.title"
+  ]
+ },
+ {
+  "en": "Stromgarde, Kul Tiras, Theramore, Kingdom of Dalaran, Tranquillien…",
+  "fr": "Stromgarde, Kul Tiras, Theramore, Royaume de Dalaran, Tranquillien…",
+  "ctx": [
+   "collections.text"
+  ]
+ },
+ {
+  "en": "Dalaran's underbelly",
+  "fr": "Les bas-fonds de Dalaran",
+  "ctx": [
+   "economy.eyebrow"
+  ]
+ },
+ {
+  "en": "An economy that lives.",
+  "fr": "Une économie qui vit.",
+  "ctx": [
+   "economy.title"
+  ]
+ },
+ {
+  "en": "Beneath the city of mages, people sell, gamble and buy back. The black market, the cartel's lottery, goblin dice and the antiquarian move gold in new ways.",
+  "fr": "Sous la cité des mages, on vend, on parie, on rachète. Le marché noir, la loterie du cartel, les dés gobelins et l'antiquaire font circuler l'or autrement.",
+  "ctx": [
+   "economy.lede"
+  ]
+ },
+ {
+  "en": "The black market",
+  "fr": "Le marché noir",
+  "ctx": [
+   "economy.title"
+  ]
+ },
+ {
+  "en": "Zar'haam, of the Consortium",
+  "fr": "Zar'haam, du Consortium",
+  "ctx": [
+   "economy.tag"
+  ]
+ },
+ {
+  "en": "Earn the ethereal's trust, then browse his showcase **twice a week**: unique mounts, legendary appearances (Sulfuras, Thori'dal, the Warglaives of Azzinoth) and, one delivery in four, **Atiesh, the Ashbringer or Frostmourne**.",
+  "fr": "Gagnez la confiance de l'éthérien, puis découvrez sa vitrine **deux fois par semaine** : montures uniques, apparences légendaires (Sulfuras, Thori'dal, les Glaives d'Azzinoth) et, une livraison sur quatre, **Atiesh, le Porte-cendres ou Deuillegivre**.",
+  "ctx": [
+   "economy.text"
+  ]
+ },
+ {
+  "en": "The Steamwheedle lottery",
+  "fr": "La loterie de Gentepression",
+  "ctx": [
+   "economy.title"
+  ]
+ },
+ {
+  "en": "Lixxa Luckpocket",
+  "fr": "Lixxa Pochechance",
+  "ctx": [
+   "economy.tag"
+  ]
+ },
+ {
+  "en": "A grand lottery drawn at every raid reset, and scratch tickets that can pay **1,000 gold… or the Lucky Gnome**.",
+  "fr": "Une grande loterie tirée à chaque remise à zéro des raids, et des billets à gratter qui peuvent rapporter **1 000 pièces d'or… ou le Gnome** porte-bonheur.",
+  "ctx": [
+   "economy.text"
+  ]
+ },
+ {
+  "en": "Goblin dice",
+  "fr": "Les dés gobelins",
+  "ctx": [
+   "economy.title"
+  ]
+ },
+ {
+  "en": "Grizzle Doublesix",
+  "fr": "Grizzle Double-Six",
+  "ctx": [
+   "economy.tag"
+  ]
+ },
+ {
+  "en": "Challenge another player at the table, **from 10 to 1,000 gold**. Two dice each, the highest total takes the pot.",
+  "fr": "Défiez un autre joueur à la table, **de 10 à 1 000 pièces d'or**. Deux dés chacun, le plus gros total rafle le pot.",
+  "ctx": [
+   "economy.text"
+  ]
+ },
+ {
+  "en": "The antiquarian",
+  "fr": "L'antiquaire",
+  "ctx": [
+   "economy.title"
+  ]
+ },
+ {
+  "en": "Brodric Dustbeard",
+  "fr": "Brodric Barbepoussière",
+  "ctx": [
+   "economy.tag"
+  ]
+ },
+ {
+  "en": "Northrend's junk is worth gold: vrykul crowns, nerubian idols, rare beast trophies. Each week, three sought-after pieces are worth **50% more**.",
+  "fr": "La camelote du Norfendre vaut de l'or : couronnes vrykules, idoles nérubiennes, trophées de bêtes rares. Chaque semaine, trois pièces recherchées valent **50 % de plus**.",
+  "ctx": [
+   "economy.text"
+  ]
+ },
+ {
+  "en": "The Kirin Tor quiz",
+  "fr": "Le quiz du Kirin Tor",
+  "ctx": [
+   "quiz.eyebrow"
+  ]
+ },
+ {
+  "en": "Do you really know Azeroth?",
+  "fr": "Connaissez-vous vraiment Azeroth ?",
+  "ctx": [
+   "quiz.title"
+  ]
+ },
+ {
+  "en": "Every day, examiner Elaria Quillwhisper asks you **five lore questions**, from the easiest to one for true scholars. A right answer earns Chronicle Fragments; a wrong one teaches you the truth.",
+  "fr": "Chaque jour, l'examinatrice Elaria Murmeplume vous pose **cinq questions de lore**, de la plus facile à celle réservée aux érudits. Une bonne réponse rapporte des Fragments de chronique ; une erreur vous apprend la bonne.",
+  "ctx": [
+   "quiz.lede"
+  ]
+ },
+ {
+  "en": "In which zone does Wyrmrest Temple stand?",
+  "fr": "Dans quelle zone se dresse le Temple du Repos du ver ?",
+  "ctx": [
+   "quiz.question"
+  ]
+ },
+ {
+  "en": "Dragonblight",
+  "fr": "Désolation des dragons",
+  "ctx": [
+   "quiz.answers"
+  ]
+ },
+ {
+  "en": "Icecrown",
+  "fr": "La Couronne de glace",
+  "ctx": [
+   "quiz"
+  ]
+ },
+ {
+  "en": "Grizzly Hills",
+  "fr": "Les Grisonnes",
+  "ctx": [
+   "quiz"
+  ]
+ },
+ {
+  "en": "Crystalsong Forest",
+  "fr": "Forêt du Chant de cristal",
+  "ctx": [
+   "quiz"
+  ]
+ },
+ {
+  "en": "questions",
+  "fr": "questions",
+  "ctx": [
+   "quiz.label"
+  ]
+ },
+ {
+  "en": "themes",
+  "fr": "thèmes",
+  "ctx": [
+   "quiz.label"
+  ]
+ },
+ {
+  "en": "languages",
+  "fr": "langues",
+  "ctx": [
+   "quiz.label"
+  ]
+ },
+ {
+  "en": "Transmogrification",
+  "fr": "Transmogrification",
+  "ctx": [
+   "transmog.eyebrow"
+  ]
+ },
+ {
+  "en": "16,302 ways to stand out.",
+  "fr": "16 302 façons d'être unique.",
+  "ctx": [
+   "transmog.title"
+  ]
+ },
+ {
+  "en": "An appearance shop paid in Chronicle Fragments, with **more than 7,000 NPC models** no player has ever worn. And **45 weapon enchant effects** to choose from.",
+  "fr": "Une boutique d'apparences payée en Fragments de chronique, dont **plus de 7 000 modèles de PNJ** jamais portés par des joueurs. Et **45 effets d'enchantement d'arme** au choix.",
+  "ctx": [
+   "transmog.lede"
+  ]
+ },
+ {
+  "en": "Dungeons",
+  "fr": "Donjons",
+  "ctx": [
+   "transmog.categories"
+  ]
+ },
+ {
+  "en": "Raids",
+  "fr": "Raids",
+  "ctx": [
+   "transmog"
+  ]
+ },
+ {
+  "en": "Quests",
+  "fr": "Quêtes",
+  "ctx": [
+   "transmog"
+  ]
+ },
+ {
+  "en": "Crafting",
+  "fr": "Artisanat",
+  "ctx": [
+   "transmog"
+  ]
+ },
+ {
+  "en": "Vendors",
+  "fr": "Marchands",
+  "ctx": [
+   "transmog"
+  ]
+ },
+ {
+  "en": "World",
+  "fr": "Monde",
+  "ctx": [
+   "transmog"
+  ]
+ },
+ {
+  "en": "Battlegrounds",
+  "fr": "Champs de bataille",
+  "ctx": [
+   "transmog"
+  ]
+ },
+ {
+  "en": "Arena",
+  "fr": "Arène",
+  "ctx": [
+   "transmog"
+  ]
+ },
+ {
+  "en": "Unseen models",
+  "fr": "Modèles inédits",
+  "ctx": [
+   "transmog"
+  ]
+ },
+ {
+  "en": "PvP",
+  "fr": "JcJ",
+  "ctx": [
+   "nav.label",
+   "pvp.eyebrow"
+  ]
+ },
+ {
+  "en": "Every phase, a campaign.",
+  "fr": "Chaque phase, une campagne.",
+  "ctx": [
+   "pvp.title"
+  ]
+ },
+ {
+  "en": "From \"Northrend Front\" to \"Defenders of the Ruby Sanctum\", every phase is a PvP campaign with its weekly contract, its ranking and its exclusive rewards.",
+  "fr": "De « Front du Norfendre » aux « Défenseurs du sanctum Rubis », chaque phase est une campagne JcJ avec son contrat hebdomadaire, son classement et ses récompenses exclusives.",
+  "ctx": [
+   "pvp.lede"
+  ]
+ },
+ {
+  "en": "Campaigns and rankings",
+  "fr": "Campagnes et classements",
+  "ctx": [
+   "pvp.title"
+  ]
+ },
+ {
+  "en": "The top 10 of each faction become **Campaign Marshal or Warlord**.",
+  "fr": "Les 10 meilleurs de chaque faction deviennent **Maréchal ou Seigneur de guerre de campagne**.",
+  "ctx": [
+   "pvp.text"
+  ]
+ },
+ {
+  "en": "Exclusive rewards",
+  "fr": "Récompenses exclusives",
+  "ctx": [
+   "pvp.title"
+  ]
+ },
+ {
+  "en": "**12 campaign mounts**, pets and **1,107 replicas** of arena seasons 1 to 8 gear.",
+  "fr": "**12 montures de campagne**, des mascottes et **1 107 répliques** des équipements des saisons d'arène 1 à 8.",
+  "ctx": [
+   "pvp.text"
+  ]
+ },
+ {
+  "en": "The Sewer Tournament",
+  "fr": "Le tournoi des égouts",
+  "ctx": [
+   "pvp.title"
+  ]
+ },
+ {
+  "en": "**Twice a week, at 7 PM**: knockout duels in Dalaran's sewers. Gladiator, Duelist, Rival.",
+  "fr": "**Deux fois par semaine, à 19 h** : duels à élimination directe dans les égouts de Dalaran. Gladiateur, Duelliste, Rival.",
+  "ctx": [
+   "pvp.text"
+  ]
+ },
+ {
+  "en": "Faithful, fixed PvP",
+  "fr": "Un JcJ fidèle et réparé",
+  "ctx": [
+   "pvp.title"
+  ]
+ },
+ {
+  "en": "Fixed battlegrounds, mixed Alliance/Horde arenas, a Wintergrasp that shows its true owner.",
+  "fr": "Champs de bataille corrigés, arènes mixtes Alliance/Horde, Joug-d'hiver qui montre son vrai propriétaire.",
+  "ctx": [
+   "pvp.text"
+  ]
+ },
+ {
+  "en": "Guilds",
+  "fr": "Guildes",
+  "ctx": [
+   "guilds.eyebrow",
+   "nav.label"
+  ]
+ },
+ {
+  "en": "Your guild grows with you.",
+  "fr": "Votre guilde grandit avec vous.",
+  "ctx": [
+   "guilds.title"
+  ]
+ },
+ {
+  "en": "Dungeons, raids, world bosses, PvP, quests: in a guild group, everything raises your guild **from level 1 to 10**, and every level unlocks a perk for everyone.",
+  "fr": "Donjons, raids, boss du monde, JcJ, quêtes : en groupe de guilde, tout fait monter votre guilde **du niveau 1 au niveau 10**, et chaque niveau débloque un avantage pour tous.",
+  "ctx": [
+   "guilds.lede"
+  ]
+ },
+ {
+  "en": "War Chest: a share of looted gold for the bank",
+  "fr": "Trésor de guerre : une part de l'or ramassé pour la banque",
+  "ctx": [
+   "guilds.text"
+  ]
+ },
+ {
+  "en": "+10% mount speed",
+  "fr": "+10 % de vitesse en monture",
+  "ctx": [
+   "guilds.text"
+  ]
+ },
+ {
+  "en": "Bonus reputation and experience",
+  "fr": "Réputation et expérience en plus",
+  "ctx": [
+   "guilds.text"
+  ]
+ },
+ {
+  "en": "Faster hearthstone and bonus honor",
+  "fr": "Pierre de foyer plus rapide et honneur en plus",
+  "ctx": [
+   "guilds.text"
+  ]
+ },
+ {
+  "en": "Instant mail",
+  "fr": "Courrier instantané",
+  "ctx": [
+   "guilds.text"
+  ]
+ },
+ {
+  "en": "Second Breath: come back with full health",
+  "fr": "Souffle de vie : revenir à la vie avec toute sa vie",
+  "ctx": [
+   "guilds.text"
+  ]
+ },
+ {
+  "en": "Elixirs and flasks last 50% longer",
+  "fr": "Élixirs et flacons +50 % de durée",
+  "ctx": [
+   "guilds.text"
+  ]
+ },
+ {
+  "en": "Guild Rally",
+  "fr": "Rassemblement de la guilde",
+  "ctx": [
+   "guilds.text"
+  ]
+ },
+ {
+  "en": "Mass Resurrection",
+  "fr": "Résurrection collective",
+  "ctx": [
+   "guilds.text"
+  ]
+ },
+ {
+  "en": "16 guild achievements pay **more than 21,000 gold** to the bank. Banners and cauldrons from the guild quartermaster.",
+  "fr": "16 hauts faits de guilde versent **plus de 21 000 pièces d'or** à la banque. Étendards et chaudrons chez l'intendant de guilde.",
+  "ctx": [
+   "guilds.extra"
+  ]
+ },
+ {
+  "en": "Achievements",
+  "fr": "Hauts faits",
+  "ctx": [
+   "glory.eyebrow",
+   "nav.label"
+  ]
+ },
+ {
+  "en": "Make the realm's history.",
+  "fr": "Entrez dans l'histoire du royaume.",
+  "ctx": [
+   "glory.title"
+  ]
+ },
+ {
+  "en": "A \"Lordaeron\" tab of **228 achievements**, and the realm's Firsts: feats that only one player or one group will ever earn.",
+  "fr": "Un onglet « Lordaeron » de **228 hauts faits**, et les « Prem's » du royaume : des exploits qu'un seul joueur ou un seul groupe pourra jamais obtenir.",
+  "ctx": [
+   "glory.lede"
+  ]
+ },
+ {
+  "en": "The colossi",
+  "fr": "Les colosses",
+  "ctx": [
+   "glory.name"
+  ]
+ },
+ {
+  "en": "First raid to defeat each world boss",
+  "fr": "Premier raid à vaincre chaque boss du monde",
+  "ctx": [
+   "glory.text"
+  ]
+ },
+ {
+  "en": "Guild of Lordaeron",
+  "fr": "Guilde de Lordaeron",
+  "ctx": [
+   "glory.name"
+  ]
+ },
+ {
+  "en": "First guild to reach renown level 10",
+  "fr": "Première guilde au niveau 10 de renommée",
+  "ctx": [
+   "glory.text"
+  ]
+ },
+ {
+  "en": "Exalted Archivist",
+  "fr": "Archiviste exalté",
+  "ctx": [
+   "glory.name"
+  ]
+ },
+ {
+  "en": "First to be Exalted with the Archivist Order",
+  "fr": "Premier exalté auprès de l'Ordre des Archivistes",
+  "ctx": [
+   "glory.text"
+  ]
+ },
+ {
+  "en": "Ascended",
+  "fr": "Ascension",
+  "ctx": [
+   "glory.name"
+  ]
+ },
+ {
+  "en": "First to use an Ascension Token",
+  "fr": "Premier à utiliser un jeton d'ascension",
+  "ctx": [
+   "glory.text"
+  ]
+ },
+ {
+  "en": "Legendary Catch",
+  "fr": "Prise légendaire",
+  "ctx": [
+   "glory.name"
+  ]
+ },
+ {
+  "en": "First legendary fish brought to Marcia Chase",
+  "fr": "Premier poisson légendaire rapporté à Marcia Chase",
+  "ctx": [
+   "glory.text"
+  ]
+ },
+ {
+  "en": "Golden Hoard",
+  "fr": "Trésor d'or",
+  "ctx": [
+   "glory.name"
+  ]
+ },
+ {
+  "en": "First to own 200,000 gold",
+  "fr": "Premier à posséder 200 000 pièces d'or",
+  "ctx": [
+   "glory.text"
+  ]
+ },
+ {
+  "en": "the Forerunner",
+  "fr": "le Précurseur",
+  "ctx": [
+   "glory.titles"
+  ]
+ },
+ {
+  "en": "Breaker of Colossi",
+  "fr": "Fléau des colosses",
+  "ctx": [
+   "glory"
+  ]
+ },
+ {
+  "en": "the Unlucky",
+  "fr": "le Malchanceux",
+  "ctx": [
+   "glory"
+  ]
+ },
+ {
+  "en": "the Erudite",
+  "fr": "l'Érudit",
+  "ctx": [
+   "glory"
+  ]
+ },
+ {
+  "en": "the Lucky",
+  "fr": "le Chanceux",
+  "ctx": [
+   "glory"
+  ]
+ },
+ {
+  "en": "Cartographer of Northrend",
+  "fr": "cartographe du Norfendre",
+  "ctx": [
+   "glory"
+  ]
+ },
+ {
+  "en": "Northrend awaits.",
+  "fr": "Le Norfendre vous attend.",
+  "ctx": [
+   "finale.title"
+  ]
+ },
+ {
+  "en": "A faithful server, loot verified boss by boss, texts translated from the official versions. And **hundreds of additions** found nowhere else.",
+  "fr": "Un serveur fidèle, des butins vérifiés boss par boss, des textes traduits d'après les versions officielles. Et **des centaines de nouveautés** qui n'existent nulle part ailleurs.",
+  "ctx": [
+   "finale.text"
+  ]
+ },
+ {
+  "en": "Join Lordaeron",
+  "fr": "Rejoindre Lordaeron",
+  "ctx": [
+   "finale.cta"
+  ]
+ },
+ {
+  "en": "Phases",
+  "fr": "Phases",
+  "ctx": [
+   "nav.label"
+  ]
+ },
+ {
+  "en": "The Eye 80",
+  "fr": "L'Œil 80",
+  "ctx": [
+   "nav.label"
+  ]
+ },
+ {
+  "en": "Loot",
+  "fr": "Butin",
+  "ctx": [
+   "nav.label"
+  ]
+ },
+ {
+  "en": "Archivists",
+  "fr": "Archivistes",
+  "ctx": [
+   "nav.label"
+  ]
+ },
+ {
+  "en": "Economy",
+  "fr": "Économie",
+  "ctx": [
+   "nav.label"
+  ]
+ },
+ {
+  "en": "Quiz",
+  "fr": "Quiz",
+  "ctx": [
+   "nav.label"
+  ]
+ },
+ {
+  "en": "Transmog",
+  "fr": "Transmog",
+  "ctx": [
+   "nav.label"
+  ]
+ }
+]

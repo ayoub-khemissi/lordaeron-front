@@ -1,6 +1,6 @@
 /*
  * Tooltip refs of the realm showcase: which in-game item or spell each card, reward, icon or class spell of content.ts shows on hover.
- * The tooltips themselves (our versions, FR and EN) are in public/data/experience-tooltips.json, written by the content generator
+ * The tooltips themselves (our versions, one file per client language) are in public/data/experience-tooltips.<lang>.json, written by the content generator
  * (contrib/wotlk-plus/tools/site-tooltips.js, refs in tools/site-tooltips.refs.json). Keys are the FR strings exactly as in content.ts.
  */
 

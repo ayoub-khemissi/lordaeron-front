@@ -27,8 +27,10 @@ import {
   transmog,
   treasures,
   worldBosses,
+  LANGS,
   type Lang,
   type T,
+  ui,
 } from "./content";
 import {
   classSpellRefs,
@@ -43,6 +45,7 @@ import {
   QUALITY,
   Tip,
   TooltipProvider,
+  tipLangOf,
   useTipEntry,
   useTipText,
 } from "@/components/experience/game-tooltip";
@@ -480,7 +483,6 @@ function ArtifactItem({ lang }: { lang: Lang }) {
     return () => clearInterval(id);
   }, []);
   const v = voidSabre[up];
-  const fr = lang === "fr";
   const num = (n: number) => (
     <motion.span
       key={`${up}-${n}`}
@@ -516,34 +518,33 @@ function ArtifactItem({ lang }: { lang: Lang }) {
               className="text-lg font-semibold transition-colors duration-700"
               style={{ color: v.color }}
             >
-              {fr ? "Sabre du Vide" : "Void Sabre"}
+              {ui.voidSabre[lang]}
             </p>
             <p className="text-wow-gold-light">
-              {fr ? "Niveau d'objet" : "Item Level"} {num(v.ilvl)}
+              {ui.itemLevel[lang]} {num(v.ilvl)}
             </p>
           </div>
         </div>
         <div className="mt-3 space-y-0.5 text-white/90">
-          <p>{fr ? "Lié quand ramassé" : "Binds when picked up"}</p>
+          <p>{ui.bindsOnPickup[lang]}</p>
           <p className="flex justify-between">
-            <span>{fr ? "Une main" : "One-Hand"}</span>
-            <span>{fr ? "Épée" : "Sword"}</span>
+            <span>{ui.oneHand[lang]}</span>
+            <span>{ui.sword[lang]}</span>
           </p>
           <p className="flex justify-between">
             <span>
-              {num(v.dmg[0])} - {num(v.dmg[1])} {fr ? "Dégâts" : "Damage"}
+              {num(v.dmg[0])} - {num(v.dmg[1])} {ui.damage[lang]}
             </span>
-            <span>{fr ? "Vitesse 1,50" : "Speed 1.50"}</span>
+            <span>{ui.speed[lang]}</span>
           </p>
           <p>
-            ({fr ? dps.replace(".", ",") : dps}{" "}
-            {fr ? "dégâts par seconde" : "damage per second"})
+            ({lang === "en" ? dps : dps.replace(".", ",")} {ui.dps[lang]})
           </p>
           <p>
-            +{num(v.agi)} {fr ? "Agilité" : "Agility"}
+            +{num(v.agi)} {ui.agility[lang]}
           </p>
           <p>
-            +{num(v.sta)} {fr ? "Endurance" : "Stamina"}
+            +{num(v.sta)} {ui.stamina[lang]}
           </p>
         </div>
         <div className="mt-4 flex items-center gap-1.5 text-[10px] uppercase tracking-[0.06em] sm:text-[11px] sm:tracking-[0.12em]">
@@ -684,9 +685,7 @@ function ClassSpell({
       </p>
       {level && (
         <p className="mt-4 border-t border-white/10 pt-3 text-xs uppercase tracking-[0.18em] text-white/45">
-          {lang === "fr"
-            ? `Maître de classe · niveau ${level}`
-            : `Class trainer · level ${level}`}
+          {ui.classTrainer[lang].replace("{level}", String(level))}
         </p>
       )}
     </div>
@@ -1355,11 +1354,9 @@ function TreasureMount({
 }) {
   const ref = tipOf(name);
   const entry = useTipEntry(ref);
-  const lines = entry?.[lang]?.lines.map((l) => l.left) ?? [];
-  const flying = lines.some((l) => /volante|Outland or Northrend/.test(l));
-  const level = lines
-    .map((l) => l.match(/(?:Niveau|Requires level) (\d+)/i)?.[1])
-    .find(Boolean);
+  // flying or not and the required level: language-free facts of the tooltip data
+  const flying = Boolean(entry?.flying);
+  const level = entry?.reqLevel;
 
   return (
     <Tip className="block h-full" id={ref}>
@@ -1367,25 +1364,14 @@ function TreasureMount({
         {entry && <WowIcon glow="none" icon={entry.icon} size={52} />}
         <div className="min-w-0">
           <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-wow-gold/80">
-            {phase === 0
-              ? lang === "fr"
-                ? "Prélude"
-                : "Prelude"
-              : `Phase ${phase}`}
+            {phase === 0 ? ui.prelude[lang] : `${ui.phase[lang]} ${phase}`}
           </p>
           <p className="font-heading text-lg leading-tight text-[#c69bff]">
             {name[lang]}
           </p>
           <p className="text-xs text-white/55">
-            {flying
-              ? lang === "fr"
-                ? "Monture volante"
-                : "Flying mount"
-              : lang === "fr"
-                ? "Monture terrestre"
-                : "Ground mount"}
-            {level &&
-              (lang === "fr" ? ` · niveau ${level}` : ` · level ${level}`)}
+            {flying ? ui.flyingMount[lang] : ui.groundMount[lang]}
+            {level && ui.atLevel[lang].replace("{level}", String(level))}
           </p>
         </div>
       </div>
@@ -1548,7 +1534,7 @@ function Quiz({ lang }: { lang: Lang }) {
         <Reveal>
           <div className="rounded-2xl border border-wow-gold/30 bg-[#1b140b]/90 p-6 shadow-[0_0_60px_rgba(199,156,62,0.12)] sm:p-8">
             <p className="text-xs uppercase tracking-[0.25em] text-wow-gold-light/70">
-              {lang === "fr" ? "Une question facile" : "An easy question"}
+              {ui.easyQuestion[lang]}
             </p>
             <p className="mt-4 font-heading text-xl leading-snug text-[#f3e3c3] sm:text-2xl">
               {quiz.sample.question[lang]}
@@ -1593,12 +1579,8 @@ function Quiz({ lang }: { lang: Lang }) {
                 initial={{ opacity: 0 }}
               >
                 {picked === quiz.sample.right
-                  ? lang === "fr"
-                    ? "Exact ! Le Kirin Tor récompense votre savoir."
-                    : "Correct! The Kirin Tor rewards your knowledge."
-                  : lang === "fr"
-                    ? "Non… la réponse était : Désolation des dragons."
-                    : "No… the answer was: Dragonblight."}
+                  ? ui.quizRight[lang]
+                  : ui.quizWrong[lang]}
               </motion.p>
             )}
           </div>
@@ -1752,7 +1734,7 @@ function Glory({ lang }: { lang: Lang }) {
                     </p>
                   </div>
                   <span className="hidden shrink-0 rounded-full border border-wow-gold/40 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-wow-gold sm:block">
-                    {lang === "fr" ? "Prem's" : "Realm First"}
+                    {ui.realmFirst[lang]}
                   </span>
                 </li>
               </Reveal>
@@ -1794,11 +1776,15 @@ function Finale({ lang, joinHref }: { lang: Lang; joinHref: string }) {
 const LAUNCH_AT = REALMS.rimeheart.launchAt as string;
 
 export default function ExperienceContent({ locale }: { locale: string }) {
-  const lang: Lang = locale === "fr" ? "fr" : "en";
+  const lang: Lang = (LANGS as readonly string[]).includes(locale)
+    ? (locale as Lang)
+    : "en";
+  // the in-game tooltips: the languages of the 3.3.5 clients (English for the others, as in game)
+  const tipLang = tipLangOf(lang);
   const joinHref = `/${locale}/register`;
 
   return (
-    <TooltipProvider lang={lang}>
+    <TooltipProvider lang={tipLang}>
       <div className="relative overflow-x-clip bg-wow-darker text-white">
         <ChapterNav
           chapters={nav.map((n) => ({ id: n.id, label: n.label[lang] }))}

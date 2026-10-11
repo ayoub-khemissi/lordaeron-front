@@ -17,8 +17,6 @@
   "home": {
     "title": "Witaj w Lordaeron",
     "subtitle": "Najlepsze epickie progresywne doświadczenie WoW — od Vanilla po WotLK",
-    "purchaseHistory": "Historia zakupów",
-    "noPurchases": "Brak zakupów.",
     "cta": "Zacznij grać",
     "ctaRegister": "Utwórz konto",
     "serverStatus": "Status serwera",
@@ -39,8 +37,6 @@
     "title": "Jak się połączyć",
     "subtitle": "Wykonaj te proste kroki, aby dołączyć do {realm}",
     "realmSoon": "{realm} wkrótce zostanie otwarty: przygotuj klienta już teraz, świat pojawi się na liście światów w dniu otwarcia.",
-    "purchaseHistory": "Historia zakupów",
-    "noPurchases": "Brak zakupów.",
     "step1Title": "Pobierz klienta",
     "step1Desc": "Pobierz World of Warcraft w wersji 3.3.5a (build 12340). Znajdziesz go na popularnych stronach z archiwami WoW.",
     "step2Title": "Ustaw realmlist",
@@ -62,8 +58,6 @@
   "register": {
     "title": "Utwórz konto",
     "subtitle": "Dołącz do Lordaeron i rozpocznij swoją przygodę",
-    "purchaseHistory": "Historia zakupów",
-    "noPurchases": "Brak zakupów.",
     "username": "Nazwa użytkownika",
     "email": "E-mail",
     "password": "Hasło",
@@ -82,16 +76,12 @@
       "passwordLength": "Hasło musi mieć od 6 do 16 znaków",
       "passwordMismatch": "Hasła nie są zgodne",
       "usernameTaken": "Nazwa użytkownika jest już zajęta",
-      "serverError": "Błąd serwera. Spróbuj ponownie.",
-      "purchaseNotRefundable": "Ten zakup nie podlega zwrotowi.",
-      "recipientNotFound": "Nie znaleziono postaci odbiorcy."
+      "serverError": "Błąd serwera. Spróbuj ponownie."
     }
   },
   "login": {
     "title": "Logowanie",
     "subtitle": "Uzyskaj dostęp do swojego konta Lordaeron",
-    "purchaseHistory": "Historia zakupów",
-    "noPurchases": "Brak zakupów.",
     "username": "Nazwa użytkownika",
     "password": "Hasło",
     "submit": "Zaloguj się",
@@ -109,8 +99,6 @@
   "forgotPassword": {
     "title": "Zapomniałeś hasła",
     "subtitle": "Zresetuj hasło do swojego konta",
-    "purchaseHistory": "Historia zakupów",
-    "noPurchases": "Brak zakupów.",
     "email": "E-mail",
     "submit": "Wyślij link do resetowania",
     "success": "Jeśli istnieje konto powiązane z tym adresem e-mail, link do resetowania hasła został wysłany.",
@@ -124,8 +112,6 @@
   "resetPassword": {
     "title": "Resetowanie hasła",
     "subtitle": "Wybierz nowe hasło",
-    "purchaseHistory": "Historia zakupów",
-    "noPurchases": "Brak zakupów.",
     "password": "Nowe hasło",
     "confirmPassword": "Potwierdź hasło",
     "submit": "Zresetuj hasło",
@@ -159,8 +145,6 @@
   "features": {
     "title": "Funkcje serwera",
     "subtitle": "Odkryj, co czyni Lordaeron wyjątkowym",
-    "purchaseHistory": "Historia zakupów",
-    "noPurchases": "Brak zakupów.",
     "ratesTitle": "Współczynniki serwera",
     "ratesSubtitle": "Zbalansowane współczynniki dla lepszego doświadczenia",
     "featuresTitle": "Epickie funkcje",
@@ -276,8 +260,6 @@
   "shop": {
     "title": "Sklep",
     "subtitle": "Wzbogać swoją przygodę ekskluzywnymi przedmiotami i usługami",
-    "purchaseHistory": "Historia zakupów",
-    "noPurchases": "Brak zakupów.",
     "balance": "Twoje saldo",
     "highlights": "Wyróżnione",
     "allItems": "Wszystkie przedmioty",
@@ -450,7 +432,9 @@
       "setNotFound": "Nie znaleziono zestawu",
       "heirloomMaxLevelRequired": "Musisz mieć postać na poziomie 80, aby kupić przedmioty dziedzictwa.",
       "serverError": "Błąd serwera. Spróbuj ponownie.",
-      "realmNotOpen": "Ten świat nie jest jeszcze otwarty"
+      "realmNotOpen": "Ten świat nie jest jeszcze otwarty",
+      "purchaseNotRefundable": "Ten zakup nie podlega zwrotowi.",
+      "recipientNotFound": "Nie znaleziono postaci odbiorcy."
     },
     "comingSoon": "Wkrótce",
     "realmSoonTitle": "Sklep {realm} otworzy się wraz ze światem",
@@ -706,8 +690,6 @@
   "news": {
     "title": "Aktualności",
     "subtitle": "Bądź na bieżąco z najnowszymi wiadomościami i aktualizacjami Lordaeron",
-    "purchaseHistory": "Historia zakupów",
-    "noPurchases": "Brak zakupów.",
     "loadMore": "Załaduj więcej",
     "backToNews": "Wróć do aktualności",
     "by": "Autor",
@@ -719,8 +701,6 @@
   "contact": {
     "title": "Kontakt",
     "subtitle": "Masz pytanie lub potrzebujesz pomocy? Wyślij nam wiadomość.",
-    "purchaseHistory": "Historia zakupów",
-    "noPurchases": "Brak zakupów.",
     "sendingAs": "Wysyłasz jako: {username} ({email})",
     "subject": "Temat",
     "subjectPlaceholder": "Czego dotyczy Twoja wiadomość?",
@@ -742,8 +722,6 @@
   "cgu": {
     "title": "Regulamin",
     "subtitle": "Proszę uważnie zapoznać się z regulaminem przed korzystaniem z Lordaeron.",
-    "purchaseHistory": "Historia zakupów",
-    "noPurchases": "Brak zakupów.",
     "lastUpdated": "Ostatnia aktualizacja: luty 2026",
     "sections": {
       "acceptance": {
@@ -783,8 +761,6 @@
   "cgv": {
     "title": "Warunki sprzedaży",
     "subtitle": "Warunki regulujące zakupy dokonywane na Lordaeron.",
-    "purchaseHistory": "Historia zakupów",
-    "noPurchases": "Brak zakupów.",
     "lastUpdated": "Ostatnia aktualizacja: luty 2026",
     "sections": {
       "general": {
@@ -824,8 +800,6 @@
   "rgpd": {
     "title": "Polityka prywatności (RODO)",
     "subtitle": "Jak zbieramy, wykorzystujemy i chronimy Twoje dane osobowe.",
-    "purchaseHistory": "Historia zakupów",
-    "noPurchases": "Brak zakupów.",
     "lastUpdated": "Ostatnia aktualizacja: luty 2026",
     "sections": {
       "controller": {
@@ -956,8 +930,6 @@
   "epicProgression": {
     "title": "Epicka Progresja",
     "subtitle": "Przejdź każdy poziom WoW — rajdem albo Ścieżką Samotnego Czempiona",
-    "purchaseHistory": "Historia zakupów",
-    "noPurchases": "Brak zakupów.",
     "introTitle": "Czym jest Epicka Progresja?",
     "introDesc": "Epicka Progresja to główny system rozgrywki Lordaeron. Każda postać musi pokonać ostatniego bossa(-ów) tieru rajdowego, aby odblokować kolejny. Progresja jest na postać — nie na konto ani serwer. Każdy bohater pisze własną historię, od głębin Molten Core do lodowego tronu Króla Lisza. Cały serwer działa na konfiguracji WotLK 3.3.5a — czary, talenty, zadania — ale zawartość jest odblokowywana stopniowo. Przez każdy dodatek prowadzą dwie drogi: wielkie rajdy albo Ścieżka Samotnego Czempiona dla graczy solo i małych grup.",
     "dkTitle": "Rycerze Śmierci i Vanilla",
@@ -1052,8 +1024,6 @@
   "raidScaling": {
     "title": "Skalowanie trudności",
     "subtitle": "Rajdy i lochy dynamicznie dostosowują się do wielkości twojej grupy — graj z dowolną liczbą graczy",
-    "purchaseHistory": "Historia zakupów",
-    "noPurchases": "Brak zakupów.",
     "introTitle": "Jak to działa?",
     "introDesc": "Gdy twoja grupa wchodzi do instancji z mniejszą liczbą graczy niż maksymalna pojemność, wszystkie stworzenia są automatycznie skalowane w dół. Zdrowie, obrażenia i łup dostosowują się w czasie rzeczywistym, gdy ktoś dołącza, opuszcza grupę lub się rozłącza. Przy pełnej pojemności wszystko pozostaje na 100% — brak skalowania.",
     "simulatorTitle": "Interaktywny symulator",
@@ -1129,7 +1099,7 @@
         "Pięć faz po trzy miesiące",
         "Heroiczne wczesne rajdy, jakość Artefakt, światowi bossowie",
         "30 nowych zaklęć klasowych, 277 nowych przepisów",
-        "28 specjalizacji zawodowych i ich arcydzieła"
+        "28 specjalizacji profesji i ich arcydzieła"
       ]
     },
     "label": "Światy",
