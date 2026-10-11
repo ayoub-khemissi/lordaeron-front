@@ -72,11 +72,17 @@ h4 {
   background-clip: text;
 }
 
-/* gradient text paints only inside its box: descenders (y, g, p) and Friz's low figures reach below it, so the box gets room under them */
+/* gradient text paints only inside its box: descenders (y, g, p) and Friz's low figures reach below it, so the box gets room under them,
+   on every line of a title that wraps (box-decoration-break). Every gradient text of the site: these classes, Tailwind's bg-clip-text
+   (the shared title style, the showcase's red chapter titles) and the news articles' titles */
 .wow-gradient-text,
 .wow-ice-text,
-.wow-fel-text {
+.wow-fel-text,
+.bg-clip-text,
+.markdown-content h1 {
   padding-bottom: 0.14em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 /* ── Glassmorphism card ── */
