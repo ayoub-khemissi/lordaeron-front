@@ -6,9 +6,16 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* the scrollbar's room is always kept: a modal's scroll lock no longer shifts the page by its width */
+/* the scrollbar's room is always kept: a modal's scroll lock no longer shifts the page by its width;
+   anchors (a page's table of contents) scroll smoothly, unless the visitor asked for less motion */
 html {
   scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 @theme {
@@ -63,6 +70,13 @@ h4 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* gradient text paints only inside its box: descenders (y, g, p) and Friz's low figures reach below it, so the box gets room under them */
+.wow-gradient-text,
+.wow-ice-text,
+.wow-fel-text {
+  padding-bottom: 0.14em;
 }
 
 /* ── Glassmorphism card ── */

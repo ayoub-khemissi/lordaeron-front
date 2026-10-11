@@ -57,7 +57,7 @@ export default async function LocaleLayout({
   const messages = (await import(`../../messages/${locale}.json`)).default;
 
   return (
-    <html suppressHydrationWarning lang={locale}>
+    <html suppressHydrationWarning data-scroll-behavior="smooth" lang={locale}>
       <body
         className={clsx(
           "min-h-screen text-foreground bg-background font-sans antialiased",
