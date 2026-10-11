@@ -67,6 +67,7 @@ export const ui = {
     "No… the answer was: Dragonblight.",
   ),
   realmFirst: L("Prem's", "Realm First"),
+  guildLevel: L("Niveau {level}", "Level {level}"),
 };
 
 /** The Rimeheart page's title and description (app/[locale]/[realm]/page.tsx). */

@@ -3734,5 +3734,12 @@
   "ctx": [
    "nav.label"
   ]
+ },
+ {
+  "en": "Level {level}",
+  "fr": "Niveau {level}",
+  "ctx": [
+   "ui.guildLevel"
+  ]
  }
 ]

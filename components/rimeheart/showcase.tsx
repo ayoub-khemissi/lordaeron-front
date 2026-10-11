@@ -1669,15 +1669,16 @@ function Guilds({ lang }: { lang: Lang }) {
           {guilds.perks.map((p, i) => (
             <Reveal key={i} delay={i * 0.05}>
               <li className="flex h-full items-center gap-4 rounded-xl border border-white/10 bg-white/[0.04] p-4">
-                <div className="relative">
-                  <WowIcon icon={p.icon} size={44} tip={tipOf(p.text)} />
-                  <span className="absolute -right-2 -top-2 grid h-6 min-w-6 place-items-center rounded-full bg-wow-gold px-1 font-heading text-xs text-black">
-                    {p.lvl}
+                <WowIcon icon={p.icon} size={44} tip={tipOf(p.text)} />
+                <div className="min-w-0">
+                  {/* the level above its perk, in small caps (a gold dot on the icon hid it and never centred Friz's low figures) */}
+                  <span className="block text-[10px] font-semibold uppercase tracking-[0.2em] text-wow-gold-light/85">
+                    {ui.guildLevel[lang].replace("{level}", String(p.lvl))}
                   </span>
+                  <p className="mt-0.5 text-sm leading-snug text-white/75">
+                    <Rich text={p.text[lang]} />
+                  </p>
                 </div>
-                <p className="text-sm leading-snug text-white/75">
-                  <Rich text={p.text[lang]} />
-                </p>
               </li>
             </Reveal>
           ))}
