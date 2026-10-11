@@ -102,21 +102,17 @@ export function RealmSwitcher({ onNavigate }: { onNavigate?: () => void }) {
       >
         {[
           ...REALM_SLUGS.map((slug) => (
-            <DropdownItem
-              key={slug}
-              description={t(`${slug}.tagline`)}
-              endContent={
-                REALMS[slug].status === "soon" ? (
-                  <span className="rounded border border-wow-blue-ice/30 px-1.5 py-0.5 text-[10px] uppercase text-wow-blue-ice">
-                    {REALMS[slug].launchAt
-                      ? launchParts(REALMS[slug].launchAt as string, locale)
-                          .short
-                      : t("soon")}
-                  </span>
-                ) : null
-              }
-            >
+            <DropdownItem key={slug} description={t(`${slug}.tagline`)}>
               {REALMS[slug].name}
+              {/* a realm not open yet: its opening date (or "soon") in ice blue after its name */}
+              {REALMS[slug].status === "soon" && (
+                <span className="text-wow-blue-ice">
+                  {" · "}
+                  {REALMS[slug].launchAt
+                    ? launchParts(REALMS[slug].launchAt as string, locale).short
+                    : t("soon")}
+                </span>
+              )}
             </DropdownItem>
           )),
           <DropdownItem key="portal" className="text-default-500">
