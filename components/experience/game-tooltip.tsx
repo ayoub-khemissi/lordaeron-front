@@ -29,7 +29,8 @@ export type TipEntry = {
 };
 type TipData = Record<string, TipEntry>;
 
-const QUALITY = [
+/** Item quality colours (0 poor … 6 artifact), as in the game. */
+export const QUALITY = [
   "#9d9d9d",
   "#ffffff",
   "#1eff00",

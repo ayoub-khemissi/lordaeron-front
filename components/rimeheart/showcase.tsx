@@ -40,6 +40,7 @@ import {
 } from "./tooltip-refs";
 
 import {
+  QUALITY,
   Tip,
   TooltipProvider,
   useTipEntry,
@@ -295,8 +296,17 @@ function Manifesto({ lang }: { lang: Lang }) {
           </Reveal>
         </div>
         <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-wow-gold/20 bg-wow-gold/20">
-          {manifesto.stats.map((s, i) => (
-            <Reveal key={i} className="bg-wow-darker" delay={i * 0.05} y={14}>
+          {manifesto.stats.map((s, i, all) => (
+            <Reveal
+              key={i}
+              className={clsx(
+                "bg-wow-darker",
+                // an odd count: the last figure takes the whole row
+                all.length % 2 === 1 && i === all.length - 1 && "col-span-2",
+              )}
+              delay={i * 0.05}
+              y={14}
+            >
               <div className="px-4 py-7 text-center sm:px-6">
                 <Counter
                   className="block font-heading text-3xl text-wow-gold-light sm:text-5xl"
@@ -1199,49 +1209,86 @@ function Professions({ lang }: { lang: Lang }) {
             {professions.list.map((p) => (
               <div
                 key={p.key}
-                className="h-full rounded-2xl border border-white/10 bg-gradient-to-b from-wow-panel to-wow-darker p-7"
+                className="flex h-full flex-col rounded-2xl border border-white/10 bg-gradient-to-b from-wow-panel to-wow-darker p-6"
               >
                 <div className="flex items-center gap-4">
-                  <WowIcon icon={p.icon} size={56} />
+                  <WowIcon icon={p.icon} size={52} />
                   <div>
                     <h3 className="font-heading text-2xl text-white">
                       {p.name[lang]}
                     </h3>
+                    {p.specs.length > 1 && (
+                      <p className="text-[11px] uppercase tracking-[0.18em] text-wow-gold-light/70">
+                        {p.specs.length +
+                          (p.specs.find((sp) => sp.masteries)?.masteries
+                            ?.length ?? 0)}{" "}
+                        {professions.specsCount[lang]}
+                      </p>
+                    )}
                   </div>
                 </div>
-                {/* the specializations, the heart of each profession */}
-                {!p.specs[lang].includes(" · ") ? (
-                  <p className="mt-3 text-xs uppercase tracking-[0.15em] text-wow-gold-light/70">
-                    {p.specs[lang]}
-                  </p>
-                ) : (
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {p.specs[lang].split(" · ").map((spec) => (
-                      <span
-                        key={spec}
-                        className="rounded-md border border-wow-gold/40 bg-wow-gold/10 px-2.5 py-1 font-heading text-sm text-wow-gold-light"
-                      >
-                        {spec}
-                      </span>
-                    ))}
-                  </div>
-                )}
-                <ul className="mt-6 space-y-3">
-                  {p.highlights.map((h, i) => (
-                    <li
-                      key={i}
-                      className="flex gap-3 text-sm leading-relaxed text-white/70"
+                {/* each specialization: its real icon and in-game tooltip, one line, the crafts players will want */}
+                <div className="mt-5 flex flex-1 flex-col gap-3">
+                  {p.specs.map((sp) => (
+                    <div
+                      key={sp.name.en}
+                      className="rounded-xl border border-wow-gold/20 bg-black/25 p-4"
                     >
-                      <Check />
-                      <Tip
-                        className={tipOf(h) ? tipText : undefined}
-                        id={tipOf(h)}
-                      >
-                        <Rich text={h[lang]} />
-                      </Tip>
-                    </li>
+                      <div className="flex items-start gap-3">
+                        <WowIcon icon={sp.icon} size={40} tip={sp.ref} />
+                        <div className="min-w-0">
+                          <h4 className="font-heading text-lg leading-tight text-wow-gold-light">
+                            {sp.name[lang]}
+                          </h4>
+                          <p className="mt-0.5 text-[13px] leading-snug text-white/60">
+                            {sp.summary[lang]}
+                          </p>
+                        </div>
+                      </div>
+                      <ul className="mt-3 space-y-1.5">
+                        {sp.crafts.map((c) => (
+                          <li key={c.ref} className="flex items-center gap-2.5">
+                            <WowIcon
+                              glow="none"
+                              icon={c.icon}
+                              size={26}
+                              tip={c.ref}
+                            />
+                            <Tip id={c.ref}>
+                              <span
+                                className="text-[13px] leading-snug"
+                                style={{ color: QUALITY[c.q] }}
+                              >
+                                {c.name[lang]}
+                              </span>
+                            </Tip>
+                          </li>
+                        ))}
+                      </ul>
+                      {sp.masteries && (
+                        <div className="mt-3 border-t border-white/10 pt-3">
+                          <span className="text-[10px] uppercase tracking-[0.16em] text-white/45">
+                            {professions.masteries[lang]}
+                          </span>
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            {sp.masteries.map((m) => (
+                              <Tip key={m.ref} id={m.ref}>
+                                <span className="inline-flex items-center gap-1.5 rounded-md border border-wow-gold/30 bg-wow-gold/10 py-0.5 pl-0.5 pr-2 text-xs text-wow-gold-light">
+                                  <WowIcon
+                                    glow="none"
+                                    icon={m.icon}
+                                    size={20}
+                                  />
+                                  {m.name[lang]}
+                                </span>
+                              </Tip>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             ))}
           </Carousel>

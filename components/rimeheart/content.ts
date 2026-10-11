@@ -106,6 +106,11 @@ export const manifesto = {
       label: L("recettes de métier", "profession recipes"),
     },
     {
+      value: 28,
+      suffix: "",
+      label: L("spécialisations de métier", "profession specializations"),
+    },
+    {
       value: 30,
       suffix: "",
       label: L("sorts de classe inédits", "brand-new class spells"),
@@ -871,12 +876,23 @@ export const archivists = {
   image: IMG.ulduarArchive,
 };
 
+/** A signature craft of a specialization: its tooltip ref (item or spell), icon and quality (the name's colour). */
+export type ProfessionCraft = { ref: string; icon: string; q: number; name: T };
+/** A specialization: its passive spell (real icon and in-game tooltip), one line, its signature crafts and, for the
+    Weaponsmith, the masteries learned on top of it. Data checked against the Lab (Spell.dbc, lab_world.item_template). */
+export type ProfessionSpec = {
+  ref?: string;
+  icon: string;
+  name: T;
+  summary: T;
+  crafts: ProfessionCraft[];
+  masteries?: { ref: string; icon: string; name: T }[];
+};
 export type Profession = {
   key: string;
   icon: string;
   name: T;
-  specs: T;
-  highlights: T[];
+  specs: ProfessionSpec[];
 };
 
 export const professions = {
@@ -893,181 +909,991 @@ export const professions = {
       key: "jc",
       icon: "inv_jewelcrafting_dragonseye02",
       name: L("Joaillerie", "Jewelcrafting"),
-      specs: L("Lapidaire · Orfèvre", "Lapidary · Goldsmith"),
-      highlights: [
-        L("8 diamants méta des Titans", "8 Titanic meta diamonds"),
-        L(
-          "Yeux de dragon bicolores et Prisme de lumière stellaire",
-          "Two-color Dragon's Eyes and the Starlight Prism",
-        ),
-        L(
-          "Figurines de 245, anneaux de 264",
-          "Item level 245 figurines, 264 rings",
-        ),
+      specs: [
+        {
+          ref: "spell:101800",
+          icon: "inv_misc_gem_crystal_01",
+          name: L("Lapidaire", "Lapidary"),
+          summary: L(
+            "Gemmes bonus, métas des Titans, prismatiques, Yeux de dragon bicolores",
+            "Extra gems, Titan metas, prismatics and two-coloured Dragon's Eyes",
+          ),
+          crafts: [
+            {
+              ref: "item:900621",
+              icon: "inv_jewelcrafting_icediamond_02",
+              q: 4,
+              name: L(
+                "Diamant flamme-des-titans chaotique",
+                "Chaotic Titanflare Diamond",
+              ),
+            },
+            {
+              ref: "item:900632",
+              icon: "inv_enchant_shardprismaticlarge",
+              q: 4,
+              name: L("Éclat d'éternité runique", "Runed Eternity Shard"),
+            },
+            {
+              ref: "item:900711",
+              icon: "inv_jewelcrafting_dragonseye02",
+              q: 4,
+              name: L("Oeil de dragon mortel", "Deadly Dragon's Eye"),
+            },
+          ],
+        },
+        {
+          ref: "spell:101801",
+          icon: "inv_jewelry_ring_03",
+          name: L("Orfèvre", "Goldsmith"),
+          summary: L(
+            "Bijoux d'Ulduar à la Citadelle, figurines, qualité supérieure accrue",
+            "Ulduar to Icecrown rings and necks, figurines, more quality upgrades",
+          ),
+          crafts: [
+            {
+              ref: "item:80008",
+              icon: "inv_jewelry_ring_63",
+              q: 4,
+              name: L(
+                "Anneau de l'arcaniste de Dalaran",
+                "Dalaran Arcanist's Ring",
+              ),
+            },
+            {
+              ref: "item:80022",
+              icon: "ability_mount_drake_proto",
+              q: 4,
+              name: L(
+                "Figurine de proto-drake d'ambre du roi",
+                "Figurine - King's Amber Proto-Drake",
+              ),
+            },
+            {
+              ref: "item:80031",
+              icon: "inv_jewelry_necklace_35",
+              q: 4,
+              name: L(
+                "Chaîne de guerre en titane runique",
+                "Runed Titanium Warchain",
+              ),
+            },
+          ],
+        },
       ],
     },
     {
       key: "ench",
       icon: "spell_fire_enchantweapon",
       name: L("Enchantement", "Enchanting"),
-      specs: L(
-        "Enchanteur d'armes · Enchanteur d'armures",
-        "Weapon Enchanter · Armor Enchanter",
-      ),
-      highlights: [
-        L(
-          "Colère de Thorim, Écho du sablier, Rempart de Hodir",
-          "Thorim's Wrath, Hourglass Echo, Hodir's Bulwark",
-        ),
-        L("L'Égide du croisé", "Crusader's Aegis"),
-        L("Parchemins de maître", "Master scrolls"),
+      specs: [
+        {
+          ref: "spell:101802",
+          icon: "spell_fire_enchantweapon",
+          name: L("Enchanteur d'armes", "Weapon Enchanter"),
+          summary: L(
+            "Effets d'arme exclusifs, parchemins de maître, désenchantement d'armes",
+            "Exclusive weapon procs, master scrolls and richer weapon disenchants",
+          ),
+          crafts: [
+            {
+              ref: "item:900756",
+              icon: "inv_scroll_03",
+              q: 3,
+              name: L(
+                "Parchemin d'enchantement d'arme (Colère de Thorim)",
+                "Scroll of Enchant Weapon - Thorim's Wrath",
+              ),
+            },
+            {
+              ref: "item:900752",
+              icon: "inv_scroll_03",
+              q: 3,
+              name: L(
+                "Parchemin d'enchantement d'arme (Grâce de la Lieuse-de-vie)",
+                "Scroll of Enchant Weapon - Life-Binder's Grace",
+              ),
+            },
+            {
+              ref: "item:900754",
+              icon: "inv_scroll_03",
+              q: 3,
+              name: L(
+                "Parchemin d'enchantement d'arme (Écho du sablier)",
+                "Scroll of Enchant Weapon - Hourglass Echo",
+              ),
+            },
+          ],
+        },
+        {
+          ref: "spell:101803",
+          icon: "inv_misc_rune_12",
+          name: L("Enchanteur d'armures", "Armor Enchanter"),
+          summary: L(
+            "Enchantements d'armure exclusifs par palier, parchemins de maître",
+            "Exclusive armor enchants each tier, master scrolls, armor disenchants",
+          ),
+          crafts: [
+            {
+              ref: "item:900758",
+              icon: "inv_scroll_03",
+              q: 1,
+              name: L(
+                "Parchemin d'enchantement de bottes (Foulée arcanique)",
+                "Scroll of Enchant Boots - Arcane Stride",
+              ),
+            },
+            {
+              ref: "item:900785",
+              icon: "inv_scroll_03",
+              q: 1,
+              name: L(
+                "Parchemin d'enchantement de plastron (Égide du croisé)",
+                "Scroll of Enchant Chest - Crusader's Aegis",
+              ),
+            },
+            {
+              ref: "item:900791",
+              icon: "inv_scroll_03",
+              q: 1,
+              name: L(
+                "Parchemin d'enchantement de gants (Poigne des cendres)",
+                "Scroll of Enchant Gloves - Ashen Grip",
+              ),
+            },
+          ],
+        },
       ],
     },
     {
       key: "cook",
       icon: "achievement_profession_chefhat",
       name: L("Cuisine", "Cooking"),
-      specs: L("Chef de festin · Gourmet", "Master of Feasts · Gourmet"),
-      highlights: [
-        L(
-          "Festins taunka, du Kirin Tor, du Repos du ver…",
-          "Taunka, Kirin Tor, Wyrmrest feasts…",
-        ),
-        L(
-          "Le Grand banquet kalu'ak vous déguise en rohart",
-          "The Great Kalu'ak Banquet turns you into a tuskarr",
-        ),
-        L("Plats « mémorables » de 2 heures", '2-hour "memorable" dishes'),
+      specs: [
+        {
+          ref: "spell:101804",
+          icon: "inv_misc_food_84_roastclefthoof",
+          name: L("Chef de festin", "Master of Feasts"),
+          summary: L(
+            "Un festin par rôle, festins en plus et festins mémorables de 2 h.",
+            "A feast for every role, bonus feasts and memorable 2-hour meals.",
+          ),
+          crafts: [
+            {
+              ref: "item:900879",
+              icon: "inv_misc_food_126_clammeat",
+              q: 1,
+              name: L("Grand banquet kalu'ak", "Great Kalu'ak Banquet"),
+            },
+            {
+              ref: "item:900876",
+              icon: "inv_misc_food_108_meadcaribou",
+              q: 1,
+              name: L("Festin des Fils de Hodir", "Feast of the Sons of Hodir"),
+            },
+            {
+              ref: "item:900920",
+              icon: "inv_misc_food_110_emperorsalmon",
+              q: 1,
+              name: L("Festin du sanctum Rubis", "Ruby Sanctum Feast"),
+            },
+          ],
+        },
+        {
+          ref: "spell:101805",
+          icon: "inv_misc_fork&knife",
+          name: L("Gourmet", "Gourmet"),
+          summary: L(
+            "Plats hybrides, jusqu'à 3 plats en plus et plats parfaits de 2 h.",
+            "Hybrid dishes, up to 3 bonus dishes and perfect 2-hour meals.",
+          ),
+          crafts: [
+            {
+              ref: "item:900887",
+              icon: "inv_misc_food_142_fish",
+              q: 1,
+              name: L(
+                "Filet d'aileron-de-dragon à la dalaranaise",
+                "Dalaran-Style Dragonfin",
+              ),
+            },
+            {
+              ref: "item:900888",
+              icon: "inv_misc_food_138_fish",
+              q: 1,
+              name: L(
+                "Méduse aux épices du Nord",
+                "Northern-Spiced Nettlefish",
+              ),
+            },
+            {
+              ref: "item:900917",
+              icon: "inv_misc_food_125_fishchunk",
+              q: 1,
+              name: L(
+                "Esturgeon fumé du Verdict des cendres",
+                "Ashen Verdict Smoked Sturgeon",
+              ),
+            },
+          ],
+        },
       ],
     },
     {
       key: "bs",
       icon: "inv_sword_153",
       name: L("Forge", "Blacksmithing"),
-      specs: L(
-        "Armurier · Lames · Marteaux · Haches",
-        "Armorsmith · Swords · Hammers · Axes",
-      ),
-      highlights: [
-        L(
-          "Une arme de maître par palier, là où Blizzard n'en faisait aucune",
-          "A master weapon per tier, where Blizzard made none",
-        ),
-        L("15 pièces de niveau 264", "15 item level 264 pieces"),
+      specs: [
+        {
+          ref: "spell:9788",
+          icon: "inv_chest_plate04",
+          name: L("Fabricant d'armures", "Armorsmith"),
+          summary: L(
+            "Plaques et boucliers niv. 264 ; qualité supérieure ×1,5 sur la plaque",
+            "Ilvl 264 plate and shields; ×1.5 upgrade odds on Northrend plate",
+          ),
+          crafts: [
+            {
+              ref: "item:80504",
+              icon: "inv_shield_73",
+              q: 4,
+              name: L("Égide du bastion de saronite", "Saronite Bastion Aegis"),
+            },
+            {
+              ref: "item:80505",
+              icon: "inv_shield_67",
+              q: 4,
+              name: L("Écu de la source de vie", "Lifespring Shield"),
+            },
+            {
+              ref: "item:80500",
+              icon: "inv_belt_62",
+              q: 4,
+              name: L("Ceinturon cendreforgé", "Ashforged Girdle"),
+            },
+          ],
+        },
+        {
+          ref: "spell:9787",
+          icon: "inv_sword_25",
+          name: L("Fabricant d'armes", "Weaponsmith"),
+          summary: L(
+            "Neuf armes niv. 264, une par rôle ; qualité supérieure ×1,5",
+            "Nine ilvl 264 weapons, one per role; ×1.5 upgrade odds on weapons",
+          ),
+          crafts: [
+            {
+              ref: "item:80506",
+              icon: "inv_sword_153",
+              q: 4,
+              name: L("Espadon cendreforgé", "Ashforged Greatsword"),
+            },
+            {
+              ref: "item:80514",
+              icon: "inv_weapon_staff_109",
+              q: 4,
+              name: L("Guisarme du traqueur des glaces", "Icestalker Guisarme"),
+            },
+            {
+              ref: "item:80510",
+              icon: "inv_mace_91",
+              q: 4,
+              name: L("Masse runique de Thorim", "Thorim's Runed Mace"),
+            },
+          ],
+          masteries: [
+            {
+              ref: "spell:17039",
+              icon: "inv_sword_41",
+              name: L("Maître fabricant d'épées", "Master Swordsmith"),
+            },
+            {
+              ref: "spell:17040",
+              icon: "inv_hammer_23",
+              name: L("Maître fabricant de marteaux", "Master Hammersmith"),
+            },
+            {
+              ref: "spell:17041",
+              icon: "inv_axe_05",
+              name: L("Maître fabricant de haches", "Master Axesmith"),
+            },
+          ],
+        },
       ],
     },
     {
       key: "lw",
       icon: "inv_misc_drum_05",
       name: L("Travail du cuir", "Leatherworking"),
-      specs: L(
-        "Écailles de dragon · Élémentaire · Tribal",
-        "Dragonscale · Elemental · Tribal",
-      ),
-      highlights: [
-        L(
-          "9 capes-trophées : Roi Krush, Skoll, Loque'nahak…",
-          "9 trophy cloaks: King Krush, Skoll, Loque'nahak…",
-        ),
-        L("Tambours de l'esprit taunka", "Drums of the Taunka Spirit"),
+      specs: [
+        {
+          ref: "spell:10656",
+          icon: "inv_misc_monsterscales_03",
+          name: L(
+            "Travail du cuir d'écailles de dragon",
+            "Dragonscale Leatherworking",
+          ),
+          summary: L(
+            "Mailles niv. 264 agilité et sorts ; qualité supérieure ×1,5",
+            "Ilvl 264 agility and spell mail; ×1.5 upgrade odds on Northrend mail",
+          ),
+          crafts: [
+            {
+              ref: "item:80700",
+              icon: "inv_belt_47a",
+              q: 4,
+              name: L("Sangle du traqueur des glaces", "Icestalker Waistguard"),
+            },
+            {
+              ref: "item:80702",
+              icon: "inv_belt_83",
+              q: 4,
+              name: L(
+                "Sangle de la tempête de Thorim",
+                "Thorim's Tempest Waistguard",
+              ),
+            },
+            {
+              ref: "item:80732",
+              icon: "inv_bracer_29",
+              q: 4,
+              name: L(
+                "Garde-poignets en écailles de wyrm de givre",
+                "Frostwyrm Scale Wristguards",
+              ),
+            },
+          ],
+        },
+        {
+          ref: "spell:10658",
+          icon: "spell_fire_volcano",
+          name: L("Travail du cuir élémentaire", "Elemental Leatherworking"),
+          summary: L(
+            "Cuir niv. 264 agilité et ours ; qualité supérieure ×1,5 sur ce cuir",
+            "Ilvl 264 agility and bear leather; ×1.5 upgrade odds on that leather",
+          ),
+          crafts: [
+            {
+              ref: "item:80704",
+              icon: "inv_belt_15",
+              q: 4,
+              name: L("Ceinture du traqueur des glaces", "Icestalker Belt"),
+            },
+            {
+              ref: "item:80706",
+              icon: "inv_belt_42",
+              q: 4,
+              name: L("Ceinture de l'ours du givre", "Frostbear Belt"),
+            },
+            {
+              ref: "item:80733",
+              icon: "inv_bracer_22b",
+              q: 4,
+              name: L("Protège-bras en peau d'orage", "Stormhide Armwraps"),
+            },
+          ],
+        },
+        {
+          ref: "spell:10660",
+          icon: "spell_nature_nullward",
+          name: L("Travail du cuir tribal", "Tribal Leatherworking"),
+          summary: L(
+            "Tambours de l'esprit taunka et cuir niv. 264 de lanceur et soigneur",
+            "Drums of the Taunka Spirit and ilvl 264 caster and healer leather",
+          ),
+          crafts: [
+            {
+              ref: "item:901240",
+              icon: "inv_misc_drum_05",
+              q: 1,
+              name: L(
+                "Tambours de l'esprit taunka",
+                "Drums of the Taunka Spirit",
+              ),
+            },
+            {
+              ref: "item:80708",
+              icon: "inv_belt_59",
+              q: 4,
+              name: L(
+                "Ceinture du sage de Vordrassil",
+                "Vordrassil Sage's Belt",
+              ),
+            },
+            {
+              ref: "item:80710",
+              icon: "inv_bracer_30b",
+              q: 4,
+              name: L(
+                "Protège-bras de la source de vie",
+                "Lifespring Armwraps",
+              ),
+            },
+          ],
+        },
       ],
     },
     {
       key: "tail",
       icon: "inv_fabric_moonrag_primal",
       name: L("Couture", "Tailoring"),
-      specs: L(
-        "Étoffe lunaire · Feu-sorcier · Tisse-ombre",
-        "Mooncloth · Spellfire · Shadoweave",
-      ),
-      highlights: [
-        L(
-          "Une pièce en tisse-ébène par saison JcJ",
-          "An ebonweave piece every PvP season",
-        ),
-        L("Broderie de rempart", "Bulwark Embroidery"),
+      specs: [
+        {
+          ref: "spell:26798",
+          icon: "inv_fabric_moonrag_01",
+          name: L("Couture d'étoffe lunaire", "Mooncloth Tailoring"),
+          summary: L(
+            "Ceinture et manchettes 264 de soigneur ; qualité supérieure ×1,5",
+            "Ilvl 264 healer belt and cuffs; ×1.5 upgrade odds on healer cloth",
+          ),
+          crafts: [
+            {
+              ref: "item:80900",
+              icon: "inv_belt_68",
+              q: 4,
+              name: L(
+                "Ceinture de la Lumière persistante",
+                "Belt of the Abiding Light",
+              ),
+            },
+            {
+              ref: "item:80901",
+              icon: "inv_bracer_47",
+              q: 4,
+              name: L(
+                "Manchettes de la Lumière persistante",
+                "Cuffs of the Abiding Light",
+              ),
+            },
+            {
+              ref: "item:80904",
+              icon: "inv_bracer_27",
+              q: 4,
+              name: L("Manchettes clair-de-lune", "Moonlit Cuffs"),
+            },
+          ],
+        },
+        {
+          ref: "spell:26797",
+          icon: "spell_holy_blessingofprotection",
+          name: L("Couture du feu-sorcier", "Spellfire Tailoring"),
+          summary: L(
+            "Ceinture et brassards 264 de lanceur ; qualité supérieure ×1,5",
+            "Ilvl 264 caster belt and bracers; ×1.5 upgrade odds on caster cloth",
+          ),
+          crafts: [
+            {
+              ref: "item:80902",
+              icon: "inv_belt_64",
+              q: 4,
+              name: L("Ceinture du sort tissé", "Spellwoven Cord"),
+            },
+            {
+              ref: "item:80903",
+              icon: "inv_bracer_44",
+              q: 4,
+              name: L("Brassards du sort tissé", "Spellwoven Bindings"),
+            },
+            {
+              ref: "item:80905",
+              icon: "inv_bracer_25a",
+              q: 4,
+              name: L(
+                "Protège-poignets de feu-sorcier",
+                "Spellfire Wristwraps",
+              ),
+            },
+          ],
+        },
+        {
+          ref: "spell:26801",
+          icon: "inv_fabric_felrag",
+          name: L("Couture de tisse-ombre", "Shadoweave Tailoring"),
+          summary: L(
+            "Une pièce JcJ en tisse-ébène par saison d'arène, jusqu'au niv. 264",
+            "An ebonweave PvP piece every arena season, up to ilvl 264",
+          ),
+          crafts: [
+            {
+              ref: "item:80915",
+              icon: "inv_belt_70",
+              q: 4,
+              name: L(
+                "Cordelière en tisse-ébène du maître de guerre",
+                "Warmaster's Ebonweave Cord",
+              ),
+            },
+            {
+              ref: "item:80912",
+              icon: "inv_boots_cloth_23",
+              q: 4,
+              name: L(
+                "Bottes en tisse-ébène du gladiateur",
+                "Gladiator's Ebonweave Boots",
+              ),
+            },
+            {
+              ref: "item:80913",
+              icon: "inv_bracer_37",
+              q: 4,
+              name: L(
+                "Manchettes en tisse-ébène du challengeur",
+                "Challenger's Ebonweave Cuffs",
+              ),
+            },
+          ],
+        },
       ],
     },
     {
       key: "eng",
       icon: "inv_misc_enggizmos_28",
       name: L("Ingénierie", "Engineering"),
-      specs: L("Gnome · Gobelin", "Gnomish · Goblin"),
-      highlights: [
-        L(
-          "Transporteur ultra-sécurisé : Ulduar",
-          "Ultrasafe Transporter: Ulduar",
-        ),
-        L(
-          "Déchiqueteur de poche gobelin, un compagnon de combat",
-          "Goblin Pocket Shredder, a combat companion",
-        ),
-        L("11 lunettes de 245", "11 item level 245 goggles"),
+      specs: [
+        {
+          ref: "spell:20219",
+          icon: "inv_gizmo_02",
+          name: L("Ingénieur gnome", "Gnomish Engineer"),
+          summary: L(
+            "Transporteur d'Ulduar, déflecteur ; qualité supérieure ×1,5 (lunettes)",
+            "Ulduar transporter, party deflector, ×1.5 upgrade odds on goggles",
+          ),
+          crafts: [
+            {
+              ref: "item:901440",
+              icon: "inv_misc_enggizmos_12",
+              q: 3,
+              name: L(
+                "Transporteur ultra-sécurisé : Ulduar",
+                "Ultrasafe Transporter: Ulduar",
+              ),
+            },
+            {
+              ref: "item:901450",
+              icon: "inv_misc_enggizmos_28",
+              q: 4,
+              name: L("Déflecteur de champ gnome", "Gnomish Field Deflector"),
+            },
+          ],
+        },
+        {
+          ref: "spell:20222",
+          icon: "spell_fire_selfdestruct",
+          name: L("Ingénieur gobelin", "Goblin Engineer"),
+          summary: L(
+            "Déchiqueteurs K3 et de poche ; +15 % de munitions et d'explosifs",
+            "K3 dimensional ripper, pocket shredder, 15% more ammo and explosives",
+          ),
+          crafts: [
+            {
+              ref: "item:901441",
+              icon: "inv_misc_enggizmos_07",
+              q: 3,
+              name: L(
+                "Déchiqueteur dimensionnel - K3",
+                "Dimensional Ripper - K3",
+              ),
+            },
+            {
+              ref: "item:901451",
+              icon: "inv_misc_sawblade_01",
+              q: 4,
+              name: L(
+                "Déchiqueteur de poche gobelin",
+                "Goblin Pocket Shredder",
+              ),
+            },
+          ],
+        },
       ],
     },
     {
       key: "alch",
       icon: "inv_alchemy_endlessflask_05",
       name: L("Alchimie", "Alchemy"),
-      specs: L(
-        "Élixirs · Potions · Transmutation",
-        "Elixirs · Potions · Transmutation",
-      ),
-      highlights: [
-        L("7 potions infinies", "7 endless potions"),
-        L(
-          "9 pierres d'alchimiste jusqu'au niveau 264",
-          "9 alchemist stones up to item level 264",
-        ),
-        L("Transmutation de l'Orbe gelé", "Frozen Orb transmutation"),
+      specs: [
+        {
+          ref: "spell:28677",
+          icon: "inv_relics_totemoflife",
+          name: L("Maître des élixirs", "Elixir Master"),
+          summary: L(
+            "Élixirs et flacons en plus, et des flacons de maître à chaque palier",
+            "Extra elixirs and flasks, plus master-only flasks at every tier",
+          ),
+          crafts: [
+            {
+              ref: "item:901502",
+              icon: "inv_alchemy_endlessflask_01",
+              q: 1,
+              name: L(
+                "Flacon du cœur de Vordrassil",
+                "Flask of Vordrassil's Heart",
+              ),
+            },
+            {
+              ref: "item:901520",
+              icon: "inv_potion_150",
+              q: 1,
+              name: L("Flacon de l'aurore", "Flask of the Aurora"),
+            },
+            {
+              ref: "item:901529",
+              icon: "inv_potion_146",
+              q: 1,
+              name: L("Flacon du Colisée", "Flask of the Coliseum"),
+            },
+          ],
+        },
+        {
+          ref: "spell:28675",
+          icon: "inv_relics_totemoflife",
+          name: L("Maître des potions", "Potion Master"),
+          summary: L(
+            "Potions en plus, potions infinies jamais consommées, purification",
+            "Extra potions, endless potions never consumed, purification",
+          ),
+          crafts: [
+            {
+              ref: "item:901504",
+              icon: "inv_alchemy_endlessflask_05",
+              q: 3,
+              name: L("Potion de hâte infinie", "Endless Haste Potion"),
+            },
+            {
+              ref: "item:901507",
+              icon: "inv_potion_149",
+              q: 1,
+              name: L(
+                "Potion de purification de Norfendre",
+                "Northrend Purification Potion",
+              ),
+            },
+            {
+              ref: "item:901519",
+              icon: "inv_alchemy_potion_04",
+              q: 3,
+              name: L(
+                "Potion de protection contre le Givre infinie",
+                "Endless Frost Protection Potion",
+              ),
+            },
+          ],
+        },
+        {
+          ref: "spell:28672",
+          icon: "inv_relics_totemoflife",
+          name: L("Maître des transmutations", "Transmutation Master"),
+          summary: L(
+            "Transmutations en plus et inédites, pierres plus souvent supérieures",
+            "Extra transmutes, new transmutations, stones more likely to upgrade",
+          ),
+          crafts: [
+            {
+              ref: "item:81408",
+              icon: "spell_holy_aspiration",
+              q: 4,
+              name: L(
+                "Pierre d'alchimiste primordiale de l'arcaniste",
+                "Primordial Arcanist Alchemist Stone",
+              ),
+            },
+            {
+              ref: "item:900503",
+              icon: "inv_enchant_shardprismaticlarge",
+              q: 3,
+              name: L(
+                "Éclat prismatique de Norfendre",
+                "Northrend Prismatic Shard",
+              ),
+            },
+            {
+              ref: "item:43102",
+              icon: "spell_frost_frozencore",
+              q: 3,
+              name: L("Orbe gelé", "Frozen Orb"),
+            },
+          ],
+        },
       ],
     },
     {
       key: "insc",
       icon: "inv_inscription_majorglyph00",
       name: L("Calligraphie", "Inscription"),
-      specs: L("Glyphiste · Scribe des arcanes", "Glyphist · Arcane Scribe"),
-      highlights: [
-        L("Une deuxième recherche quotidienne", "A second daily research"),
-        L("Le Codex de la guerre du Nexus", "The Nexus-War Codex"),
+      specs: [
+        {
+          ref: "spell:101806",
+          icon: "inv_inscription_majorglyph00",
+          name: L("Glyphiste", "Glyphist"),
+          summary: L(
+            "Glyphes en plus, seconde recherche du jour, calligraphies du maître",
+            "Extra glyphs, a second daily research, master's shoulder inscriptions",
+          ),
+          crafts: [
+            {
+              ref: "spell:103011",
+              icon: "inv_inscription_tradeskill01",
+              q: 1,
+              name: L(
+                "Calligraphie de triomphe du maître",
+                "Master's Inscription of Triumph",
+              ),
+            },
+            {
+              ref: "spell:103014",
+              icon: "inv_inscription_tradeskill01",
+              q: 1,
+              name: L(
+                "Calligraphie des étoiles du maître",
+                "Master's Inscription of the Stars",
+              ),
+            },
+            {
+              ref: "spell:103016",
+              icon: "inv_inscription_tradeskill01",
+              q: 1,
+              name: L(
+                "Calligraphie du Verdict du maître",
+                "Master's Inscription of the Verdict",
+              ),
+            },
+          ],
+        },
+        {
+          ref: "spell:101807",
+          icon: "inv_misc_book_11",
+          name: L("Scribe des arcanes", "Arcane Scribe"),
+          summary: L(
+            "Ouvrages de raid, seconde carte de Sombrelune et Tirages du scribe",
+            "Raid-tier tomes, a second Darkmoon card and the Scribe's Draws",
+          ),
+          crafts: [
+            {
+              ref: "item:81304",
+              icon: "inv_misc_book_02",
+              q: 4,
+              name: L(
+                "Traité du Fléau déchiffré",
+                "Deciphered Scourge Treatise",
+              ),
+            },
+            {
+              ref: "item:81306",
+              icon: "inv_misc_book_07",
+              q: 4,
+              name: L("Folio des Gardiens", "Folio of the Keepers"),
+            },
+            {
+              ref: "item:81302",
+              icon: "inv_misc_book_06",
+              q: 4,
+              name: L(
+                "Codex du gladiateur calligraphié",
+                "Inscribed Gladiator's Codex",
+              ),
+            },
+          ],
+        },
       ],
     },
     {
       key: "dmf",
       icon: "inv_misc_ticket_tarot_storms",
       name: L("Cartes de Sombrelune", "Darkmoon Cards"),
-      specs: L("Une carte par palier de raid", "One card per raid tier"),
-      highlights: [
-        L(
-          "4 nouvelles cartes : Titans, Tournoi, Couronne de glace, Crépuscule",
-          "4 new cards: Titans, Tournament, Icecrown, Twilight",
-        ),
-        L(
-          "20 bijoux épiques, de 226 à 271",
-          "20 epic trinkets, from 226 to 271",
-        ),
+      specs: [
+        {
+          icon: "inv_misc_ticket_tarot_storms",
+          name: L("Une carte par palier de raid", "One card per raid tier"),
+          summary: L(
+            "Une carte par palier de raid : quatre suites de rôle et leurs bijoux",
+            "A new card each raid tier: four role decks and their trinkets",
+          ),
+          crafts: [
+            {
+              ref: "item:81503",
+              icon: "inv_misc_ticket_tarot_madness",
+              q: 4,
+              name: L(
+                "Carte de Sombrelune : Salve (Force)",
+                "Darkmoon Card: Barrage (Strength)",
+              ),
+            },
+            {
+              ref: "item:81507",
+              icon: "inv_misc_ticket_tarot_vengeance",
+              q: 4,
+              name: L("Carte de Sombrelune : Lien", "Darkmoon Card: Kinship"),
+            },
+            {
+              ref: "item:81510",
+              icon: "inv_misc_ticket_tarot_furies",
+              q: 4,
+              name: L(
+                "Carte de Sombrelune : Esquilles",
+                "Darkmoon Card: Splinters",
+              ),
+            },
+            {
+              ref: "item:81516",
+              icon: "inv_misc_ticket_tarot_heroism_01",
+              q: 4,
+              name: L(
+                "Carte de Sombrelune : Sanctuaire",
+                "Darkmoon Card: Sanctuary",
+              ),
+            },
+          ],
+        },
       ],
     },
     {
       key: "fa",
       icon: "inv_misc_bandage_frostweave_heavy",
       name: L("Secourisme", "First Aid"),
-      specs: L(
-        "Chirurgien · Apothicaire de campagne",
-        "Field Surgeon · Field Apothecary",
-      ),
-      highlights: [
-        L(
-          "Sauvez 8 croisés blessés pour devenir Grand maître",
-          "Save 8 wounded crusaders to become Grand Master",
-        ),
-        L(
-          "Un bandage par phase, jusqu'à 9 800 points de vie",
-          "A bandage per phase, up to 9,800 health",
-        ),
+      specs: [
+        {
+          ref: "spell:101808",
+          icon: "inv_misc_bandage_frostweave_heavy",
+          name: L("Chirurgien de campagne", "Field Surgeon"),
+          summary: L(
+            "Vos bandages de la Croisade d'argent soignent 20 % de plus.",
+            "Your Argent Crusade bandages heal 20% more.",
+          ),
+          crafts: [
+            {
+              ref: "item:901903",
+              icon: "inv_misc_bandage_20",
+              q: 1,
+              name: L(
+                "Bandage cendré en tisse-givre",
+                "Ashen Frostweave Bandage",
+              ),
+            },
+            {
+              ref: "item:901900",
+              icon: "inv_fabric_purple_02",
+              q: 1,
+              name: L(
+                "Bandage dense en tisse-givre",
+                "Dense Frostweave Bandage",
+              ),
+            },
+            {
+              ref: "item:901902",
+              icon: "inv_misc_bandage_19",
+              q: 1,
+              name: L(
+                "Bandage de croisé en tisse-givre",
+                "Crusader's Frostweave Bandage",
+              ),
+            },
+          ],
+        },
+        {
+          ref: "spell:101809",
+          icon: "inv_potion_19",
+          name: L("Apothicaire de campagne", "Field Apothecary"),
+          summary: L(
+            "Les trousses de terrain se rechargent en 1 min au lieu de 2.",
+            "Your field kits' shared cooldown drops from 2 min to 1 min.",
+          ),
+          crafts: [
+            {
+              ref: "item:901922",
+              icon: "inv_misc_bandage_16",
+              q: 1,
+              name: L("Garrot de campagne", "Tourniquet"),
+            },
+            {
+              ref: "item:901921",
+              icon: "inv_potion_27",
+              q: 1,
+              name: L("Sérum de la Croisade", "Crusade Serum"),
+            },
+            {
+              ref: "item:901920",
+              icon: "inv_potion_19",
+              q: 1,
+              name: L("Antivenin d'Azjol", "Azjol Antivenom"),
+            },
+          ],
+        },
+      ],
+    },
+    {
+      key: "fish",
+      icon: "trade_fishing",
+      name: L("Pêche", "Fishing"),
+      specs: [
+        {
+          ref: "spell:101810",
+          icon: "inv_box_04",
+          name: L("Chasseur d'épaves", "Wreck Hunter"),
+          summary: L(
+            "Coffres engloutis doublés, moitié plus de trouvailles bleues.",
+            "Twice the sunken coffers and 50% more blue finds in Northrend waters.",
+          ),
+          crafts: [
+            {
+              ref: "item:900950",
+              icon: "inv_box_02",
+              q: 2,
+              name: L(
+                "Coffre englouti du Norfendre",
+                "Sunken Northrend Coffer",
+              ),
+            },
+            {
+              ref: "item:80141",
+              icon: "inv_helmet_30",
+              q: 3,
+              name: L("Tricorne du capitaine", "Captain's Tricorne"),
+            },
+            {
+              ref: "item:80116",
+              icon: "inv_weapon_hand_10",
+              q: 3,
+              name: L("Serres de Gundrak", "Gundrak Talons"),
+            },
+          ],
+        },
+        {
+          ref: "spell:101811",
+          icon: "inv_misc_fish_35",
+          name: L("Maître des eaux du Norfendre", "Master of Northrend Waters"),
+          summary: L(
+            "Poissons rares doublés, moitié plus de poissons légendaires.",
+            "Twice the rare fish of each zone and 50% more legendary fish.",
+          ),
+          crafts: [
+            {
+              ref: "item:900962",
+              icon: "inv_misc_fish_44",
+              q: 4,
+              name: L("Béhémoth des glaces", "Ice Behemoth"),
+            },
+            {
+              ref: "item:900963",
+              icon: "ability_hunter_pet_netherray",
+              q: 4,
+              name: L(
+                "Rênes de la raie des abysses",
+                "Reins of the Abyssal Ray",
+              ),
+            },
+            {
+              ref: "item:900540",
+              icon: "inv_misc_fish_53",
+              q: 2,
+              name: L("Thon des abysses", "Abyssal Tuna"),
+            },
+          ],
+        },
       ],
     },
   ] as Profession[],
+  masteries: L("Maîtrises", "Masteries"),
+  specsCount: L("spécialisations", "specializations"),
 };
 
 export const fishing = {
