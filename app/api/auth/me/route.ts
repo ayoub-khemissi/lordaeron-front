@@ -7,7 +7,12 @@ export async function GET() {
     const session = await verifySession();
 
     if (!session) {
-      return NextResponse.json({ user: null }, { status: 401 });
+      // a cookie that no longer opens a session (expired, signed with an older secret) is dropped
+      const response = NextResponse.json({ user: null }, { status: 401 });
+
+      response.cookies.delete("lordaeron_session");
+
+      return response;
     }
 
     return NextResponse.json({ user: session });

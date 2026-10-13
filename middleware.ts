@@ -10,12 +10,6 @@ const intlMiddleware = createMiddleware(routing);
 
 // a realm's sections behind the login (/account, shared, too)
 const protectedPaths = ["/shop"];
-const guestOnlyPaths = [
-  "/login",
-  "/register",
-  "/forgot-password",
-  "/reset-password",
-];
 // a realm's sections not open yet
 const blockedPaths = ["/armory"];
 // before the realms had portals (09/10/2026), these were Lordaeron's at the locale's root
@@ -87,13 +81,8 @@ export default async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
   }
 
-  const isGuestOnly = guestOnlyPaths.some(
-    (p) => pathWithoutLocale === p || pathWithoutLocale.startsWith(p + "/"),
-  );
-
-  if (isGuestOnly && session) {
-    return NextResponse.redirect(new URL(`/${locale}`, request.url));
-  }
+  // the login, signup and password pages send a signed-in player on themselves (Ayoub, 13/10/2026: a stale session cookie made the
+  // middleware send "Register" back to the home page while the site showed the visitor signed out)
 
   return intlMiddleware(request);
 }
