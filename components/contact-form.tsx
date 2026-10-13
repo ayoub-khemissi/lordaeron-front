@@ -121,6 +121,7 @@ export const ContactForm = ({ username, email }: ContactFormProps) => {
 
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <Input
+              isRequired
               classNames={{
                 inputWrapper:
                   "border-white/10 bg-white/[0.03] hover:border-wow-gold/30 focus-within:!border-wow-gold/50",
@@ -130,11 +131,13 @@ export const ContactForm = ({ username, email }: ContactFormProps) => {
               isInvalid={!!errors.subject}
               label={t("subject")}
               placeholder={t("subjectPlaceholder")}
+              validationBehavior="aria"
               value={form.subject}
               variant="bordered"
               onChange={(e) => setForm({ ...form, subject: e.target.value })}
             />
             <Textarea
+              isRequired
               classNames={{
                 inputWrapper:
                   "border-white/10 bg-white/[0.03] hover:border-wow-gold/30 focus-within:!border-wow-gold/50",
@@ -145,6 +148,7 @@ export const ContactForm = ({ username, email }: ContactFormProps) => {
               label={t("message")}
               minRows={5}
               placeholder={t("messagePlaceholder")}
+              validationBehavior="aria"
               value={form.message}
               variant="bordered"
               onChange={(e) => setForm({ ...form, message: e.target.value })}

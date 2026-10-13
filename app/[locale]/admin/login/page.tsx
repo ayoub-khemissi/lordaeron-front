@@ -69,15 +69,19 @@ export default function AdminLoginPage() {
 
         <form className="space-y-4" onSubmit={handleSubmit}>
           <Input
+            isRequired
             classNames={{ inputWrapper: "bg-[#161b22] border-gray-700" }}
             label={t("username")}
+            validationBehavior="aria"
             value={username}
             onValueChange={setUsername}
           />
           <Input
+            isRequired
             classNames={{ inputWrapper: "bg-[#161b22] border-gray-700" }}
             label={t("password")}
             type="password"
+            validationBehavior="aria"
             value={password}
             onValueChange={setPassword}
           />

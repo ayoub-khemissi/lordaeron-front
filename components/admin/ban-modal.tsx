@@ -65,15 +65,19 @@ export function BanModal({ isOpen, onClose, onSubmit }: BanModalProps) {
         <ModalHeader>{t("addBan")}</ModalHeader>
         <ModalBody>
           <Input
+            isRequired
             classNames={{ inputWrapper: "bg-[#0d1117] border-gray-700" }}
             label={t("accountId")}
             type="number"
+            validationBehavior="aria"
             value={accountId}
             onValueChange={setAccountId}
           />
           <Input
+            isRequired
             classNames={{ inputWrapper: "bg-[#0d1117] border-gray-700" }}
             label={t("reason")}
+            validationBehavior="aria"
             value={reason}
             onValueChange={setReason}
           />
@@ -82,9 +86,11 @@ export function BanModal({ isOpen, onClose, onSubmit }: BanModalProps) {
           </Switch>
           {!isPermanent && (
             <Input
+              isRequired
               classNames={{ inputWrapper: "bg-[#0d1117] border-gray-700" }}
               label={t("expiresAt")}
               type="datetime-local"
+              validationBehavior="aria"
               value={expiresAt}
               onValueChange={setExpiresAt}
             />

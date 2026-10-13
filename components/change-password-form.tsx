@@ -91,6 +91,7 @@ export const ChangePasswordForm = () => {
 
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <Input
+            isRequired
             classNames={{
               inputWrapper:
                 "border-white/10 bg-white/[0.03] hover:border-wow-gold/30 focus-within:!border-wow-gold/50",
@@ -100,6 +101,7 @@ export const ChangePasswordForm = () => {
             isInvalid={!!errors.currentPassword}
             label={t("currentPassword")}
             type="password"
+            validationBehavior="aria"
             value={form.currentPassword}
             variant="bordered"
             onChange={(e) =>
@@ -107,6 +109,7 @@ export const ChangePasswordForm = () => {
             }
           />
           <Input
+            isRequired
             classNames={{
               inputWrapper:
                 "border-white/10 bg-white/[0.03] hover:border-wow-gold/30 focus-within:!border-wow-gold/50",
@@ -116,11 +119,13 @@ export const ChangePasswordForm = () => {
             isInvalid={!!errors.newPassword}
             label={t("newPassword")}
             type="password"
+            validationBehavior="aria"
             value={form.newPassword}
             variant="bordered"
             onChange={(e) => setForm({ ...form, newPassword: e.target.value })}
           />
           <Input
+            isRequired
             classNames={{
               inputWrapper:
                 "border-white/10 bg-white/[0.03] hover:border-wow-gold/30 focus-within:!border-wow-gold/50",
@@ -130,6 +135,7 @@ export const ChangePasswordForm = () => {
             isInvalid={!!errors.confirmPassword}
             label={t("confirmPassword")}
             type="password"
+            validationBehavior="aria"
             value={form.confirmPassword}
             variant="bordered"
             onChange={(e) =>

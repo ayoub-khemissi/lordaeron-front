@@ -219,12 +219,18 @@ export function SecondFactorForm({
                         <p>{t("gameWarning")}</p>
                         <label className="mt-3 flex items-start gap-2 text-gray-200">
                           <input
+                            aria-required
                             checked={understood}
                             className="mt-1 accent-[#c79c3e]"
                             type="checkbox"
                             onChange={(e) => setUnderstood(e.target.checked)}
                           />
-                          <span>{t("gameWarningConfirm")}</span>
+                          <span>
+                            {t("gameWarningConfirm")}
+                            <span aria-hidden className="ms-0.5 text-danger">
+                              *
+                            </span>
+                          </span>
                         </label>
                       </div>
                     )}
@@ -260,8 +266,12 @@ export function SecondFactorForm({
                 <div className="flex flex-col gap-2">
                   <label className="text-sm text-gray-400" htmlFor={inputId}>
                     {t("codeLabel")}
+                    <span aria-hidden className="ms-0.5 text-danger">
+                      *
+                    </span>
                   </label>
                   <input
+                    aria-required
                     // eslint-disable-next-line jsx-a11y/no-autofocus
                     autoFocus
                     aria-describedby={hintId}
@@ -543,8 +553,12 @@ export function AccountSecondFactorCard({ locale }: { locale: string }) {
           <form className="flex flex-col gap-2" onSubmit={remove}>
             <label className="text-xs text-gray-400" htmlFor={codeId}>
               {t("removeIntro")}
+              <span aria-hidden className="ms-0.5 text-danger">
+                *
+              </span>
             </label>
             <input
+              aria-required
               autoComplete="one-time-code"
               className="h-10 rounded-lg border border-white/10 bg-white/[0.03] text-center font-mono text-lg tracking-[0.4em] text-white outline-none focus:border-wow-gold/60"
               id={codeId}

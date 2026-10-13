@@ -201,9 +201,11 @@ export function AccountEmailCards({ locale }: { locale: string }) {
               }}
             >
               <Input
+                isRequired
                 classNames={field}
                 label={t("newEmail")}
                 type="email"
+                validationBehavior="aria"
                 value={newEmail}
                 variant="bordered"
                 onChange={(e) => setNewEmail(e.target.value)}

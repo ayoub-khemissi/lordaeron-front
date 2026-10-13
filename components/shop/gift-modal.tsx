@@ -187,6 +187,7 @@ export function GiftModal({
               {/* Character search autocomplete */}
               <div ref={wrapperRef} className="relative mb-4">
                 <Input
+                  isRequired
                   classNames={{
                     inputWrapper: "bg-[#161b22] border-wow-gold/20",
                   }}
@@ -197,6 +198,7 @@ export function GiftModal({
                   }
                   label={t("giftCharacterName")}
                   placeholder={t("giftSearchPlaceholder")}
+                  validationBehavior="aria"
                   value={query}
                   onFocus={() => {
                     if (suggestions.length > 0 && !selectedCharacter)

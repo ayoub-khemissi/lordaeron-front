@@ -85,6 +85,7 @@ export const ForgotPasswordForm = () => {
           ) : (
             <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
               <Input
+                isRequired
                 classNames={{
                   inputWrapper:
                     "border-white/10 bg-white/[0.03] hover:border-wow-blue/30 focus-within:!border-wow-blue/50",
@@ -94,6 +95,7 @@ export const ForgotPasswordForm = () => {
                 isInvalid={!!errors.email}
                 label={t("email")}
                 type="email"
+                validationBehavior="aria"
                 value={email}
                 variant="bordered"
                 onChange={(e) => setEmail(e.target.value)}

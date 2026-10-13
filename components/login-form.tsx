@@ -118,6 +118,7 @@ export const LoginForm = () => {
         <div className="p-6">
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <Input
+              isRequired
               classNames={{
                 inputWrapper:
                   "border-white/10 bg-white/[0.03] hover:border-wow-blue/30 focus-within:!border-wow-blue/50",
@@ -126,11 +127,13 @@ export const LoginForm = () => {
               errorMessage={errors.username}
               isInvalid={!!errors.username}
               label={t("username")}
+              validationBehavior="aria"
               value={form.username}
               variant="bordered"
               onChange={(e) => setForm({ ...form, username: e.target.value })}
             />
             <Input
+              isRequired
               classNames={{
                 inputWrapper:
                   "border-white/10 bg-white/[0.03] hover:border-wow-blue/30 focus-within:!border-wow-blue/50",
@@ -140,6 +143,7 @@ export const LoginForm = () => {
               isInvalid={!!errors.password}
               label={t("password")}
               type="password"
+              validationBehavior="aria"
               value={form.password}
               variant="bordered"
               onChange={(e) => setForm({ ...form, password: e.target.value })}
@@ -147,6 +151,7 @@ export const LoginForm = () => {
 
             {needCode && (
               <Input
+                isRequired
                 autoComplete="one-time-code"
                 classNames={{
                   inputWrapper:
@@ -158,6 +163,7 @@ export const LoginForm = () => {
                 inputMode="numeric"
                 label={t("code")}
                 maxLength={6}
+                validationBehavior="aria"
                 value={code}
                 variant="bordered"
                 onChange={(e) =>

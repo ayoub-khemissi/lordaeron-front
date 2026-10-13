@@ -229,6 +229,7 @@ export const RegisterForm = () => {
         <div className="p-6">
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <Input
+              isRequired
               classNames={{
                 inputWrapper:
                   "border-white/10 bg-white/[0.03] hover:border-wow-gold/30 focus-within:!border-wow-gold/50",
@@ -237,11 +238,13 @@ export const RegisterForm = () => {
               errorMessage={errors.username}
               isInvalid={!!errors.username}
               label={t("username")}
+              validationBehavior="aria"
               value={form.username}
               variant="bordered"
               onChange={(e) => setForm({ ...form, username: e.target.value })}
             />
             <Input
+              isRequired
               classNames={{
                 inputWrapper:
                   "border-white/10 bg-white/[0.03] hover:border-wow-gold/30 focus-within:!border-wow-gold/50",
@@ -251,11 +254,13 @@ export const RegisterForm = () => {
               isInvalid={!!errors.email}
               label={t("email")}
               type="email"
+              validationBehavior="aria"
               value={form.email}
               variant="bordered"
               onChange={(e) => setForm({ ...form, email: e.target.value })}
             />
             <Input
+              isRequired
               classNames={{
                 inputWrapper:
                   "border-white/10 bg-white/[0.03] hover:border-wow-gold/30 focus-within:!border-wow-gold/50",
@@ -265,11 +270,13 @@ export const RegisterForm = () => {
               isInvalid={!!errors.password}
               label={t("password")}
               type="password"
+              validationBehavior="aria"
               value={form.password}
               variant="bordered"
               onChange={(e) => setForm({ ...form, password: e.target.value })}
             />
             <Input
+              isRequired
               classNames={{
                 inputWrapper:
                   "border-white/10 bg-white/[0.03] hover:border-wow-gold/30 focus-within:!border-wow-gold/50",
@@ -279,6 +286,7 @@ export const RegisterForm = () => {
               isInvalid={!!errors.confirmPassword}
               label={t("confirmPassword")}
               type="password"
+              validationBehavior="aria"
               value={form.confirmPassword}
               variant="bordered"
               onChange={(e) =>
