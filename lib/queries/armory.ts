@@ -16,22 +16,48 @@ const GM_FILTER = `AND c.account NOT IN (
   SELECT AccountID FROM auth.account_access WHERE SecurityLevel >= 1
 )`;
 
+// characters.name is utf8mb4_bin: compared in a case and accent insensitive collation, "redos" finds "Redös" (Ayoub, 13/10/2026)
+const NAME_CI = "c.name COLLATE utf8mb4_unicode_ci";
+
+// a search's text as a LIKE pattern: its own % and _ taken literally
+const likeEscape = (text: string) => text.replace(/[\\%_]/g, (c) => `\\${c}`);
+
+// a search (Ayoub, 13/10/2026: a real one): the exact name first, then the names starting with the text, then the others containing it,
+// each by level then name; a page of them and how many there are in all
 export async function searchArmoryCharacters(
   name: string,
-  limit = 20,
+  page = 1,
+  pageSize = 20,
   realm: RealmSlug = DEFAULT_REALM,
-): Promise<ArmorySearchResult[]> {
-  const [rows] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
+): Promise<{ characters: ArmorySearchResult[]; total: number }> {
+  const db = realmCharactersDb(realm);
+  const contains = `%${likeEscape(name)}%`;
+  const [counted] = await db.execute<RowDataPacket[]>(
+    `SELECT COUNT(*) AS total FROM characters c
+     WHERE ${NAME_CI} LIKE ? AND c.level > 0
+       ${GM_FILTER}`,
+    [contains],
+  );
+  const total = Number(counted[0]?.total ?? 0);
+
+  if (!total) return { characters: [], total };
+  const [rows] = await db.execute<RowDataPacket[]>(
     `SELECT c.guid, c.name, c.race, c.class, c.level, c.gender, c.online
      FROM characters c
-     WHERE c.name LIKE ? AND c.level > 0
+     WHERE ${NAME_CI} LIKE ? AND c.level > 0
        ${GM_FILTER}
-     ORDER BY c.level DESC, c.name ASC
-     LIMIT ?`,
-    [`%${name}%`, String(limit)],
+     ORDER BY ${NAME_CI} = ? DESC, ${NAME_CI} LIKE ? DESC, c.level DESC, c.name ASC
+     LIMIT ? OFFSET ?`,
+    [
+      contains,
+      name,
+      `${likeEscape(name)}%`,
+      String(pageSize),
+      String((page - 1) * pageSize),
+    ],
   );
 
-  return rows as ArmorySearchResult[];
+  return { characters: rows as ArmorySearchResult[], total };
 }
 
 export async function getArmoryCharacter(
@@ -47,10 +73,11 @@ export async function getArmoryCharacter(
      LEFT JOIN guild_member gm ON gm.guid = c.guid
      LEFT JOIN guild g ON g.guildid = gm.guildid
      LEFT JOIN guild_rank gr ON gr.guildid = gm.guildid AND gr.rid = gm.\`rank\`
-     WHERE c.name = ?
+     WHERE ${NAME_CI} = ?
        ${GM_FILTER}
+     ORDER BY c.name = ? DESC
      LIMIT 1`,
-    [name],
+    [name, name],
   );
 
   if (rows.length === 0) return null;

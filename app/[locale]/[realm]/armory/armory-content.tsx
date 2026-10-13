@@ -15,21 +15,45 @@ import {
 import { ArmorySearchResult } from "@/types/armory";
 import { useRealm, useRealmHref } from "@/lib/realm-context";
 
+// the letters of a search (a character's name has nothing else), as the API reads it
+const searchText = (text: string) =>
+  text
+    .normalize("NFC")
+    .replace(/[^\p{L}]/gu, "")
+    .slice(0, 12);
+
+/* The armory's search (Ayoub, 13/10/2026: a real one): any case or accent, spaces and signs dropped, the exact name first, then the
+   names starting with the text; 20 a page with the total; the search and the page live in the address (?q=&page=), so the back
+   button and a shared link find them again. */
 export function ArmoryContent() {
   const realmHref = useRealmHref();
   const realm = useRealm();
   const t = useTranslations("armory");
   const [query, setQuery] = useState("");
+  const [page, setPage] = useState(1);
   const [results, setResults] = useState<ArmorySearchResult[]>([]);
+  const [total, setTotal] = useState(0);
+  const [pageSize, setPageSize] = useState(20);
   const [loading, setLoading] = useState(false);
   const [searched, setSearched] = useState(false);
   const debounceRef = useRef<ReturnType<typeof setTimeout>>();
+  const pages = Math.max(1, Math.ceil(total / pageSize));
+  const text = searchText(query);
+
+  // the search of the address, once
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+
+    setQuery(params.get("q") ?? "");
+    setPage(Math.max(1, Number(params.get("page")) || 1));
+  }, []);
 
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
 
-    if (query.trim().length < 2) {
+    if (text.length < 2) {
       setResults([]);
+      setTotal(0);
       setSearched(false);
 
       return;
@@ -39,14 +63,23 @@ export function ArmoryContent() {
       setLoading(true);
       try {
         const res = await fetch(
-          `/api/armory/search?q=${encodeURIComponent(query.trim())}&realm=${realm.slug}`,
+          `/api/armory/search?q=${encodeURIComponent(text)}&page=${page}&realm=${realm.slug}`,
         );
         const data = await res.json();
 
         setResults(data.characters || []);
+        setTotal(Number(data.total) || 0);
+        setPageSize(Number(data.pageSize) || 20);
         setSearched(true);
+        const url = new URL(window.location.href);
+
+        url.searchParams.set("q", text);
+        if (page > 1) url.searchParams.set("page", String(page));
+        else url.searchParams.delete("page");
+        window.history.replaceState(null, "", url);
       } catch {
         setResults([]);
+        setTotal(0);
       } finally {
         setLoading(false);
       }
@@ -55,7 +88,7 @@ export function ArmoryContent() {
     return () => {
       if (debounceRef.current) clearTimeout(debounceRef.current);
     };
-  }, [query, realm.slug]);
+  }, [text, page, realm.slug]);
 
   return (
     <div className="space-y-6">
@@ -69,8 +102,17 @@ export function ArmoryContent() {
         size="lg"
         type="text"
         value={query}
-        onValueChange={setQuery}
+        onValueChange={(value) => {
+          setQuery(value);
+          setPage(1);
+        }}
       />
+
+      {!loading && searched && total > 0 && (
+        <p className="text-sm text-gray-400">
+          {t("resultsCount", { count: total })}
+        </p>
+      )}
 
       {loading && (
         <div className="flex justify-center py-8">
@@ -137,6 +179,33 @@ export function ArmoryContent() {
             );
           })}
         </div>
+      )}
+
+      {!loading && pages > 1 && (
+        <nav
+          aria-label={t("pageOf", { page, pages })}
+          className="flex items-center justify-between gap-3"
+        >
+          <button
+            className="rounded-lg border border-wow-gold/25 px-4 py-2 text-sm text-wow-gold-light transition-colors hover:border-wow-gold/50 disabled:cursor-not-allowed disabled:opacity-40"
+            disabled={page <= 1}
+            type="button"
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
+          >
+            ← {t("previous")}
+          </button>
+          <span className="text-sm text-gray-400">
+            {t("pageOf", { page, pages })}
+          </span>
+          <button
+            className="rounded-lg border border-wow-gold/25 px-4 py-2 text-sm text-wow-gold-light transition-colors hover:border-wow-gold/50 disabled:cursor-not-allowed disabled:opacity-40"
+            disabled={page >= pages}
+            type="button"
+            onClick={() => setPage((p) => Math.min(pages, p + 1))}
+          >
+            {t("next")} →
+          </button>
+        </nav>
       )}
     </div>
   );
