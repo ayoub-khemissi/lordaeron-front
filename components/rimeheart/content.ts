@@ -77,8 +77,8 @@ export const meta = {
     "Rimeheart · Northrend as never lived before",
   ),
   description: L(
-    "Rimeheart, le nouveau royaume progressif Wrath of the Lich King de Lordaeron : raids héroïques, qualité Artefact, boss du monde, métiers réinventés. Ouverture le 16 octobre 2026 à 19h00 (heure de Paris).",
-    "Rimeheart, Lordaeron's new progressive Wrath of the Lich King realm: heroic raids, Artifact quality, world bosses, reinvented professions. Opens October 16, 2026 at 19:00 CEST (17:00 UTC).",
+    "Rimeheart, le nouveau royaume progressif Wrath of the Lich King de Lordaeron : raids héroïques, qualité Artefact, boss du monde, métiers réinventés. Réservation des noms le 14 octobre, ouverture le 16 octobre 2026 à 19h00 (heure de Paris).",
+    "Rimeheart, Lordaeron's new progressive Wrath of the Lich King realm: heroic raids, Artifact quality, world bosses, reinvented professions. Name reservation October 14, opens October 16, 2026 at 19:00 CEST (17:00 UTC).",
   ),
 };
 
@@ -135,11 +135,14 @@ export const hero = {
     "Rimeheart · Wrath of the Lich King 3.3.5",
     "Rimeheart · Wrath of the Lich King 3.3.5",
   ),
-  // the realm is not open yet (Ayoub, 10/10/2026: opens on 16 October 2026, 19:00 Paris time); {date}: lib/launch.ts
+  // the realm is not open yet (Ayoub, 10/10/2026: opens on 16 October 2026, 19:00 Paris time); {date}: lib/launch.ts. Ayoub,
+  // 13/10/2026: the names are reserved from Wednesday 14 October, 19:00 Paris time (the character screen opens, the world on Friday);
+  // {reserve}: that day in the page's language
   status: L(
-    "Nouveau royaume · Ouverture le {date}",
-    "New realm · Opens {date}",
+    "Nouveau royaume · Réservation des noms le {reserve}, ouverture le {date}",
+    "New realm · Name reservation {reserve}, opens {date}",
   ),
+  reservationAt: "2026-10-14T17:00:00Z",
   title: L("Le Norfendre", "Northrend"),
   titleAccent: L("comme jamais vécu.", "as never lived before."),
   subtitle: L(
@@ -172,9 +175,9 @@ export const manifesto = {
       suffix: "",
       label: L("nouveaux hauts faits", "new achievements"),
     },
-    { value: 62, suffix: "", label: L("nouvelles montures", "new mounts") },
+    { value: 64, suffix: "", label: L("nouvelles montures", "new mounts") },
     {
-      value: 277,
+      value: 303,
       suffix: "",
       label: L("recettes de métier", "profession recipes"),
     },
@@ -184,7 +187,7 @@ export const manifesto = {
       label: L("spécialisations de métier", "profession specializations"),
     },
     {
-      value: 30,
+      value: 32,
       suffix: "",
       label: L("sorts de classe inédits", "brand-new class spells"),
     },
@@ -208,7 +211,8 @@ export type PhaseStep = {
   lines: T[];
   meta: T;
   heroic?: boolean;
-  classic?: { icon: string; name: T };
+  // planned: not built yet (design/raids-classiques.md: only The Eye is, Karazhan, Black Temple and Sunwell Plateau follow)
+  classic?: { icon: string; name: T; planned?: boolean };
 };
 
 export const phases = {
@@ -278,6 +282,7 @@ export const phases = {
       classic: {
         icon: "achievement_boss_princemalchezaar_02",
         name: L("Karazhan", "Karazhan"),
+        planned: true,
       },
     },
     {
@@ -293,6 +298,7 @@ export const phases = {
       classic: {
         icon: "achievement_boss_illidan",
         name: L("Temple noir", "Black Temple"),
+        planned: true,
       },
     },
     {
@@ -305,20 +311,22 @@ export const phases = {
       classic: {
         icon: "achievement_boss_kiljaedan",
         name: L("Plateau du Puits de soleil", "Sunwell Plateau"),
+        planned: true,
       },
     },
   ] as PhaseStep[],
   launchTag: L("Ouverture", "Launch"),
   phaseTag: L("Phase", "Phase"),
   heroicTag: L("Héroïque 10 et 25", "Heroic 10 & 25"),
+  plannedTag: L("Prévu", "Planned"),
   // the gold track under the cards
   track: [
     L("Raids de Burning Crusade", "Burning Crusade raids"),
     L("portés au niveau 80", "brought to level 80"),
   ],
   footnote: L(
-    "Les raids classiques et de Burning Crusade **restent ouverts dès le premier jour**, comme la double spécialisation et la Recherche de donjons.",
-    "Classic and Burning Crusade raids **stay open from day one**, as do dual specialization and the Dungeon Finder.",
+    "Les raids classiques et de Burning Crusade **restent ouverts dès le premier jour** (sauf Onyxia, de retour en phase 3 au niveau 80), comme la double spécialisation et la Recherche de donjons.",
+    "Classic and Burning Crusade raids **stay open from day one** (except Onyxia, back in phase 3 at level 80), as do dual specialization and the Dungeon Finder.",
   ),
 };
 
@@ -631,9 +639,172 @@ export const classes = {
   },
 };
 
+/** A race and class pair Cataclysm opened (lordaeron-core-lab contrib/wotlk-plus content/race-class.js PAIRS): the race's portrait, the
+    class (its name and colour: classes.list) and the faction. */
+export type RacePair = { race: T; icon: string; cls: string; horde: boolean };
+
+const RACE = {
+  human: L("Humain", "Human"),
+  dwarf: L("Nain", "Dwarf"),
+  gnome: L("Gnome", "Gnome"),
+  nightElf: L("Elfe de la nuit", "Night Elf"),
+  orc: L("Orc", "Orc"),
+  undead: L("Mort-vivant", "Undead"),
+  tauren: L("Tauren", "Tauren"),
+  troll: L("Troll", "Troll"),
+  bloodElf: L("Elfe de sang", "Blood Elf"),
+};
+
+/** The eleven race and class pairs (Ayoub, 12-13/10/2026; content/race-class.js, racial-traits.js, the class mounts' riding). */
+export const raceClasses = {
+  id: "races",
+  numeral: "IV",
+  eyebrow: L("Races et classes", "Races & classes"),
+  title: L(
+    "Onze combinaisons que la 3.3.5 n'avait pas.",
+    "Eleven pairs 3.3.5 never had.",
+  ),
+  lede: L(
+    "Les combinaisons de race et de classe que **Cataclysm** a ouvertes sont jouables **dès la création du personnage** : chacune a ses **maîtres de classe de sa race**, ses quêtes de classe, sa tenue de départ et ses montures. Et pour tous, **les traits raciaux d'un autre peuple**.",
+    "The race and class pairs **Cataclysm** opened are playable **from character creation**: each has **class trainers of its own race**, its class quests, its starting outfit and its mounts. And for everyone, **the racial traits of another people**.",
+  ),
+  pairs: [
+    {
+      race: RACE.human,
+      icon: "achievement_character_human_male",
+      cls: "hunter",
+      horde: false,
+    },
+    {
+      race: RACE.dwarf,
+      icon: "achievement_character_dwarf_male",
+      cls: "mage",
+      horde: false,
+    },
+    {
+      race: RACE.dwarf,
+      icon: "achievement_character_dwarf_male",
+      cls: "shaman",
+      horde: false,
+    },
+    {
+      race: RACE.gnome,
+      icon: "achievement_character_gnome_male",
+      cls: "priest",
+      horde: false,
+    },
+    {
+      race: RACE.nightElf,
+      icon: "achievement_character_nightelf_female",
+      cls: "mage",
+      horde: false,
+    },
+    {
+      race: RACE.orc,
+      icon: "achievement_character_orc_male",
+      cls: "mage",
+      horde: true,
+    },
+    {
+      race: RACE.undead,
+      icon: "achievement_character_undead_male",
+      cls: "hunter",
+      horde: true,
+    },
+    {
+      race: RACE.tauren,
+      icon: "achievement_character_tauren_male",
+      cls: "paladin",
+      horde: true,
+    },
+    {
+      race: RACE.tauren,
+      icon: "achievement_character_tauren_male",
+      cls: "priest",
+      horde: true,
+    },
+    {
+      race: RACE.troll,
+      icon: "achievement_character_troll_male",
+      cls: "druid",
+      horde: true,
+    },
+    {
+      race: RACE.bloodElf,
+      icon: "achievement_character_bloodelf_female",
+      cls: "warrior",
+      horde: true,
+    },
+  ] as RacePair[],
+  alliance: L("Alliance", "Alliance"),
+  horde: L("Horde", "Horde"),
+  cards: [
+    {
+      icon: "inv_misc_book_07",
+      title: L("Des maîtres de leur race", "Trainers of their own race"),
+      text: L(
+        "**21 maîtres de classe** de leur race, dans les zones de départ, les villages et les capitales, chacun armé pour sa classe. Dans les capitales, les gardes vous indiquent le chemin.",
+        "**21 class trainers** of their own race, in the starting areas, villages and capitals, each armed for their class. In the capitals, the guards show you the way.",
+      ),
+    },
+    {
+      icon: "ability_hunter_beasttaming",
+      title: L("Leur propre parcours", "Their own path"),
+      text: L(
+        "Leurs quêtes de classe leur sont ouvertes : le dressage des bêtes pour les chasseurs, la voie des paladins elfes de sang pour le tauren, les formes d'ours et aquatique pour le troll. Avec la tenue de départ de **Cataclysm**, et les quatre totems du chaman nain dès la création.",
+        "Their class quests are open to them: beast taming for the hunters, the blood elf paladins' path for the tauren, the bear and aquatic forms for the troll. With **Cataclysm**'s starting outfit, and the dwarf shaman's four totems from creation.",
+      ),
+    },
+    {
+      icon: "ability_mount_kodo_01",
+      title: L("Kodos marche-soleil", "Sunwalker Kodos"),
+      text: L(
+        "Le paladin tauren monte le **kodo marche-soleil** au niveau 20 et le **grand kodo marche-soleil** au niveau 40, les modèles de Cataclysm, avec leur cri de kodo.",
+        "The tauren paladin rides the **Sunwalker Kodo** at level 20 and the **Great Sunwalker Kodo** at level 40, Cataclysm's models, with a kodo's call.",
+      ),
+    },
+    {
+      icon: "ability_racial_bearform",
+      title: L("Formes du druide troll", "Troll druid forms"),
+      text: L(
+        "Le druide troll a ses propres formes de **félin**, d'**ours** et de **vol rapide**, celles de Cataclysm. Leur couleur suit celle de ses cheveux, comme pour les elfes de la nuit et les taurens.",
+        "The troll druid has their own **cat**, **bear** and **swift flight** forms, Cataclysm's. Their color follows the hair color, as for night elves and tauren.",
+      ),
+    },
+    {
+      icon: "racial_orc_berserkerstrength",
+      title: L("Les dons d'un autre peuple", "Another people's gifts"),
+      text: L(
+        "À Dalaran, l'archiviste Ilsera, gardienne des lignées, vous enseigne **les traits raciaux d'un autre peuple**, gratuitement, **une fois par réinitialisation des raids**. Avec les variantes que Blizzard n'avait jamais faites : un Torrent arcanique qui rend de la rage au guerrier, la Fureur sanguinaire pour le paladin et le druide…",
+        "In Dalaran, Archivist Ilsera, Keeper of Lineages, teaches you **the racial traits of another people**, free of charge, **once per raid reset**. Including the variants Blizzard never made: an Arcane Torrent that restores the warrior's rage, Blood Fury for paladins and druids…",
+      ),
+    },
+    {
+      icon: "ability_mount_charger",
+      title: L("Montures de classe", "Class mounts"),
+      text: L(
+        "Les montures de classe apprennent leur monte : le paladin et le démoniste reçoivent les leurs tout seuls aux niveaux 20 et 40, le destrier de la mort du chevalier de la mort apprend Compagnon cavalier, la forme de vol du druide Expert cavalier. Seul **Artisan cavalier (vol à 280 %)** reste à acheter.",
+        "Class mounts teach their riding: paladins and warlocks get theirs on their own at levels 20 and 40, the death knight's Deathcharger teaches Journeyman Riding, the druid's Flight Form Expert Riding. Only **Artisan Riding (280% flying)** is still to buy.",
+      ),
+    },
+  ],
+  patch: {
+    icon: "inv_misc_rune_01",
+    title: L(
+      "Le patch Rimeheart est obligatoire",
+      "The Rimeheart patch is required",
+    ),
+    text: L(
+      "Ces combinaisons, leurs montures et leurs formes viennent avec le **patch client de Rimeheart** : sans lui, l'écran de création ne les propose pas. Le guide de connexion explique comment l'installer.",
+      "These pairs, their mounts and forms come with the **Rimeheart client patch**: without it, the character creation screen does not offer them. The connection guide explains how to install it.",
+    ),
+    cta: L("Voir le guide", "Open the guide"),
+  },
+};
+
 export const raids = {
   id: "raids",
-  numeral: "IV",
+  numeral: "V",
   eyebrow: L("Raids héroïques", "Heroic raids"),
   title: L("Naxxramas, Ulduar… en héroïque.", "Naxxramas, Ulduar… in heroic."),
   lede: L(
@@ -716,7 +887,7 @@ export const raids = {
 
 export const eye = {
   id: "eye",
-  numeral: "V",
+  numeral: "VI",
   eyebrow: L("Raid classique au niveau 80", "Classic raid at level 80"),
   title: L("L'Œil de Kael'thas renaît.", "Kael'thas's Eye reborn."),
   lede: L(
@@ -754,7 +925,7 @@ export const eye = {
     },
   ],
   // the next Burning Crusade raids brought to level 80, one per phase (design/raids-classiques.md)
-  nextTitle: L("Et la suite, au niveau 80", "And next, at level 80"),
+  nextTitle: L("Prévus ensuite, au niveau 80", "Planned next, at level 80"),
   next: [
     {
       phase: 3,
@@ -780,7 +951,7 @@ export const eye = {
 
 export const worldBosses = {
   id: "world-bosses",
-  numeral: "VI",
+  numeral: "VII",
   eyebrow: L("Boss du monde", "World bosses"),
   title: L("Des colosses à ciel ouvert.", "Colossi under the open sky."),
   lede: L(
@@ -824,7 +995,7 @@ export const worldBosses = {
 
 export const raidRules = {
   id: "loot",
-  numeral: "VII",
+  numeral: "VIII",
   eyebrow: L("Butin et combats", "Loot and fights"),
   title: L("Fini les ninjas.", "No more ninjas."),
   lede: L(
@@ -882,7 +1053,7 @@ export const raidRules = {
 
 export const archivists = {
   id: "archivists",
-  numeral: "VIII",
+  numeral: "IX",
   eyebrow: L("L'Ordre des Archivistes", "The Archivist Order"),
   title: L(
     "Chaque boss vaincu laisse une page d'histoire.",
@@ -922,8 +1093,8 @@ export const archivists = {
       icon: "inv_scroll_11",
       title: L("Journalières de donjon", "Dungeon dailies"),
       text: L(
-        "Les archimages Timear et Lan'dalock reprennent leur service, et une quête de raid « … doit mourir ! » change deux fois par semaine.",
-        'Archmages Timear and Lan\'dalock are back on duty, and a raid quest "… Must Die!" changes twice a week.',
+        "Les archimages Timear et Lan'dalock reprennent leur service et, dès la phase 1, une quête de raid « … doit mourir ! » change deux fois par semaine.",
+        'Archmages Timear and Lan\'dalock are back on duty and, from phase 1, a raid quest "… Must Die!" changes twice a week.',
       ),
     },
     {
@@ -941,8 +1112,8 @@ export const archivists = {
       icon: "inv_misc_platnumdisks",
       title: L("Caveau d'Archavon", "Vault of Archavon"),
       text: L(
-        "Ses quatre gardiens donnent des Éclats du gardien de pierre à la faction qui tient le Joug-d'hiver.",
-        "Its four watchers give Stone Keeper's Shards to the faction holding Wintergrasp.",
+        "Ouvert en phase 1, un gardien de plus à chaque phase : ils donnent des Éclats du gardien de pierre à la faction qui tient le Joug-d'hiver.",
+        "Opens in phase 1, with one more watcher each phase: they give Stone Keeper's Shards to the faction holding Wintergrasp.",
       ),
     },
   ],
@@ -970,12 +1141,12 @@ export type Profession = {
 
 export const professions = {
   id: "professions",
-  numeral: "IX",
+  numeral: "X",
   eyebrow: L("Métiers", "Professions"),
   title: L("Les métiers réinventés.", "Professions reinvented."),
   lede: L(
-    "**277 nouvelles recettes** réparties sur les phases et **28 spécialisations**, chacune avec ses **« coups de maître »**. Chaque métier gagne une identité et une raison de compter à chaque palier.",
-    "**277 new recipes** spread across the phases and **28 specializations**, each with its own **masterworks**. Every profession gains an identity and a reason to matter at every tier.",
+    "**303 nouvelles recettes** réparties sur les phases et **28 spécialisations**, chacune avec ses **« coups de maître »**. Chaque métier gagne une identité et une raison de compter à chaque palier.",
+    "**303 new recipes** spread across the phases and **28 specializations**, each with its own **masterworks**. Every profession gains an identity and a reason to matter at every tier.",
   ),
   list: [
     {
@@ -1971,7 +2142,7 @@ export const professions = {
 
 export const fishing = {
   id: "fishing",
-  numeral: "X",
+  numeral: "XI",
   eyebrow: L("Pêche et récolte", "Fishing and gathering"),
   title: L(
     "Chaque ligne lancée peut changer une vie.",
@@ -2020,7 +2191,7 @@ export const fishing = {
 
 export const treasures = {
   id: "treasures",
-  numeral: "XI",
+  numeral: "XII",
   eyebrow: L("Trésors", "Treasures"),
   title: L("Le Norfendre cache ses secrets.", "Northrend hides its secrets."),
   lede: L(
@@ -2067,7 +2238,7 @@ export const treasures = {
 
 export const collections = {
   id: "collections",
-  numeral: "XII",
+  numeral: "XIII",
   eyebrow: L("Collections", "Collections"),
   title: L(
     "Des montures que personne n'a jamais montées.",
@@ -2078,10 +2249,10 @@ export const collections = {
     "Mei Francis, in Dalaran, offers **34 mounts** drawn from models **no player has ever ridden**, with their real calls. And that's just the beginning.",
   ),
   stats: [
-    { value: 62, label: L("montures", "mounts") },
+    { value: 64, label: L("montures", "mounts") },
     { value: 14, label: L("mascottes", "pets") },
     { value: 6, label: L("jouets", "toys") },
-    { value: 15, label: L("tabards", "tabards") },
+    { value: 18, label: L("tabards", "tabards") },
   ],
   marquee: [
     "ability_mount_spectraltiger",
@@ -2142,7 +2313,7 @@ export const collections = {
 
 export const economy = {
   id: "economy",
-  numeral: "XIII",
+  numeral: "XIV",
   eyebrow: L("Les bas-fonds de Dalaran", "Dalaran's underbelly"),
   title: L("Une économie qui vit.", "An economy that lives."),
   lede: L(
@@ -2192,7 +2363,7 @@ export const economy = {
 
 export const quiz = {
   id: "quiz",
-  numeral: "XIV",
+  numeral: "XV",
   eyebrow: L("Le quiz du Kirin Tor", "The Kirin Tor quiz"),
   title: L("Connaissez-vous vraiment Azeroth ?", "Do you really know Azeroth?"),
   lede: L(
@@ -2222,7 +2393,7 @@ export const quiz = {
 
 export const transmog = {
   id: "transmog",
-  numeral: "XV",
+  numeral: "XVI",
   eyebrow: L("Transmogrification", "Transmogrification"),
   title: L("16 302 façons d'être unique.", "16,302 ways to stand out."),
   lede: L(
@@ -2245,7 +2416,7 @@ export const transmog = {
 
 export const pvp = {
   id: "pvp",
-  numeral: "XVI",
+  numeral: "XVII",
   eyebrow: L("JcJ", "PvP"),
   title: L("Chaque phase, une campagne.", "Every phase, a campaign."),
   lede: L(
@@ -2291,7 +2462,7 @@ export const pvp = {
 
 export const guilds = {
   id: "guilds",
-  numeral: "XVII",
+  numeral: "XVIII",
   eyebrow: L("Guildes", "Guilds"),
   title: L("Votre guilde grandit avec vous.", "Your guild grows with you."),
   lede: L(
@@ -2369,7 +2540,7 @@ export const guilds = {
 
 export const glory = {
   id: "glory",
-  numeral: "XVIII",
+  numeral: "XIX",
   eyebrow: L("Hauts faits", "Achievements"),
   title: L("Entrez dans l'histoire du royaume.", "Make the realm's history."),
   lede: L(
@@ -2451,7 +2622,11 @@ export const finale = {
     "Un serveur fidèle, des butins vérifiés boss par boss, des textes traduits d'après les versions officielles. Et **des centaines de nouveautés** qui n'existent nulle part ailleurs.",
     "A faithful server, loot verified boss by boss, texts translated from the official versions. And **hundreds of additions** found nowhere else.",
   ),
-  cta: L("Rejoindre Lordaeron", "Join Lordaeron"),
+  reservation: L(
+    "Réservation des noms dès le **mercredi 14 octobre à 19:00 CEST (17:00 UTC)** : créez vos personnages et réservez vos noms. Le monde ouvre le **vendredi 16 octobre à 19:00 CEST**.",
+    "Name reservation from **Wednesday, October 14 at 19:00 CEST (17:00 UTC)**: create your characters and reserve your names. The world opens on **Friday, October 16 at 19:00 CEST**.",
+  ),
+  cta: L("Rejoindre Rimeheart", "Join Rimeheart"),
   image: IMG.throne,
 };
 
@@ -2459,6 +2634,7 @@ export const nav = [
   { id: "phases", label: L("Phases", "Phases") },
   { id: "artifact", label: L("Artefact", "Artifact") },
   { id: "classes", label: L("Classes", "Classes") },
+  { id: "races", label: L("Races", "Races") },
   { id: "raids", label: L("Raids héroïques", "Heroic raids") },
   { id: "eye", label: L("L'Œil 80", "The Eye 80") },
   { id: "world-bosses", label: L("Boss du monde", "World bosses") },

@@ -22,6 +22,7 @@ import {
   professions,
   pvp,
   quiz,
+  raceClasses,
   raidRules,
   raids,
   transmog,
@@ -51,8 +52,8 @@ import {
 } from "@/components/experience/game-tooltip";
 import { ChapterNav, ExperienceHero } from "@/components/experience/hero";
 import { LaunchCountdown } from "@/components/launch-countdown";
-import { launchLine, launchParts } from "@/lib/launch";
-import { REALMS } from "@/lib/realms";
+import { LAUNCH_TZ, launchLine, launchParts } from "@/lib/launch";
+import { REALMS, realmPath } from "@/lib/realms";
 import {
   BgImg,
   Carousel,
@@ -449,8 +450,16 @@ function Phases({ lang }: { lang: Lang }) {
                     <span className="block font-heading text-base leading-tight text-wow-gold-light">
                       {c.name[lang]}
                     </span>
-                    <span className="block text-[10px] uppercase tracking-[0.14em] text-white/55 lg:hidden">
-                      {phases.phaseTag[lang]} {c.n}
+                    <span className="block text-[10px] uppercase tracking-[0.14em] text-white/55">
+                      <span className="lg:hidden">
+                        {phases.phaseTag[lang]} {c.n}
+                        {c.planned && " · "}
+                      </span>
+                      {c.planned && (
+                        <span className="text-wow-gold-light/80">
+                          {phases.plannedTag[lang]}
+                        </span>
+                      )}
                     </span>
                   </span>
                 </div>
@@ -837,6 +846,98 @@ function Classes({ lang }: { lang: Lang }) {
                 <Rich text={classes.surge.text[lang]} />
               </p>
             </div>
+          </div>
+        </Reveal>
+      </div>
+    </Section>
+  );
+}
+
+/* the race and class pairs: the race's portrait with the class's icon, the class in its colour */
+function Races({ lang, guideHref }: { lang: Lang; guideHref: string }) {
+  return (
+    <Section className="overflow-hidden" id={raceClasses.id}>
+      <div className={container}>
+        <ChapterHeading
+          eyebrow={raceClasses.eyebrow[lang]}
+          lede={<Rich text={raceClasses.lede[lang]} />}
+          numeral={raceClasses.numeral}
+          title={raceClasses.title[lang]}
+          tone="ice"
+        />
+        <div className="mt-12 flex flex-wrap gap-3">
+          {raceClasses.pairs.map((p, i) => {
+            const c = classes.list.find((k) => k.key === p.cls);
+
+            return (
+              <Reveal key={`${p.race.en}-${p.cls}`} delay={i * 0.04}>
+                <div
+                  className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] py-2 pl-2 pr-4 backdrop-blur-sm"
+                  style={{
+                    boxShadow: `inset 3px 0 0 ${p.horde ? "#c0392b" : "#3b7dd8"}`,
+                  }}
+                >
+                  <span className="relative ml-1 shrink-0">
+                    <WowIcon glow="none" icon={p.icon} size={40} />
+                    <img
+                      alt=""
+                      className="absolute -bottom-1.5 -right-1.5 h-5 w-5 rounded-[4px] ring-1 ring-black/80"
+                      height={20}
+                      src={`/img/experience/icons/classicon_${p.cls}.png`}
+                      width={20}
+                    />
+                  </span>
+                  <span className="leading-tight">
+                    <span className="block text-[10px] uppercase tracking-[0.16em] text-white/50">
+                      {p.race[lang]} ·{" "}
+                      {
+                        (p.horde ? raceClasses.horde : raceClasses.alliance)[
+                          lang
+                        ]
+                      }
+                    </span>
+                    <span
+                      className="block font-heading text-lg"
+                      style={{ color: c?.color }}
+                    >
+                      {c?.name[lang]}
+                    </span>
+                  </span>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {raceClasses.cards.map((c, i) => (
+            <Reveal key={i} delay={i * 0.07}>
+              <Card
+                glow="ice"
+                icon={c.icon}
+                text={c.text[lang]}
+                title={c.title[lang]}
+              />
+            </Reveal>
+          ))}
+        </div>
+        <Reveal className="mt-14">
+          <div className="flex flex-col gap-6 rounded-2xl border border-wow-blue/30 bg-gradient-to-r from-wow-blue-dark/60 to-transparent p-6 sm:flex-row sm:items-center sm:p-8">
+            <WowIcon glow="ice" icon={raceClasses.patch.icon} size={64} />
+            <div className="flex-1">
+              <h3 className="font-heading text-2xl text-wow-blue-ice">
+                {raceClasses.patch.title[lang]}
+              </h3>
+              <p className="mt-2 text-white/70">
+                <Rich text={raceClasses.patch.text[lang]} />
+              </p>
+            </div>
+            <CtaButton
+              className="shrink-0"
+              href={guideHref}
+              variant="secondary"
+            >
+              {raceClasses.patch.cta[lang]}
+            </CtaButton>
           </div>
         </Reveal>
       </div>
@@ -1818,6 +1919,9 @@ function Finale({ lang, joinHref }: { lang: Lang; joinHref: string }) {
           <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-white/75">
             <Rich text={finale.text[lang]} />
           </p>
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-wow-blue-ice/90">
+            <Rich text={finale.reservation[lang]} />
+          </p>
         </Reveal>
         <Reveal delay={0.2}>
           <CtaButton className="mt-12" href={joinHref}>
@@ -1831,13 +1935,22 @@ function Finale({ lang, joinHref }: { lang: Lang; joinHref: string }) {
 
 const LAUNCH_AT = REALMS.rimeheart.launchAt as string;
 
+// the day the names are reserved, in the page's language ("14 octobre", "October 14")
+const reserveDay = (lang: Lang) =>
+  new Intl.DateTimeFormat(lang, {
+    timeZone: LAUNCH_TZ,
+    day: "numeric",
+    month: "long",
+  }).format(new Date(hero.reservationAt));
+
 export default function ExperienceContent({ locale }: { locale: string }) {
   const lang: Lang = (LANGS as readonly string[]).includes(locale)
     ? (locale as Lang)
     : "en";
   // the in-game tooltips: the languages of the 3.3.5 clients (English for the others, as in game)
   const tipLang = tipLangOf(lang);
-  const joinHref = `/${locale}/register`;
+  // the realm's how-to: the account, the client, the patch and the realm list, in order
+  const joinHref = realmPath(locale, "rimeheart", "/how-to");
 
   return (
     <TooltipProvider lang={tipLang}>
@@ -1854,10 +1967,9 @@ export default function ExperienceContent({ locale }: { locale: string }) {
             ctaPrimary: hero.ctaPrimary[lang],
             ctaSecondary: hero.ctaSecondary[lang],
             scroll: hero.scroll[lang],
-            status: hero.status[lang].replace(
-              "{date}",
-              launchLine(LAUNCH_AT, lang),
-            ),
+            status: hero.status[lang]
+              .replace("{reserve}", reserveDay(lang))
+              .replace("{date}", launchLine(LAUNCH_AT, lang)),
           }}
           image="/img/Wrath of the Lich King Classic Cinematic Stills/Wrath_of_the_Lich_King_Classic_Cinematic_Still__(4).jpg"
           joinHref={joinHref}
@@ -1874,6 +1986,7 @@ export default function ExperienceContent({ locale }: { locale: string }) {
         <Phases lang={lang} />
         <Artifact lang={lang} />
         <Classes lang={lang} />
+        <Races guideHref={joinHref} lang={lang} />
         <Raids lang={lang} />
         <Eye lang={lang} />
         <WorldBosses lang={lang} />

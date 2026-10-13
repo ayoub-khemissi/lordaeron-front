@@ -148,8 +148,8 @@
   ]
  },
  {
-  "en": "Rimeheart, Lordaeron's new progressive Wrath of the Lich King realm: heroic raids, Artifact quality, world bosses, reinvented professions. Opens October 16, 2026 at 19:00 CEST (17:00 UTC).",
-  "fr": "Rimeheart, le nouveau royaume progressif Wrath of the Lich King de Lordaeron : raids héroïques, qualité Artefact, boss du monde, métiers réinventés. Ouverture le 16 octobre 2026 à 19h00 (heure de Paris).",
+  "en": "Rimeheart, Lordaeron's new progressive Wrath of the Lich King realm: heroic raids, Artifact quality, world bosses, reinvented professions. Name reservation October 14, opens October 16, 2026 at 19:00 CEST (17:00 UTC).",
+  "fr": "Rimeheart, le nouveau royaume progressif Wrath of the Lich King de Lordaeron : raids héroïques, qualité Artefact, boss du monde, métiers réinventés. Réservation des noms le 14 octobre, ouverture le 16 octobre 2026 à 19h00 (heure de Paris).",
   "ctx": [
    "meta.description"
   ]
@@ -162,8 +162,8 @@
   ]
  },
  {
-  "en": "New realm · Opens {date}",
-  "fr": "Nouveau royaume · Ouverture le {date}",
+  "en": "New realm · Name reservation {reserve}, opens {date}",
+  "fr": "Nouveau royaume · Réservation des noms le {reserve}, ouverture le {date}",
   "ctx": [
    "hero.status"
   ]
@@ -561,8 +561,8 @@
   ]
  },
  {
-  "en": "Classic and Burning Crusade raids **stay open from day one**, as do dual specialization and the Dungeon Finder.",
-  "fr": "Les raids classiques et de Burning Crusade **restent ouverts dès le premier jour**, comme la double spécialisation et la Recherche de donjons.",
+  "en": "Classic and Burning Crusade raids **stay open from day one** (except Onyxia, back in phase 3 at level 80), as do dual specialization and the Dungeon Finder.",
+  "fr": "Les raids classiques et de Burning Crusade **restent ouverts dès le premier jour** (sauf Onyxia, de retour en phase 3 au niveau 80), comme la double spécialisation et la Recherche de donjons.",
   "ctx": [
    "phases.footnote"
   ]
@@ -1425,8 +1425,8 @@
   ]
  },
  {
-  "en": "And next, at level 80",
-  "fr": "Et la suite, au niveau 80",
+  "en": "Planned next, at level 80",
+  "fr": "Prévus ensuite, au niveau 80",
   "ctx": [
    "eye.nextTitle"
   ]
@@ -1720,8 +1720,8 @@
   ]
  },
  {
-  "en": "Archmages Timear and Lan'dalock are back on duty, and a raid quest \"… Must Die!\" changes twice a week.",
-  "fr": "Les archimages Timear et Lan'dalock reprennent leur service, et une quête de raid « … doit mourir ! » change deux fois par semaine.",
+  "en": "Archmages Timear and Lan'dalock are back on duty and, from phase 1, a raid quest \"… Must Die!\" changes twice a week.",
+  "fr": "Les archimages Timear et Lan'dalock reprennent leur service et, dès la phase 1, une quête de raid « … doit mourir ! » change deux fois par semaine.",
   "ctx": [
    "archivists.text"
   ]
@@ -1748,8 +1748,8 @@
   ]
  },
  {
-  "en": "Its four watchers give Stone Keeper's Shards to the faction holding Wintergrasp.",
-  "fr": "Ses quatre gardiens donnent des Éclats du gardien de pierre à la faction qui tient le Joug-d'hiver.",
+  "en": "Opens in phase 1, with one more watcher each phase: they give Stone Keeper's Shards to the faction holding Wintergrasp.",
+  "fr": "Ouvert en phase 1, un gardien de plus à chaque phase : ils donnent des Éclats du gardien de pierre à la faction qui tient le Joug-d'hiver.",
   "ctx": [
    "archivists.text"
   ]
@@ -1770,8 +1770,8 @@
   ]
  },
  {
-  "en": "**277 new recipes** spread across the phases and **28 specializations**, each with its own **masterworks**. Every profession gains an identity and a reason to matter at every tier.",
-  "fr": "**277 nouvelles recettes** réparties sur les phases et **28 spécialisations**, chacune avec ses **« coups de maître »**. Chaque métier gagne une identité et une raison de compter à chaque palier.",
+  "en": "**303 new recipes** spread across the phases and **28 specializations**, each with its own **masterworks**. Every profession gains an identity and a reason to matter at every tier.",
+  "fr": "**303 nouvelles recettes** réparties sur les phases et **28 spécialisations**, chacune avec ses **« coups de maître »**. Chaque métier gagne une identité et une raison de compter à chaque palier.",
   "ctx": [
    "professions.lede"
   ]
@@ -3694,8 +3694,8 @@
   ]
  },
  {
-  "en": "Join Lordaeron",
-  "fr": "Rejoindre Lordaeron",
+  "en": "Join Rimeheart",
+  "fr": "Rejoindre Rimeheart",
   "ctx": [
    "finale.cta"
   ]
@@ -3754,6 +3754,230 @@
   "fr": "Niveau {level}",
   "ctx": [
    "ui.guildLevel"
+  ]
+ },
+ {
+  "en": "Planned",
+  "fr": "Prévu",
+  "ctx": [
+   "phases.plannedTag"
+  ]
+ },
+ {
+  "en": "Name reservation from **Wednesday, October 14 at 19:00 CEST (17:00 UTC)**: create your characters and reserve your names. The world opens on **Friday, October 16 at 19:00 CEST**.",
+  "fr": "Réservation des noms dès le **mercredi 14 octobre à 19:00 CEST (17:00 UTC)** : créez vos personnages et réservez vos noms. Le monde ouvre le **vendredi 16 octobre à 19:00 CEST**.",
+  "ctx": [
+   "finale.reservation"
+  ]
+ },
+ {
+  "en": "Races",
+  "fr": "Races",
+  "ctx": [
+   "nav.label"
+  ]
+ },
+ {
+  "en": "Human",
+  "fr": "Humain",
+  "ctx": [
+   "races.race"
+  ]
+ },
+ {
+  "en": "Dwarf",
+  "fr": "Nain",
+  "ctx": [
+   "races.race"
+  ]
+ },
+ {
+  "en": "Gnome",
+  "fr": "Gnome",
+  "ctx": [
+   "races.race"
+  ]
+ },
+ {
+  "en": "Night Elf",
+  "fr": "Elfe de la nuit",
+  "ctx": [
+   "races.race"
+  ]
+ },
+ {
+  "en": "Orc",
+  "fr": "Orc",
+  "ctx": [
+   "races.race"
+  ]
+ },
+ {
+  "en": "Undead",
+  "fr": "Mort-vivant",
+  "ctx": [
+   "races.race"
+  ]
+ },
+ {
+  "en": "Tauren",
+  "fr": "Tauren",
+  "ctx": [
+   "races.race"
+  ]
+ },
+ {
+  "en": "Troll",
+  "fr": "Troll",
+  "ctx": [
+   "races.race"
+  ]
+ },
+ {
+  "en": "Blood Elf",
+  "fr": "Elfe de sang",
+  "ctx": [
+   "races.race"
+  ]
+ },
+ {
+  "en": "Races & classes",
+  "fr": "Races et classes",
+  "ctx": [
+   "races.eyebrow"
+  ]
+ },
+ {
+  "en": "Eleven pairs 3.3.5 never had.",
+  "fr": "Onze combinaisons que la 3.3.5 n'avait pas.",
+  "ctx": [
+   "races.title"
+  ]
+ },
+ {
+  "en": "The race and class pairs **Cataclysm** opened are playable **from character creation**: each has **class trainers of its own race**, its class quests, its starting outfit and its mounts. And for everyone, **the racial traits of another people**.",
+  "fr": "Les combinaisons de race et de classe que **Cataclysm** a ouvertes sont jouables **dès la création du personnage** : chacune a ses **maîtres de classe de sa race**, ses quêtes de classe, sa tenue de départ et ses montures. Et pour tous, **les traits raciaux d'un autre peuple**.",
+  "ctx": [
+   "races.lede"
+  ]
+ },
+ {
+  "en": "Alliance",
+  "fr": "Alliance",
+  "ctx": [
+   "races.alliance"
+  ]
+ },
+ {
+  "en": "Horde",
+  "fr": "Horde",
+  "ctx": [
+   "races.horde"
+  ]
+ },
+ {
+  "en": "Trainers of their own race",
+  "fr": "Des maîtres de leur race",
+  "ctx": [
+   "races.title"
+  ]
+ },
+ {
+  "en": "**21 class trainers** of their own race, in the starting areas, villages and capitals, each armed for their class. In the capitals, the guards show you the way.",
+  "fr": "**21 maîtres de classe** de leur race, dans les zones de départ, les villages et les capitales, chacun armé pour sa classe. Dans les capitales, les gardes vous indiquent le chemin.",
+  "ctx": [
+   "races.text"
+  ]
+ },
+ {
+  "en": "Their own path",
+  "fr": "Leur propre parcours",
+  "ctx": [
+   "races.title"
+  ]
+ },
+ {
+  "en": "Their class quests are open to them: beast taming for the hunters, the blood elf paladins' path for the tauren, the bear and aquatic forms for the troll. With **Cataclysm**'s starting outfit, and the dwarf shaman's four totems from creation.",
+  "fr": "Leurs quêtes de classe leur sont ouvertes : le dressage des bêtes pour les chasseurs, la voie des paladins elfes de sang pour le tauren, les formes d'ours et aquatique pour le troll. Avec la tenue de départ de **Cataclysm**, et les quatre totems du chaman nain dès la création.",
+  "ctx": [
+   "races.text"
+  ]
+ },
+ {
+  "en": "Sunwalker Kodos",
+  "fr": "Kodos marche-soleil",
+  "ctx": [
+   "races.title"
+  ]
+ },
+ {
+  "en": "The tauren paladin rides the **Sunwalker Kodo** at level 20 and the **Great Sunwalker Kodo** at level 40, Cataclysm's models, with a kodo's call.",
+  "fr": "Le paladin tauren monte le **kodo marche-soleil** au niveau 20 et le **grand kodo marche-soleil** au niveau 40, les modèles de Cataclysm, avec leur cri de kodo.",
+  "ctx": [
+   "races.text"
+  ]
+ },
+ {
+  "en": "Troll druid forms",
+  "fr": "Formes du druide troll",
+  "ctx": [
+   "races.title"
+  ]
+ },
+ {
+  "en": "The troll druid has their own **cat**, **bear** and **swift flight** forms, Cataclysm's. Their color follows the hair color, as for night elves and tauren.",
+  "fr": "Le druide troll a ses propres formes de **félin**, d'**ours** et de **vol rapide**, celles de Cataclysm. Leur couleur suit celle de ses cheveux, comme pour les elfes de la nuit et les taurens.",
+  "ctx": [
+   "races.text"
+  ]
+ },
+ {
+  "en": "Another people's gifts",
+  "fr": "Les dons d'un autre peuple",
+  "ctx": [
+   "races.title"
+  ]
+ },
+ {
+  "en": "In Dalaran, Archivist Ilsera, Keeper of Lineages, teaches you **the racial traits of another people**, free of charge, **once per raid reset**. Including the variants Blizzard never made: an Arcane Torrent that restores the warrior's rage, Blood Fury for paladins and druids…",
+  "fr": "À Dalaran, l'archiviste Ilsera, gardienne des lignées, vous enseigne **les traits raciaux d'un autre peuple**, gratuitement, **une fois par réinitialisation des raids**. Avec les variantes que Blizzard n'avait jamais faites : un Torrent arcanique qui rend de la rage au guerrier, la Fureur sanguinaire pour le paladin et le druide…",
+  "ctx": [
+   "races.text"
+  ]
+ },
+ {
+  "en": "Class mounts",
+  "fr": "Montures de classe",
+  "ctx": [
+   "races.title"
+  ]
+ },
+ {
+  "en": "Class mounts teach their riding: paladins and warlocks get theirs on their own at levels 20 and 40, the death knight's Deathcharger teaches Journeyman Riding, the druid's Flight Form Expert Riding. Only **Artisan Riding (280% flying)** is still to buy.",
+  "fr": "Les montures de classe apprennent leur monte : le paladin et le démoniste reçoivent les leurs tout seuls aux niveaux 20 et 40, le destrier de la mort du chevalier de la mort apprend Compagnon cavalier, la forme de vol du druide Expert cavalier. Seul **Artisan cavalier (vol à 280 %)** reste à acheter.",
+  "ctx": [
+   "races.text"
+  ]
+ },
+ {
+  "en": "The Rimeheart patch is required",
+  "fr": "Le patch Rimeheart est obligatoire",
+  "ctx": [
+   "races.title"
+  ]
+ },
+ {
+  "en": "These pairs, their mounts and forms come with the **Rimeheart client patch**: without it, the character creation screen does not offer them. The connection guide explains how to install it.",
+  "fr": "Ces combinaisons, leurs montures et leurs formes viennent avec le **patch client de Rimeheart** : sans lui, l'écran de création ne les propose pas. Le guide de connexion explique comment l'installer.",
+  "ctx": [
+   "races.text"
+  ]
+ },
+ {
+  "en": "Open the guide",
+  "fr": "Voir le guide",
+  "ctx": [
+   "races.cta"
   ]
  }
 ]
