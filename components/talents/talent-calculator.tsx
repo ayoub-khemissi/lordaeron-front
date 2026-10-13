@@ -157,8 +157,8 @@ export function TalentCalculator({
   return (
     // room under the trees for a tapped talent's panel
     <div className={clsx("space-y-5", selected && "pb-72 lg:pb-0")}>
-      {/* the classes */}
-      <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
+      {/* the classes; room around them for the chosen one, grown and glowing (a scrolling row clips what overflows it) */}
+      <div className="-mx-4 -my-2 overflow-x-auto px-4 py-3 sm:mx-0 sm:px-2">
         <div className="mx-auto flex w-max gap-2 sm:flex-wrap sm:justify-center">
           {classes.map((c) => (
             <button

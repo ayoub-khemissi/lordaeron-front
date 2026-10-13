@@ -1231,6 +1231,7 @@
     "searchPlaceholder": "Search character...",
     "noResults": "No characters found",
     "showTransmog": "Show transmogrification",
+    "noTransmog": "This character wears no transmogrification",
     "resultsCount": "{count, plural, one {# character} other {# characters}}",
     "level": "Level",
     "guild": "Guild",

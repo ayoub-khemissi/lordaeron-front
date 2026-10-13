@@ -1231,6 +1231,7 @@
     "searchPlaceholder": "Charakter suchen...",
     "noResults": "Keine Charaktere gefunden",
     "showTransmog": "Transmogrifikation anzeigen",
+    "noTransmog": "Dieser Charakter trägt keine Transmogrifikation",
     "resultsCount": "{count, plural, one {# Charakter} other {# Charaktere}}",
     "level": "Stufe",
     "guild": "Gilde",

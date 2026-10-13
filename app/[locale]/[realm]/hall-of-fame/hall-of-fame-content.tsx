@@ -6,6 +6,7 @@ import { useFormatter, useTranslations } from "next-intl";
 
 import { RankFilters, RankTabs } from "@/components/rankings/rank-filters";
 import { Metric, RankState, RankedRow } from "@/components/rankings/ranked-row";
+import { RankedRowsSkeleton } from "@/components/rankings/ranking-skeleton";
 import { useRanking } from "@/components/rankings/use-ranking";
 import { Pager } from "@/components/search/pager";
 import { useRealmHref } from "@/lib/realm-context";
@@ -55,8 +56,8 @@ export function HallOfFameContent() {
         </p>
       )}
       <div className={loading && data ? "opacity-60 transition-opacity" : ""}>
-        {!data && loading ? (
-          <RankState>{tRank("loading")}</RankState>
+        {loading && !data?.entries.length ? (
+          <RankedRowsSkeleton />
         ) : failed || !data ? (
           <RankState>{tRank("error")}</RankState>
         ) : !data.entries.length ? (

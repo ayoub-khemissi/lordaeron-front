@@ -1,6 +1,4 @@
-import { Spinner } from "@heroui/spinner";
-
-/* The frame of a Tools page: its title and line, then its content; a spinner while it loads, a message when it could not */
+/* The frame of a Tools page: its title and line, then its content (components/skeleton.tsx while it loads), a message when it could not */
 export function ToolHeader({ title, lede }: { title: string; lede?: string }) {
   return (
     <div className="mb-8 text-center sm:mb-10">
@@ -13,14 +11,6 @@ export function ToolHeader({ title, lede }: { title: string; lede?: string }) {
         </p>
       )}
       <div className="shimmer-line mx-auto mt-4 w-24" />
-    </div>
-  );
-}
-
-export function ToolLoading() {
-  return (
-    <div className="flex justify-center py-20">
-      <Spinner color="warning" size="lg" />
     </div>
   );
 }

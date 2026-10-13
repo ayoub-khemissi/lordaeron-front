@@ -12,6 +12,7 @@ import { useFormatter, useTranslations } from "next-intl";
 import { ArenaTeamRow } from "@/components/rankings/arena-team-row";
 import { RankFilters, RankTabs } from "@/components/rankings/rank-filters";
 import { Metric, RankState, RankedRow } from "@/components/rankings/ranked-row";
+import { RankedRowsSkeleton } from "@/components/rankings/ranking-skeleton";
 import { useRanking } from "@/components/rankings/use-ranking";
 import { Pager } from "@/components/search/pager";
 import { useRealm, useRealmHref } from "@/lib/realm-context";
@@ -99,8 +100,8 @@ export function PvpContent() {
         </p>
       )}
       <div className={loading && data ? "opacity-60 transition-opacity" : ""}>
-        {!data && loading ? (
-          <RankState>{tRank("loading")}</RankState>
+        {loading && !shown.length ? (
+          <RankedRowsSkeleton />
         ) : failed || !data ? (
           <RankState>{tRank("error")}</RankState>
         ) : !shown.length ? (

@@ -12,9 +12,12 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import NextLink from "next/link";
 
+import { ProgressionSkeleton } from "./progression-skeleton";
+
+import { GameTipLink } from "@/components/game-tooltip";
 import { GuildEmblem } from "@/components/guild-emblem";
 import { Day } from "@/components/tools/time";
-import { GameIcon, ToolError, ToolLoading } from "@/components/tools/tool-page";
+import { GameIcon, ToolError } from "@/components/tools/tool-page";
 import { useToolData } from "@/components/tools/use-tool-data";
 import { useRealmHref } from "@/lib/realm-context";
 
@@ -130,7 +133,11 @@ export function ProgressionContent() {
   const { data, error } = useToolData<ProgressionData>("/api/progression");
 
   if (!data)
-    return error ? <ToolError message={tt("error")} /> : <ToolLoading />;
+    return error ? (
+      <ToolError message={tt("error")} />
+    ) : (
+      <ProgressionSkeleton />
+    );
   const raids = new Map(data.raids.map((r) => [r.key, r]));
   const firsts = [...data.firsts].sort(
     (a, b) =>
@@ -154,12 +161,21 @@ export function ProgressionContent() {
                   key={f.id}
                   className={`glass flex w-64 shrink-0 snap-start gap-3 rounded-xl border p-3 sm:w-auto ${f.date ? "border-wow-gold/25" : "border-white/5"}`}
                 >
-                  <GameIcon dim={!f.date} icon={f.icon} size={40} />
+                  {/* the achievement's game tooltip (its criteria, its reward) on its icon and its name */}
+                  <GameTipLink
+                    achievementId={f.id}
+                    className="flex shrink-0 self-start"
+                    completed={!!f.date}
+                  >
+                    <GameIcon dim={!f.date} icon={f.icon} size={40} />
+                  </GameTipLink>
                   <div className="min-w-0">
                     <p
                       className={`text-sm font-semibold leading-snug ${f.date ? "text-wow-gold-light" : "text-gray-300"}`}
                     >
-                      {f.title}
+                      <GameTipLink achievementId={f.id} completed={!!f.date}>
+                        {f.title}
+                      </GameTipLink>
                     </p>
                     {f.date ? (
                       <p className="text-xs text-gray-400">

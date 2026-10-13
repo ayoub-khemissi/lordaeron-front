@@ -12,6 +12,8 @@ import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import NextLink from "next/link";
 
+import { BlackMarketSkeleton } from "./black-market-skeleton";
+
 import {
   GameTipLink,
   WowItemIcon,
@@ -26,7 +28,7 @@ import {
   ZoneNote,
   useNow,
 } from "@/components/tools/time";
-import { ToolError, ToolLoading } from "@/components/tools/tool-page";
+import { ToolError } from "@/components/tools/tool-page";
 import { useToolData } from "@/components/tools/use-tool-data";
 import { RaceClassIcons, classColor } from "@/components/character-identity";
 import { useRealm } from "@/lib/realm-context";
@@ -81,7 +83,11 @@ export function BlackMarketContent() {
   );
 
   if (!data)
-    return error ? <ToolError message={tt("error")} /> : <ToolLoading />;
+    return error ? (
+      <ToolError message={tt("error")} />
+    ) : (
+      <BlackMarketSkeleton />
+    );
   if (!data.open) return <ToolError message={t("closed")} />;
 
   const view = data.view;

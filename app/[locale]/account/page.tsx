@@ -12,7 +12,6 @@ import { useTranslations, useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Spinner } from "@heroui/spinner";
 import {
   Modal,
   ModalContent,
@@ -33,6 +32,8 @@ import { Select, SelectItem } from "@heroui/select";
 import { Chip } from "@heroui/chip";
 import { Button } from "@heroui/button";
 import NextLink from "next/link";
+
+import { AccountSkeleton } from "./account-skeleton";
 
 import { useAuth } from "@/lib/auth-context";
 import { ChangePasswordForm } from "@/components/change-password-form";
@@ -314,13 +315,7 @@ export default function AccountPage() {
     }
   };
 
-  if (authLoading || loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <Spinner color="warning" size="lg" />
-      </div>
-    );
-  }
+  if (authLoading || loading) return <AccountSkeleton />;
 
   if (!account) return null;
 

@@ -5,11 +5,11 @@ import type { AccountInfo } from "@/types";
 import { useEffect, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
-import { Spinner } from "@heroui/spinner";
 import NextLink from "next/link";
 
 import { useAuth } from "@/lib/auth-context";
 import { ContactForm } from "@/components/contact-form";
+import { FormSkeleton } from "@/components/skeleton";
 
 export const ContactContent = () => {
   const t = useTranslations("contact");
@@ -52,11 +52,7 @@ export const ContactContent = () => {
   }, [user, authLoading, router, locale]);
 
   if (authLoading || loading) {
-    return (
-      <div className="flex justify-center items-center min-h-[50vh]">
-        <Spinner color="warning" size="lg" />
-      </div>
-    );
+    return <FormSkeleton fields={3} />;
   }
 
   if (!user) {
@@ -74,11 +70,7 @@ export const ContactContent = () => {
   }
 
   if (!account) {
-    return (
-      <div className="flex justify-center items-center min-h-[50vh]">
-        <Spinner color="warning" size="lg" />
-      </div>
-    );
+    return <FormSkeleton fields={3} />;
   }
 
   return <ContactForm email={account.email} username={account.username} />;

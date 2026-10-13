@@ -8,13 +8,16 @@ import type {
 
 import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Spinner } from "@heroui/spinner";
 import NextLink from "next/link";
 
 import { CharacterRow } from "@/components/armory/character-row";
 import { GameTipLink } from "@/components/game-tooltip";
 import { GuildEmblem } from "@/components/guild-emblem";
 import { FactionCounts } from "@/components/guilds/faction-counts";
+import {
+  GuildMembersSkeleton,
+  GuildSkeleton,
+} from "@/components/guilds/guild-skeleton";
 import { Pager } from "@/components/search/pager";
 import { useRealm, useRealmHref } from "@/lib/realm-context";
 
@@ -76,12 +79,7 @@ export function GuildProfile({ name }: { name: string }) {
       </div>
     );
 
-  if (!data)
-    return (
-      <div className="flex justify-center py-24">
-        <Spinner color="warning" size="lg" />
-      </div>
-    );
+  if (!data) return <GuildSkeleton />;
 
   const { guild, members, total, pageSize, achievements } = data;
   const pages = Math.max(1, Math.ceil(total / pageSize));
@@ -223,9 +221,7 @@ export function GuildProfile({ name }: { name: string }) {
       <section className="mt-8">
         <h2 className="mb-3 font-heading text-xl text-white">{t("members")}</h2>
         {loading ? (
-          <div className="flex justify-center py-8">
-            <Spinner color="warning" />
-          </div>
+          <GuildMembersSkeleton count={members.length || 10} />
         ) : (
           <div className="space-y-2">
             {members.map((m) => (

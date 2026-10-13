@@ -11,7 +11,6 @@ import type {
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useSearchParams, useRouter } from "next/navigation";
-import { Spinner } from "@heroui/spinner";
 import {
   Modal,
   ModalContent,
@@ -24,6 +23,10 @@ import Image from "next/image";
 
 import { useAuth } from "@/lib/auth-context";
 import { ShopHeader } from "@/components/shop/shop-header";
+import {
+  ShopItemsSkeleton,
+  ShopSkeleton,
+} from "@/components/shop/shop-skeleton";
 import { RealmCharacterSelector } from "@/components/shop/realm-character-selector";
 import { ItemGrid } from "@/components/shop/item-grid";
 import { SetGrid } from "@/components/shop/set-grid";
@@ -418,13 +421,7 @@ export default function ShopContent({
       }
     : null;
 
-  if (authLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <Spinner color="warning" size="lg" />
-      </div>
-    );
-  }
+  if (authLoading) return <ShopSkeleton />;
 
   if (!user) {
     return (
@@ -518,9 +515,7 @@ export default function ShopContent({
       />
 
       {loading ? (
-        <div className="flex justify-center py-16">
-          <Spinner color="warning" size="lg" />
-        </div>
+        <ShopItemsSkeleton />
       ) : selectedCategory === "highlighted" ? (
         /* ── Highlighted tab ── */
         <ItemGrid

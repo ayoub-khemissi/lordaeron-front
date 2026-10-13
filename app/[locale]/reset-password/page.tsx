@@ -3,10 +3,10 @@
 import { Suspense, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
-import { Spinner } from "@heroui/spinner";
 
 import { ResetPasswordForm } from "@/components/reset-password-form";
 import { useAuth } from "@/lib/auth-context";
+import { FormSkeleton } from "@/components/skeleton";
 
 function ResetPasswordContent() {
   const { user, loading } = useAuth();
@@ -20,11 +20,7 @@ function ResetPasswordContent() {
   }, [user, loading, router, locale]);
 
   if (loading || user) {
-    return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <Spinner color="warning" size="lg" />
-      </div>
-    );
+    return <FormSkeleton fields={2} />;
   }
 
   return (
@@ -45,13 +41,7 @@ function ResetPasswordContent() {
 
 export default function ResetPasswordPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="flex items-center justify-center min-h-[60vh]">
-          <Spinner color="warning" size="lg" />
-        </div>
-      }
-    >
+    <Suspense fallback={<FormSkeleton fields={2} />}>
       <ResetPasswordContent />
     </Suspense>
   );

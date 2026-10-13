@@ -1231,6 +1231,7 @@
     "searchPlaceholder": "Szukaj postaci...",
     "noResults": "Nie znaleziono postaci",
     "showTransmog": "Pokaż transmogryfikację",
+    "noTransmog": "Ta postać nie nosi żadnej transmogryfikacji",
     "resultsCount": "{count, plural, one {# postać} few {# postacie} many {# postaci} other {# postaci}}",
     "level": "Poziom",
     "guild": "Gildia",

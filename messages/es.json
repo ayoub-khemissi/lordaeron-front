@@ -1231,6 +1231,7 @@
     "searchPlaceholder": "Buscar personaje...",
     "noResults": "No se encontraron personajes",
     "showTransmog": "Mostrar transfiguración",
+    "noTransmog": "Este personaje no lleva ninguna transfiguración",
     "resultsCount": "{count, plural, one {# personaje} other {# personajes}}",
     "level": "Nivel",
     "guild": "Hermandad",

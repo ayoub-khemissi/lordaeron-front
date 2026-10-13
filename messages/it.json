@@ -1231,6 +1231,7 @@
     "searchPlaceholder": "Cerca personaggio...",
     "noResults": "Nessun personaggio trovato",
     "showTransmog": "Mostra trasmogrificazione",
+    "noTransmog": "Questo personaggio non indossa trasmogrificazioni",
     "resultsCount": "{count, plural, one {# personaggio} other {# personaggi}}",
     "level": "Livello",
     "guild": "Gilda",

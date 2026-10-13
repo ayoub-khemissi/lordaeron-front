@@ -3,10 +3,10 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
-import { Spinner } from "@heroui/spinner";
 
 import { LoginForm } from "@/components/login-form";
 import { useAuth } from "@/lib/auth-context";
+import { FormSkeleton } from "@/components/skeleton";
 
 export default function LoginPage() {
   const { user, loading } = useAuth();
@@ -20,11 +20,7 @@ export default function LoginPage() {
   }, [user, loading, router, locale]);
 
   if (loading || user) {
-    return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <Spinner color="warning" size="lg" />
-      </div>
-    );
+    return <FormSkeleton fields={2} />;
   }
 
   return (

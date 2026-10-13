@@ -8,6 +8,8 @@ import type {
 
 import { useTranslations } from "next-intl";
 
+import { CalendarSkeleton } from "./calendar-skeleton";
+
 import {
   Countdown,
   Day,
@@ -15,7 +17,7 @@ import {
   ZoneNote,
   useNow,
 } from "@/components/tools/time";
-import { GameIcon, ToolError, ToolLoading } from "@/components/tools/tool-page";
+import { GameIcon, ToolError } from "@/components/tools/tool-page";
 import { useToolData } from "@/components/tools/use-tool-data";
 import { useRealm } from "@/lib/realm-context";
 
@@ -100,7 +102,7 @@ export function CalendarContent() {
   const { data, error } = useToolData<Calendar>("/api/calendar", {}, 60_000);
 
   if (!data)
-    return error ? <ToolError message={tt("error")} /> : <ToolLoading />;
+    return error ? <ToolError message={tt("error")} /> : <CalendarSkeleton />;
   const events = data.events.filter((e) =>
     e.running ? (e.until ?? 0) > now : e.at > now,
   );

@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Spinner } from "@heroui/spinner";
 import { Tabs, Tab } from "@heroui/tabs";
 import { Switch } from "@heroui/switch";
 import dynamic from "next/dynamic";
@@ -14,6 +13,7 @@ import {
 import { CLASS_COLORS, ALLIANCE_RACES } from "@/lib/armory-constants";
 import { GuildInfo } from "@/components/armory/guild-info";
 import { EquipmentPanel } from "@/components/armory/equipment-panel";
+import { CharacterSkeleton } from "@/components/armory/character-skeleton";
 import { type GameTooltipData } from "@/components/game-tooltip";
 import { useRealm } from "@/lib/realm-context";
 import { StatsPanel } from "@/components/armory/stats-panel";
@@ -108,13 +108,7 @@ export function CharacterProfile({ name }: CharacterProfileProps) {
     fetchProfile();
   }, [name, realm.slug, locale]);
 
-  if (loading) {
-    return (
-      <div className="flex justify-center py-24">
-        <Spinner color="warning" size="lg" />
-      </div>
-    );
-  }
+  if (loading) return <CharacterSkeleton />;
 
   if (notFound || !data) {
     return (
@@ -224,19 +218,22 @@ export function CharacterProfile({ name }: CharacterProfileProps) {
             skin={character.skin}
           />
         </EquipmentPanel>
-        {/* the transmogs shown by default; off, the model is drawn again with the gear as it is (Ayoub, 13/10/2026) */}
-        {modelBase && (
-          <div className="mt-3 flex justify-center">
-            <Switch
-              color="warning"
-              isSelected={showTransmog}
-              size="sm"
-              onValueChange={setShowTransmog}
-            >
-              <span className="text-sm text-gray-300">{t("showTransmog")}</span>
-            </Switch>
-          </div>
-        )}
+        {/* the transmogs shown by default; off, the model is drawn again with the gear as it is (Ayoub, 13/10/2026). Always there, so
+            it is found: greyed with its reason on a character wearing no transmog */}
+        <div className="mt-3 flex flex-col items-center gap-1">
+          <Switch
+            color="warning"
+            isDisabled={!modelBase}
+            isSelected={!!modelBase && showTransmog}
+            size="sm"
+            onValueChange={setShowTransmog}
+          >
+            <span className="text-sm text-gray-300">{t("showTransmog")}</span>
+          </Switch>
+          {!modelBase && (
+            <span className="text-xs text-gray-500">{t("noTransmog")}</span>
+          )}
+        </div>
       </div>
 
       {/* its specializations and their builds in the talent calculator */}

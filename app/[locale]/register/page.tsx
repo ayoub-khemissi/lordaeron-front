@@ -3,12 +3,12 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
-import { Spinner } from "@heroui/spinner";
 
 import { RegisterForm } from "@/components/register-form";
 import { useAuth } from "@/lib/auth-context";
 import { readSignupRealm } from "@/lib/realm-context";
 import { DEFAULT_REALM, realmPath } from "@/lib/realms";
+import { FormSkeleton } from "@/components/skeleton";
 
 export default function RegisterPage() {
   const { user, loading } = useAuth();
@@ -29,11 +29,7 @@ export default function RegisterPage() {
   }, [user, loading, router, locale]);
 
   if (loading || user) {
-    return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <Spinner color="warning" size="lg" />
-      </div>
-    );
+    return <FormSkeleton fields={5} />;
   }
 
   return (

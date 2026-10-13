@@ -1231,6 +1231,7 @@
     "searchPlaceholder": "Поиск персонажа...",
     "noResults": "Персонажи не найдены",
     "showTransmog": "Показать трансмогрификацию",
+    "noTransmog": "На этом персонаже нет трансмогрификации",
     "resultsCount": "{count, plural, one {# персонаж} few {# персонажа} many {# персонажей} other {# персонажа}}",
     "level": "Уровень",
     "guild": "Гильдия",

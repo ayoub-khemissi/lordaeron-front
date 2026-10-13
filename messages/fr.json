@@ -1231,6 +1231,7 @@
     "searchPlaceholder": "Rechercher un personnage...",
     "noResults": "Aucun personnage trouvé",
     "showTransmog": "Afficher la transmogrification",
+    "noTransmog": "Ce personnage ne porte aucune transmogrification",
     "resultsCount": "{count, plural, one {# personnage} other {# personnages}}",
     "level": "Niveau",
     "guild": "Guilde",

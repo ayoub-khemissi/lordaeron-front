@@ -4,10 +4,10 @@ import type { SearchKind } from "@/lib/search-text";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Input } from "@heroui/input";
-import { Spinner } from "@heroui/spinner";
 
 import { Pager } from "./pager";
 
+import { SkeletonRows } from "@/components/skeleton";
 import { useRealm } from "@/lib/realm-context";
 import { SEARCH_MIN, searchText } from "@/lib/search-text";
 
@@ -123,10 +123,17 @@ export function RealmSearch<T>({
         <p className="text-sm text-gray-400">{countLabel(total)}</p>
       )}
 
-      {loading && (
-        <div className="flex justify-center py-8">
-          <Spinner color="warning" size="lg" />
-        </div>
+      {/* the rows to come, as many as the page shows (the guilds listed before a name is typed: from the start) */}
+      {(loading || (browse && !searched)) && (
+        <SkeletonRows
+          count={Math.min(pageSize, items.length || 8)}
+          lead={
+            kind === "guild" ? "h-11 w-11 rounded-full" : "h-[22px] w-[46px]"
+          }
+          trail={
+            kind === "guild" ? "h-6 w-20 rounded-full" : "h-6 w-16 rounded-full"
+          }
+        />
       )}
 
       {!loading && searched && items.length === 0 && (

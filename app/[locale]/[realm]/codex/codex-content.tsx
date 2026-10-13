@@ -3,8 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Input } from "@heroui/input";
-import { Spinner } from "@heroui/spinner";
 import clsx from "clsx";
+
+import { CodexRowsSkeleton } from "./codex-skeleton";
 
 import { CodexRow } from "@/components/codex/codex-row";
 import { Pager } from "@/components/search/pager";
@@ -220,11 +221,7 @@ export function CodexContent({ initial }: { initial: CodexQuery }) {
         </p>
       )}
 
-      {loading && (
-        <div className="flex justify-center py-8">
-          <Spinner color="warning" size="lg" />
-        </div>
-      )}
+      {loading && <CodexRowsSkeleton count={result?.items.length || 8} />}
 
       {!loading && (!result || result.items.length === 0) && (
         <p className="py-8 text-center text-gray-400">

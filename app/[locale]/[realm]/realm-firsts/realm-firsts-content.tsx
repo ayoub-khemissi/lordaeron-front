@@ -10,9 +10,11 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import NextLink from "next/link";
 
+import { RealmFirstsSkeleton } from "./realm-firsts-skeleton";
+
 import { GameTipLink } from "@/components/game-tooltip";
 import { Day } from "@/components/tools/time";
-import { GameIcon, ToolError, ToolLoading } from "@/components/tools/tool-page";
+import { GameIcon, ToolError } from "@/components/tools/tool-page";
 import { useToolData } from "@/components/tools/use-tool-data";
 import { RaceClassIcons, classColor } from "@/components/character-identity";
 import { useRealmHref } from "@/lib/realm-context";
@@ -128,7 +130,11 @@ export function RealmFirstsContent() {
   const { data, error } = useToolData<RealmFirsts>("/api/realm-firsts");
 
   if (!data)
-    return error ? <ToolError message={tt("error")} /> : <ToolLoading />;
+    return error ? (
+      <ToolError message={tt("error")} />
+    ) : (
+      <RealmFirstsSkeleton />
+    );
   const earned = data.firsts.filter((f) => f.date !== null).length;
   const groups = GROUPS.map((g) => ({
     group: g,
