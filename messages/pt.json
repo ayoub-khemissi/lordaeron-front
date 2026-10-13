@@ -1311,7 +1311,10 @@
     "opensOn": "Abre a {date}.",
     "playersOnline": "{count, plural, one {jogador online} other {jogadores online}}",
     "offline": "{realm} está offline",
-    "uptime": "Online há {time}"
+    "uptime": "Online há {time}",
+    "liveOnline": "Online",
+    "liveOffline": "Offline",
+    "uptimeLabel": "Online há"
   },
   "launch": {
     "title": "Abertura",

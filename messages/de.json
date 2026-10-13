@@ -1311,7 +1311,10 @@
     "opensOn": "Öffnet am {date}.",
     "playersOnline": "{count, plural, one {Spieler online} other {Spieler online}}",
     "offline": "{realm} ist offline",
-    "uptime": "Online seit {time}"
+    "uptime": "Online seit {time}",
+    "liveOnline": "Online",
+    "liveOffline": "Offline",
+    "uptimeLabel": "Online seit"
   },
   "launch": {
     "title": "Eröffnung",

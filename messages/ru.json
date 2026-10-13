@@ -1311,7 +1311,10 @@
     "opensOn": "Открытие: {date}.",
     "playersOnline": "{count, plural, one {игрок онлайн} few {игрока онлайн} many {игроков онлайн} other {игрока онлайн}}",
     "offline": "{realm} недоступен",
-    "uptime": "Работает {time}"
+    "uptime": "Работает {time}",
+    "liveOnline": "В сети",
+    "liveOffline": "Не в сети",
+    "uptimeLabel": "В сети уже"
   },
   "launch": {
     "title": "Открытие",

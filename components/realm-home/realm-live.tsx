@@ -13,12 +13,22 @@ import { launchParts } from "@/lib/launch";
 import { useRealmAt } from "@/lib/realm-context";
 import { type RealmSlug } from "@/lib/realms";
 
-function uptime(seconds: number): string {
-  const pad = (n: number) => String(n).padStart(2, "0");
+// the world server's uptime in the reader's words: "3 j 15 h", "15 h 42 min", "12 min" (Intl's narrow units, every locale)
+function uptime(seconds: number, locale: string): string {
+  const unit = (value: number, u: "day" | "hour" | "minute") =>
+    new Intl.NumberFormat(locale, {
+      style: "unit",
+      unit: u,
+      unitDisplay: "narrow",
+    }).format(value);
   const days = Math.floor(seconds / 86400);
-  const clock = `${pad(Math.floor((seconds % 86400) / 3600))}:${pad(Math.floor((seconds % 3600) / 60))}:${pad(seconds % 60)}`;
+  const hours = Math.floor((seconds % 86400) / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
 
-  return days > 0 ? `${days}d ${clock}` : clock;
+  if (days > 0) return `${unit(days, "day")} ${unit(hours, "hour")}`;
+  if (hours > 0) return `${unit(hours, "hour")} ${unit(minutes, "minute")}`;
+
+  return unit(minutes, "minute");
 }
 
 /* The hero's live block: an open realm shows its players online (and whether its world server answers); a realm not open yet shows
@@ -66,7 +76,7 @@ export function RealmLive({
   // the world server's uptime, ticking
   useEffect(() => {
     if (!started) return;
-    const timer = setInterval(() => setNow(Date.now()), 1000);
+    const timer = setInterval(() => setNow(Date.now()), 30_000);
 
     return () => clearInterval(timer);
   }, [started]);
@@ -112,48 +122,66 @@ export function RealmLive({
     );
   }
 
+  // the state on top (a pill), then two even columns: the players online and how long the world has been up
   return (
     <div
       className={clsx(
-        "mx-auto inline-flex items-center gap-4 rounded-2xl border px-5 py-3 backdrop-blur-md",
+        "mx-auto w-full max-w-sm overflow-hidden rounded-2xl border backdrop-blur-md",
         theme.panel,
       )}
     >
-      <span className="relative flex h-3 w-3 shrink-0">
-        {online && (
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-        )}
-        <span
-          className={clsx(
-            "relative inline-flex h-3 w-3 rounded-full",
-            online === null
-              ? "bg-default-400"
-              : online
-                ? "bg-green-400"
-                : "bg-red-500",
+      <p className="flex items-center justify-center gap-2 border-b border-white/10 py-2 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/75">
+        <span className="relative flex h-2 w-2">
+          {online && (
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
           )}
-        />
-      </span>
-      <span className="text-left">
-        <span
-          className={clsx(
-            "block font-heading text-3xl leading-none tabular-nums sm:text-4xl",
-            theme.number,
-          )}
-        >
-          {players ?? "—"}
+          <span
+            className={clsx(
+              "relative inline-flex h-2 w-2 rounded-full",
+              online === null
+                ? "bg-default-400"
+                : online
+                  ? "bg-green-400"
+                  : "bg-red-500",
+            )}
+          />
         </span>
-        <span className="mt-1 block text-[11px] font-semibold uppercase tracking-[0.2em] text-white/70">
-          {online === false
-            ? t("offline", { realm: realm.name })
-            : t("playersOnline", { count: players ?? 0 })}
-        </span>
-        {online && started && (
-          <span className="mt-1 block font-mono text-[11px] tracking-wider text-white/45">
-            {t("uptime", { time: uptime(Math.floor(now / 1000) - started) })}
-          </span>
-        )}
-      </span>
+        {online === false ? t("liveOffline") : t("liveOnline")}
+      </p>
+      {online === false ? (
+        <p className="px-4 py-4 text-center text-sm text-white/80">
+          {t("offline", { realm: realm.name })}
+        </p>
+      ) : (
+        <div className="grid grid-cols-2 divide-x divide-white/10">
+          <div className="px-3 py-3 text-center">
+            <span
+              className={clsx(
+                "block font-heading text-3xl leading-none tabular-nums sm:text-4xl",
+                theme.number,
+              )}
+            >
+              {players ?? "—"}
+            </span>
+            <span className="mt-1.5 block text-[10px] font-semibold uppercase tracking-[0.18em] text-white/60">
+              {t("playersOnline", { count: players ?? 0 })}
+            </span>
+          </div>
+          <div className="px-3 py-3 text-center">
+            <span
+              className={clsx(
+                "block whitespace-nowrap font-heading text-2xl leading-[1.875rem] tabular-nums sm:text-3xl sm:leading-9",
+                theme.number,
+              )}
+            >
+              {started ? uptime(Math.floor(now / 1000) - started, locale) : "—"}
+            </span>
+            <span className="mt-1.5 block text-[10px] font-semibold uppercase tracking-[0.18em] text-white/60">
+              {t("uptimeLabel")}
+            </span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
