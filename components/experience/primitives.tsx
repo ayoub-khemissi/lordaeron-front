@@ -495,7 +495,7 @@ export function CtaButton({
     return (
       <a
         className={clsx(
-          "group relative inline-flex items-center justify-center gap-3 rounded-md border-2 border-wow-blue-ice/60 bg-[#06121f]/70 px-8 py-4 font-heading text-base font-bold uppercase tracking-[0.14em] text-wow-blue-ice shadow-[0_0_24px_-6px_rgba(79,195,247,0.55),inset_0_0_18px_-8px_rgba(79,195,247,0.6)] backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:border-wow-blue-ice hover:bg-wow-blue-ice/10 hover:shadow-[0_0_36px_-4px_rgba(79,195,247,0.8),inset_0_0_22px_-6px_rgba(79,195,247,0.7)] sm:px-10 sm:py-5 sm:text-lg",
+          "group relative inline-flex items-center justify-center gap-3 whitespace-nowrap rounded-md border-2 border-wow-blue-ice/60 bg-[#06121f]/70 px-5 py-3 font-heading text-sm font-bold uppercase tracking-[0.14em] text-wow-blue-ice shadow-[0_0_24px_-6px_rgba(79,195,247,0.55),inset_0_0_18px_-8px_rgba(79,195,247,0.6)] backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:border-wow-blue-ice hover:bg-wow-blue-ice/10 hover:shadow-[0_0_36px_-4px_rgba(79,195,247,0.8),inset_0_0_22px_-6px_rgba(79,195,247,0.7)] sm:px-10 sm:py-5 sm:text-lg",
           className,
         )}
         href={href}
@@ -513,7 +513,7 @@ export function CtaButton({
         className="animate-cta-glow pointer-events-none absolute -inset-3 rounded-xl bg-wow-gold/40 blur-2xl"
       />
       <a
-        className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-md px-9 py-4 font-heading text-lg font-bold uppercase tracking-[0.14em] text-[#2b1a04] shadow-[0_0_0_1px_rgba(255,232,170,0.7),0_12px_40px_-8px_rgba(199,156,62,0.9)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_0_1px_rgba(255,240,200,0.9),0_16px_50px_-6px_rgba(230,190,90,1)] sm:px-12 sm:py-5 sm:text-xl"
+        className="group relative inline-flex items-center justify-center gap-3 overflow-hidden whitespace-nowrap rounded-md px-6 py-3 font-heading text-sm font-bold uppercase tracking-[0.14em] text-[#2b1a04] shadow-[0_0_0_1px_rgba(255,232,170,0.7),0_12px_40px_-8px_rgba(199,156,62,0.9)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_0_1px_rgba(255,240,200,0.9),0_16px_50px_-6px_rgba(230,190,90,1)] sm:px-12 sm:py-5 sm:text-xl"
         href={href}
         style={{
           background:

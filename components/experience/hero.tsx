@@ -59,7 +59,7 @@ export function ExperienceHero({
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[100svh] items-end overflow-hidden lg:items-center"
+      className="relative flex min-h-[100svh] items-start overflow-hidden sm:items-end lg:items-center"
     >
       <AnimatePresence>
         {!ready && (
@@ -103,12 +103,12 @@ export function ExperienceHero({
       <Snow />
 
       <motion.div
-        className="relative mx-auto w-full max-w-7xl px-6 pb-24 pt-32 sm:pb-32 lg:pb-16 lg:pt-24"
+        className="relative mx-auto w-full max-w-7xl px-6 pb-16 pt-24 sm:pb-32 sm:pt-32 lg:pb-16 lg:pt-24"
         style={{ y: lift }}
       >
         <motion.p
           animate={ready ? { opacity: 1, letterSpacing: "0.45em" } : {}}
-          className="mb-6 text-xs font-semibold uppercase text-wow-blue-ice drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] sm:text-sm"
+          className="mb-4 text-[10px] font-semibold uppercase text-wow-blue-ice drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] sm:mb-6 sm:text-sm"
           initial={{ opacity: 0, letterSpacing: "0.8em" }}
           transition={{ duration: 1.6, ease: "easeOut" }}
         >
@@ -116,7 +116,7 @@ export function ExperienceHero({
         </motion.p>
         <motion.h1
           animate={ready ? { opacity: 1, y: 0 } : {}}
-          className="font-heading text-5xl leading-[0.98] text-white drop-shadow-[0_6px_30px_rgba(0,0,0,0.9)] sm:text-7xl lg:text-8xl"
+          className="font-heading text-[2.5rem] leading-[0.98] text-white drop-shadow-[0_6px_30px_rgba(0,0,0,0.9)] sm:text-7xl lg:text-8xl"
           initial={{ opacity: 0, y: 40 }}
           transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         >
@@ -126,7 +126,7 @@ export function ExperienceHero({
         </motion.h1>
         <motion.p
           animate={ready ? { opacity: 1, y: 0 } : {}}
-          className="mt-8 max-w-xl text-lg leading-relaxed text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] sm:text-2xl"
+          className="mt-5 max-w-xl text-base leading-relaxed text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] sm:mt-8 sm:text-2xl"
           initial={{ opacity: 0, y: 24 }}
           transition={{ duration: 1, delay: 0.6 }}
         >
@@ -134,7 +134,7 @@ export function ExperienceHero({
         </motion.p>
         <motion.div
           animate={ready ? { opacity: 1 } : {}}
-          className="mt-10 flex flex-wrap items-center gap-5"
+          className="mt-7 flex flex-wrap items-center gap-3 sm:mt-10 sm:gap-5"
           initial={{ opacity: 0 }}
           transition={{ duration: 1, delay: 0.95 }}
         >

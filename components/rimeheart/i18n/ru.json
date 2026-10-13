@@ -483,7 +483,6 @@
   "The Sewer Tournament": "Турнир в стоках",
   "**Twice a week, at 7 PM**: knockout duels in Dalaran's sewers. Gladiator, Duelist, Rival.": "**Дважды в неделю, в 19:00**: дуэли на выбывание в стоках Даларана. Гладиатор, Дуэлянт, Фаворит.",
   "Faithful, fixed PvP": "Верный и исправленный PvP",
-  "Fixed battlegrounds, mixed Alliance/Horde arenas, a Wintergrasp that shows its true owner.": "Исправленные поля боя, смешанные арены Альянса и Орды и Озеро Ледяных Оков, которое показывает своего настоящего владельца.",
   "Guilds": "Гильдии",
   "Your guild grows with you.": "Ваша гильдия растет вместе с вами.",
   "Dungeons, raids, world bosses, PvP, quests: in a guild group, everything raises your guild **from level 1 to 10**, and every level unlocks a perk for everyone.": "Подземелья, рейды, мировые боссы, PvP, задания: в гильдейской группе все это поднимает вашу гильдию **с 1-го до 10-го уровня**, и каждый уровень открывает бонус для всех.",
@@ -500,8 +499,6 @@
   "Achievements": "Достижения",
   "Make the realm's history.": "Войдите в историю мира.",
   "A \"Lordaeron\" tab of **228 achievements**, and the realm's Firsts: feats that only one player or one group will ever earn.": "Вкладка «Лордерон» с **228 достижениями** и рекорды «1-й на сервере»: подвиги, которые сможет совершить лишь один игрок или одна группа.",
-  "The colossi": "Колоссы",
-  "First raid to defeat each world boss": "Первый рейд, победивший каждого мирового босса",
   "Guild of Lordaeron": "Гильдия Лордерона",
   "First guild to reach renown level 10": "Первая гильдия, достигшая 10-го уровня известности",
   "Exalted Archivist": "Превознесенный архивариус",
@@ -530,5 +527,10 @@
   "Transmog": "Трансмог",
   "Level {level}": "Уровень {level}",
   "Every talent tree gains **its specialization talent**: a new spell, picked in the tree like any Blizzard talent (two for the feral druid, cat and bear). Every class also receives **three new talents**, added to Blizzard's **without removing any**, and **two glyphs**. Built for their identity and lore, balanced against each other, **never a copy of an existing spell**.": "Каждая ветка талантов получает **свой талант специализации**: новое заклинание, которое берется в ветке, как любой талант Blizzard (два у друида «Сила зверя»: кошка и медведь). Каждый класс также получает **три новых таланта**, добавленных к талантам Blizzard **без удаления каких-либо из них**, и **два символа**. Созданы с учетом сущности и истории класса, сбалансированы между собой, **никогда не копируют существующее заклинание**.",
-  "New talent · after {points} points in {spec}": "Новый талант · после {points} очков в ветке «{spec}»"
+  "New talent · after {points} points in {spec}": "Новый талант · после {points} очков в ветке «{spec}»",
+  "First raid to defeat Lazulygos, Ley Siphon · title Breaker of Colossi": "Первый рейд, победивший Лазулигоса, Похитителя силовых линий · звание «Гроза колоссов»",
+  "First raid to defeat Thul'gorah, Whisper of Yogg-Saron · title Breaker of Colossi": "Первый рейд, победивший Тул'гору, Шепот Йогг-Сарона · звание «Гроза колоссов»",
+  "Lazulygos": "Лазулигос",
+  "Thul'gorah": "Тул'гора",
+  "Fixed battlegrounds, mixed Alliance/Horde arenas, a Wintergrasp that turns entirely to the victor's colors.": "Исправленные поля боя, смешанные арены Альянса и Орды и Озеро Ледяных Оков, которое целиком переходит под цвета победителя."
 }

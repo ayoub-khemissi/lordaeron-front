@@ -483,7 +483,6 @@
   "The Sewer Tournament": "Sewer Tournament",
   "**Twice a week, at 7 PM**: knockout duels in Dalaran's sewers. Gladiator, Duelist, Rival.": "**Dwa razy w tygodniu, o 19:00**: pojedynki w systemie pucharowym w kanałach Dalaranu. Gladiator, Duelist, Rival.",
   "Faithful, fixed PvP": "Wierne, naprawione PvP",
-  "Fixed battlegrounds, mixed Alliance/Horde arenas, a Wintergrasp that shows its true owner.": "Naprawione pola bitew, mieszane areny Alliance/Horde i Wintergrasp, który pokazuje swojego prawdziwego właściciela.",
   "Guilds": "Gildie",
   "Your guild grows with you.": "Twoja gildia rośnie razem z tobą.",
   "Dungeons, raids, world bosses, PvP, quests: in a guild group, everything raises your guild **from level 1 to 10**, and every level unlocks a perk for everyone.": "Lochy, rajdy, światowi bossowie, PvP, zadania: w grupie gildyjnej wszystko podnosi twoją gildię **z poziomu 1 do 10**, a każdy poziom odblokowuje bonus dla wszystkich.",
@@ -500,8 +499,6 @@
   "Achievements": "Osiągnięcia",
   "Make the realm's history.": "Zapisz się w historii świata.",
   "A \"Lordaeron\" tab of **228 achievements**, and the realm's Firsts: feats that only one player or one group will ever earn.": "Zakładka „Lordaeron” z **228 osiągnięciami** i Realm Firsty: wyczyny, które zdobędzie tylko jeden gracz albo jedna grupa.",
-  "The colossi": "Kolosy",
-  "First raid to defeat each world boss": "Pierwszy rajd, który pokona każdego światowego bossa",
   "Guild of Lordaeron": "Guild of Lordaeron",
   "First guild to reach renown level 10": "Pierwsza gildia z 10. poziomem renomy",
   "Exalted Archivist": "Exalted Archivist",
@@ -530,5 +527,8 @@
   "Transmog": "Transmog",
   "Level {level}": "Poziom {level}",
   "Every talent tree gains **its specialization talent**: a new spell, picked in the tree like any Blizzard talent (two for the feral druid, cat and bear). Every class also receives **three new talents**, added to Blizzard's **without removing any**, and **two glyphs**. Built for their identity and lore, balanced against each other, **never a copy of an existing spell**.": "Każde drzewko talentów zyskuje **swój talent specjalizacji**: nowe zaklęcie wybierane w drzewku jak każdy talent Blizzarda (dwa dla druida feralnego: kot i niedźwiedź). Każda klasa otrzymuje też **trzy nowe talenty**, dodane do talentów Blizzarda **bez usuwania żadnego**, oraz **dwa glify**. Zaprojektowane z myślą o tożsamości i fabule, zrównoważone względem siebie, **nigdy kopia istniejącego zaklęcia**.",
-  "New talent · after {points} points in {spec}": "Nowy talent · po {points} punktach w {spec}"
+  "New talent · after {points} points in {spec}": "Nowy talent · po {points} punktach w {spec}",
+  "First raid to defeat Lazulygos, Ley Siphon · title Breaker of Colossi": "Pierwszy rajd, który pokona Lazulygosa, Ley Siphon · tytuł „Pogromca kolosów”",
+  "First raid to defeat Thul'gorah, Whisper of Yogg-Saron · title Breaker of Colossi": "Pierwszy rajd, który pokona Thul'goraha, Whisper of Yogg-Saron · tytuł „Pogromca kolosów”",
+  "Fixed battlegrounds, mixed Alliance/Horde arenas, a Wintergrasp that turns entirely to the victor's colors.": "Naprawione pola bitew, mieszane areny Alliance/Horde i Wintergrasp, który cały przechodzi w barwy zwycięzcy."
 }

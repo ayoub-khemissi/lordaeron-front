@@ -2281,8 +2281,8 @@ export const pvp = {
       icon: "achievement_bg_masterofallbgs",
       title: L("Un JcJ fidèle et réparé", "Faithful, fixed PvP"),
       text: L(
-        "Champs de bataille corrigés, arènes mixtes Alliance/Horde, Joug-d'hiver qui montre son vrai propriétaire.",
-        "Fixed battlegrounds, mixed Alliance/Horde arenas, a Wintergrasp that shows its true owner.",
+        "Champs de bataille corrigés, arènes mixtes Alliance/Horde, un Joug-d'hiver qui passe tout entier aux couleurs du vainqueur.",
+        "Fixed battlegrounds, mixed Alliance/Horde arenas, a Wintergrasp that turns entirely to the victor's colors.",
       ),
     },
   ],
@@ -2379,10 +2379,18 @@ export const glory = {
   firsts: [
     {
       icon: "inv_misc_head_dragon_blue",
-      name: L("Les colosses", "The colossi"),
+      name: L("Lazulygos", "Lazulygos"),
       text: L(
-        "Premier raid à vaincre chaque boss du monde",
-        "First raid to defeat each world boss",
+        "Premier raid à vaincre Lazulygos, Siphon tellurique · titre « Fléau des colosses »",
+        "First raid to defeat Lazulygos, Ley Siphon · title Breaker of Colossi",
+      ),
+    },
+    {
+      icon: "achievement_boss_yoggsaron_01",
+      name: L("Thul'gorah", "Thul'gorah"),
+      text: L(
+        "Premier raid à vaincre Thul'gorah, Murmure de Yogg-Saron · titre « Fléau des colosses »",
+        "First raid to defeat Thul'gorah, Whisper of Yogg-Saron · title Breaker of Colossi",
       ),
     },
     {

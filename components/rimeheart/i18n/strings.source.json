@@ -3419,8 +3419,8 @@
   ]
  },
  {
-  "en": "Fixed battlegrounds, mixed Alliance/Horde arenas, a Wintergrasp that shows its true owner.",
-  "fr": "Champs de bataille corrigés, arènes mixtes Alliance/Horde, Joug-d'hiver qui montre son vrai propriétaire.",
+  "en": "Fixed battlegrounds, mixed Alliance/Horde arenas, a Wintergrasp that turns entirely to the victor's colors.",
+  "fr": "Champs de bataille corrigés, arènes mixtes Alliance/Horde, un Joug-d'hiver qui passe tout entier aux couleurs du vainqueur.",
   "ctx": [
    "pvp.text"
   ]
@@ -3540,15 +3540,29 @@
   ]
  },
  {
-  "en": "The colossi",
-  "fr": "Les colosses",
+  "en": "Lazulygos",
+  "fr": "Lazulygos",
   "ctx": [
    "glory.name"
   ]
  },
  {
-  "en": "First raid to defeat each world boss",
-  "fr": "Premier raid à vaincre chaque boss du monde",
+  "en": "Thul'gorah",
+  "fr": "Thul'gorah",
+  "ctx": [
+   "glory.name"
+  ]
+ },
+ {
+  "en": "First raid to defeat Lazulygos, Ley Siphon · title Breaker of Colossi",
+  "fr": "Premier raid à vaincre Lazulygos, Siphon tellurique · titre « Fléau des colosses »",
+  "ctx": [
+   "glory.text"
+  ]
+ },
+ {
+  "en": "First raid to defeat Thul'gorah, Whisper of Yogg-Saron · title Breaker of Colossi",
+  "fr": "Premier raid à vaincre Thul'gorah, Murmure de Yogg-Saron · titre « Fléau des colosses »",
   "ctx": [
    "glory.text"
   ]
