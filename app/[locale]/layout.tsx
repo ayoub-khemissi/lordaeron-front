@@ -77,7 +77,7 @@ export default async function LocaleLayout({
               <div className="relative flex flex-col min-h-screen">
                 <Navbar />
                 <VotePanel />
-                <main className="flex-grow">{children}</main>
+                <main className="page-fill flex-grow">{children}</main>
                 <Footer />
                 <CookieBanner />
               </div>

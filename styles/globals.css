@@ -523,3 +523,10 @@ h4 {
 @media (prefers-reduced-motion: reduce) {
   .animate-cta-sheen, .animate-cta-glow { animation: none; }
 }
+
+/* the page's content fills the screen under the navbar (4rem, HeroUI's): a short or empty page no longer pulls the footer up into view
+   (Ayoub, 14/10/2026); svh on phones, the screen without the browser's bars, vh where svh is unknown */
+.page-fill {
+  min-height: calc(100vh - 4rem);
+  min-height: calc(100svh - 4rem);
+}
