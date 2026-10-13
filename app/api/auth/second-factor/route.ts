@@ -20,14 +20,16 @@ import {
   requestIp,
   verifyCode,
 } from "@/lib/second-factor";
-import { rewardState } from "@/lib/second-factor-reward";
+import { deliverRewards, rewardState } from "@/lib/second-factor-reward";
+import { notifySecondFactor } from "@/lib/account-email";
 
 export const dynamic = "force-dynamic";
 
 /*
  * The second factor (lib/second-factor.ts) of the session's administrator (for=admin: the admin space waits for it) or of the signed-in
  * player's game account (for=account: written into auth.account.totp_secret, asked at every game login and website sign-in; game
- * masters are told it matters most). The account's reward: lib/second-factor-reward.ts, claimed at ./reward.
+ * masters are told it matters most). The account's reward: lib/second-factor-reward.ts, the Core Hound Pup mailed to each of its
+ * characters (at once after the enrolment, then by the cron).
  * GET: the screen's state (status=1: whether the account may enrol, has, is a game master, and its reward), with the QR code to scan
  * before enrolment.
  * POST {code}: enrols with the first valid code, or verifies the administrator's session.
@@ -133,6 +135,9 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "invalidCode" }, { status: 400 });
     }
     await clearFailures(failures);
+    // a game account just protected: its owner is told by e-mail (a stolen session enrolling its own phone shows)
+    if (factor === "account" && result === "enrolled")
+      void notifySecondFactor(who.id, true);
 
     if (who.admin) {
       // the admin session now carries its rights
@@ -148,9 +153,20 @@ export async function POST(request: NextRequest) {
       cookieStore.set(getAdminPreviewCookieOptions(true));
     }
 
+    // a game account just protected: its characters receive their pup now rather than at the cron's next run
+    const rewards =
+      factor === "account"
+        ? await deliverRewards({ accountId: who.id }).catch((error) => {
+            console.error("Second factor rewards after enrolment:", error);
+
+            return null;
+          })
+        : null;
+
     return NextResponse.json({
       success: true,
       step: factor === "admin" ? "verified" : "done",
+      ...(rewards ? { rewardsSent: rewards.sent } : {}),
     });
   } catch (error) {
     console.error("Second factor check:", error);
@@ -186,6 +202,7 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: "invalidCode" }, { status: 400 });
     }
     await clearFailures(failures);
+    void notifySecondFactor(session.id, false);
 
     return NextResponse.json({ success: true, enrolled: false });
   } catch (error) {

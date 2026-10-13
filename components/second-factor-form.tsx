@@ -7,15 +7,24 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import clsx from "clsx";
 
-import { REALM_SLUGS, REALMS, type RealmSlug } from "@/lib/realms";
+import {
+  GameTipLink,
+  WowItemIcon,
+  useGameTooltip,
+} from "@/components/game-tooltip";
+import { QUALITY_COLORS } from "@/components/game-tooltip/store";
+import { REALM_SLUGS, REALMS } from "@/lib/realms";
 
 const CODE_LENGTH = 6;
+// the Core Hound Pup (lib/second-factor-reward.ts): its tooltip from Lordaeron's data, the icon shown until it arrives
+const REWARD_ITEM = 49646;
+const REWARD_REALM = "lordaeron";
 const REWARD_ICON = "/img/rewards/core-hound-pup.jpg";
 
+// lib/second-factor-reward.ts rewardState: the characters served, per realm, and those waiting for the next delivery
 type Reward = {
-  status: "available" | "sending" | "failed" | "claimed";
-  realm: string | null;
-  characterName: string | null;
+  served: { realm: string; name: string }[];
+  waiting: number;
 };
 
 type Step =
@@ -46,6 +55,8 @@ export function SecondFactorForm({
   // a game account: a game master's or a player's (the wording), and its reward
   const [gm, setGm] = useState(false);
   const [reward, setReward] = useState<Reward | null>(null);
+  // the pups mailed right after the enrolment
+  const [sentNow, setSentNow] = useState(0);
   const inputId = useId();
   const hintId = useId();
 
@@ -107,10 +118,9 @@ export function SecondFactorForm({
 
         return;
       }
-      setStep({ kind: "done" });
-      setReward(
-        (r) => r ?? { status: "available", realm: null, characterName: null },
-      );
+      setSentNow(Number(data.rewardsSent) || 0);
+      // the screen again: protected, and the reward's state
+      await load();
     } catch {
       setError("serverError");
     } finally {
@@ -171,7 +181,12 @@ export function SecondFactorForm({
                 <p className="text-sm leading-relaxed text-gray-300">
                   {t("accountDone")}
                 </p>
-                {reward && <RewardClaim reward={reward} onChange={setReward} />}
+                {sentNow > 0 && (
+                  <p className="rounded-lg border border-green-500/30 bg-green-500/10 p-3 text-sm text-green-300">
+                    {t("rewardSentNow", { count: sentNow })}
+                  </p>
+                )}
+                {reward && <RewardStatus reward={reward} />}
                 <a
                   className="text-center text-sm text-wow-gold hover:underline"
                   href={next}
@@ -198,9 +213,7 @@ export function SecondFactorForm({
                             : "enrolIntroPlayer",
                       )}
                     </p>
-                    {factor === "account" && reward?.status !== "claimed" && (
-                      <RewardBanner />
-                    )}
+                    {factor === "account" && <RewardBanner />}
                     {factor === "account" && (
                       <div className="rounded-lg border border-wow-gold/30 bg-wow-gold/5 p-3 text-sm leading-relaxed text-wow-gold-light">
                         <p>{t("gameWarning")}</p>
@@ -301,29 +314,54 @@ export function SecondFactorForm({
   );
 }
 
-/* The reward offered for protecting the account: the Core Hound Pup, its icon and why. */
+/* The Core Hound Pup's name in its quality color, with its in-game tooltip (the realm's own data). */
+function RewardName() {
+  const t = useTranslations("secondFactor");
+  const tip = useGameTooltip(`item:${REWARD_ITEM}`, { realm: REWARD_REALM });
+
+  return (
+    <GameTipLink
+      className="cursor-help font-semibold"
+      itemId={REWARD_ITEM}
+      realm={REWARD_REALM}
+    >
+      <span style={{ color: QUALITY_COLORS[tip?.quality ?? 3] }}>
+        [{tip?.name ?? t("rewardPet")}]
+      </span>
+    </GameTipLink>
+  );
+}
+
+/* The reward offered for protecting the account: the Core Hound Pup (icon and tooltip) for every character, now and to come. */
 export function RewardBanner({ className }: { className?: string }) {
   const t = useTranslations("secondFactor");
 
   return (
     <div
       className={clsx(
-        "flex items-center gap-3 rounded-lg border border-purple-400/30 bg-purple-500/10 p-3",
+        "relative flex items-center gap-4 overflow-hidden rounded-xl border border-[#0070dd]/40 bg-gradient-to-br from-[#0070dd]/15 via-[#0b1424]/60 to-transparent p-4",
         className,
       )}
     >
-      <img
-        alt=""
-        className="size-11 shrink-0 rounded-md border border-purple-300/50"
-        height={44}
-        src={REWARD_ICON}
-        width={44}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -left-6 -top-6 size-24 rounded-full bg-[#0070dd]/25 blur-2xl"
       />
-      <div>
-        <p className="text-sm font-semibold text-purple-200">
-          {t("rewardTitle")}
+      <WowItemIcon
+        className="relative drop-shadow-[0_0_12px_rgba(0,112,221,0.55)]"
+        fallbackSrc={REWARD_ICON}
+        itemId={REWARD_ITEM}
+        realm={REWARD_REALM}
+        size={52}
+      />
+      <div className="relative min-w-0">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-sky-300/80">
+          {t("rewardLabel")}
         </p>
-        <p className="text-xs leading-relaxed text-gray-300">
+        <p className="text-base leading-tight">
+          <RewardName />
+        </p>
+        <p className="mt-1 text-xs leading-relaxed text-gray-300">
           {t("rewardText")}
         </p>
       </div>
@@ -332,176 +370,59 @@ export function RewardBanner({ className }: { className?: string }) {
 }
 
 /*
- * The reward's claim (app/api/auth/second-factor/reward): a realm, one of the account's characters there, then the in-game mail. Once
- * delivered, where it went; an account without a character keeps it for later.
+ * A protected account's reward: every character receives the pup by in-game mail, the ones served so far (per realm) and those
+ * waiting for the next delivery (a few minutes).
  */
-function RewardClaim({
-  reward,
-  onChange,
-}: {
-  reward: Reward;
-  onChange: (reward: Reward) => void;
-}) {
+function RewardStatus({ reward }: { reward: Reward }) {
   const t = useTranslations("secondFactor");
-  const [realm, setRealm] = useState<RealmSlug>(
-    (REALM_SLUGS as readonly string[]).includes(reward.realm ?? "")
-      ? (reward.realm as RealmSlug)
-      : "lordaeron",
+  const realms = REALM_SLUGS.filter((slug) =>
+    reward.served.some((s) => s.realm === slug),
   );
-  const [characters, setCharacters] = useState<
-    { guid: number; name: string; level: number }[] | null
-  >(null);
-  const [guid, setGuid] = useState<number | null>(null);
-  const [sending, setSending] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const selectId = useId();
-
-  useEffect(() => {
-    if (reward.status === "claimed") return;
-    setCharacters(null);
-    setGuid(null);
-    fetch(`/api/shop/characters?realm=${realm}`)
-      .then((res) => res.json())
-      .then((data) => {
-        const list = (data.characters ?? []) as {
-          guid: number;
-          name: string;
-          level: number;
-        }[];
-
-        setCharacters(list);
-        setGuid(list[0]?.guid ?? null);
-      })
-      .catch(() => setCharacters([]));
-  }, [realm, reward.status]);
-
-  if (reward.status === "claimed") {
-    return (
-      <div className="flex items-center gap-3 rounded-lg border border-green-500/30 bg-green-500/10 p-3">
-        <img
-          alt=""
-          className="size-9 shrink-0 rounded-md"
-          height={36}
-          src={REWARD_ICON}
-          width={36}
-        />
-        <p className="text-sm text-green-300">
-          {reward.characterName
-            ? t("rewardClaimed", {
-                name: reward.characterName,
-                realm:
-                  REALMS[(reward.realm as RealmSlug) ?? "lordaeron"]?.name ??
-                  "",
-              })
-            : t("rewardAlreadyClaimed")}
-        </p>
-      </div>
-    );
-  }
-
-  const claim = async () => {
-    if (!guid || sending) return;
-    setSending(true);
-    setError(null);
-    try {
-      const res = await fetch("/api/auth/second-factor/reward", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ realm, characterGuid: guid }),
-      });
-      const data = await res.json();
-
-      if (res.ok) {
-        onChange({
-          status: "claimed",
-          realm,
-          characterName: characters?.find((c) => c.guid === guid)?.name ?? null,
-        });
-
-        return;
-      }
-      if (data.error === "alreadyClaimed")
-        onChange({ status: "claimed", realm: null, characterName: null });
-      setError(
-        [
-          "characterNotFound",
-          "deliveryFailed",
-          "inProgress",
-          "notEnrolled",
-          "alreadyClaimed",
-        ].includes(data.error)
-          ? data.error
-          : "serverError",
-      );
-    } catch {
-      setError("serverError");
-    } finally {
-      setSending(false);
-    }
-  };
 
   return (
-    <div className="flex flex-col gap-3 rounded-lg border border-purple-400/30 bg-purple-500/10 p-4">
-      <RewardBanner className="border-0 bg-transparent p-0" />
-      {reward.status === "failed" && !error && (
-        <p className="text-xs text-yellow-300">{t("rewardFailed")}</p>
-      )}
-      <div aria-label={t("rewardRealm")} className="flex gap-2" role="group">
-        {REALM_SLUGS.map((slug) => (
-          <button
-            key={slug}
-            aria-pressed={realm === slug}
-            className={clsx(
-              "flex-1 rounded-md border px-3 py-1.5 text-sm transition-colors",
-              realm === slug
-                ? "border-wow-gold/70 bg-wow-gold/15 text-wow-gold-light"
-                : "border-white/10 text-gray-400 hover:border-white/30",
-            )}
-            type="button"
-            onClick={() => setRealm(slug)}
-          >
-            {REALMS[slug].name}
-          </button>
-        ))}
+    <div className="flex flex-col gap-3 rounded-xl border border-[#0070dd]/40 bg-gradient-to-br from-[#0070dd]/10 to-transparent p-4">
+      <div className="flex items-center gap-3">
+        <WowItemIcon
+          fallbackSrc={REWARD_ICON}
+          itemId={REWARD_ITEM}
+          realm={REWARD_REALM}
+          size={40}
+        />
+        <p className="text-sm leading-snug text-gray-200">
+          {t.rich("rewardEvery", { pet: () => <RewardName /> })}
+        </p>
       </div>
-      {characters === null ? (
-        <Spinner color="warning" size="sm" />
-      ) : characters.length === 0 ? (
-        <p className="text-xs leading-relaxed text-gray-400">
-          {t("rewardNoCharacter")}
-        </p>
-      ) : (
-        <>
-          <label className="text-xs text-gray-400" htmlFor={selectId}>
-            {t("rewardCharacter")}
-          </label>
-          <select
-            className="h-10 rounded-md border border-white/10 bg-[#161b22] px-3 text-sm text-white outline-none focus:border-wow-gold/60"
-            id={selectId}
-            value={guid ?? ""}
-            onChange={(e) => setGuid(Number(e.target.value))}
-          >
-            {characters.map((c) => (
-              <option key={c.guid} value={c.guid}>
-                {c.name} ({c.level})
-              </option>
-            ))}
-          </select>
-          <Button
-            className="bg-gradient-to-r from-purple-500 to-purple-400 font-bold text-white"
-            isDisabled={!guid}
-            isLoading={sending}
-            onPress={claim}
-          >
-            {t("rewardClaim")}
-          </Button>
-        </>
+      {realms.length > 0 && (
+        <div className="flex flex-col gap-2">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-400">
+            {t("rewardServed")}
+          </p>
+          {realms.map((slug) => (
+            <div key={slug} className="flex flex-wrap items-center gap-1.5">
+              <span className="mr-1 text-xs text-gray-500">
+                {REALMS[slug].name}
+              </span>
+              {reward.served
+                .filter((s) => s.realm === slug)
+                .map((s) => (
+                  <span
+                    key={s.name}
+                    className="rounded-full border border-green-500/30 bg-green-500/10 px-2.5 py-0.5 text-xs text-green-300"
+                  >
+                    {s.name}
+                  </span>
+                ))}
+            </div>
+          ))}
+        </div>
       )}
-      {error && (
-        <p className="text-xs text-danger" role="alert">
-          {t(`errors.${error}`)}
-        </p>
-      )}
+      <p className="text-xs leading-relaxed text-gray-400">
+        {reward.waiting > 0
+          ? t("rewardWaiting", { count: reward.waiting })
+          : realms.length === 0
+            ? t("rewardNoneYet")
+            : t("rewardFuture")}
+      </p>
     </div>
   );
 }
@@ -602,16 +523,12 @@ export function AccountSecondFactorCard({ locale }: { locale: string }) {
       )}
       {!state.enrolled && (
         <div className="flex flex-wrap items-center gap-3">
-          {state.reward?.status !== "claimed" && (
-            <img
-              alt=""
-              className="size-9 rounded-md border border-purple-300/50"
-              height={36}
-              src={REWARD_ICON}
-              title={t("rewardTitle")}
-              width={36}
-            />
-          )}
+          <WowItemIcon
+            fallbackSrc={REWARD_ICON}
+            itemId={REWARD_ITEM}
+            realm={REWARD_REALM}
+            size={36}
+          />
           <a
             className="inline-block rounded-lg bg-gradient-to-r from-wow-gold to-wow-gold-light px-4 py-2 text-sm font-bold text-black"
             href={`/${locale}/verification-2fa?for=account`}
@@ -620,12 +537,7 @@ export function AccountSecondFactorCard({ locale }: { locale: string }) {
           </a>
         </div>
       )}
-      {state.enrolled && state.reward && (
-        <RewardClaim
-          reward={state.reward}
-          onChange={(reward) => setState({ ...state, reward })}
-        />
-      )}
+      {state.enrolled && state.reward && <RewardStatus reward={state.reward} />}
       {state.enrolled &&
         (removing ? (
           <form className="flex flex-col gap-2" onSubmit={remove}>
