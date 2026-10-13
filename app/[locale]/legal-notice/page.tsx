@@ -10,8 +10,8 @@ import { siteConfig } from "@/config/site";
 import { legal, type LegalEntity } from "@/config/legal";
 
 /*
- * The legal notice (mentions légales, Ayoub 13/10/2026): French law (LCEN art. 6 III and 19, Code de la consommation, RGPD), the French
- * text authoritative. The publisher is Lordaeron, an independent fan project, reached on Discord and by in-game tickets; the host and
+ * The legal notice (mentions légales, Ayoub 13/10/2026): French law (LCEN art. 6 III and 19, Code de la consommation, RGPD), the English
+ * text authoritative (Ayoub, 13/10/2026: for every legal text). The publisher is Lordaeron, an independent fan project, reached on Discord and by in-game tickets; the host and
  * the providers come from config/legal.ts.
  */
 

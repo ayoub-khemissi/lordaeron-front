@@ -13,6 +13,8 @@ export const LegalAccordion = ({
   sectionKeys,
 }: LegalAccordionProps) => {
   const t = useTranslations(namespace);
+  // which version prevails, for every legal text (Ayoub, 13/10/2026: the English one)
+  const tNotice = useTranslations("legalNotice");
 
   return (
     <div
@@ -62,6 +64,9 @@ export const LegalAccordion = ({
             </AccordionItem>
           ))}
         </Accordion>
+        <p className="mt-8 text-center text-xs italic text-gray-500">
+          {tNotice("authoritative")}
+        </p>
       </div>
     </div>
   );
