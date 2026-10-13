@@ -24,8 +24,8 @@ export function PhaseStrip({
   title: string;
   phases: PhaseCard[];
   more: { label: string; href: string };
-  // the capsule's eyebrow, its "planned" tag and the legend under the row
-  classic?: { label: string; planned: string; legend: string };
+  // the capsule's "planned" tag and the legend under the row (it names the raids once for all the capsules)
+  classic?: { planned: string; legend: string };
 }) {
   return (
     <section className="relative overflow-hidden border-y border-wow-blue-ice/10 bg-[linear-gradient(180deg,rgba(4,16,28,0.0),rgba(4,16,28,0.85)_30%,rgba(4,16,28,0.85)_70%,rgba(4,16,28,0))] py-14 sm:py-20">
@@ -84,19 +84,14 @@ export function PhaseStrip({
                 <div className="mt-4 flex items-center gap-2 rounded-full border border-wow-gold/45 bg-gradient-to-r from-wow-gold/20 via-wow-gold/[0.07] to-transparent py-1 pl-1 pr-2.5 shadow-[0_8px_24px_-12px_rgba(199,156,62,0.8)]">
                   <img
                     alt=""
-                    className="h-8 w-8 shrink-0 rounded-full border border-wow-gold/70 object-cover"
-                    height={32}
+                    className="h-7 w-7 shrink-0 rounded-full border border-wow-gold/70 object-cover"
+                    height={28}
                     loading="lazy"
                     src={p.classic.icon}
-                    width={32}
+                    width={28}
                   />
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-[9px] font-semibold uppercase tracking-[0.18em] text-wow-gold/80">
-                      {classic.label}
-                    </span>
-                    <span className="block truncate font-heading text-sm leading-tight text-wow-gold-light">
-                      {p.classic.name}
-                    </span>
+                  <span className="min-w-0 flex-1 truncate font-heading text-sm leading-tight text-wow-gold-light">
+                    {p.classic.name}
                   </span>
                   {p.classic.planned && (
                     <span className="shrink-0 rounded-full border border-wow-gold/35 px-1.5 py-px text-[9px] font-semibold uppercase tracking-wider text-wow-gold-light/80">

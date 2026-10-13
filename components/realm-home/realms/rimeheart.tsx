@@ -86,7 +86,6 @@ export async function rimeheartHome(
     sections: (
       <PhaseStrip
         classic={{
-          label: "Burning Crusade · 80",
           planned: phases.plannedTag[lang],
           legend: `${phases.track[0][lang]} ${phases.track[1][lang]}`,
         }}
