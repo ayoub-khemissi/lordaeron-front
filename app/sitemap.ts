@@ -39,6 +39,7 @@ const sharedPages: PageEntry[] = [
   { path: "/terms-of-use", priority: 0.3, changeFrequency: "yearly" },
   { path: "/terms-of-sale", priority: 0.3, changeFrequency: "yearly" },
   { path: "/privacy-policy", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/legal-notice", priority: 0.3, changeFrequency: "yearly" },
 ];
 
 // each realm's pages, the sections it has (lib/realms.ts); the armory is not open yet

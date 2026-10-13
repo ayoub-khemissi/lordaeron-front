@@ -837,7 +837,7 @@
     "sections": {
       "general": {
         "title": "1. Informations générales",
-        "content": "Ces Conditions Générales de Vente régissent tous les achats effectués via la boutique du site Lordaeron. En effectuant un achat, vous acceptez ces conditions.\n\nLe vendeur est l'équipe du projet Lordaeron. Toutes les transactions sont traitées en Euros (EUR) et sont soumises aux taxes et réglementations applicables."
+        "content": "Ces Conditions Générales de Vente régissent tous les achats effectués via la boutique du site Lordaeron. En effectuant un achat, vous acceptez ces conditions.\n\nLe vendeur est l'éditeur du site, Lordaeron, projet indépendant de fans, identifié dans les mentions légales. Toutes les transactions sont traitées en Euros (EUR) et sont soumises aux taxes et réglementations applicables."
       },
       "soulShards": {
         "title": "2. Éclats d'âme — Monnaie virtuelle",
@@ -876,7 +876,7 @@
     "sections": {
       "controller": {
         "title": "1. Responsable du traitement",
-        "content": "Le responsable du traitement des données personnelles traitées via le site web et le serveur de jeu Lordaeron est l'équipe du projet Lordaeron.\n\nPour toute question concernant vos données personnelles ou pour exercer vos droits, veuillez nous contacter via le formulaire de contact de notre site web."
+        "content": "Le responsable du traitement des données personnelles traitées via le site web et les serveurs de jeu Lordaeron est l'éditeur du site, Lordaeron, projet indépendant de fans, identifié dans les mentions légales.\n\nPour toute question concernant vos données personnelles ou pour exercer vos droits, contactez-nous sur le Discord officiel de Lordaeron ou par un ticket en jeu adressé aux maîtres de jeu."
       },
       "dataCollected": {
         "title": "2. Données collectées",
@@ -912,7 +912,114 @@
       },
       "cookies": {
         "title": "8. Cookies",
-        "content": "Lordaeron n'utilise qu'un seul cookie essentiel :\n\n- lordaeron_session : Un cookie de session utilisé pour l'authentification. Il est HttpOnly, Secure et expire après 7 jours. Ce cookie est strictement nécessaire au fonctionnement du site et ne requiert pas de consentement en vertu du RGPD.\n\nNous n'utilisons pas de cookies d'analyse, de cookies de suivi, de cookies publicitaires ni aucun cookie tiers."
+        "content": "Lordaeron ne dépose que les cookies nécessaires au fonctionnement du site, exemptés de consentement :\n\n- lordaeron_session : garde votre session ouverte après la connexion (HttpOnly, Secure, 7 jours).\n\n- NEXT_LOCALE : retient la langue choisie (jusqu'à la fermeture du navigateur).\n\n- lordaeron_admin_session et lordaeron_admin_preview : réservés aux administrateurs du site (8 heures).\n\nQuelques préférences (bandeau d'information fermé, filtres de la boutique, panneau de vote replié) sont enregistrées dans le stockage local de votre navigateur et restent sur votre appareil.\n\nNous n'utilisons aucun cookie d'analyse, de suivi ou publicitaire, ni aucun cookie tiers."
+      }
+    }
+  },
+  "legalNotice": {
+    "title": "Mentions légales",
+    "subtitle": "Qui édite Lordaeron, où il est hébergé et les règles qui s'y appliquent.",
+    "lastUpdated": "Dernière mise à jour : 13 octobre 2026",
+    "authoritative": "Ces mentions légales sont traduites en plusieurs langues : en cas de divergence, la version française fait foi.",
+    "labels": {
+      "name": "Nom",
+      "legalForm": "Forme juridique",
+      "registration": "Immatriculation",
+      "vatNumber": "N° de TVA intracommunautaire",
+      "address": "Adresse",
+      "phone": "Téléphone",
+      "website": "Site",
+      "director": "Directeur de la publication",
+      "contact": "Contact"
+    },
+    "sections": {
+      "publisher": {
+        "title": "1. Éditeur du site",
+        "lead": "Le site lordaeron.eu et les serveurs de jeu Lordaeron sont édités par :",
+        "name": "Lordaeron, projet indépendant de fans",
+        "director": "L'administrateur du projet Lordaeron",
+        "contact": "le Discord officiel de Lordaeron (<discord>discord.gg/MqTzu6Qhn3</discord>) ou un ticket en jeu adressé aux maîtres de jeu",
+        "p1": "Toute demande adressée à l'éditeur (question, réclamation, exercice de vos droits, signalement) reçoit une réponse par ces mêmes moyens."
+      },
+      "host": {
+        "title": "2. Hébergement",
+        "lead": "Le site et les serveurs de jeu sont hébergés par :",
+        "location": "Les serveurs sont situés dans l'Union européenne, dans les centres de données d'OVHcloud."
+      },
+      "providers": {
+        "title": "3. Prestataires techniques",
+        "lead": "L'éditeur fait aussi appel aux prestataires suivants :",
+        "roles": {
+          "email": "Envoi des e-mails",
+          "payment": "Paiement en ligne",
+          "domain": "Nom de domaine et DNS"
+        },
+        "p1": "Certaines pages affichent des icônes du jeu chargées depuis wow.zamimg.com (le serveur d'images de Wowhead), et l'armurerie charge la bibliothèque jQuery depuis code.jquery.com : votre navigateur transmet alors votre adresse IP à ces serveurs, qui ne déposent aucun cookie."
+      },
+      "service": {
+        "title": "4. Nature du service",
+        "p1": "Lordaeron est un serveur privé non officiel du jeu World of Warcraft (version 3.3.5a). La création d'un compte et l'accès au jeu sont gratuits.",
+        "p2": "Le site propose l'achat facultatif d'Éclats d'âme, une monnaie virtuelle échangeable contre des objets et services en jeu, aux conditions des <cgv>Conditions générales de vente</cgv>. L'usage du site et du jeu est régi par les <cgu>Conditions générales d'utilisation</cgu> et réservé aux personnes âgées d'au moins 13 ans."
+      },
+      "ip": {
+        "title": "5. Propriété intellectuelle et marques",
+        "p1": "World of Warcraft, Warcraft et Blizzard Entertainment sont des marques ou des marques déposées de Blizzard Entertainment, Inc. aux États-Unis et dans d'autres pays. L'univers, les noms, les personnages, les images, les icônes et les contenus du jeu World of Warcraft appartiennent à Blizzard Entertainment, Inc.",
+        "p2": "<b>Lordaeron est un projet indépendant et non officiel. Il n'est ni affilié à Blizzard Entertainment, ni approuvé, parrainé ou soutenu par Blizzard Entertainment.</b> Les images issues des kits presse de Blizzard Entertainment et les icônes du jeu affichées sur le site restent la propriété de leurs titulaires.",
+        "p3": "Les textes, la mise en page, le code et les créations originales du site et du serveur (contenus et réglages propres à Lordaeron) appartiennent à l'éditeur. Leur reproduction sans autorisation est interdite.",
+        "p4": "Tout titulaire de droits qui estime qu'un contenu du site porte atteinte à ses droits peut en demander le retrait par les moyens de contact indiqués à l'article 1, en précisant le contenu concerné, son emplacement sur le site et les droits invoqués. La demande est traitée sans délai."
+      },
+      "data": {
+        "title": "6. Données personnelles",
+        "p1": "L'éditeur traite des données personnelles pour gérer les comptes, le jeu, la boutique et les e-mails, dans le respect du Règlement général sur la protection des données (RGPD) et de la loi Informatique et Libertés. Les traitements, leurs finalités, leurs destinataires et les durées de conservation sont détaillés dans la <privacy>Politique de confidentialité</privacy>.",
+        "p2": "Vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation, d'opposition et de portabilité sur vos données, que vous exercez par les moyens de contact indiqués à l'article 1. Vous pouvez aussi adresser une réclamation à la CNIL (<cnil>www.cnil.fr</cnil>)."
+      },
+      "cookies": {
+        "title": "7. Cookies et stockage local",
+        "lead": "Le site ne dépose que les cookies nécessaires à son fonctionnement, exemptés de consentement :",
+        "columns": {
+          "name": "Cookie",
+          "purpose": "Rôle",
+          "duration": "Durée"
+        },
+        "items": {
+          "session": {
+            "purpose": "Garder votre session ouverte après la connexion",
+            "duration": "7 jours"
+          },
+          "locale": {
+            "purpose": "Retenir la langue choisie",
+            "duration": "Session du navigateur"
+          },
+          "adminSession": {
+            "purpose": "Session des administrateurs du site (administrateurs uniquement)",
+            "duration": "8 heures"
+          },
+          "adminPreview": {
+            "purpose": "Aperçu administrateur des royaumes pas encore ouverts (administrateurs uniquement)",
+            "duration": "8 heures"
+          }
+        },
+        "p1": "Le site enregistre aussi quelques préférences dans le stockage local de votre navigateur (bandeau d'information fermé, filtres de la boutique, panneau de vote replié) : elles restent sur votre appareil.",
+        "p2": "Le site n'utilise aucun cookie publicitaire, de mesure d'audience ou de suivi, ni aucun cookie tiers. Le paiement se fait sur la page sécurisée de Stripe, soumise à sa propre politique."
+      },
+      "report": {
+        "title": "8. Signalement d'un contenu illicite",
+        "p1": "Conformément à la loi pour la confiance dans l'économie numérique (LCEN) et au règlement européen sur les services numériques (DSA), tout contenu manifestement illicite présent sur le site ou en jeu (nom de personnage ou de guilde, message, image) peut être signalé à l'éditeur : en jeu par un ticket adressé aux maîtres de jeu, ou sur le <discord>Discord officiel</discord>.",
+        "p2": "Indiquez la date, le contenu concerné et son emplacement (adresse de la page, royaume, nom du personnage), ainsi que les raisons pour lesquelles vous le jugez illicite. L'éditeur examine chaque signalement et retire promptement tout contenu illicite."
+      },
+      "liability": {
+        "title": "9. Responsabilité, liens et disponibilité",
+        "p1": "L'éditeur veille à l'exactitude des informations publiées et à la disponibilité du service, sans pouvoir garantir l'absence d'erreur ou d'interruption : le site et les serveurs de jeu peuvent être interrompus pour maintenance ou à la suite d'un incident.",
+        "p2": "Les liens vers des sites tiers (Discord, sites de vote, Stripe…) sont fournis pour votre commodité. L'éditeur n'est responsable ni de leur contenu ni de leurs pratiques."
+      },
+      "law": {
+        "title": "10. Droit applicable et litiges",
+        "p1": "Les présentes mentions légales sont régies par le droit français.",
+        "p2": "En cas de litige, une solution amiable est recherchée en priorité : adressez votre réclamation à l'éditeur par les moyens de contact indiqués à l'article 1. À défaut d'accord, les tribunaux français sont compétents, sous réserve des règles protectrices des consommateurs, qui peuvent notamment saisir la juridiction de leur domicile."
+      },
+      "credits": {
+        "title": "11. Crédits",
+        "p1": "Images : kits presse et captures officielles de Blizzard Entertainment (World of Warcraft Classic, Burning Crusade Classic, Wrath of the Lich King Classic). Icônes du jeu : Blizzard Entertainment, via Wowhead. Visionneuse 3D de l'armurerie : visionneuse de modèles de Wowhead. Polices : Lexend et Fira Code (SIL Open Font License), Friz Quadrata (ITC)."
       }
     }
   },
@@ -930,6 +1037,7 @@
     "cgu": "CGU",
     "cgv": "CGV",
     "rgpd": "Politique de confidentialité",
+    "legalNotice": "Mentions légales",
     "rights": "Tous droits réservés.",
     "disclaimer": "Lordaeron n'est pas affilié à Blizzard Entertainment."
   },
@@ -973,6 +1081,10 @@
     "rgpd": {
       "title": "Politique de Confidentialité (RGPD) — Serveur WoW Lordaeron",
       "description": "Politique de confidentialité du serveur privé WoW Lordaeron. Collecte, utilisation et protection de vos données personnelles conformément au RGPD."
+    },
+    "legalNotice": {
+      "title": "Mentions légales — Serveur WoW Lordaeron",
+      "description": "Mentions légales de Lordaeron : éditeur, hébergeur OVHcloud, prestataires, propriété intellectuelle, cookies, données personnelles et signalement de contenus."
     },
     "news": {
       "title": "Actualités & Mises à jour — Serveur WoW Lordaeron",

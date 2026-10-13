@@ -55,6 +55,7 @@ type Footer = {
   questions: string;
   terms: string;
   privacy: string;
+  legal: string;
   account: string;
   unsubscribe: string;
   disclaimer: string;
@@ -73,6 +74,7 @@ const FOOTER: Record<EmailLocale, Footer> = {
       "This address receives no replies. A question? The team answers you on",
     terms: "Terms of use",
     privacy: "Privacy policy",
+    legal: "Legal notice",
     account: "My account",
     unsubscribe: "Unsubscribe",
     disclaimer:
@@ -90,6 +92,7 @@ const FOOTER: Record<EmailLocale, Footer> = {
       "Cette adresse ne reçoit pas de réponses. Une question ? L'équipe vous répond sur",
     terms: "Conditions d'utilisation",
     privacy: "Politique de confidentialité",
+    legal: "Mentions légales",
     account: "Mon compte",
     unsubscribe: "Se désabonner",
     disclaimer:
@@ -108,6 +111,7 @@ const FOOTER: Record<EmailLocale, Footer> = {
       "Diese Adresse empfängt keine Antworten. Eine Frage? Das Team antwortet dir auf",
     terms: "Nutzungsbedingungen",
     privacy: "Datenschutzerklärung",
+    legal: "Impressum",
     account: "Mein Konto",
     unsubscribe: "Abmelden",
     disclaimer:
@@ -126,6 +130,7 @@ const FOOTER: Record<EmailLocale, Footer> = {
       "Esta dirección no recibe respuestas. ¿Una pregunta? El equipo te responde en",
     terms: "Condiciones de uso",
     privacy: "Política de privacidad",
+    legal: "Aviso legal",
     account: "Mi cuenta",
     unsubscribe: "Darse de baja",
     disclaimer:
@@ -143,6 +148,7 @@ const FOOTER: Record<EmailLocale, Footer> = {
       "Questo indirizzo non riceve risposte. Una domanda? Il team ti risponde su",
     terms: "Condizioni d'uso",
     privacy: "Informativa sulla privacy",
+    legal: "Note legali",
     account: "Il mio account",
     unsubscribe: "Annulla l'iscrizione",
     disclaimer:
@@ -160,6 +166,7 @@ const FOOTER: Record<EmailLocale, Footer> = {
       "Ten adres nie przyjmuje odpowiedzi. Masz pytanie? Zespół odpowie ci na",
     terms: "Warunki korzystania",
     privacy: "Polityka prywatności",
+    legal: "Nota prawna",
     account: "Moje konto",
     unsubscribe: "Wypisz się",
     disclaimer:
@@ -177,6 +184,7 @@ const FOOTER: Record<EmailLocale, Footer> = {
       "Este endereço não recebe respostas. Uma pergunta? A equipa responde-te no",
     terms: "Termos de utilização",
     privacy: "Política de privacidade",
+    legal: "Aviso legal",
     account: "A minha conta",
     unsubscribe: "Cancelar subscrição",
     disclaimer:
@@ -194,6 +202,7 @@ const FOOTER: Record<EmailLocale, Footer> = {
       "На это письмо нельзя ответить. Есть вопрос? Команда ответит вам в",
     terms: "Условия использования",
     privacy: "Политика конфиденциальности",
+    legal: "Правовая информация",
     account: "Моя учётная запись",
     unsubscribe: "Отписаться",
     disclaimer:
@@ -249,6 +258,7 @@ export function renderEmail(c: EmailContent): {
     footerLink(link("/account"), f.account),
     footerLink(link("/terms-of-use"), f.terms),
     footerLink(link("/privacy-policy"), f.privacy),
+    footerLink(link("/legal-notice"), f.legal),
     ...(kind === "news" && c.unsubscribeUrl
       ? [footerLink(c.unsubscribeUrl, f.unsubscribe)]
       : []),
@@ -356,6 +366,7 @@ export function renderEmail(c: EmailContent): {
     `${f.questions} Discord: ${SUPPORT_URL}`,
     `${f.terms}: ${link("/terms-of-use")}`,
     `${f.privacy}: ${link("/privacy-policy")}`,
+    `${f.legal}: ${link("/legal-notice")}`,
     ...(kind === "news" && c.unsubscribeUrl
       ? [`${f.unsubscribe}: ${c.unsubscribeUrl}`]
       : []),

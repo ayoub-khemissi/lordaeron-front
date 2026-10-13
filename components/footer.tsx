@@ -134,6 +134,10 @@ export const Footer = () => {
                   { label: t("cgu"), href: `/${locale}/terms-of-use` },
                   { label: t("cgv"), href: `/${locale}/terms-of-sale` },
                   { label: t("rgpd"), href: `/${locale}/privacy-policy` },
+                  {
+                    label: t("legalNotice"),
+                    href: `/${locale}/legal-notice`,
+                  },
                 ].map((link) => (
                   <li key={link.href}>
                     <NextLink className={linkClass} href={link.href}>
