@@ -19,8 +19,15 @@ function escapeXml(str: string): string {
     .replace(/'/g, "&apos;");
 }
 
+// a mail's subject and text: letters of every alphabet, digits and plain punctuation (no quote, no XML markup)
 function sanitizeInput(str: string): string {
-  return str.replace(/[^\w\s.,!?'-]/g, "");
+  return str.replace(/[^\p{L}\p{N}\s.,!?'-]/gu, "");
+}
+
+// a character's name: letters only, TrinityCore's rule, accents and other alphabets included (13/10/2026: "Redös" became "Reds",
+// "Player not found", and two April purchases stayed undelivered)
+function sanitizeName(str: string): string {
+  return str.replace(/[^\p{L}]/gu, "");
 }
 
 function buildEnvelope(command: string): string {
@@ -96,7 +103,7 @@ export async function sendItem(
   count: number = 1,
   realm: RealmSlug = DEFAULT_REALM,
 ): Promise<{ success: boolean; message: string }> {
-  const safeName = sanitizeInput(characterName);
+  const safeName = sanitizeName(characterName);
   const safeSubject = sanitizeInput(subject);
   const safeBody = sanitizeInput(body);
 
@@ -118,7 +125,7 @@ export async function sendItems(
   items: { itemId: number; count: number }[],
   realm: RealmSlug = DEFAULT_REALM,
 ): Promise<{ success: boolean; message: string }> {
-  const safeName = sanitizeInput(characterName);
+  const safeName = sanitizeName(characterName);
   const safeSubject = sanitizeInput(subject);
   const safeBody = sanitizeInput(body);
 
