@@ -252,16 +252,29 @@ export function ModelViewer({
       if (!(window as any).ZamModelViewer) setFailed((f) => f ?? "viewer");
     }, LOAD_TIMEOUT);
 
-    if ((window as any).jQuery) {
-      setupGlobals();
-      setJqueryLoaded(true);
-    }
-    if ((window as any).ZamModelViewer) {
-      setScriptsReady(true);
-    }
+    // the scripts' own load events can be lost (a client-side navigation, a script already in the page): watch for what they define
+    // too (Ayoub's phone, 13/10/2026: jQuery from a third-party CDN never signalled; it is now served by the site, public/vendor)
+    let globalsSet = false;
+    const watch = window.setInterval(() => {
+      if ((window as any).jQuery && !globalsSet) {
+        globalsSet = true;
+        setupGlobals();
+        setJqueryLoaded(true);
+      }
+      if ((window as any).ZamModelViewer) {
+        setScriptsReady(true);
+        window.clearInterval(watch);
+      }
+    }, 250);
+    const watchEnd = window.setTimeout(
+      () => window.clearInterval(watch),
+      LOAD_TIMEOUT,
+    );
 
     return () => {
       window.clearTimeout(scriptTimer);
+      window.clearInterval(watch);
+      window.clearTimeout(watchEnd);
       destroyViewer();
     };
   }, []);
@@ -394,7 +407,7 @@ export function ModelViewer({
   return (
     <>
       <Script
-        src="https://code.jquery.com/jquery-3.7.1.min.js"
+        src="/vendor/jquery-3.7.1.min.js"
         strategy="afterInteractive"
         onError={() => setFailed("viewer")}
         onLoad={handleJqueryLoad}

@@ -954,7 +954,7 @@
           "payment": "Paiement en ligne",
           "domain": "Nom de domaine et DNS"
         },
-        "p1": "Certaines pages affichent des icônes du jeu chargées depuis wow.zamimg.com (le serveur d'images de Wowhead), et l'armurerie charge la bibliothèque jQuery depuis code.jquery.com : votre navigateur transmet alors votre adresse IP à ces serveurs, qui ne déposent aucun cookie."
+        "p1": "Certaines pages affichent des icônes du jeu chargées depuis wow.zamimg.com (le serveur d'images de Wowhead) : votre navigateur transmet alors votre adresse IP à ce serveur, qui ne dépose aucun cookie."
       },
       "service": {
         "title": "4. Nature du service",

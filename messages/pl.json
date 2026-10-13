@@ -954,7 +954,7 @@
           "payment": "Płatności online",
           "domain": "Nazwa domeny i DNS"
         },
-        "p1": "Niektóre strony wyświetlają ikony gry ładowane z wow.zamimg.com (serwera obrazów Wowhead), a zbrojownia ładuje bibliotekę jQuery z code.jquery.com: twoja przeglądarka przekazuje wtedy twój adres IP tym serwerom, które nie zapisują żadnych plików cookie."
+        "p1": "Niektóre strony wyświetlają ikony gry ładowane z wow.zamimg.com (serwera obrazów Wowhead): twoja przeglądarka przekazuje wtedy twój adres IP temu serwerowi, który nie zapisuje żadnych plików cookie."
       },
       "service": {
         "title": "4. Charakter usługi",

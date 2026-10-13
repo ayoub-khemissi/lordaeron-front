@@ -954,7 +954,7 @@
           "payment": "Online-Zahlung",
           "domain": "Domainname und DNS"
         },
-        "p1": "Einige Seiten zeigen Spielsymbole, die von wow.zamimg.com (dem Bildserver von Wowhead) geladen werden, und das Arsenal lädt die Bibliothek jQuery von code.jquery.com: Dein Browser übermittelt dabei deine IP-Adresse an diese Server, die keine Cookies setzen."
+        "p1": "Einige Seiten zeigen Spielsymbole, die von wow.zamimg.com (dem Bildserver von Wowhead) geladen werden: Dein Browser übermittelt dabei deine IP-Adresse an diesen Server, der keine Cookies setzt."
       },
       "service": {
         "title": "4. Art des Dienstes",

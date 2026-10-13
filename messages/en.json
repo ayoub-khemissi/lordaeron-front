@@ -954,7 +954,7 @@
           "payment": "Online payment",
           "domain": "Domain name and DNS"
         },
-        "p1": "Some pages show game icons loaded from wow.zamimg.com (Wowhead's image server), and the armory loads the jQuery library from code.jquery.com: your browser then sends your IP address to these servers, which set no cookie."
+        "p1": "Some pages show game icons loaded from wow.zamimg.com (Wowhead's image server): your browser then sends your IP address to this server, which sets no cookie."
       },
       "service": {
         "title": "4. The service",
