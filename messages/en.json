@@ -1,4 +1,47 @@
 {
+  "emailPrefs": {
+    "checkInbox": "We sent you a link to confirm your address: open it from your inbox.",
+    "consent": "Send me Lordaeron's dispatches: new realm openings, patches, in-game events and shop deals, before everyone else.",
+    "consentHint": "No spam: one click to stop, at any time.",
+    "legal": "By creating an account, you accept the <terms>terms of use</terms> and the <privacy>privacy policy</privacy>.",
+    "emailTitle": "E-mail address",
+    "emailNone": "Your account has no e-mail address yet. Add one: it is the only way to get your account back if you lose your password.",
+    "emailVerified": "Confirmed",
+    "emailUnverified": "Not confirmed",
+    "emailUnverifiedHint": "Confirm it with the link we sent you. Nothing received?",
+    "resend": "Send the link again",
+    "resent": "Link sent: check your inbox (and the spam folder).",
+    "emailChange": "Change my address",
+    "emailAdd": "Add my address",
+    "newEmail": "New address",
+    "send": "Send the confirmation link",
+    "cancel": "Cancel",
+    "pending": "Waiting for confirmation: {email}. Open the link we sent to this address to finish.",
+    "sentChange": "Link sent to {email}. The change applies once you open it.",
+    "errorEmailInvalid": "Enter a valid e-mail address.",
+    "errorEmailSame": "This is already your address.",
+    "errorRateLimited": "Wait a minute before asking for a new link.",
+    "errorServer": "Something went wrong. Try again in a moment.",
+    "newsTitle": "Lordaeron's dispatches",
+    "newsText": "Realm openings, patches, in-game events and shop deals, sent to your confirmed address.",
+    "newsOn": "You receive them",
+    "newsOff": "You don't receive them",
+    "newsSince": "Since {date}",
+    "newsSubscribe": "Receive them",
+    "newsUnsubscribe": "Stop them",
+    "newsNeedsVerified": "They go only to a confirmed address.",
+    "confirmTitle": "Your e-mail address",
+    "confirmWorking": "Confirming your address…",
+    "confirmVerified": "Address confirmed! You can always get your account back now.",
+    "confirmChanged": "Your new address is in place. The old one has been told.",
+    "confirmInvalid": "This link is invalid, already used or expired. Ask for a new one from your account.",
+    "goAccount": "Go to my account",
+    "unsubTitle": "Stop Lordaeron's dispatches?",
+    "unsubText": "You will no longer receive news e-mails. The e-mails about your account (security, password) still come.",
+    "unsubButton": "Stop the dispatches",
+    "unsubDone": "Done: you won't receive the dispatches anymore. You can subscribe again from your account at any time.",
+    "unsubInvalid": "This unsubscribe link is invalid."
+  },
   "nav": {
     "home": "Home",
     "howTo": "How to Connect",
@@ -829,7 +872,7 @@
   "rgpd": {
     "title": "Privacy Policy (GDPR)",
     "subtitle": "How we collect, use, and protect your personal data.",
-    "lastUpdated": "Last updated: February 2026",
+    "lastUpdated": "Last updated: October 2026",
     "sections": {
       "controller": {
         "title": "1. Data Controller",
@@ -853,11 +896,19 @@
       },
       "thirdParties": {
         "title": "6. Third Parties",
-        "content": "We share your data only with the following third party:\n\n- Stripe (payment processor): When you make a purchase, your payment information is processed directly by Stripe. Stripe is PCI DSS Level 1 certified and acts as an independent data controller for payment data. See Stripe's privacy policy at stripe.com/privacy.\n\nWe do not sell, rent, or share your personal data with any other third parties for marketing or commercial purposes."
+        "content": "We share your data only with the following third parties:\n\n- Stripe (payment processor): When you make a purchase, your payment information is processed directly by Stripe. Stripe is PCI DSS Level 1 certified and acts as an independent data controller for payment data. See Stripe's privacy policy at stripe.com/privacy.\n\n- Brevo (Sendinblue SAS, France, European Union): sends our e-mails (account e-mails and, if you asked for them, news) on our behalf, as a processor. It receives your e-mail address and the content of the message only.\n\nWe do not sell, rent, or share your personal data with any other third parties for marketing or commercial purposes."
       },
       "rights": {
         "title": "7. Your GDPR Rights",
         "content": "Under the General Data Protection Regulation (GDPR), you have the following rights:\n\n- Right of access (Article 15): Request a copy of your personal data\n- Right to rectification (Article 16): Request correction of inaccurate data\n- Right to erasure (Article 17): Request deletion of your data (\"right to be forgotten\")\n- Right to restrict processing (Article 18): Request limitation of data processing\n- Right to data portability (Article 20): Receive your data in a structured, machine-readable format\n- Right to object (Article 21): Object to data processing based on legitimate interests\n\nTo exercise any of these rights, please contact us through the contact form. We will respond to your request within 30 days."
+      },
+      "emails": {
+        "title": "9. E-mails",
+        "content": "Your e-mail address is required to create an account; it is confirmed by a link (valid 48 hours).\n\nAccount e-mails: the confirmation of your address, the password reset, and security notices (a change of address, two-step verification turned on or off). They are necessary to provide the service and keep your account safe (Article 6(1)(b) and (f)), and are sent whatever your news preferences.\n\nLordaeron's dispatches (news): realm openings, patches, events and shop offers. Only with your consent (Article 6(1)(a)): the box is unchecked at signup, and you can change your choice at any time from your account page or with the one-click unsubscribe link at the bottom of every news e-mail. They are sent only to a confirmed address.\n\nProof of consent: we keep the date, the version of the wording you accepted, where it was given (signup, account page, unsubscribe link) and the IP address, for as long as your account exists and 3 years after a withdrawal.\n\nA change of address applies only once the link sent to the new address is opened; the old address is told. Confirmation links are stored as fingerprints (hashes), expire after 24 to 48 hours and work once.\n\nWe never sell or lend your address."
+      },
+      "secondFactor": {
+        "title": "10. Two-step verification",
+        "content": "Two-step verification is optional. If you turn it on, we store the secret of your authenticator app, used only to check your codes in game and on the website, and the time step of the last code used (so that a code cannot be used twice). Failed sign-in attempts (account and IP address) are kept 15 minutes to lock out guessing.\n\nThe secret is deleted as soon as you turn the protection off. The record of the Core Hound Pup reward is kept for as long as your account exists, so that it is given once."
       },
       "cookies": {
         "title": "8. Cookies",

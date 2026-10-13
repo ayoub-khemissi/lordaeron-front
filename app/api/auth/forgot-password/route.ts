@@ -35,10 +35,10 @@ export async function POST(request: NextRequest) {
         const baseUrl =
           process.env.NEXT_PUBLIC_BASE_URL || "https://www.lordaeron.eu";
         const resetUrl = `${baseUrl}/${locale}/reset-password?token=${tokenRaw}`;
-        const { subject, html } = getPasswordResetEmail(locale, resetUrl);
+        const mail = getPasswordResetEmail(locale, resetUrl);
 
         try {
-          await sendEmail({ to: email, subject, html });
+          await sendEmail({ to: email, ...mail });
         } catch (err) {
           console.error("Failed to send password reset email:", err);
         }

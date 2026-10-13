@@ -1,4 +1,47 @@
 {
+  "emailPrefs": {
+    "checkInbox": "Te enviamos un enlace para confirmar tu dirección: ábrelo desde tu bandeja de entrada.",
+    "consent": "Quiero recibir los despachos de Lordaeron: aperturas de reinos, parches, eventos en el juego y ofertas de la tienda, antes que nadie.",
+    "consentHint": "Sin spam: date de baja con un clic cuando quieras.",
+    "legal": "Al crear una cuenta, aceptas las <terms>condiciones de uso</terms> y la <privacy>política de privacidad</privacy>.",
+    "emailTitle": "Dirección de correo",
+    "emailNone": "Tu cuenta aún no tiene dirección de correo. Añade una: es la única forma de recuperar tu cuenta si pierdes la contraseña.",
+    "emailVerified": "Confirmada",
+    "emailUnverified": "Sin confirmar",
+    "emailUnverifiedHint": "Confírmala con el enlace que te enviamos. ¿No recibiste nada?",
+    "resend": "Reenviar el enlace",
+    "resent": "Enlace enviado: revisa tu bandeja de entrada (y la carpeta de spam).",
+    "emailChange": "Cambiar de dirección",
+    "emailAdd": "Añadir mi dirección",
+    "newEmail": "Nueva dirección",
+    "send": "Enviar el enlace de confirmación",
+    "cancel": "Cancelar",
+    "pending": "Pendiente de confirmación: {email}. Abre el enlace enviado a esta dirección para terminar.",
+    "sentChange": "Enlace enviado a {email}. El cambio se aplicará cuando lo abras.",
+    "errorEmailInvalid": "Introduce una dirección de correo válida.",
+    "errorEmailSame": "Ya es tu dirección.",
+    "errorRateLimited": "Espera un minuto antes de pedir un nuevo enlace.",
+    "errorServer": "Algo salió mal. Inténtalo de nuevo en un momento.",
+    "newsTitle": "Los despachos de Lordaeron",
+    "newsText": "Aperturas de reinos, parches, eventos en el juego y ofertas de la tienda, enviados a tu dirección confirmada.",
+    "newsOn": "Los recibes",
+    "newsOff": "No los recibes",
+    "newsSince": "Desde el {date}",
+    "newsSubscribe": "Recibirlos",
+    "newsUnsubscribe": "Dejar de recibirlos",
+    "newsNeedsVerified": "Solo se envían a una dirección confirmada.",
+    "confirmTitle": "Tu dirección de correo",
+    "confirmWorking": "Confirmando tu dirección…",
+    "confirmVerified": "¡Dirección confirmada! Ya podrás recuperar siempre tu cuenta.",
+    "confirmChanged": "Tu nueva dirección ya está activa. Hemos avisado a la anterior.",
+    "confirmInvalid": "Este enlace no es válido, ya se usó o caducó. Pide uno nuevo desde tu cuenta.",
+    "goAccount": "Ir a mi cuenta",
+    "unsubTitle": "¿Dejar de recibir los despachos de Lordaeron?",
+    "unsubText": "Ya no recibirás correos de novedades. Los correos sobre tu cuenta (seguridad, contraseña) seguirán llegando.",
+    "unsubButton": "Dejar de recibir los despachos",
+    "unsubDone": "Hecho: ya no recibirás los despachos. Puedes volver a suscribirte desde tu cuenta cuando quieras.",
+    "unsubInvalid": "Este enlace de baja no es válido."
+  },
   "nav": {
     "home": "Inicio",
     "howTo": "Cómo conectarse",
@@ -829,7 +872,7 @@
   "rgpd": {
     "title": "Política de Privacidad (RGPD)",
     "subtitle": "Cómo recopilamos, usamos y protegemos tus datos personales.",
-    "lastUpdated": "Última actualización: Febrero 2026",
+    "lastUpdated": "Última actualización: octubre de 2026",
     "sections": {
       "controller": {
         "title": "1. Responsable del tratamiento",
@@ -853,11 +896,19 @@
       },
       "thirdParties": {
         "title": "6. Terceros",
-        "content": "Solo compartimos tus datos con el siguiente tercero:\n\n- Stripe (procesador de pagos): Cuando realizas una compra, tu información de pago es procesada directamente por Stripe. Stripe está certificado como PCI DSS Nivel 1 y actúa como responsable independiente del tratamiento de datos de pago. Consulta la política de privacidad de Stripe en stripe.com/privacy.\n\nNo vendemos, alquilamos ni compartimos tus datos personales con ningún otro tercero con fines de marketing o comerciales."
+        "content": "Solo compartimos tus datos con los siguientes terceros:\n\n- Stripe (procesador de pagos): Cuando realizas una compra, tu información de pago es procesada directamente por Stripe. Stripe está certificado como PCI DSS Nivel 1 y actúa como responsable independiente del tratamiento de datos de pago. Consulta la política de privacidad de Stripe en stripe.com/privacy.\n\n- Brevo (Sendinblue SAS, Francia, Unión Europea): envía nuestros correos (correos de cuenta y, si los pediste, novedades) por cuenta nuestra, como encargado del tratamiento. Solo recibe tu dirección de correo y el contenido del mensaje.\n\nNo vendemos, alquilamos ni compartimos tus datos personales con ningún otro tercero con fines de marketing o comerciales."
       },
       "rights": {
         "title": "7. Tus derechos RGPD",
         "content": "Bajo el Reglamento General de Protección de Datos (RGPD), tienes los siguientes derechos:\n\n- Derecho de acceso (Artículo 15): Solicitar una copia de tus datos personales\n- Derecho de rectificación (Artículo 16): Solicitar la corrección de datos inexactos\n- Derecho de supresión (Artículo 17): Solicitar la eliminación de tus datos (\"derecho al olvido\")\n- Derecho a la limitación del tratamiento (Artículo 18): Solicitar la limitación del procesamiento de datos\n- Derecho a la portabilidad (Artículo 20): Recibir tus datos en un formato estructurado y legible por máquina\n- Derecho de oposición (Artículo 21): Oponerte al procesamiento de datos basado en intereses legítimos\n\nPara ejercer cualquiera de estos derechos, por favor contáctanos a través del formulario de contacto. Responderemos a tu solicitud en un plazo de 30 días."
+      },
+      "emails": {
+        "title": "9. Correos electrónicos",
+        "content": "Tu dirección de correo es obligatoria para crear una cuenta; se confirma con un enlace (válido 48 horas).\n\nCorreos de cuenta: la confirmación de tu dirección, el restablecimiento de la contraseña y los avisos de seguridad (cambio de dirección, verificación en dos pasos activada o quitada). Son necesarios para prestar el servicio y proteger tu cuenta (Artículo 6(1)(b) y (f)) y se envían sean cuales sean tus preferencias de novedades.\n\nLos despachos de Lordaeron (novedades): aperturas de reinos, parches, eventos y ofertas de la tienda. Solo con tu consentimiento (Artículo 6(1)(a)): la casilla está desmarcada al registrarte y puedes cambiar de opinión en cualquier momento desde tu cuenta o con el enlace de baja en un clic al final de cada correo de novedades. Solo se envían a una dirección confirmada.\n\nPrueba del consentimiento: conservamos la fecha, la versión del texto aceptado, dónde se dio (registro, cuenta, enlace de baja) y la dirección IP, mientras exista tu cuenta y 3 años después de una retirada.\n\nUn cambio de dirección solo se aplica cuando se abre el enlace enviado a la nueva dirección; se avisa a la anterior. Los enlaces de confirmación se guardan como huellas (hashes), caducan a las 24-48 horas y sirven una sola vez.\n\nNunca vendemos ni prestamos tu dirección."
+      },
+      "secondFactor": {
+        "title": "10. Verificación en dos pasos",
+        "content": "La verificación en dos pasos es opcional. Si la activas, guardamos el secreto de tu app de autenticación, usado solo para comprobar tus códigos en el juego y en la web, y el paso de tiempo del último código usado (para que un código no sirva dos veces). Los intentos de inicio de sesión fallidos (cuenta y dirección IP) se guardan 15 minutos para bloquear intentos de adivinanza.\n\nEl secreto se borra en cuanto quitas la protección. El registro de la recompensa Cachorro de can del Núcleo se conserva mientras exista tu cuenta, para que se entregue una sola vez."
       },
       "cookies": {
         "title": "8. Cookies",

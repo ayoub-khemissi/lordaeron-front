@@ -1,4 +1,47 @@
 {
+  "emailPrefs": {
+    "checkInbox": "Wysłaliśmy ci link do potwierdzenia adresu: otwórz go w swojej skrzynce odbiorczej.",
+    "consent": "Chcę otrzymywać wieści z Lordaeron: otwarcia nowych krain, patche, wydarzenia w grze i oferty sklepu, przed innymi.",
+    "consentHint": "Bez spamu: rezygnacja jednym kliknięciem w każdej chwili.",
+    "legal": "Zakładając konto, akceptujesz <terms>warunki korzystania</terms> i <privacy>politykę prywatności</privacy>.",
+    "emailTitle": "Adres e-mail",
+    "emailNone": "Twoje konto nie ma jeszcze adresu e-mail. Dodaj go: to jedyny sposób na odzyskanie konta, jeśli zapomnisz hasła.",
+    "emailVerified": "Potwierdzony",
+    "emailUnverified": "Niepotwierdzony",
+    "emailUnverifiedHint": "Potwierdź go linkiem, który ci wysłaliśmy. Nic nie dotarło?",
+    "resend": "Wyślij link ponownie",
+    "resent": "Link wysłany: sprawdź skrzynkę odbiorczą (i folder spam).",
+    "emailChange": "Zmień adres",
+    "emailAdd": "Dodaj mój adres",
+    "newEmail": "Nowy adres",
+    "send": "Wyślij link potwierdzający",
+    "cancel": "Anuluj",
+    "pending": "Oczekuje na potwierdzenie: {email}. Otwórz link wysłany na ten adres, aby zakończyć.",
+    "sentChange": "Link wysłany na {email}. Zmiana zostanie zastosowana po jego otwarciu.",
+    "errorEmailInvalid": "Podaj prawidłowy adres e-mail.",
+    "errorEmailSame": "To już jest twój adres.",
+    "errorRateLimited": "Odczekaj minutę, zanim poprosisz o nowy link.",
+    "errorServer": "Coś poszło nie tak. Spróbuj ponownie za chwilę.",
+    "newsTitle": "Wieści z Lordaeron",
+    "newsText": "Otwarcia krain, patche, wydarzenia w grze i oferty sklepu, wysyłane na twój potwierdzony adres.",
+    "newsOn": "Otrzymujesz je",
+    "newsOff": "Nie otrzymujesz ich",
+    "newsSince": "Od {date}",
+    "newsSubscribe": "Otrzymuj je",
+    "newsUnsubscribe": "Wypisz się",
+    "newsNeedsVerified": "Są wysyłane tylko na potwierdzony adres.",
+    "confirmTitle": "Twój adres e-mail",
+    "confirmWorking": "Potwierdzanie adresu…",
+    "confirmVerified": "Adres potwierdzony! Teraz zawsze odzyskasz swoje konto.",
+    "confirmChanged": "Twój nowy adres jest aktywny. Poprzedni został powiadomiony.",
+    "confirmInvalid": "Ten link jest nieprawidłowy, został już użyty lub wygasł. Poproś o nowy na stronie konta.",
+    "goAccount": "Przejdź do konta",
+    "unsubTitle": "Zrezygnować z wieści z Lordaeron?",
+    "unsubText": "Nie będziesz już otrzymywać wiadomości o nowościach. Wiadomości dotyczące konta (bezpieczeństwo, hasło) nadal będą przychodzić.",
+    "unsubButton": "Zrezygnuj z wieści",
+    "unsubDone": "Gotowe: nie będziesz już otrzymywać wieści. Możesz zapisać się ponownie na stronie konta w każdej chwili.",
+    "unsubInvalid": "Ten link rezygnacji jest nieprawidłowy."
+  },
   "nav": {
     "home": "Strona główna",
     "howTo": "Jak się połączyć",
@@ -829,7 +872,7 @@
   "rgpd": {
     "title": "Polityka prywatności (RODO)",
     "subtitle": "Jak zbieramy, wykorzystujemy i chronimy Twoje dane osobowe.",
-    "lastUpdated": "Ostatnia aktualizacja: luty 2026",
+    "lastUpdated": "Ostatnia aktualizacja: październik 2026",
     "sections": {
       "controller": {
         "title": "1. Administrator danych",
@@ -853,11 +896,19 @@
       },
       "thirdParties": {
         "title": "6. Strony trzecie",
-        "content": "Udostępniamy Twoje dane wyłącznie następującej stronie trzeciej:\n\n- Stripe (procesor płatności): Gdy dokonujesz zakupu, Twoje informacje płatnicze przetwarzane są bezpośrednio przez Stripe. Stripe posiada certyfikat PCI DSS Level 1 i działa jako niezależny administrator danych płatniczych. Zobacz politykę prywatności Stripe na stripe.com/privacy.\n\nNie sprzedajemy, nie wynajmujemy ani nie udostępniamy Twoich danych osobowych żadnym innym stronom trzecim w celach marketingowych lub komercyjnych."
+        "content": "Udostępniamy Twoje dane wyłącznie następującym stronom trzecim:\n\n- Stripe (procesor płatności): Gdy dokonujesz zakupu, Twoje informacje płatnicze przetwarzane są bezpośrednio przez Stripe. Stripe posiada certyfikat PCI DSS Level 1 i działa jako niezależny administrator danych płatniczych. Zobacz politykę prywatności Stripe na stripe.com/privacy.\n\n- Brevo (Sendinblue SAS, Francja, Unia Europejska): wysyła w naszym imieniu nasze wiadomości (wiadomości dotyczące konta oraz, jeśli o nie poprosisz, nowości) jako podmiot przetwarzający. Otrzymuje tylko twój adres e-mail i treść wiadomości.\n\nNie sprzedajemy, nie wynajmujemy ani nie udostępniamy Twoich danych osobowych żadnym innym stronom trzecim w celach marketingowych lub komercyjnych."
       },
       "rights": {
         "title": "7. Twoje prawa RODO",
         "content": "Na mocy Ogólnego rozporządzenia o ochronie danych (RODO) przysługują Ci następujące prawa:\n\n- Prawo dostępu (art. 15): Żądanie kopii swoich danych osobowych\n- Prawo do sprostowania (art. 16): Żądanie poprawienia nieprawidłowych danych\n- Prawo do usunięcia (art. 17): Żądanie usunięcia danych (\\\"prawo do bycia zapomnianym\\\")\n- Prawo do ograniczenia przetwarzania (art. 18): Żądanie ograniczenia przetwarzania danych\n- Prawo do przenoszenia danych (art. 20): Otrzymanie danych w ustrukturyzowanym, nadającym się do odczytu maszynowego formacie\n- Prawo do sprzeciwu (art. 21): Sprzeciw wobec przetwarzania danych na podstawie uzasadnionego interesu\n\nAby skorzystać z któregokolwiek z tych praw, prosimy o kontakt za pomocą formularza kontaktowego. Odpowiemy na Twoje żądanie w ciągu 30 dni."
+      },
+      "emails": {
+        "title": "9. Wiadomości e-mail",
+        "content": "Adres e-mail jest wymagany do założenia konta; jest potwierdzany linkiem (ważnym 48 godzin).\n\nWiadomości dotyczące konta: potwierdzenie adresu, reset hasła i powiadomienia o bezpieczeństwie (zmiana adresu, włączenie lub wyłączenie weryfikacji dwuetapowej). Są niezbędne do świadczenia usługi i ochrony konta (art. 6 ust. 1 lit. b i f) i są wysyłane niezależnie od ustawień nowości.\n\nWieści z Lordaeron (nowości): otwarcia krain, patche, wydarzenia i oferty sklepu. Tylko za twoją zgodą (art. 6 ust. 1 lit. a): pole nie jest zaznaczone przy rejestracji, a zdanie możesz zmienić w każdej chwili na stronie konta lub linkiem do rezygnacji jednym kliknięciem na dole każdej wiadomości z nowościami. Są wysyłane tylko na potwierdzony adres.\n\nDowód zgody: przechowujemy datę, wersję zaakceptowanego tekstu, miejsce jej udzielenia (rejestracja, strona konta, link rezygnacji) i adres IP przez cały okres istnienia konta i 3 lata po jej wycofaniu.\n\nZmiana adresu obowiązuje dopiero po otwarciu linku wysłanego na nowy adres; poprzedni adres jest powiadamiany. Linki potwierdzające są przechowywane jako skróty (hashe), wygasają po 24–48 godzinach i działają tylko raz.\n\nNigdy nie sprzedajemy ani nie udostępniamy twojego adresu."
+      },
+      "secondFactor": {
+        "title": "10. Weryfikacja dwuetapowa",
+        "content": "Weryfikacja dwuetapowa jest opcjonalna. Jeśli ją włączysz, przechowujemy sekret twojej aplikacji uwierzytelniającej, używany wyłącznie do sprawdzania kodów w grze i na stronie, oraz krok czasowy ostatnio użytego kodu (aby kod nie zadziałał dwa razy). Nieudane próby logowania (konto i adres IP) są przechowywane przez 15 minut, aby blokować zgadywanie.\n\nSekret jest usuwany, gdy tylko wyłączysz ochronę. Zapis nagrody Szczenię psa z Jądra jest przechowywany przez okres istnienia konta, aby została przyznana tylko raz."
       },
       "cookies": {
         "title": "8. Pliki cookie",

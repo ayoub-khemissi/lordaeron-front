@@ -1,4 +1,47 @@
 {
+  "emailPrefs": {
+    "checkInbox": "Wir haben dir einen Link zur Bestätigung deiner Adresse geschickt: Öffne ihn in deinem Posteingang.",
+    "consent": "Schickt mir die Depeschen von Lordaeron: neue Realm-Eröffnungen, Patches, Events im Spiel und Shop-Angebote, vor allen anderen.",
+    "consentHint": "Kein Spam: jederzeit mit einem Klick abbestellbar.",
+    "legal": "Mit der Erstellung eines Kontos akzeptierst du die <terms>Nutzungsbedingungen</terms> und die <privacy>Datenschutzerklärung</privacy>.",
+    "emailTitle": "E-Mail-Adresse",
+    "emailNone": "Dein Konto hat noch keine E-Mail-Adresse. Füge eine hinzu: Nur so kannst du dein Konto wiederherstellen, wenn du dein Passwort verlierst.",
+    "emailVerified": "Bestätigt",
+    "emailUnverified": "Nicht bestätigt",
+    "emailUnverifiedHint": "Bestätige sie mit dem Link, den wir dir geschickt haben. Nichts erhalten?",
+    "resend": "Link erneut senden",
+    "resent": "Link gesendet: Prüfe deinen Posteingang (und den Spam-Ordner).",
+    "emailChange": "Adresse ändern",
+    "emailAdd": "Adresse hinzufügen",
+    "newEmail": "Neue Adresse",
+    "send": "Bestätigungslink senden",
+    "cancel": "Abbrechen",
+    "pending": "Wartet auf Bestätigung: {email}. Öffne den Link, den wir an diese Adresse geschickt haben.",
+    "sentChange": "Link an {email} gesendet. Die Änderung wird wirksam, sobald du ihn öffnest.",
+    "errorEmailInvalid": "Gib eine gültige E-Mail-Adresse ein.",
+    "errorEmailSame": "Das ist bereits deine Adresse.",
+    "errorRateLimited": "Warte eine Minute, bevor du einen neuen Link anforderst.",
+    "errorServer": "Etwas ist schiefgelaufen. Versuche es gleich noch einmal.",
+    "newsTitle": "Die Depeschen von Lordaeron",
+    "newsText": "Realm-Eröffnungen, Patches, Events im Spiel und Shop-Angebote, an deine bestätigte Adresse.",
+    "newsOn": "Du erhältst sie",
+    "newsOff": "Du erhältst sie nicht",
+    "newsSince": "Seit {date}",
+    "newsSubscribe": "Erhalten",
+    "newsUnsubscribe": "Abbestellen",
+    "newsNeedsVerified": "Sie gehen nur an eine bestätigte Adresse.",
+    "confirmTitle": "Deine E-Mail-Adresse",
+    "confirmWorking": "Deine Adresse wird bestätigt…",
+    "confirmVerified": "Adresse bestätigt! Du kannst dein Konto jetzt jederzeit wiederherstellen.",
+    "confirmChanged": "Deine neue Adresse ist aktiv. Die alte wurde benachrichtigt.",
+    "confirmInvalid": "Dieser Link ist ungültig, bereits benutzt oder abgelaufen. Fordere auf deiner Kontoseite einen neuen an.",
+    "goAccount": "Zu meinem Konto",
+    "unsubTitle": "Die Depeschen von Lordaeron abbestellen?",
+    "unsubText": "Du erhältst keine Neuigkeiten-E-Mails mehr. E-Mails zu deinem Konto (Sicherheit, Passwort) kommen weiterhin.",
+    "unsubButton": "Depeschen abbestellen",
+    "unsubDone": "Erledigt: Du erhältst die Depeschen nicht mehr. Du kannst sie jederzeit auf deiner Kontoseite wieder bestellen.",
+    "unsubInvalid": "Dieser Abmeldelink ist ungültig."
+  },
   "nav": {
     "home": "Startseite",
     "howTo": "Verbindung",
@@ -829,7 +872,7 @@
   "rgpd": {
     "title": "Datenschutzrichtlinie (DSGVO)",
     "subtitle": "Wie wir Ihre persönlichen Daten erheben, verwenden und schützen.",
-    "lastUpdated": "Letzte Aktualisierung: Februar 2026",
+    "lastUpdated": "Letzte Aktualisierung: Oktober 2026",
     "sections": {
       "controller": {
         "title": "1. Verantwortlicher",
@@ -853,11 +896,19 @@
       },
       "thirdParties": {
         "title": "6. Dritte",
-        "content": "Wir teilen Ihre Daten nur mit folgendem Dritten:\n\n- Stripe (Zahlungsabwickler): Wenn Sie einen Kauf tätigen, werden Ihre Zahlungsinformationen direkt von Stripe verarbeitet. Stripe ist PCI DSS Level 1 zertifiziert und handelt als unabhängiger Verantwortlicher für Zahlungsdaten. Siehe die Datenschutzrichtlinie von Stripe unter stripe.com/privacy.\n\nWir verkaufen, vermieten oder teilen Ihre personenbezogenen Daten nicht mit anderen Dritten zu Marketing- oder kommerziellen Zwecken."
+        "content": "Wir teilen Ihre Daten nur mit folgenden Dritten:\n\n- Stripe (Zahlungsabwickler): Wenn Sie einen Kauf tätigen, werden Ihre Zahlungsinformationen direkt von Stripe verarbeitet. Stripe ist PCI DSS Level 1 zertifiziert und handelt als unabhängiger Verantwortlicher für Zahlungsdaten. Siehe die Datenschutzrichtlinie von Stripe unter stripe.com/privacy.\n\n- Brevo (Sendinblue SAS, Frankreich, Europäische Union): versendet in unserem Auftrag unsere E-Mails (Konto-E-Mails und, falls gewünscht, Neuigkeiten) als Auftragsverarbeiter. Es erhält nur deine E-Mail-Adresse und den Inhalt der Nachricht.\n\nWir verkaufen, vermieten oder teilen Ihre personenbezogenen Daten nicht mit anderen Dritten zu Marketing- oder kommerziellen Zwecken."
       },
       "rights": {
         "title": "7. Ihre DSGVO-Rechte",
         "content": "Nach der Datenschutz-Grundverordnung (DSGVO) haben Sie folgende Rechte:\n\n- Auskunftsrecht (Artikel 15): Eine Kopie Ihrer personenbezogenen Daten anfordern\n- Recht auf Berichtigung (Artikel 16): Korrektur unrichtiger Daten verlangen\n- Recht auf Löschung (Artikel 17): Löschung Ihrer Daten verlangen (\"Recht auf Vergessenwerden\")\n- Recht auf Einschränkung der Verarbeitung (Artikel 18): Einschränkung der Datenverarbeitung verlangen\n- Recht auf Datenübertragbarkeit (Artikel 20): Ihre Daten in einem strukturierten, maschinenlesbaren Format erhalten\n- Widerspruchsrecht (Artikel 21): Der Datenverarbeitung auf Grundlage berechtigter Interessen widersprechen\n\nUm eines dieser Rechte auszuüben, kontaktieren Sie uns bitte über das Kontaktformular. Wir werden Ihre Anfrage innerhalb von 30 Tagen beantworten."
+      },
+      "emails": {
+        "title": "9. E-Mails",
+        "content": "Deine E-Mail-Adresse ist für die Kontoerstellung erforderlich; sie wird per Link bestätigt (48 Stunden gültig).\n\nKonto-E-Mails: die Bestätigung deiner Adresse, das Zurücksetzen des Passworts und Sicherheitshinweise (Adressänderung, Zwei-Faktor-Authentifizierung aktiviert oder entfernt). Sie sind zur Erbringung des Dienstes und zum Schutz deines Kontos erforderlich (Artikel 6(1)(b) und (f)) und werden unabhängig von deinen Neuigkeiten-Einstellungen versendet.\n\nDie Depeschen von Lordaeron (Neuigkeiten): Realm-Eröffnungen, Patches, Events und Shop-Angebote. Nur mit deiner Einwilligung (Artikel 6(1)(a)): Das Kästchen ist bei der Registrierung nicht angekreuzt, und du kannst deine Wahl jederzeit auf deiner Kontoseite oder über den Ein-Klick-Abmeldelink am Ende jeder Neuigkeiten-E-Mail ändern. Sie gehen nur an eine bestätigte Adresse.\n\nNachweis der Einwilligung: Wir speichern Datum, Version des akzeptierten Textes, Ort der Erteilung (Registrierung, Kontoseite, Abmeldelink) und IP-Adresse, solange dein Konto besteht und 3 Jahre nach einem Widerruf.\n\nEine Adressänderung wird erst wirksam, wenn der an die neue Adresse gesendete Link geöffnet wird; die alte Adresse wird benachrichtigt. Bestätigungslinks werden als Fingerabdrücke (Hashes) gespeichert, laufen nach 24 bis 48 Stunden ab und funktionieren nur einmal.\n\nWir verkaufen oder verleihen deine Adresse niemals."
+      },
+      "secondFactor": {
+        "title": "10. Zwei-Faktor-Authentifizierung",
+        "content": "Die Zwei-Faktor-Authentifizierung ist freiwillig. Wenn du sie aktivierst, speichern wir das Geheimnis deiner Authenticator-App, das nur zur Prüfung deiner Codes im Spiel und auf der Website dient, sowie den Zeitschritt des zuletzt verwendeten Codes (damit ein Code nicht zweimal gilt). Fehlgeschlagene Anmeldeversuche (Konto und IP-Adresse) werden 15 Minuten gespeichert, um Rateversuche zu sperren.\n\nDas Geheimnis wird gelöscht, sobald du den Schutz entfernst. Die Vergabe der Belohnung Kernhundwelpe wird gespeichert, solange dein Konto besteht, damit sie nur einmal vergeben wird."
       },
       "cookies": {
         "title": "8. Cookies",

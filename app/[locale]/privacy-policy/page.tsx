@@ -16,6 +16,8 @@ const sectionKeys = [
   "thirdParties",
   "rights",
   "cookies",
+  "emails",
+  "secondFactor",
 ];
 
 export async function generateMetadata({

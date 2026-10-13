@@ -1,4 +1,47 @@
 {
+  "emailPrefs": {
+    "checkInbox": "Ti abbiamo inviato un link per confermare il tuo indirizzo: aprilo dalla tua casella di posta.",
+    "consent": "Voglio ricevere i dispacci di Lordaeron: aperture di reami, patch, eventi in gioco e offerte del negozio, in anteprima.",
+    "consentHint": "Niente spam: disiscrizione con un clic, in qualsiasi momento.",
+    "legal": "Creando un account accetti le <terms>condizioni d'uso</terms> e l'<privacy>informativa sulla privacy</privacy>.",
+    "emailTitle": "Indirizzo email",
+    "emailNone": "Il tuo account non ha ancora un indirizzo email. Aggiungine uno: è l'unico modo per recuperare l'account se perdi la password.",
+    "emailVerified": "Confermato",
+    "emailUnverified": "Non confermato",
+    "emailUnverifiedHint": "Confermalo con il link che ti abbiamo inviato. Non hai ricevuto nulla?",
+    "resend": "Invia di nuovo il link",
+    "resent": "Link inviato: controlla la posta in arrivo (e lo spam).",
+    "emailChange": "Cambia indirizzo",
+    "emailAdd": "Aggiungi il mio indirizzo",
+    "newEmail": "Nuovo indirizzo",
+    "send": "Invia il link di conferma",
+    "cancel": "Annulla",
+    "pending": "In attesa di conferma: {email}. Apri il link inviato a questo indirizzo per completare.",
+    "sentChange": "Link inviato a {email}. La modifica si applica quando lo apri.",
+    "errorEmailInvalid": "Inserisci un indirizzo email valido.",
+    "errorEmailSame": "È già il tuo indirizzo.",
+    "errorRateLimited": "Attendi un minuto prima di chiedere un nuovo link.",
+    "errorServer": "Qualcosa è andato storto. Riprova tra un momento.",
+    "newsTitle": "I dispacci di Lordaeron",
+    "newsText": "Aperture di reami, patch, eventi in gioco e offerte del negozio, inviati al tuo indirizzo confermato.",
+    "newsOn": "Li ricevi",
+    "newsOff": "Non li ricevi",
+    "newsSince": "Dal {date}",
+    "newsSubscribe": "Riceverli",
+    "newsUnsubscribe": "Non riceverli più",
+    "newsNeedsVerified": "Vengono inviati solo a un indirizzo confermato.",
+    "confirmTitle": "Il tuo indirizzo email",
+    "confirmWorking": "Conferma del tuo indirizzo…",
+    "confirmVerified": "Indirizzo confermato! Ora potrai sempre recuperare il tuo account.",
+    "confirmChanged": "Il tuo nuovo indirizzo è attivo. Il vecchio è stato avvisato.",
+    "confirmInvalid": "Questo link non è valido, è già stato usato o è scaduto. Chiedine uno nuovo dal tuo account.",
+    "goAccount": "Vai al mio account",
+    "unsubTitle": "Non ricevere più i dispacci di Lordaeron?",
+    "unsubText": "Non riceverai più le email sulle novità. Le email sul tuo account (sicurezza, password) continueranno ad arrivare.",
+    "unsubButton": "Non ricevere più i dispacci",
+    "unsubDone": "Fatto: non riceverai più i dispacci. Puoi iscriverti di nuovo dal tuo account in qualsiasi momento.",
+    "unsubInvalid": "Questo link di disiscrizione non è valido."
+  },
   "nav": {
     "home": "Home",
     "howTo": "Come connettersi",
@@ -829,7 +872,7 @@
   "rgpd": {
     "title": "Informativa sulla Privacy (GDPR)",
     "subtitle": "Come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali.",
-    "lastUpdated": "Ultimo aggiornamento: Febbraio 2026",
+    "lastUpdated": "Ultimo aggiornamento: ottobre 2026",
     "sections": {
       "controller": {
         "title": "1. Titolare del trattamento",
@@ -853,11 +896,19 @@
       },
       "thirdParties": {
         "title": "6. Terze parti",
-        "content": "Condividiamo i tuoi dati solo con la seguente terza parte:\n\n- Stripe (processore di pagamenti): Quando effettui un acquisto, le tue informazioni di pagamento vengono elaborate direttamente da Stripe. Stripe è certificato PCI DSS Livello 1 e agisce come titolare indipendente del trattamento per i dati di pagamento. Consulta l'informativa sulla privacy di Stripe su stripe.com/privacy.\n\nNon vendiamo, affittiamo né condividiamo i tuoi dati personali con altre terze parti per scopi di marketing o commerciali."
+        "content": "Condividiamo i tuoi dati solo con le seguenti terze parti:\n\n- Stripe (processore di pagamenti): Quando effettui un acquisto, le tue informazioni di pagamento vengono elaborate direttamente da Stripe. Stripe è certificato PCI DSS Livello 1 e agisce come titolare indipendente del trattamento per i dati di pagamento. Consulta l'informativa sulla privacy di Stripe su stripe.com/privacy.\n\n- Brevo (Sendinblue SAS, Francia, Unione europea): invia le nostre email (email dell'account e, se le hai richieste, novità) per nostro conto, come responsabile del trattamento. Riceve solo il tuo indirizzo email e il contenuto del messaggio.\n\nNon vendiamo, affittiamo né condividiamo i tuoi dati personali con altre terze parti per scopi di marketing o commerciali."
       },
       "rights": {
         "title": "7. I tuoi diritti GDPR",
         "content": "Ai sensi del Regolamento Generale sulla Protezione dei Dati (GDPR), hai i seguenti diritti:\n\n- Diritto di accesso (Articolo 15): Richiedere una copia dei tuoi dati personali\n- Diritto di rettifica (Articolo 16): Richiedere la correzione di dati inesatti\n- Diritto alla cancellazione (Articolo 17): Richiedere la cancellazione dei tuoi dati (\"diritto all'oblio\")\n- Diritto alla limitazione del trattamento (Articolo 18): Richiedere la limitazione del trattamento dei dati\n- Diritto alla portabilità (Articolo 20): Ricevere i tuoi dati in un formato strutturato e leggibile da macchina\n- Diritto di opposizione (Articolo 21): Opporsi al trattamento dei dati basato su interessi legittimi\n\nPer esercitare uno di questi diritti, contattaci tramite il modulo di contatto. Risponderemo alla tua richiesta entro 30 giorni."
+      },
+      "emails": {
+        "title": "9. Email",
+        "content": "Il tuo indirizzo email è obbligatorio per creare un account; viene confermato tramite un link (valido 48 ore).\n\nEmail dell'account: la conferma del tuo indirizzo, il ripristino della password e gli avvisi di sicurezza (cambio di indirizzo, verifica in due passaggi attivata o rimossa). Sono necessarie per fornire il servizio e proteggere il tuo account (Articolo 6(1)(b) e (f)) e vengono inviate indipendentemente dalle tue preferenze sulle novità.\n\nI dispacci di Lordaeron (novità): aperture di reami, patch, eventi e offerte del negozio. Solo con il tuo consenso (Articolo 6(1)(a)): la casella non è selezionata alla registrazione e puoi cambiare idea in qualsiasi momento dalla pagina del tuo account o con il link di disiscrizione con un clic in fondo a ogni email di novità. Vengono inviati solo a un indirizzo confermato.\n\nProva del consenso: conserviamo la data, la versione del testo accettato, dove è stato dato (registrazione, pagina dell'account, link di disiscrizione) e l'indirizzo IP, per tutta la durata dell'account e 3 anni dopo una revoca.\n\nUn cambio di indirizzo si applica solo quando viene aperto il link inviato al nuovo indirizzo; il vecchio indirizzo viene avvisato. I link di conferma sono conservati come impronte (hash), scadono dopo 24-48 ore e funzionano una sola volta.\n\nNon vendiamo né prestiamo mai il tuo indirizzo."
+      },
+      "secondFactor": {
+        "title": "10. Verifica in due passaggi",
+        "content": "La verifica in due passaggi è facoltativa. Se la attivi, conserviamo il segreto della tua app di autenticazione, usato solo per verificare i tuoi codici in gioco e sul sito, e il passo temporale dell'ultimo codice usato (perché un codice non valga due volte). I tentativi di accesso falliti (account e indirizzo IP) sono conservati 15 minuti per bloccare i tentativi a caso.\n\nIl segreto viene eliminato appena rimuovi la protezione. La registrazione della ricompensa Cucciolo di segugio del Nucleo è conservata per la durata dell'account, perché venga data una sola volta."
       },
       "cookies": {
         "title": "8. Cookie",

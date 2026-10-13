@@ -14,7 +14,10 @@ import { RewardBanner } from "@/components/second-factor-form";
 
 export const RegisterForm = () => {
   const t = useTranslations("register");
+  const tPrefs = useTranslations("emailPrefs");
   const locale = useLocale();
+  // the news consent (Ayoub, 13/10/2026): unchecked until the player ticks it (GDPR), logged with the text's version server-side
+  const [newsConsent, setNewsConsent] = useState(false);
   // the realm this signup is for (?realm=, or the realm page the visitor came from): its name, its colors, its how-to as the next step
   const signupRealm = useSignupRealm();
   const realm = REALMS[signupRealm ?? DEFAULT_REALM];
@@ -98,6 +101,8 @@ export const RegisterForm = () => {
           username: form.username,
           email: form.email,
           password: form.password,
+          newsConsent,
+          locale,
         }),
       });
 
@@ -131,7 +136,8 @@ export const RegisterForm = () => {
         initial={{ opacity: 0, scale: 0.95 }}
       >
         <div className="text-5xl mb-4">&#9989;</div>
-        <p className="text-green-400 text-lg mb-6">{t("success")}</p>
+        <p className="text-green-400 text-lg mb-2">{t("success")}</p>
+        <p className="mb-6 text-sm text-gray-400">{tPrefs("checkInbox")}</p>
         {!protectSkipped && (
           <div className="mb-6 flex flex-col gap-3 rounded-xl border border-wow-gold/30 bg-wow-gold/5 p-4 text-left">
             <p className="font-heading text-lg text-wow-gold-light">
@@ -279,6 +285,48 @@ export const RegisterForm = () => {
                 setForm({ ...form, confirmPassword: e.target.value })
               }
             />
+
+            {/* the news, unchecked by default; the terms and the privacy policy the signup accepts */}
+            <label
+              className="flex cursor-pointer items-start gap-3 rounded-xl border border-wow-blue-ice/15 bg-wow-blue-ice/[0.04] p-3 transition-colors hover:border-wow-blue-ice/35"
+              htmlFor="register-news"
+            >
+              <input
+                checked={newsConsent}
+                className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-[#d9a845]"
+                id="register-news"
+                type="checkbox"
+                onChange={(e) => setNewsConsent(e.target.checked)}
+              />
+              <span className="text-sm leading-snug text-gray-300">
+                {tPrefs("consent")}
+                <span className="mt-1 block text-xs text-gray-500">
+                  {tPrefs("consentHint")}
+                </span>
+              </span>
+            </label>
+            <p className="text-center text-xs leading-relaxed text-gray-500">
+              {tPrefs.rich("legal", {
+                terms: (chunks) => (
+                  <NextLink
+                    className="text-wow-blue hover:text-wow-blue-ice hover:underline"
+                    href={`/${locale}/terms-of-use`}
+                    target="_blank"
+                  >
+                    {chunks}
+                  </NextLink>
+                ),
+                privacy: (chunks) => (
+                  <NextLink
+                    className="text-wow-blue hover:text-wow-blue-ice hover:underline"
+                    href={`/${locale}/privacy-policy`}
+                    target="_blank"
+                  >
+                    {chunks}
+                  </NextLink>
+                ),
+              })}
+            </p>
 
             {errors.server && (
               <p className="text-danger text-sm text-center">{errors.server}</p>

@@ -1,4 +1,47 @@
 {
+  "emailPrefs": {
+    "checkInbox": "Nous vous avons envoyé un lien pour confirmer votre adresse : ouvrez-le depuis votre boîte de réception.",
+    "consent": "Je veux recevoir les missives de Lordaeron : ouvertures de royaumes, patchs, événements en jeu et offres de la boutique, en avant-première.",
+    "consentHint": "Pas de spam : désinscription en un clic, à tout moment.",
+    "legal": "En créant un compte, vous acceptez les <terms>conditions d'utilisation</terms> et la <privacy>politique de confidentialité</privacy>.",
+    "emailTitle": "Adresse e-mail",
+    "emailNone": "Votre compte n'a pas encore d'adresse e-mail. Ajoutez-en une : c'est le seul moyen de récupérer votre compte si vous perdez votre mot de passe.",
+    "emailVerified": "Confirmée",
+    "emailUnverified": "Non confirmée",
+    "emailUnverifiedHint": "Confirmez-la avec le lien que nous vous avons envoyé. Rien reçu ?",
+    "resend": "Renvoyer le lien",
+    "resent": "Lien envoyé : vérifiez votre boîte de réception (et les spams).",
+    "emailChange": "Changer d'adresse",
+    "emailAdd": "Ajouter mon adresse",
+    "newEmail": "Nouvelle adresse",
+    "send": "Envoyer le lien de confirmation",
+    "cancel": "Annuler",
+    "pending": "En attente de confirmation : {email}. Ouvrez le lien envoyé à cette adresse pour terminer.",
+    "sentChange": "Lien envoyé à {email}. Le changement s'appliquera dès que vous l'ouvrirez.",
+    "errorEmailInvalid": "Saisissez une adresse e-mail valide.",
+    "errorEmailSame": "C'est déjà votre adresse.",
+    "errorRateLimited": "Patientez une minute avant de demander un nouveau lien.",
+    "errorServer": "Une erreur est survenue. Réessayez dans un instant.",
+    "newsTitle": "Les missives de Lordaeron",
+    "newsText": "Ouvertures de royaumes, patchs, événements en jeu et offres de la boutique, envoyés à votre adresse confirmée.",
+    "newsOn": "Vous les recevez",
+    "newsOff": "Vous ne les recevez pas",
+    "newsSince": "Depuis le {date}",
+    "newsSubscribe": "Les recevoir",
+    "newsUnsubscribe": "Ne plus les recevoir",
+    "newsNeedsVerified": "Elles ne partent que vers une adresse confirmée.",
+    "confirmTitle": "Votre adresse e-mail",
+    "confirmWorking": "Confirmation de votre adresse…",
+    "confirmVerified": "Adresse confirmée ! Vous pourrez toujours récupérer votre compte.",
+    "confirmChanged": "Votre nouvelle adresse est en place. L'ancienne a été prévenue.",
+    "confirmInvalid": "Ce lien est invalide, déjà utilisé ou expiré. Demandez-en un nouveau depuis votre compte.",
+    "goAccount": "Aller à mon compte",
+    "unsubTitle": "Ne plus recevoir les missives de Lordaeron ?",
+    "unsubText": "Vous ne recevrez plus les e-mails de nouveautés. Les e-mails liés à votre compte (sécurité, mot de passe) continuent d'arriver.",
+    "unsubButton": "Ne plus recevoir les missives",
+    "unsubDone": "C'est fait : vous ne recevrez plus les missives. Vous pouvez vous réabonner à tout moment depuis votre compte.",
+    "unsubInvalid": "Ce lien de désinscription est invalide."
+  },
   "nav": {
     "home": "Accueil",
     "howTo": "Comment se connecter",
@@ -829,7 +872,7 @@
   "rgpd": {
     "title": "Politique de Confidentialité (RGPD)",
     "subtitle": "Comment nous collectons, utilisons et protégeons vos données personnelles.",
-    "lastUpdated": "Dernière mise à jour : Février 2026",
+    "lastUpdated": "Dernière mise à jour : octobre 2026",
     "sections": {
       "controller": {
         "title": "1. Responsable du traitement",
@@ -853,11 +896,19 @@
       },
       "thirdParties": {
         "title": "6. Tiers",
-        "content": "Nous partageons vos données uniquement avec le tiers suivant :\n\n- Stripe (processeur de paiement) : Lorsque vous effectuez un achat, vos informations de paiement sont traitées directement par Stripe. Stripe est certifié PCI DSS Niveau 1 et agit en tant que responsable de traitement indépendant pour les données de paiement. Consultez la politique de confidentialité de Stripe sur stripe.com/privacy.\n\nNous ne vendons, ne louons ni ne partageons vos données personnelles avec d'autres tiers à des fins marketing ou commerciales."
+        "content": "Nous partageons vos données uniquement avec les tiers suivants :\n\n- Stripe (processeur de paiement) : Lorsque vous effectuez un achat, vos informations de paiement sont traitées directement par Stripe. Stripe est certifié PCI DSS Niveau 1 et agit en tant que responsable de traitement indépendant pour les données de paiement. Consultez la politique de confidentialité de Stripe sur stripe.com/privacy.\n\n- Brevo (Sendinblue SAS, France, Union européenne) : envoie nos e-mails (e-mails de compte et, si vous les avez demandées, nouveautés) pour notre compte, en tant que sous-traitant. Il ne reçoit que votre adresse e-mail et le contenu du message.\n\nNous ne vendons, ne louons ni ne partageons vos données personnelles avec d'autres tiers à des fins marketing ou commerciales."
       },
       "rights": {
         "title": "7. Vos droits RGPD",
         "content": "En vertu du Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants :\n\n- Droit d'accès (Article 15) : Demander une copie de vos données personnelles\n- Droit de rectification (Article 16) : Demander la correction de données inexactes\n- Droit à l'effacement (Article 17) : Demander la suppression de vos données (« droit à l'oubli »)\n- Droit à la limitation du traitement (Article 18) : Demander la limitation du traitement des données\n- Droit à la portabilité (Article 20) : Recevoir vos données dans un format structuré et lisible par machine\n- Droit d'opposition (Article 21) : S'opposer au traitement des données fondé sur l'intérêt légitime\n\nPour exercer l'un de ces droits, veuillez nous contacter via le formulaire de contact. Nous répondrons à votre demande dans les 30 jours."
+      },
+      "emails": {
+        "title": "9. E-mails",
+        "content": "Votre adresse e-mail est obligatoire pour créer un compte ; elle est confirmée par un lien (valable 48 heures).\n\nE-mails de compte : la confirmation de votre adresse, la réinitialisation du mot de passe et les alertes de sécurité (changement d'adresse, double authentification activée ou retirée). Ils sont nécessaires pour fournir le service et protéger votre compte (Article 6(1)(b) et (f)) et sont envoyés quelles que soient vos préférences de nouveautés.\n\nLes missives de Lordaeron (nouveautés) : ouvertures de royaumes, patchs, événements et offres de la boutique. Uniquement avec votre consentement (Article 6(1)(a)) : la case est décochée à l'inscription, et vous pouvez changer d'avis à tout moment depuis votre espace compte ou avec le lien de désinscription en un clic présent en bas de chaque e-mail de nouveautés. Elles ne partent que vers une adresse confirmée.\n\nPreuve du consentement : nous conservons la date, la version du texte accepté, l'endroit où il a été donné (inscription, espace compte, lien de désinscription) et l'adresse IP, pendant toute la durée de vie du compte et 3 ans après un retrait.\n\nUn changement d'adresse ne s'applique qu'une fois ouvert le lien envoyé à la nouvelle adresse ; l'ancienne adresse est prévenue. Les liens de confirmation sont conservés sous forme d'empreintes (hachages), expirent au bout de 24 à 48 heures et ne servent qu'une fois.\n\nNous ne vendons ni ne prêtons jamais votre adresse."
+      },
+      "secondFactor": {
+        "title": "10. Double authentification",
+        "content": "La double authentification est facultative. Si vous l'activez, nous conservons le secret de votre application d'authentification, utilisé uniquement pour vérifier vos codes en jeu et sur le site, ainsi que le pas de temps du dernier code utilisé (pour qu'un code ne serve pas deux fois). Les tentatives de connexion échouées (compte et adresse IP) sont conservées 15 minutes pour bloquer les tentatives de devinette.\n\nLe secret est supprimé dès que vous retirez la protection. L'attribution de la récompense Chiot du magma est conservée pendant la durée de vie du compte, pour qu'elle ne soit donnée qu'une fois."
       },
       "cookies": {
         "title": "8. Cookies",

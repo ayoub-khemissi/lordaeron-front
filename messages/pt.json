@@ -1,4 +1,47 @@
 {
+  "emailPrefs": {
+    "checkInbox": "Enviámos-te um link para confirmares o teu endereço: abre-o na tua caixa de entrada.",
+    "consent": "Quero receber os despachos de Lordaeron: aberturas de reinos, patches, eventos no jogo e ofertas da loja, em primeira mão.",
+    "consentHint": "Sem spam: cancela com um clique, a qualquer momento.",
+    "legal": "Ao criares uma conta, aceitas os <terms>termos de utilização</terms> e a <privacy>política de privacidade</privacy>.",
+    "emailTitle": "Endereço de e-mail",
+    "emailNone": "A tua conta ainda não tem endereço de e-mail. Adiciona um: é a única forma de recuperar a conta se perderes a palavra-passe.",
+    "emailVerified": "Confirmado",
+    "emailUnverified": "Por confirmar",
+    "emailUnverifiedHint": "Confirma-o com o link que te enviámos. Não recebeste nada?",
+    "resend": "Reenviar o link",
+    "resent": "Link enviado: verifica a caixa de entrada (e o spam).",
+    "emailChange": "Mudar de endereço",
+    "emailAdd": "Adicionar o meu endereço",
+    "newEmail": "Novo endereço",
+    "send": "Enviar o link de confirmação",
+    "cancel": "Cancelar",
+    "pending": "A aguardar confirmação: {email}. Abre o link enviado para este endereço para terminar.",
+    "sentChange": "Link enviado para {email}. A alteração aplica-se quando o abrires.",
+    "errorEmailInvalid": "Introduz um endereço de e-mail válido.",
+    "errorEmailSame": "Já é o teu endereço.",
+    "errorRateLimited": "Espera um minuto antes de pedires um novo link.",
+    "errorServer": "Algo correu mal. Tenta de novo daqui a pouco.",
+    "newsTitle": "Os despachos de Lordaeron",
+    "newsText": "Aberturas de reinos, patches, eventos no jogo e ofertas da loja, enviados para o teu endereço confirmado.",
+    "newsOn": "Recebes-os",
+    "newsOff": "Não os recebes",
+    "newsSince": "Desde {date}",
+    "newsSubscribe": "Recebê-los",
+    "newsUnsubscribe": "Deixar de os receber",
+    "newsNeedsVerified": "Só são enviados para um endereço confirmado.",
+    "confirmTitle": "O teu endereço de e-mail",
+    "confirmWorking": "A confirmar o teu endereço…",
+    "confirmVerified": "Endereço confirmado! Agora podes sempre recuperar a tua conta.",
+    "confirmChanged": "O teu novo endereço está ativo. O anterior foi avisado.",
+    "confirmInvalid": "Este link é inválido, já foi usado ou expirou. Pede um novo na tua conta.",
+    "goAccount": "Ir para a minha conta",
+    "unsubTitle": "Deixar de receber os despachos de Lordaeron?",
+    "unsubText": "Deixarás de receber e-mails de novidades. Os e-mails sobre a tua conta (segurança, palavra-passe) continuam a chegar.",
+    "unsubButton": "Deixar de receber os despachos",
+    "unsubDone": "Feito: deixas de receber os despachos. Podes voltar a subscrever na tua conta a qualquer momento.",
+    "unsubInvalid": "Este link de cancelamento é inválido."
+  },
   "nav": {
     "home": "Inicio",
     "howTo": "Como Conectar",
@@ -829,7 +872,7 @@
   "rgpd": {
     "title": "Politica de Privacidade (RGPD)",
     "subtitle": "Como recolhemos, utilizamos e protegemos os teus dados pessoais.",
-    "lastUpdated": "Ultima atualizacao: fevereiro de 2026",
+    "lastUpdated": "Última atualização: outubro de 2026",
     "sections": {
       "controller": {
         "title": "1. Responsavel pelo Tratamento de Dados",
@@ -853,11 +896,19 @@
       },
       "thirdParties": {
         "title": "6. Terceiros",
-        "content": "Partilhamos os teus dados apenas com o seguinte terceiro:\n\n- Stripe (processador de pagamentos): Quando efetuares uma compra, as tuas informacoes de pagamento sao processadas diretamente pelo Stripe. O Stripe e certificado PCI DSS Nivel 1 e atua como responsavel independente pelo tratamento de dados de pagamento. Consulta a politica de privacidade do Stripe em stripe.com/privacy.\n\nNao vendemos, alugamos nem partilhamos os teus dados pessoais com quaisquer outros terceiros para fins de marketing ou comerciais."
+        "content": "Partilhamos os teus dados apenas com os seguintes terceiros:\n\n- Stripe (processador de pagamentos): Quando efetuares uma compra, as tuas informacoes de pagamento sao processadas diretamente pelo Stripe. O Stripe e certificado PCI DSS Nivel 1 e atua como responsavel independente pelo tratamento de dados de pagamento. Consulta a politica de privacidade do Stripe em stripe.com/privacy.\n\n- Brevo (Sendinblue SAS, França, União Europeia): envia os nossos e-mails (e-mails de conta e, se os pediste, novidades) em nosso nome, como subcontratante. Recebe apenas o teu endereço de e-mail e o conteúdo da mensagem.\n\nNao vendemos, alugamos nem partilhamos os teus dados pessoais com quaisquer outros terceiros para fins de marketing ou comerciais."
       },
       "rights": {
         "title": "7. Os Teus Direitos ao Abrigo do RGPD",
         "content": "Ao abrigo do Regulamento Geral sobre a Protecao de Dados (RGPD), tens os seguintes direitos:\n\n- Direito de acesso (Artigo 15.o): Solicitar uma copia dos teus dados pessoais\n- Direito de retificacao (Artigo 16.o): Solicitar a correcao de dados inexatos\n- Direito ao apagamento (Artigo 17.o): Solicitar a eliminacao dos teus dados (\"direito a ser esquecido\")\n- Direito a limitacao do tratamento (Artigo 18.o): Solicitar a limitacao do tratamento de dados\n- Direito a portabilidade dos dados (Artigo 20.o): Receber os teus dados num formato estruturado e de leitura mecanica\n- Direito de oposicao (Artigo 21.o): Opor-te ao tratamento de dados baseado em interesses legitimos\n\nPara exercer qualquer destes direitos, contacta-nos atraves do formulario de contacto. Responderemos ao teu pedido no prazo de 30 dias."
+      },
+      "emails": {
+        "title": "9. E-mails",
+        "content": "O teu endereço de e-mail é obrigatório para criar uma conta; é confirmado através de um link (válido 48 horas).\n\nE-mails de conta: a confirmação do teu endereço, a redefinição da palavra-passe e os avisos de segurança (mudança de endereço, verificação em dois passos ativada ou removida). São necessários para prestar o serviço e proteger a tua conta (Artigo 6(1)(b) e (f)) e são enviados independentemente das tuas preferências de novidades.\n\nOs despachos de Lordaeron (novidades): aberturas de reinos, patches, eventos e ofertas da loja. Apenas com o teu consentimento (Artigo 6(1)(a)): a caixa não está marcada no registo e podes mudar de ideias a qualquer momento na tua conta ou com o link de cancelamento num clique no fim de cada e-mail de novidades. Só são enviados para um endereço confirmado.\n\nProva do consentimento: guardamos a data, a versão do texto aceite, onde foi dado (registo, conta, link de cancelamento) e o endereço IP, enquanto a conta existir e 3 anos após uma retirada.\n\nUma mudança de endereço só se aplica quando o link enviado para o novo endereço é aberto; o endereço anterior é avisado. Os links de confirmação são guardados como impressões (hashes), expiram ao fim de 24 a 48 horas e funcionam uma vez.\n\nNunca vendemos nem emprestamos o teu endereço."
+      },
+      "secondFactor": {
+        "title": "10. Verificação em dois passos",
+        "content": "A verificação em dois passos é opcional. Se a ativares, guardamos o segredo da tua app de autenticação, usado apenas para verificar os teus códigos no jogo e no site, e o intervalo de tempo do último código usado (para que um código não sirva duas vezes). As tentativas de início de sessão falhadas (conta e endereço IP) são guardadas 15 minutos para bloquear adivinhações.\n\nO segredo é apagado assim que removes a proteção. O registo da recompensa Cria de Cão-magma é guardado enquanto a conta existir, para ser dada uma só vez."
       },
       "cookies": {
         "title": "8. Cookies",

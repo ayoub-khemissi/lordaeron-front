@@ -7,13 +7,23 @@ import {
   countRecentRegistrations,
   recordRegistration,
 } from "@/lib/queries/account";
+import {
+  ensurePreferences,
+  normalizeEmail,
+  sendVerification,
+  setNewsConsent,
+} from "@/lib/account-email";
 
 // at most this many accounts per IP per 24 hours (nginx sets X-Real-IP to the visitor's address)
 const MAX_ACCOUNTS_PER_IP = 3;
 
 export async function POST(request: NextRequest) {
   try {
-    const { username, email, password } = await request.json();
+    const body = await request.json();
+    const { username, password } = body;
+    // the address is required (Ayoub, 13/10/2026): confirmed by the welcome e-mail's link
+    const email = normalizeEmail(body.email);
+    const locale = typeof body.locale === "string" ? body.locale : "en";
 
     // Validation
     if (!username || typeof username !== "string") {
@@ -28,7 +38,7 @@ export async function POST(request: NextRequest) {
         { status: 400 },
       );
     }
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (!email) {
       return NextResponse.json({ error: "emailInvalid" }, { status: 400 });
     }
     if (!password || password.length < 6 || password.length > 16) {
@@ -59,6 +69,13 @@ export async function POST(request: NextRequest) {
     const accountId = await createAccount(username, email, salt, verifier);
 
     await recordRegistration(accountId, ip);
+    // the language of its e-mails, the news consent as ticked (unchecked by default, logged), the welcome with its link
+    await ensurePreferences(accountId, locale);
+    if (body.newsConsent === true)
+      await setNewsConsent(accountId, true, "signup", ip);
+    await sendVerification(accountId, locale).catch((error) =>
+      console.error("Welcome e-mail:", error),
+    );
 
     return NextResponse.json({ success: true, accountId }, { status: 201 });
   } catch (error) {
