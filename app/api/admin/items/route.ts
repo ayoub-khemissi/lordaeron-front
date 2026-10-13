@@ -2,7 +2,7 @@ import type { ShopCategory } from "@/types";
 
 import { NextRequest, NextResponse } from "next/server";
 
-import { verifyAdminSession } from "@/lib/admin-auth";
+import { verifyAdminSession, adminUnauthorized } from "@/lib/admin-auth";
 import { getShopItems, createShopItem } from "@/lib/queries/shop-items";
 import { createAuditLog } from "@/lib/queries/shop-stats";
 
@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
     const session = await verifyAdminSession();
 
     if (!session) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+      return adminUnauthorized();
     }
 
     const { searchParams } = new URL(request.url);
@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     const session = await verifyAdminSession();
 
     if (!session) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+      return adminUnauthorized();
     }
 
     const body = await request.json();

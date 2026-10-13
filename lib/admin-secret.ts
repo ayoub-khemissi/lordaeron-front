@@ -7,12 +7,13 @@ export const adminSecret = new TextEncoder().encode(
 
 export const ADMIN_SESSION_COOKIE = "lordaeron_admin_session";
 
+// an administrator's session with its second factor verified (lib/admin-auth.ts verifyAdminSession)
 export async function isAdminToken(token: string | undefined) {
   if (!token) return false;
   try {
-    await jwtVerify(token, adminSecret);
+    const { payload } = await jwtVerify(token, adminSecret);
 
-    return true;
+    return payload.mfa === true;
   } catch {
     return false;
   }

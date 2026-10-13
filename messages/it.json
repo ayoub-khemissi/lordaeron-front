@@ -107,8 +107,13 @@
       "usernameRequired": "Il nome utente è obbligatorio",
       "passwordRequired": "La password è obbligatoria",
       "invalidCredentials": "Nome utente o password non validi",
-      "serverError": "Errore del server. Riprova."
-    }
+      "serverError": "Errore del server. Riprova.",
+      "totpInvalid": "Codice di autenticazione non valido.",
+      "tooManyAttempts": "Troppi tentativi falliti su questo account. Attendi 15 minuti e riprova.",
+      "tooManyAttemptsIp": "Troppi tentativi falliti dalla tua connessione. Attendi 15 minuti e riprova."
+    },
+    "code": "Codice di autenticazione",
+    "codeHint": "Il tuo account è protetto: inserisci il codice a 6 cifre dell'app di autenticazione."
   },
   "forgotPassword": {
     "title": "Password dimenticata",
@@ -479,7 +484,8 @@
       "username": "Nome utente",
       "password": "Password",
       "submit": "Accedi",
-      "error": "Credenziali non valide"
+      "error": "Credenziali non valide",
+      "locked": "Troppi tentativi falliti. Attendi 15 minuti."
     },
     "nav": {
       "dashboard": "Dashboard",
@@ -1135,5 +1141,38 @@
     "yourTime": "La tua ora locale: {time}",
     "live": "Il reame è aperto!",
     "openPlay": "Aperto — Gioca ora"
+  },
+  "secondFactor": {
+    "title": "Verifica in due passaggi",
+    "eyebrowAdmin": "Amministrazione",
+    "eyebrowAccount": "Account da game master",
+    "loading": "Preparazione dell'autenticatore…",
+    "retry": "Riprova",
+    "back": "Torna al mio account",
+    "accountDone": "Il tuo account di gioco è protetto. Il gioco ora chiede il codice dell'autenticatore a ogni accesso, su tutti i reami, così come l'accesso a questo sito.",
+    "enrolIntroAdmin": "L'amministrazione si apre solo dopo un secondo passaggio: un codice di un'app di autenticazione sul tuo telefono (Google Authenticator, Microsoft Authenticator, Aegis, 1Password…).",
+    "enrolIntroAccount": "Proteggi il tuo account da game master con un'app di autenticazione sul telefono (Google Authenticator, Microsoft Authenticator, Aegis, 1Password…).",
+    "gameWarning": "Una volta confermato, il client di gioco chiede questo codice a ogni accesso su Lordaeron e Rimeheart (il campo sotto la password), così come l'accesso a questo sito. Senza il telefono non potrai accedere finché un amministratore non rimuove la protezione.",
+    "gameWarningConfirm": "Ho capito: gli accessi al gioco chiederanno questo codice.",
+    "stepScan": "1. Scansiona questo codice QR con l'app",
+    "qrAlt": "Codice QR per l'app di autenticazione",
+    "secretLabel": "Oppure inserisci questa chiave a mano",
+    "stepCode": "2. Inserisci il codice a 6 cifre mostrato",
+    "verifyIntro": "Inserisci il codice a 6 cifre mostrato dall'app di autenticazione.",
+    "codeLabel": "Codice",
+    "codeHint": "Il codice cambia ogni 30 secondi.",
+    "submitEnrol": "Conferma e attiva",
+    "submit": "Verifica",
+    "lostPhone": "Hai perso il telefono? Chiedi all'amministratore tecnico del server di reimpostare il secondo fattore.",
+    "cardIntro": "Account da game master: proteggilo con un'app di autenticazione. Il gioco e questo sito chiederanno il suo codice a ogni accesso.",
+    "cardEnrolled": "Account da game master protetto da un'app di autenticazione: il gioco e questo sito chiedono il suo codice a ogni accesso.",
+    "cardAction": "Proteggi il mio account",
+    "errors": {
+      "setupFailed": "Impossibile preparare il secondo passaggio. Riprova.",
+      "invalidCode": "Codice non valido. Inserisci il codice attuale (ogni codice vale una sola volta).",
+      "tooManyAttempts": "Troppi tentativi falliti. Attendi 15 minuti e riprova.",
+      "tooManyAttemptsIp": "Troppi tentativi falliti dalla tua connessione. Attendi 15 minuti e riprova.",
+      "serverError": "Errore del server. Riprova."
+    }
   }
 }

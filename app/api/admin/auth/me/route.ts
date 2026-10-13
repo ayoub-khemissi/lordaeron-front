@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 
 import {
   getAdminPreviewCookieOptions,
-  verifyAdminSession,
+  readAdminSession,
 } from "@/lib/admin-auth";
 import { findAdminById } from "@/lib/queries/shop-admin";
 
@@ -11,13 +11,17 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    const session = await verifyAdminSession();
+    const session = await readAdminSession();
 
-    // the pages' hint of the administrators' view, in step with the session
-    (await cookies()).set(getAdminPreviewCookieOptions(!!session));
+    // the pages' hint of the administrators' view, in step with the session (and its second factor)
+    (await cookies()).set(getAdminPreviewCookieOptions(!!session?.mfa));
 
     if (!session) {
       return NextResponse.json({ admin: null });
+    }
+    // signed in, waiting for the second factor: the admin space opens the second-factor screen
+    if (!session.mfa) {
+      return NextResponse.json({ admin: null, mfaRequired: true });
     }
 
     const admin = await findAdminById(session.id);

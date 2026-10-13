@@ -11,6 +11,13 @@ import {
   findAdminByUsername,
   updateAdminLastLogin,
 } from "@/lib/queries/shop-admin";
+import {
+  clearFailures,
+  isEnrolled,
+  lockedOut,
+  recordFailure,
+  requestIp,
+} from "@/lib/second-factor";
 
 export async function POST(request: NextRequest) {
   try {
@@ -23,28 +30,38 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // 5 failures of one name or 20 of one IP in 15 minutes lock the sign-in (lib/second-factor.ts)
+    const ip = requestIp(request.headers);
+    const subject = `admin-login:${String(username).toLowerCase()}`;
+    const locked = await lockedOut(subject, ip);
+
+    if (locked) {
+      return NextResponse.json(
+        { error: locked === "ip" ? "tooManyAttemptsIp" : "tooManyAttempts" },
+        { status: 429 },
+      );
+    }
+
     const admin = await findAdminByUsername(username);
+    const valid =
+      !!admin && (await bcrypt.compare(password, admin.password_hash));
 
-    if (!admin) {
+    if (!admin || !valid) {
+      await recordFailure(subject, ip);
+
       return NextResponse.json(
         { error: "invalidCredentials" },
         { status: 401 },
       );
     }
+    await clearFailures(subject);
 
-    const valid = await bcrypt.compare(password, admin.password_hash);
-
-    if (!valid) {
-      return NextResponse.json(
-        { error: "invalidCredentials" },
-        { status: 401 },
-      );
-    }
-
+    // the session carries no admin rights until the second factor is verified (/verification-2fa)
     const token = await createAdminSession({
       id: admin.id,
       username: admin.username,
       role: admin.role,
+      mfa: false,
     });
 
     await updateAdminLastLogin(admin.id);
@@ -52,10 +69,12 @@ export async function POST(request: NextRequest) {
     const cookieStore = await cookies();
 
     cookieStore.set(getAdminSessionCookieOptions(token));
-    cookieStore.set(getAdminPreviewCookieOptions(true));
+    cookieStore.set(getAdminPreviewCookieOptions(false));
 
     return NextResponse.json({
       success: true,
+      // the next screen: enrol an authenticator app, or type its code
+      mfa: (await isEnrolled("admin", admin.id)) ? "verify" : "enrol",
       admin: {
         id: admin.id,
         username: admin.username,

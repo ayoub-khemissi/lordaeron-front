@@ -32,13 +32,22 @@ export default function AdminLoginPage() {
       });
 
       if (!res.ok) {
-        setError(t("error"));
+        const data = await res.json().catch(() => ({}));
+
+        setError(
+          data.error === "tooManyAttempts" || data.error === "tooManyAttemptsIp"
+            ? t("locked")
+            : t("error"),
+        );
 
         return;
       }
 
       await refresh();
-      router.push(`/${locale}/admin`);
+      // the admin rights wait for the second factor (enrolment or code)
+      router.push(
+        `/${locale}/verification-2fa?next=${encodeURIComponent(`/${locale}/admin`)}`,
+      );
     } catch {
       setError(t("error"));
     } finally {

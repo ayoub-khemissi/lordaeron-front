@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { verifyAdminSession } from "@/lib/admin-auth";
+import { verifyAdminSession, adminUnauthorized } from "@/lib/admin-auth";
 import { markContactMessageAsRead } from "@/lib/queries/admin-contact";
 
 export async function PATCH(
@@ -11,7 +11,7 @@ export async function PATCH(
     const session = await verifyAdminSession();
 
     if (!session) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+      return adminUnauthorized();
     }
 
     const { id } = await params;

@@ -16,6 +16,9 @@ export const LoginForm = () => {
   const router = useRouter();
   const { refresh } = useAuth();
   const [form, setForm] = useState({ username: "", password: "" });
+  // an account protected by an authenticator app (the game asks for it too): its code, asked after the password
+  const [code, setCode] = useState("");
+  const [needCode, setNeedCode] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
 
@@ -40,7 +43,7 @@ export const LoginForm = () => {
       const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify(needCode ? { ...form, code } : form),
       });
 
       const data = await res.json();
@@ -48,6 +51,17 @@ export const LoginForm = () => {
       if (!res.ok) {
         if (data.error === "invalidCredentials") {
           setErrors({ server: t("errors.invalidCredentials") });
+        } else if (data.error === "totpRequired") {
+          setNeedCode(true);
+        } else if (data.error === "totpInvalid") {
+          setNeedCode(true);
+          setCode("");
+          setErrors({ server: t("errors.totpInvalid") });
+        } else if (
+          data.error === "tooManyAttempts" ||
+          data.error === "tooManyAttemptsIp"
+        ) {
+          setErrors({ server: t(`errors.${data.error}`) });
         } else {
           setErrors({ server: t("errors.serverError") });
         }
@@ -120,6 +134,27 @@ export const LoginForm = () => {
               variant="bordered"
               onChange={(e) => setForm({ ...form, password: e.target.value })}
             />
+
+            {needCode && (
+              <Input
+                autoComplete="one-time-code"
+                classNames={{
+                  inputWrapper:
+                    "border-wow-gold/30 bg-white/[0.03] hover:border-wow-gold/50 focus-within:!border-wow-gold/70",
+                  label: "text-gray-400",
+                  input: "text-center font-mono text-lg tracking-[0.5em]",
+                }}
+                description={t("codeHint")}
+                inputMode="numeric"
+                label={t("code")}
+                maxLength={6}
+                value={code}
+                variant="bordered"
+                onChange={(e) =>
+                  setCode(e.target.value.replace(/\D/g, "").slice(0, 6))
+                }
+              />
+            )}
 
             <div className="text-right -mt-1">
               <NextLink

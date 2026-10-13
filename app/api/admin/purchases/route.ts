@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { verifyAdminSession } from "@/lib/admin-auth";
+import { verifyAdminSession, adminUnauthorized } from "@/lib/admin-auth";
 import { realmSlugById } from "@/lib/realms";
 import { getAllPurchases } from "@/lib/queries/shop-purchases";
 import { getShopSetItems } from "@/lib/queries/shop-sets";
@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
     const session = await verifyAdminSession();
 
     if (!session) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+      return adminUnauthorized();
     }
 
     const { searchParams } = new URL(request.url);

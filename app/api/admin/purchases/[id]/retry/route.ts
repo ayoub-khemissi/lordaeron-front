@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { verifyAdminSession } from "@/lib/admin-auth";
+import { verifyAdminSession, adminUnauthorized } from "@/lib/admin-auth";
 import { getPurchaseById } from "@/lib/queries/shop-purchases";
 import { createAuditLog } from "@/lib/queries/shop-stats";
 import { retryPurchaseDelivery } from "@/lib/soap";
@@ -13,7 +13,7 @@ export async function POST(
     const session = await verifyAdminSession();
 
     if (!session) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+      return adminUnauthorized();
     }
 
     const { id } = await params;

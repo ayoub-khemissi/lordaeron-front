@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { verifyAdminSession } from "@/lib/admin-auth";
+import { verifyAdminSession, adminUnauthorized } from "@/lib/admin-auth";
 import { getAllNewsAdmin, createNews } from "@/lib/queries/news";
 import { createAuditLog } from "@/lib/queries/shop-stats";
 
@@ -11,7 +11,7 @@ export async function GET() {
     const session = await verifyAdminSession();
 
     if (!session) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+      return adminUnauthorized();
     }
 
     const news = await getAllNewsAdmin();
@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
     const session = await verifyAdminSession();
 
     if (!session) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+      return adminUnauthorized();
     }
 
     const body = await request.json();

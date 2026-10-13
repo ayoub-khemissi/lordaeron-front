@@ -4,10 +4,18 @@ import { cookies } from "next/headers";
 import { verifyLogin } from "@/lib/srp6";
 import { createSession, getSessionCookieOptions } from "@/lib/auth";
 import { findAccountByUsername } from "@/lib/queries/account";
+import {
+  clearFailures,
+  isEnrolled,
+  lockedOut,
+  recordFailure,
+  requestIp,
+  verifyCode,
+} from "@/lib/second-factor";
 
 export async function POST(request: NextRequest) {
   try {
-    const { username, password } = await request.json();
+    const { username, password, code } = await request.json();
 
     if (!username) {
       return NextResponse.json({ error: "usernameRequired" }, { status: 400 });
@@ -16,27 +24,49 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "passwordRequired" }, { status: 400 });
     }
 
-    const account = await findAccountByUsername(username);
+    // the website's sign-in bypasses the authserver's WrongPass: 5 failures of one account or 20 of one IP in 15 minutes lock it
+    const ip = requestIp(request.headers);
+    const subject = `login:${String(username).toUpperCase()}`;
+    const locked = await lockedOut(subject, ip);
 
-    if (!account) {
+    if (locked) {
+      return NextResponse.json(
+        { error: locked === "ip" ? "tooManyAttemptsIp" : "tooManyAttempts" },
+        { status: 429 },
+      );
+    }
+
+    const account = await findAccountByUsername(username);
+    const valid =
+      !!account &&
+      verifyLogin(username, password, account.salt, account.verifier);
+
+    if (!account || !valid) {
+      await recordFailure(subject, ip);
+
       return NextResponse.json(
         { error: "invalidCredentials" },
         { status: 401 },
       );
     }
+    await clearFailures(subject);
 
-    const valid = verifyLogin(
-      username,
-      password,
-      account.salt,
-      account.verifier,
-    );
+    // an account with an authenticator (auth.account.totp_secret, the game asks for it too) signs in with its code
+    if (await isEnrolled("account", account.id)) {
+      if (!code) {
+        return NextResponse.json({ error: "totpRequired" }, { status: 401 });
+      }
+      const totpSubject = `totp:account:${account.id}`;
 
-    if (!valid) {
-      return NextResponse.json(
-        { error: "invalidCredentials" },
-        { status: 401 },
-      );
+      if (await lockedOut(totpSubject, ip)) {
+        return NextResponse.json({ error: "tooManyAttempts" }, { status: 429 });
+      }
+      if ((await verifyCode("account", account.id, String(code))) !== "ok") {
+        await recordFailure(totpSubject, ip);
+
+        return NextResponse.json({ error: "totpInvalid" }, { status: 401 });
+      }
+      await clearFailures(totpSubject);
     }
 
     const token = await createSession({

@@ -36,6 +36,7 @@ import NextLink from "next/link";
 
 import { useAuth } from "@/lib/auth-context";
 import { ChangePasswordForm } from "@/components/change-password-form";
+import { AccountSecondFactorCard } from "@/components/second-factor-form";
 import { RestoreCharacterModal } from "@/components/restore-character-modal";
 import { PurchaseHistory } from "@/components/shop/purchase-history";
 import {
@@ -520,6 +521,9 @@ export default function AccountPage() {
                   </div>
                 </motion.div>
               )}
+
+              {/* Game masters: the authenticator app protecting the game account (and its website sign-in) */}
+              <AccountSecondFactorCard locale={locale} />
 
               {/* Change Password */}
               <ChangePasswordForm />

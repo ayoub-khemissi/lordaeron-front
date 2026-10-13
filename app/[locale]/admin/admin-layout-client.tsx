@@ -10,7 +10,7 @@ import { AdminSidebar } from "@/components/admin/admin-sidebar";
 import { AdminHeader } from "@/components/admin/admin-header";
 
 function AdminLayoutInner({ children }: { children: React.ReactNode }) {
-  const { admin, loading } = useAdminAuth();
+  const { admin, mfaRequired, loading } = useAdminAuth();
   const router = useRouter();
   const locale = useLocale();
   const pathname = usePathname();
@@ -18,10 +18,14 @@ function AdminLayoutInner({ children }: { children: React.ReactNode }) {
   const isLoginPage = pathname.endsWith("/admin/login");
 
   useEffect(() => {
-    if (!loading && !admin && !isLoginPage) {
-      router.push(`/${locale}/admin/login`);
-    }
-  }, [admin, loading, isLoginPage, locale, router]);
+    if (loading || admin || isLoginPage) return;
+    // signed in but the second factor not verified: its screen, then back here
+    router.push(
+      mfaRequired
+        ? `/${locale}/verification-2fa?next=${encodeURIComponent(pathname)}`
+        : `/${locale}/admin/login`,
+    );
+  }, [admin, mfaRequired, loading, isLoginPage, locale, pathname, router]);
 
   if (isLoginPage) {
     return <>{children}</>;

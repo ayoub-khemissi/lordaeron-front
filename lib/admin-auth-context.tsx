@@ -17,6 +17,8 @@ interface AdminUser {
 
 interface AdminAuthContextType {
   admin: AdminUser | null;
+  // signed in, waiting for the second factor (/verification-2fa)
+  mfaRequired: boolean;
   loading: boolean;
   refresh: () => Promise<void>;
   logout: () => Promise<void>;
@@ -24,6 +26,7 @@ interface AdminAuthContextType {
 
 const AdminAuthContext = createContext<AdminAuthContextType>({
   admin: null,
+  mfaRequired: false,
   loading: true,
   refresh: async () => {},
   logout: async () => {},
@@ -33,6 +36,7 @@ export const useAdminAuth = () => useContext(AdminAuthContext);
 
 export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
   const [admin, setAdmin] = useState<AdminUser | null>(null);
+  const [mfaRequired, setMfaRequired] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const refresh = useCallback(async () => {
@@ -41,8 +45,10 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
       const data = await res.json();
 
       setAdmin(data.admin || null);
+      setMfaRequired(!!data.mfaRequired);
     } catch {
       setAdmin(null);
+      setMfaRequired(false);
     } finally {
       setLoading(false);
     }
@@ -55,6 +61,7 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
       // ignore
     }
     setAdmin(null);
+    setMfaRequired(false);
   }, []);
 
   useEffect(() => {
@@ -62,7 +69,9 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
   }, [refresh]);
 
   return (
-    <AdminAuthContext.Provider value={{ admin, loading, refresh, logout }}>
+    <AdminAuthContext.Provider
+      value={{ admin, mfaRequired, loading, refresh, logout }}
+    >
       {children}
     </AdminAuthContext.Provider>
   );

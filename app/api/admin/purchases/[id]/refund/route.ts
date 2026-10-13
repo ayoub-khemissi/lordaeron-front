@@ -2,7 +2,7 @@ import type { ItemLocation } from "@/lib/queries/characters";
 
 import { NextRequest, NextResponse } from "next/server";
 
-import { verifyAdminSession } from "@/lib/admin-auth";
+import { verifyAdminSession, adminUnauthorized } from "@/lib/admin-auth";
 import { realmSlugById } from "@/lib/realms";
 import { refundPurchase, getPurchaseById } from "@/lib/queries/shop-purchases";
 import { getShopItemById } from "@/lib/queries/shop-items";
@@ -26,7 +26,7 @@ export async function POST(
     const session = await verifyAdminSession();
 
     if (!session) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+      return adminUnauthorized();
     }
 
     const { id } = await params;

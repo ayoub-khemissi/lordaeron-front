@@ -107,8 +107,13 @@
       "usernameRequired": "Le nom d'utilisateur est requis",
       "passwordRequired": "Le mot de passe est requis",
       "invalidCredentials": "Nom d'utilisateur ou mot de passe invalide",
-      "serverError": "Erreur serveur. Veuillez réessayer."
-    }
+      "serverError": "Erreur serveur. Veuillez réessayer.",
+      "totpInvalid": "Code d'authentification invalide.",
+      "tooManyAttempts": "Trop de tentatives échouées sur ce compte. Attendez 15 minutes, puis réessayez.",
+      "tooManyAttemptsIp": "Trop de tentatives échouées depuis votre connexion. Attendez 15 minutes, puis réessayez."
+    },
+    "code": "Code d'authentification",
+    "codeHint": "Votre compte est protégé : saisissez le code à 6 chiffres de votre application d'authentification."
   },
   "forgotPassword": {
     "title": "Mot de passe oublié",
@@ -479,7 +484,8 @@
       "username": "Nom d'utilisateur",
       "password": "Mot de passe",
       "submit": "Se connecter",
-      "error": "Identifiants invalides"
+      "error": "Identifiants invalides",
+      "locked": "Trop de tentatives échouées. Attendez 15 minutes."
     },
     "nav": {
       "dashboard": "Tableau de bord",
@@ -1135,5 +1141,38 @@
     "yourTime": "Chez vous : {time}",
     "live": "Le royaume est ouvert !",
     "openPlay": "Ouvert — Jouer maintenant"
+  },
+  "secondFactor": {
+    "title": "Validation en deux étapes",
+    "eyebrowAdmin": "Administration",
+    "eyebrowAccount": "Compte de maître du jeu",
+    "loading": "Préparation de votre authentificateur…",
+    "retry": "Réessayer",
+    "back": "Retour à mon compte",
+    "accountDone": "Votre compte de jeu est protégé. Le jeu demande désormais le code de votre authentificateur à chaque connexion, sur tous les royaumes, tout comme la connexion à ce site.",
+    "enrolIntroAdmin": "L'administration ne s'ouvre qu'après une seconde étape : un code d'une application d'authentification sur votre téléphone (Google Authenticator, Microsoft Authenticator, Aegis, 1Password…).",
+    "enrolIntroAccount": "Protégez votre compte de maître du jeu avec une application d'authentification sur votre téléphone (Google Authenticator, Microsoft Authenticator, Aegis, 1Password…).",
+    "gameWarning": "Une fois confirmé, le client du jeu demande ce code à chaque connexion sur Lordaeron et Rimeheart (le champ sous le mot de passe), tout comme la connexion à ce site. Sans votre téléphone, impossible de vous connecter tant qu'un administrateur n'a pas retiré la protection.",
+    "gameWarningConfirm": "J'ai compris : mes connexions au jeu demanderont ce code.",
+    "stepScan": "1. Scannez ce QR code avec votre application",
+    "qrAlt": "QR code pour l'application d'authentification",
+    "secretLabel": "Ou saisissez cette clé à la main",
+    "stepCode": "2. Saisissez le code à 6 chiffres affiché",
+    "verifyIntro": "Saisissez le code à 6 chiffres affiché par votre application d'authentification.",
+    "codeLabel": "Code",
+    "codeHint": "Le code change toutes les 30 secondes.",
+    "submitEnrol": "Confirmer et activer",
+    "submit": "Vérifier",
+    "lostPhone": "Téléphone perdu ? Demandez à l'administrateur technique du serveur de réinitialiser votre second facteur.",
+    "cardIntro": "Compte de maître du jeu : protégez-le avec une application d'authentification. Le jeu et ce site demanderont alors son code à chaque connexion.",
+    "cardEnrolled": "Compte de maître du jeu protégé par une application d'authentification : le jeu et ce site demandent son code à chaque connexion.",
+    "cardAction": "Protéger mon compte",
+    "errors": {
+      "setupFailed": "La seconde étape n'a pas pu être préparée. Réessayez.",
+      "invalidCode": "Ce code n'est pas valide. Saisissez le code actuel (chaque code ne sert qu'une fois).",
+      "tooManyAttempts": "Trop de tentatives échouées. Attendez 15 minutes, puis réessayez.",
+      "tooManyAttemptsIp": "Trop de tentatives échouées depuis votre connexion. Attendez 15 minutes, puis réessayez.",
+      "serverError": "Erreur serveur. Veuillez réessayer."
+    }
   }
 }

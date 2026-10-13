@@ -107,8 +107,13 @@
       "usernameRequired": "O nome de utilizador e obrigatorio",
       "passwordRequired": "A palavra-passe e obrigatoria",
       "invalidCredentials": "Nome de utilizador ou palavra-passe invalidos",
-      "serverError": "Erro no servidor. Por favor, tenta novamente."
-    }
+      "serverError": "Erro no servidor. Por favor, tenta novamente.",
+      "totpInvalid": "Código de autenticação inválido.",
+      "tooManyAttempts": "Demasiadas tentativas falhadas nesta conta. Espera 15 minutos e tenta novamente.",
+      "tooManyAttemptsIp": "Demasiadas tentativas falhadas a partir da tua ligação. Espera 15 minutos e tenta novamente."
+    },
+    "code": "Código de autenticação",
+    "codeHint": "A tua conta está protegida: escreve o código de 6 dígitos da tua aplicação de autenticação."
   },
   "forgotPassword": {
     "title": "Esqueci a Palavra-passe",
@@ -479,7 +484,8 @@
       "username": "Nome de utilizador",
       "password": "Palavra-passe",
       "submit": "Entrar",
-      "error": "Credenciais invalidas"
+      "error": "Credenciais invalidas",
+      "locked": "Demasiadas tentativas falhadas. Espera 15 minutos."
     },
     "nav": {
       "dashboard": "Painel",
@@ -1135,5 +1141,38 @@
     "yourTime": "A tua hora local: {time}",
     "live": "O reino está aberto!",
     "openPlay": "Aberto — Jogar agora"
+  },
+  "secondFactor": {
+    "title": "Verificação em dois passos",
+    "eyebrowAdmin": "Administração",
+    "eyebrowAccount": "Conta de mestre de jogo",
+    "loading": "A preparar o autenticador…",
+    "retry": "Tentar novamente",
+    "back": "Voltar à minha conta",
+    "accountDone": "A tua conta de jogo está protegida. O jogo pede agora o código do autenticador em cada ligação, em todos os reinos, tal como o início de sessão deste site.",
+    "enrolIntroAdmin": "A administração só abre após um segundo passo: um código de uma aplicação de autenticação no telemóvel (Google Authenticator, Microsoft Authenticator, Aegis, 1Password…).",
+    "enrolIntroAccount": "Protege a tua conta de mestre de jogo com uma aplicação de autenticação no telemóvel (Google Authenticator, Microsoft Authenticator, Aegis, 1Password…).",
+    "gameWarning": "Depois de confirmado, o cliente do jogo pede este código em cada ligação a Lordaeron e Rimeheart (o campo sob a palavra-passe), tal como o início de sessão deste site. Sem o telemóvel, não poderás entrar até um administrador remover a proteção.",
+    "gameWarningConfirm": "Compreendo: as minhas ligações ao jogo vão pedir este código.",
+    "stepScan": "1. Lê este código QR com a aplicação",
+    "qrAlt": "Código QR para a aplicação de autenticação",
+    "secretLabel": "Ou escreve esta chave à mão",
+    "stepCode": "2. Escreve o código de 6 dígitos apresentado",
+    "verifyIntro": "Escreve o código de 6 dígitos da tua aplicação de autenticação.",
+    "codeLabel": "Código",
+    "codeHint": "O código muda a cada 30 segundos.",
+    "submitEnrol": "Confirmar e ativar",
+    "submit": "Verificar",
+    "lostPhone": "Perdeste o telemóvel? Pede ao administrador técnico do servidor para repor o teu segundo fator.",
+    "cardIntro": "Conta de mestre de jogo: protege-a com uma aplicação de autenticação. O jogo e este site passam a pedir o seu código em cada ligação.",
+    "cardEnrolled": "Conta de mestre de jogo protegida por uma aplicação de autenticação: o jogo e este site pedem o seu código em cada ligação.",
+    "cardAction": "Proteger a minha conta",
+    "errors": {
+      "setupFailed": "Não foi possível preparar o segundo passo. Tenta novamente.",
+      "invalidCode": "Esse código não é válido. Escreve o código atual (cada código serve uma vez).",
+      "tooManyAttempts": "Demasiadas tentativas falhadas. Espera 15 minutos e tenta novamente.",
+      "tooManyAttemptsIp": "Demasiadas tentativas falhadas a partir da tua ligação. Espera 15 minutos e tenta novamente.",
+      "serverError": "Erro do servidor. Tenta novamente."
+    }
   }
 }

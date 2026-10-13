@@ -277,6 +277,8 @@ export interface ShopAdminJWTPayload {
   id: number;
   username: string;
   role: "admin" | "super_admin";
+  // the session verified the second factor (lib/second-factor.ts): only then does it carry the admin rights
+  mfa?: boolean;
 }
 
 export interface ShopBan {

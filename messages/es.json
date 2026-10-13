@@ -107,8 +107,13 @@
       "usernameRequired": "El nombre de usuario es obligatorio",
       "passwordRequired": "La contraseña es obligatoria",
       "invalidCredentials": "Nombre de usuario o contraseña no válidos",
-      "serverError": "Error del servidor. Por favor, inténtalo de nuevo."
-    }
+      "serverError": "Error del servidor. Por favor, inténtalo de nuevo.",
+      "totpInvalid": "Código de autenticación no válido.",
+      "tooManyAttempts": "Demasiados intentos fallidos en esta cuenta. Espera 15 minutos e inténtalo de nuevo.",
+      "tooManyAttemptsIp": "Demasiados intentos fallidos desde tu conexión. Espera 15 minutos e inténtalo de nuevo."
+    },
+    "code": "Código de autenticación",
+    "codeHint": "Tu cuenta está protegida: introduce el código de 6 cifras de tu aplicación de autenticación."
   },
   "forgotPassword": {
     "title": "Contraseña olvidada",
@@ -479,7 +484,8 @@
       "username": "Usuario",
       "password": "Contraseña",
       "submit": "Acceder",
-      "error": "Credenciales inválidas"
+      "error": "Credenciales inválidas",
+      "locked": "Demasiados intentos fallidos. Espera 15 minutos."
     },
     "nav": {
       "dashboard": "Panel",
@@ -1135,5 +1141,38 @@
     "yourTime": "Tu hora local: {time}",
     "live": "¡El reino está abierto!",
     "openPlay": "Abierto — Jugar ahora"
+  },
+  "secondFactor": {
+    "title": "Verificación en dos pasos",
+    "eyebrowAdmin": "Administración",
+    "eyebrowAccount": "Cuenta de maestro de juego",
+    "loading": "Preparando tu autenticador…",
+    "retry": "Reintentar",
+    "back": "Volver a mi cuenta",
+    "accountDone": "Tu cuenta de juego está protegida. El juego pide ahora el código de tu autenticador en cada conexión, en todos los reinos, igual que el inicio de sesión de esta web.",
+    "enrolIntroAdmin": "La administración solo se abre tras un segundo paso: un código de una aplicación de autenticación en tu teléfono (Google Authenticator, Microsoft Authenticator, Aegis, 1Password…).",
+    "enrolIntroAccount": "Protege tu cuenta de maestro de juego con una aplicación de autenticación en tu teléfono (Google Authenticator, Microsoft Authenticator, Aegis, 1Password…).",
+    "gameWarning": "Una vez confirmado, el cliente del juego pide este código en cada conexión a Lordaeron y Rimeheart (el campo bajo la contraseña), igual que el inicio de sesión de esta web. Sin tu teléfono no podrás conectarte hasta que un administrador retire la protección.",
+    "gameWarningConfirm": "Entendido: mis conexiones al juego pedirán este código.",
+    "stepScan": "1. Escanea este código QR con tu aplicación",
+    "qrAlt": "Código QR para la aplicación de autenticación",
+    "secretLabel": "O introduce esta clave a mano",
+    "stepCode": "2. Introduce el código de 6 cifras que muestra",
+    "verifyIntro": "Introduce el código de 6 cifras de tu aplicación de autenticación.",
+    "codeLabel": "Código",
+    "codeHint": "El código cambia cada 30 segundos.",
+    "submitEnrol": "Confirmar y activar",
+    "submit": "Verificar",
+    "lostPhone": "¿Perdiste el teléfono? Pide al administrador técnico del servidor que restablezca tu segundo factor.",
+    "cardIntro": "Cuenta de maestro de juego: protégela con una aplicación de autenticación. El juego y esta web pedirán su código en cada conexión.",
+    "cardEnrolled": "Cuenta de maestro de juego protegida por una aplicación de autenticación: el juego y esta web piden su código en cada conexión.",
+    "cardAction": "Proteger mi cuenta",
+    "errors": {
+      "setupFailed": "No se pudo preparar el segundo paso. Inténtalo de nuevo.",
+      "invalidCode": "Ese código no es válido. Introduce el código actual (cada código sirve una vez).",
+      "tooManyAttempts": "Demasiados intentos fallidos. Espera 15 minutos e inténtalo de nuevo.",
+      "tooManyAttemptsIp": "Demasiados intentos fallidos desde tu conexión. Espera 15 minutos e inténtalo de nuevo.",
+      "serverError": "Error del servidor. Inténtalo de nuevo."
+    }
   }
 }

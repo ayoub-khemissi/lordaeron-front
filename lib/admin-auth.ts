@@ -2,6 +2,7 @@ import type { ShopAdminJWTPayload } from "@/types";
 
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
 import { ADMIN_SESSION_COOKIE, adminSecret } from "@/lib/admin-secret";
 import { ADMIN_PREVIEW_COOKIE } from "@/lib/realms";
@@ -22,7 +23,8 @@ export async function createAdminSession(
   return token;
 }
 
-export async function verifyAdminSession(): Promise<ShopAdminJWTPayload | null> {
+// the admin session as signed in, second factor verified or not (the second-factor screen, /api/admin/auth/me)
+export async function readAdminSession(): Promise<ShopAdminJWTPayload | null> {
   try {
     const cookieStore = await cookies();
     const token = cookieStore.get(COOKIE_NAME)?.value;
@@ -35,6 +37,21 @@ export async function verifyAdminSession(): Promise<ShopAdminJWTPayload | null> 
   } catch {
     return null;
   }
+}
+
+// an administrator's session: the admin rights count only once the second factor is verified (majaliss's principle, 13/10/2026)
+export async function verifyAdminSession(): Promise<ShopAdminJWTPayload | null> {
+  const session = await readAdminSession();
+
+  return session?.mfa ? session : null;
+}
+
+// the answer of an admin route without rights: 403 mfa_required for a session waiting for its code (the admin space then opens the
+// second-factor screen), 401 otherwise
+export async function adminUnauthorized() {
+  return (await readAdminSession())
+    ? NextResponse.json({ error: "mfa_required" }, { status: 403 })
+    : NextResponse.json({ error: "unauthorized" }, { status: 401 });
 }
 
 export function getAdminSessionCookieOptions(token: string) {

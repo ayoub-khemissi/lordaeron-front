@@ -107,8 +107,13 @@
       "usernameRequired": "Username is required",
       "passwordRequired": "Password is required",
       "invalidCredentials": "Invalid username or password",
-      "serverError": "Server error. Please try again."
-    }
+      "serverError": "Server error. Please try again.",
+      "totpInvalid": "Invalid authenticator code.",
+      "tooManyAttempts": "Too many failed attempts on this account. Wait 15 minutes, then try again.",
+      "tooManyAttemptsIp": "Too many failed attempts from your connection. Wait 15 minutes, then try again."
+    },
+    "code": "Authenticator code",
+    "codeHint": "Your account is protected: type the 6-digit code of your authenticator app."
   },
   "forgotPassword": {
     "title": "Forgot Password",
@@ -479,7 +484,8 @@
       "username": "Username",
       "password": "Password",
       "submit": "Login",
-      "error": "Invalid credentials"
+      "error": "Invalid credentials",
+      "locked": "Too many failed attempts. Wait 15 minutes."
     },
     "nav": {
       "dashboard": "Dashboard",
@@ -1135,5 +1141,38 @@
     "yourTime": "Your local time: {time}",
     "live": "The realm is open!",
     "openPlay": "Open — Play now"
+  },
+  "secondFactor": {
+    "title": "Two-step verification",
+    "eyebrowAdmin": "Administration",
+    "eyebrowAccount": "Game master account",
+    "loading": "Preparing your authenticator…",
+    "retry": "Try again",
+    "back": "Back to my account",
+    "accountDone": "Your game account is protected. The game now asks for your authenticator code at every login, on every realm, and so does this website's sign-in.",
+    "enrolIntroAdmin": "The administration opens only after a second step: a code from an authenticator app on your phone (Google Authenticator, Microsoft Authenticator, Aegis, 1Password…).",
+    "enrolIntroAccount": "Protect your game master account with an authenticator app on your phone (Google Authenticator, Microsoft Authenticator, Aegis, 1Password…).",
+    "gameWarning": "Once confirmed, the game client asks for this code at every login on Lordaeron and Rimeheart (the field under your password), and so does this website's sign-in. Without your phone, you cannot log in until an administrator removes the protection.",
+    "gameWarningConfirm": "I understand: my game logins will ask for this code.",
+    "stepScan": "1. Scan this QR code with your app",
+    "qrAlt": "QR code for the authenticator app",
+    "secretLabel": "Or type this key by hand",
+    "stepCode": "2. Type the 6-digit code it shows",
+    "verifyIntro": "Type the 6-digit code shown by your authenticator app.",
+    "codeLabel": "Code",
+    "codeHint": "The code changes every 30 seconds.",
+    "submitEnrol": "Confirm and activate",
+    "submit": "Verify",
+    "lostPhone": "Lost your phone? Ask the server's technical administrator to reset your second factor.",
+    "cardIntro": "Game master account: protect it with an authenticator app. The game and this website will then ask for its code at every login.",
+    "cardEnrolled": "Game master account protected by an authenticator app: the game and this website ask for its code at every login.",
+    "cardAction": "Protect my account",
+    "errors": {
+      "setupFailed": "The second step could not be prepared. Try again.",
+      "invalidCode": "That code is not valid. Type the current code (each code works once).",
+      "tooManyAttempts": "Too many failed attempts. Wait 15 minutes, then try again.",
+      "tooManyAttemptsIp": "Too many failed attempts from your connection. Wait 15 minutes, then try again.",
+      "serverError": "Server error. Please try again."
+    }
   }
 }

@@ -107,8 +107,13 @@
       "usernameRequired": "Nazwa użytkownika jest wymagana",
       "passwordRequired": "Hasło jest wymagane",
       "invalidCredentials": "Nieprawidłowa nazwa użytkownika lub hasło",
-      "serverError": "Błąd serwera. Spróbuj ponownie."
-    }
+      "serverError": "Błąd serwera. Spróbuj ponownie.",
+      "totpInvalid": "Nieprawidłowy kod uwierzytelniający.",
+      "tooManyAttempts": "Zbyt wiele nieudanych prób na tym koncie. Odczekaj 15 minut i spróbuj ponownie.",
+      "tooManyAttemptsIp": "Zbyt wiele nieudanych prób z twojego połączenia. Odczekaj 15 minut i spróbuj ponownie."
+    },
+    "code": "Kod uwierzytelniający",
+    "codeHint": "Twoje konto jest chronione: wpisz 6-cyfrowy kod z aplikacji uwierzytelniającej."
   },
   "forgotPassword": {
     "title": "Zapomniałeś hasła",
@@ -479,7 +484,8 @@
       "username": "Nazwa użytkownika",
       "password": "Hasło",
       "submit": "Zaloguj się",
-      "error": "Nieprawidłowe dane logowania"
+      "error": "Nieprawidłowe dane logowania",
+      "locked": "Zbyt wiele nieudanych prób. Odczekaj 15 minut."
     },
     "nav": {
       "dashboard": "Panel główny",
@@ -1135,5 +1141,38 @@
     "yourTime": "Twój czas lokalny: {time}",
     "live": "Świat jest otwarty!",
     "openPlay": "Otwarte — Graj teraz"
+  },
+  "secondFactor": {
+    "title": "Weryfikacja dwuetapowa",
+    "eyebrowAdmin": "Administracja",
+    "eyebrowAccount": "Konto mistrza gry",
+    "loading": "Przygotowywanie uwierzytelniacza…",
+    "retry": "Spróbuj ponownie",
+    "back": "Wróć do mojego konta",
+    "accountDone": "Twoje konto gry jest chronione. Gra prosi teraz o kod z uwierzytelniacza przy każdym logowaniu, na wszystkich krainach, tak samo jak logowanie na tej stronie.",
+    "enrolIntroAdmin": "Administracja otwiera się dopiero po drugim kroku: kodzie z aplikacji uwierzytelniającej na telefonie (Google Authenticator, Microsoft Authenticator, Aegis, 1Password…).",
+    "enrolIntroAccount": "Chroń konto mistrza gry aplikacją uwierzytelniającą na telefonie (Google Authenticator, Microsoft Authenticator, Aegis, 1Password…).",
+    "gameWarning": "Po potwierdzeniu klient gry prosi o ten kod przy każdym logowaniu na Lordaeron i Rimeheart (pole pod hasłem), tak samo jak logowanie na tej stronie. Bez telefonu nie zalogujesz się, dopóki administrator nie usunie ochrony.",
+    "gameWarningConfirm": "Rozumiem: logowanie do gry będzie wymagać tego kodu.",
+    "stepScan": "1. Zeskanuj ten kod QR w aplikacji",
+    "qrAlt": "Kod QR dla aplikacji uwierzytelniającej",
+    "secretLabel": "Albo wpisz ten klucz ręcznie",
+    "stepCode": "2. Wpisz wyświetlony 6-cyfrowy kod",
+    "verifyIntro": "Wpisz 6-cyfrowy kod z aplikacji uwierzytelniającej.",
+    "codeLabel": "Kod",
+    "codeHint": "Kod zmienia się co 30 sekund.",
+    "submitEnrol": "Potwierdź i włącz",
+    "submit": "Zweryfikuj",
+    "lostPhone": "Zgubiony telefon? Poproś administratora technicznego serwera o zresetowanie drugiego składnika.",
+    "cardIntro": "Konto mistrza gry: chroń je aplikacją uwierzytelniającą. Gra i ta strona będą wtedy prosić o jej kod przy każdym logowaniu.",
+    "cardEnrolled": "Konto mistrza gry chronione aplikacją uwierzytelniającą: gra i ta strona proszą o jej kod przy każdym logowaniu.",
+    "cardAction": "Chroń moje konto",
+    "errors": {
+      "setupFailed": "Nie udało się przygotować drugiego kroku. Spróbuj ponownie.",
+      "invalidCode": "Ten kod jest nieprawidłowy. Wpisz aktualny kod (każdy kod działa raz).",
+      "tooManyAttempts": "Zbyt wiele nieudanych prób. Odczekaj 15 minut i spróbuj ponownie.",
+      "tooManyAttemptsIp": "Zbyt wiele nieudanych prób z twojego połączenia. Odczekaj 15 minut i spróbuj ponownie.",
+      "serverError": "Błąd serwera. Spróbuj ponownie."
+    }
   }
 }

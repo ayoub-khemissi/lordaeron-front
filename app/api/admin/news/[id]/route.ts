@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { verifyAdminSession } from "@/lib/admin-auth";
+import { verifyAdminSession, adminUnauthorized } from "@/lib/admin-auth";
 import { getNewsByIdAdmin, updateNews, deleteNews } from "@/lib/queries/news";
 import { createAuditLog } from "@/lib/queries/shop-stats";
 
@@ -12,7 +12,7 @@ export async function GET(
     const session = await verifyAdminSession();
 
     if (!session) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+      return adminUnauthorized();
     }
 
     const { id } = await params;
@@ -38,7 +38,7 @@ export async function PUT(
     const session = await verifyAdminSession();
 
     if (!session) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+      return adminUnauthorized();
     }
 
     const { id } = await params;
@@ -73,7 +73,7 @@ export async function DELETE(
     const session = await verifyAdminSession();
 
     if (!session) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+      return adminUnauthorized();
     }
 
     const { id } = await params;
