@@ -232,7 +232,8 @@ export const phases = {
       n: "0",
       title: L("Le prélude", "The prelude"),
       icon: "spell_frost_frozencore",
-      length: L("2 à 3 semaines", "2–3 weeks"),
+      // Ayoub, 13/10/2026: two weeks, unless he decides otherwise
+      length: L("2 semaines", "2 weeks"),
       lines: [
         L("12 donjons du Norfendre", "12 Northrend dungeons"),
         L("Normal et héroïque", "Normal & heroic"),
