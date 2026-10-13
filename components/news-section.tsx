@@ -57,6 +57,9 @@ export const NewsSection = () => {
     fetchNews();
   }, [locale]);
 
+  // no news yet: no empty block on the homes (Ayoub, 13/10/2026)
+  if (!article) return null;
+
   return (
     <section className="relative py-20 overflow-hidden">
       {/* Section background */}

@@ -1024,7 +1024,7 @@
     }
   },
   "cookieBanner": {
-    "message": "Lordaeron n'utilise qu'un seul cookie de session essentiel pour l'authentification. Aucun cookie de suivi ou publicitaire.",
+    "message": "Lordaeron n'utilise que des cookies essentiels : votre session et votre langue. Aucun cookie de suivi ou publicitaire.",
     "learnMore": "En savoir plus",
     "accept": "Compris"
   },

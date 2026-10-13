@@ -1024,7 +1024,7 @@
     }
   },
   "cookieBanner": {
-    "message": "Lordaeron używa tylko jednego niezbędnego sesyjnego pliku cookie do uwierzytelniania. Brak plików cookie śledzących ani reklamowych.",
+    "message": "Lordaeron używa wyłącznie niezbędnych plików cookie: twojej sesji i twojego języka. Brak plików cookie śledzących ani reklamowych.",
     "learnMore": "Dowiedz się więcej",
     "accept": "Rozumiem"
   },
