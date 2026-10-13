@@ -42,7 +42,6 @@ export const siteConfig = {
       href: "/armory",
       scope: "realm",
       section: "armory",
-      comingSoon: true,
     },
     { labelKey: "nav.shop", href: "/shop", scope: "realm", section: "shop" },
   ] as NavItem[],

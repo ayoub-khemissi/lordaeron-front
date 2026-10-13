@@ -10,8 +10,8 @@ const intlMiddleware = createMiddleware(routing);
 
 // a realm's sections behind the login (/account, shared, too)
 const protectedPaths = ["/shop"];
-// a realm's sections not open yet
-const blockedPaths = ["/armory"];
+// a realm's sections not open yet (the armory opened on 13/10/2026)
+const blockedPaths: string[] = [];
 // before the realms had portals (09/10/2026), these were Lordaeron's at the locale's root
 const legacyRealmSections = [
   "/how-to",
