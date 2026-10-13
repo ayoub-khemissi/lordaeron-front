@@ -59,7 +59,7 @@ export function ExperienceHero({
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[100svh] items-start overflow-hidden sm:items-end lg:items-center"
+      className="relative flex min-h-[100svh] items-start overflow-hidden sm:items-end lg:items-start"
     >
       <AnimatePresence>
         {!ready && (
@@ -103,7 +103,7 @@ export function ExperienceHero({
       <Snow />
 
       <motion.div
-        className="relative mx-auto w-full max-w-7xl px-6 pb-16 pt-24 sm:pb-32 sm:pt-32 lg:pb-16 lg:pt-24"
+        className="relative mx-auto w-full max-w-7xl px-6 pb-16 pt-24 sm:pb-32 sm:pt-32 lg:pb-24 lg:pt-[clamp(3.5rem,9vh,7rem)]"
         style={{ y: lift }}
       >
         <motion.p
