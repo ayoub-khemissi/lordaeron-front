@@ -77,6 +77,17 @@ export const EQUIPMENT_SLOT_NAMES: Record<number, string> = {
   18: "Tabard",
 };
 
+/** The armory's 3D viewer's default attire (Ayoub, 13/10/2026: a look the viewer cannot draw is shown in a tuxedo): equipment slot ->
+ *  [viewer slot, WotLK Classic display]; Blizzard's Tuxedo Shirt, Jacket and Pants (10034-10036), Dress Shoes (6836), Black Mageweave
+ *  Gloves (10003). The other slots stay bare. */
+export const DEFAULT_OUTFIT: Record<number, [number, number]> = {
+  3: [4, 11307],
+  4: [5, 11646],
+  6: [7, 11308],
+  7: [8, 11782],
+  9: [10, 8307],
+};
+
 /** Slots that are rendered on the 3D model */
 export const RENDERED_SLOTS = [0, 2, 3, 4, 5, 6, 7, 8, 9, 14, 15, 16, 17, 18];
 

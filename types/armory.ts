@@ -82,4 +82,6 @@ export interface EquipmentSlot {
   itemEntry: number;
   /** Item display ID from item_template (enriched server-side) */
   displayId: number;
+  /** The visible enchantments (equipmentCache): the permanent one in the low 16 bits, the temporary one in the high 16 */
+  enchant?: number;
 }

@@ -142,7 +142,8 @@ export const DBC_LAYOUTS = {
   GemProperties: { fieldCount: 5, fields: { ID: 0, Enchant_Id: 1 } },
   SpellItemEnchantment: {
     fieldCount: 38,
-    fields: { ID: 0, Condition_Id: 34 },
+    // ItemVisual: the glow a weapon shows (the armory's 3D viewer, lib/armory-model.ts)
+    fields: { ID: 0, ItemVisual: 31, Condition_Id: 34 },
     localized: { Name: 14 },
   },
   // packed record (bytes): read with Rec.u8 / Rec.u32 (lib/tooltips/item.ts)

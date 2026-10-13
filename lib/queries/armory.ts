@@ -145,11 +145,13 @@ export function parseEquipmentCache(cache: string): EquipmentSlot[] {
   const items: EquipmentSlot[] = [];
 
   for (let i = 0; i < 19; i++) {
+    // the visible item and its visible enchantments (the core's PLAYER_VISIBLE_ITEM fields: transmogs applied); the display comes from
+    // item_template (app/api/armory/character)
     const itemEntry = values[i * 2];
-    const displayId = values[i * 2 + 1];
+    const enchant = values[i * 2 + 1] || 0;
 
     if (itemEntry > 0) {
-      items.push({ slot: i, itemEntry, displayId });
+      items.push({ slot: i, itemEntry, displayId: 0, enchant });
     }
   }
 

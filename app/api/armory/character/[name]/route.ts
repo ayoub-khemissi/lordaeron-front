@@ -10,7 +10,7 @@ import {
   parseEquipmentCache,
 } from "@/lib/queries/armory";
 import { requestRealm } from "@/lib/realms";
-import { armoryModelItems } from "@/lib/armory-model";
+import { armoryModel } from "@/lib/armory-model";
 
 export const dynamic = "force-dynamic";
 
@@ -52,16 +52,20 @@ export async function GET(
       }
     }
 
-    // the gear the 3D viewer draws, in Wowhead's WotLK Classic numbering (transmogs and the realm's own items resolved)
-    const modelItems = await armoryModelItems(
-      character.guid,
-      equipment,
-      realm,
-    ).catch((e) => {
-      console.error("Armory model items:", e);
+    // the gear the 3D viewer draws, in Wowhead's WotLK Classic numbering (transmogs, the realm's own items and the weapons' glows
+    // resolved, the slots it cannot draw listed); on a failure, the whole outfit in default attire (the page says so)
+    const model = await armoryModel(character.guid, equipment, realm).catch(
+      (e) => {
+        console.error("Armory model:", e);
 
-      return [];
-    });
+        return {
+          items: [],
+          defaulted: [] as number[],
+          missing: [] as number[],
+          failed: true,
+        };
+      },
+    );
 
     return NextResponse.json({
       character,
@@ -70,7 +74,7 @@ export async function GET(
       arenaTeams,
       achievementCount,
       equipment,
-      modelItems,
+      model,
     });
   } catch (error) {
     console.error("Armory character error:", error);

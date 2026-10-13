@@ -11,6 +11,7 @@ import {
   realmWorldDb,
 } from "@/lib/realms-server";
 import { dbcStore, type Dbc } from "@/lib/tooltips/dbc";
+import { DEFAULT_OUTFIT } from "@/lib/armory-constants";
 
 /*
  * What the armory's 3D viewer shows of a character (components/armory/model-viewer.tsx): its visible gear as [viewer slot, display]
@@ -19,11 +20,14 @@ import { dbcStore, type Dbc } from "@/lib/tooltips/dbc";
  * - the slot transmogs first (custom_character_slot_transmog: an item entry, the hidden slot, or the worn item);
  * - a Blizzard item: its WotLK Classic display (data/armory/wotlk-classic-item-displays.json, scripts/build-armory-displays.mjs);
  * - a realm's own item (WotLK+, Lordaeron's): the look it was made from: a Blizzard item with the same 3.3.5 display, else a Blizzard
- *   display with the same models and textures (the realm's ItemDisplayInfo.dbc), else the display itself when Wowhead has it. Nothing
- *   when no look is found: the slot stays bare rather than wrong.
+ *   display with the same models and textures (the realm's ItemDisplayInfo.dbc), else the display itself when Wowhead has it;
+ * - every look is checked on Wowhead's data; a slot the viewer cannot draw wears the default attire (a tuxedo, DEFAULT_OUTFIT) or stays
+ *   bare, and the page says which (Ayoub, 13/10/2026);
+ * - the weapons carry their enchantment's glow (the visible enchantments of the equipment cache, the realm's SpellItemEnchantment.dbc).
  */
 
-export type ModelItem = [slot: number, display: number];
+// [viewer slot, WotLK Classic display, the weapon glow of its enchantment (an ItemVisual)]
+export type ModelItem = [slot: number, display: number, visual?: number];
 
 const WRATH = "https://wow.zamimg.com/modelviewer/wrath/";
 // the slot transmogs' sentinels (core: TransmogrificationDefines.h InvisibleEntry, NormalEntry)
@@ -106,8 +110,14 @@ function wotlkClassicDisplays() {
 // Wowhead has this display for this slot (kept: the answer does not change)
 const onWowhead = new Map<string, Promise<boolean>>();
 
-function wowheadHas(slot: number, display: number) {
-  const url = `${WRATH}meta/${ARMOR_SLOTS.includes(slot) ? `armor/${slot}` : "item"}/${display}.json`;
+function wowheadHas(slot: number | "itemvisual", display: number) {
+  const folder =
+    slot === "itemvisual"
+      ? "itemvisual"
+      : ARMOR_SLOTS.includes(slot)
+        ? `armor/${slot}`
+        : "item";
+  const url = `${WRATH}meta/${folder}/${display}.json`;
   let known = onWowhead.get(url);
 
   if (!known) {
@@ -184,12 +194,42 @@ async function blizzardItemsOf(realm: RealmSlug, displays: number[]) {
   return byDisplay;
 }
 
-export async function armoryModelItems(
+// the glow a weapon's visible enchantment shows (the realm's SpellItemEnchantment.dbc ItemVisual): the temporary enchantment's when it has
+// one (a poison, Windfury: the client shows it over the permanent one), else the permanent one's; none when Wowhead lacks the visual
+async function enchantVisual(
+  enchants: Dbc | null,
+  packed: number,
+): Promise<number | undefined> {
+  if (!enchants || !packed) return undefined;
+  for (const id of [packed >>> 16, packed & 0xffff]) {
+    const visual = id ? enchants.rec(id)?.get("ItemVisual") : 0;
+
+    if (visual && visual > 0 && (await wowheadHas("itemvisual", visual)))
+      return visual;
+  }
+
+  return undefined;
+}
+
+export interface ArmoryModel {
+  items: ModelItem[];
+  // equipment slots the viewer cannot draw: shown in the default attire (DEFAULT_OUTFIT), or left bare
+  defaulted: number[];
+  missing: number[];
+  // the gear could not be resolved at all: the viewer shows the default attire
+  failed?: boolean;
+}
+
+// the viewer slots of the weapons (their enchantments glow)
+const WEAPON_SLOTS = [13, 14, 15, 17, 21, 22, 23, 25, 26];
+
+export async function armoryModel(
   guid: number,
   equipment: EquipmentSlot[],
   realm: RealmSlug,
-): Promise<ModelItem[]> {
-  // the slot transmogs (absent on a realm without them)
+): Promise<ArmoryModel> {
+  const model: ArmoryModel = { items: [], defaulted: [], missing: [] };
+  // the slot transmogs (absent on a realm without them); the equipment cache already shows them, this keeps an old cache right
   const transmog = new Map<number, number>();
 
   try {
@@ -208,10 +248,16 @@ export async function armoryModelItems(
 
     if (t === HIDDEN) return [];
 
-    return [{ slot: e.slot, entry: t && t !== WORN ? t : e.itemEntry }];
+    return [
+      {
+        slot: e.slot,
+        entry: t && t !== WORN ? t : e.itemEntry,
+        enchant: e.enchant ?? 0,
+      },
+    ];
   });
 
-  if (!shown.length) return [];
+  if (!shown.length) return model;
 
   const [rows] = await realmWorldDb(realm).query<RowDataPacket[]>(
     "SELECT entry, displayid, InventoryType FROM item_template WHERE entry IN (?)",
@@ -224,49 +270,77 @@ export async function armoryModelItems(
     ]),
   );
   const classic = await wotlkClassicDisplays();
-  const items: ModelItem[] = [];
-  const unresolved: { slot: number; display: number }[] = [];
+  const store = dbcStore(realmServer(realm).dbcDir);
+  const [displays, enchants] = await Promise.all([
+    store
+      .load(["ItemDisplayInfo"])
+      .then((d) => d("ItemDisplayInfo"))
+      .catch(() => null),
+    store
+      .load(["SpellItemEnchantment"])
+      .then((d) => d("SpellItemEnchantment"))
+      .catch(() => null),
+  ]);
 
-  for (const s of shown) {
+  const todo = shown.flatMap((s) => {
     const t = templates.get(s.entry);
     const slot = t && viewerSlot(s.slot, t.invType);
 
-    if (!t || !slot || !t.display) continue;
-    const display =
-      s.entry < BLIZZARD_ITEM_MAX ? classic.get(s.entry) : undefined;
+    // an item the viewer does not draw (a ring, a relic) or unknown to the realm
+    if (!t || !slot || !t.display) return [];
 
-    if (display) items.push([slot, display]);
-    else unresolved.push({ slot, display: t.display });
-  }
+    // the looks to try, nearest first: the item's own in WotLK Classic, then the Blizzard looks its 3.3.5 display shares (the realms'
+    // own items: the same display, then the same models and textures)
+    const own = s.entry < BLIZZARD_ITEM_MAX ? classic.get(s.entry) : undefined;
+    const alike = [
+      t.display,
+      ...(displays ? blizzardDisplaysLike(displays, t.display) : []),
+    ];
 
-  if (unresolved.length) {
-    // a realm's own item: the Blizzard looks it shares, nearest first (the same display, then the same models and textures)
-    const dbc = await dbcStore(realmServer(realm).dbcDir)
-      .load(["ItemDisplayInfo"])
-      .then((d) => d("ItemDisplayInfo"))
-      .catch(() => null);
-    const candidates = unresolved.map((u) => [
-      u.display,
-      ...(dbc ? blizzardDisplaysLike(dbc, u.display) : []),
-    ]);
-    const items335 = await blizzardItemsOf(realm, [
-      ...new Set(candidates.flat()),
-    ]);
+    return [{ ...s, viewer: slot, own, alike }];
+  });
+  const items335 = await blizzardItemsOf(realm, [
+    ...new Set(todo.flatMap((t) => t.alike)),
+  ]);
 
-    await Promise.all(
-      unresolved.map(async (u, i) => {
-        for (const d of candidates[i]) {
-          const viaItem = (items335.get(d) ?? [])
-            .map((entry) => classic.get(entry))
-            .find(Boolean);
+  await Promise.all(
+    todo.map(async (t) => {
+      const tries = [
+        ...(t.own ? [t.own] : []),
+        ...t.alike.flatMap((d) => [
+          ...(items335.get(d) ?? []).flatMap((entry) => {
+            const c = classic.get(entry);
 
-          if (viaItem) return items.push([u.slot, viaItem]);
-          if (d < CUSTOM_DISPLAY_MIN && (await wowheadHas(u.slot, d)))
-            return items.push([u.slot, d]);
+            return c ? [c] : [];
+          }),
+          ...(d < CUSTOM_DISPLAY_MIN ? [d] : []),
+        ]),
+      ];
+      let display: number | undefined;
+
+      for (const d of [...new Set(tries)])
+        if (await wowheadHas(t.viewer, d)) {
+          display = d;
+          break;
         }
-      }),
-    );
-  }
 
-  return items.sort((a, b) => a[0] - b[0]);
+      if (display) {
+        const visual = WEAPON_SLOTS.includes(t.viewer)
+          ? await enchantVisual(enchants, t.enchant)
+          : undefined;
+
+        model.items.push(
+          visual ? [t.viewer, display, visual] : [t.viewer, display],
+        );
+      } else if (DEFAULT_OUTFIT[t.slot]) {
+        model.items.push(DEFAULT_OUTFIT[t.slot]);
+        model.defaulted.push(t.slot);
+      } else model.missing.push(t.slot);
+    }),
+  );
+  model.items.sort((a, b) => a[0] - b[0]);
+  model.defaulted.sort((a, b) => a - b);
+  model.missing.sort((a, b) => a - b);
+
+  return model;
 }
