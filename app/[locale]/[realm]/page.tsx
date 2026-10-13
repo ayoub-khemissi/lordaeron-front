@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 
 import { notFound } from "next/navigation";
 
-import { LordaeronHome, lordaeronHomeMetadata } from "./lordaeron-home";
+import { LordaeronJsonLd, lordaeronHomeMetadata } from "./lordaeron-home";
 
 import { LANGS, type Lang, meta } from "@/components/rimeheart/content";
-import ExperienceContent from "@/components/rimeheart/showcase";
+import { REALM_HOMES, RealmHome } from "@/components/realm-home";
 import { isRealmSlug } from "@/lib/realms";
 import { buildPageMetadata } from "@/lib/seo";
 
@@ -45,7 +45,8 @@ export async function generateMetadata({
   });
 }
 
-// a realm's home: Lordaeron's (the former home), Rimeheart's showcase
+// a realm's home, drawn by the realm-home template from the realm's definition (components/realm-home; Ayoub, 13/10/2026); Rimeheart's
+// long showcase moved to /<locale>/rimeheart/features
 export default async function RealmHomePage({
   params,
 }: {
@@ -54,7 +55,12 @@ export default async function RealmHomePage({
   const { locale, realm } = await params;
 
   if (!isRealmSlug(realm)) notFound();
-  if (realm === "lordaeron") return <LordaeronHome />;
+  const definition = await REALM_HOMES[realm](locale);
 
-  return <ExperienceContent locale={locale} />;
+  return (
+    <>
+      {realm === "lordaeron" && <LordaeronJsonLd />}
+      <RealmHome definition={definition} />
+    </>
+  );
 }

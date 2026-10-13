@@ -920,7 +920,7 @@
     "title": "Impressum",
     "subtitle": "Wer Lordaeron herausgibt, wo es gehostet wird und welche Regeln gelten.",
     "lastUpdated": "Zuletzt aktualisiert: 13. Oktober 2026",
-    "authoritative": "Dieses Impressum ist in mehrere Sprachen übersetzt: Bei Abweichungen ist die französische Fassung maßgeblich.",
+    "authoritative": "Die rechtlichen Texte von Lordaeron (Impressum, Nutzungsbedingungen, Verkaufsbedingungen, Datenschutzerklärung) sind in mehrere Sprachen übersetzt: Bei Abweichungen ist die englische Fassung maßgeblich.",
     "labels": {
       "name": "Name",
       "legalForm": "Rechtsform",
@@ -1297,6 +1297,19 @@
     },
     "label": "Realms",
     "adminPreview": "Admin-Vorschau"
+  },
+  "realmHome": {
+    "featuresEyebrow": "Das Reich",
+    "allFeatures": "Alle Features",
+    "allPhases": "Der ganze Zeitplan",
+    "comingSoon": "Bald geöffnet",
+    "reservationOpen": "Namensreservierung geöffnet",
+    "reservationHint": "Erstelle jetzt deine Charaktere: Die Welt öffnet am {date}.",
+    "reservationOn": "Namensreservierung ab {date}.",
+    "opensOn": "Öffnet am {date}.",
+    "playersOnline": "{count, plural, one {Spieler online} other {Spieler online}}",
+    "offline": "{realm} ist offline",
+    "uptime": "Online seit {time}"
   },
   "launch": {
     "title": "Eröffnung",

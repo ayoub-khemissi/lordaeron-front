@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
 import { FeaturesGrid } from "@/components/features-grid";
+import { LANGS, type Lang, meta } from "@/components/rimeheart/content";
+import ExperienceContent from "@/components/rimeheart/showcase";
 import { RatesSection } from "@/components/rates-table";
 import { JsonLd } from "@/components/json-ld";
 import { buildPageMetadata } from "@/lib/seo";
@@ -14,6 +16,23 @@ export async function generateMetadata({
   params: Promise<{ locale: string; realm: string }>;
 }): Promise<Metadata> {
   const { locale, realm } = await params;
+
+  // Rimeheart's features: its long showcase (13/10/2026, formerly its home), its own title and the timeline banner shared on links
+  if (realm === "rimeheart") {
+    const lang: Lang = (LANGS as readonly string[]).includes(locale)
+      ? (locale as Lang)
+      : "en";
+    const banner = `/img/rimeheart/timeline-${locale === "fr" ? "fr" : "en"}.jpg`;
+
+    return buildPageMetadata(locale, "/rimeheart/features", {
+      title: meta.title[lang],
+      description: meta.description[lang],
+      openGraph: {
+        images: [{ url: banner, width: 1920, height: 1080, alt: "Rimeheart" }],
+      },
+      twitter: { card: "summary_large_image", images: [banner] },
+    });
+  }
   const t = await getTranslations({ locale, namespace: "meta.features" });
 
   return buildPageMetadata(locale, `/${realm}/features`, {
@@ -28,6 +47,8 @@ export default async function FeaturesPage({
   params: Promise<{ locale: string; realm: string }>;
 }) {
   const { locale, realm } = await params;
+
+  if (realm === "rimeheart") return <ExperienceContent locale={locale} />;
 
   return (
     <div

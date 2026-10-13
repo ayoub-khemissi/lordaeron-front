@@ -85,7 +85,8 @@ export const REALMS: Record<RealmSlug, RealmInfo> = {
     launchAt: "2026-10-16T17:00:00Z",
     // Ayoub, 13/10/2026: the names are reserved from Wednesday 14 October 2026, 19:00 Paris time
     reservationAt: "2026-10-14T17:00:00Z",
-    sections: ["home", "how-to", "armory", "shop"],
+    // features: its long showcase ("Discover the realm", 13/10/2026), its home being the realm-home template's
+    sections: ["home", "how-to", "features", "armory", "shop"],
     accent: "ice",
     progressive: true,
   },

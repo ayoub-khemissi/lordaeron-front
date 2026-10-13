@@ -920,7 +920,7 @@
     "title": "Aviso legal",
     "subtitle": "Quién edita Lordaeron, dónde está alojado y las normas que se aplican.",
     "lastUpdated": "Última actualización: 13 de octubre de 2026",
-    "authoritative": "Este aviso legal está traducido a varios idiomas: en caso de discrepancia, prevalece la versión francesa.",
+    "authoritative": "Los textos legales de Lordaeron (aviso legal, condiciones de uso, condiciones de venta, política de privacidad) están traducidos a varios idiomas: en caso de discrepancia, prevalece la versión inglesa.",
     "labels": {
       "name": "Nombre",
       "legalForm": "Forma jurídica",
@@ -1297,6 +1297,19 @@
     },
     "label": "Reinos",
     "adminPreview": "Vista admin"
+  },
+  "realmHome": {
+    "featuresEyebrow": "El reino",
+    "allFeatures": "Todas las novedades",
+    "allPhases": "Toda la progresión",
+    "comingSoon": "Apertura próxima",
+    "reservationOpen": "Reserva de nombres abierta",
+    "reservationHint": "Crea tus personajes ya: el mundo abre el {date}.",
+    "reservationOn": "Reserva de nombres el {date}.",
+    "opensOn": "Abre el {date}.",
+    "playersOnline": "{count, plural, one {jugador en línea} other {jugadores en línea}}",
+    "offline": "{realm} está desconectado",
+    "uptime": "En línea desde hace {time}"
   },
   "launch": {
     "title": "Apertura",

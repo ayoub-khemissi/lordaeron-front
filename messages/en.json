@@ -920,7 +920,7 @@
     "title": "Legal notice",
     "subtitle": "Who publishes Lordaeron, where it is hosted and the rules that apply.",
     "lastUpdated": "Last updated: 13 October 2026",
-    "authoritative": "This legal notice is translated into several languages: in case of discrepancy, the French version prevails.",
+    "authoritative": "Lordaeron's legal texts (legal notice, terms of use, terms of sale, privacy policy) are translated into several languages: in case of discrepancy, the English version prevails.",
     "labels": {
       "name": "Name",
       "legalForm": "Legal form",
@@ -1297,6 +1297,19 @@
     },
     "label": "Realms",
     "adminPreview": "Admin preview"
+  },
+  "realmHome": {
+    "featuresEyebrow": "The realm",
+    "allFeatures": "All features",
+    "allPhases": "The full timeline",
+    "comingSoon": "Opening soon",
+    "reservationOpen": "Name reservation is open",
+    "reservationHint": "Create your characters now: the world opens {date}.",
+    "reservationOn": "Name reservation opens {date}.",
+    "opensOn": "Opens {date}.",
+    "playersOnline": "{count, plural, one {player online} other {players online}}",
+    "offline": "{realm} is offline",
+    "uptime": "Up for {time}"
   },
   "launch": {
     "title": "Launch",

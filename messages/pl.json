@@ -920,7 +920,7 @@
     "title": "Nota prawna",
     "subtitle": "Kto wydaje Lordaeron, gdzie jest hostowany i jakie zasady obowiązują.",
     "lastUpdated": "Ostatnia aktualizacja: 13 października 2026",
-    "authoritative": "Niniejsza nota prawna jest przetłumaczona na kilka języków: w razie rozbieżności rozstrzyga wersja francuska.",
+    "authoritative": "Teksty prawne Lordaeron (nota prawna, warunki korzystania, warunki sprzedaży, polityka prywatności) są przetłumaczone na kilka języków: w razie rozbieżności rozstrzyga wersja angielska.",
     "labels": {
       "name": "Nazwa",
       "legalForm": "Forma prawna",
@@ -1297,6 +1297,19 @@
     },
     "label": "Światy",
     "adminPreview": "Podgląd admina"
+  },
+  "realmHome": {
+    "featuresEyebrow": "Kraina",
+    "allFeatures": "Wszystkie nowości",
+    "allPhases": "Cała progresja",
+    "comingSoon": "Wkrótce otwarcie",
+    "reservationOpen": "Rezerwacja nazw otwarta",
+    "reservationHint": "Stwórz postacie już teraz: świat otwiera się {date}.",
+    "reservationOn": "Rezerwacja nazw od {date}.",
+    "opensOn": "Otwarcie {date}.",
+    "playersOnline": "{count, plural, one {gracz online} few {graczy online} many {graczy online} other {graczy online}}",
+    "offline": "{realm} jest offline",
+    "uptime": "Online od {time}"
   },
   "launch": {
     "title": "Otwarcie",

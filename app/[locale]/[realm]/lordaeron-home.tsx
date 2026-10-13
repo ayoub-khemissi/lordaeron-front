@@ -2,11 +2,6 @@ import type { Metadata } from "next";
 
 import { getTranslations } from "next-intl/server";
 
-import { HeroBanner, heroBackgrounds } from "@/components/hero-banner";
-import { ServerStatus } from "@/components/server-status";
-import { ServerStats } from "@/components/server-stats";
-import { EpicProgressionTimeline } from "@/components/epic-progression-timeline";
-import { NewsSection } from "@/components/news-section";
 import { JsonLd } from "@/components/json-ld";
 import { buildPageMetadata } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
@@ -20,13 +15,11 @@ export async function lordaeronHomeMetadata(locale: string): Promise<Metadata> {
   });
 }
 
-// Lordaeron's home (the site's home before the realms' portals, 09/10/2026)
-export function LordaeronHome() {
-  const bgImage =
-    heroBackgrounds[Math.floor(Math.random() * heroBackgrounds.length)];
-
+// Lordaeron's structured data (the site's home before the realms' portals, 09/10/2026); its page is the realm-home template's
+// (components/realm-home/realms/lordaeron.tsx)
+export function LordaeronJsonLd() {
   return (
-    <div>
+    <>
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -74,13 +67,6 @@ export function LordaeronHome() {
             "WoW private server, 3.3.5a, WotLK, progressive, transmog, crossfaction, free to play, Vanilla, TBC, Wrath of the Lich King",
         }}
       />
-      <HeroBanner bgImage={bgImage} />
-      <div className="flex justify-center mt-6 relative z-10">
-        <ServerStatus />
-      </div>
-      <ServerStats />
-      <EpicProgressionTimeline />
-      <NewsSection />
-    </div>
+    </>
   );
 }

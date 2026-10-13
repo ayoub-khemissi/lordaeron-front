@@ -920,7 +920,7 @@
     "title": "Note legali",
     "subtitle": "Chi pubblica Lordaeron, dove è ospitato e le regole che si applicano.",
     "lastUpdated": "Ultimo aggiornamento: 13 ottobre 2026",
-    "authoritative": "Queste note legali sono tradotte in più lingue: in caso di discordanza, prevale la versione francese.",
+    "authoritative": "I testi legali di Lordaeron (note legali, condizioni d'uso, condizioni di vendita, informativa sulla privacy) sono tradotti in più lingue: in caso di discordanza, prevale la versione inglese.",
     "labels": {
       "name": "Nome",
       "legalForm": "Forma giuridica",
@@ -1297,6 +1297,19 @@
     },
     "label": "Reami",
     "adminPreview": "Anteprima admin"
+  },
+  "realmHome": {
+    "featuresEyebrow": "Il reame",
+    "allFeatures": "Tutte le novità",
+    "allPhases": "Tutta la progressione",
+    "comingSoon": "Apertura in arrivo",
+    "reservationOpen": "Prenotazione dei nomi aperta",
+    "reservationHint": "Crea subito i tuoi personaggi: il mondo apre il {date}.",
+    "reservationOn": "Prenotazione dei nomi il {date}.",
+    "opensOn": "Apre il {date}.",
+    "playersOnline": "{count, plural, one {giocatore online} other {giocatori online}}",
+    "offline": "{realm} è offline",
+    "uptime": "Online da {time}"
   },
   "launch": {
     "title": "Apertura",
