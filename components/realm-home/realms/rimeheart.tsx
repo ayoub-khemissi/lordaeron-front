@@ -85,6 +85,11 @@ export async function rimeheartHome(
     },
     sections: (
       <PhaseStrip
+        classic={{
+          label: "Burning Crusade · 80",
+          planned: phases.plannedTag[lang],
+          legend: `${phases.track[0][lang]} ${phases.track[1][lang]}`,
+        }}
         eyebrow={phases.eyebrow[lang]}
         more={{ label: tr("allPhases"), href: href("/features#phases") }}
         phases={phases.steps.map((s) => ({
@@ -97,6 +102,11 @@ export async function rimeheartHome(
           length: s.length[lang],
           icon: icon(s.icon),
           lines: s.lines.map((l) => l[lang]),
+          classic: s.classic && {
+            icon: icon(s.classic.icon),
+            name: s.classic.name[lang],
+            planned: s.classic.planned,
+          },
         }))}
         title={phases.title[lang]}
       />
