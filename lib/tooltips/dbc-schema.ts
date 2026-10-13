@@ -85,11 +85,35 @@ export const DBC_LAYOUTS = {
     },
   },
   SpellIcon: { fieldCount: 2, fields: { ID: 0 }, strings: { Texture: 1 } },
-  // the guild pages' achievements (lib/queries/guilds.ts)
+  // the guild pages' achievements (lib/queries/guilds.ts), the realm firsts (lib/queries/realm-firsts.ts)
   Achievement: {
     fieldCount: 62,
-    fields: { ID: 0, Points: 39, Flags: 41, IconID: 42 },
+    fields: {
+      ID: 0,
+      Faction: 1,
+      Category: 38,
+      Points: 39,
+      Flags: 41,
+      IconID: 42,
+    },
     localized: { Title: 4, Description: 21 },
+  },
+  // the realm firsts' criteria (what kind of first: a level, a skill, a kill)
+  Achievement_Criteria: {
+    fieldCount: 31,
+    fields: { ID: 0, Achievement_Id: 1, Type: 2, Asset_Id: 3, Quantity: 4 },
+  },
+  // the raids' names (the guilds' progression)
+  Map: {
+    fieldCount: 66,
+    fields: { ID: 0, InstanceType: 2, ExpansionID: 63, MaxPlayers: 65 },
+    localized: { MapName: 5 },
+  },
+  // the raids' bosses (the guilds' progression)
+  DungeonEncounter: {
+    fieldCount: 23,
+    fields: { ID: 0, MapID: 1, Difficulty: 2, OrderIndex: 3, SpellIconID: 22 },
+    localized: { Name: 5 },
   },
   SpellDescriptionVariables: {
     fieldCount: 2,

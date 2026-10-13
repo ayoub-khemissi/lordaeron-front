@@ -64,6 +64,10 @@
     "population": "Población",
     "phases": "Fases",
     "vote": "Votar",
+    "blackMarket": "Mercado negro",
+    "realmFirsts": "Primeros del reino",
+    "calendar": "Calendario en vivo",
+    "progression": "Progreso de hermandades",
     "hints": {
       "howTo": "Cliente, parche y realmlist, paso a paso",
       "features": "Todo lo que hace único al reino",
@@ -73,7 +77,11 @@
       "guilds": "Hermandades, sus emblemas y sus miembros",
       "pvp": "Muertes, equipos de arena y honor, clasificados",
       "hallOfFame": "Los más laureados, por puntos de logros",
-      "population": "Facciones, clases y niveles de un vistazo"
+      "population": "Facciones, clases y niveles de un vistazo",
+      "blackMarket": "El escaparate de Zar'haam y lo que aún queda para ti",
+      "realmFirsts": "Quién logró cada primero del reino, y cuándo",
+      "calendar": "Conquista del Invierno, torneo, jefes y reinicios en vivo",
+      "progression": "Hermandades clasificadas por jefes de banda derrotados"
     }
   },
   "home": {
@@ -1549,5 +1557,125 @@
     "achievements": "Logros de hermandad",
     "members": "Miembros",
     "notFound": "Esta hermandad no existe en este reino."
+  },
+  "tools": {
+    "now": "ahora",
+    "in": "en {time}",
+    "left": "quedan {time}",
+    "paris": "{time} hora de París",
+    "zoneParis": "Horas de París, las del reino.",
+    "zoneLocal": "Horas en tu zona horaria ({zone}); el reino funciona con la hora de París.",
+    "error": "No se pudo cargar esta página. Vuelve a intentarlo en un momento.",
+    "duration": {
+      "dh": "{d} d {h} h",
+      "hm": "{h} h {m} min",
+      "ms": "{m} min {s} s"
+    }
+  },
+  "blackMarket": {
+    "metaTitle": "Mercado negro de {realm}: el escaparate de Zar'haam",
+    "metaDescription": "El mercado negro de Zar'haam en {realm}: los objetos de la entrega actual, sus precios, la cuenta atrás hasta la siguiente y lo que aún queda para cada uno de tus personajes.",
+    "title": "Mercado negro",
+    "lede": "Zar'haam, bajo Dalaran: una nueva entrega en cada reinicio de bandas, un ejemplar de cada objeto por personaje.",
+    "nextDelivery": "Próxima entrega",
+    "delivered": "Entregada el",
+    "closed": "El mercado negro aún no ha recibido su primera entrega.",
+    "signIn": "Inicia sesión para ver, para cada uno de tus personajes, lo que aún queda para él.",
+    "signInCta": "Iniciar sesión",
+    "noCharacter": "Tu cuenta aún no tiene personajes en {realm}.",
+    "pickCharacter": "Tu personaje",
+    "member": "{name} es cliente de Zar'haam: quedan {available} de {total} objetos disponibles.",
+    "notMember": "{name} aún no es cliente de Zar'haam: completa la misión «{quest}» para comprar aquí.",
+    "jackpot": "Premio gordo",
+    "states": {
+      "available": "Disponible",
+      "bought": "Comprado",
+      "owned": "Ya lo tienes"
+    },
+    "rules": "Los precios siguen a la casa de subastas: siempre un 10 % por debajo de su oferta más baja. Un objeto único que conservas, o una montura o mascota ya aprendida, no se vuelve a ofrecer."
+  },
+  "realmFirsts": {
+    "metaTitle": "Primeros del reino en {realm}",
+    "metaDescription": "Quién logró cada primero del reino en {realm}, y cuándo: nivel 80 por clase y raza, jefes, profesiones, JcJ y proezas.",
+    "title": "Primeros del reino",
+    "lede": "Cada uno es para un solo personaje, o una sola banda, en {realm}. Quién llegó primero, y cuándo.",
+    "groups": {
+      "level": "Nivel 80",
+      "classes": "Nivel 80 por clase",
+      "races": "Nivel 80 por raza",
+      "bosses": "Jefes",
+      "professions": "Profesiones",
+      "pvp": "JcJ",
+      "feats": "Proezas"
+    },
+    "notYet": "Aún disponible",
+    "more": "+{n} más",
+    "openOnly": "Aún disponibles",
+    "summary": "{earned} de {total} primeros del reino logrados",
+    "unlocksTitle": "Primeros de nivel 80: {done}/{total}",
+    "unlocksText": "Cuando cada clase y cada raza tenga su primero del reino de nivel 80, se desbloquean las bonificaciones de experiencia del reino: la del fin de semana y los Viales de perspicacia.",
+    "unlocksDone": "Cada clase y cada raza tiene su primero del reino de nivel 80: las bonificaciones de experiencia están desbloqueadas."
+  },
+  "calendar": {
+    "metaTitle": "Calendario en vivo de {realm}",
+    "metaDescription": "Conquista del Invierno, el torneo de las cloacas, jefes del mundo, reinicios y la bonificación del reino en {realm}, en vivo, en tu hora.",
+    "title": "Calendario en vivo",
+    "lede": "Lo que pasa ahora y lo que viene en {realm}, en tu hora.",
+    "online": "{realm} está en línea.",
+    "offline": "{realm} está desconectado: los contadores se reanudan cuando vuelva.",
+    "phase": "Fase {n}",
+    "since": "Desde el",
+    "bonus": "Bonificación del reino",
+    "bonusActive": "+{xp} % de experiencia, progreso de profesiones doble",
+    "bonusLocked": "Bloqueada: primeros de nivel 80 {done}/{total}",
+    "bonusIdle": "Inactiva",
+    "upcoming": "Próximamente",
+    "running": "En curso",
+    "defender": "En manos de la {faction}",
+    "alliance": "Alianza",
+    "horde": "Horda",
+    "registration": "Inscripciones desde",
+    "events": {
+      "opening": "Apertura del reino",
+      "reservation": "Apertura de la reserva de nombres",
+      "wintergrasp": "Batalla por Conquista del Invierno",
+      "tournament": "El torneo de las cloacas",
+      "raidReset": "Reinicio de bandas",
+      "dailyQuests": "Reinicio de misiones diarias",
+      "weeklyQuests": "Reinicio de misiones semanales",
+      "dailyWeekly": "Reinicio de misiones diarias y semanales",
+      "arenaPoints": "Puntos de arena",
+      "blackMarket": "Entrega del mercado negro",
+      "bonus": "Bonificación del reino"
+    },
+    "worldBosses": "Jefes del mundo",
+    "bossUp": "Presente",
+    "bossBack": "Vuelve",
+    "bossLocked": "Desde la fase {n}"
+  },
+  "progression": {
+    "metaTitle": "Progreso de hermandades en {realm}",
+    "metaDescription": "Las hermandades de {realm} clasificadas por jefes de banda derrotados, por banda y dificultad, y las primeras victorias del reino.",
+    "title": "Progreso de hermandades",
+    "lede": "Las hermandades de {realm} clasificadas por jefes de banda derrotados, por banda y dificultad.",
+    "firstKills": "Primeras victorias del reino",
+    "notYet": "Aún disponible",
+    "ranking": "Clasificación",
+    "empty": "Ninguna hermandad ha derrotado aún a un jefe de banda: la carrera está abierta.",
+    "credit": "Un jefe cuenta para una hermandad cuando al menos {n10} de sus miembros lo han derrotado en 10 jugadores, {n25} en 25 jugadores.",
+    "modes": {
+      "n10": "10 jugadores",
+      "n25": "25 jugadores",
+      "h10": "10 heroico",
+      "h25": "25 heroico"
+    },
+    "short": {
+      "n10": "10",
+      "n25": "25",
+      "h10": "10H",
+      "h25": "25H"
+    },
+    "showBosses": "Ver los jefes",
+    "hideBosses": "Ocultar los jefes"
   }
 }

@@ -64,6 +64,10 @@
     "population": "Population",
     "phases": "Phases",
     "vote": "Vote",
+    "blackMarket": "Black Market",
+    "realmFirsts": "Realm Firsts",
+    "calendar": "Live Calendar",
+    "progression": "Guild Progression",
     "hints": {
       "howTo": "Client, patch and realmlist, step by step",
       "features": "Everything that makes the realm unique",
@@ -73,7 +77,11 @@
       "guilds": "Guilds, their crests and their members",
       "pvp": "Kills, arena teams and honor, ranked",
       "hallOfFame": "The most accomplished, by achievement points",
-      "population": "Factions, classes and levels at a glance"
+      "population": "Factions, classes and levels at a glance",
+      "blackMarket": "Zar'haam's showcase and what is still for you",
+      "realmFirsts": "Who earned each realm first, and when",
+      "calendar": "Wintergrasp, tournament, bosses and resets, live",
+      "progression": "Guilds ranked by the raid bosses they killed"
     }
   },
   "home": {
@@ -1549,5 +1557,125 @@
     "achievements": "Guild achievements",
     "members": "Members",
     "notFound": "This guild does not exist on this realm."
+  },
+  "tools": {
+    "now": "now",
+    "in": "in {time}",
+    "left": "{time} left",
+    "paris": "{time} Paris time",
+    "zoneParis": "Times in Paris time, the realm's.",
+    "zoneLocal": "Times in your time zone ({zone}); the realm runs on Paris time.",
+    "error": "This page couldn't load. Try again in a moment.",
+    "duration": {
+      "dh": "{d} d {h} h",
+      "hm": "{h} h {m} min",
+      "ms": "{m} min {s} s"
+    }
+  },
+  "blackMarket": {
+    "metaTitle": "Black market on {realm}: Zar'haam's showcase",
+    "metaDescription": "Zar'haam's black market on {realm}: the items of the current delivery, their prices, the countdown to the next one and what is still for each of your characters.",
+    "title": "Black Market",
+    "lede": "Zar'haam, under Dalaran: a new delivery at each raid reset, one copy of each item per character.",
+    "nextDelivery": "Next delivery",
+    "delivered": "Delivered on",
+    "closed": "The black market has not received its first delivery yet.",
+    "signIn": "Sign in to see, for each of your characters, what is still for them.",
+    "signInCta": "Sign in",
+    "noCharacter": "Your account has no character on {realm} yet.",
+    "pickCharacter": "Your character",
+    "member": "{name} is one of Zar'haam's customers: {available} of {total} items still available.",
+    "notMember": "{name} is not one of Zar'haam's customers yet: finish the quest “{quest}” to buy here.",
+    "jackpot": "Jackpot",
+    "states": {
+      "available": "Available",
+      "bought": "Bought",
+      "owned": "Already owned"
+    },
+    "rules": "Prices follow the auction house: always 10% below its lowest offer. A unique item you keep, or a mount or companion you have learned, is not offered again."
+  },
+  "realmFirsts": {
+    "metaTitle": "Realm firsts on {realm}",
+    "metaDescription": "Who earned each realm first on {realm}, and when: level 80 by class and race, bosses, professions, PvP and feats.",
+    "title": "Realm Firsts",
+    "lede": "Each one goes to a single character, or a single raid, on {realm}. Who got there first, and when.",
+    "groups": {
+      "level": "Level 80",
+      "classes": "Level 80 by class",
+      "races": "Level 80 by race",
+      "bosses": "Bosses",
+      "professions": "Professions",
+      "pvp": "PvP",
+      "feats": "Feats"
+    },
+    "notYet": "Still up for grabs",
+    "more": "+{n} more",
+    "openOnly": "Still open",
+    "summary": "{earned} of {total} realm firsts earned",
+    "unlocksTitle": "Level 80 firsts: {done}/{total}",
+    "unlocksText": "Once every class and every race has its level 80 realm first, the realm's experience bonuses unlock: the weekend bonus and the Vials of Insight.",
+    "unlocksDone": "Every class and every race has its level 80 realm first: the experience bonuses are unlocked."
+  },
+  "calendar": {
+    "metaTitle": "{realm} live calendar",
+    "metaDescription": "Wintergrasp, the Sewer Tournament, world bosses, resets and the realm bonus on {realm}, live, in your time zone.",
+    "title": "Live Calendar",
+    "lede": "What runs now and what comes next on {realm}, in your time zone.",
+    "online": "{realm} is online.",
+    "offline": "{realm} is offline: the timers resume when it is back.",
+    "phase": "Phase {n}",
+    "since": "Since",
+    "bonus": "Realm bonus",
+    "bonusActive": "+{xp}% experience, double profession skill-ups",
+    "bonusLocked": "Locked: level 80 realm firsts {done}/{total}",
+    "bonusIdle": "Not running",
+    "upcoming": "Coming up",
+    "running": "In progress",
+    "defender": "Held by the {faction}",
+    "alliance": "Alliance",
+    "horde": "Horde",
+    "registration": "Registration from",
+    "events": {
+      "opening": "Realm opening",
+      "reservation": "Name reservation opens",
+      "wintergrasp": "Battle for Wintergrasp",
+      "tournament": "The Sewer Tournament",
+      "raidReset": "Raid reset",
+      "dailyQuests": "Daily quests reset",
+      "weeklyQuests": "Weekly quests reset",
+      "dailyWeekly": "Daily and weekly quests reset",
+      "arenaPoints": "Arena points",
+      "blackMarket": "Black market delivery",
+      "bonus": "Realm bonus"
+    },
+    "worldBosses": "World bosses",
+    "bossUp": "Up now",
+    "bossBack": "Back",
+    "bossLocked": "From phase {n}"
+  },
+  "progression": {
+    "metaTitle": "Guild progression on {realm}",
+    "metaDescription": "The guilds of {realm} ranked by the raid bosses they have killed, by raid and difficulty, and the realm's first kills.",
+    "title": "Guild Progression",
+    "lede": "The guilds of {realm} ranked by the raid bosses they have killed, by raid and difficulty.",
+    "firstKills": "Realm first kills",
+    "notYet": "Still up for grabs",
+    "ranking": "Ranking",
+    "empty": "No guild has a raid boss to its name yet: the race is open.",
+    "credit": "A guild is credited with a boss once at least {n10} of its members have killed it in 10-player, {n25} in 25-player.",
+    "modes": {
+      "n10": "10 players",
+      "n25": "25 players",
+      "h10": "10 heroic",
+      "h25": "25 heroic"
+    },
+    "short": {
+      "n10": "10",
+      "n25": "25",
+      "h10": "10H",
+      "h25": "25H"
+    },
+    "showBosses": "Show the bosses",
+    "hideBosses": "Hide the bosses"
   }
 }

@@ -48,6 +48,11 @@ export class Dbc {
     return off === undefined ? null : new Rec(this, off);
   }
 
+  // every record, in the file's order (the talent trees, the codex's crafts)
+  *records(): Generator<Rec> {
+    for (const off of this.index.values()) yield new Rec(this, off);
+  }
+
   readString(offset: number): string {
     const start = this.stringStart + offset;
 

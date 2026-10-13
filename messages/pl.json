@@ -64,6 +64,10 @@
     "population": "Populacja",
     "phases": "Fazy",
     "vote": "Głosuj",
+    "blackMarket": "Czarny rynek",
+    "realmFirsts": "Pierwsi w świecie",
+    "calendar": "Kalendarz na żywo",
+    "progression": "Postępy gildii",
     "hints": {
       "howTo": "Klient, patch i realmlist krok po kroku",
       "features": "Wszystko, co wyróżnia ten świat",
@@ -73,7 +77,11 @@
       "guilds": "Gildie, ich herby i członkowie",
       "pvp": "Zabójstwa, drużyny areny i honor w rankingu",
       "hallOfFame": "Najwięksi bohaterowie według punktów osiągnięć",
-      "population": "Frakcje, klasy i poziomy w skrócie"
+      "population": "Frakcje, klasy i poziomy w skrócie",
+      "blackMarket": "Wystawa Zar'haama i to, co jeszcze na ciebie czeka",
+      "realmFirsts": "Kto zdobył każde „pierwszy w świecie” i kiedy",
+      "calendar": "Wintergrasp, turniej, bossowie i resety na żywo",
+      "progression": "Gildie według pokonanych bossów rajdowych"
     }
   },
   "home": {
@@ -1549,5 +1557,125 @@
     "achievements": "Osiągnięcia gildii",
     "members": "Członkowie",
     "notFound": "Ta gildia nie istnieje w tym świecie."
+  },
+  "tools": {
+    "now": "teraz",
+    "in": "za {time}",
+    "left": "jeszcze {time}",
+    "paris": "{time} czasu paryskiego",
+    "zoneParis": "Godziny czasu paryskiego, czasu świata.",
+    "zoneLocal": "Godziny w twojej strefie czasowej ({zone}); świat działa według czasu paryskiego.",
+    "error": "Nie udało się wczytać tej strony. Spróbuj ponownie za chwilę.",
+    "duration": {
+      "dh": "{d} d {h} godz.",
+      "hm": "{h} godz. {m} min",
+      "ms": "{m} min {s} s"
+    }
+  },
+  "blackMarket": {
+    "metaTitle": "Czarny rynek na {realm}: wystawa Zar'haama",
+    "metaDescription": "Czarny rynek Zar'haama na {realm}: przedmioty bieżącej dostawy, ich ceny, odliczanie do następnej i to, co jeszcze czeka na każdą z twoich postaci.",
+    "title": "Czarny rynek",
+    "lede": "Zar'haam pod Dalaranem: nowa dostawa przy każdym resecie rajdów, jeden egzemplarz każdego przedmiotu na postać.",
+    "nextDelivery": "Następna dostawa",
+    "delivered": "Dostarczona",
+    "closed": "Czarny rynek nie otrzymał jeszcze pierwszej dostawy.",
+    "signIn": "Zaloguj się, aby zobaczyć, co jeszcze czeka na każdą z twoich postaci.",
+    "signInCta": "Zaloguj się",
+    "noCharacter": "Twoje konto nie ma jeszcze postaci na {realm}.",
+    "pickCharacter": "Twoja postać",
+    "member": "{name} jest klientem Zar'haama: dostępnych jeszcze {available} z {total} przedmiotów.",
+    "notMember": "{name} nie jest jeszcze klientem Zar'haama: ukończ zadanie „{quest}”, aby tu kupować.",
+    "jackpot": "Główna wygrana",
+    "states": {
+      "available": "Dostępne",
+      "bought": "Kupione",
+      "owned": "Już posiadane"
+    },
+    "rules": "Ceny podążają za domem aukcyjnym: zawsze 10% poniżej jego najniższej oferty. Unikalny przedmiot, który zachowujesz, ani poznany wierzchowiec czy chowaniec nie są oferowane ponownie."
+  },
+  "realmFirsts": {
+    "metaTitle": "Pierwsi w świecie {realm}",
+    "metaDescription": "Kto zdobył każde „pierwszy w świecie” na {realm} i kiedy: poziom 80 według klasy i rasy, bossowie, profesje, PvP i wyczyny.",
+    "title": "Pierwsi w świecie",
+    "lede": "Każde trafia do jednej postaci albo jednego rajdu na {realm}. Kto był pierwszy i kiedy.",
+    "groups": {
+      "level": "Poziom 80",
+      "classes": "Poziom 80 według klasy",
+      "races": "Poziom 80 według rasy",
+      "bosses": "Bossowie",
+      "professions": "Profesje",
+      "pvp": "PvP",
+      "feats": "Wyczyny"
+    },
+    "notYet": "Wciąż do zdobycia",
+    "more": "+{n} więcej",
+    "openOnly": "Wciąż otwarte",
+    "summary": "Zdobyto {earned} z {total}",
+    "unlocksTitle": "Pierwsi na 80. poziomie: {done}/{total}",
+    "unlocksText": "Gdy każda klasa i każda rasa będzie miała swojego pierwszego w świecie na 80. poziomie, odblokują się premie do doświadczenia: weekendowa i Vials of Insight.",
+    "unlocksDone": "Każda klasa i każda rasa ma swojego pierwszego w świecie na 80. poziomie: premie do doświadczenia są odblokowane."
+  },
+  "calendar": {
+    "metaTitle": "Kalendarz na żywo {realm}",
+    "metaDescription": "Wintergrasp, Sewer Tournament, bossowie świata, resety i premia świata na {realm}, na żywo, w twojej strefie czasowej.",
+    "title": "Kalendarz na żywo",
+    "lede": "Co dzieje się teraz i co nadchodzi na {realm}, w twojej strefie czasowej.",
+    "online": "{realm} działa.",
+    "offline": "{realm} jest wyłączony: liczniki ruszą po jego powrocie.",
+    "phase": "Faza {n}",
+    "since": "Od",
+    "bonus": "Premia świata",
+    "bonusActive": "+{xp}% doświadczenia, podwójne postępy profesji",
+    "bonusLocked": "Zablokowana: pierwsi na 80. poziomie {done}/{total}",
+    "bonusIdle": "Nieaktywna",
+    "upcoming": "Wkrótce",
+    "running": "Trwa",
+    "defender": "W rękach: {faction}",
+    "alliance": "Alliance",
+    "horde": "Horde",
+    "registration": "Zapisy od",
+    "events": {
+      "opening": "Otwarcie świata",
+      "reservation": "Otwarcie rezerwacji nazw",
+      "wintergrasp": "Bitwa o Wintergrasp",
+      "tournament": "Sewer Tournament",
+      "raidReset": "Reset rajdów",
+      "dailyQuests": "Reset zadań dziennych",
+      "weeklyQuests": "Reset zadań tygodniowych",
+      "dailyWeekly": "Reset zadań dziennych i tygodniowych",
+      "arenaPoints": "Punkty areny",
+      "blackMarket": "Dostawa czarnego rynku",
+      "bonus": "Premia świata"
+    },
+    "worldBosses": "Bossowie świata",
+    "bossUp": "Obecny",
+    "bossBack": "Wraca",
+    "bossLocked": "Od fazy {n}"
+  },
+  "progression": {
+    "metaTitle": "Postępy gildii na {realm}",
+    "metaDescription": "Gildie {realm} według pokonanych bossów rajdowych, według rajdu i poziomu trudności, oraz pierwsze zwycięstwa w świecie.",
+    "title": "Postępy gildii",
+    "lede": "Gildie {realm} według pokonanych bossów rajdowych, według rajdu i poziomu trudności.",
+    "firstKills": "Pierwsze zwycięstwa w świecie",
+    "notYet": "Wciąż do zdobycia",
+    "ranking": "Ranking",
+    "empty": "Żadna gildia nie pokonała jeszcze bossa rajdowego: wyścig jest otwarty.",
+    "credit": "Boss liczy się dla gildii, gdy co najmniej {n10} jej członków pokonało go w trybie 10-osobowym, {n25} w 25-osobowym.",
+    "modes": {
+      "n10": "10 graczy",
+      "n25": "25 graczy",
+      "h10": "10 heroiczny",
+      "h25": "25 heroiczny"
+    },
+    "short": {
+      "n10": "10",
+      "n25": "25",
+      "h10": "10H",
+      "h25": "25H"
+    },
+    "showBosses": "Pokaż bossów",
+    "hideBosses": "Ukryj bossów"
   }
 }

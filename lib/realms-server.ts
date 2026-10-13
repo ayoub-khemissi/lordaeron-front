@@ -13,6 +13,8 @@ interface RealmServer {
   soapHost: string;
   soapPort: number;
   dbcDir: string;
+  // its worldserver.conf: a few settings the Tools pages show (lib/realm-config.ts reads only those)
+  worldConf: string;
 }
 
 const env = (slug: RealmSlug, key: string, fallback: string) =>
@@ -34,6 +36,11 @@ export function realmServer(slug: RealmSlug): RealmServer {
       soapHost: env(slug, "SOAP_HOST", process.env.SOAP_HOST || "127.0.0.1"),
       soapPort: Number(env(slug, "SOAP_PORT", process.env.SOAP_PORT || "7878")),
       dbcDir: env(slug, "DBC_DIR", "/home/ubuntu/server/data/dbc"),
+      worldConf: env(
+        slug,
+        "WORLDSERVER_CONF",
+        "/home/ubuntu/server/etc/worldserver.conf",
+      ),
     };
 
   // Rimeheart: its own worldserver (Ayoub, 13/10/2026: realm 4, port 8088, /home/ubuntu/server-rimeheart), the Lab stays the test realm
@@ -43,6 +50,11 @@ export function realmServer(slug: RealmSlug): RealmServer {
     soapHost: env(slug, "SOAP_HOST", "127.0.0.1"),
     soapPort: Number(env(slug, "SOAP_PORT", "7881")),
     dbcDir: env(slug, "DBC_DIR", "/home/ubuntu/server-rimeheart/data/dbc"),
+    worldConf: env(
+      slug,
+      "WORLDSERVER_CONF",
+      "/home/ubuntu/server-rimeheart/etc/worldserver.conf",
+    ),
   };
 }
 

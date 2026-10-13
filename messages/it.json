@@ -64,6 +64,10 @@
     "population": "Popolazione",
     "phases": "Fasi",
     "vote": "Vota",
+    "blackMarket": "Mercato nero",
+    "realmFirsts": "Primi del reame",
+    "calendar": "Calendario dal vivo",
+    "progression": "Progressi delle gilde",
     "hints": {
       "howTo": "Client, patch e realmlist, passo dopo passo",
       "features": "Tutto ciò che rende unico il reame",
@@ -73,7 +77,11 @@
       "guilds": "Le gilde, i loro stemmi e i loro membri",
       "pvp": "Uccisioni, squadre d'arena e onore in classifica",
       "hallOfFame": "I più valorosi, per punti impresa",
-      "population": "Fazioni, classi e livelli a colpo d'occhio"
+      "population": "Fazioni, classi e livelli a colpo d'occhio",
+      "blackMarket": "La vetrina di Zar'haam e ciò che resta per te",
+      "realmFirsts": "Chi ha ottenuto ogni primato del reame, e quando",
+      "calendar": "Wintergrasp, torneo, boss e reset in tempo reale",
+      "progression": "Le gilde classificate per boss d'incursione sconfitti"
     }
   },
   "home": {
@@ -1549,5 +1557,125 @@
     "achievements": "Imprese di gilda",
     "members": "Membri",
     "notFound": "Questa gilda non esiste in questo reame."
+  },
+  "tools": {
+    "now": "ora",
+    "in": "tra {time}",
+    "left": "ancora {time}",
+    "paris": "{time} ora di Parigi",
+    "zoneParis": "Orari di Parigi, quelli del reame.",
+    "zoneLocal": "Orari nel tuo fuso orario ({zone}); il reame segue l'ora di Parigi.",
+    "error": "Impossibile caricare questa pagina. Riprova tra un attimo.",
+    "duration": {
+      "dh": "{d} g {h} h",
+      "hm": "{h} h {m} min",
+      "ms": "{m} min {s} s"
+    }
+  },
+  "blackMarket": {
+    "metaTitle": "Mercato nero di {realm}: la vetrina di Zar'haam",
+    "metaDescription": "Il mercato nero di Zar'haam su {realm}: gli oggetti della consegna attuale, i loro prezzi, il conto alla rovescia fino alla prossima e ciò che resta per ognuno dei tuoi personaggi.",
+    "title": "Mercato nero",
+    "lede": "Zar'haam, sotto Dalaran: una nuova consegna a ogni reset delle incursioni, una copia di ogni oggetto per personaggio.",
+    "nextDelivery": "Prossima consegna",
+    "delivered": "Consegnata il",
+    "closed": "Il mercato nero non ha ancora ricevuto la sua prima consegna.",
+    "signIn": "Accedi per vedere, per ognuno dei tuoi personaggi, ciò che resta per lui.",
+    "signInCta": "Accedi",
+    "noCharacter": "Il tuo account non ha ancora personaggi su {realm}.",
+    "pickCharacter": "Il tuo personaggio",
+    "member": "{name} è tra i clienti di Zar'haam: ancora {available} oggetti su {total} disponibili.",
+    "notMember": "{name} non è ancora tra i clienti di Zar'haam: completa la missione «{quest}» per comprare qui.",
+    "jackpot": "Jackpot",
+    "states": {
+      "available": "Disponibile",
+      "bought": "Acquistato",
+      "owned": "Già posseduto"
+    },
+    "rules": "I prezzi seguono la casa d'aste: sempre il 10% sotto la sua offerta più bassa. Un oggetto unico che conservi, o una cavalcatura o mascotte già appresa, non viene più proposto."
+  },
+  "realmFirsts": {
+    "metaTitle": "Primi del reame su {realm}",
+    "metaDescription": "Chi ha ottenuto ogni primato del reame su {realm}, e quando: livello 80 per classe e razza, boss, professioni, PvP e imprese.",
+    "title": "Primi del reame",
+    "lede": "Ognuno va a un solo personaggio, o a una sola incursione, su {realm}. Chi è arrivato per primo, e quando.",
+    "groups": {
+      "level": "Livello 80",
+      "classes": "Livello 80 per classe",
+      "races": "Livello 80 per razza",
+      "bosses": "Boss",
+      "professions": "Professioni",
+      "pvp": "PvP",
+      "feats": "Imprese"
+    },
+    "notYet": "Ancora da conquistare",
+    "more": "+{n} altri",
+    "openOnly": "Ancora aperti",
+    "summary": "{earned} primati del reame ottenuti su {total}",
+    "unlocksTitle": "Primi al livello 80: {done}/{total}",
+    "unlocksText": "Quando ogni classe e ogni razza avrà il suo primo del reame al livello 80, si sbloccano i bonus esperienza del reame: il bonus del fine settimana e le Vials of Insight.",
+    "unlocksDone": "Ogni classe e ogni razza ha il suo primo del reame al livello 80: i bonus esperienza sono sbloccati."
+  },
+  "calendar": {
+    "metaTitle": "Calendario dal vivo di {realm}",
+    "metaDescription": "Wintergrasp, il Torneo delle Fogne, i boss del mondo, i reset e il bonus del reame su {realm}, dal vivo, nel tuo fuso orario.",
+    "title": "Calendario dal vivo",
+    "lede": "Cosa succede ora e cosa arriva su {realm}, nel tuo fuso orario.",
+    "online": "{realm} è online.",
+    "offline": "{realm} è offline: i timer riprendono al suo ritorno.",
+    "phase": "Fase {n}",
+    "since": "Dal",
+    "bonus": "Bonus del reame",
+    "bonusActive": "+{xp}% esperienza, progressi di professione doppi",
+    "bonusLocked": "Bloccato: primi al livello 80 {done}/{total}",
+    "bonusIdle": "Non attivo",
+    "upcoming": "In arrivo",
+    "running": "In corso",
+    "defender": "In mano all'{faction}",
+    "alliance": "Alleanza",
+    "horde": "Orda",
+    "registration": "Iscrizioni dalle",
+    "events": {
+      "opening": "Apertura del reame",
+      "reservation": "Apertura della prenotazione dei nomi",
+      "wintergrasp": "Battaglia di Wintergrasp",
+      "tournament": "Il Torneo delle Fogne",
+      "raidReset": "Reset delle incursioni",
+      "dailyQuests": "Reset delle missioni giornaliere",
+      "weeklyQuests": "Reset delle missioni settimanali",
+      "dailyWeekly": "Reset delle missioni giornaliere e settimanali",
+      "arenaPoints": "Punti arena",
+      "blackMarket": "Consegna del mercato nero",
+      "bonus": "Bonus del reame"
+    },
+    "worldBosses": "Boss del mondo",
+    "bossUp": "Presente",
+    "bossBack": "Di ritorno",
+    "bossLocked": "Dalla fase {n}"
+  },
+  "progression": {
+    "metaTitle": "Progressi delle gilde su {realm}",
+    "metaDescription": "Le gilde di {realm} classificate per boss d'incursione sconfitti, per incursione e difficoltà, e le prime vittorie del reame.",
+    "title": "Progressi delle gilde",
+    "lede": "Le gilde di {realm} classificate per boss d'incursione sconfitti, per incursione e difficoltà.",
+    "firstKills": "Prime vittorie del reame",
+    "notYet": "Ancora da conquistare",
+    "ranking": "Classifica",
+    "empty": "Nessuna gilda ha ancora sconfitto un boss d'incursione: la corsa è aperta.",
+    "credit": "Un boss conta per una gilda quando almeno {n10} dei suoi membri lo hanno sconfitto a 10 giocatori, {n25} a 25 giocatori.",
+    "modes": {
+      "n10": "10 giocatori",
+      "n25": "25 giocatori",
+      "h10": "10 eroica",
+      "h25": "25 eroica"
+    },
+    "short": {
+      "n10": "10",
+      "n25": "25",
+      "h10": "10E",
+      "h25": "25E"
+    },
+    "showBosses": "Mostra i boss",
+    "hideBosses": "Nascondi i boss"
   }
 }

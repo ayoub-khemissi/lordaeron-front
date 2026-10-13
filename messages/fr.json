@@ -64,6 +64,10 @@
     "population": "Population",
     "phases": "Phases",
     "vote": "Voter",
+    "blackMarket": "Marché noir",
+    "realmFirsts": "Premiers du royaume",
+    "calendar": "Calendrier en direct",
+    "progression": "Progression des guildes",
     "hints": {
       "howTo": "Client, patch et realmlist, pas à pas",
       "features": "Tout ce qui rend le royaume unique",
@@ -73,7 +77,11 @@
       "guilds": "Les guildes, leurs blasons et leurs membres",
       "pvp": "Victoires, équipes d'arène et honneur, classés",
       "hallOfFame": "Les plus accomplis, par points de haut fait",
-      "population": "Factions, classes et niveaux d'un coup d'œil"
+      "population": "Factions, classes et niveaux d'un coup d'œil",
+      "blackMarket": "La vitrine de Zar'haam et ce qui reste pour vous",
+      "realmFirsts": "Qui a décroché chaque « Prem's » du royaume",
+      "calendar": "Joug-d'hiver, tournoi, boss et réinitialisations en direct",
+      "progression": "Les guildes classées par boss de raid vaincus"
     }
   },
   "home": {
@@ -1549,5 +1557,125 @@
     "achievements": "Hauts faits de guilde",
     "members": "Membres",
     "notFound": "Cette guilde n'existe pas sur ce royaume."
+  },
+  "tools": {
+    "now": "maintenant",
+    "in": "dans {time}",
+    "left": "encore {time}",
+    "paris": "{time} heure de Paris",
+    "zoneParis": "Heures de Paris, celles du royaume.",
+    "zoneLocal": "Heures dans votre fuseau ({zone}) ; le royaume vit à l'heure de Paris.",
+    "error": "Impossible de charger cette page. Réessayez dans un instant.",
+    "duration": {
+      "dh": "{d} j {h} h",
+      "hm": "{h} h {m} min",
+      "ms": "{m} min {s} s"
+    }
+  },
+  "blackMarket": {
+    "metaTitle": "Marché noir de {realm} : la vitrine de Zar'haam",
+    "metaDescription": "Le marché noir de Zar'haam sur {realm} : les objets de la livraison en cours, leurs prix, le compte à rebours jusqu'à la suivante et ce qui reste pour chacun de vos personnages.",
+    "title": "Marché noir",
+    "lede": "Zar'haam, sous Dalaran : une nouvelle livraison à chaque réinitialisation des raids, un exemplaire de chaque objet par personnage.",
+    "nextDelivery": "Prochaine livraison",
+    "delivered": "Livrée le",
+    "closed": "Le marché noir n'a pas encore reçu sa première livraison.",
+    "signIn": "Connectez-vous pour voir, pour chacun de vos personnages, ce qui reste pour lui.",
+    "signInCta": "Se connecter",
+    "noCharacter": "Votre compte n'a pas encore de personnage sur {realm}.",
+    "pickCharacter": "Votre personnage",
+    "member": "{name} fait partie des clients de Zar'haam : {available} objets sur {total} encore disponibles.",
+    "notMember": "{name} ne fait pas encore partie des clients de Zar'haam : terminez la quête « {quest} » pour acheter ici.",
+    "jackpot": "Gros lot",
+    "states": {
+      "available": "Disponible",
+      "bought": "Acheté",
+      "owned": "Déjà possédé"
+    },
+    "rules": "Les prix suivent l'hôtel des ventes : toujours 10 % sous son offre la plus basse. Un objet unique que vous gardez, ou une monture ou une mascotte déjà apprise, n'est plus proposé."
+  },
+  "realmFirsts": {
+    "metaTitle": "Premiers du royaume sur {realm}",
+    "metaDescription": "Qui a décroché chaque « Prem's » du royaume sur {realm}, et quand : niveau 80 par classe et par race, boss, métiers, JcJ et exploits.",
+    "title": "Premiers du royaume",
+    "lede": "Chacun ne revient qu'à un seul personnage, ou à un seul raid, sur {realm}. Qui est arrivé le premier, et quand.",
+    "groups": {
+      "level": "Niveau 80",
+      "classes": "Niveau 80 par classe",
+      "races": "Niveau 80 par race",
+      "bosses": "Boss",
+      "professions": "Métiers",
+      "pvp": "JcJ",
+      "feats": "Exploits"
+    },
+    "notYet": "Encore à prendre",
+    "more": "+{n} autres",
+    "openOnly": "Encore à prendre",
+    "summary": "{earned} « Prem's » du royaume décrochés sur {total}",
+    "unlocksTitle": "Premiers niveau 80 : {done}/{total}",
+    "unlocksText": "Quand chaque classe et chaque race aura son premier niveau 80 du royaume, les bonus d'expérience se débloquent : le bonus du week-end et les Fioles de perspicacité.",
+    "unlocksDone": "Chaque classe et chaque race a son premier niveau 80 du royaume : les bonus d'expérience sont débloqués."
+  },
+  "calendar": {
+    "metaTitle": "Calendrier en direct de {realm}",
+    "metaDescription": "Joug-d'hiver, le tournoi des égouts, les boss du monde, les réinitialisations et le bonus du royaume sur {realm}, en direct, à votre heure.",
+    "title": "Calendrier en direct",
+    "lede": "Ce qui se passe maintenant et ce qui arrive sur {realm}, à votre heure.",
+    "online": "{realm} est en ligne.",
+    "offline": "{realm} est hors ligne : les compteurs reprennent à son retour.",
+    "phase": "Phase {n}",
+    "since": "Depuis le",
+    "bonus": "Bonus du royaume",
+    "bonusActive": "+{xp} % d'expérience, gains de métier doublés",
+    "bonusLocked": "Verrouillé : premiers niveau 80 {done}/{total}",
+    "bonusIdle": "Inactif",
+    "upcoming": "À venir",
+    "running": "En cours",
+    "defender": "Tenu par {faction}",
+    "alliance": "l'Alliance",
+    "horde": "la Horde",
+    "registration": "Inscriptions dès",
+    "events": {
+      "opening": "Ouverture du royaume",
+      "reservation": "Ouverture de la réservation des noms",
+      "wintergrasp": "Bataille du Joug-d'hiver",
+      "tournament": "Le tournoi des égouts",
+      "raidReset": "Réinitialisation des raids",
+      "dailyQuests": "Réinitialisation des quêtes journalières",
+      "weeklyQuests": "Réinitialisation des quêtes hebdomadaires",
+      "dailyWeekly": "Réinitialisation des quêtes journalières et hebdomadaires",
+      "arenaPoints": "Points d'arène",
+      "blackMarket": "Livraison du marché noir",
+      "bonus": "Bonus du royaume"
+    },
+    "worldBosses": "Boss du monde",
+    "bossUp": "Présent",
+    "bossBack": "De retour",
+    "bossLocked": "À partir de la phase {n}"
+  },
+  "progression": {
+    "metaTitle": "Progression des guildes sur {realm}",
+    "metaDescription": "Les guildes de {realm} classées par boss de raid vaincus, par raid et par difficulté, et les premières victoires du royaume.",
+    "title": "Progression des guildes",
+    "lede": "Les guildes de {realm} classées par boss de raid vaincus, par raid et par difficulté.",
+    "firstKills": "Premières victoires du royaume",
+    "notYet": "Encore à prendre",
+    "ranking": "Classement",
+    "empty": "Aucune guilde n'a encore de boss de raid à son actif : la course est ouverte.",
+    "credit": "Un boss est crédité à une guilde dès qu'au moins {n10} de ses membres l'ont vaincu à 10 joueurs, {n25} à 25 joueurs.",
+    "modes": {
+      "n10": "10 joueurs",
+      "n25": "25 joueurs",
+      "h10": "10 héroïque",
+      "h25": "25 héroïque"
+    },
+    "short": {
+      "n10": "10",
+      "n25": "25",
+      "h10": "10H",
+      "h25": "25H"
+    },
+    "showBosses": "Voir les boss",
+    "hideBosses": "Masquer les boss"
   }
 }

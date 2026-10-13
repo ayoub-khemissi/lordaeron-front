@@ -83,6 +83,13 @@ const realmPages: PageEntry[] = REALM_SLUGS.flatMap((slug) => {
         priority: 0.6,
         changeFrequency: "daily" as const,
       })),
+    ...(["black-market", "realm-firsts", "calendar", "progression"] as const)
+      .filter(has)
+      .map((tool) => ({
+        path: at(`/${tool}`),
+        priority: 0.6,
+        changeFrequency: "daily" as const,
+      })),
     ...(has("shop")
       ? [
           {

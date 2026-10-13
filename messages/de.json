@@ -64,6 +64,10 @@
     "population": "Bevölkerung",
     "phases": "Phasen",
     "vote": "Abstimmen",
+    "blackMarket": "Schwarzmarkt",
+    "realmFirsts": "Realmweit Erste",
+    "calendar": "Live-Kalender",
+    "progression": "Gildenfortschritt",
     "hints": {
       "howTo": "Client, Patch und Realmlist, Schritt für Schritt",
       "features": "Alles, was das Reich einzigartig macht",
@@ -73,7 +77,11 @@
       "guilds": "Gilden, ihre Wappen und ihre Mitglieder",
       "pvp": "Siege, Arenateams und Ehre in der Rangliste",
       "hallOfFame": "Die Erfolgreichsten, nach Erfolgspunkten",
-      "population": "Fraktionen, Klassen und Stufen auf einen Blick"
+      "population": "Fraktionen, Klassen und Stufen auf einen Blick",
+      "blackMarket": "Zar'haams Auslage und was noch für dich da ist",
+      "realmFirsts": "Wer welchen Realm-Ersten errungen hat, und wann",
+      "calendar": "Tausendwintersee, Turnier, Bosse und Resets live",
+      "progression": "Gilden nach besiegten Schlachtzugsbossen"
     }
   },
   "home": {
@@ -1549,5 +1557,125 @@
     "achievements": "Gildenerfolge",
     "members": "Mitglieder",
     "notFound": "Diese Gilde gibt es auf diesem Realm nicht."
+  },
+  "tools": {
+    "now": "jetzt",
+    "in": "in {time}",
+    "left": "noch {time}",
+    "paris": "{time} Pariser Zeit",
+    "zoneParis": "Uhrzeiten in Pariser Zeit, der Zeit des Realms.",
+    "zoneLocal": "Uhrzeiten in deiner Zeitzone ({zone}); der Realm läuft nach Pariser Zeit.",
+    "error": "Diese Seite konnte nicht geladen werden. Versuch es gleich noch einmal.",
+    "duration": {
+      "dh": "{d} T. {h} Std.",
+      "hm": "{h} Std. {m} Min.",
+      "ms": "{m} Min. {s} Sek."
+    }
+  },
+  "blackMarket": {
+    "metaTitle": "Schwarzmarkt auf {realm}: Zar'haams Auslage",
+    "metaDescription": "Zar'haams Schwarzmarkt auf {realm}: die Gegenstände der aktuellen Lieferung, ihre Preise, der Countdown zur nächsten und was für jeden deiner Charaktere noch da ist.",
+    "title": "Schwarzmarkt",
+    "lede": "Zar'haam, unter Dalaran: eine neue Lieferung bei jedem Schlachtzugsreset, ein Exemplar jedes Gegenstands pro Charakter.",
+    "nextDelivery": "Nächste Lieferung",
+    "delivered": "Geliefert am",
+    "closed": "Der Schwarzmarkt hat seine erste Lieferung noch nicht erhalten.",
+    "signIn": "Melde dich an, um für jeden deiner Charaktere zu sehen, was noch für ihn da ist.",
+    "signInCta": "Anmelden",
+    "noCharacter": "Dein Konto hat noch keinen Charakter auf {realm}.",
+    "pickCharacter": "Dein Charakter",
+    "member": "{name} gehört zu Zar'haams Kunden: noch {available} von {total} Gegenständen verfügbar.",
+    "notMember": "{name} gehört noch nicht zu Zar'haams Kunden: schließe die Quest „{quest}“ ab, um hier zu kaufen.",
+    "jackpot": "Hauptgewinn",
+    "states": {
+      "available": "Verfügbar",
+      "bought": "Gekauft",
+      "owned": "Schon im Besitz"
+    },
+    "rules": "Die Preise folgen dem Auktionshaus: immer 10 % unter seinem niedrigsten Angebot. Ein einzigartiger Gegenstand, den du behältst, oder ein bereits erlerntes Reittier oder Haustier wird nicht erneut angeboten."
+  },
+  "realmFirsts": {
+    "metaTitle": "Realmweit Erste auf {realm}",
+    "metaDescription": "Wer welchen Realm-Ersten auf {realm} errungen hat, und wann: Stufe 80 nach Klasse und Volk, Bosse, Berufe, PvP und Heldentaten.",
+    "title": "Realmweit Erste",
+    "lede": "Jeder geht nur an einen einzigen Charakter oder einen einzigen Schlachtzug auf {realm}. Wer zuerst da war, und wann.",
+    "groups": {
+      "level": "Stufe 80",
+      "classes": "Stufe 80 nach Klasse",
+      "races": "Stufe 80 nach Volk",
+      "bosses": "Bosse",
+      "professions": "Berufe",
+      "pvp": "PvP",
+      "feats": "Heldentaten"
+    },
+    "notYet": "Noch zu haben",
+    "more": "+{n} weitere",
+    "openOnly": "Noch offen",
+    "summary": "{earned} von {total} Realm-Ersten errungen",
+    "unlocksTitle": "Erste auf Stufe 80: {done}/{total}",
+    "unlocksText": "Sobald jede Klasse und jedes Volk ihren Realm-Ersten auf Stufe 80 haben, werden die Erfahrungsboni des Realms freigeschaltet: der Wochenendbonus und die Fläschchen der Einsicht.",
+    "unlocksDone": "Jede Klasse und jedes Volk hat ihren Realm-Ersten auf Stufe 80: die Erfahrungsboni sind freigeschaltet."
+  },
+  "calendar": {
+    "metaTitle": "Live-Kalender von {realm}",
+    "metaDescription": "Tausendwintersee, das Turnier der Kanalisation, Weltbosse, Resets und der Realm-Bonus auf {realm}, live, in deiner Zeitzone.",
+    "title": "Live-Kalender",
+    "lede": "Was gerade läuft und was als Nächstes kommt auf {realm}, in deiner Zeitzone.",
+    "online": "{realm} ist online.",
+    "offline": "{realm} ist offline: die Timer laufen weiter, sobald er zurück ist.",
+    "phase": "Phase {n}",
+    "since": "Seit",
+    "bonus": "Realm-Bonus",
+    "bonusActive": "+{xp} % Erfahrung, doppelte Berufsfortschritte",
+    "bonusLocked": "Gesperrt: Realm-Erste auf Stufe 80 {done}/{total}",
+    "bonusIdle": "Nicht aktiv",
+    "upcoming": "Demnächst",
+    "running": "Läuft",
+    "defender": "Gehalten von der {faction}",
+    "alliance": "Allianz",
+    "horde": "Horde",
+    "registration": "Anmeldung ab",
+    "events": {
+      "opening": "Eröffnung des Realms",
+      "reservation": "Namensreservierung öffnet",
+      "wintergrasp": "Schlacht um Tausendwintersee",
+      "tournament": "Das Turnier der Kanalisation",
+      "raidReset": "Schlachtzugsreset",
+      "dailyQuests": "Reset der täglichen Quests",
+      "weeklyQuests": "Reset der wöchentlichen Quests",
+      "dailyWeekly": "Reset der täglichen und wöchentlichen Quests",
+      "arenaPoints": "Arenapunkte",
+      "blackMarket": "Lieferung des Schwarzmarkts",
+      "bonus": "Realm-Bonus"
+    },
+    "worldBosses": "Weltbosse",
+    "bossUp": "Jetzt da",
+    "bossBack": "Zurück",
+    "bossLocked": "Ab Phase {n}"
+  },
+  "progression": {
+    "metaTitle": "Gildenfortschritt auf {realm}",
+    "metaDescription": "Die Gilden von {realm} nach besiegten Schlachtzugsbossen, nach Schlachtzug und Schwierigkeit, und die realmweit ersten Siege.",
+    "title": "Gildenfortschritt",
+    "lede": "Die Gilden von {realm} nach besiegten Schlachtzugsbossen, nach Schlachtzug und Schwierigkeit.",
+    "firstKills": "Realmweit erste Siege",
+    "notYet": "Noch zu haben",
+    "ranking": "Rangliste",
+    "empty": "Noch keine Gilde hat einen Schlachtzugsboss besiegt: das Rennen ist offen.",
+    "credit": "Ein Boss zählt für eine Gilde, sobald mindestens {n10} ihrer Mitglieder ihn mit 10 Spielern besiegt haben, {n25} mit 25 Spielern.",
+    "modes": {
+      "n10": "10 Spieler",
+      "n25": "25 Spieler",
+      "h10": "10 heroisch",
+      "h25": "25 heroisch"
+    },
+    "short": {
+      "n10": "10",
+      "n25": "25",
+      "h10": "10H",
+      "h25": "25H"
+    },
+    "showBosses": "Bosse anzeigen",
+    "hideBosses": "Bosse ausblenden"
   }
 }

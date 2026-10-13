@@ -23,6 +23,10 @@ export type RealmSection =
   | "pvp"
   | "hall-of-fame"
   | "population"
+  | "black-market"
+  | "realm-firsts"
+  | "calendar"
+  | "progression"
   | "shop";
 
 export interface RealmInfo {
@@ -60,8 +64,15 @@ export const ALL_SECTIONS: RealmSection[] = [
   "pvp",
   "hall-of-fame",
   "population",
+  "black-market",
+  "realm-firsts",
+  "calendar",
+  "progression",
   "shop",
 ];
+
+// the sections only a progressive realm has (its WotLK+ systems: Zar'haam's black market), even in an administrator's view
+const PROGRESSIVE_SECTIONS: RealmSection[] = ["black-market"];
 
 // set (not httpOnly) beside the admin session so the pages know to show the administrators' view; the server checks the session itself
 export const ADMIN_PREVIEW_COOKIE = "lordaeron_admin_preview";
@@ -83,6 +94,9 @@ export const REALMS: Record<RealmSlug, RealmInfo> = {
       "pvp",
       "hall-of-fame",
       "population",
+      "realm-firsts",
+      "calendar",
+      "progression",
       "shop",
     ],
     accent: "gold",
@@ -107,6 +121,10 @@ export const REALMS: Record<RealmSlug, RealmInfo> = {
       "pvp",
       "hall-of-fame",
       "population",
+      "black-market",
+      "realm-firsts",
+      "calendar",
+      "progression",
       "shop",
     ],
     accent: "ice",
@@ -120,7 +138,14 @@ export const DEFAULT_REALM: RealmSlug = "lordaeron";
 const PREVIEWS = Object.fromEntries(
   Object.values(REALMS).map((realm) => [
     realm.slug,
-    { ...realm, status: "open", sections: ALL_SECTIONS, preview: true },
+    {
+      ...realm,
+      status: "open",
+      sections: ALL_SECTIONS.filter(
+        (s) => realm.progressive || !PROGRESSIVE_SECTIONS.includes(s),
+      ),
+      preview: true,
+    },
   ]),
 ) as Record<RealmSlug, RealmInfo>;
 

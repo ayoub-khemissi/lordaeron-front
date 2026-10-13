@@ -64,6 +64,10 @@
     "population": "População",
     "phases": "Fases",
     "vote": "Votar",
+    "blackMarket": "Mercado negro",
+    "realmFirsts": "Primeiros do reino",
+    "calendar": "Calendário ao vivo",
+    "progression": "Progresso das guildas",
     "hints": {
       "howTo": "Cliente, patch e realmlist, passo a passo",
       "features": "Tudo o que torna o reino único",
@@ -73,7 +77,11 @@
       "guilds": "Guildas, os seus brasões e membros",
       "pvp": "Vitórias, equipas de arena e honra, classificadas",
       "hallOfFame": "Os mais consagrados, por pontos de conquista",
-      "population": "Facções, classes e níveis num relance"
+      "population": "Facções, classes e níveis num relance",
+      "blackMarket": "A montra de Zar'haam e o que ainda resta para ti",
+      "realmFirsts": "Quem conquistou cada primeiro do reino, e quando",
+      "calendar": "Wintergrasp, torneio, bosses e resets ao vivo",
+      "progression": "Guildas classificadas pelos bosses de raide derrotados"
     }
   },
   "home": {
@@ -1549,5 +1557,125 @@
     "achievements": "Conquistas da guilda",
     "members": "Membros",
     "notFound": "Esta guilda não existe neste reino."
+  },
+  "tools": {
+    "now": "agora",
+    "in": "dentro de {time}",
+    "left": "faltam {time}",
+    "paris": "{time} hora de Paris",
+    "zoneParis": "Horas de Paris, as do reino.",
+    "zoneLocal": "Horas no teu fuso horário ({zone}); o reino segue a hora de Paris.",
+    "error": "Não foi possível carregar esta página. Tenta novamente daqui a pouco.",
+    "duration": {
+      "dh": "{d} d {h} h",
+      "hm": "{h} h {m} min",
+      "ms": "{m} min {s} s"
+    }
+  },
+  "blackMarket": {
+    "metaTitle": "Mercado negro de {realm}: a montra de Zar'haam",
+    "metaDescription": "O mercado negro de Zar'haam em {realm}: os itens da entrega atual, os seus preços, a contagem decrescente até à próxima e o que ainda resta para cada uma das tuas personagens.",
+    "title": "Mercado negro",
+    "lede": "Zar'haam, sob Dalaran: uma nova entrega a cada reset das raides, um exemplar de cada item por personagem.",
+    "nextDelivery": "Próxima entrega",
+    "delivered": "Entregue a",
+    "closed": "O mercado negro ainda não recebeu a sua primeira entrega.",
+    "signIn": "Inicia sessão para veres, para cada uma das tuas personagens, o que ainda resta para ela.",
+    "signInCta": "Iniciar sessão",
+    "noCharacter": "A tua conta ainda não tem personagens em {realm}.",
+    "pickCharacter": "A tua personagem",
+    "member": "{name} é cliente de Zar'haam: ainda {available} de {total} itens disponíveis.",
+    "notMember": "{name} ainda não é cliente de Zar'haam: conclui a missão «{quest}» para comprar aqui.",
+    "jackpot": "Jackpot",
+    "states": {
+      "available": "Disponível",
+      "bought": "Comprado",
+      "owned": "Já possuído"
+    },
+    "rules": "Os preços seguem a casa de leilões: sempre 10% abaixo da sua oferta mais baixa. Um item único que guardas, ou uma montada ou mascote já aprendida, não volta a ser proposto."
+  },
+  "realmFirsts": {
+    "metaTitle": "Primeiros do reino em {realm}",
+    "metaDescription": "Quem conquistou cada primeiro do reino em {realm}, e quando: nível 80 por classe e raça, bosses, profissões, JxJ e proezas.",
+    "title": "Primeiros do reino",
+    "lede": "Cada um vai para uma única personagem, ou uma única raide, em {realm}. Quem chegou primeiro, e quando.",
+    "groups": {
+      "level": "Nível 80",
+      "classes": "Nível 80 por classe",
+      "races": "Nível 80 por raça",
+      "bosses": "Bosses",
+      "professions": "Profissões",
+      "pvp": "JxJ",
+      "feats": "Proezas"
+    },
+    "notYet": "Ainda por conquistar",
+    "more": "+{n} mais",
+    "openOnly": "Ainda em aberto",
+    "summary": "{earned} de {total} primeiros do reino conquistados",
+    "unlocksTitle": "Primeiros no nível 80: {done}/{total}",
+    "unlocksText": "Quando cada classe e cada raça tiver o seu primeiro do reino no nível 80, os bónus de experiência do reino desbloqueiam-se: o bónus de fim de semana e as Vials of Insight.",
+    "unlocksDone": "Cada classe e cada raça tem o seu primeiro do reino no nível 80: os bónus de experiência estão desbloqueados."
+  },
+  "calendar": {
+    "metaTitle": "Calendário ao vivo de {realm}",
+    "metaDescription": "Wintergrasp, o Sewer Tournament, bosses do mundo, resets e o bónus do reino em {realm}, ao vivo, no teu fuso horário.",
+    "title": "Calendário ao vivo",
+    "lede": "O que está a acontecer e o que vem aí em {realm}, no teu fuso horário.",
+    "online": "{realm} está online.",
+    "offline": "{realm} está offline: os contadores retomam quando voltar.",
+    "phase": "Fase {n}",
+    "since": "Desde",
+    "bonus": "Bónus do reino",
+    "bonusActive": "+{xp}% de experiência, progressão de profissões a dobrar",
+    "bonusLocked": "Bloqueado: primeiros no nível 80 {done}/{total}",
+    "bonusIdle": "Inativo",
+    "upcoming": "Brevemente",
+    "running": "A decorrer",
+    "defender": "Nas mãos da {faction}",
+    "alliance": "Alliance",
+    "horde": "Horde",
+    "registration": "Inscrições a partir das",
+    "events": {
+      "opening": "Abertura do reino",
+      "reservation": "Abertura da reserva de nomes",
+      "wintergrasp": "Batalha de Wintergrasp",
+      "tournament": "O Sewer Tournament",
+      "raidReset": "Reset das raides",
+      "dailyQuests": "Reset das missões diárias",
+      "weeklyQuests": "Reset das missões semanais",
+      "dailyWeekly": "Reset das missões diárias e semanais",
+      "arenaPoints": "Pontos de arena",
+      "blackMarket": "Entrega do mercado negro",
+      "bonus": "Bónus do reino"
+    },
+    "worldBosses": "Bosses do mundo",
+    "bossUp": "Presente",
+    "bossBack": "Regressa",
+    "bossLocked": "A partir da fase {n}"
+  },
+  "progression": {
+    "metaTitle": "Progresso das guildas em {realm}",
+    "metaDescription": "As guildas de {realm} classificadas pelos bosses de raide derrotados, por raide e dificuldade, e as primeiras vitórias do reino.",
+    "title": "Progresso das guildas",
+    "lede": "As guildas de {realm} classificadas pelos bosses de raide derrotados, por raide e dificuldade.",
+    "firstKills": "Primeiras vitórias do reino",
+    "notYet": "Ainda por conquistar",
+    "ranking": "Classificação",
+    "empty": "Nenhuma guilda derrotou ainda um boss de raide: a corrida está aberta.",
+    "credit": "Um boss conta para uma guilda quando pelo menos {n10} dos seus membros o derrotaram em 10 jogadores, {n25} em 25 jogadores.",
+    "modes": {
+      "n10": "10 jogadores",
+      "n25": "25 jogadores",
+      "h10": "10 heroico",
+      "h25": "25 heroico"
+    },
+    "short": {
+      "n10": "10",
+      "n25": "25",
+      "h10": "10H",
+      "h25": "25H"
+    },
+    "showBosses": "Ver os bosses",
+    "hideBosses": "Esconder os bosses"
   }
 }
