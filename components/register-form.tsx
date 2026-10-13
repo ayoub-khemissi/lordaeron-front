@@ -6,10 +6,18 @@ import { Button } from "@heroui/button";
 import { useTranslations, useLocale } from "next-intl";
 import NextLink from "next/link";
 import { motion } from "framer-motion";
+import clsx from "clsx";
+
+import { useSignupRealm } from "@/lib/realm-context";
+import { DEFAULT_REALM, REALMS, realmPath } from "@/lib/realms";
 
 export const RegisterForm = () => {
   const t = useTranslations("register");
   const locale = useLocale();
+  // the realm this signup is for (?realm=, or the realm page the visitor came from): its name, its colors, its how-to as the next step
+  const signupRealm = useSignupRealm();
+  const realm = REALMS[signupRealm ?? DEFAULT_REALM];
+  const realmSignup = !!signupRealm && signupRealm !== DEFAULT_REALM;
   const [form, setForm] = useState({
     username: "",
     email: "",
@@ -92,6 +100,20 @@ export const RegisterForm = () => {
       >
         <div className="text-5xl mb-4">&#9989;</div>
         <p className="text-green-400 text-lg mb-6">{t("success")}</p>
+        {realmSignup && (
+          <div className="mb-6 rounded-xl border border-wow-blue-ice/30 bg-wow-blue-ice/10 p-4">
+            <p className="mb-3 text-sm text-wow-blue-ice">
+              {t("nextStep", { realm: realm.name })}
+            </p>
+            <Button
+              as={NextLink}
+              className="border-2 border-wow-blue-ice/70 bg-[#06121f]/80 font-bold text-wow-blue-ice"
+              href={realmPath(locale, realm.slug, "/how-to")}
+            >
+              {t("nextStepButton")}
+            </Button>
+          </div>
+        )}
         <Button
           as={NextLink}
           className="bg-gradient-to-r from-wow-gold to-wow-gold-light text-black font-bold glow-gold"
@@ -125,10 +147,17 @@ export const RegisterForm = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[rgba(10,14,20,0.95)]" />
           <div className="absolute bottom-4 left-6">
-            <h1 className="text-2xl font-bold wow-gradient-text">
+            <h1
+              className={clsx(
+                "text-2xl font-bold",
+                realm.accent === "ice" ? "wow-ice-text" : "wow-gradient-text",
+              )}
+            >
               {t("title")}
             </h1>
-            <p className="text-gray-400 text-sm">{t("subtitle")}</p>
+            <p className="text-gray-400 text-sm">
+              {t("subtitle", { realm: realm.name })}
+            </p>
           </div>
         </div>
 

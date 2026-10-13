@@ -6,10 +6,13 @@ import clsx from "clsx";
 
 import { JsonLd } from "@/components/json-ld";
 import { LaunchCountdown } from "@/components/launch-countdown";
+import { RealmStatusPill } from "@/components/realm-status-pill";
 import { siteConfig } from "@/config/site";
-import { REALMS, REALM_SLUGS, realmPath, type RealmSlug } from "@/lib/realms";
-import { launchParts } from "@/lib/launch";
+import { REALM_SLUGS, realmAt, realmPath, type RealmSlug } from "@/lib/realms";
 import { buildPageMetadata } from "@/lib/seo";
+
+// rendered again every minute: a realm's card switches to "open" by itself after its opening (lib/realms.ts realmAt)
+export const revalidate = 60;
 
 export async function generateMetadata({
   params,
@@ -35,7 +38,6 @@ const CARD: Record<
     title: string;
     ring: string;
     button: string;
-    dot: string;
   }
 > = {
   lordaeron: {
@@ -46,7 +48,6 @@ const CARD: Record<
     title: "wow-gradient-text",
     ring: "border-wow-gold/30 hover:border-wow-gold/70 hover:shadow-[0_0_60px_-10px_rgba(199,156,62,0.6)]",
     button: "bg-gradient-to-b from-wow-gold-light to-wow-gold-dark text-black",
-    dot: "bg-green-400 shadow-[0_0_10px_#4ade80]",
   },
   rimeheart: {
     image:
@@ -56,7 +57,6 @@ const CARD: Record<
     title: "wow-ice-text",
     ring: "border-wow-blue-ice/30 hover:border-wow-blue-ice/70 hover:shadow-[0_0_60px_-10px_rgba(79,195,247,0.6)]",
     button: "border-2 border-wow-blue-ice/70 bg-[#06121f]/80 text-wow-blue-ice",
-    dot: "bg-wow-blue-ice shadow-[0_0_10px_#4fc3f7] animate-pulse",
   },
 };
 
@@ -68,16 +68,6 @@ export default async function RealmPortalPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "realms" });
-  const tl = await getTranslations({ locale, namespace: "launch" });
-  // a realm not open yet with a date: "Opens Oct 16 · 19:00 CEST"
-  const soonLabel = (slug: RealmSlug) => {
-    const at = REALMS[slug].launchAt;
-
-    if (!at) return t("soon");
-    const p = launchParts(at, locale);
-
-    return tl("opensOn", { date: `${p.short} · ${p.time}` });
-  };
 
   return (
     <div className="relative min-h-[calc(100vh-4rem)] overflow-hidden bg-wow-darker">
@@ -107,7 +97,7 @@ export default async function RealmPortalPage({
 
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
           {REALM_SLUGS.map((slug) => {
-            const realm = REALMS[slug];
+            const realm = realmAt(slug);
             const card = CARD[slug];
             const points = t.raw(`${slug}.points`) as string[];
 
@@ -135,10 +125,8 @@ export default async function RealmPortalPage({
                   )}
                 />
                 <div className="relative p-7 sm:p-10">
-                  <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-white/85 backdrop-blur-sm">
-                    <span className={clsx("h-2 w-2 rounded-full", card.dot)} />
-                    {realm.status === "open" ? t("open") : soonLabel(slug)}
-                  </span>
+                  {/* online / offline, or its opening date before it opens */}
+                  <RealmStatusPill realm={slug} />
                   <h2
                     className={clsx(
                       "mt-5 font-heading text-5xl leading-none sm:text-7xl",

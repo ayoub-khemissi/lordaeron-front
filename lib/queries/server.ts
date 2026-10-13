@@ -1,7 +1,12 @@
 import { RowDataPacket } from "mysql2";
 
 import { authDb } from "@/lib/db";
-import { DEFAULT_REALM, REALMS, type RealmSlug } from "@/lib/realms";
+import {
+  DEFAULT_REALM,
+  REALMS,
+  isRealmOpen,
+  type RealmSlug,
+} from "@/lib/realms";
 import { realmCharactersDb } from "@/lib/realms-server";
 
 // REALM_FLAG_OFFLINE (auth.realmlist.flag): set while the realm's worldserver is down
@@ -29,8 +34,8 @@ export async function getRealmStatus(
   };
 }
 
-// a realm not open yet has no players to count: its characters database is still the test realm's
-const counted = (realm: RealmSlug) => REALMS[realm].status === "open";
+// a realm not open yet has no players to count (only its staff tries it before its opening)
+const counted = (realm: RealmSlug) => isRealmOpen(REALMS[realm]);
 
 export async function getOnlineCount(
   realm: RealmSlug = DEFAULT_REALM,

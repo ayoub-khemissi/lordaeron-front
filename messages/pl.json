@@ -37,17 +37,28 @@
     "title": "Jak się połączyć",
     "subtitle": "Wykonaj te proste kroki, aby dołączyć do {realm}",
     "realmSoon": "{realm} wkrótce zostanie otwarty: przygotuj klienta już teraz, świat pojawi się na liście światów w dniu otwarcia.",
+    "realmReservationTitle": "Rezerwacja nazw jest otwarta!",
+    "realmReservation": "Zaloguj się już teraz do {realm}, aby stworzyć postacie i zarezerwować nazwy. Świat otworzy się {date}.",
     "step1Title": "Pobierz klienta",
     "step1Desc": "Pobierz World of Warcraft w wersji 3.3.5a (build 12340). Znajdziesz go na popularnych stronach z archiwami WoW.",
     "step2Title": "Ustaw realmlist",
     "step2Desc": "Otwórz folder WoW, przejdź do Data/enUS/ (lub folderu Twojego języka) i otwórz realmlist.wtf. Zastąp jego zawartość:",
     "step3Title": "Utwórz konto",
     "step3Desc": "Zarejestruj się na naszej stronie za pomocą formularza rejestracyjnego. Twoje konto będzie gotowe natychmiast.",
+    "step3Button": "Utwórz konto",
     "step4Title": "Wyczyść pamięć podręczną",
     "step4Desc": "Usuń folder Cache znajdujący się w głównym katalogu WoW (obok Wow.exe). Dzięki temu będziesz na bieżąco z najnowszymi danymi serwera. Dobrą praktyką jest robienie tego regularnie lub po każdej aktualizacji.",
     "step5Title": "Zainstaluj łatkę Lordaeron",
     "step5Desc": "Pobierz plik patch-Z.MPQ i umieść go w folderze Data/ swojego WoW (obok innych plików .MPQ). Ta łatka dostosowuje klienta do niestandardowych ustawień serwera (ceny kart banku gildii itp.). Jeśli masz już plik patch-Z.MPQ, zmień nazwę jednego z nich na patch-Y.MPQ lub patch-X.MPQ, aby zachować oba.",
     "step5Download": "Pobierz patch-Z.MPQ",
+    "stepPatchTitle": "Zainstaluj łatki Rimeheart",
+    "stepPatchDesc": "Pobierz patch-W.MPQ i patch-Z.MPQ i umieść oba pliki w folderze Data/ swojego WoW (obok innych plików .MPQ). patch-W dodaje całą zawartość {realm}: nowe połączenia rasy i klasy, talenty, zaklęcia, przedmioty i wierzchowce; bez niego ich brakuje albo wyświetlają się błędnie. patch-Z dostosowuje klienta do ustawień serwera (zakładki banku gildii, wyszukiwarka lochów).",
+    "stepPatchDownload": "Pobierz {file}",
+    "stepPatchVersion": "Wersja {version} · {size}",
+    "stepPatchSoon": "patch-W.MPQ będzie tu dostępny przed otwarciem rezerwacji nazw.",
+    "stepPatchFolderTitle": "Jeden folder klienta na świat.",
+    "stepPatchFolder": "patch-W zmienia drzewka talentów i zaklęcia: pozostawiony w kliencie Lordaeron pokazywałby talenty, których tam nie ma. Skopiuj folder WoW (na przykład „WoW Rimeheart”) i umieść patch-W tylko w tej kopii; patch-Z trafia do obu.",
+    "stepPatchUpdates": "Łatka zmienia się razem ze światem: pobierz ją ponownie, gdy na Discordzie zostanie ogłoszona nowa wersja, a potem usuń folder Cache.",
     "step6Title": "Graj!",
     "step6Desc": "Uruchom WoW.exe, zaloguj się swoimi danymi, wybierz {realm} z listy światów i baw się dobrze!",
     "realmlist": "set realmlist logon.lordaeron.eu",
@@ -57,7 +68,7 @@
   },
   "register": {
     "title": "Utwórz konto",
-    "subtitle": "Dołącz do Lordaeron i rozpocznij swoją przygodę",
+    "subtitle": "Dołącz do {realm} i rozpocznij swoją przygodę",
     "username": "Nazwa użytkownika",
     "email": "E-mail",
     "password": "Hasło",
@@ -66,6 +77,8 @@
     "haveAccount": "Masz już konto?",
     "loginLink": "Zaloguj się tutaj",
     "success": "Konto utworzone pomyślnie! Możesz się teraz zalogować.",
+    "nextStep": "Następny krok: zainstaluj klienta i łatki {realm}.",
+    "nextStepButton": "Otwórz przewodnik instalacji",
     "errors": {
       "usernameRequired": "Nazwa użytkownika jest wymagana",
       "usernameLength": "Nazwa użytkownika musi mieć od 3 do 16 znaków",
@@ -865,7 +878,7 @@
     },
     "howTo": {
       "title": "Jak się połączyć z {realm} — Prywatny serwer WoW 3.3.5a",
-      "description": "Połącz się z prywatnym serwerem {realm} WoW w 4 krokach: pobierz klienta 3.3.5a WotLK, ustaw realmlist, utwórz darmowe konto i rozpocznij swoją epicką progresywną przygodę."
+      "description": "Połącz się z prywatnym serwerem WoW {realm} w kilku krokach: pobierz klienta 3.3.5a WotLK, ustaw realmlist, utwórz darmowe konto i rozpocznij przygodę."
     },
     "features": {
       "title": "Funkcje serwera — Transmog, Crossfaction, Progresywne rajdy i więcej",
@@ -1088,6 +1101,7 @@
     "allRealms": "Wszystkie światy",
     "soon": "Wkrótce",
     "open": "Otwarty",
+    "reservation": "Rezerwacja nazw otwarta",
     "enter": "Wejdź",
     "discover": "Odkryj",
     "lordaeron": {
@@ -1118,6 +1132,7 @@
     "minutes": "min",
     "seconds": "s",
     "yourTime": "Twój czas lokalny: {time}",
-    "live": "Świat się otwiera!"
+    "live": "Świat jest otwarty!",
+    "openPlay": "Otwarte — Graj teraz"
   }
 }

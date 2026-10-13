@@ -18,7 +18,12 @@ import {
 } from "@/lib/queries/characters";
 import { ALLIANCE_RACES } from "@/lib/shop-utils";
 import { sendItem, sendItems } from "@/lib/soap";
-import { offeredOnRealm, realmById, type RealmInfo } from "@/lib/realms";
+import {
+  isRealmOpen,
+  offeredOnRealm,
+  realmById,
+  type RealmInfo,
+} from "@/lib/realms";
 import { isRealmPreviewer } from "@/lib/realm-preview";
 import {
   REALM_FIRSTS_CATEGORIES,
@@ -206,14 +211,14 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "missingFields" }, { status: 400 });
     }
 
-    // a realm that is not open yet shows its catalogue but sells nothing (lib/realms.ts)
+    // a realm that is not open yet shows its catalogue but sells nothing (lib/realms.ts: open from its launchAt on)
     const realm = realmById(body.realm_id);
 
     if (!realm) {
       return NextResponse.json({ error: "realmRestricted" }, { status: 400 });
     }
     // an administrator buys on a realm not open yet, to try its shop (lib/realm-preview.ts)
-    if (realm.status !== "open" && !(await isRealmPreviewer())) {
+    if (!isRealmOpen(realm) && !(await isRealmPreviewer())) {
       return NextResponse.json({ error: "realmNotOpen" }, { status: 403 });
     }
 

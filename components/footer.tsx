@@ -10,7 +10,13 @@ import { siteConfig } from "@/config/site";
 import { DiscordIcon } from "@/components/icons";
 import { useAuth } from "@/lib/auth-context";
 import { usePathRealm, useRealmPreview } from "@/lib/realm-context";
-import { REALMS, REALM_SLUGS, realmPath, realmView } from "@/lib/realms";
+import {
+  REALMS,
+  REALM_SLUGS,
+  realmPath,
+  realmView,
+  registerPath,
+} from "@/lib/realms";
 
 export const Footer = () => {
   const t = useTranslations("footer");
@@ -33,7 +39,7 @@ export const Footer = () => {
   );
   const account = user
     ? { label: tNav("account"), href: `/${locale}/account` }
-    : { label: tNav("register"), href: `/${locale}/register` };
+    : { label: tNav("register"), href: registerPath(locale, pathRealm) };
 
   // inside a realm: its sections (as the navbar shows them), the news and the way back to the realms; on the portal and the shared
   // pages: the realms and the news

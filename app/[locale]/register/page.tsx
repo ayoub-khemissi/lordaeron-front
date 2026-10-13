@@ -7,15 +7,24 @@ import { Spinner } from "@heroui/spinner";
 
 import { RegisterForm } from "@/components/register-form";
 import { useAuth } from "@/lib/auth-context";
+import { readSignupRealm } from "@/lib/realm-context";
+import { DEFAULT_REALM, realmPath } from "@/lib/realms";
 
 export default function RegisterPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
   const locale = useLocale();
 
+  // already signed in: the account, or the realm's how-to for a realm's signup (Rimeheart: the client and the patch come next)
   useEffect(() => {
     if (!loading && user) {
-      router.replace(`/${locale}/account`);
+      const realm = readSignupRealm();
+
+      router.replace(
+        realm && realm !== DEFAULT_REALM
+          ? realmPath(locale, realm, "/how-to")
+          : `/${locale}/account`,
+      );
     }
   }, [user, loading, router, locale]);
 

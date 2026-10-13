@@ -1,13 +1,18 @@
 "use client";
 
+import type { PatchInfo } from "@/lib/patches";
+
 import { Snippet } from "@heroui/snippet";
 import { useLocale, useTranslations } from "next-intl";
 import { motion } from "framer-motion";
+import NextLink from "next/link";
 import clsx from "clsx";
 
 import { launchLine } from "@/lib/launch";
+import { useAuth } from "@/lib/auth-context";
 import { useRealm } from "@/lib/realm-context";
-import { REALMS } from "@/lib/realms";
+import { registerPath } from "@/lib/realms";
+import { RealmStatusPill } from "@/components/realm-status-pill";
 
 const WOWHEAD_ICON = "https://wow.zamimg.com/images/wow/icons/large";
 
@@ -37,8 +42,16 @@ const steps = [
     icon: `${WOWHEAD_ICON}/inv_misc_wrench_01.jpg`,
     bg: "/img/Wrath of the Lich King Classic Reveal Screenshots 1080p/WoW_Wrath_Dalaran_007_1080p_png_jpgcopy.jpg",
     download: "/patches/patch-Z.MPQ",
-    // Lordaeron's client patch; Rimeheart's comes with its opening
+    // Lordaeron's client patch (Rimeheart's step below carries it beside its own)
     realms: ["lordaeron"],
+  },
+  {
+    // Rimeheart's patches (Ayoub, 13/10/2026): patch-W, its content (lib/patches.ts manifest), and patch-Z, the guild bank tab costs and
+    // the dungeon finder's data, the same on both realms (Guild.BankTab.Cost, LFGDungeons.dbc)
+    key: "stepPatch",
+    icon: `${WOWHEAD_ICON}/inv_misc_wrench_01.jpg`,
+    bg: "/img/Wrath of the Lich King Classic Reveal Screenshots 1080p/WoW_Wrath_Dalaran_007_1080p_png_jpgcopy.jpg",
+    realms: ["rimeheart"],
   },
   {
     key: "step6",
@@ -47,11 +60,65 @@ const steps = [
   },
 ];
 
-export default function HowToContent() {
+// "25.4 MB"
+const megabytes = (bytes: number, locale: string) =>
+  `${new Intl.NumberFormat(locale, { maximumFractionDigits: 1 }).format(bytes / 1_000_000)} MB`;
+
+const DOWNLOAD =
+  "inline-flex items-center gap-2 glass-gold glow-gold rounded-lg px-5 py-2.5 text-wow-gold font-semibold text-sm hover:brightness-125 transition-all";
+
+function DownloadIcon() {
+  return (
+    <svg
+      className="w-4 h-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M12 5v14m0 0l-6-6m6 6l6-6M5 19h14"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+// the version, size and SHA-256 of a published patch, under its download button
+function PatchDetails({ patch, locale }: { patch: PatchInfo; locale: string }) {
+  const t = useTranslations("howTo");
+
+  return (
+    <>
+      <p className="text-xs text-gray-400">
+        {t("stepPatchVersion", {
+          version: patch.version,
+          size: megabytes(patch.size, locale),
+        })}
+      </p>
+      <p className="break-all font-mono text-[11px] text-gray-500">
+        SHA-256 {patch.sha256}
+      </p>
+    </>
+  );
+}
+
+// realmPatch: the realm's own client patch from the manifest (null while it is not published); sharedPatch: patch-Z's entry
+export default function HowToContent({
+  realmPatch = null,
+  sharedPatch = null,
+}: {
+  realmPatch?: PatchInfo | null;
+  sharedPatch?: PatchInfo | null;
+}) {
   const t = useTranslations("howTo");
   const tl = useTranslations("launch");
   const locale = useLocale();
   const realm = useRealm();
+  const { user } = useAuth();
+  // the signup keeps the realm (app/[locale]/register: its next step is this page)
+  const registerHref = registerPath(locale, realm.slug);
   const realmSteps = steps.filter(
     (step) => !("realms" in step) || step.realms?.includes(realm.slug),
   );
@@ -85,16 +152,26 @@ export default function HowToContent() {
             {t("subtitle", { realm: realm.name })}
           </p>
           <div className="shimmer-line w-32 mx-auto" />
-          {REALMS[realm.slug].status !== "open" && (
+          <RealmStatusPill withName className="mt-6" realm={realm.slug} />
+          {/* the name reservation (lib/realms.ts reservationAt): accounts, the client and the patch are ready, the world opens at launchAt */}
+          {realm.reservation && realm.launchAt && (
+            <p className="mx-auto mt-6 max-w-2xl rounded-xl border border-emerald-300/40 bg-emerald-300/10 px-5 py-3 text-sm text-emerald-200">
+              <span className="block font-semibold">
+                {t("realmReservationTitle")}
+              </span>
+              {t("realmReservation", {
+                realm: realm.name,
+                date: launchLine(realm.launchAt, locale),
+              })}
+            </p>
+          )}
+          {realm.status !== "open" && !realm.reservation && (
             <p className="mx-auto mt-6 max-w-2xl rounded-xl border border-wow-blue-ice/30 bg-wow-blue-ice/10 px-5 py-3 text-sm text-wow-blue-ice">
               {t("realmSoon", { realm: realm.name })}
-              {REALMS[realm.slug].launchAt && (
+              {realm.launchAt && (
                 <span className="mt-1 block font-semibold">
                   {tl("opensOn", {
-                    date: launchLine(
-                      REALMS[realm.slug].launchAt as string,
-                      locale,
-                    ),
+                    date: launchLine(realm.launchAt, locale),
                   })}
                 </span>
               )}
@@ -163,28 +240,66 @@ export default function HowToContent() {
                       </div>
                     )}
 
+                    {step.key === "step3" && !user && (
+                      <div className="mt-5">
+                        <NextLink className={DOWNLOAD} href={registerHref}>
+                          {t("step3Button")}
+                        </NextLink>
+                      </div>
+                    )}
+
                     {"download" in step && step.download && (
                       <div className="mt-5">
-                        <a
-                          download
-                          className="inline-flex items-center gap-2 glass-gold glow-gold rounded-lg px-5 py-2.5 text-wow-gold font-semibold text-sm hover:brightness-125 transition-all"
-                          href={step.download}
-                        >
-                          <svg
-                            className="w-4 h-4"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              d="M12 5v14m0 0l-6-6m6 6l6-6M5 19h14"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                          </svg>
+                        <a download className={DOWNLOAD} href={step.download}>
+                          <DownloadIcon />
                           {t(`${step.key}Download`)}
                         </a>
+                      </div>
+                    )}
+
+                    {step.key === "stepPatch" && (
+                      <div className="mt-5 space-y-4">
+                        {realmPatch ? (
+                          <div className="space-y-2">
+                            <a
+                              download
+                              className={DOWNLOAD}
+                              href={realmPatch.url}
+                            >
+                              <DownloadIcon />
+                              {t("stepPatchDownload", {
+                                file: realmPatch.file,
+                              })}
+                            </a>
+                            <PatchDetails locale={locale} patch={realmPatch} />
+                          </div>
+                        ) : (
+                          <p className="rounded-lg border border-wow-blue-ice/30 bg-wow-blue-ice/10 px-4 py-2 text-sm text-wow-blue-ice">
+                            {t("stepPatchSoon")}
+                          </p>
+                        )}
+                        <div className="space-y-2">
+                          <a
+                            download
+                            className={DOWNLOAD}
+                            href={sharedPatch?.url ?? "/patches/patch-Z.MPQ"}
+                          >
+                            <DownloadIcon />
+                            {t("stepPatchDownload", { file: "patch-Z.MPQ" })}
+                          </a>
+                          {sharedPatch && (
+                            <PatchDetails locale={locale} patch={sharedPatch} />
+                          )}
+                        </div>
+                        <p className="rounded-lg border border-wow-gold/25 bg-wow-gold/5 px-4 py-3 text-sm leading-relaxed text-gray-300">
+                          <span className="font-semibold text-wow-gold">
+                            {t("stepPatchFolderTitle")}
+                          </span>{" "}
+                          {t("stepPatchFolder")}
+                        </p>
+                        <p className="text-xs leading-relaxed text-gray-400">
+                          {t("stepPatchUpdates")}
+                        </p>
                       </div>
                     )}
                   </div>

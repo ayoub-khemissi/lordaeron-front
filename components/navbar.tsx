@@ -30,7 +30,13 @@ import { DiscordIcon } from "@/components/icons";
 import { useAuth } from "@/lib/auth-context";
 import { RealmSwitcher } from "@/components/realm-switcher";
 import { usePathRealm, useRealmPreview } from "@/lib/realm-context";
-import { REALMS, REALM_SLUGS, realmPath, realmView } from "@/lib/realms";
+import {
+  REALMS,
+  REALM_SLUGS,
+  realmPath,
+  realmView,
+  registerPath,
+} from "@/lib/realms";
 import { OVERLAY_MOTION } from "@/lib/overlay-motion";
 
 export const Navbar = () => {
@@ -231,7 +237,7 @@ export const Navbar = () => {
               <Button
                 as={NextLink}
                 className="bg-gradient-to-r from-wow-gold to-wow-gold-light text-black font-bold glow-gold hover:shadow-[0_0_25px_rgba(199,156,62,0.4)] transition-shadow"
-                href={`/${locale}/register`}
+                href={registerPath(locale, pathRealm)}
                 size="sm"
               >
                 {t("nav.register")}
@@ -317,7 +323,7 @@ export const Navbar = () => {
               <NavbarMenuItem>
                 <NextLink
                   className="text-wow-gold hover:text-wow-gold-light transition-all text-lg block py-2 px-3 rounded-lg hover:bg-wow-gold/5 font-medium"
-                  href={`/${locale}/register`}
+                  href={registerPath(locale, pathRealm)}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {t("nav.register")}

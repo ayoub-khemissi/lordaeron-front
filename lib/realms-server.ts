@@ -36,13 +36,13 @@ export function realmServer(slug: RealmSlug): RealmServer {
       dbcDir: env(slug, "DBC_DIR", "/home/ubuntu/server/data/dbc"),
     };
 
-  // Rimeheart: the Lab realm's until it opens on its own server
+  // Rimeheart: its own worldserver (Ayoub, 13/10/2026: realm 4, port 8088, /home/ubuntu/server-rimeheart), the Lab stays the test realm
   return {
-    worldDbName: env(slug, "DB_WORLD_NAME", "lab_world"),
-    charactersDbName: env(slug, "DB_CHARACTERS_NAME", "lab_characters"),
+    worldDbName: env(slug, "DB_WORLD_NAME", "rimeheart_world"),
+    charactersDbName: env(slug, "DB_CHARACTERS_NAME", "rimeheart_characters"),
     soapHost: env(slug, "SOAP_HOST", "127.0.0.1"),
-    soapPort: Number(env(slug, "SOAP_PORT", "7880")),
-    dbcDir: env(slug, "DBC_DIR", "/home/ubuntu/server-lab/data/dbc"),
+    soapPort: Number(env(slug, "SOAP_PORT", "7881")),
+    dbcDir: env(slug, "DBC_DIR", "/home/ubuntu/server-rimeheart/data/dbc"),
   };
 }
 

@@ -37,17 +37,28 @@
     "title": "Como Conectar",
     "subtitle": "Segue estes passos simples para te juntares a {realm}",
     "realmSoon": "{realm} abre em breve: prepara já o teu cliente, o reino aparecerá na lista de reinos no dia da abertura.",
+    "realmReservationTitle": "A reserva de nomes está aberta!",
+    "realmReservation": "Entra já em {realm} para criar as tuas personagens e reservar os teus nomes. O mundo abre a {date}.",
     "step1Title": "Descarregar o Cliente",
     "step1Desc": "Descarrega o World of Warcraft versao 3.3.5a (build 12340). Podes encontra-lo em sites populares de arquivo de WoW.",
     "step2Title": "Definir a Realmlist",
     "step2Desc": "Abre a pasta do WoW, navega ate Data/enUS/ (ou a tua pasta de locale), e abre o ficheiro realmlist.wtf. Substitui o conteudo por:",
     "step3Title": "Criar uma Conta",
     "step3Desc": "Regista-te no nosso site atraves do formulario de registo. A tua conta ficara pronta instantaneamente.",
+    "step3Button": "Criar uma conta",
     "step4Title": "Limpar a Cache",
     "step4Desc": "Elimina a pasta Cache localizada na raiz do teu diretorio de WoW (junto ao Wow.exe). Isto garante que ficas atualizado com os dados mais recentes do servidor. E boa pratica fazer isto regularmente ou apos cada atualizacao.",
     "step5Title": "Instalar o patch Lordaeron",
     "step5Desc": "Descarrega o ficheiro patch-Z.MPQ e coloca-o na pasta Data/ do teu WoW (junto aos outros ficheiros .MPQ). Este patch ajusta o cliente para corresponder às definições personalizadas do servidor (preços dos separadores do banco de guilda, etc.). Se já tiveres um patch-Z.MPQ, renomeia um deles para patch-Y.MPQ ou patch-X.MPQ para manteres os dois.",
     "step5Download": "Descarregar patch-Z.MPQ",
+    "stepPatchTitle": "Instalar os patches de Rimeheart",
+    "stepPatchDesc": "Descarrega patch-W.MPQ e patch-Z.MPQ e coloca ambos na pasta Data/ do teu WoW (junto aos outros ficheiros .MPQ). patch-W traz todo o conteúdo de {realm}: novas combinações de raça e classe, talentos, feitiços, itens e montadas; sem ele faltam ou aparecem mal. patch-Z ajusta o cliente às definições do servidor (separadores do banco da guilda, localizador de masmorras).",
+    "stepPatchDownload": "Descarregar {file}",
+    "stepPatchVersion": "Versão {version} · {size}",
+    "stepPatchSoon": "patch-W.MPQ estará disponível aqui antes da abertura da reserva de nomes.",
+    "stepPatchFolderTitle": "Uma pasta de cliente por reino.",
+    "stepPatchFolder": "patch-W altera as árvores de talentos e os feitiços: deixado no teu cliente de Lordaeron, mostraria talentos que lá não existem. Copia a tua pasta de WoW (por exemplo «WoW Rimeheart») e coloca patch-W só nessa cópia; patch-Z vai nas duas.",
+    "stepPatchUpdates": "O patch evolui com o reino: descarrega-o de novo quando uma nova versão for anunciada no Discord e depois apaga a pasta Cache.",
     "step6Title": "Jogar!",
     "step6Desc": "Executa o WoW.exe, inicia sessão com as tuas credenciais, escolhe {realm} na lista de reinos e diverte-te!",
     "realmlist": "set realmlist logon.lordaeron.eu",
@@ -57,7 +68,7 @@
   },
   "register": {
     "title": "Criar Conta",
-    "subtitle": "Junta-te a Lordaeron e comeca a tua aventura",
+    "subtitle": "Junta-te a {realm} e começa a tua aventura",
     "username": "Nome de utilizador",
     "email": "Email",
     "password": "Palavra-passe",
@@ -66,6 +77,8 @@
     "haveAccount": "Ja tens uma conta?",
     "loginLink": "Entra aqui",
     "success": "Conta criada com sucesso! Ja podes iniciar sessao.",
+    "nextStep": "Próximo passo: instalar o cliente e os patches de {realm}.",
+    "nextStepButton": "Abrir o guia de instalação",
     "errors": {
       "usernameRequired": "O nome de utilizador e obrigatorio",
       "usernameLength": "O nome de utilizador deve ter entre 3 e 16 caracteres",
@@ -865,7 +878,7 @@
     },
     "howTo": {
       "title": "Como Conectar a {realm} — Servidor Privado WoW 3.3.5a",
-      "description": "Conecta-te ao servidor privado de WoW {realm} em 4 passos: descarrega o cliente 3.3.5a WotLK, define a realmlist, cria uma conta gratuita e comeca a tua aventura de progressao epica."
+      "description": "Liga-te ao servidor privado de WoW {realm} em poucos passos: descarrega o cliente 3.3.5a WotLK, define a realmlist, cria uma conta gratuita e começa a tua aventura."
     },
     "features": {
       "title": "Funcionalidades do Servidor — Transmog, Crossfaction, Raids Progressivos e Mais",
@@ -1088,6 +1101,7 @@
     "allRealms": "Todos os reinos",
     "soon": "Em breve",
     "open": "Aberto",
+    "reservation": "Reserva de nomes aberta",
     "enter": "Entrar",
     "discover": "Descobrir",
     "lordaeron": {
@@ -1118,6 +1132,7 @@
     "minutes": "min",
     "seconds": "s",
     "yourTime": "A tua hora local: {time}",
-    "live": "O reino está a abrir!"
+    "live": "O reino está aberto!",
+    "openPlay": "Aberto — Jogar agora"
   }
 }

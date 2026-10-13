@@ -10,11 +10,14 @@ import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import clsx from "clsx";
 
-import { usePathRealm, useRealmPreview } from "@/lib/realm-context";
+import {
+  useLaunchClock,
+  usePathRealm,
+  useRealmPreview,
+} from "@/lib/realm-context";
 import { launchParts } from "@/lib/launch";
 import { OVERLAY_MOTION } from "@/lib/overlay-motion";
 import {
-  REALMS,
   REALM_SLUGS,
   realmPath,
   realmView,
@@ -35,9 +38,12 @@ export function RealmSwitcher({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname() ?? "";
   const current = usePathRealm();
   const preview = useRealmPreview();
+  const now = useLaunchClock();
 
   if (!current) return null;
-  const realm = REALMS[current];
+  // the realms as the visitor sees them now (an opening reached, an administrator's preview)
+  const view = (slug: RealmSlug) => realmView(slug, preview, now);
+  const realm = view(current);
   // the section after /<locale>/<realm>
   const rest = pathname.split("/").slice(3).join("/");
   const section = (rest.split("/")[0] || "home") as RealmSection;
@@ -48,7 +54,7 @@ export function RealmSwitcher({ onNavigate }: { onNavigate?: () => void }) {
     const target = key as RealmSlug;
 
     router.push(
-      realmView(target, preview).sections.includes(section) && rest
+      view(target).sections.includes(section) && rest
         ? realmPath(locale, target, `/${rest}`)
         : realmPath(locale, target),
     );
@@ -76,7 +82,7 @@ export function RealmSwitcher({ onNavigate }: { onNavigate?: () => void }) {
           />
           {realm.name}
           {/* an administrator's view: the realm as on its opening day */}
-          {preview && realm.status !== "open" && (
+          {preview && realmView(current, false, now).status !== "open" && (
             <span
               className="rounded bg-wow-gold/20 px-1 py-px text-[9px] tracking-wider text-wow-gold-light"
               title={t("adminPreview")}
@@ -103,13 +109,13 @@ export function RealmSwitcher({ onNavigate }: { onNavigate?: () => void }) {
         {[
           ...REALM_SLUGS.map((slug) => (
             <DropdownItem key={slug} description={t(`${slug}.tagline`)}>
-              {REALMS[slug].name}
+              {view(slug).name}
               {/* a realm not open yet: its opening date (or "soon") in ice blue after its name */}
-              {REALMS[slug].status === "soon" && (
+              {realmView(slug, false, now).status === "soon" && (
                 <span className="text-wow-blue-ice">
                   {" · "}
-                  {REALMS[slug].launchAt
-                    ? launchParts(REALMS[slug].launchAt as string, locale).short
+                  {view(slug).launchAt
+                    ? launchParts(view(slug).launchAt as string, locale).short
                     : t("soon")}
                 </span>
               )}
