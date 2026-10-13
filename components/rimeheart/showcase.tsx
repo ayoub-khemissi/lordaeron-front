@@ -52,6 +52,7 @@ import {
 } from "@/components/experience/game-tooltip";
 import { ChapterNav, ExperienceHero } from "@/components/experience/hero";
 import { LaunchCountdown } from "@/components/launch-countdown";
+import { RealmStatusPill } from "@/components/realm-status-pill";
 import { LAUNCH_TZ, launchLine, launchParts } from "@/lib/launch";
 import { REALMS, realmPath } from "@/lib/realms";
 import {
@@ -1981,6 +1982,7 @@ export default function ExperienceContent({ locale }: { locale: string }) {
               showDate={false}
             />
           }
+          pill={<RealmStatusPill realm="rimeheart" />}
         />
         <Manifesto lang={lang} />
         <Phases lang={lang} />

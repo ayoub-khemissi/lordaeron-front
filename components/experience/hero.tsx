@@ -27,12 +27,15 @@ export function ExperienceHero({
   image,
   joinHref,
   launch,
+  pill,
 }: {
   content: HeroContent;
   image: string;
   joinHref: string;
   // under the status line: the opening countdown of a realm not open yet
   launch?: ReactNode;
+  // beside the status line: the realm's live state (components/realm-status-pill.tsx)
+  pill?: ReactNode;
 }) {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -166,10 +169,13 @@ export function ExperienceHero({
           initial={{ opacity: 0, y: 16 }}
           transition={{ duration: 1, delay: 1.1 }}
         >
-          <p className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-wow-blue-ice sm:text-xs">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-wow-blue-ice shadow-[0_0_10px_#4fc3f7]" />
-            {status}
-          </p>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <p className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-wow-blue-ice sm:text-xs">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-wow-blue-ice shadow-[0_0_10px_#4fc3f7]" />
+              {status}
+            </p>
+            {pill}
+          </div>
           {statusRest && (
             <p className="mt-1.5 font-heading text-[15px] leading-snug text-white sm:text-lg">
               {statusRest}
@@ -211,6 +217,8 @@ const ROMAN = [
   "XVI",
   "XVII",
   "XVIII",
+  "XIX",
+  "XX",
 ];
 
 /* ── Chapter list on the left (the vote panel holds the right side): all titles on wide screens, the current one lit ── */
