@@ -40,6 +40,11 @@ export function ExperienceHero({
     offset: ["start start", "end start"],
   });
   const lift = useTransform(scrollYProgress, [0, 1], [0, -160]);
+  // "Rimeheart · Wrath of the Lich King 3.3.5": the first part is the seal, the rest beside it; the status likewise
+  const [kicker, ...kickerParts] = content.kicker.split(" · ");
+  const kickerRest = kickerParts.join(" · ");
+  const [status, ...statusParts] = content.status.split(" · ");
+  const statusRest = statusParts.join(" · ");
   // the intro veil stays until the hero picture is decoded (2.5 s at most), so the page never shows half-built
   const [ready, setReady] = useState(false);
 
@@ -103,20 +108,25 @@ export function ExperienceHero({
       <Snow />
 
       <motion.div
-        className="relative mx-auto w-full max-w-7xl px-6 pb-16 pt-24 sm:pb-32 sm:pt-32 lg:pb-24 lg:pt-[clamp(3.5rem,9vh,7rem)]"
+        className="relative mx-auto w-full max-w-7xl px-5 pb-24 pt-6 sm:px-6 sm:pb-32 sm:pt-32 lg:pb-24 lg:pt-[clamp(3.5rem,9vh,7rem)]"
         style={{ y: lift }}
       >
+        {/* the realm's name in a frost seal, the rest of the kicker beside it */}
         <motion.p
-          animate={ready ? { opacity: 1, letterSpacing: "0.45em" } : {}}
-          className="mb-4 text-[10px] font-semibold uppercase text-wow-blue-ice drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] sm:mb-6 sm:text-sm"
-          initial={{ opacity: 0, letterSpacing: "0.8em" }}
-          transition={{ duration: 1.6, ease: "easeOut" }}
+          animate={ready ? { opacity: 1, x: 0 } : {}}
+          className="mb-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-wow-blue-ice drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] sm:mb-7 sm:text-sm sm:tracking-[0.4em]"
+          initial={{ opacity: 0, x: -16 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
         >
-          {content.kicker}
+          <span className="inline-flex items-center gap-2 rounded-full border border-wow-blue-ice/40 bg-[#04101c]/60 px-3 py-1 shadow-[0_0_18px_-6px_rgba(79,195,247,0.8)] backdrop-blur-sm sm:px-4 sm:py-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-wow-blue-ice shadow-[0_0_8px_#4fc3f7]" />
+            {kicker}
+          </span>
+          {kickerRest && <span className="text-white/70">{kickerRest}</span>}
         </motion.p>
         <motion.h1
           animate={ready ? { opacity: 1, y: 0 } : {}}
-          className="font-heading text-[2.5rem] leading-[0.98] text-white drop-shadow-[0_6px_30px_rgba(0,0,0,0.9)] sm:text-7xl lg:text-8xl"
+          className="font-heading text-[2.65rem] leading-[0.95] text-white drop-shadow-[0_6px_30px_rgba(0,0,0,0.9)] sm:text-7xl lg:text-8xl"
           initial={{ opacity: 0, y: 40 }}
           transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         >
@@ -126,7 +136,7 @@ export function ExperienceHero({
         </motion.h1>
         <motion.p
           animate={ready ? { opacity: 1, y: 0 } : {}}
-          className="mt-5 max-w-xl text-base leading-relaxed text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] sm:mt-8 sm:text-2xl"
+          className="mt-4 max-w-xl text-[15px] leading-relaxed text-white/90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] sm:mt-8 sm:text-2xl sm:text-white"
           initial={{ opacity: 0, y: 24 }}
           transition={{ duration: 1, delay: 0.6 }}
         >
@@ -134,19 +144,38 @@ export function ExperienceHero({
         </motion.p>
         <motion.div
           animate={ready ? { opacity: 1 } : {}}
-          className="mt-7 flex flex-wrap items-center gap-3 sm:mt-10 sm:gap-5"
+          className="mt-6 grid gap-3 sm:mt-10 sm:flex sm:flex-wrap sm:items-center sm:gap-5"
           initial={{ opacity: 0 }}
           transition={{ duration: 1, delay: 0.95 }}
         >
-          <CtaButton href={joinHref}>{content.ctaPrimary}</CtaButton>
-          <CtaButton href="#story" variant="secondary">
+          <CtaButton className="[&>a]:w-full sm:[&>a]:w-auto" href={joinHref}>
+            {content.ctaPrimary}
+          </CtaButton>
+          <CtaButton
+            className="w-full sm:w-auto"
+            href="#story"
+            variant="secondary"
+          >
             {content.ctaSecondary}
           </CtaButton>
-          <span className="flex basis-full items-center gap-3 text-xs font-semibold uppercase tracking-[0.25em] text-wow-blue-ice/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] sm:text-sm">
+        </motion.div>
+        {/* the opening: a frost panel with the status and the countdown */}
+        <motion.div
+          animate={ready ? { opacity: 1, y: 0 } : {}}
+          className="mt-6 w-full max-w-xl rounded-xl border border-wow-blue-ice/25 bg-[#04101c]/55 p-4 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(125,211,252,0.15)] backdrop-blur-md sm:mt-10 sm:p-5"
+          initial={{ opacity: 0, y: 16 }}
+          transition={{ duration: 1, delay: 1.1 }}
+        >
+          <p className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-wow-blue-ice sm:text-xs">
             <span className="h-2 w-2 animate-pulse rounded-full bg-wow-blue-ice shadow-[0_0_10px_#4fc3f7]" />
-            {content.status}
-          </span>
-          {launch && <div className="basis-full">{launch}</div>}
+            {status}
+          </p>
+          {statusRest && (
+            <p className="mt-1.5 font-heading text-[15px] leading-snug text-white sm:text-lg">
+              {statusRest}
+            </p>
+          )}
+          {launch && <div className="mt-3">{launch}</div>}
         </motion.div>
       </motion.div>
 
