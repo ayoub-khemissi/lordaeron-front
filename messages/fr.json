@@ -55,7 +55,20 @@
     "contact": "Contact",
     "epicProgression": "Epic Progression",
     "armory": "Armurerie",
-    "comingSoon": "Bientôt"
+    "comingSoon": "Bientôt",
+    "play": "Jouer",
+    "tools": "Outils",
+    "guilds": "Guildes",
+    "phases": "Phases",
+    "vote": "Voter",
+    "hints": {
+      "howTo": "Client, patch et realmlist, pas à pas",
+      "features": "Tout ce qui rend le royaume unique",
+      "epicProgression": "De Vanilla à WotLK, raid après raid",
+      "phases": "Six phases, des donjons au Sanctum rubis",
+      "armory": "Tous les personnages en 3D, équipement et stats",
+      "guilds": "Les guildes, leurs blasons et leurs membres"
+    }
   },
   "home": {
     "title": "Bienvenue sur Lordaeron",
@@ -1201,9 +1214,6 @@
     "noResults": "Aucun personnage trouvé",
     "showTransmog": "Afficher la transmogrification",
     "resultsCount": "{count, plural, one {# personnage} other {# personnages}}",
-    "previous": "Précédent",
-    "next": "Suivant",
-    "pageOf": "Page {page} sur {pages}",
     "level": "Niveau",
     "guild": "Guilde",
     "equipment": "Équipement",
@@ -1247,7 +1257,8 @@
     "weekGames": "Parties de la semaine",
     "weekWins": "Victoires de la semaine",
     "noArenaTeams": "Aucune équipe d'arène",
-    "noProfessions": "Aucune profession"
+    "noProfessions": "Aucune profession",
+    "gm": "MJ"
   },
   "raidScaling": {
     "title": "Scaling de difficulté",
@@ -1425,5 +1436,28 @@
     "removeConfirm": "Retirer",
     "removeCancel": "Annuler",
     "removed": "Protection retirée."
+  },
+  "search": {
+    "previous": "Précédent",
+    "next": "Suivant",
+    "pageOf": "Page {page} sur {pages}"
+  },
+  "guilds": {
+    "title": "Guildes",
+    "searchPlaceholder": "Rechercher une guilde par son nom...",
+    "noResults": "Aucune guilde trouvée.",
+    "resultsCount": "{count, plural, one {# guilde} other {# guildes}}",
+    "membersCount": "{count, plural, one {# membre} other {# membres}}",
+    "leaderIs": "menée par {name}",
+    "leader": "Maître de guilde :",
+    "foundedOn": "fondée le {date}",
+    "levelShort": "Niveau {level}",
+    "levelOf": "Niveau de renommée {level} / {max}",
+    "renown": "{renown} de renommée",
+    "toNext": "{pct} % vers le niveau {level} ({renown} de renommée)",
+    "maxLevel": "Niveau de renommée maximal",
+    "achievements": "Hauts faits de guilde",
+    "members": "Membres",
+    "notFound": "Cette guilde n'existe pas sur ce royaume."
   }
 }

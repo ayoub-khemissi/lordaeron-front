@@ -19,6 +19,7 @@ export type RealmSection =
   | "epic-progression"
   | "raid-scaling"
   | "armory"
+  | "guilds"
   | "shop";
 
 export interface RealmInfo {
@@ -52,6 +53,7 @@ export const ALL_SECTIONS: RealmSection[] = [
   "epic-progression",
   "raid-scaling",
   "armory",
+  "guilds",
   "shop",
 ];
 
@@ -71,6 +73,7 @@ export const REALMS: Record<RealmSlug, RealmInfo> = {
       "epic-progression",
       "raid-scaling",
       "armory",
+      "guilds",
       "shop",
     ],
     accent: "gold",
@@ -86,7 +89,7 @@ export const REALMS: Record<RealmSlug, RealmInfo> = {
     // Ayoub, 13/10/2026: the names are reserved from Wednesday 14 October 2026, 19:00 Paris time
     reservationAt: "2026-10-14T17:00:00Z",
     // features: its long showcase ("Discover the realm", 13/10/2026), its home being the realm-home template's
-    sections: ["home", "how-to", "features", "armory", "shop"],
+    sections: ["home", "how-to", "features", "armory", "guilds", "shop"],
     accent: "ice",
     progressive: true,
   },

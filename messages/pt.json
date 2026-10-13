@@ -55,7 +55,20 @@
     "contact": "Contacto",
     "epicProgression": "Epic Progression",
     "armory": "Arsenal",
-    "comingSoon": "Em breve"
+    "comingSoon": "Em breve",
+    "play": "Jogar",
+    "tools": "Ferramentas",
+    "guilds": "Guildas",
+    "phases": "Fases",
+    "vote": "Votar",
+    "hints": {
+      "howTo": "Cliente, patch e realmlist, passo a passo",
+      "features": "Tudo o que torna o reino único",
+      "epicProgression": "Do Vanilla ao WotLK, raide após raide",
+      "phases": "Seis fases, das masmorras ao Santuário Rubi",
+      "armory": "Qualquer personagem em 3D, equipamento e atributos",
+      "guilds": "Guildas, os seus brasões e membros"
+    }
   },
   "home": {
     "title": "Bem-vindo a Lordaeron",
@@ -1201,9 +1214,6 @@
     "noResults": "Nenhum personagem encontrado",
     "showTransmog": "Mostrar transmogrificação",
     "resultsCount": "{count, plural, one {# personagem} other {# personagens}}",
-    "previous": "Anterior",
-    "next": "Seguinte",
-    "pageOf": "Página {page} de {pages}",
     "level": "Nivel",
     "guild": "Guilda",
     "equipment": "Equipamento",
@@ -1247,7 +1257,8 @@
     "weekGames": "Jogos da Semana",
     "weekWins": "Vitorias da Semana",
     "noArenaTeams": "Sem equipas de arena",
-    "noProfessions": "Sem profissoes"
+    "noProfessions": "Sem profissoes",
+    "gm": "GM"
   },
   "raidScaling": {
     "title": "Escala de Dificuldade",
@@ -1425,5 +1436,28 @@
     "removeConfirm": "Retirar",
     "removeCancel": "Cancelar",
     "removed": "Proteção retirada."
+  },
+  "search": {
+    "previous": "Anterior",
+    "next": "Seguinte",
+    "pageOf": "Página {page} de {pages}"
+  },
+  "guilds": {
+    "title": "Guildas",
+    "searchPlaceholder": "Procurar uma guilda pelo nome...",
+    "noResults": "Nenhuma guilda encontrada.",
+    "resultsCount": "{count, plural, one {# guilda} other {# guildas}}",
+    "membersCount": "{count, plural, one {# membro} other {# membros}}",
+    "leaderIs": "liderada por {name}",
+    "leader": "Mestre da guilda:",
+    "foundedOn": "fundada em {date}",
+    "levelShort": "Nível {level}",
+    "levelOf": "Nível de renome {level} / {max}",
+    "renown": "{renown} de renome",
+    "toNext": "{pct}% até ao nível {level} ({renown} de renome)",
+    "maxLevel": "Nível de renome máximo",
+    "achievements": "Conquistas da guilda",
+    "members": "Membros",
+    "notFound": "Esta guilda não existe neste reino."
   }
 }

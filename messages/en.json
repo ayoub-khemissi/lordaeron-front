@@ -55,7 +55,20 @@
     "contact": "Contact",
     "epicProgression": "Epic Progression",
     "armory": "Armory",
-    "comingSoon": "Soon"
+    "comingSoon": "Soon",
+    "play": "Play",
+    "tools": "Tools",
+    "guilds": "Guilds",
+    "phases": "Phases",
+    "vote": "Vote",
+    "hints": {
+      "howTo": "Client, patch and realmlist, step by step",
+      "features": "Everything that makes the realm unique",
+      "epicProgression": "From Vanilla to Wrath, raid after raid",
+      "phases": "Six phases, from the dungeons to the Ruby Sanctum",
+      "armory": "Any character in 3D, gear and stats",
+      "guilds": "Guilds, their crests and their members"
+    }
   },
   "home": {
     "title": "Welcome to Lordaeron",
@@ -1201,9 +1214,6 @@
     "noResults": "No characters found",
     "showTransmog": "Show transmogrification",
     "resultsCount": "{count, plural, one {# character} other {# characters}}",
-    "previous": "Previous",
-    "next": "Next",
-    "pageOf": "Page {page} of {pages}",
     "level": "Level",
     "guild": "Guild",
     "equipment": "Equipment",
@@ -1247,7 +1257,8 @@
     "weekGames": "Week Games",
     "weekWins": "Week Wins",
     "noArenaTeams": "No arena teams",
-    "noProfessions": "No professions"
+    "noProfessions": "No professions",
+    "gm": "GM"
   },
   "raidScaling": {
     "title": "Difficulty Scaling",
@@ -1425,5 +1436,28 @@
     "removeConfirm": "Remove",
     "removeCancel": "Cancel",
     "removed": "Protection removed."
+  },
+  "search": {
+    "previous": "Previous",
+    "next": "Next",
+    "pageOf": "Page {page} of {pages}"
+  },
+  "guilds": {
+    "title": "Guilds",
+    "searchPlaceholder": "Search a guild by name...",
+    "noResults": "No guild found.",
+    "resultsCount": "{count, plural, one {# guild} other {# guilds}}",
+    "membersCount": "{count, plural, one {# member} other {# members}}",
+    "leaderIs": "led by {name}",
+    "leader": "Guild Master:",
+    "foundedOn": "founded on {date}",
+    "levelShort": "Level {level}",
+    "levelOf": "Renown level {level} / {max}",
+    "renown": "{renown} renown",
+    "toNext": "{pct}% toward level {level} ({renown} renown)",
+    "maxLevel": "The highest renown level",
+    "achievements": "Guild achievements",
+    "members": "Members",
+    "notFound": "This guild does not exist on this realm."
   }
 }

@@ -42,7 +42,7 @@ const sharedPages: PageEntry[] = [
   { path: "/legal-notice", priority: 0.3, changeFrequency: "yearly" },
 ];
 
-// each realm's pages, the sections it has (lib/realms.ts); the armory is not open yet
+// each realm's pages, the sections it has (lib/realms.ts); the armory's and the guilds' search pages (not each character or guild)
 const realmPages: PageEntry[] = REALM_SLUGS.flatMap((slug) => {
   const has = (section: RealmSection) => realmHasSection(slug, section);
   const at = (path: string) => `/${slug}${path}`;
@@ -76,6 +76,11 @@ const realmPages: PageEntry[] = REALM_SLUGS.flatMap((slug) => {
           },
         ]
       : []),
+    ...(["armory", "guilds"] as const).filter(has).map((tool) => ({
+      path: at(`/${tool}`),
+      priority: 0.6,
+      changeFrequency: "daily" as const,
+    })),
     ...(has("shop")
       ? [
           {

@@ -171,6 +171,12 @@ export function CharacterProfile({ name }: CharacterProfileProps) {
           >
             {character.online ? t("online") : t("offline")}
           </span>
+          {/* a game master's character, which only a site administrator is shown */}
+          {character.gm && (
+            <span className="text-xs px-2 py-0.5 rounded-full font-semibold bg-red-600/25 text-red-300">
+              {t("gm")}
+            </span>
+          )}
           {achievementCount > 0 && (
             <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-yellow-500/20 text-yellow-400">
               {achievementCount} {t("achievements")}
@@ -178,6 +184,7 @@ export function CharacterProfile({ name }: CharacterProfileProps) {
           )}
         </div>
         <GuildInfo
+          guildEmblem={character.guildEmblem}
           guildName={character.guildName}
           guildRankName={character.guildRankName}
         />

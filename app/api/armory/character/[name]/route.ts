@@ -14,6 +14,7 @@ import { requestRealm } from "@/lib/realms";
 import { armoryModel } from "@/lib/armory-model";
 import { characterItemTooltips } from "@/lib/tooltips/instance";
 import { isTooltipLocale } from "@/lib/tooltips";
+import { viewerSeesGm } from "@/lib/queries/realm-search";
 
 export const dynamic = "force-dynamic";
 
@@ -28,7 +29,12 @@ export async function GET(
     const realm = requestRealm(params2.get("realm"));
     const locale = params2.get("locale");
 
-    const character = await getArmoryCharacter(name, realm);
+    // a site administrator also opens the game masters' characters (lib/queries/realm-search.ts)
+    const character = await getArmoryCharacter(
+      name,
+      realm,
+      await viewerSeesGm(),
+    );
 
     if (!character) {
       return NextResponse.json({ error: "not_found" }, { status: 404 });

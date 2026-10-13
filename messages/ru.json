@@ -55,7 +55,20 @@
     "contact": "Контакты",
     "epicProgression": "Эпическая прогрессия",
     "armory": "Оружейная",
-    "comingSoon": "Скоро"
+    "comingSoon": "Скоро",
+    "play": "Играть",
+    "tools": "Инструменты",
+    "guilds": "Гильдии",
+    "phases": "Фазы",
+    "vote": "Голосовать",
+    "hints": {
+      "howTo": "Клиент, патч и realmlist шаг за шагом",
+      "features": "Всё, что делает мир особенным",
+      "epicProgression": "От Vanilla до WotLK, рейд за рейдом",
+      "phases": "Шесть фаз, от подземелий до Рубинового святилища",
+      "armory": "Любой персонаж в 3D: снаряжение и характеристики",
+      "guilds": "Гильдии, их гербы и участники"
+    }
   },
   "home": {
     "title": "Добро пожаловать в Lordaeron",
@@ -1201,9 +1214,6 @@
     "noResults": "Персонажи не найдены",
     "showTransmog": "Показать трансмогрификацию",
     "resultsCount": "{count, plural, one {# персонаж} few {# персонажа} many {# персонажей} other {# персонажа}}",
-    "previous": "Назад",
-    "next": "Далее",
-    "pageOf": "Страница {page} из {pages}",
     "level": "Уровень",
     "guild": "Гильдия",
     "equipment": "Экипировка",
@@ -1247,7 +1257,8 @@
     "weekGames": "Игры за неделю",
     "weekWins": "Победы за неделю",
     "noArenaTeams": "Нет арена-команд",
-    "noProfessions": "Нет профессий"
+    "noProfessions": "Нет профессий",
+    "gm": "ГМ"
   },
   "raidScaling": {
     "title": "Масштабирование сложности",
@@ -1425,5 +1436,28 @@
     "removeConfirm": "Снять",
     "removeCancel": "Отмена",
     "removed": "Защита снята."
+  },
+  "search": {
+    "previous": "Назад",
+    "next": "Далее",
+    "pageOf": "Страница {page} из {pages}"
+  },
+  "guilds": {
+    "title": "Гильдии",
+    "searchPlaceholder": "Найти гильдию по названию...",
+    "noResults": "Гильдии не найдены.",
+    "resultsCount": "{count, plural, one {# гильдия} few {# гильдии} many {# гильдий} other {# гильдии}}",
+    "membersCount": "{count, plural, one {# участник} few {# участника} many {# участников} other {# участника}}",
+    "leaderIs": "глава: {name}",
+    "leader": "Глава гильдии:",
+    "foundedOn": "основана {date}",
+    "levelShort": "Уровень {level}",
+    "levelOf": "Уровень славы {level} / {max}",
+    "renown": "Слава: {renown}",
+    "toNext": "{pct}% до уровня {level} ({renown} славы)",
+    "maxLevel": "Максимальный уровень славы",
+    "achievements": "Достижения гильдии",
+    "members": "Участники",
+    "notFound": "Такой гильдии нет в этом мире."
   }
 }

@@ -11,78 +11,99 @@ import { RowDataPacket } from "mysql2";
 
 import { DEFAULT_REALM, type RealmSlug } from "@/lib/realms";
 import { realmCharactersDb, realmWorldDb } from "@/lib/realms-server";
+import {
+  ci,
+  containsPattern,
+  gmColumn,
+  hideGm,
+  nameRank,
+  nameRankParams,
+} from "@/lib/queries/realm-search";
 
-const GM_FILTER = `AND c.account NOT IN (
-  SELECT AccountID FROM auth.account_access WHERE SecurityLevel >= 1
-)`;
+const NAME = "c.name";
 
-// characters.name is utf8mb4_bin: compared in a case and accent insensitive collation, "redos" finds "Redös" (Ayoub, 13/10/2026)
-const NAME_CI = "c.name COLLATE utf8mb4_unicode_ci";
-
-// a search's text as a LIKE pattern: its own % and _ taken literally
-const likeEscape = (text: string) => text.replace(/[\\%_]/g, (c) => `\\${c}`);
-
-// a search (Ayoub, 13/10/2026: a real one): the exact name first, then the names starting with the text, then the others containing it,
-// each by level then name; a page of them and how many there are in all
+// a search: the exact name first, then the names starting with the text, then the others containing it, each by level then name; a
+// page of them and how many there are in all. showGm: a site administrator's search (lib/queries/realm-search.ts), GMs included
 export async function searchArmoryCharacters(
   name: string,
   page = 1,
   pageSize = 20,
   realm: RealmSlug = DEFAULT_REALM,
+  showGm = false,
 ): Promise<{ characters: ArmorySearchResult[]; total: number }> {
   const db = realmCharactersDb(realm);
-  const contains = `%${likeEscape(name)}%`;
   const [counted] = await db.execute<RowDataPacket[]>(
     `SELECT COUNT(*) AS total FROM characters c
-     WHERE ${NAME_CI} LIKE ? AND c.level > 0
-       ${GM_FILTER}`,
-    [contains],
+     WHERE ${ci(NAME)} LIKE ? AND c.level > 0
+       ${hideGm("c.account", showGm)}`,
+    [containsPattern(name)],
   );
   const total = Number(counted[0]?.total ?? 0);
 
   if (!total) return { characters: [], total };
   const [rows] = await db.execute<RowDataPacket[]>(
-    `SELECT c.guid, c.name, c.race, c.class, c.level, c.gender, c.online
+    `SELECT c.guid, c.name, c.race, c.class, c.level, c.gender, c.online,
+       ${gmColumn("c.account")}
      FROM characters c
-     WHERE ${NAME_CI} LIKE ? AND c.level > 0
-       ${GM_FILTER}
-     ORDER BY ${NAME_CI} = ? DESC, ${NAME_CI} LIKE ? DESC, c.level DESC, c.name ASC
+     WHERE ${ci(NAME)} LIKE ? AND c.level > 0
+       ${hideGm("c.account", showGm)}
+     ORDER BY ${nameRank(NAME)}, c.level DESC, c.name ASC
      LIMIT ? OFFSET ?`,
     [
-      contains,
-      name,
-      `${likeEscape(name)}%`,
+      containsPattern(name),
+      ...nameRankParams(name),
       String(pageSize),
       String((page - 1) * pageSize),
     ],
   );
 
-  return { characters: rows as ArmorySearchResult[], total };
+  return {
+    characters: rows.map((r) => ({ ...r, gm: !!r.gm })) as ArmorySearchResult[],
+    total,
+  };
 }
 
 export async function getArmoryCharacter(
   name: string,
   realm: RealmSlug = DEFAULT_REALM,
+  showGm = false,
 ): Promise<ArmoryCharacter | null> {
   const [rows] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
     `SELECT c.guid, c.name, c.race, c.class, c.gender, c.level, c.online,
        c.totaltime, c.zone, c.skin, c.face, c.hairStyle, c.hairColor, c.facialStyle,
        c.totalKills, c.totalHonorPoints, c.arenaPoints, c.equipmentCache,
-       g.name AS guildName, g.guildid AS guildId, gr.rname AS guildRankName
+       g.name AS guildName, g.guildid AS guildId, gr.rname AS guildRankName,
+       g.EmblemStyle AS emblemStyle, g.EmblemColor AS emblemColor, g.BorderStyle AS borderStyle,
+       g.BorderColor AS borderColor, g.BackgroundColor AS backgroundColor,
+       ${gmColumn("c.account")}
      FROM characters c
      LEFT JOIN guild_member gm ON gm.guid = c.guid
      LEFT JOIN guild g ON g.guildid = gm.guildid
      LEFT JOIN guild_rank gr ON gr.guildid = gm.guildid AND gr.rid = gm.\`rank\`
-     WHERE ${NAME_CI} = ?
-       ${GM_FILTER}
+     WHERE ${ci(NAME)} = ?
+       ${hideGm("c.account", showGm)}
      ORDER BY c.name = ? DESC
      LIMIT 1`,
     [name, name],
   );
 
   if (rows.length === 0) return null;
+  const r = rows[0];
 
-  return rows[0] as ArmoryCharacter;
+  return {
+    ...r,
+    gm: !!r.gm,
+    guildEmblem:
+      r.guildId != null
+        ? {
+            style: r.emblemStyle,
+            color: r.emblemColor,
+            borderStyle: r.borderStyle,
+            borderColor: r.borderColor,
+            background: r.backgroundColor,
+          }
+        : null,
+  } as ArmoryCharacter;
 }
 
 export async function getCharacterStats(

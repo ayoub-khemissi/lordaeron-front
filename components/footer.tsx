@@ -8,26 +8,17 @@ import Image from "next/image";
 
 import { siteConfig } from "@/config/site";
 import { DiscordIcon } from "@/components/icons";
-import { useAuth } from "@/lib/auth-context";
-import { usePathRealm, useRealmPreview } from "@/lib/realm-context";
-import {
-  REALMS,
-  REALM_SLUGS,
-  realmPath,
-  realmView,
-  registerPath,
-} from "@/lib/realms";
+import { openVote } from "@/components/navigation/vote-event";
+import { useNavigation } from "@/components/navigation/use-navigation";
+import { realmPath } from "@/lib/realms";
 
 export const Footer = () => {
   const t = useTranslations("footer");
   const tNav = useTranslations("nav");
-  const tAll = useTranslations();
   const tRealms = useTranslations("realms");
   const locale = useLocale();
-  const { user } = useAuth();
-  const pathRealm = usePathRealm();
-  const preview = useRealmPreview();
-  const view = pathRealm ? realmView(pathRealm, preview) : null;
+  // the same menu as the top bar and the burger (components/navigation): no list of its own
+  const { realm: view, nodes } = useNavigation();
   const ice = view?.accent === "ice";
   const heading = clsx(
     "text-xs font-bold mb-4 uppercase tracking-[0.2em]",
@@ -37,42 +28,19 @@ export const Footer = () => {
     "text-gray-400 text-sm transition-colors",
     ice ? "hover:text-wow-blue-ice" : "hover:text-wow-gold",
   );
-  const account = user
-    ? { label: tNav("account"), href: `/${locale}/account` }
-    : { label: tNav("register"), href: registerPath(locale, pathRealm) };
 
-  // inside a realm: its sections (as the navbar shows them), the news and the way back to the realms; on the portal and the shared
-  // pages: the realms and the news
-  const links: { label: string; href: string }[] = view
-    ? [
-        { label: tNav("home"), href: realmPath(locale, view.slug) },
-        ...siteConfig.navItems
-          .filter(
-            (item) =>
-              item.scope === "shared" ||
-              (item.section &&
-                view.sections.includes(item.section) &&
-                (!item.comingSoon || preview) &&
-                (item.href !== "/shop" || user)),
-          )
-          .map((item) => ({
-            label: tAll(item.labelKey),
-            href:
-              item.scope === "realm"
-                ? realmPath(locale, view.slug, item.href)
-                : `/${locale}${item.href}`,
-          })),
-        account,
-        { label: tRealms("allRealms"), href: `/${locale}` },
-      ]
-    : [
-        ...REALM_SLUGS.map((slug) => ({
-          label: REALMS[slug].name,
-          href: realmPath(locale, slug),
-        })),
-        { label: tNav("news"), href: `/${locale}/news` },
-        account,
-      ];
+  // the realm column: its home and every page of its menu; on the portal the realms
+  const links: { label: string; href: string }[] = [
+    ...(view
+      ? [{ label: tNav("home"), href: realmPath(locale, view.slug) }]
+      : []),
+    ...nodes.flatMap((node) =>
+      node.kind === "group"
+        ? node.links.filter((l) => !l.comingSoon)
+        : [node.link],
+    ),
+    ...(view ? [{ label: tRealms("allRealms"), href: `/${locale}` }] : []),
+  ];
 
   return (
     <footer className="relative w-full mt-auto overflow-hidden">
@@ -127,6 +95,38 @@ export const Footer = () => {
             </div>
 
             <div>
+              <h4 className={heading}>{t("community")}</h4>
+              <ul className="space-y-2">
+                <li>
+                  <Link
+                    isExternal
+                    className="inline-flex items-center gap-2 text-gray-400 hover:text-[#5865F2] text-sm transition-colors"
+                    href={siteConfig.links.discord}
+                  >
+                    <DiscordIcon className="w-5 h-5" />
+                    Discord
+                  </Link>
+                </li>
+                <li>
+                  <button
+                    className="inline-flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-purple-300"
+                    type="button"
+                    onClick={openVote}
+                  >
+                    <img
+                      alt=""
+                      className="h-5 w-5"
+                      height={20}
+                      src="/img/icons/soul-shard.svg"
+                      width={20}
+                    />
+                    {tNav("vote")}
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            <div>
               <h4 className={heading}>{t("legal")}</h4>
               <ul className="space-y-2">
                 {[
@@ -146,18 +146,6 @@ export const Footer = () => {
                   </li>
                 ))}
               </ul>
-            </div>
-
-            <div>
-              <h4 className={heading}>{t("community")}</h4>
-              <Link
-                isExternal
-                className="inline-flex items-center gap-2 text-gray-400 hover:text-[#5865F2] text-sm transition-colors"
-                href="https://discord.gg/MqTzu6Qhn3"
-              >
-                <DiscordIcon className="w-5 h-5" />
-                Discord
-              </Link>
             </div>
           </div>
 

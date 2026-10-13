@@ -6,6 +6,17 @@ export interface ArmorySearchResult {
   level: number;
   gender: number;
   online: number;
+  // a game master's character (only a site administrator gets them, lib/queries/realm-search.ts)
+  gm?: boolean;
+}
+
+// a guild's tabard (the guild table's emblem fields): the crest's layers, components/guild-emblem.tsx
+export interface GuildEmblem {
+  style: number;
+  color: number;
+  borderStyle: number;
+  borderColor: number;
+  background: number;
 }
 
 export interface ArmoryCharacter {
@@ -34,6 +45,8 @@ export interface ArmoryCharacter {
   guildId: number | null;
   guildName: string | null;
   guildRankName: string | null;
+  guildEmblem?: GuildEmblem | null;
+  gm?: boolean;
 }
 
 export interface ArmoryStats {

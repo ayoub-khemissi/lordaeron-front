@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 
 import { useAuth } from "@/lib/auth-context";
+import { OPEN_VOTE_EVENT } from "@/components/navigation/vote-event";
 
 interface VoteSite {
   id: number;
@@ -284,6 +285,18 @@ export function VotePanel() {
       // ignore
     }
   }, []);
+
+  // the top bar's, the burger's and the footer's "Vote" (components/navigation/vote-event.ts): the panel unfolded, the phone's sheet opened
+  useEffect(() => {
+    const open = () => {
+      toggleDesktop(false);
+      setMobileOpen(window.matchMedia("(max-width: 1023px)").matches);
+    };
+
+    window.addEventListener(OPEN_VOTE_EVENT, open);
+
+    return () => window.removeEventListener(OPEN_VOTE_EVENT, open);
+  }, [toggleDesktop]);
 
   const fetchSites = useCallback(async () => {
     try {

@@ -55,7 +55,20 @@
     "contact": "Contacto",
     "epicProgression": "Epic Progression",
     "armory": "Armería",
-    "comingSoon": "Pronto"
+    "comingSoon": "Pronto",
+    "play": "Jugar",
+    "tools": "Herramientas",
+    "guilds": "Hermandades",
+    "phases": "Fases",
+    "vote": "Votar",
+    "hints": {
+      "howTo": "Cliente, parche y realmlist, paso a paso",
+      "features": "Todo lo que hace único al reino",
+      "epicProgression": "De Vanilla a WotLK, banda tras banda",
+      "phases": "Seis fases, de las mazmorras al Sagrario Rubí",
+      "armory": "Cualquier personaje en 3D, equipo y estadísticas",
+      "guilds": "Hermandades, sus emblemas y sus miembros"
+    }
   },
   "home": {
     "title": "Bienvenido a Lordaeron",
@@ -1201,9 +1214,6 @@
     "noResults": "No se encontraron personajes",
     "showTransmog": "Mostrar transfiguración",
     "resultsCount": "{count, plural, one {# personaje} other {# personajes}}",
-    "previous": "Anterior",
-    "next": "Siguiente",
-    "pageOf": "Página {page} de {pages}",
     "level": "Nivel",
     "guild": "Hermandad",
     "equipment": "Equipo",
@@ -1247,7 +1257,8 @@
     "weekGames": "Partidas semanales",
     "weekWins": "Victorias semanales",
     "noArenaTeams": "Sin equipos de arena",
-    "noProfessions": "Sin profesiones"
+    "noProfessions": "Sin profesiones",
+    "gm": "MJ"
   },
   "raidScaling": {
     "title": "Escalado de dificultad",
@@ -1425,5 +1436,28 @@
     "removeConfirm": "Quitar",
     "removeCancel": "Cancelar",
     "removed": "Protección quitada."
+  },
+  "search": {
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "pageOf": "Página {page} de {pages}"
+  },
+  "guilds": {
+    "title": "Hermandades",
+    "searchPlaceholder": "Buscar una hermandad por su nombre...",
+    "noResults": "No se encontró ninguna hermandad.",
+    "resultsCount": "{count, plural, one {# hermandad} other {# hermandades}}",
+    "membersCount": "{count, plural, one {# miembro} other {# miembros}}",
+    "leaderIs": "liderada por {name}",
+    "leader": "Maestro de hermandad:",
+    "foundedOn": "fundada el {date}",
+    "levelShort": "Nivel {level}",
+    "levelOf": "Nivel de renombre {level} / {max}",
+    "renown": "{renown} de renombre",
+    "toNext": "{pct} % hacia el nivel {level} ({renown} de renombre)",
+    "maxLevel": "Nivel de renombre máximo",
+    "achievements": "Logros de hermandad",
+    "members": "Miembros",
+    "notFound": "Esta hermandad no existe en este reino."
   }
 }

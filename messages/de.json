@@ -55,7 +55,20 @@
     "contact": "Kontakt",
     "epicProgression": "Epic Progression",
     "armory": "Waffenkammer",
-    "comingSoon": "Bald"
+    "comingSoon": "Bald",
+    "play": "Spielen",
+    "tools": "Werkzeuge",
+    "guilds": "Gilden",
+    "phases": "Phasen",
+    "vote": "Abstimmen",
+    "hints": {
+      "howTo": "Client, Patch und Realmlist, Schritt für Schritt",
+      "features": "Alles, was das Reich einzigartig macht",
+      "epicProgression": "Von Classic bis WotLK, Schlachtzug um Schlachtzug",
+      "phases": "Sechs Phasen, von den Dungeons bis zum Rubinsanktum",
+      "armory": "Jeder Charakter in 3D, Ausrüstung und Werte",
+      "guilds": "Gilden, ihre Wappen und ihre Mitglieder"
+    }
   },
   "home": {
     "title": "Willkommen auf Lordaeron",
@@ -1201,9 +1214,6 @@
     "noResults": "Keine Charaktere gefunden",
     "showTransmog": "Transmogrifikation anzeigen",
     "resultsCount": "{count, plural, one {# Charakter} other {# Charaktere}}",
-    "previous": "Zurück",
-    "next": "Weiter",
-    "pageOf": "Seite {page} von {pages}",
     "level": "Stufe",
     "guild": "Gilde",
     "equipment": "Ausrüstung",
@@ -1247,7 +1257,8 @@
     "weekGames": "Wochenspiele",
     "weekWins": "Wochensiege",
     "noArenaTeams": "Keine Arena-Teams",
-    "noProfessions": "Keine Berufe"
+    "noProfessions": "Keine Berufe",
+    "gm": "GM"
   },
   "raidScaling": {
     "title": "Schwierigkeitsskalierung",
@@ -1425,5 +1436,28 @@
     "removeConfirm": "Entfernen",
     "removeCancel": "Abbrechen",
     "removed": "Schutz entfernt."
+  },
+  "search": {
+    "previous": "Zurück",
+    "next": "Weiter",
+    "pageOf": "Seite {page} von {pages}"
+  },
+  "guilds": {
+    "title": "Gilden",
+    "searchPlaceholder": "Gilde nach Namen suchen...",
+    "noResults": "Keine Gilde gefunden.",
+    "resultsCount": "{count, plural, one {# Gilde} other {# Gilden}}",
+    "membersCount": "{count, plural, one {# Mitglied} other {# Mitglieder}}",
+    "leaderIs": "geführt von {name}",
+    "leader": "Gildenmeister:",
+    "foundedOn": "gegründet am {date}",
+    "levelShort": "Stufe {level}",
+    "levelOf": "Ruhmstufe {level} / {max}",
+    "renown": "{renown} Ruhm",
+    "toNext": "{pct} % bis Stufe {level} ({renown} Ruhm)",
+    "maxLevel": "Höchste Ruhmstufe",
+    "achievements": "Gildenerfolge",
+    "members": "Mitglieder",
+    "notFound": "Diese Gilde gibt es auf diesem Realm nicht."
   }
 }

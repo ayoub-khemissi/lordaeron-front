@@ -85,6 +85,12 @@ export const DBC_LAYOUTS = {
     },
   },
   SpellIcon: { fieldCount: 2, fields: { ID: 0 }, strings: { Texture: 1 } },
+  // the guild pages' achievements (lib/queries/guilds.ts)
+  Achievement: {
+    fieldCount: 62,
+    fields: { ID: 0, Points: 39, Flags: 41, IconID: 42 },
+    localized: { Title: 4, Description: 21 },
+  },
   SpellDescriptionVariables: {
     fieldCount: 2,
     fields: { ID: 0 },

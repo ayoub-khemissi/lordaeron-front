@@ -55,7 +55,20 @@
     "contact": "Contatto",
     "epicProgression": "Epic Progression",
     "armory": "Armeria",
-    "comingSoon": "Presto"
+    "comingSoon": "Presto",
+    "play": "Gioca",
+    "tools": "Strumenti",
+    "guilds": "Gilde",
+    "phases": "Fasi",
+    "vote": "Vota",
+    "hints": {
+      "howTo": "Client, patch e realmlist, passo dopo passo",
+      "features": "Tutto ciò che rende unico il reame",
+      "epicProgression": "Da Vanilla a WotLK, incursione dopo incursione",
+      "phases": "Sei fasi, dai dungeon al Santuario di Rubino",
+      "armory": "Ogni personaggio in 3D, equipaggiamento e statistiche",
+      "guilds": "Le gilde, i loro stemmi e i loro membri"
+    }
   },
   "home": {
     "title": "Benvenuto su Lordaeron",
@@ -1201,9 +1214,6 @@
     "noResults": "Nessun personaggio trovato",
     "showTransmog": "Mostra trasmogrificazione",
     "resultsCount": "{count, plural, one {# personaggio} other {# personaggi}}",
-    "previous": "Precedente",
-    "next": "Successiva",
-    "pageOf": "Pagina {page} di {pages}",
     "level": "Livello",
     "guild": "Gilda",
     "equipment": "Equipaggiamento",
@@ -1247,7 +1257,8 @@
     "weekGames": "Partite settimanali",
     "weekWins": "Vittorie settimanali",
     "noArenaTeams": "Nessun team arena",
-    "noProfessions": "Nessuna professione"
+    "noProfessions": "Nessuna professione",
+    "gm": "GM"
   },
   "raidScaling": {
     "title": "Scaling di difficoltà",
@@ -1425,5 +1436,28 @@
     "removeConfirm": "Rimuovi",
     "removeCancel": "Annulla",
     "removed": "Protezione rimossa."
+  },
+  "search": {
+    "previous": "Precedente",
+    "next": "Successiva",
+    "pageOf": "Pagina {page} di {pages}"
+  },
+  "guilds": {
+    "title": "Gilde",
+    "searchPlaceholder": "Cerca una gilda per nome...",
+    "noResults": "Nessuna gilda trovata.",
+    "resultsCount": "{count, plural, one {# gilda} other {# gilde}}",
+    "membersCount": "{count, plural, one {# membro} other {# membri}}",
+    "leaderIs": "guidata da {name}",
+    "leader": "Maestro di gilda:",
+    "foundedOn": "fondata il {date}",
+    "levelShort": "Livello {level}",
+    "levelOf": "Livello di fama {level} / {max}",
+    "renown": "{renown} di fama",
+    "toNext": "{pct}% verso il livello {level} ({renown} di fama)",
+    "maxLevel": "Livello di fama massimo",
+    "achievements": "Imprese di gilda",
+    "members": "Membri",
+    "notFound": "Questa gilda non esiste in questo reame."
   }
 }

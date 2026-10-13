@@ -55,7 +55,20 @@
     "contact": "Kontakt",
     "epicProgression": "Epicka Progresja",
     "armory": "Zbrojownia",
-    "comingSoon": "Wkrótce"
+    "comingSoon": "Wkrótce",
+    "play": "Graj",
+    "tools": "Narzędzia",
+    "guilds": "Gildie",
+    "phases": "Fazy",
+    "vote": "Głosuj",
+    "hints": {
+      "howTo": "Klient, patch i realmlist krok po kroku",
+      "features": "Wszystko, co wyróżnia ten świat",
+      "epicProgression": "Od Vanilli do WotLK, rajd za rajdem",
+      "phases": "Sześć faz, od lochów po Rubinowe Sanktuarium",
+      "armory": "Każda postać w 3D, ekwipunek i statystyki",
+      "guilds": "Gildie, ich herby i członkowie"
+    }
   },
   "home": {
     "title": "Witaj w Lordaeron",
@@ -1201,9 +1214,6 @@
     "noResults": "Nie znaleziono postaci",
     "showTransmog": "Pokaż transmogryfikację",
     "resultsCount": "{count, plural, one {# postać} few {# postacie} many {# postaci} other {# postaci}}",
-    "previous": "Poprzednia",
-    "next": "Następna",
-    "pageOf": "Strona {page} z {pages}",
     "level": "Poziom",
     "guild": "Gildia",
     "equipment": "Ekwipunek",
@@ -1247,7 +1257,8 @@
     "weekGames": "Mecze tygodnia",
     "weekWins": "Zwycięstwa tygodnia",
     "noArenaTeams": "Brak drużyn areny",
-    "noProfessions": "Brak profesji"
+    "noProfessions": "Brak profesji",
+    "gm": "MG"
   },
   "raidScaling": {
     "title": "Skalowanie trudności",
@@ -1425,5 +1436,28 @@
     "removeConfirm": "Usuń",
     "removeCancel": "Anuluj",
     "removed": "Ochrona usunięta."
+  },
+  "search": {
+    "previous": "Poprzednia",
+    "next": "Następna",
+    "pageOf": "Strona {page} z {pages}"
+  },
+  "guilds": {
+    "title": "Gildie",
+    "searchPlaceholder": "Szukaj gildii po nazwie...",
+    "noResults": "Nie znaleziono gildii.",
+    "resultsCount": "{count, plural, one {# gildia} few {# gildie} many {# gildii} other {# gildii}}",
+    "membersCount": "{count, plural, one {# członek} few {# członków} many {# członków} other {# członka}}",
+    "leaderIs": "prowadzona przez {name}",
+    "leader": "Mistrz gildii:",
+    "foundedOn": "założona {date}",
+    "levelShort": "Poziom {level}",
+    "levelOf": "Poziom sławy {level} / {max}",
+    "renown": "{renown} sławy",
+    "toNext": "{pct}% do poziomu {level} ({renown} sławy)",
+    "maxLevel": "Najwyższy poziom sławy",
+    "achievements": "Osiągnięcia gildii",
+    "members": "Członkowie",
+    "notFound": "Ta gildia nie istnieje w tym świecie."
   }
 }
