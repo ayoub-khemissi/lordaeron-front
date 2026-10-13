@@ -46,6 +46,7 @@ export interface RealmFirstEarner {
   name: string;
   race: number;
   class: number;
+  gender: number;
   guild: string | null;
   deleted: boolean;
   gm?: boolean;
@@ -180,7 +181,7 @@ export async function getRealmFirsts(
 
   if (firsts.length) {
     const [rows] = await realmCharactersDb(slug).query<RowDataPacket[]>(
-      `SELECT ca.achievement, ca.date, c.guid, c.race, c.class,
+      `SELECT ca.achievement, ca.date, c.guid, c.race, c.class, c.gender,
          COALESCE(c.deleteInfos_Name, c.name) AS name, c.deleteInfos_Name IS NOT NULL AS deleted,
          g.name AS guild, ${gmColumn("c.account")}
        FROM character_achievement ca
@@ -204,6 +205,7 @@ export async function getRealmFirsts(
         name: String(r.name),
         race: Number(r.race),
         class: Number(r.class),
+        gender: Number(r.gender),
         guild: r.guild ?? null,
         deleted: !!r.deleted,
         ...(showGm ? { gm: !!r.gm } : {}),

@@ -1,5 +1,11 @@
 import type { TipLine } from "./format";
 
+import {
+  ACHIEVEMENT_DBCS,
+  AchievementRenderer,
+  type AchievementRewardRow,
+  type RewardItem,
+} from "./achievement";
 import { LruCache } from "./cache";
 import { dbcStore } from "./dbc";
 import {
@@ -14,11 +20,11 @@ import { LOCALES, type TooltipLocale } from "./locales";
 import { SPELL_DBCS, SpellRenderer } from "./spell";
 
 /*
- * The tooltip service: renders item and spell tooltips of a world (its database and its DBC folder), with an LRU of the results per
+ * The tooltip service: renders item, spell and achievement tooltips of a world (its database and its DBC folder), with an LRU of the results per
  * (world, ref, locale) for 10 minutes (1 minute for an unknown id), so a database or DBC change shows up without a restart. Read only.
  */
 
-export type TooltipKind = "item" | "spell";
+export type TooltipKind = "item" | "spell" | "achievement";
 export interface TooltipRef {
   kind: TooltipKind;
   id: number;
@@ -29,6 +35,8 @@ export interface Tooltip {
   quality?: number;
   name: string;
   lines: TipLine[];
+  // an achievement's points (its shield)
+  points?: number;
 }
 
 // a mysql2 pool or connection (SELECT only)
@@ -49,10 +57,10 @@ const cache = new LruCache<Tooltip | null>(5000, TTL_MS);
 
 export const MAX_ID = 2_147_483_647;
 
-// "item:123" / "spell:456" -> a ref, null when malformed
+// "item:123" / "spell:456" / "achievement:789" -> a ref, null when malformed
 export function parseRef(ref: unknown): TooltipRef | null {
   if (typeof ref !== "string") return null;
-  const m = ref.match(/^(item|spell):(\d{1,10})$/);
+  const m = ref.match(/^(item|spell|achievement):(\d{1,10})$/);
   const id = m ? Number(m[2]) : 0;
 
   return m && id > 0 && id <= MAX_ID ? { kind: m[1] as TooltipKind, id } : null;
@@ -95,9 +103,15 @@ export async function renderTooltips(
   if (!todo.length) return out;
 
   const itemIds = todo.filter((r) => r.kind === "item").map((r) => r.id);
-  const dbcs = await dbcStore(source.dbcDir).load(
-    itemIds.length ? ITEM_DBCS : SPELL_DBCS,
-  );
+  const achievementIds = todo
+    .filter((r) => r.kind === "achievement")
+    .map((r) => r.id);
+  const dbcs = await dbcStore(source.dbcDir).load([
+    ...new Set([
+      ...(itemIds.length ? ITEM_DBCS : SPELL_DBCS),
+      ...(achievementIds.length ? ACHIEVEMENT_DBCS : []),
+    ]),
+  ]);
   const items = new Map<number, ItemRow>();
   const locs = new Map<number, ItemLocaleRow>();
   const pieceNames = new Map<number, string>();
@@ -135,8 +149,43 @@ export async function renderTooltips(
         pieceNames.set(Number(r.entry), r.loc || r.name);
   }
 
+  // the achievements' rewards: their titles and items (the items' names in the reader's language)
+  const rewards = new Map<number, AchievementRewardRow>();
+  const rewardItems = new Map<number, RewardItem>();
+
+  if (achievementIds.length) {
+    for (const r of await rows<AchievementRewardRow>(
+      source.db,
+      "SELECT ID, TitleA, TitleH, ItemID FROM achievement_reward WHERE ID IN (?)",
+      [achievementIds],
+    ))
+      rewards.set(Number(r.ID), r);
+    const ids = [...rewards.values()]
+      .map((r) => Number(r.ItemID))
+      .filter((id) => id > 0);
+
+    if (ids.length)
+      for (const r of await rows<{
+        entry: number;
+        name: string;
+        loc: string | null;
+        displayid: number;
+      }>(
+        source.db,
+        "SELECT t.entry, t.name, t.displayid, l.Name AS loc FROM item_template t LEFT JOIN item_template_locale l ON l.ID = t.entry AND l.locale = ? WHERE t.entry IN (?)",
+        [lc.itemLocale ?? "enUS", ids],
+      ))
+        rewardItems.set(Number(r.entry), {
+          name: r.loc || r.name,
+          icon: itemIconName(dbcs, Number(r.displayid)),
+        });
+  }
+
   const itemRenderer = new ItemRenderer(dbcs, lc);
   const spellRenderer = new SpellRenderer(dbcs, lc);
+  const achievementRenderer = achievementIds.length
+    ? new AchievementRenderer(dbcs, lc)
+    : null;
 
   for (const r of todo) {
     let tip: Tooltip | null = null;
@@ -154,6 +203,15 @@ export async function renderTooltips(
             ...t,
           };
         }
+      } else if (r.kind === "achievement") {
+        const reward = rewards.get(r.id);
+        const t = achievementRenderer?.tooltip(
+          r.id,
+          reward,
+          rewardItems.get(Number(reward?.ItemID)),
+        );
+
+        if (t) tip = { icon: achievementRenderer!.icon(r.id), ...t };
       } else {
         const t = spellRenderer.tooltip(r.id);
 

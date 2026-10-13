@@ -12,6 +12,7 @@ import { Spinner } from "@heroui/spinner";
 import NextLink from "next/link";
 
 import { CharacterRow } from "@/components/armory/character-row";
+import { GameTipLink } from "@/components/game-tooltip";
 import { GuildEmblem } from "@/components/guild-emblem";
 import { FactionCounts } from "@/components/guilds/faction-counts";
 import { Pager } from "@/components/search/pager";
@@ -175,21 +176,32 @@ export function GuildProfile({ name }: { name: string }) {
                 key={a.id}
                 className="glass flex items-start gap-3 rounded-xl border border-white/5 p-3"
               >
+                {/* the achievement's game tooltip (its criteria, its reward) on its icon and its name */}
                 {a.icon && (
-                  <img
-                    alt=""
-                    className="h-10 w-10 shrink-0 rounded-md border border-wow-gold/40"
-                    loading="lazy"
-                    src={`https://wow.zamimg.com/images/wow/icons/large/${a.icon}.jpg`}
-                    onError={(e) =>
-                      (e.currentTarget.style.visibility = "hidden")
-                    }
-                  />
+                  <GameTipLink
+                    completed
+                    achievementId={a.id}
+                    className="flex shrink-0"
+                  >
+                    <img
+                      alt=""
+                      className="h-10 w-10 shrink-0 rounded-md border border-wow-gold/40"
+                      loading="lazy"
+                      src={`https://wow.zamimg.com/images/wow/icons/large/${a.icon}.jpg`}
+                      onError={(e) =>
+                        (e.currentTarget.style.visibility = "hidden")
+                      }
+                    />
+                  </GameTipLink>
                 )}
                 <span className="min-w-0">
-                  <span className="block font-semibold text-wow-gold-light">
+                  <GameTipLink
+                    completed
+                    achievementId={a.id}
+                    className="block font-semibold text-wow-gold-light"
+                  >
                     {a.title}
-                  </span>
+                  </GameTipLink>
                   <span className="block text-xs text-gray-400">
                     {a.description}
                   </span>

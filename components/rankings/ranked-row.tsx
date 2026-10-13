@@ -7,7 +7,12 @@ import NextLink from "next/link";
 import { useTranslations } from "next-intl";
 import clsx from "clsx";
 
-import { ALLIANCE_RACES, CLASS_COLORS } from "@/lib/armory-constants";
+import { ALLIANCE_RACES } from "@/lib/armory-constants";
+import {
+  LevelRaceClass,
+  RaceClassIcons,
+  classColor,
+} from "@/components/character-identity";
 
 /* A character of a ranking (the PvP ladder, the hall of fame): its place, online or not, its name in its class colour (its armory page:
    the whole row opens it), level, race and class, its guild (its page, a link of its own above the row's), the ranked value, its faction
@@ -29,8 +34,6 @@ export function RankedRow({
   metric: ReactNode;
   faded?: boolean;
 }) {
-  const t = useTranslations("rankings");
-  const tShop = useTranslations("shop");
   const tArmory = useTranslations("armory");
   const isAlliance = ALLIANCE_RACES.includes(character.race);
 
@@ -55,12 +58,17 @@ export function RankedRow({
           character.online ? "bg-green-500" : "bg-gray-600",
         )}
       />
+      <RaceClassIcons
+        cls={character.class}
+        gender={character.gender}
+        race={character.race}
+      />
       <div className="min-w-0 flex-1">
         <span className="flex flex-wrap items-center gap-x-3 gap-y-0.5">
           <NextLink
             className="truncate text-base font-semibold transition-all after:absolute after:inset-0 after:rounded-xl group-hover:brightness-125"
             href={href}
-            style={{ color: CLASS_COLORS[character.class] || "#FFFFFF" }}
+            style={{ color: classColor(character.class) }}
           >
             {character.name}
           </NextLink>
@@ -69,10 +77,12 @@ export function RankedRow({
               {tArmory("gm")}
             </span>
           )}
-          <span className="text-sm text-gray-400">
-            {character.level} {t(`race_${character.race}`)}{" "}
-            {tShop(`className_${character.class}`)}
-          </span>
+          <LevelRaceClass
+            short
+            cls={character.class}
+            level={character.level}
+            race={character.race}
+          />
         </span>
         {guildName && guildHref && (
           <NextLink

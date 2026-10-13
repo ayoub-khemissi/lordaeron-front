@@ -10,12 +10,16 @@ export type GameTooltipLine = {
   right?: string;
   color?: string;
   icon?: string;
+  // an achievement's criterion (lib/tooltips/achievement.ts), `max` its quantity when shown as a progress bar
+  criterion?: { max?: number };
 };
+// points: an achievement's (its shield); an achievement's tooltip also shows its icon
 export type GameTooltipData = {
   icon: string;
   quality?: number;
   name: string;
   lines: GameTooltipLine[];
+  points?: number;
 };
 
 type Waiter = (tip: GameTooltipData | null | undefined) => void;

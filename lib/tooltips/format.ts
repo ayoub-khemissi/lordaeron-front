@@ -6,6 +6,8 @@ export interface TipLine {
   color?: string;
   // a small icon before the text (a socketed gem's), its file name on wow.zamimg.com
   icon?: string;
+  // a criterion of an achievement (its tooltip's list), `max` its quantity when the game shows it as a progress bar
+  criterion?: { max?: number };
 }
 
 // a number as the client prints it: at most `decimals` decimals, no trailing zeros, the locale's separator

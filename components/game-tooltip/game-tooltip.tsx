@@ -21,6 +21,7 @@ import {
   peekTooltip,
   zamimgIcon,
   type GameTooltipData,
+  type GameTooltipLine,
 } from "./store";
 
 import { useRealm } from "@/lib/realm-context";
@@ -99,15 +100,90 @@ const OPEN_EVENT = "game-tip-open";
 
 const SHOW_DELAY_MS = 120;
 
-/* The tooltip box, at the pointer, kept inside the screen (right of the pointer, left of it near the edge). */
+// an achievement's points, on its shield
+function PointsShield({ points }: { points: number }) {
+  return (
+    <span className="relative inline-flex h-[34px] w-[30px] shrink-0 items-center justify-center">
+      <svg aria-hidden className="absolute inset-0" viewBox="0 0 30 34">
+        <path
+          d="M15 1.5 28 5.5V15c0 9-6 15-13 17.5C8 30 2 24 2 15V5.5Z"
+          fill="#3d2c0b"
+          stroke="#e8b923"
+          strokeWidth="2"
+        />
+      </svg>
+      <span className="relative -mt-0.5 text-[12px] font-bold text-[#ffd100]">
+        {points}
+      </span>
+    </span>
+  );
+}
+
+/* An achievement's criteria: completed (the earner's, a guild's), each one checked and its progress bar full; else a plain list. Many
+   short ones in two columns, as in game. */
+function Criteria({
+  list,
+  completed,
+}: {
+  list: GameTooltipData["lines"];
+  completed?: boolean;
+}) {
+  // a progress bar alone (no text) shows only with a known progress
+  const shown = list.filter((c) => c.left || (completed && c.criterion?.max));
+
+  if (!shown.length) return null;
+  const columns = shown.length > 4 && shown.every((c) => !c.criterion?.max);
+
+  return (
+    <ul
+      className={clsx(
+        "mt-2 grid gap-x-4 gap-y-0.5 text-[12px] leading-snug",
+        columns && "grid-cols-2",
+      )}
+    >
+      {shown.map((c, i) => {
+        const max = c.criterion?.max;
+
+        return (
+          <li key={i} style={{ color: completed ? "#ffffff" : "#b4b4b4" }}>
+            {c.left && (
+              <span className="flex items-start gap-1.5">
+                <span
+                  aria-hidden
+                  className={completed ? "text-[#1eff00]" : "text-gray-500"}
+                >
+                  {completed ? "✓" : "•"}
+                </span>
+                <span>{c.left}</span>
+              </span>
+            )}
+            {completed && max && (
+              <span className="relative mt-0.5 block h-[15px] overflow-hidden rounded-sm border border-black/70 bg-[#13240c]">
+                <span className="absolute inset-0 bg-[#2a7d1a]" />
+                <span className="relative block text-center text-[10px] leading-[13px] text-white">
+                  {max} / {max}
+                </span>
+              </span>
+            )}
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+/* The tooltip box, at the pointer, kept inside the screen (right of the pointer, left of it near the edge). An achievement's (its
+   points given) shows its icon, its shield and its criteria; `completed` when the one it is shown for earned it. */
 export function GameTooltipBox({
   tip,
   x,
   y,
+  completed,
 }: {
   tip: GameTooltipData;
   x: number;
   y: number;
+  completed?: boolean;
 }) {
   const box = useRef<HTMLDivElement>(null);
   const [pos, setPos] = useState({ left: -9999, top: -9999 });
@@ -127,26 +203,59 @@ export function GameTooltipBox({
     setPos({ left, top });
   }, [x, y, tip]);
 
+  const achievement = tip.points !== undefined;
+  // the first line repeats the name; an achievement's criteria go together
+  const blocks: (GameTooltipLine | GameTooltipLine[])[] = [];
+
+  for (const l of tip.lines.filter((l, i) => i > 0 || l.left !== tip.name)) {
+    const last = blocks[blocks.length - 1];
+
+    if (!l.criterion) blocks.push(l);
+    else if (Array.isArray(last)) last.push(l);
+    else blocks.push([l]);
+  }
+
   return createPortal(
     <div
       ref={box}
-      className="pointer-events-none fixed z-[70] w-max max-w-[320px] rounded-md border border-[#5b6890]/70 bg-[#070c1f]/95 px-3 py-2.5 text-left text-[13px] font-normal leading-[1.35] shadow-[0_8px_30px_rgba(0,0,0,0.7)] backdrop-blur-sm"
+      className={clsx(
+        "pointer-events-none fixed z-[70] w-max rounded-md border border-[#5b6890]/70 bg-[#070c1f]/95 px-3 py-2.5 text-left text-[13px] font-normal leading-[1.35] shadow-[0_8px_30px_rgba(0,0,0,0.7)] backdrop-blur-sm",
+        achievement ? "max-w-[min(400px,calc(100vw-16px))]" : "max-w-[320px]",
+      )}
       role="tooltip"
       style={pos}
     >
-      <p
-        className="text-[15px] font-semibold"
-        style={{
-          color:
-            tip.quality !== undefined ? QUALITY_COLORS[tip.quality] : "#ffffff",
-        }}
-      >
-        {tip.name}
-      </p>
-      {tip.lines
-        // the first line repeats the name
-        .filter((l, i) => i > 0 || l.left !== tip.name)
-        .map((l, i) => (
+      {achievement ? (
+        <div className="mb-1 flex items-start gap-2.5">
+          <img
+            alt=""
+            className="h-9 w-9 shrink-0 rounded-[4px] border border-[#5b6890]/70"
+            height={36}
+            src={zamimgIcon(tip.icon, 36)}
+            width={36}
+          />
+          <p className="min-w-0 flex-1 self-center text-[15px] font-semibold text-white">
+            {tip.name}
+          </p>
+          {!!tip.points && <PointsShield points={tip.points} />}
+        </div>
+      ) : (
+        <p
+          className="text-[15px] font-semibold"
+          style={{
+            color:
+              tip.quality !== undefined
+                ? QUALITY_COLORS[tip.quality]
+                : "#ffffff",
+          }}
+        >
+          {tip.name}
+        </p>
+      )}
+      {blocks.map((l, i) =>
+        Array.isArray(l) ? (
+          <Criteria key={i} completed={completed} list={l} />
+        ) : (
           <p
             key={i}
             className={clsx(
@@ -169,7 +278,8 @@ export function GameTooltipBox({
             </span>
             {l.right && <span className="shrink-0">{l.right}</span>}
           </p>
-        ))}
+        ),
+      )}
     </div>,
     document.body,
   );
@@ -177,7 +287,7 @@ export function GameTooltipBox({
 
 type Shown = { x: number; y: number; pinned: boolean };
 
-/* Wraps anything: hovering (mouse) or tapping (touch) it shows the tooltip of `refId` ("item:123" / "spell:456"). */
+/* Wraps anything: hovering (mouse) or tapping (touch) it shows the tooltip of `refId` ("item:123" / "spell:456" / "achievement:789"). */
 export function GameTip({
   refId,
   data,
@@ -186,6 +296,7 @@ export function GameTip({
   realm,
   locale,
   stopPropagation = false,
+  completed,
 }: {
   refId?: string;
   // the tooltip itself, already known (the armory's character items): no request
@@ -196,6 +307,8 @@ export function GameTip({
   locale?: string;
   // keep clicks and taps from reaching a clickable parent (a card opening a modal)
   stopPropagation?: boolean;
+  // an achievement earned by the one it is shown for: its criteria checked
+  completed?: boolean;
 }) {
   const id = useId();
   const el = useRef<HTMLSpanElement>(null);
@@ -294,18 +407,27 @@ export function GameTip({
       }}
     >
       {children}
-      {shown && tip && <GameTooltipBox tip={tip} x={shown.x} y={shown.y} />}
+      {shown && tip && (
+        <GameTooltipBox
+          completed={completed}
+          tip={tip}
+          x={shown.x}
+          y={shown.y}
+        />
+      )}
     </span>
   );
 }
 
 /*
  * Drop-in replacement of components/wowhead-link.tsx (same props): the realm's own tooltip on the children. `spellId` instead of
- * `itemId` for a spell.
+ * `itemId` for a spell, `achievementId` for an achievement (`completed` when the one it is shown for earned it).
  */
 export function GameTipLink({
   itemId,
   spellId,
+  achievementId,
+  completed,
   children,
   className,
   realm,
@@ -313,6 +435,8 @@ export function GameTipLink({
 }: {
   itemId?: number | null;
   spellId?: number | null;
+  achievementId?: number | null;
+  completed?: boolean;
   children: ReactNode;
   className?: string;
   realm?: string;
@@ -322,11 +446,14 @@ export function GameTipLink({
     ? `item:${itemId}`
     : spellId
       ? `spell:${spellId}`
-      : undefined;
+      : achievementId
+        ? `achievement:${achievementId}`
+        : undefined;
 
   return (
     <GameTip
       className={className}
+      completed={completed}
       realm={realm}
       refId={refId}
       stopPropagation={stopPropagation}

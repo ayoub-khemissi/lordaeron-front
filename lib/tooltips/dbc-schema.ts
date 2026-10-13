@@ -98,13 +98,30 @@ export const DBC_LAYOUTS = {
       Points: 39,
       Flags: 41,
       IconID: 42,
+      // the achievement whose criteria it counts (the achievements' tooltips)
+      Shares_Criteria: 61,
     },
-    localized: { Title: 4, Description: 21 },
+    localized: { Title: 4, Description: 21, Reward: 43 },
   },
-  // the realm firsts' criteria (what kind of first: a level, a skill, a kill)
+  // the realm firsts' criteria (what kind of first: a level, a skill, a kill), the achievements' tooltips (their criteria list)
   Achievement_Criteria: {
     fieldCount: 31,
-    fields: { ID: 0, Achievement_Id: 1, Type: 2, Asset_Id: 3, Quantity: 4 },
+    fields: {
+      ID: 0,
+      Achievement_Id: 1,
+      Type: 2,
+      Asset_Id: 3,
+      Quantity: 4,
+      Flags: 26,
+      Ui_Order: 30,
+    },
+    localized: { Description: 9 },
+  },
+  // the titles an achievement rewards (the achievements' tooltips): Name the male form, Name1 the female one ("%s" the character)
+  CharTitles: {
+    fieldCount: 37,
+    fields: { ID: 0 },
+    localized: { Name: 2, Name1: 19 },
   },
   // the raids' names (the guilds' progression)
   Map: {
@@ -232,14 +249,26 @@ export const DBC_LAYOUTS = {
   },
   TalentTab: {
     fieldCount: 24,
-    fields: { ID: 0, SpellIconID: 18, ClassMask: 20, PetTalentMask: 21, OrderIndex: 22 },
+    fields: {
+      ID: 0,
+      SpellIconID: 18,
+      ClassMask: 20,
+      PetTalentMask: 21,
+      OrderIndex: 22,
+    },
     localized: { Name: 1 },
     strings: { BackgroundFile: 23 },
   },
   // the codex (lib/codex.ts): the spells of a profession and the skill they ask
   SkillLineAbility: {
     fieldCount: 14,
-    fields: { ID: 0, SkillLine: 1, Spell: 2, MinSkillLineRank: 7, AcquireMethod: 9 },
+    fields: {
+      ID: 0,
+      SkillLine: 1,
+      Spell: 2,
+      MinSkillLineRank: 7,
+      AcquireMethod: 9,
+    },
   },
   // the codex: a vendor's price in honor, arena points or items
   ItemExtendedCost: {

@@ -28,7 +28,7 @@ import {
 } from "@/components/tools/time";
 import { ToolError, ToolLoading } from "@/components/tools/tool-page";
 import { useToolData } from "@/components/tools/use-tool-data";
-import { CLASS_COLORS } from "@/lib/armory-constants";
+import { RaceClassIcons, classColor } from "@/components/character-identity";
 import { useRealm } from "@/lib/realm-context";
 
 interface BlackMarketData extends BlackMarketShowcase {
@@ -149,11 +149,19 @@ export function BlackMarketContent() {
                   type="button"
                   onClick={() => setCharacter(c.guid)}
                 >
-                  <span
-                    className="font-semibold"
-                    style={{ color: CLASS_COLORS[c.class] || "#fff" }}
-                  >
-                    {c.name}
+                  <span className="inline-flex items-center gap-1.5">
+                    <RaceClassIcons
+                      cls={c.class}
+                      gender={c.gender}
+                      race={c.race}
+                      size={16}
+                    />
+                    <span
+                      className="font-semibold"
+                      style={{ color: classColor(c.class) }}
+                    >
+                      {c.name}
+                    </span>
                   </span>
                   <span className="ml-1.5 text-xs text-gray-400">
                     {c.level}

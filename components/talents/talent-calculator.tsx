@@ -7,6 +7,7 @@ import clsx from "clsx";
 
 import { TalentTree, talentState, useTalentTip } from "./talent-tree";
 
+import { classIcon } from "@/components/character-identity";
 import { CLASS_COLORS } from "@/lib/armory-constants";
 import { zamimgIcon } from "@/components/game-tooltip";
 import { lineColor } from "@/components/game-tooltip/store";
@@ -179,10 +180,11 @@ export function TalentCalculator({
               type="button"
               onClick={() => pickClass(c.key)}
             >
+              {/* the game's square class icon filling the round (the round framed icons were cut at the top and the bottom) */}
               <img
                 alt=""
-                className="h-full w-full"
-                src={`/img/experience/icons/classicon_${c.key}.png`}
+                className="h-full w-full scale-[1.12] object-cover"
+                src={classIcon(CLASS_IDS[c.key]) ?? ""}
               />
               {loading === c.key && (
                 <span className="absolute inset-0 flex items-center justify-center bg-black/60">

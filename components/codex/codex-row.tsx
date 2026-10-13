@@ -140,6 +140,16 @@ function Source({ source }: { source: CodexSource }) {
               <span className="text-gray-400"> ({source.rank})</span>
             ) : null}
           </>
+        ) : source.achievement ? (
+          <>
+            {" "}
+            <GameTipLink
+              achievementId={source.achievement}
+              className="text-gray-200 underline decoration-white/20 underline-offset-2"
+            >
+              {source.names[0]}
+            </GameTipLink>
+          </>
         ) : (
           who && (
             <span className="text-gray-200">

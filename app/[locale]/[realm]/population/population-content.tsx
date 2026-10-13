@@ -3,6 +3,7 @@ import type { PopulationStats } from "@/types/rankings";
 
 import { useFormatter, useTranslations } from "next-intl";
 
+import { classIcon, raceIcon } from "@/lib/character-identity";
 import { RankState } from "@/components/rankings/ranked-row";
 import { ALLIANCE_RACES, CLASS_COLORS } from "@/lib/armory-constants";
 
@@ -93,6 +94,7 @@ export function PopulationContent({
               key: c.id,
               label: tShop(`className_${c.id}`),
               color: CLASS_COLORS[c.id] ?? "#9ca3af",
+              icon: classIcon(c.id),
               count: c.count,
             }))}
             share={pct}
@@ -104,7 +106,8 @@ export function PopulationContent({
             rows={counted(stats.races, RACES).map((r) => ({
               key: r.id,
               label: tRank(`race_${r.id}`),
-              color: ALLIANCE_RACES.includes(r.id) ? "#3b82f6" : "#ef4444",
+              color: ALLIANCE_RACES.includes(r.id) ? "#93c5fd" : "#fca5a5",
+              icon: raceIcon(r.id, 0),
               count: r.count,
             }))}
             share={pct}
@@ -193,7 +196,14 @@ function BarList({
   value,
   share,
 }: {
-  rows: { key: number; label: string; color: string; count: number }[];
+  rows: {
+    key: number;
+    label: string;
+    color: string;
+    count: number;
+    // the class's or the race's game icon, in place of the colour square
+    icon?: string | null;
+  }[];
   value: (n: number) => string;
   share: (n: number) => string;
 }) {
@@ -208,11 +218,27 @@ function BarList({
           title={`${r.label}: ${value(r.count)} (${share(r.count)})`}
         >
           <span className="flex min-w-0 items-center gap-2">
+            {r.icon ? (
+              <img
+                alt=""
+                className="h-5 w-5 shrink-0 rounded-[4px] border border-black/60"
+                height={20}
+                loading="lazy"
+                src={r.icon}
+                width={20}
+              />
+            ) : (
+              <span
+                className="h-2.5 w-2.5 shrink-0 rounded-sm"
+                style={{ backgroundColor: r.color }}
+              />
+            )}
             <span
-              className="h-2.5 w-2.5 shrink-0 rounded-sm"
-              style={{ backgroundColor: r.color }}
-            />
-            <span className="truncate text-gray-200">{r.label}</span>
+              className="truncate"
+              style={{ color: r.icon ? r.color : undefined }}
+            >
+              {r.label}
+            </span>
           </span>
           <span className="h-2 rounded-full bg-white/5">
             {r.count > 0 && (

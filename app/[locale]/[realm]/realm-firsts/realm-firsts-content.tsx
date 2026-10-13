@@ -10,10 +10,11 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import NextLink from "next/link";
 
+import { GameTipLink } from "@/components/game-tooltip";
 import { Day } from "@/components/tools/time";
 import { GameIcon, ToolError, ToolLoading } from "@/components/tools/tool-page";
 import { useToolData } from "@/components/tools/use-tool-data";
-import { CLASS_COLORS } from "@/lib/armory-constants";
+import { RaceClassIcons, classColor } from "@/components/character-identity";
 import { useRealmHref } from "@/lib/realm-context";
 
 const GROUPS: RealmFirstGroup[] = [
@@ -37,17 +38,21 @@ function Earners({ first }: { first: RealmFirst }) {
   return (
     <span className="block text-sm leading-relaxed">
       {shown.map((e, i) => (
-        <span key={e.guid}>
+        <span key={e.guid} className="inline-flex items-center gap-1">
           {i > 0 && <span className="text-gray-600">, </span>}
+          <RaceClassIcons
+            cls={e.class}
+            gender={e.gender}
+            race={e.race}
+            size={16}
+          />
           {e.deleted ? (
-            <span style={{ color: CLASS_COLORS[e.class] || "#fff" }}>
-              {e.name}
-            </span>
+            <span style={{ color: classColor(e.class) }}>{e.name}</span>
           ) : (
             <NextLink
               className="font-semibold hover:underline"
               href={realmHref(`/armory/${encodeURIComponent(e.name)}`)}
-              style={{ color: CLASS_COLORS[e.class] || "#fff" }}
+              style={{ color: classColor(e.class) }}
             >
               {e.name}
             </NextLink>
@@ -85,13 +90,21 @@ function FirstCard({ first }: { first: RealmFirst }) {
     <li
       className={`glass flex rounded-xl border ${compact ? "gap-2 p-2.5" : "gap-3 p-3"} ${earned ? "border-wow-gold/25" : "border-white/5"}`}
     >
-      <GameIcon dim={!earned} icon={first.icon} size={compact ? 32 : 40} />
+      {/* the achievement's game tooltip (its criteria, its reward) on its icon and its name */}
+      <GameTipLink
+        achievementId={first.id}
+        className="flex shrink-0 self-start"
+        completed={earned}
+      >
+        <GameIcon dim={!earned} icon={first.icon} size={compact ? 32 : 40} />
+      </GameTipLink>
       <div className="min-w-0 flex-1">
         <p
           className={`font-semibold leading-snug ${compact ? "truncate text-sm" : ""} ${earned ? "text-wow-gold-light" : "text-gray-300"}`}
-          title={first.title}
         >
-          {first.label ?? first.title}
+          <GameTipLink achievementId={first.id} completed={earned}>
+            {first.label ?? first.title}
+          </GameTipLink>
         </p>
         {earned ? (
           <>

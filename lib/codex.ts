@@ -682,6 +682,7 @@ async function resolve(
           dbcs("Achievement").rec(s.id)?.loc("Title", lc.slot) ?? `#${s.id}`,
         ],
         more: 0,
+        achievement: s.id,
       });
     for (const s of of("blackMarket").slice(0, 1))
       sources.push({

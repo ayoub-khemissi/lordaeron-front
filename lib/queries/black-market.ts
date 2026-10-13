@@ -48,6 +48,7 @@ export interface BlackMarketCharacter {
   name: string;
   race: number;
   class: number;
+  gender: number;
   level: number;
 }
 
@@ -169,7 +170,7 @@ export async function getAccountCharacters(
   accountId: number,
 ): Promise<BlackMarketCharacter[]> {
   const [rows] = await realmCharactersDb(slug).query<RowDataPacket[]>(
-    `SELECT guid, name, race, class, level FROM characters
+    `SELECT guid, name, race, class, gender, level FROM characters
      WHERE account = ? AND deleteInfos_Name IS NULL ORDER BY level DESC, name`,
     [accountId],
   );
@@ -179,6 +180,7 @@ export async function getAccountCharacters(
     name: String(r.name),
     race: Number(r.race),
     class: Number(r.class),
+    gender: Number(r.gender),
     level: Number(r.level),
   }));
 }
@@ -192,7 +194,7 @@ export async function getBlackMarketView(
 ): Promise<BlackMarketView | null> {
   const db = realmCharactersDb(slug);
   const [chars] = await db.query<RowDataPacket[]>(
-    `SELECT guid, name, race, class, level FROM characters
+    `SELECT guid, name, race, class, gender, level FROM characters
      WHERE guid = ? AND account = ? AND deleteInfos_Name IS NULL`,
     [guid, accountId],
   );
@@ -204,6 +206,7 @@ export async function getBlackMarketView(
     name: String(c.name),
     race: Number(c.race),
     class: Number(c.class),
+    gender: Number(c.gender),
     level: Number(c.level),
   };
   const [[member], [bought], templates] = await Promise.all([

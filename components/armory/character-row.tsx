@@ -5,12 +5,12 @@ import type { ArmorySearchResult } from "@/types/armory";
 import NextLink from "next/link";
 import { useTranslations } from "next-intl";
 
+import { ALLIANCE_RACES } from "@/lib/armory-constants";
 import {
-  ALLIANCE_RACES,
-  CLASS_COLORS,
-  CLASS_NAMES,
-  RACE_NAMES,
-} from "@/lib/armory-constants";
+  LevelRaceClass,
+  RaceClassIcons,
+  classColor,
+} from "@/components/character-identity";
 
 /* A character in a list (the armory's search, a guild's members): online or not, its name in its class colour, level, race and class,
    its guild rank when given, its faction; a game master's (only a site administrator gets them) carries a GM badge. Opens its armory
@@ -33,11 +33,16 @@ export function CharacterRow({
         <div
           className={`h-2 w-2 shrink-0 rounded-full ${character.online ? "bg-green-500" : "bg-gray-600"}`}
         />
+        <RaceClassIcons
+          cls={character.class}
+          gender={character.gender}
+          race={character.race}
+        />
         <div className="min-w-0 flex-1">
           <span className="flex flex-wrap items-center gap-x-3 gap-y-0.5">
             <span
               className="text-base font-semibold transition-all group-hover:brightness-125"
-              style={{ color: CLASS_COLORS[character.class] || "#FFFFFF" }}
+              style={{ color: classColor(character.class) }}
             >
               {character.name}
             </span>
@@ -46,11 +51,11 @@ export function CharacterRow({
                 {t("gm")}
               </span>
             )}
-            <span className="text-sm text-gray-400">
-              {t("level")} {character.level}{" "}
-              {RACE_NAMES[character.race] || "Unknown"}{" "}
-              {CLASS_NAMES[character.class] || "Unknown"}
-            </span>
+            <LevelRaceClass
+              cls={character.class}
+              level={character.level}
+              race={character.race}
+            />
           </span>
           {rankName && (
             <span className="mt-0.5 block text-xs text-wow-gold/80">

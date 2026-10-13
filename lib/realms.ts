@@ -77,6 +77,12 @@ export const ALL_SECTIONS: RealmSection[] = [
 
 // the sections only a progressive realm has (its WotLK+ systems: Zar'haam's black market), even in an administrator's view
 const PROGRESSIVE_SECTIONS: RealmSection[] = ["black-market"];
+// the sections of Lordaeron's epic progression, which a progressive realm never has, not even in the administrators' view (Ayoub,
+// 13/10/2026: /rimeheart/epic-progression must not exist)
+const EPIC_PROGRESSION_SECTIONS: RealmSection[] = [
+  "epic-progression",
+  "raid-scaling",
+];
 
 // set (not httpOnly) beside the admin session so the pages know to show the administrators' view; the server checks the session itself
 export const ADMIN_PREVIEW_COOKIE = "lordaeron_admin_preview";
@@ -149,8 +155,10 @@ const PREVIEWS = Object.fromEntries(
     {
       ...realm,
       status: "open",
-      sections: ALL_SECTIONS.filter(
-        (s) => realm.progressive || !PROGRESSIVE_SECTIONS.includes(s),
+      sections: ALL_SECTIONS.filter((s) =>
+        realm.progressive
+          ? !EPIC_PROGRESSION_SECTIONS.includes(s)
+          : !PROGRESSIVE_SECTIONS.includes(s),
       ),
       preview: true,
     },

@@ -63,7 +63,7 @@ export async function tooltipBatch(realm: string, body: unknown) {
   if (!Array.isArray(refs) || refs.length > MAX_BATCH)
     return error(
       400,
-      `refs: an array of at most ${MAX_BATCH} "item:<id>" / "spell:<id>"`,
+      `refs: an array of at most ${MAX_BATCH} "item:<id>" / "spell:<id>" / "achievement:<id>"`,
     );
   const parsed = refs.map(parseRef);
 

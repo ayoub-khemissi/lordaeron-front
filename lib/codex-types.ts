@@ -64,6 +64,8 @@ export interface CodexSource {
   // a craft: the skill it asks, its spell (tooltip)
   rank?: number;
   spell?: number;
+  // an achievement's reward: the achievement (tooltip)
+  achievement?: number;
   // the site's shop: its price in Soul Shards, its category's page
   shards?: number;
   category?: string;

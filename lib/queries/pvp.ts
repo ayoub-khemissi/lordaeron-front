@@ -146,7 +146,7 @@ export async function pvpArenaTeams(
   );
   const ids = rows.map((r) => Number(r.id));
   const [members] = await db.query<RowDataPacket[]>(
-    `SELECT m.arenaTeamId AS team, c.guid, c.name, c.race, c.class, c.level, m.personalRating
+    `SELECT m.arenaTeamId AS team, c.guid, c.name, c.race, c.class, c.gender, c.level, m.personalRating
        ${showGm ? `, ${gmColumn("c.account")}` : ""}
      FROM arena_team_member m JOIN characters c ON c.guid = m.guid
      WHERE m.arenaTeamId IN (?) AND c.deleteDate IS NULL ${hideGm("c.account", showGm)}
@@ -163,6 +163,7 @@ export async function pvpArenaTeams(
       name: m.name,
       race: Number(m.race),
       class: Number(m.class),
+      gender: Number(m.gender),
       level: Number(m.level),
       personalRating: Number(m.personalRating),
       gm: m.gm === undefined ? undefined : !!Number(m.gm),

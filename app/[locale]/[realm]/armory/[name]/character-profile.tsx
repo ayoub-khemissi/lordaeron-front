@@ -8,11 +8,10 @@ import { Switch } from "@heroui/switch";
 import dynamic from "next/dynamic";
 
 import {
-  RACE_NAMES,
-  CLASS_NAMES,
-  CLASS_COLORS,
-  ALLIANCE_RACES,
-} from "@/lib/armory-constants";
+  LevelRaceClass,
+  RaceClassIcons,
+} from "@/components/character-identity";
+import { CLASS_COLORS, ALLIANCE_RACES } from "@/lib/armory-constants";
 import { GuildInfo } from "@/components/armory/guild-info";
 import { EquipmentPanel } from "@/components/armory/equipment-panel";
 import { type GameTooltipData } from "@/components/game-tooltip";
@@ -151,10 +150,19 @@ export function CharacterProfile({ name }: CharacterProfileProps) {
         >
           {character.name}
         </h1>
-        <p className="text-gray-400 mt-1">
-          {t("level")} {character.level}{" "}
-          {RACE_NAMES[character.race] || "Unknown"}{" "}
-          {CLASS_NAMES[character.class] || "Unknown"}
+        <p className="mt-2 flex items-center justify-center gap-2.5">
+          <RaceClassIcons
+            cls={character.class}
+            gender={character.gender}
+            race={character.race}
+            size={28}
+          />
+          <LevelRaceClass
+            className="text-base"
+            cls={character.class}
+            level={character.level}
+            race={character.race}
+          />
         </p>
         <div className="flex items-center justify-center gap-3 mt-2">
           <span

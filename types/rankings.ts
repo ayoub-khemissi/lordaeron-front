@@ -27,6 +27,7 @@ export interface ArenaTeamMember {
   name: string;
   race: number;
   class: number;
+  gender: number;
   level: number;
   personalRating: number;
   gm?: boolean;
