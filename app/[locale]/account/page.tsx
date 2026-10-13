@@ -713,7 +713,7 @@ export default function AccountPage() {
                             <TableRow key={char.guid}>
                               <TableCell>
                                 <NextLink
-                                  className="font-semibold text-gray-200 hover:text-wow-gold transition-colors"
+                                  className="font-semibold text-gray-200 underline decoration-wow-gold/40 underline-offset-4 hover:text-wow-gold transition-colors"
                                   href={realmPath(
                                     locale,
                                     DEFAULT_REALM,

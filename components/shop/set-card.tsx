@@ -8,6 +8,7 @@ import { useTranslations } from "next-intl";
 import { PriceDisplay } from "./price-display";
 
 import { GameTipLink } from "@/components/game-tooltip";
+import { CardArrow } from "@/components/card-arrow";
 
 interface SetCardProps {
   set: ShopSetLocalized;
@@ -20,7 +21,7 @@ export function SetCard({ set, onClick }: SetCardProps) {
 
   return (
     <button
-      className={`glass border-wow-gold/10 hover:border-wow-gold/30 rounded-xl p-4 text-left transition-all duration-200 cursor-pointer group w-full ${isIneligible ? "opacity-75 saturate-[0.25]" : ""}`}
+      className={`glass border-wow-gold/10 hover:border-wow-gold/30 rounded-xl p-4 text-left transition-all duration-200 cursor-pointer group w-full active:scale-[0.98] ${isIneligible ? "opacity-75 saturate-[0.25]" : ""}`}
       disabled={isIneligible}
       type="button"
       onClick={onClick}
@@ -139,12 +140,15 @@ export function SetCard({ set, onClick }: SetCardProps) {
         </div>
       )}
 
-      <PriceDisplay
-        discountPercentage={set.discount_percentage}
-        discountedPrice={set.discounted_price}
-        price={set.price}
-        size="sm"
-      />
+      <div className="flex items-center justify-between gap-2">
+        <PriceDisplay
+          discountPercentage={set.discount_percentage}
+          discountedPrice={set.discounted_price}
+          price={set.price}
+          size="sm"
+        />
+        {!isIneligible && <CardArrow inline />}
+      </div>
     </button>
   );
 }

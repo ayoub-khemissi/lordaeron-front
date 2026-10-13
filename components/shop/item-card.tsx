@@ -10,6 +10,7 @@ import { PriceDisplay } from "./price-display";
 
 import { GameTipLink } from "@/components/game-tooltip";
 import { getQualityColor } from "@/lib/shop-utils";
+import { CardArrow } from "@/components/card-arrow";
 
 interface ItemCardProps {
   item: ShopItemLocalized;
@@ -132,13 +133,14 @@ export function ItemCard({ item, onClick }: ItemCardProps) {
         </div>
       </CardBody>
 
-      <CardFooter className="px-4 pb-4 pt-2">
+      <CardFooter className="flex items-center justify-between gap-2 px-4 pb-4 pt-2">
         <PriceDisplay
           discountPercentage={item.discount_percentage}
           discountedPrice={item.discounted_price}
           price={item.price}
           size="sm"
         />
+        {!isIneligible && <CardArrow inline />}
       </CardFooter>
     </Card>
   );

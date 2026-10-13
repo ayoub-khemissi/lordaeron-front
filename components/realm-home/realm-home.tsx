@@ -7,6 +7,7 @@ import { RealmHero } from "./realm-hero";
 import { THEME } from "./theme";
 
 import { NewsSection } from "@/components/news-section";
+import { CardArrow } from "@/components/card-arrow";
 
 // **key facts** of a text in the realm's light color
 function Bold({ text, className }: { text: string; className: string }) {
@@ -72,7 +73,7 @@ export function RealmHome({ definition }: { definition: RealmHomeDefinition }) {
             <NextLink
               key={f.href + f.title}
               className={clsx(
-                "group flex flex-col items-start gap-2.5 rounded-xl border bg-white/[0.03] p-3.5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/[0.06] sm:flex-row sm:gap-3 sm:p-4",
+                "group relative flex flex-col items-start gap-2.5 rounded-xl border bg-white/[0.03] p-3.5 pr-9 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/[0.06] active:scale-[0.98] sm:flex-row sm:gap-3 sm:p-4 sm:pr-10",
                 style.card,
               )}
               href={f.href}
@@ -96,6 +97,7 @@ export function RealmHome({ definition }: { definition: RealmHomeDefinition }) {
                   {f.line}
                 </span>
               </span>
+              <CardArrow tone={theme.accent === "ice" ? "ice" : "gold"} />
             </NextLink>
           ))}
         </div>

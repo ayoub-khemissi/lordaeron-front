@@ -72,7 +72,7 @@ export function NewsList() {
           className="block group"
           href={`/${locale}/news/${item.id}`}
         >
-          <div className="glass rounded-2xl overflow-hidden border-wow-gold/10 hover:border-wow-gold/30 transition-colors">
+          <div className="glass rounded-2xl overflow-hidden border-wow-gold/10 hover:border-wow-gold/30 transition-all active:scale-[0.99]">
             <div className="flex flex-col md:flex-row">
               {item.image_url && (
                 <div

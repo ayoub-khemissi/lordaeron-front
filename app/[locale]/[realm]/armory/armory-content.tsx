@@ -93,7 +93,7 @@ export function ArmoryContent() {
                 className="block group"
                 href={realmHref(`/armory/${char.name}`)}
               >
-                <div className="glass rounded-xl px-4 py-3 border border-white/5 hover:border-wow-gold/30 transition-colors flex items-center gap-4">
+                <div className="glass rounded-xl px-4 py-3 border border-white/5 hover:border-wow-gold/30 transition-all flex items-center gap-4 active:scale-[0.99]">
                   {/* Online indicator */}
                   <div
                     className={`w-2 h-2 rounded-full shrink-0 ${
@@ -125,6 +125,12 @@ export function ArmoryContent() {
                     }`}
                   >
                     {isAlliance ? "Alliance" : "Horde"}
+                  </span>
+                  <span
+                    aria-hidden
+                    className="text-lg leading-none text-gray-500 transition-colors group-hover:text-wow-gold"
+                  >
+                    ›
                   </span>
                 </div>
               </NextLink>
