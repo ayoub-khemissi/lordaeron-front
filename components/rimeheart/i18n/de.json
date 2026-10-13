@@ -9,7 +9,6 @@
   "damage per second": "Schaden pro Sekunde",
   "Agility": "Beweglichkeit",
   "Stamina": "Ausdauer",
-  "Class trainer · level {level}": "Klassenlehrer · Stufe {level}",
   "Prelude": "Auftakt",
   "Phase": "Phase",
   "Flying mount": "Flugreittier",
@@ -94,7 +93,6 @@
   "For when luck is not enough. The token raises the weapon or armor piece of your choice by one quality rank: **it never fails**, and **every enchantment and gem stays**. The Archivist Order entrusts it only to its Exalted.": "Wenn Glück nicht mehr reicht. Die Marke hebt die Waffe oder das Rüstungsteil deiner Wahl um einen Qualitätsrang an: **Sie scheitert nie**, und **alle Verzauberungen und Edelsteine bleiben erhalten**. Der Orden der Archivare vertraut sie nur denen an, die bei ihm ehrfürchtig sind.",
   "Classes": "Klassen",
   "Every specialization gets its moment.": "Jede Spezialisierung bekommt ihren großen Moment.",
-  "All ten classes receive **three new spells** (one per tree), **three rewritten talents** and **two glyphs**. Built for their identity and lore, balanced against each other, **never a copy of an existing spell**.": "Alle zehn Klassen erhalten **drei neue Zauber** (einen pro Talentbaum), **drei überarbeitete Talente** und **zwei Glyphen**. Gemacht für ihre Identität und ihre Lore, untereinander ausbalanciert, **nie die Kopie eines bestehenden Zaubers**.",
   "Warrior": "Krieger",
   "The axe flies out… and comes back.": "Die Axt fliegt los… und kehrt zurück.",
   "Gladiator's Rush": "Ansturm des Gladiators",
@@ -530,5 +528,7 @@
   "Economy": "Wirtschaft",
   "Quiz": "Quiz",
   "Transmog": "Transmog",
-  "Level {level}": "Stufe {level}"
+  "Level {level}": "Stufe {level}",
+  "Every talent tree gains **its specialization talent**: a new spell, picked in the tree like any Blizzard talent (two for the feral druid, cat and bear). Every class also receives **three new talents**, added to Blizzard's **without removing any**, and **two glyphs**. Built for their identity and lore, balanced against each other, **never a copy of an existing spell**.": "Jeder Talentbaum erhält **sein Spezialisierungstalent**: einen neuen Zauber, der im Baum wie jedes Blizzard-Talent gewählt wird (zwei für den Wildheitsdruiden, Katze und Bär). Jede Klasse erhält außerdem **drei neue Talente**, die zu denen von Blizzard hinzukommen, **ohne eines zu entfernen**, sowie **zwei Glyphen**. Für ihre Identität und ihre Geschichte entworfen, untereinander ausbalanciert, **niemals die Kopie eines bestehenden Zaubers**.",
+  "New talent · after {points} points in {spec}": "Neues Talent · nach {points} Punkten in {spec}"
 }

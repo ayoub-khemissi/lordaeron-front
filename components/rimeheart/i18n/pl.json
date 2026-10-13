@@ -9,7 +9,6 @@
   "damage per second": "obrażenia na sekundę",
   "Agility": "do zręczności",
   "Stamina": "do wytrzymałości",
-  "Class trainer · level {level}": "Trener klasy · poziom {level}",
   "Prelude": "Prolog",
   "Phase": "Faza",
   "Flying mount": "Latający wierzchowiec",
@@ -94,7 +93,6 @@
   "For when luck is not enough. The token raises the weapon or armor piece of your choice by one quality rank: **it never fails**, and **every enchantment and gem stays**. The Archivist Order entrusts it only to its Exalted.": "Gdy samo szczęście nie wystarcza. Żeton podnosi wybraną przez ciebie broń lub część zbroi o jedną rangę jakości: **nigdy nie zawodzi**, a **wszystkie enchanty i klejnoty zostają**. The Archivist Order powierza go tylko tym, którzy osiągnęli u niego Exalted.",
   "Classes": "Klasy",
   "Every specialization gets its moment.": "Każda specjalizacja ma swój moment.",
-  "All ten classes receive **three new spells** (one per tree), **three rewritten talents** and **two glyphs**. Built for their identity and lore, balanced against each other, **never a copy of an existing spell**.": "Każda z dziesięciu klas otrzymuje **trzy nowe zaklęcia** (po jednym na drzewko), **trzy przepisane talenty** i **dwa glify**. Zaprojektowane pod tożsamość i lore klasy, zbalansowane między sobą, **nigdy nie są kopią istniejącego zaklęcia**.",
   "Warrior": "Wojownik",
   "The axe flies out… and comes back.": "Topór leci… i wraca.",
   "Gladiator's Rush": "Gladiator's Rush",
@@ -530,5 +528,7 @@
   "Economy": "Gospodarka",
   "Quiz": "Quiz",
   "Transmog": "Transmog",
-  "Level {level}": "Poziom {level}"
+  "Level {level}": "Poziom {level}",
+  "Every talent tree gains **its specialization talent**: a new spell, picked in the tree like any Blizzard talent (two for the feral druid, cat and bear). Every class also receives **three new talents**, added to Blizzard's **without removing any**, and **two glyphs**. Built for their identity and lore, balanced against each other, **never a copy of an existing spell**.": "Każde drzewko talentów zyskuje **swój talent specjalizacji**: nowe zaklęcie wybierane w drzewku jak każdy talent Blizzarda (dwa dla druida feralnego: kot i niedźwiedź). Każda klasa otrzymuje też **trzy nowe talenty**, dodane do talentów Blizzarda **bez usuwania żadnego**, oraz **dwa glify**. Zaprojektowane z myślą o tożsamości i fabule, zrównoważone względem siebie, **nigdy kopia istniejącego zaklęcia**.",
+  "New talent · after {points} points in {spec}": "Nowy talent · po {points} punktach w {spec}"
 }

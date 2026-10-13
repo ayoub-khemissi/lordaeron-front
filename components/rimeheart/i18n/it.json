@@ -9,7 +9,6 @@
   "damage per second": "danni al secondo",
   "Agility": "Agilità",
   "Stamina": "Tempra",
-  "Class trainer · level {level}": "Istruttore di classe · livello {level}",
   "Prelude": "Preludio",
   "Phase": "Fase",
   "Flying mount": "Cavalcatura volante",
@@ -94,7 +93,6 @@
   "For when luck is not enough. The token raises the weapon or armor piece of your choice by one quality rank: **it never fails**, and **every enchantment and gem stays**. The Archivist Order entrusts it only to its Exalted.": "Per quando la fortuna non basta. Il token alza di un rango di qualità l'arma o il pezzo d'armatura che scegli: **non fallisce mai**, e **tutti gli incantamenti e le gemme restano**. The Archivist Order lo affida solo a chi è Exalted con l'Ordine.",
   "Classes": "Classi",
   "Every specialization gets its moment.": "Ogni specializzazione ha il suo momento.",
-  "All ten classes receive **three new spells** (one per tree), **three rewritten talents** and **two glyphs**. Built for their identity and lore, balanced against each other, **never a copy of an existing spell**.": "Tutte e dieci le classi ricevono **tre nuovi incantesimi** (uno per albero), **tre talenti riscritti** e **due glifi**. Pensati per la loro identità e la loro lore, bilanciati tra loro, **mai la copia di un incantesimo esistente**.",
   "Warrior": "Guerriero",
   "The axe flies out… and comes back.": "L'ascia parte… e ritorna.",
   "Gladiator's Rush": "Gladiator's Rush",
@@ -530,5 +528,7 @@
   "Economy": "Economia",
   "Quiz": "Quiz",
   "Transmog": "Transmog",
-  "Level {level}": "Livello {level}"
+  "Level {level}": "Livello {level}",
+  "Every talent tree gains **its specialization talent**: a new spell, picked in the tree like any Blizzard talent (two for the feral druid, cat and bear). Every class also receives **three new talents**, added to Blizzard's **without removing any**, and **two glyphs**. Built for their identity and lore, balanced against each other, **never a copy of an existing spell**.": "Ogni albero dei talenti ottiene **il suo talento di specializzazione**: un nuovo incantesimo, da prendere nell'albero come qualsiasi talento Blizzard (due per il druido ferino, felino e orso). Ogni classe riceve inoltre **tre nuovi talenti**, aggiunti a quelli di Blizzard **senza toglierne nessuno**, e **due glifi**. Pensati per la loro identità e il loro lore, bilanciati tra loro, **mai la copia di un incantesimo esistente**.",
+  "New talent · after {points} points in {spec}": "Nuovo talento · dopo {points} punti in {spec}"
 }

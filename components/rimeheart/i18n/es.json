@@ -9,7 +9,6 @@
   "damage per second": "p. de daño por segundo",
   "Agility": "agilidad",
   "Stamina": "aguante",
-  "Class trainer · level {level}": "Instructor de clase · nivel {level}",
   "Prelude": "Preludio",
   "Phase": "Fase",
   "Flying mount": "Montura voladora",
@@ -94,7 +93,6 @@
   "For when luck is not enough. The token raises the weapon or armor piece of your choice by one quality rank: **it never fails**, and **every enchantment and gem stays**. The Archivist Order entrusts it only to its Exalted.": "Para cuando la suerte no basta. La ficha sube un rango de calidad el arma o la pieza de armadura que elijas: **nunca falla**, y **conserva todos sus encantamientos y gemas**. La Orden de los Archiveros solo se la confía a sus Exaltados.",
   "Classes": "Clases",
   "Every specialization gets its moment.": "Cada especialización tiene su momento.",
-  "All ten classes receive **three new spells** (one per tree), **three rewritten talents** and **two glyphs**. Built for their identity and lore, balanced against each other, **never a copy of an existing spell**.": "Las diez clases reciben **tres hechizos nuevos** (uno por árbol), **tres talentos reescritos** y **dos glifos**. Pensados para su identidad y su lore, equilibrados entre sí y **nunca una copia de un hechizo existente**.",
   "Warrior": "Guerrero",
   "The axe flies out… and comes back.": "El hacha sale volando… y vuelve.",
   "Gladiator's Rush": "Embestida del gladiador",
@@ -530,5 +528,7 @@
   "Economy": "Economía",
   "Quiz": "Quiz",
   "Transmog": "Transmog",
-  "Level {level}": "Nivel {level}"
+  "Level {level}": "Nivel {level}",
+  "Every talent tree gains **its specialization talent**: a new spell, picked in the tree like any Blizzard talent (two for the feral druid, cat and bear). Every class also receives **three new talents**, added to Blizzard's **without removing any**, and **two glyphs**. Built for their identity and lore, balanced against each other, **never a copy of an existing spell**.": "Cada árbol de talentos gana **su talento de especialización**: un hechizo nuevo que se elige en el árbol como cualquier talento de Blizzard (dos para el druida feral, felino y oso). Cada clase recibe además **tres talentos nuevos**, añadidos a los de Blizzard **sin quitar ninguno**, y **dos glifos**. Pensados para su identidad y su historia, equilibrados entre sí, **nunca una copia de un hechizo existente**.",
+  "New talent · after {points} points in {spec}": "Nuevo talento · tras {points} puntos en {spec}"
 }

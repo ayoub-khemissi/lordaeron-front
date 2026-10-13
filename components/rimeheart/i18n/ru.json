@@ -9,7 +9,6 @@
   "damage per second": "ед. урона в секунду",
   "Agility": "к ловкости",
   "Stamina": "к выносливости",
-  "Class trainer · level {level}": "Учитель класса · уровень {level}",
   "Prelude": "Пролог",
   "Phase": "Фаза",
   "Flying mount": "Летающий транспорт",
@@ -94,7 +93,6 @@
   "For when luck is not enough. The token raises the weapon or armor piece of your choice by one quality rank: **it never fails**, and **every enchantment and gem stays**. The Archivist Order entrusts it only to its Exalted.": "Когда удачи уже мало. Жетон повышает качество выбранного вами оружия или доспеха на один ранг: **он никогда не подводит**, а **все чары и самоцветы остаются на месте**. Орден архивариусов доверяет его лишь тем, кто достиг у него превознесения.",
   "Classes": "Классы",
   "Every specialization gets its moment.": "У каждой специализации — свой звездный час.",
-  "All ten classes receive **three new spells** (one per tree), **three rewritten talents** and **two glyphs**. Built for their identity and lore, balanced against each other, **never a copy of an existing spell**.": "Каждый из десяти классов получает **три новых заклинания** (по одному на ветвь талантов), **три переработанных таланта** и **два символа**. Они созданы под характер и лор класса, сбалансированы между собой и **никогда не копируют существующие заклинания**.",
   "Warrior": "Воин",
   "The axe flies out… and comes back.": "Топор улетает… и возвращается.",
   "Gladiator's Rush": "Натиск гладиатора",
@@ -530,5 +528,7 @@
   "Economy": "Экономика",
   "Quiz": "Викторина",
   "Transmog": "Трансмог",
-  "Level {level}": "Уровень {level}"
+  "Level {level}": "Уровень {level}",
+  "Every talent tree gains **its specialization talent**: a new spell, picked in the tree like any Blizzard talent (two for the feral druid, cat and bear). Every class also receives **three new talents**, added to Blizzard's **without removing any**, and **two glyphs**. Built for their identity and lore, balanced against each other, **never a copy of an existing spell**.": "Каждая ветка талантов получает **свой талант специализации**: новое заклинание, которое берется в ветке, как любой талант Blizzard (два у друида «Сила зверя»: кошка и медведь). Каждый класс также получает **три новых таланта**, добавленных к талантам Blizzard **без удаления каких-либо из них**, и **два символа**. Созданы с учетом сущности и истории класса, сбалансированы между собой, **никогда не копируют существующее заклинание**.",
+  "New talent · after {points} points in {spec}": "Новый талант · после {points} очков в ветке «{spec}»"
 }

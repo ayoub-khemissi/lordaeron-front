@@ -619,18 +619,60 @@ function Artifact({ lang }: { lang: Lang }) {
   );
 }
 
-// the class trainers' level of the 30 new spells (lab_world trainer_spell, 08/10/2026), in classes.list's order
-const TRAINER_LEVEL: Record<string, number[]> = {
-  paladin: [24, 40, 50],
-  priest: [20, 30, 44],
-  warrior: [20, 36, 50],
-  deathknight: [58, 64, 72],
-  druid: [30, 40, 40, 50],
-  hunter: [30, 40, 50],
-  mage: [30, 40, 50],
-  rogue: [30, 40, 50],
-  shaman: [30, 40, 50],
-  warlock: [30, 40, 50],
+// the specialization talents of the new spells (contrib/wotlk-plus/content/pilote1/talents.js, 13/10/2026), in classes.list's order:
+// the points their tree asks for, the tree's icon (TalentTab.dbc)
+const SPEC_TALENT: Record<string, { points: number; tree: string }[]> = {
+  paladin: [
+    { points: 20, tree: "spell_holy_holybolt" },
+    { points: 20, tree: "spell_holy_auraoflight" },
+    { points: 20, tree: "spell_holy_devotionaura" },
+  ],
+  priest: [
+    { points: 20, tree: "spell_holy_wordfortitude" },
+    { points: 20, tree: "spell_holy_guardianspirit" },
+    { points: 25, tree: "spell_shadow_shadowwordpain" },
+  ],
+  warrior: [
+    { points: 15, tree: "ability_rogue_eviscerate" },
+    { points: 20, tree: "ability_warrior_innerrage" },
+    { points: 20, tree: "inv_shield_06" },
+  ],
+  deathknight: [
+    { points: 25, tree: "spell_deathknight_bloodpresence" },
+    { points: 25, tree: "spell_deathknight_frostpresence" },
+    { points: 15, tree: "spell_deathknight_unholypresence" },
+  ],
+  druid: [
+    { points: 20, tree: "spell_nature_starfall" },
+    { points: 25, tree: "ability_racial_bearform" },
+    { points: 40, tree: "ability_racial_bearform" },
+    { points: 25, tree: "spell_nature_healingtouch" },
+  ],
+  hunter: [
+    { points: 25, tree: "ability_hunter_beasttaming" },
+    { points: 20, tree: "ability_marksmanship" },
+    { points: 20, tree: "ability_hunter_swiftstrike" },
+  ],
+  mage: [
+    { points: 25, tree: "spell_holy_magicalsentry" },
+    { points: 20, tree: "spell_fire_firebolt02" },
+    { points: 25, tree: "spell_frost_frostbolt02" },
+  ],
+  rogue: [
+    { points: 25, tree: "ability_rogue_eviscerate" },
+    { points: 20, tree: "ability_backstab" },
+    { points: 25, tree: "ability_stealth" },
+  ],
+  shaman: [
+    { points: 30, tree: "spell_nature_lightning" },
+    { points: 20, tree: "spell_nature_lightningshield" },
+    { points: 25, tree: "spell_nature_magicimmunity" },
+  ],
+  warlock: [
+    { points: 25, tree: "spell_shadow_deathcoil" },
+    { points: 20, tree: "spell_shadow_metamorphosis" },
+    { points: 25, tree: "spell_shadow_rainoffire" },
+  ],
 };
 
 /* a new class spell: its icon (full tooltip on hover) and what it does, readable without hovering */
@@ -640,10 +682,10 @@ function ClassSpell({
   spec,
   color,
   lang,
-  level,
+  talent,
 }: {
   spell?: { ref: string; icon: string };
-  level?: number;
+  talent?: { points: number; tree: string };
   name: string;
   spec: string;
   color: string;
@@ -670,9 +712,20 @@ function ClassSpell({
         )}
         <div className="min-w-0">
           <p
-            className="text-[11px] uppercase tracking-[0.25em]"
+            className="flex items-center gap-2 text-[11px] uppercase tracking-[0.25em]"
             style={{ color }}
           >
+            {talent && (
+              // the talent tree's own icon, as the game's talent window shows it
+
+              <img
+                alt=""
+                className="h-5 w-5 rounded-sm border border-white/20"
+                height={20}
+                src={`/img/experience/icons/${talent.tree}.jpg`}
+                width={20}
+              />
+            )}
             {spec}
           </p>
           <h3 className="mt-1 font-heading text-xl leading-tight text-white sm:text-2xl">
@@ -683,9 +736,11 @@ function ClassSpell({
       <p className="mt-4 min-h-[4.5rem] text-sm leading-relaxed text-[#ffd100]/85">
         {effect ?? "…"}
       </p>
-      {level && (
+      {talent && (
         <p className="mt-4 border-t border-white/10 pt-3 text-xs uppercase tracking-[0.18em] text-white/45">
-          {ui.classTrainer[lang].replace("{level}", String(level))}
+          {ui.specTalent[lang]
+            .replace("{points}", String(talent.points))
+            .replace("{spec}", spec)}
         </p>
       )}
     </div>
@@ -755,10 +810,10 @@ function Classes({ lang }: { lang: Lang }) {
                 key={i}
                 color={c.color}
                 lang={lang}
-                level={TRAINER_LEVEL[c.key]?.[i]}
                 name={s.name[lang]}
                 spec={s.spec[lang]}
                 spell={classSpellRefs[c.key]?.[i]}
+                talent={SPEC_TALENT[c.key]?.[i]}
               />
             ))}
             <p className="text-lg italic text-white/55 md:col-span-3">

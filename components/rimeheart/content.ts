@@ -48,9 +48,9 @@ export const ui = {
   dps: L("dégâts par seconde", "damage per second"),
   agility: L("Agilité", "Agility"),
   stamina: L("Endurance", "Stamina"),
-  classTrainer: L(
-    "Maître de classe · niveau {level}",
-    "Class trainer · level {level}",
+  specTalent: L(
+    "Nouveau talent · après {points} points en {spec}",
+    "New talent · after {points} points in {spec}",
   ),
   prelude: L("Prélude", "Prelude"),
   phase: L("Phase", "Phase"),
@@ -383,8 +383,8 @@ export const classes = {
     "Every specialization gets its moment.",
   ),
   lede: L(
-    "Les dix classes reçoivent chacune **trois nouveaux sorts** (un par arbre), **trois talents réécrits** et **deux glyphes**. Pensés pour leur identité et leur lore, équilibrés entre eux, **jamais une copie d'un sort existant**.",
-    "All ten classes receive **three new spells** (one per tree), **three rewritten talents** and **two glyphs**. Built for their identity and lore, balanced against each other, **never a copy of an existing spell**.",
+    "Chaque arbre de talents gagne **son talent de spécialisation** : un nouveau sort, à prendre dans l'arbre comme un talent Blizzard (deux pour le druide farouche, félin et ours). Chaque classe reçoit aussi **trois nouveaux talents**, ajoutés à ceux de Blizzard **sans en retirer aucun**, et **deux glyphes**. Pensés pour leur identité et leur lore, équilibrés entre eux, **jamais une copie d'un sort existant**.",
+    "Every talent tree gains **its specialization talent**: a new spell, picked in the tree like any Blizzard talent (two for the feral druid, cat and bear). Every class also receives **three new talents**, added to Blizzard's **without removing any**, and **two glyphs**. Built for their identity and lore, balanced against each other, **never a copy of an existing spell**.",
   ),
   list: [
     {

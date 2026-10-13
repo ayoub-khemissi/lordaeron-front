@@ -8,7 +8,7 @@
 export const refByName: Record<string, string> = {
   // Artifact
   "Le Jeton d'ascension": "item:901960", // Ascension Token
-  // Classes (the 30 new spells, also in classSpellRefs) and the mage raid haste
+  // Classes (the 31 specialization talents' spells, also in classSpellRefs) and the mage raid haste
   "Bannière de l'Aube d'argent": "spell:100400", // Banner of the Argent Dawn
   "Veillée du chevalier": "spell:100402", // Knight's Vigil
   "Serment de protection": "spell:100404", // Oath of Protection
@@ -179,7 +179,7 @@ export const refByIcon: Record<string, string> = {
   inv_misc_horn_03: "item:902379", // Peak Eagle Whistle
 };
 
-// three new spells per class, in the same order as classes.list[i].spells in content.ts: class key -> [{ ref, icon }]
+// the specialization talents' spells of each class (three, four for the druid), in the same order as classes.list[i].spells in content.ts: class key -> [{ ref, icon }]
 export const classSpellRefs: Record<string, { ref: string; icon: string }[]> = {
   paladin: [
     { ref: "spell:100400", icon: "inv_misc_token_argentdawn" }, // Banner of the Argent Dawn
