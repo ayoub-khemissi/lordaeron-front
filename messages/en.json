@@ -59,6 +59,9 @@
     "play": "Play",
     "tools": "Tools",
     "guilds": "Guilds",
+    "pvp": "PvP Ladder",
+    "hallOfFame": "Hall of Fame",
+    "population": "Population",
     "phases": "Phases",
     "vote": "Vote",
     "hints": {
@@ -67,7 +70,10 @@
       "epicProgression": "From Vanilla to Wrath, raid after raid",
       "phases": "Six phases, from the dungeons to the Ruby Sanctum",
       "armory": "Any character in 3D, gear and stats",
-      "guilds": "Guilds, their crests and their members"
+      "guilds": "Guilds, their crests and their members",
+      "pvp": "Kills, arena teams and honor, ranked",
+      "hallOfFame": "The most accomplished, by achievement points",
+      "population": "Factions, classes and levels at a glance"
     }
   },
   "home": {
@@ -1441,6 +1447,90 @@
     "previous": "Previous",
     "next": "Next",
     "pageOf": "Page {page} of {pages}"
+  },
+  "rankings": {
+    "allFactions": "All",
+    "class": "Class",
+    "allClasses": "All classes",
+    "loading": "Loading…",
+    "error": "This could not be loaded. Try again in a moment.",
+    "noResults": "No one on this board yet.",
+    "count": "{count, plural, =0 {No character} one {# character} other {# characters}}",
+    "race_1": "Human",
+    "race_2": "Orc",
+    "race_3": "Dwarf",
+    "race_4": "Night Elf",
+    "race_5": "Undead",
+    "race_6": "Tauren",
+    "race_7": "Gnome",
+    "race_8": "Troll",
+    "race_10": "Blood Elf",
+    "race_11": "Draenei"
+  },
+  "pvp": {
+    "title": "PvP Ladder",
+    "subtitle": "The fiercest fighters of {realm}, ranked",
+    "metaTitle": "PvP Ladder – {realm}",
+    "metaDescription": "Honorable kills, arena teams, honor and arena points: the PvP ranking of {realm}'s characters, by faction and class.",
+    "boardsLabel": "Ranking",
+    "boards": {
+      "kills": "Honorable kills",
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "honor": "Current honor",
+      "arenaPoints": "Arena points",
+      "arena2": "2v2",
+      "arena3": "3v3",
+      "arena5": "5v5",
+      "battlegrounds": "Campaign"
+    },
+    "units": {
+      "kills": "kills",
+      "honor": "current honor",
+      "arenaPoints": "points",
+      "rating": "rating",
+      "wins": "wins"
+    },
+    "gamesOf": "{count, plural, one {won of # game} other {won of # games}}",
+    "winsLosses": "{wins} W – {losses} L",
+    "personalRating": "Personal rating",
+    "teamsCount": "{count, plural, =0 {No team} one {# team} other {# teams}}",
+    "noTeams": "No arena team of this size yet.",
+    "battlegroundsNote": "This phase's campaign: battlegrounds won and played. When the phase ends, the 10 best of each faction with at least {min} games earn the title Campaign Marshal (Alliance) or Campaign Warlord (Horde). Faded: fewer than {min} games so far.",
+    "season": {
+      "none": "Phase {phase}: no rated arena season yet, the first one opens with phase 1.",
+      "running": "Arena season {season} in progress (phase {phase}).",
+      "idle": "Arena season {season} (phase {phase}) is not running right now."
+    }
+  },
+  "hallOfFame": {
+    "title": "Hall of Fame",
+    "subtitle": "The most accomplished heroes of {realm}",
+    "metaTitle": "Hall of Fame – {realm}",
+    "metaDescription": "The characters of {realm} ranked by achievement points and achievements earned, the realm's own achievements included.",
+    "sortLabel": "Sort",
+    "byPoints": "Achievement points",
+    "byCount": "Achievements",
+    "achievementsOf": "{count, plural, one {# achievement} other {# achievements}}",
+    "pointsOf": "{points} points"
+  },
+  "population": {
+    "title": "Population",
+    "subtitle": "Who plays on {realm}, right now",
+    "metaTitle": "Population – {realm}",
+    "metaDescription": "Faction balance, classes, races and levels of {realm}'s characters, the players online and the new players of each week.",
+    "empty": "No character on this realm yet.",
+    "characters": "Characters",
+    "online": "Online now",
+    "players": "Players",
+    "factions": "Faction balance",
+    "classes": "Classes",
+    "races": "Races",
+    "levels": "Levels",
+    "levelBracket": "Level {range}: {count, plural, =0 {no character} one {# character} other {# characters}}",
+    "weeks": "New players per week",
+    "week": "Week of {date}: {count, plural, =0 {no new player} one {# new player} other {# new players}}",
+    "weeksNote": "The accounts playing the realm, by the week they were created (the last 12 weeks, Monday to Sunday)."
   },
   "guilds": {
     "title": "Guilds",

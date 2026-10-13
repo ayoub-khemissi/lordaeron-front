@@ -59,6 +59,9 @@
     "play": "Gioca",
     "tools": "Strumenti",
     "guilds": "Gilde",
+    "pvp": "Classifica PvP",
+    "hallOfFame": "Albo d'oro",
+    "population": "Popolazione",
     "phases": "Fasi",
     "vote": "Vota",
     "hints": {
@@ -67,7 +70,10 @@
       "epicProgression": "Da Vanilla a WotLK, incursione dopo incursione",
       "phases": "Sei fasi, dai dungeon al Santuario di Rubino",
       "armory": "Ogni personaggio in 3D, equipaggiamento e statistiche",
-      "guilds": "Le gilde, i loro stemmi e i loro membri"
+      "guilds": "Le gilde, i loro stemmi e i loro membri",
+      "pvp": "Uccisioni, squadre d'arena e onore in classifica",
+      "hallOfFame": "I più valorosi, per punti impresa",
+      "population": "Fazioni, classi e livelli a colpo d'occhio"
     }
   },
   "home": {
@@ -1441,6 +1447,90 @@
     "previous": "Precedente",
     "next": "Successiva",
     "pageOf": "Pagina {page} di {pages}"
+  },
+  "rankings": {
+    "allFactions": "Tutte",
+    "class": "Classe",
+    "allClasses": "Tutte le classi",
+    "loading": "Caricamento…",
+    "error": "Caricamento non riuscito. Riprova tra un momento.",
+    "noResults": "Ancora nessuno in questa classifica.",
+    "count": "{count, plural, =0 {Nessun personaggio} one {# personaggio} other {# personaggi}}",
+    "race_1": "Umano",
+    "race_2": "Orco",
+    "race_3": "Nano",
+    "race_4": "Elfo della Notte",
+    "race_5": "Non Morto",
+    "race_6": "Tauren",
+    "race_7": "Gnomo",
+    "race_8": "Troll",
+    "race_10": "Elfo del Sangue",
+    "race_11": "Draenei"
+  },
+  "pvp": {
+    "title": "Classifica PvP",
+    "subtitle": "I combattenti più temibili di {realm}",
+    "metaTitle": "Classifica PvP – {realm}",
+    "metaDescription": "Uccisioni onorevoli, squadre d'arena, onore e punti arena: la classifica PvP dei personaggi di {realm}, per fazione e classe.",
+    "boardsLabel": "Classifica",
+    "boards": {
+      "kills": "Uccisioni onorevoli",
+      "today": "Oggi",
+      "yesterday": "Ieri",
+      "honor": "Onore attuale",
+      "arenaPoints": "Punti arena",
+      "arena2": "2v2",
+      "arena3": "3v3",
+      "arena5": "5v5",
+      "battlegrounds": "Campagna"
+    },
+    "units": {
+      "kills": "uccisioni",
+      "honor": "onore attuale",
+      "arenaPoints": "punti",
+      "rating": "punteggio",
+      "wins": "vittorie"
+    },
+    "gamesOf": "{count, plural, one {vinte su # partita} other {vinte su # partite}}",
+    "winsLosses": "{wins} V – {losses} S",
+    "personalRating": "Punteggio personale",
+    "teamsCount": "{count, plural, =0 {Nessuna squadra} one {# squadra} other {# squadre}}",
+    "noTeams": "Ancora nessuna squadra d'arena di questa dimensione.",
+    "battlegroundsNote": "La campagna di questa fase: campi di battaglia vinti e giocati. Alla fine della fase, i 10 migliori di ogni fazione con almeno {min} partite ottengono il titolo Campaign Marshal (Alleanza) o Campaign Warlord (Orda). In grigio: meno di {min} partite finora.",
+    "season": {
+      "none": "Fase {phase}: ancora nessuna stagione d'arena classificata, la prima si apre con la fase 1.",
+      "running": "Stagione d'arena {season} in corso (fase {phase}).",
+      "idle": "La stagione d'arena {season} (fase {phase}) non è in corso al momento."
+    }
+  },
+  "hallOfFame": {
+    "title": "Albo d'oro",
+    "subtitle": "Gli eroi più valorosi di {realm}",
+    "metaTitle": "Albo d'oro – {realm}",
+    "metaDescription": "I personaggi di {realm} in classifica per punti impresa e imprese ottenute, comprese le imprese proprie del reame.",
+    "sortLabel": "Ordine",
+    "byPoints": "Punti impresa",
+    "byCount": "Imprese",
+    "achievementsOf": "{count, plural, one {# impresa} other {# imprese}}",
+    "pointsOf": "{points} punti"
+  },
+  "population": {
+    "title": "Popolazione",
+    "subtitle": "Chi gioca su {realm} in questo momento",
+    "metaTitle": "Popolazione – {realm}",
+    "metaDescription": "Equilibrio delle fazioni, classi, razze e livelli dei personaggi di {realm}, i giocatori online e i nuovi giocatori di ogni settimana.",
+    "empty": "Ancora nessun personaggio su questo reame.",
+    "characters": "Personaggi",
+    "online": "Online ora",
+    "players": "Giocatori",
+    "factions": "Equilibrio delle fazioni",
+    "classes": "Classi",
+    "races": "Razze",
+    "levels": "Livelli",
+    "levelBracket": "Livello {range}: {count, plural, =0 {nessun personaggio} one {# personaggio} other {# personaggi}}",
+    "weeks": "Nuovi giocatori a settimana",
+    "week": "Settimana del {date}: {count, plural, =0 {nessun nuovo giocatore} one {# nuovo giocatore} other {# nuovi giocatori}}",
+    "weeksNote": "Gli account che giocano sul reame, per settimana di creazione (le ultime 12 settimane, da lunedì a domenica)."
   },
   "guilds": {
     "title": "Gilde",

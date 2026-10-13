@@ -59,6 +59,9 @@
     "play": "Spielen",
     "tools": "Werkzeuge",
     "guilds": "Gilden",
+    "pvp": "PvP-Rangliste",
+    "hallOfFame": "Ruhmeshalle",
+    "population": "Bevölkerung",
     "phases": "Phasen",
     "vote": "Abstimmen",
     "hints": {
@@ -67,7 +70,10 @@
       "epicProgression": "Von Classic bis WotLK, Schlachtzug um Schlachtzug",
       "phases": "Sechs Phasen, von den Dungeons bis zum Rubinsanktum",
       "armory": "Jeder Charakter in 3D, Ausrüstung und Werte",
-      "guilds": "Gilden, ihre Wappen und ihre Mitglieder"
+      "guilds": "Gilden, ihre Wappen und ihre Mitglieder",
+      "pvp": "Siege, Arenateams und Ehre in der Rangliste",
+      "hallOfFame": "Die Erfolgreichsten, nach Erfolgspunkten",
+      "population": "Fraktionen, Klassen und Stufen auf einen Blick"
     }
   },
   "home": {
@@ -1441,6 +1447,90 @@
     "previous": "Zurück",
     "next": "Weiter",
     "pageOf": "Seite {page} von {pages}"
+  },
+  "rankings": {
+    "allFactions": "Alle",
+    "class": "Klasse",
+    "allClasses": "Alle Klassen",
+    "loading": "Wird geladen…",
+    "error": "Laden fehlgeschlagen. Versuche es gleich noch einmal.",
+    "noResults": "Noch niemand in dieser Rangliste.",
+    "count": "{count, plural, =0 {Kein Charakter} one {# Charakter} other {# Charaktere}}",
+    "race_1": "Mensch",
+    "race_2": "Orc",
+    "race_3": "Zwerg",
+    "race_4": "Nachtelf",
+    "race_5": "Untoter",
+    "race_6": "Tauren",
+    "race_7": "Gnom",
+    "race_8": "Troll",
+    "race_10": "Blutelf",
+    "race_11": "Draenei"
+  },
+  "pvp": {
+    "title": "PvP-Rangliste",
+    "subtitle": "Die härtesten Kämpfer von {realm} in der Rangliste",
+    "metaTitle": "PvP-Rangliste – {realm}",
+    "metaDescription": "Ehrenhafte Siege, Arenateams, Ehre und Arenapunkte: die PvP-Rangliste der Charaktere von {realm}, nach Fraktion und Klasse.",
+    "boardsLabel": "Rangliste",
+    "boards": {
+      "kills": "Ehrenhafte Siege",
+      "today": "Heute",
+      "yesterday": "Gestern",
+      "honor": "Aktuelle Ehre",
+      "arenaPoints": "Arenapunkte",
+      "arena2": "2v2",
+      "arena3": "3v3",
+      "arena5": "5v5",
+      "battlegrounds": "Feldzug"
+    },
+    "units": {
+      "kills": "Siege",
+      "honor": "aktuelle Ehre",
+      "arenaPoints": "Punkte",
+      "rating": "Wertung",
+      "wins": "Siege"
+    },
+    "gamesOf": "{count, plural, one {gewonnen von # Spiel} other {gewonnen von # Spielen}}",
+    "winsLosses": "{wins} S – {losses} N",
+    "personalRating": "Persönliche Wertung",
+    "teamsCount": "{count, plural, =0 {Kein Team} one {# Team} other {# Teams}}",
+    "noTeams": "Noch kein Arenateam dieser Größe.",
+    "battlegroundsNote": "Der Feldzug dieser Phase: gewonnene und gespielte Schlachtfelder. Am Ende der Phase erhalten die 10 Besten jeder Fraktion mit mindestens {min} Spielen den Titel Feldzugsmarschall (Allianz) oder Feldzugskriegsfürst (Horde). Ausgegraut: bisher weniger als {min} Spiele.",
+    "season": {
+      "none": "Phase {phase}: noch keine gewertete Arenasaison, die erste beginnt mit Phase 1.",
+      "running": "Arenasaison {season} läuft (Phase {phase}).",
+      "idle": "Arenasaison {season} (Phase {phase}) läuft gerade nicht."
+    }
+  },
+  "hallOfFame": {
+    "title": "Ruhmeshalle",
+    "subtitle": "Die erfolgreichsten Helden von {realm}",
+    "metaTitle": "Ruhmeshalle – {realm}",
+    "metaDescription": "Die Charaktere von {realm} nach Erfolgspunkten und errungenen Erfolgen, die eigenen Erfolge des Reichs inbegriffen.",
+    "sortLabel": "Sortierung",
+    "byPoints": "Erfolgspunkte",
+    "byCount": "Erfolge",
+    "achievementsOf": "{count, plural, one {# Erfolg} other {# Erfolge}}",
+    "pointsOf": "{points} Punkte"
+  },
+  "population": {
+    "title": "Bevölkerung",
+    "subtitle": "Wer gerade auf {realm} spielt",
+    "metaTitle": "Bevölkerung – {realm}",
+    "metaDescription": "Fraktionsverhältnis, Klassen, Völker und Stufen der Charaktere von {realm}, die Spieler online und die neuen Spieler jeder Woche.",
+    "empty": "Noch kein Charakter auf diesem Reich.",
+    "characters": "Charaktere",
+    "online": "Jetzt online",
+    "players": "Spieler",
+    "factions": "Fraktionsverhältnis",
+    "classes": "Klassen",
+    "races": "Völker",
+    "levels": "Stufen",
+    "levelBracket": "Stufe {range}: {count, plural, =0 {kein Charakter} one {# Charakter} other {# Charaktere}}",
+    "weeks": "Neue Spieler pro Woche",
+    "week": "Woche vom {date}: {count, plural, =0 {kein neuer Spieler} one {# neuer Spieler} other {# neue Spieler}}",
+    "weeksNote": "Die Accounts, die auf dem Reich spielen, nach der Woche ihrer Erstellung (die letzten 12 Wochen, Montag bis Sonntag)."
   },
   "guilds": {
     "title": "Gilden",

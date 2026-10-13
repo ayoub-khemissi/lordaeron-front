@@ -76,11 +76,13 @@ const realmPages: PageEntry[] = REALM_SLUGS.flatMap((slug) => {
           },
         ]
       : []),
-    ...(["armory", "guilds"] as const).filter(has).map((tool) => ({
-      path: at(`/${tool}`),
-      priority: 0.6,
-      changeFrequency: "daily" as const,
-    })),
+    ...(["armory", "guilds", "pvp", "hall-of-fame", "population"] as const)
+      .filter(has)
+      .map((tool) => ({
+        path: at(`/${tool}`),
+        priority: 0.6,
+        changeFrequency: "daily" as const,
+      })),
     ...(has("shop")
       ? [
           {

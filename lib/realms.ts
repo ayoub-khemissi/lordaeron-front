@@ -20,6 +20,9 @@ export type RealmSection =
   | "raid-scaling"
   | "armory"
   | "guilds"
+  | "pvp"
+  | "hall-of-fame"
+  | "population"
   | "shop";
 
 export interface RealmInfo {
@@ -54,6 +57,9 @@ export const ALL_SECTIONS: RealmSection[] = [
   "raid-scaling",
   "armory",
   "guilds",
+  "pvp",
+  "hall-of-fame",
+  "population",
   "shop",
 ];
 
@@ -74,6 +80,9 @@ export const REALMS: Record<RealmSlug, RealmInfo> = {
       "raid-scaling",
       "armory",
       "guilds",
+      "pvp",
+      "hall-of-fame",
+      "population",
       "shop",
     ],
     accent: "gold",
@@ -89,7 +98,17 @@ export const REALMS: Record<RealmSlug, RealmInfo> = {
     // Ayoub, 13/10/2026: the names are reserved from Wednesday 14 October 2026, 19:00 Paris time
     reservationAt: "2026-10-14T17:00:00Z",
     // features: its long showcase ("Discover the realm", 13/10/2026), its home being the realm-home template's
-    sections: ["home", "how-to", "features", "armory", "guilds", "shop"],
+    sections: [
+      "home",
+      "how-to",
+      "features",
+      "armory",
+      "guilds",
+      "pvp",
+      "hall-of-fame",
+      "population",
+      "shop",
+    ],
     accent: "ice",
     progressive: true,
   },

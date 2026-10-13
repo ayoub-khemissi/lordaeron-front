@@ -59,6 +59,9 @@
     "play": "Graj",
     "tools": "Narzędzia",
     "guilds": "Gildie",
+    "pvp": "Ranking PvP",
+    "hallOfFame": "Galeria sław",
+    "population": "Populacja",
     "phases": "Fazy",
     "vote": "Głosuj",
     "hints": {
@@ -67,7 +70,10 @@
       "epicProgression": "Od Vanilli do WotLK, rajd za rajdem",
       "phases": "Sześć faz, od lochów po Rubinowe Sanktuarium",
       "armory": "Każda postać w 3D, ekwipunek i statystyki",
-      "guilds": "Gildie, ich herby i członkowie"
+      "guilds": "Gildie, ich herby i członkowie",
+      "pvp": "Zabójstwa, drużyny areny i honor w rankingu",
+      "hallOfFame": "Najwięksi bohaterowie według punktów osiągnięć",
+      "population": "Frakcje, klasy i poziomy w skrócie"
     }
   },
   "home": {
@@ -1441,6 +1447,90 @@
     "previous": "Poprzednia",
     "next": "Następna",
     "pageOf": "Strona {page} z {pages}"
+  },
+  "rankings": {
+    "allFactions": "Wszystkie",
+    "class": "Klasa",
+    "allClasses": "Wszystkie klasy",
+    "loading": "Ładowanie…",
+    "error": "Nie udało się wczytać. Spróbuj ponownie za chwilę.",
+    "noResults": "Na tej liście nie ma jeszcze nikogo.",
+    "count": "{count, plural, =0 {Brak postaci} one {# postać} few {# postacie} many {# postaci} other {# postaci}}",
+    "race_1": "Człowiek",
+    "race_2": "Ork",
+    "race_3": "Krasnolud",
+    "race_4": "Nocny elf",
+    "race_5": "Nieumarły",
+    "race_6": "Tauren",
+    "race_7": "Gnom",
+    "race_8": "Troll",
+    "race_10": "Krwawy elf",
+    "race_11": "Draenei"
+  },
+  "pvp": {
+    "title": "Ranking PvP",
+    "subtitle": "Najgroźniejsi wojownicy {realm}",
+    "metaTitle": "Ranking PvP – {realm}",
+    "metaDescription": "Honorowe zabójstwa, drużyny areny, honor i punkty areny: ranking PvP postaci {realm} według frakcji i klasy.",
+    "boardsLabel": "Ranking",
+    "boards": {
+      "kills": "Honorowe zabójstwa",
+      "today": "Dziś",
+      "yesterday": "Wczoraj",
+      "honor": "Obecny honor",
+      "arenaPoints": "Punkty areny",
+      "arena2": "2v2",
+      "arena3": "3v3",
+      "arena5": "5v5",
+      "battlegrounds": "Kampania"
+    },
+    "units": {
+      "kills": "zabójstwa",
+      "honor": "obecny honor",
+      "arenaPoints": "punkty",
+      "rating": "wynik",
+      "wins": "wygrane"
+    },
+    "gamesOf": "{count, plural, one {wygrane z # meczu} other {wygrane z # meczów}}",
+    "winsLosses": "{wins} W – {losses} P",
+    "personalRating": "Wynik osobisty",
+    "teamsCount": "{count, plural, =0 {Brak drużyn} one {# drużyna} few {# drużyny} many {# drużyn} other {# drużyn}}",
+    "noTeams": "Nie ma jeszcze drużyn areny tej wielkości.",
+    "battlegroundsNote": "Kampania tej fazy: wygrane i rozegrane pola bitew. Na koniec fazy 10 najlepszych z każdej frakcji, którzy rozegrali co najmniej {min} meczów, otrzymuje tytuł Campaign Marshal (Przymierze) lub Campaign Warlord (Horda). Wyszarzone: na razie mniej niż {min} meczów.",
+    "season": {
+      "none": "Faza {phase}: jeszcze bez rankingowego sezonu areny, pierwszy rusza wraz z fazą 1.",
+      "running": "Sezon areny {season} trwa (faza {phase}).",
+      "idle": "Sezon areny {season} (faza {phase}) obecnie nie trwa."
+    }
+  },
+  "hallOfFame": {
+    "title": "Galeria sław",
+    "subtitle": "Najwięksi bohaterowie {realm}",
+    "metaTitle": "Galeria sław – {realm}",
+    "metaDescription": "Postacie {realm} według punktów osiągnięć i zdobytych osiągnięć, łącznie z osiągnięciami własnymi świata.",
+    "sortLabel": "Sortowanie",
+    "byPoints": "Punkty osiągnięć",
+    "byCount": "Osiągnięcia",
+    "achievementsOf": "{count, plural, one {# osiągnięcie} few {# osiągnięcia} many {# osiągnięć} other {# osiągnięć}}",
+    "pointsOf": "{points} pkt"
+  },
+  "population": {
+    "title": "Populacja",
+    "subtitle": "Kto teraz gra na {realm}",
+    "metaTitle": "Populacja – {realm}",
+    "metaDescription": "Równowaga frakcji, klasy, rasy i poziomy postaci {realm}, gracze online i nowi gracze z każdego tygodnia.",
+    "empty": "Na tym świecie nie ma jeszcze postaci.",
+    "characters": "Postacie",
+    "online": "Teraz online",
+    "players": "Gracze",
+    "factions": "Równowaga frakcji",
+    "classes": "Klasy",
+    "races": "Rasy",
+    "levels": "Poziomy",
+    "levelBracket": "Poziom {range}: {count, plural, =0 {brak postaci} one {# postać} few {# postacie} many {# postaci} other {# postaci}}",
+    "weeks": "Nowi gracze tygodniowo",
+    "week": "Tydzień od {date}: {count, plural, =0 {brak nowych graczy} one {# nowy gracz} few {# nowi gracze} many {# nowych graczy} other {# nowych graczy}}",
+    "weeksNote": "Konta grające na tym świecie według tygodnia ich utworzenia (ostatnie 12 tygodni, od poniedziałku do niedzieli)."
   },
   "guilds": {
     "title": "Gildie",

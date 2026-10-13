@@ -59,6 +59,9 @@
     "play": "Jugar",
     "tools": "Herramientas",
     "guilds": "Hermandades",
+    "pvp": "Clasificación JcJ",
+    "hallOfFame": "Salón de la fama",
+    "population": "Población",
     "phases": "Fases",
     "vote": "Votar",
     "hints": {
@@ -67,7 +70,10 @@
       "epicProgression": "De Vanilla a WotLK, banda tras banda",
       "phases": "Seis fases, de las mazmorras al Sagrario Rubí",
       "armory": "Cualquier personaje en 3D, equipo y estadísticas",
-      "guilds": "Hermandades, sus emblemas y sus miembros"
+      "guilds": "Hermandades, sus emblemas y sus miembros",
+      "pvp": "Muertes, equipos de arena y honor, clasificados",
+      "hallOfFame": "Los más laureados, por puntos de logros",
+      "population": "Facciones, clases y niveles de un vistazo"
     }
   },
   "home": {
@@ -1441,6 +1447,90 @@
     "previous": "Anterior",
     "next": "Siguiente",
     "pageOf": "Página {page} de {pages}"
+  },
+  "rankings": {
+    "allFactions": "Todas",
+    "class": "Clase",
+    "allClasses": "Todas las clases",
+    "loading": "Cargando…",
+    "error": "No se pudo cargar. Inténtalo de nuevo en un momento.",
+    "noResults": "Todavía nadie en esta clasificación.",
+    "count": "{count, plural, =0 {Ningún personaje} one {# personaje} other {# personajes}}",
+    "race_1": "Humano",
+    "race_2": "Orco",
+    "race_3": "Enano",
+    "race_4": "Elfo de la noche",
+    "race_5": "No-muerto",
+    "race_6": "Tauren",
+    "race_7": "Gnomo",
+    "race_8": "Trol",
+    "race_10": "Elfo de sangre",
+    "race_11": "Draenei"
+  },
+  "pvp": {
+    "title": "Clasificación JcJ",
+    "subtitle": "Los combatientes más temibles de {realm}",
+    "metaTitle": "Clasificación JcJ – {realm}",
+    "metaDescription": "Muertes con honor, equipos de arena, honor y puntos de arena: la clasificación JcJ de los personajes de {realm}, por facción y clase.",
+    "boardsLabel": "Clasificación",
+    "boards": {
+      "kills": "Muertes con honor",
+      "today": "Hoy",
+      "yesterday": "Ayer",
+      "honor": "Honor actual",
+      "arenaPoints": "Puntos de arena",
+      "arena2": "2c2",
+      "arena3": "3c3",
+      "arena5": "5c5",
+      "battlegrounds": "Campaña"
+    },
+    "units": {
+      "kills": "muertes",
+      "honor": "honor actual",
+      "arenaPoints": "puntos",
+      "rating": "índice",
+      "wins": "victorias"
+    },
+    "gamesOf": "{count, plural, one {ganadas de # partida} other {ganadas de # partidas}}",
+    "winsLosses": "{wins} V – {losses} D",
+    "personalRating": "Índice personal",
+    "teamsCount": "{count, plural, =0 {Ningún equipo} one {# equipo} other {# equipos}}",
+    "noTeams": "Todavía no hay equipos de arena de este tamaño.",
+    "battlegroundsNote": "La campaña de esta fase: campos de batalla ganados y jugados. Al final de la fase, los 10 mejores de cada facción con al menos {min} partidas obtienen el título Mariscal de campaña (Alianza) o Señor de la Guerra de campaña (Horda). Atenuados: menos de {min} partidas por ahora.",
+    "season": {
+      "none": "Fase {phase}: todavía no hay temporada de arena puntuada, la primera abre con la fase 1.",
+      "running": "Temporada de arena {season} en curso (fase {phase}).",
+      "idle": "La temporada de arena {season} (fase {phase}) no está en curso ahora mismo."
+    }
+  },
+  "hallOfFame": {
+    "title": "Salón de la fama",
+    "subtitle": "Los héroes más laureados de {realm}",
+    "metaTitle": "Salón de la fama – {realm}",
+    "metaDescription": "Los personajes de {realm} clasificados por puntos de logros y logros obtenidos, incluidos los logros propios del reino.",
+    "sortLabel": "Orden",
+    "byPoints": "Puntos de logros",
+    "byCount": "Logros",
+    "achievementsOf": "{count, plural, one {# logro} other {# logros}}",
+    "pointsOf": "{points} puntos"
+  },
+  "population": {
+    "title": "Población",
+    "subtitle": "Quién juega en {realm} ahora mismo",
+    "metaTitle": "Población – {realm}",
+    "metaDescription": "Equilibrio de facciones, clases, razas y niveles de los personajes de {realm}, los jugadores conectados y los nuevos jugadores de cada semana.",
+    "empty": "Todavía no hay personajes en este reino.",
+    "characters": "Personajes",
+    "online": "Conectados",
+    "players": "Jugadores",
+    "factions": "Equilibrio de facciones",
+    "classes": "Clases",
+    "races": "Razas",
+    "levels": "Niveles",
+    "levelBracket": "Nivel {range}: {count, plural, =0 {ningún personaje} one {# personaje} other {# personajes}}",
+    "weeks": "Nuevos jugadores por semana",
+    "week": "Semana del {date}: {count, plural, =0 {ningún jugador nuevo} one {# jugador nuevo} other {# jugadores nuevos}}",
+    "weeksNote": "Las cuentas que juegan en el reino, por la semana de su creación (las últimas 12 semanas, de lunes a domingo)."
   },
   "guilds": {
     "title": "Hermandades",

@@ -59,6 +59,9 @@
     "play": "Jouer",
     "tools": "Outils",
     "guilds": "Guildes",
+    "pvp": "Classement JcJ",
+    "hallOfFame": "Panthéon",
+    "population": "Population",
     "phases": "Phases",
     "vote": "Voter",
     "hints": {
@@ -67,7 +70,10 @@
       "epicProgression": "De Vanilla à WotLK, raid après raid",
       "phases": "Six phases, des donjons au Sanctum rubis",
       "armory": "Tous les personnages en 3D, équipement et stats",
-      "guilds": "Les guildes, leurs blasons et leurs membres"
+      "guilds": "Les guildes, leurs blasons et leurs membres",
+      "pvp": "Victoires, équipes d'arène et honneur, classés",
+      "hallOfFame": "Les plus accomplis, par points de haut fait",
+      "population": "Factions, classes et niveaux d'un coup d'œil"
     }
   },
   "home": {
@@ -1441,6 +1447,90 @@
     "previous": "Précédent",
     "next": "Suivant",
     "pageOf": "Page {page} sur {pages}"
+  },
+  "rankings": {
+    "allFactions": "Toutes",
+    "class": "Classe",
+    "allClasses": "Toutes les classes",
+    "loading": "Chargement…",
+    "error": "Le chargement a échoué. Réessayez dans un instant.",
+    "noResults": "Personne dans ce classement pour l'instant.",
+    "count": "{count, plural, =0 {Aucun personnage} one {# personnage} other {# personnages}}",
+    "race_1": "Humain",
+    "race_2": "Orc",
+    "race_3": "Nain",
+    "race_4": "Elfe de la nuit",
+    "race_5": "Mort-vivant",
+    "race_6": "Tauren",
+    "race_7": "Gnome",
+    "race_8": "Troll",
+    "race_10": "Elfe de sang",
+    "race_11": "Draeneï"
+  },
+  "pvp": {
+    "title": "Classement JcJ",
+    "subtitle": "Les combattants les plus redoutables de {realm}",
+    "metaTitle": "Classement JcJ – {realm}",
+    "metaDescription": "Victoires honorables, équipes d'arène, honneur et points d'arène : le classement JcJ des personnages de {realm}, par faction et par classe.",
+    "boardsLabel": "Classement",
+    "boards": {
+      "kills": "Victoires honorables",
+      "today": "Aujourd'hui",
+      "yesterday": "Hier",
+      "honor": "Honneur actuel",
+      "arenaPoints": "Points d'arène",
+      "arena2": "2c2",
+      "arena3": "3c3",
+      "arena5": "5c5",
+      "battlegrounds": "Campagne"
+    },
+    "units": {
+      "kills": "victoires",
+      "honor": "honneur actuel",
+      "arenaPoints": "points",
+      "rating": "cote",
+      "wins": "victoires"
+    },
+    "gamesOf": "{count, plural, one {gagnées sur # partie} other {gagnées sur # parties}}",
+    "winsLosses": "{wins} V – {losses} D",
+    "personalRating": "Cote personnelle",
+    "teamsCount": "{count, plural, =0 {Aucune équipe} one {# équipe} other {# équipes}}",
+    "noTeams": "Aucune équipe d'arène de cette taille pour l'instant.",
+    "battlegroundsNote": "La campagne de cette phase : champs de bataille gagnés et joués. À la fin de la phase, les 10 meilleurs de chaque faction ayant joué au moins {min} parties reçoivent le titre Maréchal de campagne (Alliance) ou Seigneur de guerre de campagne (Horde). En grisé : moins de {min} parties pour l'instant.",
+    "season": {
+      "none": "Phase {phase} : pas encore de saison d'arène cotée, la première ouvre avec la phase 1.",
+      "running": "Saison d'arène {season} en cours (phase {phase}).",
+      "idle": "La saison d'arène {season} (phase {phase}) n'est pas en cours en ce moment."
+    }
+  },
+  "hallOfFame": {
+    "title": "Panthéon",
+    "subtitle": "Les héros les plus accomplis de {realm}",
+    "metaTitle": "Panthéon – {realm}",
+    "metaDescription": "Les personnages de {realm} classés par points de haut fait et par hauts faits obtenus, ceux propres au royaume compris.",
+    "sortLabel": "Tri",
+    "byPoints": "Points de haut fait",
+    "byCount": "Hauts faits",
+    "achievementsOf": "{count, plural, one {# haut fait} other {# hauts faits}}",
+    "pointsOf": "{points} points"
+  },
+  "population": {
+    "title": "Population",
+    "subtitle": "Qui joue sur {realm}, en ce moment",
+    "metaTitle": "Population – {realm}",
+    "metaDescription": "Équilibre des factions, classes, races et niveaux des personnages de {realm}, les joueurs en ligne et les nouveaux joueurs de chaque semaine.",
+    "empty": "Aucun personnage sur ce royaume pour l'instant.",
+    "characters": "Personnages",
+    "online": "En ligne",
+    "players": "Joueurs",
+    "factions": "Équilibre des factions",
+    "classes": "Classes",
+    "races": "Races",
+    "levels": "Niveaux",
+    "levelBracket": "Niveau {range} : {count, plural, =0 {aucun personnage} one {# personnage} other {# personnages}}",
+    "weeks": "Nouveaux joueurs par semaine",
+    "week": "Semaine du {date} : {count, plural, =0 {aucun nouveau joueur} one {# nouveau joueur} other {# nouveaux joueurs}}",
+    "weeksNote": "Les comptes qui jouent sur le royaume, par semaine de création (les 12 dernières semaines, du lundi au dimanche)."
   },
   "guilds": {
     "title": "Guildes",
