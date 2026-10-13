@@ -1165,6 +1165,8 @@
     "pathSwitchNote": "Puedes cambiar entre el camino de las bandas y la senda del Campeón Solitario en cada frontera de expansión."
   },
   "armory": {
+    "modelUnavailable": "Vista 3D no disponible",
+    "modelUnavailableHint": "Tu navegador o dispositivo no puede mostrar el modelo 3D: el equipo sigue listado alrededor.",
     "title": "Armería",
     "searchPlaceholder": "Buscar personaje...",
     "noResults": "No se encontraron personajes",

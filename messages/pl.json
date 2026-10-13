@@ -1165,6 +1165,8 @@
     "pathSwitchNote": "Możesz przełączać się między drogą rajdów a Ścieżką Samotnego Czempiona na każdej granicy dodatku."
   },
   "armory": {
+    "modelUnavailable": "Widok 3D niedostępny",
+    "modelUnavailableHint": "Twoja przeglądarka lub urządzenie nie może wyświetlić modelu 3D: wyposażenie jest nadal wymienione wokół.",
     "title": "Zbrojownia",
     "searchPlaceholder": "Szukaj postaci...",
     "noResults": "Nie znaleziono postaci",

@@ -1165,6 +1165,8 @@
     "pathSwitchNote": "Puoi passare dalla via delle incursioni al Sentiero del Campione Solitario a ogni confine di espansione."
   },
   "armory": {
+    "modelUnavailable": "Vista 3D non disponibile",
+    "modelUnavailableHint": "Il tuo browser o dispositivo non può mostrare il modello 3D: l'equipaggiamento resta elencato intorno.",
     "title": "Armeria",
     "searchPlaceholder": "Cerca personaggio...",
     "noResults": "Nessun personaggio trovato",

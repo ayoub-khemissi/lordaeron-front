@@ -111,10 +111,18 @@ export const DBC_LAYOUTS = {
     fields: { ID: 0 },
     localized: { Name: 2 },
   },
+  // the models and textures: the armory's 3D viewer matches a realm's own displays to Blizzard's by them (lib/armory-model.ts)
   ItemDisplayInfo: {
     fieldCount: 25,
-    fields: { ID: 0 },
-    strings: { InventoryIcon_1: 5 },
+    fields: { ID: 0, ...numbered("GeosetGroup", 7, 3) },
+    strings: {
+      ModelName_1: 1,
+      ModelName_2: 2,
+      ModelTexture_1: 3,
+      ModelTexture_2: 4,
+      InventoryIcon_1: 5,
+      ...numbered("Texture", 15, 8),
+    },
   },
   ItemSet: {
     fieldCount: 53,

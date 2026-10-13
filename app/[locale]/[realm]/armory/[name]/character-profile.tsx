@@ -43,6 +43,8 @@ interface ProfileData {
   arenaTeams: ArenaTeamInfo[];
   achievementCount: number;
   equipment: EquipmentSlot[];
+  // the 3D viewer's [slot, display] pairs (lib/armory-model.ts)
+  modelItems: [number, number][];
 }
 
 function formatPlayTime(seconds: number): string {
@@ -110,6 +112,7 @@ export function CharacterProfile({ name }: CharacterProfileProps) {
     arenaTeams,
     achievementCount,
     equipment,
+    modelItems,
   } = data;
   const isAlliance = ALLIANCE_RACES.includes(character.race);
   const classColor = CLASS_COLORS[character.class] || "#FFFFFF";
@@ -169,12 +172,12 @@ export function CharacterProfile({ name }: CharacterProfileProps) {
       <div className="max-w-[500px] mx-auto mb-8">
         <EquipmentPanel equipment={equipment}>
           <ModelViewer
-            equipment={equipment}
             face={character.face}
             facialStyle={character.facialStyle}
             gender={character.gender}
             hairColor={character.hairColor}
             hairStyle={character.hairStyle}
+            items={modelItems ?? []}
             race={character.race}
             skin={character.skin}
           />

@@ -1165,6 +1165,8 @@
     "pathSwitchNote": "Você pode alternar entre o caminho das raides e a Senda do Campeão Solitário em cada fronteira de expansão."
   },
   "armory": {
+    "modelUnavailable": "Vista 3D indisponível",
+    "modelUnavailableHint": "O teu navegador ou dispositivo não consegue mostrar o modelo 3D: o equipamento continua listado à volta.",
     "title": "Arsenal",
     "searchPlaceholder": "Pesquisar personagem...",
     "noResults": "Nenhum personagem encontrado",

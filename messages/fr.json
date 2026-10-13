@@ -1165,6 +1165,8 @@
     "pathSwitchNote": "Vous pouvez basculer entre la voie des raids et la voie du Champion solitaire à chaque frontière d'extension."
   },
   "armory": {
+    "modelUnavailable": "Vue 3D indisponible",
+    "modelUnavailableHint": "Votre navigateur ou appareil ne peut pas afficher le modèle 3D : l'équipement reste listé autour.",
     "title": "Armurerie",
     "searchPlaceholder": "Rechercher un personnage...",
     "noResults": "Aucun personnage trouvé",

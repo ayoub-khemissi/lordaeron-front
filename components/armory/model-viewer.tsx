@@ -2,9 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Script from "next/script";
-
-import { TC_TO_WMV_SLOT } from "@/lib/armory-constants";
-import { EquipmentSlot } from "@/types/armory";
+import { useTranslations } from "next-intl";
 
 declare global {
   interface Window {
@@ -14,6 +12,17 @@ declare global {
   }
 }
 
+/*
+ * A character in 3D, drawn by Wowhead's model viewer on its WotLK Classic data (Ayoub, 13/10/2026: the armory drew nothing).
+ * - the viewer's script is Wowhead's current one (/modelviewer/live/viewer/): the wrath folder's own script still asks for the .mo3
+ *   models Wowhead no longer serves, while the current one reads the raw models the wrath data now has;
+ * - the gear comes resolved by the server in WotLK Classic's numbering (lib/armory-model.ts);
+ * - 3.3.5 stores the looks as indices (skin, face, hair style and color, facial style); WotLK Classic's customization lists the same
+ *   choices in the same order (OrderIndex), one option per look, the facial one named after the race (Tusks, Markings, Earrings...);
+ *   the tauren's hair is their horns.
+ * - without WebGL, or when the model fails, a plain panel says so (the equipment around it still shows).
+ */
+
 interface ModelViewerProps {
   race: number;
   gender: number;
@@ -22,64 +31,73 @@ interface ModelViewerProps {
   hairStyle: number;
   hairColor: number;
   facialStyle: number;
-  equipment: EquipmentSlot[];
+  // [viewer slot, WotLK Classic display]
+  items: [number, number][];
 }
 
-/** Weapon slots use meta/item/, armor slots use meta/armor/{slot}/ */
-const WEAPON_WMV_SLOTS = [21, 22];
+type Looks = Pick<
+  ModelViewerProps,
+  "skin" | "face" | "hairStyle" | "hairColor" | "facialStyle"
+>;
 
-/** Check if a display ID has a valid model on the CDN */
-async function validateDisplayId(
-  wmvSlot: number,
-  displayId: number,
-): Promise<boolean> {
+const CONTENT_PATH = "/modelviewer/wrath/";
+const VIEWER_SCRIPT = "/modelviewer/live/viewer/viewer.min.js";
+const TAUREN = 6;
+
+// the 3.3.5 look each WotLK Classic option stands for
+function lookOf(option: string, race: number): keyof Looks | null {
+  if (option === "Skin Color") return "skin";
+  if (option === "Face") return "face";
+  if (option === "Hair Style") return "hairStyle";
+  if (option === "Hair Color") return "hairColor";
+  if (race === TAUREN && option === "Horn Style") return "hairStyle";
+  if (race === TAUREN && option === "Horn Color") return "hairColor";
+
+  // Facial Hair, Piercings, Earrings, Markings, Features, Tusks, a draenei woman's horns, a tauren woman's hair
+  return option === "Horn Color" ? null : "facialStyle";
+}
+
+interface Customization {
+  Options: {
+    Id: number;
+    Name: string;
+    Choices: { Id: number; OrderIndex: number }[];
+  }[];
+}
+
+async function customization(modelId: number, race: number, looks: Looks) {
+  const res = await fetch(
+    `${CONTENT_PATH}meta/charactercustomization/${modelId}.json`,
+  );
+
+  if (!res.ok) throw new Error(`customization ${modelId}: ${res.status}`);
+  const json = await res.json();
+  const data: Customization = json.data ?? json;
+
+  return data.Options.map((o) => {
+    const look = lookOf(o.Name, race);
+    const index = look ? looks[look] : 0;
+    const choice =
+      o.Choices.find((c) => c.OrderIndex === index) ??
+      o.Choices[index] ??
+      o.Choices[0];
+
+    return { optionId: o.Id, choiceId: choice.Id };
+  });
+}
+
+function webglAvailable() {
   try {
-    const path = WEAPON_WMV_SLOTS.includes(wmvSlot)
-      ? `/modelviewer/wrath/meta/item/${displayId}.json`
-      : `/modelviewer/wrath/meta/armor/${wmvSlot}/${displayId}.json`;
+    const canvas = document.createElement("canvas");
 
-    const res = await fetch(path, { method: "HEAD" });
-
-    return res.ok;
+    return !!(canvas.getContext("webgl2") || canvas.getContext("webgl"));
   } catch {
     return false;
   }
 }
 
-/** Resolve equipment to validated [wmvSlot, displayId] pairs using DB displayIds */
-async function resolveItems(
-  equipment: EquipmentSlot[],
-): Promise<[number, number][]> {
-  const renderableItems = equipment.filter(
-    (e) => TC_TO_WMV_SLOT[e.slot] !== undefined && e.displayId > 0,
-  );
-
-  const results = await Promise.all(
-    renderableItems.map(async (e) => {
-      const wmvSlot = TC_TO_WMV_SLOT[e.slot];
-      const displayId = e.displayId;
-
-      // 1) Check if the displayId exists on the CDN
-      if (await validateDisplayId(wmvSlot, displayId)) {
-        return [wmvSlot, displayId] as [number, number];
-      }
-
-      // 2) Try alternate slot mapping (chest→robe, etc.)
-      const altSlot = { 5: 20, 16: 21, 18: 22 }[wmvSlot];
-
-      if (altSlot && (await validateDisplayId(altSlot, displayId))) {
-        return [altSlot, displayId] as [number, number];
-      }
-
-      return null;
-    }),
-  );
-
-  return results.filter((e): e is [number, number] => e !== null);
-}
-
 function setupGlobals() {
-  window.CONTENT_PATH = "/modelviewer/wrath/";
+  window.CONTENT_PATH = CONTENT_PATH;
 
   if (!(window as any).WH) {
     (window as any).WH = {};
@@ -145,15 +163,18 @@ export function ModelViewer({
   hairStyle,
   hairColor,
   facialStyle,
-  equipment,
+  items,
 }: ModelViewerProps) {
+  const t = useTranslations("armory");
   const viewerRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [scriptsReady, setScriptsReady] = useState(false);
   const [jqueryLoaded, setJqueryLoaded] = useState(false);
+  const [failed, setFailed] = useState(false);
 
   // On mount: check if scripts are already loaded (client-side navigation)
   useEffect(() => {
+    if (!webglAvailable()) setFailed(true);
     if ((window as any).jQuery) {
       setupGlobals();
       setJqueryLoaded(true);
@@ -176,7 +197,7 @@ export function ModelViewer({
 
   // Initialize viewer once scripts are ready
   useEffect(() => {
-    if (!scriptsReady) return;
+    if (!scriptsReady || failed) return;
 
     let cancelled = false;
     let rafId: number;
@@ -211,24 +232,35 @@ export function ModelViewer({
       }
       container.innerHTML = "";
 
-      // Fetch real display IDs from Wowhead (cached server-side)
-      const items = await resolveItems(equipment);
-
-      if (cancelled) return;
-
+      // the 3.3.5 model: race and gender (0 male, 1 female)
       const modelId = race * 2 - 1 + gender;
 
-      viewerRef.current = new Zam({
-        type: 2,
-        contentPath: window.CONTENT_PATH,
-        container: $(container),
-        aspect: 1,
-        models: {
-          id: modelId,
-          type: 16,
-        },
-        items: items,
-      });
+      try {
+        const options = await customization(modelId, race, {
+          skin,
+          face,
+          hairStyle,
+          hairColor,
+          facialStyle,
+        });
+
+        if (cancelled) return;
+        viewerRef.current = new Zam({
+          type: 2,
+          contentPath: window.CONTENT_PATH,
+          container: $(container),
+          aspect: container.clientWidth / container.clientHeight,
+          models: {
+            id: modelId,
+            type: 16,
+          },
+          charCustomization: { options },
+          items,
+        });
+      } catch (e) {
+        console.error("Armory model:", e);
+        if (!cancelled) setFailed(true);
+      }
     };
 
     rafId = requestAnimationFrame(() => {
@@ -241,6 +273,7 @@ export function ModelViewer({
     };
   }, [
     scriptsReady,
+    failed,
     race,
     gender,
     skin,
@@ -248,7 +281,7 @@ export function ModelViewer({
     hairStyle,
     hairColor,
     facialStyle,
-    equipment,
+    items,
   ]);
 
   const handleJqueryLoad = () => {
@@ -269,16 +302,29 @@ export function ModelViewer({
       />
       {jqueryLoaded && (
         <Script
-          src="/modelviewer/wrath/viewer/viewer.min.js"
+          src={VIEWER_SCRIPT}
           strategy="afterInteractive"
+          onError={() => setFailed(true)}
           onLoad={handleViewerScriptLoad}
         />
       )}
-      <div
-        ref={containerRef}
-        id="armory-model-viewer"
-        style={{ width: "100%", height: 420, background: "#000" }}
-      />
+      {failed ? (
+        <div
+          className="flex flex-col items-center justify-center gap-2 rounded-lg border border-white/10 bg-gradient-to-b from-[#0b1018] to-black px-6 text-center"
+          style={{ width: "100%", height: 420 }}
+        >
+          <p className="font-heading text-lg text-wow-gold-light">
+            {t("modelUnavailable")}
+          </p>
+          <p className="text-sm text-gray-400">{t("modelUnavailableHint")}</p>
+        </div>
+      ) : (
+        <div
+          ref={containerRef}
+          id="armory-model-viewer"
+          style={{ width: "100%", height: 420, background: "#000" }}
+        />
+      )}
     </>
   );
 }

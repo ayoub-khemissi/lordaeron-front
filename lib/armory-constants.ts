@@ -77,24 +77,6 @@ export const EQUIPMENT_SLOT_NAMES: Record<number, string> = {
   18: "Tabard",
 };
 
-/** TrinityCore equipment slot → wow-model-viewer slot */
-export const TC_TO_WMV_SLOT: Record<number, number> = {
-  0: 1, // Head
-  2: 3, // Shoulders
-  3: 4, // Shirt
-  4: 5, // Chest
-  5: 6, // Waist
-  6: 7, // Legs
-  7: 8, // Feet
-  8: 9, // Wrists
-  9: 10, // Hands
-  14: 15, // Back
-  15: 21, // Main Hand
-  16: 22, // Off Hand
-  17: 18, // Ranged
-  18: 19, // Tabard
-};
-
 /** Slots that are rendered on the 3D model */
 export const RENDERED_SLOTS = [0, 2, 3, 4, 5, 6, 7, 8, 9, 14, 15, 16, 17, 18];
 

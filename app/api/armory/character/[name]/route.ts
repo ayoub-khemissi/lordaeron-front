@@ -10,6 +10,7 @@ import {
   parseEquipmentCache,
 } from "@/lib/queries/armory";
 import { requestRealm } from "@/lib/realms";
+import { armoryModelItems } from "@/lib/armory-model";
 
 export const dynamic = "force-dynamic";
 
@@ -51,6 +52,17 @@ export async function GET(
       }
     }
 
+    // the gear the 3D viewer draws, in Wowhead's WotLK Classic numbering (transmogs and the realm's own items resolved)
+    const modelItems = await armoryModelItems(
+      character.guid,
+      equipment,
+      realm,
+    ).catch((e) => {
+      console.error("Armory model items:", e);
+
+      return [];
+    });
+
     return NextResponse.json({
       character,
       stats,
@@ -58,6 +70,7 @@ export async function GET(
       arenaTeams,
       achievementCount,
       equipment,
+      modelItems,
     });
   } catch (error) {
     console.error("Armory character error:", error);

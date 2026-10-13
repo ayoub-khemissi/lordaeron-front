@@ -1165,6 +1165,8 @@
     "pathSwitchNote": "Ihr könnt an jeder Erweiterungsgrenze zwischen dem Schlachtzugsweg und dem Pfad des Einsamen Champions wechseln."
   },
   "armory": {
+    "modelUnavailable": "3D-Ansicht nicht verfügbar",
+    "modelUnavailableHint": "Dein Browser oder Gerät kann das 3D-Modell nicht darstellen: Die Ausrüstung ist weiterhin darum herum aufgeführt.",
     "title": "Waffenkammer",
     "searchPlaceholder": "Charakter suchen...",
     "noResults": "Keine Charaktere gefunden",

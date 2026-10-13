@@ -1165,6 +1165,8 @@
     "pathSwitchNote": "You can switch between the raid path and the Lone Champion's Path at every expansion boundary."
   },
   "armory": {
+    "modelUnavailable": "3D view unavailable",
+    "modelUnavailableHint": "Your browser or device cannot draw the 3D model: the equipment is still listed around it.",
     "title": "Armory",
     "searchPlaceholder": "Search character...",
     "noResults": "No characters found",
