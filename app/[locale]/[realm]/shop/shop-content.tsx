@@ -33,13 +33,13 @@ import { PurchaseModal } from "@/components/shop/purchase-modal";
 import { GiftModal } from "@/components/shop/gift-modal";
 import { BuyShardsModal } from "@/components/shop/buy-shards-modal";
 import {
-  CATEGORY_ICONS,
   DEFAULT_SORT,
   NO_FACETS,
   compareShopEntries,
   matchesFacets,
   type ShopFacets as ShopFacetsState,
 } from "@/lib/shop-utils";
+import { CategoryIcon } from "@/components/shop/category-icon";
 import { ShopToolbar, type ShopView } from "@/components/shop/shop-toolbar";
 import { useRealm, useRealmHref } from "@/lib/realm-context";
 import { RealmSoonBanner } from "@/components/shop/realm-soon-banner";
@@ -549,7 +549,7 @@ export default function ShopContent({
           {filteredItems.filter((i) => i.is_highlighted).length > 0 && (
             <div className="mb-8 pb-6 border-b border-wow-gold/10">
               <h2 className="text-lg font-heading wow-gradient-text mb-4 flex items-center gap-2">
-                <span>{"\u2B50"}</span> {t("highlights")}
+                <CategoryIcon category="highlighted" /> {t("highlights")}
               </h2>
               <ItemGrid
                 items={filteredItems.filter((i) => i.is_highlighted)}
@@ -568,6 +568,7 @@ export default function ShopContent({
               "tabards",
               "pets",
               "toys",
+              "consumables",
             ] as const
           ).map((cat) => {
             const catItems = filteredItems.filter((i) => i.category === cat);
@@ -580,7 +581,7 @@ export default function ShopContent({
                 className="mb-8 pb-6 border-b border-wow-gold/10 last:border-b-0"
               >
                 <h2 className="text-lg font-heading text-wow-gold mb-4 flex items-center gap-2">
-                  <span>{CATEGORY_ICONS[cat]}</span> {t(`categories.${cat}`)}
+                  <CategoryIcon category={cat} /> {t(`categories.${cat}`)}
                 </h2>
                 <ItemGrid items={catItems} onItemClick={setDetailItem} />
               </div>

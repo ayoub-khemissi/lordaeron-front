@@ -10,13 +10,13 @@ import { useTranslations } from "next-intl";
 import clsx from "clsx";
 
 import {
-  CATEGORY_ICONS,
   DEFAULT_SORT,
   NO_FACETS,
   SHOP_CATEGORIES,
   type ShopFacets,
 } from "@/lib/shop-utils";
 import { useRealm } from "@/lib/realm-context";
+import { CategoryIcon } from "@/components/shop/category-icon";
 import { OVERLAY_POPOVER } from "@/lib/overlay-motion";
 
 export type ShopView = ShopCategory | "highlighted" | null;
@@ -164,16 +164,25 @@ export function ShopToolbar({
           }}
         >
           {[
-            <SelectItem key="all">{t("allItems")}</SelectItem>,
-            <SelectItem
-              key="highlighted"
-              textValue={t("highlights")}
-            >{`${CATEGORY_ICONS.highlighted}  ${t("highlights")}`}</SelectItem>,
+            <SelectItem key="all" textValue={t("allItems")}>
+              <span className="flex items-center gap-2">
+                <CategoryIcon category="all" size={22} />
+                {t("allItems")}
+              </span>
+            </SelectItem>,
+            <SelectItem key="highlighted" textValue={t("highlights")}>
+              <span className="flex items-center gap-2">
+                <CategoryIcon category="highlighted" size={22} />
+                {t("highlights")}
+              </span>
+            </SelectItem>,
             ...SHOP_CATEGORIES.map((cat) => (
-              <SelectItem
-                key={cat}
-                textValue={t(`categories.${cat}`)}
-              >{`${CATEGORY_ICONS[cat]}  ${t(`categories.${cat}`)}`}</SelectItem>
+              <SelectItem key={cat} textValue={t(`categories.${cat}`)}>
+                <span className="flex items-center gap-2">
+                  <CategoryIcon category={cat} size={22} />
+                  {t(`categories.${cat}`)}
+                </span>
+              </SelectItem>
             )),
           ]}
         </Select>

@@ -7,6 +7,7 @@ import { getShopSets } from "@/lib/queries/shop-sets";
 import { getShopSetItems } from "@/lib/queries/shop-sets";
 import { localizeShopSet, ALLIANCE_RACES, HORDE_RACES } from "@/lib/shop-utils";
 import { REALMS, offeredOnRealm, requestRealm } from "@/lib/realms";
+import { phaseLockedItems } from "@/lib/realm-unlocks";
 
 export const dynamic = "force-dynamic";
 
@@ -45,8 +46,17 @@ export async function GET(request: NextRequest) {
       }),
     );
 
+    // a progressive realm sells a set once its phase has opened every piece (lib/realm-unlocks.ts)
+    const locked = await phaseLockedItems(
+      realm,
+      setsWithItems.flatMap((s) => s.items.map((i) => i.item_id)),
+    );
+    const openSets = setsWithItems.filter(
+      (s) => !s.items.some((i) => locked.has(i.item_id)),
+    );
+
     // Mark each set with eligibility instead of filtering
-    const localized = setsWithItems.map((s) => {
+    const localized = openSets.map((s) => {
       const base = localizeShopSet(s, locale);
       let eligible = true;
       let restriction_reason: string | null = null;

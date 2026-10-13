@@ -287,6 +287,8 @@
     "restrictionRace": "Ograniczenie rasy",
     "restrictionFaction": "Ograniczenie frakcji",
     "restrictionHeirloomMaxLevel": "Wymaga postaci na poz. 80",
+    "restrictionRealmFirsts": "Po pierwszych w krainie na 80 poz. ({done}/{total})",
+    "realmFirstsUnlock": "Dostępne, gdy wszystkie osiągnięcia „Pierwszy w krainie!” na 80 poziomie (każda rasa, każda klasa) zostaną zdobyte: {done}/{total}.",
     "unavailable": "Niedostępny",
     "noItems": "Brak dostępnych przedmiotów w tej kategorii",
     "noSets": "Brak dostępnych zestawów przedmiotów",
@@ -365,7 +367,8 @@
       "mounts": "Wierzchowce",
       "tabards": "Tuniki herbowe",
       "pets": "Towarzysze",
-      "toys": "Zabawki"
+      "toys": "Zabawki",
+      "consumables": "Materiały eksploatacyjne"
     },
     "serviceTypes": {
       "xp_boost_6h": "Bonus XP 6 godz.",
@@ -434,7 +437,9 @@
       "serverError": "Błąd serwera. Spróbuj ponownie.",
       "realmNotOpen": "Ten świat nie jest jeszcze otwarty",
       "purchaseNotRefundable": "Ten zakup nie podlega zwrotowi.",
-      "recipientNotFound": "Nie znaleziono postaci odbiorcy."
+      "recipientNotFound": "Nie znaleziono postaci odbiorcy.",
+      "phaseLocked": "Ten przedmiot nie jest dostępny w obecnej fazie krainy.",
+      "realmFirstsPending": "Dostępne, gdy wszystkie osiągnięcia „Pierwszy w krainie!” na 80 poziomie zostaną zdobyte."
     },
     "comingSoon": "Wkrótce",
     "realmSoonTitle": "Sklep {realm} otworzy się wraz ze światem",

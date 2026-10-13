@@ -35,6 +35,8 @@ export interface RealmInfo {
   preview?: boolean;
   // its opening, an instant in UTC (shown in Paris time with UTC beside it, see lib/launch.ts); the status stays "soon" until switched
   launchAt?: string;
+  // a progressive realm (phases): its shop follows its phase and its realm firsts (lib/realm-unlocks.ts)
+  progressive?: boolean;
 }
 
 export const ALL_SECTIONS: RealmSection[] = [
@@ -78,6 +80,7 @@ export const REALMS: Record<RealmSlug, RealmInfo> = {
     // its how-to has no client patch yet (it comes with its opening)
     sections: ["home", "how-to", "armory", "shop"],
     accent: "ice",
+    progressive: true,
   },
 };
 

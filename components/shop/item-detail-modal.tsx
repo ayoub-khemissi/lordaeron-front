@@ -171,6 +171,12 @@ export function ItemDetailModal({
         </ModalBody>
 
         <ModalFooter className="flex-col items-stretch gap-3">
+          {item.restriction_reason === "realm_firsts" &&
+            item.unlock_progress && (
+              <p className="text-xs text-wow-blue-ice/90 text-center">
+                {t("realmFirstsUnlock", item.unlock_progress)}
+              </p>
+            )}
           {!hasCharacter && (
             <p className="text-xs text-yellow-400/80 text-center">
               {t("noCharacterSelected")}

@@ -287,6 +287,8 @@
     "restrictionRace": "Restrito por raca",
     "restrictionFaction": "Restrito por faccao",
     "restrictionHeirloomMaxLevel": "Requer um personagem Nv. 80",
+    "restrictionRealmFirsts": "Após os primeiros do reino nv. 80 ({done}/{total})",
+    "realmFirstsUnlock": "Disponível quando todos os «Primeiro do reino!» de nível 80 (cada raça, cada classe) forem conquistados: {done}/{total}.",
     "unavailable": "Indisponivel",
     "noItems": "Nenhum item disponivel nesta categoria",
     "noSets": "Nenhum conjunto de itens disponivel",
@@ -365,7 +367,8 @@
       "mounts": "Montadas",
       "tabards": "Tabardos",
       "pets": "Mascotes",
-      "toys": "Brinquedos"
+      "toys": "Brinquedos",
+      "consumables": "Consumíveis"
     },
     "serviceTypes": {
       "xp_boost_6h": "Boost de XP 6h",
@@ -434,7 +437,9 @@
       "serverError": "Erro no servidor. Por favor, tenta novamente.",
       "realmNotOpen": "Este reino ainda não está aberto",
       "purchaseNotRefundable": "Esta compra nao e reembolsavel.",
-      "recipientNotFound": "Personagem destinatario nao encontrado."
+      "recipientNotFound": "Personagem destinatario nao encontrado.",
+      "phaseLocked": "Este item não está disponível na fase atual do reino.",
+      "realmFirstsPending": "Disponível quando todos os primeiros do reino de nível 80 forem conquistados."
     },
     "comingSoon": "Em breve",
     "realmSoonTitle": "A loja de {realm} abrirá com o reino",

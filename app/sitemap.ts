@@ -15,6 +15,7 @@ const shopCategories = [
   "tabards",
   "pets",
   "toys",
+  "consumables",
 ];
 
 type PageEntry = {

@@ -135,7 +135,8 @@ export type ShopCategory =
   | "mounts"
   | "tabards"
   | "pets"
-  | "toys";
+  | "toys"
+  | "consumables";
 
 export type ServiceType =
   | "xp_boost_6h"
@@ -218,6 +219,8 @@ export interface ShopItemLocalized {
   // the shop's filters (app/api/shop/items): a mount's ground or flying, a transmog piece's weapon or armor; sold on this realm alone
   kind?: ShopItemKind | null;
   exclusive?: boolean;
+  // restriction_reason "realm_firsts": how many of the realm's level 80 realm firsts are earned (lib/realm-unlocks.ts)
+  unlock_progress?: { done: number; total: number } | null;
 }
 
 export type ShopItemKind = "ground" | "flying" | "weapon" | "armor";

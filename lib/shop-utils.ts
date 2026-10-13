@@ -174,19 +174,6 @@ export const SERVICE_TYPES = [
   { value: "vip", label: "VIP" },
 ] as const;
 
-export const CATEGORY_ICONS: Record<string, string> = {
-  highlighted: "\u2B50",
-  services: "\u2699\uFE0F",
-  bags: "\uD83C\uDF92",
-  heirlooms: "\uD83D\uDDE1\uFE0F",
-  transmog: "\uD83D\uDC57",
-  mounts: "\uD83D\uDC0E",
-  tabards: "\uD83D\uDEE1\uFE0F",
-  pets: "\uD83D\uDC3E",
-  toys: "\uD83C\uDFAE",
-  history: "\uD83D\uDCDC",
-};
-
 export const SHOP_CATEGORIES = [
   "services",
   "bags",
@@ -196,6 +183,7 @@ export const SHOP_CATEGORIES = [
   "tabards",
   "pets",
   "toys",
+  "consumables",
 ] as const;
 
 export const CLASS_COLORS: Record<number, string> = {

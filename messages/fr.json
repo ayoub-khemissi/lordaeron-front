@@ -287,6 +287,8 @@
     "restrictionRace": "Race incompatible",
     "restrictionFaction": "Faction incompatible",
     "restrictionHeirloomMaxLevel": "Nécessite un personnage Nv. 80",
+    "restrictionRealmFirsts": "Après les Prem's niv. 80 ({done}/{total})",
+    "realmFirstsUnlock": "Disponible quand tous les « Prem's » niveau 80 du royaume (chaque race, chaque classe) auront été obtenus : {done}/{total}.",
     "unavailable": "Indisponible",
     "noItems": "Aucun article disponible dans cette catégorie",
     "noSets": "Aucun set d'items disponible",
@@ -365,7 +367,8 @@
       "mounts": "Montures",
       "tabards": "Tabards",
       "pets": "Mascottes",
-      "toys": "Jouets"
+      "toys": "Jouets",
+      "consumables": "Consommables"
     },
     "serviceTypes": {
       "xp_boost_6h": "Boost XP 6h",
@@ -434,7 +437,9 @@
       "serverError": "Erreur serveur. Veuillez réessayer.",
       "realmNotOpen": "Ce royaume n'est pas encore ouvert",
       "purchaseNotRefundable": "Cet achat n'est pas remboursable.",
-      "recipientNotFound": "Personnage destinataire introuvable."
+      "recipientNotFound": "Personnage destinataire introuvable.",
+      "phaseLocked": "Cet article n'est pas disponible dans la phase actuelle du royaume.",
+      "realmFirstsPending": "Disponible quand tous les « Prem's » niveau 80 du royaume auront été obtenus."
     },
     "comingSoon": "Bientôt disponible",
     "realmSoonTitle": "La boutique de {realm} ouvrira avec le royaume",

@@ -287,6 +287,8 @@
     "restrictionRace": "Razza incompatibile",
     "restrictionFaction": "Fazione incompatibile",
     "restrictionHeirloomMaxLevel": "Richiede un personaggio Lv. 80",
+    "restrictionRealmFirsts": "Dopo i primi del reame liv. 80 ({done}/{total})",
+    "realmFirstsUnlock": "Disponibile quando tutti i «Primo del reame!» di livello 80 (ogni razza, ogni classe) saranno stati ottenuti: {done}/{total}.",
     "unavailable": "Non disponibile",
     "noItems": "Nessun articolo disponibile in questa categoria",
     "noSets": "Nessun set di articoli disponibile",
@@ -365,7 +367,8 @@
       "mounts": "Cavalcature",
       "tabards": "Tabardi",
       "pets": "Animali",
-      "toys": "Giocattoli"
+      "toys": "Giocattoli",
+      "consumables": "Consumabili"
     },
     "serviceTypes": {
       "xp_boost_6h": "Boost XP 6h",
@@ -434,7 +437,9 @@
       "serverError": "Errore del server. Riprova.",
       "realmNotOpen": "Questo reame non è ancora aperto",
       "purchaseNotRefundable": "Questo acquisto non è rimborsabile.",
-      "recipientNotFound": "Personaggio destinatario non trovato."
+      "recipientNotFound": "Personaggio destinatario non trovato.",
+      "phaseLocked": "Questo articolo non è disponibile nella fase attuale del reame.",
+      "realmFirstsPending": "Disponibile quando tutti i primi del reame di livello 80 saranno stati ottenuti."
     },
     "comingSoon": "Prossimamente",
     "realmSoonTitle": "Il negozio di {realm} aprirà con il reame",

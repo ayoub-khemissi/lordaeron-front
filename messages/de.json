@@ -287,6 +287,8 @@
     "restrictionRace": "Rasse inkompatibel",
     "restrictionFaction": "Fraktion inkompatibel",
     "restrictionHeirloomMaxLevel": "Erfordert einen Charakter auf Stufe 80",
+    "restrictionRealmFirsts": "Nach den Realm-Ersten Stufe 80 ({done}/{total})",
+    "realmFirstsUnlock": "Verfügbar, sobald alle Realm-Ersten der Stufe 80 (jedes Volk, jede Klasse) auf diesem Realm errungen sind: {done}/{total}.",
     "unavailable": "Nicht verfügbar",
     "noItems": "Keine Artikel in dieser Kategorie verfügbar",
     "noSets": "Keine Item-Sets verfügbar",
@@ -365,7 +367,8 @@
       "mounts": "Reittiere",
       "tabards": "Wappenröcke",
       "pets": "Begleiter",
-      "toys": "Spielzeuge"
+      "toys": "Spielzeuge",
+      "consumables": "Verbrauchsgüter"
     },
     "serviceTypes": {
       "xp_boost_6h": "XP-Boost 6h",
@@ -434,7 +437,9 @@
       "serverError": "Serverfehler. Bitte versuche es erneut.",
       "realmNotOpen": "Dieser Realm ist noch nicht geöffnet",
       "purchaseNotRefundable": "Dieser Kauf ist nicht erstattungsfähig.",
-      "recipientNotFound": "Empfänger-Charakter nicht gefunden."
+      "recipientNotFound": "Empfänger-Charakter nicht gefunden.",
+      "phaseLocked": "Dieser Artikel ist in der aktuellen Phase des Realms nicht verfügbar.",
+      "realmFirstsPending": "Verfügbar, sobald alle Realm-Ersten der Stufe 80 errungen sind."
     },
     "comingSoon": "Demnächst",
     "realmSoonTitle": "Der Shop von {realm} öffnet mit dem Realm",

@@ -287,6 +287,8 @@
     "restrictionRace": "Race restricted",
     "restrictionFaction": "Faction restricted",
     "restrictionHeirloomMaxLevel": "Requires a Lv. 80 character",
+    "restrictionRealmFirsts": "After the level 80 realm firsts ({done}/{total})",
+    "realmFirstsUnlock": "Available once every level 80 realm first (each race, each class) has been earned on this realm: {done}/{total}.",
     "unavailable": "Unavailable",
     "noItems": "No items available in this category",
     "noSets": "No item sets available",
@@ -365,7 +367,8 @@
       "mounts": "Mounts",
       "tabards": "Tabards",
       "pets": "Pets",
-      "toys": "Toys"
+      "toys": "Toys",
+      "consumables": "Consumables"
     },
     "serviceTypes": {
       "xp_boost_6h": "XP Boost 6h",
@@ -434,7 +437,9 @@
       "serverError": "Server error. Please try again.",
       "realmNotOpen": "This realm is not open yet",
       "purchaseNotRefundable": "This purchase is not refundable.",
-      "recipientNotFound": "Recipient character not found."
+      "recipientNotFound": "Recipient character not found.",
+      "phaseLocked": "This item is not available in the realm's current phase.",
+      "realmFirstsPending": "Available once every level 80 realm first of the realm has been earned."
     },
     "comingSoon": "Coming soon",
     "realmSoonTitle": "The {realm} shop opens with the realm",

@@ -9,6 +9,11 @@ import { localizeShopItem } from "@/lib/shop-utils";
 import { ALLIANCE_RACES, HORDE_RACES } from "@/lib/shop-utils";
 import { REALMS, offeredOnRealm, requestRealm } from "@/lib/realms";
 import { realmWorldDb } from "@/lib/realms-server";
+import {
+  REALM_FIRSTS_CATEGORIES,
+  phaseLockedItems,
+  realmFirstsProgress,
+} from "@/lib/realm-unlocks";
 
 export const dynamic = "force-dynamic";
 
@@ -44,9 +49,18 @@ export async function GET(request: NextRequest) {
       hasDiscount: hasDiscount || undefined,
     });
 
-    const offered = items.filter((item) =>
+    // a progressive realm sells only what its phase has opened (lib/realm-unlocks.ts)
+    const realmItems = items.filter((item) =>
       offeredOnRealm(item.realm_ids, realm),
     );
+    const locked = await phaseLockedItems(
+      realm,
+      realmItems.map((i) => i.item_id).filter((id): id is number => !!id),
+    );
+    const offered = realmItems.filter(
+      (item) => !item.item_id || !locked.has(item.item_id),
+    );
+    const firsts = await realmFirstsProgress(realm);
     const kinds = await itemKinds(
       realm,
       offered
@@ -62,7 +76,13 @@ export async function GET(request: NextRequest) {
       let eligible = true;
       let restriction_reason: string | null = null;
 
-      if (item.category === "heirlooms" && !hasMaxLevel) {
+      if (
+        REALM_FIRSTS_CATEGORIES.includes(item.category) &&
+        firsts.done < firsts.total
+      ) {
+        eligible = false;
+        restriction_reason = "realm_firsts";
+      } else if (item.category === "heirlooms" && !hasMaxLevel) {
         eligible = false;
         restriction_reason = "heirloom_max_level";
       } else if (level && item.min_level > 0 && level < item.min_level) {
@@ -99,6 +119,7 @@ export async function GET(request: NextRequest) {
         kind: (item.item_id && kinds.get(item.item_id)) || null,
         exclusive:
           item.realm_ids?.length === 1 && item.realm_ids[0] === realmId,
+        unlock_progress: restriction_reason === "realm_firsts" ? firsts : null,
       };
     });
 

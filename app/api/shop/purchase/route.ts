@@ -20,6 +20,11 @@ import { ALLIANCE_RACES } from "@/lib/shop-utils";
 import { sendItem, sendItems } from "@/lib/soap";
 import { offeredOnRealm, realmById, type RealmInfo } from "@/lib/realms";
 import { isRealmPreviewer } from "@/lib/realm-preview";
+import {
+  REALM_FIRSTS_CATEGORIES,
+  phaseLockedItems,
+  realmFirstsProgress,
+} from "@/lib/realm-unlocks";
 
 function checkFaction(faction: string, characterRace: number): string | null {
   if (faction === "both") return null;
@@ -46,6 +51,18 @@ async function handleSetPurchase(
   // a set with no realm list is Lordaeron's (the realm itself was checked open by the caller)
   if (!offeredOnRealm(set.realm_ids, realm.slug)) {
     return NextResponse.json({ error: "realmRestricted" }, { status: 400 });
+  }
+
+  // a progressive realm's phase opens a set with its last piece (lib/realm-unlocks.ts)
+  if (
+    (
+      await phaseLockedItems(
+        realm.slug,
+        set.items.map((i) => i.item_id),
+      )
+    ).size
+  ) {
+    return NextResponse.json({ error: "phaseLocked" }, { status: 400 });
   }
 
   // Check min level
@@ -234,6 +251,24 @@ export async function POST(request: NextRequest) {
     // Check realm restriction (an item with no realm list is Lordaeron's)
     if (!offeredOnRealm(item.realm_ids, realm.slug)) {
       return NextResponse.json({ error: "realmRestricted" }, { status: 400 });
+    }
+
+    // a progressive realm's phase and realm firsts (lib/realm-unlocks.ts)
+    if (
+      item.item_id &&
+      (await phaseLockedItems(realm.slug, [item.item_id])).has(item.item_id)
+    ) {
+      return NextResponse.json({ error: "phaseLocked" }, { status: 400 });
+    }
+    if (REALM_FIRSTS_CATEGORIES.includes(item.category)) {
+      const firsts = await realmFirstsProgress(realm.slug);
+
+      if (firsts.done < firsts.total) {
+        return NextResponse.json(
+          { error: "realmFirstsPending" },
+          { status: 400 },
+        );
+      }
     }
 
     // Check min level on buyer's character

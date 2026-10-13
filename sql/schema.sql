@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS soul_shards (
 
 CREATE TABLE IF NOT EXISTS shop_items (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  category ENUM('services','bags','heirlooms','transmog','mounts','tabards','pets','toys') NOT NULL,
+  category ENUM('services','bags','heirlooms','transmog','mounts','tabards','pets','toys','consumables') NOT NULL,
   service_type VARCHAR(50) NULL,
   item_id INT UNSIGNED NULL,
   name_en VARCHAR(255) NOT NULL,
