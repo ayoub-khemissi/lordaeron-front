@@ -513,7 +513,7 @@ export function AccountSecondFactorCard({ locale }: { locale: string }) {
   };
 
   return (
-    <div className="glass flex flex-col gap-3 rounded-xl border border-wow-gold/20 p-5">
+    <div className="glass mt-6 flex flex-col gap-3 rounded-xl border border-wow-gold/20 p-5">
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-wow-gold/80">
         {t(state.gm ? "eyebrowAccount" : "title")}
       </p>
