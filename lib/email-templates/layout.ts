@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site";
 /*
  * Lordaeron's e-mail layout (Ayoub, 13/10/2026: "des templates de mails vraiment beaux, responsive, avec mentions légales en bas",
  * on the model of majaliss's Layout): a Northrend banner, the mark and the name, one card, one button, and a footer that says who is
@@ -29,7 +30,8 @@ export function emailLocale(locale: string | null | undefined): EmailLocale {
 export const SITE_URL = (
   process.env.NEXT_PUBLIC_BASE_URL || "https://www.lordaeron.eu"
 ).replace(/\/$/, "");
-export const CONTACT_EMAIL = "contact@lordaeron.eu";
+// nobody reads noreply@lordaeron.eu (Ayoub, 13/10/2026): questions go to the team on Discord
+export const SUPPORT_URL = siteConfig.links.discord;
 
 const COLORS = {
   ground: "#07090e",
@@ -67,7 +69,8 @@ const FOOTER: Record<EmailLocale, Footer> = {
         "You are receiving this e-mail because a Lordaeron account uses this address. It is a service message about your account, sent whatever your news preferences.",
       news: "You are receiving this e-mail because you asked to hear about Lordaeron's news. You can stop at any time, in one click.",
     },
-    questions: "A question? Reply to this e-mail or write to",
+    questions:
+      "This address receives no replies. A question? The team answers you on",
     terms: "Terms of use",
     privacy: "Privacy policy",
     account: "My account",
@@ -83,7 +86,8 @@ const FOOTER: Record<EmailLocale, Footer> = {
         "Vous recevez cet e-mail car un compte Lordaeron utilise cette adresse. C'est un message de service sur votre compte, envoyé quelles que soient vos préférences de nouvelles.",
       news: "Vous recevez cet e-mail car vous avez demandé à suivre les nouveautés de Lordaeron. Vous pouvez arrêter à tout moment, en un clic.",
     },
-    questions: "Une question ? Répondez à cet e-mail ou écrivez à",
+    questions:
+      "Cette adresse ne reçoit pas de réponses. Une question ? L'équipe vous répond sur",
     terms: "Conditions d'utilisation",
     privacy: "Politique de confidentialité",
     account: "Mon compte",
@@ -100,7 +104,8 @@ const FOOTER: Record<EmailLocale, Footer> = {
         "Du erhältst diese E-Mail, weil ein Lordaeron-Konto diese Adresse verwendet. Es ist eine Servicenachricht zu deinem Konto, unabhängig von deinen Neuigkeiten-Einstellungen.",
       news: "Du erhältst diese E-Mail, weil du über Neuigkeiten von Lordaeron informiert werden möchtest. Du kannst dich jederzeit mit einem Klick abmelden.",
     },
-    questions: "Eine Frage? Antworte auf diese E-Mail oder schreibe an",
+    questions:
+      "Diese Adresse empfängt keine Antworten. Eine Frage? Das Team antwortet dir auf",
     terms: "Nutzungsbedingungen",
     privacy: "Datenschutzerklärung",
     account: "Mein Konto",
@@ -117,7 +122,8 @@ const FOOTER: Record<EmailLocale, Footer> = {
         "Recibes este correo porque una cuenta de Lordaeron usa esta dirección. Es un mensaje de servicio sobre tu cuenta, enviado sean cuales sean tus preferencias de novedades.",
       news: "Recibes este correo porque pediste estar al tanto de las novedades de Lordaeron. Puedes darte de baja cuando quieras, con un clic.",
     },
-    questions: "¿Una pregunta? Responde a este correo o escribe a",
+    questions:
+      "Esta dirección no recibe respuestas. ¿Una pregunta? El equipo te responde en",
     terms: "Condiciones de uso",
     privacy: "Política de privacidad",
     account: "Mi cuenta",
@@ -133,7 +139,8 @@ const FOOTER: Record<EmailLocale, Footer> = {
         "Ricevi questa email perché un account Lordaeron usa questo indirizzo. È un messaggio di servizio sul tuo account, inviato indipendentemente dalle tue preferenze sulle novità.",
       news: "Ricevi questa email perché hai chiesto di seguire le novità di Lordaeron. Puoi smettere in qualsiasi momento, con un clic.",
     },
-    questions: "Una domanda? Rispondi a questa email o scrivi a",
+    questions:
+      "Questo indirizzo non riceve risposte. Una domanda? Il team ti risponde su",
     terms: "Condizioni d'uso",
     privacy: "Informativa sulla privacy",
     account: "Il mio account",
@@ -149,7 +156,8 @@ const FOOTER: Record<EmailLocale, Footer> = {
         "Otrzymujesz tę wiadomość, ponieważ konto Lordaeron używa tego adresu. To wiadomość serwisowa dotycząca twojego konta, wysyłana niezależnie od ustawień nowości.",
       news: "Otrzymujesz tę wiadomość, ponieważ chcesz śledzić nowości Lordaeron. Możesz zrezygnować w każdej chwili jednym kliknięciem.",
     },
-    questions: "Masz pytanie? Odpowiedz na tę wiadomość lub napisz na",
+    questions:
+      "Ten adres nie przyjmuje odpowiedzi. Masz pytanie? Zespół odpowie ci na",
     terms: "Warunki korzystania",
     privacy: "Polityka prywatności",
     account: "Moje konto",
@@ -165,7 +173,8 @@ const FOOTER: Record<EmailLocale, Footer> = {
         "Recebes este e-mail porque uma conta Lordaeron usa este endereço. É uma mensagem de serviço sobre a tua conta, enviada independentemente das tuas preferências de novidades.",
       news: "Recebes este e-mail porque pediste para acompanhar as novidades de Lordaeron. Podes parar a qualquer momento, com um clique.",
     },
-    questions: "Uma pergunta? Responde a este e-mail ou escreve para",
+    questions:
+      "Este endereço não recebe respostas. Uma pergunta? A equipa responde-te no",
     terms: "Termos de utilização",
     privacy: "Política de privacidade",
     account: "A minha conta",
@@ -181,7 +190,8 @@ const FOOTER: Record<EmailLocale, Footer> = {
         "Вы получили это письмо, потому что этот адрес привязан к учётной записи Lordaeron. Это служебное сообщение о вашей учётной записи, оно отправляется независимо от настроек новостей.",
       news: "Вы получили это письмо, потому что подписались на новости Lordaeron. Отписаться можно в любой момент одним кликом.",
     },
-    questions: "Есть вопрос? Ответьте на это письмо или напишите на",
+    questions:
+      "На это письмо нельзя ответить. Есть вопрос? Команда ответит вам в",
     terms: "Условия использования",
     privacy: "Политика конфиденциальности",
     account: "Моя учётная запись",
@@ -320,7 +330,7 @@ export function renderEmail(c: EmailContent): {
       <tr><td align="center" class="lw-pad" style="padding:28px 24px 0;">
         <p style="margin:0 0 10px;font-family:${SERIF};font-size:13px;color:${COLORS.muted};">${escape(f.signature)}</p>
         <p style="margin:0 0 14px;font-family:${SANS};font-size:12px;line-height:1.6;color:${COLORS.faint};">${escape(f.why[kind])}</p>
-        <p style="margin:0 0 14px;font-family:${SANS};font-size:12px;line-height:1.6;color:${COLORS.faint};">${escape(f.questions)} <a href="mailto:${CONTACT_EMAIL}" style="color:#b8a26a;text-decoration:underline;">${CONTACT_EMAIL}</a></p>
+        <p style="margin:0 0 14px;font-family:${SANS};font-size:12px;line-height:1.6;color:${COLORS.faint};">${escape(f.questions)} <a href="${SUPPORT_URL}" style="color:#b8a26a;text-decoration:underline;">Discord</a></p>
         <p style="margin:0 0 14px;font-family:${SANS};font-size:12px;line-height:1.8;">${footerLinks}</p>
         <p style="margin:0;font-family:${SANS};font-size:11px;line-height:1.6;color:#4a4740;">${escape(f.disclaimer)}</p>
       </td></tr>
@@ -343,7 +353,7 @@ export function renderEmail(c: EmailContent): {
     "--",
     f.signature,
     f.why[kind],
-    `${f.questions} ${CONTACT_EMAIL}`,
+    `${f.questions} Discord: ${SUPPORT_URL}`,
     `${f.terms}: ${link("/terms-of-use")}`,
     `${f.privacy}: ${link("/privacy-policy")}`,
     ...(kind === "news" && c.unsubscribeUrl

@@ -1,13 +1,13 @@
 import nodemailer from "nodemailer";
 
 /*
- * The site's e-mails, through Brevo's relay (SMTP_* in .env.local). They come from SMTP_FROM, "Lordaeron <contact@lordaeron.eu>"
- * (Ayoub, 13/10/2026; the domain is authenticated with SPF, DKIM and DMARC), and replies go to the same address. Every e-mail has
- * an HTML part and its plain-text twin (lib/email-templates/layout.ts); news e-mails add the one-click unsubscribe headers.
+ * The site's e-mails, through Brevo's relay (SMTP_* in .env.local). They come from SMTP_FROM, "Lordaeron <noreply@lordaeron.eu>"
+ * (Ayoub, 13/10/2026: no mailbox behind it, the e-mails send questions to Discord; the domain is authenticated with SPF, DKIM and
+ * DMARC). Every e-mail has an HTML part and its plain-text twin (lib/email-templates/layout.ts); news e-mails add the one-click
+ * unsubscribe headers.
  */
 
-const FROM = process.env.SMTP_FROM || "Lordaeron <contact@lordaeron.eu>";
-const REPLY_TO = "contact@lordaeron.eu";
+const FROM = process.env.SMTP_FROM || "Lordaeron <noreply@lordaeron.eu>";
 
 const transport = nodemailer.createTransport({
   host: process.env.SMTP_HOST || "localhost",
@@ -35,14 +35,13 @@ export async function sendEmail({
 }) {
   await transport.sendMail({
     from: FROM,
-    replyTo: REPLY_TO,
     to,
     subject,
     html,
     text,
     headers: unsubscribeUrl
       ? {
-          "List-Unsubscribe": `<${unsubscribeUrl}>, <mailto:${REPLY_TO}?subject=unsubscribe>`,
+          "List-Unsubscribe": `<${unsubscribeUrl}>`,
           "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
         }
       : undefined,

@@ -1,5 +1,5 @@
 import {
-  CONTACT_EMAIL,
+  SUPPORT_URL,
   emailLocale,
   renderEmail,
   type EmailLocale,
@@ -92,7 +92,7 @@ const T: Record<EmailLocale, Texts> = {
       ],
       label: "New address",
       notes: [
-        `Was it not you? Change your password right away and write to **${CONTACT_EMAIL}**: we will secure your account.`,
+        `Was it not you? Change your password right away and write to us on **Discord** (${SUPPORT_URL}): we will secure your account.`,
       ],
     },
     factorOn: {
@@ -103,7 +103,9 @@ const T: Record<EmailLocale, Texts> = {
         "Two-step verification is now on for **{name}**. From now on, the game and the website ask for the code of your authenticator app at every sign-in.",
         "Keep your phone close: without it, you can no longer sign in.",
       ],
-      notes: [`Was it not you? Write to **${CONTACT_EMAIL}** right away.`],
+      notes: [
+        `Was it not you? Write to us on **Discord** (${SUPPORT_URL}) right away.`,
+      ],
     },
     factorOff: {
       subject: "Two-step verification was removed from your Lordaeron account",
@@ -114,7 +116,7 @@ const T: Record<EmailLocale, Texts> = {
         "You can turn it back on at any time from your account page.",
       ],
       notes: [
-        `Was it not you? Change your password right away and write to **${CONTACT_EMAIL}**.`,
+        `Was it not you? Change your password right away and write to us on **Discord** (${SUPPORT_URL}).`,
       ],
     },
     account: "Open my account",
@@ -157,7 +159,7 @@ const T: Record<EmailLocale, Texts> = {
       ],
       label: "Nouvelle adresse",
       notes: [
-        `Ce n'était pas vous ? Changez tout de suite votre mot de passe et écrivez à **${CONTACT_EMAIL}** : nous sécuriserons votre compte.`,
+        `Ce n'était pas vous ? Changez tout de suite votre mot de passe et écrivez-nous sur **Discord** (${SUPPORT_URL}) : nous sécuriserons votre compte.`,
       ],
     },
     factorOn: {
@@ -171,7 +173,7 @@ const T: Record<EmailLocale, Texts> = {
         "Gardez votre téléphone à portée de main : sans lui, vous ne pourrez plus vous connecter.",
       ],
       notes: [
-        `Ce n'était pas vous ? Écrivez tout de suite à **${CONTACT_EMAIL}**.`,
+        `Ce n'était pas vous ? Écrivez-nous tout de suite sur **Discord** (${SUPPORT_URL}).`,
       ],
     },
     factorOff: {
@@ -184,7 +186,7 @@ const T: Record<EmailLocale, Texts> = {
         "Vous pouvez la réactiver à tout moment depuis votre espace compte.",
       ],
       notes: [
-        `Ce n'était pas vous ? Changez tout de suite votre mot de passe et écrivez à **${CONTACT_EMAIL}**.`,
+        `Ce n'était pas vous ? Changez tout de suite votre mot de passe et écrivez-nous sur **Discord** (${SUPPORT_URL}).`,
       ],
     },
     account: "Ouvrir mon compte",
@@ -229,7 +231,7 @@ const T: Record<EmailLocale, Texts> = {
       ],
       label: "Neue Adresse",
       notes: [
-        `Das warst nicht du? Ändere sofort dein Passwort und schreibe an **${CONTACT_EMAIL}**: Wir sichern dein Konto.`,
+        `Das warst nicht du? Ändere sofort dein Passwort und schreib uns auf **Discord** (${SUPPORT_URL}): Wir sichern dein Konto.`,
       ],
     },
     factorOn: {
@@ -241,7 +243,9 @@ const T: Record<EmailLocale, Texts> = {
         "Die Zwei-Faktor-Authentifizierung ist für **{name}** aktiv. Spiel und Website fragen ab jetzt bei jeder Anmeldung nach dem Code deiner Authenticator-App.",
         "Halte dein Handy griffbereit: Ohne es kannst du dich nicht mehr anmelden.",
       ],
-      notes: [`Das warst nicht du? Schreibe sofort an **${CONTACT_EMAIL}**.`],
+      notes: [
+        `Das warst nicht du? Schreib uns sofort auf **Discord** (${SUPPORT_URL}).`,
+      ],
     },
     factorOff: {
       subject:
@@ -253,7 +257,7 @@ const T: Record<EmailLocale, Texts> = {
         "Du kannst sie jederzeit auf deiner Kontoseite wieder aktivieren.",
       ],
       notes: [
-        `Das warst nicht du? Ändere sofort dein Passwort und schreibe an **${CONTACT_EMAIL}**.`,
+        `Das warst nicht du? Ändere sofort dein Passwort und schreib uns auf **Discord** (${SUPPORT_URL}).`,
       ],
     },
     account: "Mein Konto öffnen",
@@ -296,7 +300,7 @@ const T: Record<EmailLocale, Texts> = {
       ],
       label: "Nueva dirección",
       notes: [
-        `¿No fuiste tú? Cambia tu contraseña enseguida y escribe a **${CONTACT_EMAIL}**: protegeremos tu cuenta.`,
+        `¿No fuiste tú? Cambia tu contraseña enseguida y escríbenos en **Discord** (${SUPPORT_URL}): protegeremos tu cuenta.`,
       ],
     },
     factorOn: {
@@ -308,7 +312,9 @@ const T: Record<EmailLocale, Texts> = {
         "La verificación en dos pasos está activa para **{name}**. A partir de ahora, el juego y la web piden el código de tu app de autenticación en cada inicio de sesión.",
         "Ten tu teléfono a mano: sin él, ya no podrás iniciar sesión.",
       ],
-      notes: [`¿No fuiste tú? Escribe enseguida a **${CONTACT_EMAIL}**.`],
+      notes: [
+        `¿No fuiste tú? Escríbenos enseguida en **Discord** (${SUPPORT_URL}).`,
+      ],
     },
     factorOff: {
       subject:
@@ -320,7 +326,7 @@ const T: Record<EmailLocale, Texts> = {
         "Puedes volver a activarla cuando quieras desde tu cuenta.",
       ],
       notes: [
-        `¿No fuiste tú? Cambia tu contraseña enseguida y escribe a **${CONTACT_EMAIL}**.`,
+        `¿No fuiste tú? Cambia tu contraseña enseguida y escríbenos en **Discord** (${SUPPORT_URL}).`,
       ],
     },
     account: "Abrir mi cuenta",
@@ -363,7 +369,7 @@ const T: Record<EmailLocale, Texts> = {
       ],
       label: "Nuovo indirizzo",
       notes: [
-        `Non sei stato tu? Cambia subito la password e scrivi a **${CONTACT_EMAIL}**: metteremo al sicuro il tuo account.`,
+        `Non sei stato tu? Cambia subito la password e scrivici su **Discord** (${SUPPORT_URL}): metteremo al sicuro il tuo account.`,
       ],
     },
     factorOn: {
@@ -374,7 +380,9 @@ const T: Record<EmailLocale, Texts> = {
         "La verifica in due passaggi è attiva per **{name}**. D'ora in poi il gioco e il sito chiedono il codice della tua app di autenticazione a ogni accesso.",
         "Tieni il telefono a portata di mano: senza di esso non potrai più accedere.",
       ],
-      notes: [`Non sei stato tu? Scrivi subito a **${CONTACT_EMAIL}**.`],
+      notes: [
+        `Non sei stato tu? Scrivici subito su **Discord** (${SUPPORT_URL}).`,
+      ],
     },
     factorOff: {
       subject:
@@ -386,7 +394,7 @@ const T: Record<EmailLocale, Texts> = {
         "Puoi riattivarla in qualsiasi momento dalla pagina del tuo account.",
       ],
       notes: [
-        `Non sei stato tu? Cambia subito la password e scrivi a **${CONTACT_EMAIL}**.`,
+        `Non sei stato tu? Cambia subito la password e scrivici su **Discord** (${SUPPORT_URL}).`,
       ],
     },
     account: "Apri il mio account",
@@ -429,7 +437,7 @@ const T: Record<EmailLocale, Texts> = {
       ],
       label: "Nowy adres",
       notes: [
-        `To nie ty? Natychmiast zmień hasło i napisz na **${CONTACT_EMAIL}**: zabezpieczymy twoje konto.`,
+        `To nie ty? Natychmiast zmień hasło i napisz do nas na **Discordzie** (${SUPPORT_URL}): zabezpieczymy twoje konto.`,
       ],
     },
     factorOn: {
@@ -440,7 +448,9 @@ const T: Record<EmailLocale, Texts> = {
         "Weryfikacja dwuetapowa jest włączona dla **{name}**. Od teraz gra i strona proszą o kod z aplikacji uwierzytelniającej przy każdym logowaniu.",
         "Miej telefon pod ręką: bez niego nie zalogujesz się.",
       ],
-      notes: [`To nie ty? Natychmiast napisz na **${CONTACT_EMAIL}**.`],
+      notes: [
+        `To nie ty? Natychmiast napisz do nas na **Discordzie** (${SUPPORT_URL}).`,
+      ],
     },
     factorOff: {
       subject:
@@ -452,7 +462,7 @@ const T: Record<EmailLocale, Texts> = {
         "Możesz ją ponownie włączyć w każdej chwili na stronie konta.",
       ],
       notes: [
-        `To nie ty? Natychmiast zmień hasło i napisz na **${CONTACT_EMAIL}**.`,
+        `To nie ty? Natychmiast zmień hasło i napisz do nas na **Discordzie** (${SUPPORT_URL}).`,
       ],
     },
     account: "Otwórz moje konto",
@@ -495,7 +505,7 @@ const T: Record<EmailLocale, Texts> = {
       ],
       label: "Novo endereço",
       notes: [
-        `Não foste tu? Muda já a tua palavra-passe e escreve para **${CONTACT_EMAIL}**: vamos proteger a tua conta.`,
+        `Não foste tu? Muda já a tua palavra-passe e escreve-nos no **Discord** (${SUPPORT_URL}): vamos proteger a tua conta.`,
       ],
     },
     factorOn: {
@@ -506,7 +516,7 @@ const T: Record<EmailLocale, Texts> = {
         "A verificação em dois passos está ativa para **{name}**. A partir de agora, o jogo e o site pedem o código da tua app de autenticação em cada início de sessão.",
         "Mantém o telemóvel por perto: sem ele, já não consegues iniciar sessão.",
       ],
-      notes: [`Não foste tu? Escreve já para **${CONTACT_EMAIL}**.`],
+      notes: [`Não foste tu? Escreve-nos já no **Discord** (${SUPPORT_URL}).`],
     },
     factorOff: {
       subject:
@@ -518,7 +528,7 @@ const T: Record<EmailLocale, Texts> = {
         "Podes reativá-la a qualquer momento na página da tua conta.",
       ],
       notes: [
-        `Não foste tu? Muda já a tua palavra-passe e escreve para **${CONTACT_EMAIL}**.`,
+        `Não foste tu? Muda já a tua palavra-passe e escreve-nos no **Discord** (${SUPPORT_URL}).`,
       ],
     },
     account: "Abrir a minha conta",
@@ -561,7 +571,7 @@ const T: Record<EmailLocale, Texts> = {
       ],
       label: "Новый адрес",
       notes: [
-        `Это были не вы? Немедленно смените пароль и напишите на **${CONTACT_EMAIL}**: мы защитим вашу учётную запись.`,
+        `Это были не вы? Немедленно смените пароль и напишите нам в **Discord** (${SUPPORT_URL}): мы защитим вашу учётную запись.`,
       ],
     },
     factorOn: {
@@ -574,7 +584,9 @@ const T: Record<EmailLocale, Texts> = {
         "Двухэтапная проверка включена для **{name}**. Теперь игра и сайт запрашивают код из приложения-аутентификатора при каждом входе.",
         "Держите телефон под рукой: без него войти не получится.",
       ],
-      notes: [`Это были не вы? Немедленно напишите на **${CONTACT_EMAIL}**.`],
+      notes: [
+        `Это были не вы? Немедленно напишите нам в **Discord** (${SUPPORT_URL}).`,
+      ],
     },
     factorOff: {
       subject:
@@ -586,7 +598,7 @@ const T: Record<EmailLocale, Texts> = {
         "Вы можете снова включить её в любой момент на странице учётной записи.",
       ],
       notes: [
-        `Это были не вы? Немедленно смените пароль и напишите на **${CONTACT_EMAIL}**.`,
+        `Это были не вы? Немедленно смените пароль и напишите нам в **Discord** (${SUPPORT_URL}).`,
       ],
     },
     account: "Открыть учётную запись",
