@@ -1199,6 +1199,7 @@
     "title": "Waffenkammer",
     "searchPlaceholder": "Charakter suchen...",
     "noResults": "Keine Charaktere gefunden",
+    "showTransmog": "Transmogrifikation anzeigen",
     "resultsCount": "{count, plural, one {# Charakter} other {# Charaktere}}",
     "previous": "Zurück",
     "next": "Weiter",

@@ -1199,6 +1199,7 @@
     "title": "Armurerie",
     "searchPlaceholder": "Rechercher un personnage...",
     "noResults": "Aucun personnage trouvé",
+    "showTransmog": "Afficher la transmogrification",
     "resultsCount": "{count, plural, one {# personnage} other {# personnages}}",
     "previous": "Précédent",
     "next": "Suivant",

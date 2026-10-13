@@ -1199,6 +1199,7 @@
     "title": "Zbrojownia",
     "searchPlaceholder": "Szukaj postaci...",
     "noResults": "Nie znaleziono postaci",
+    "showTransmog": "Pokaż transmogryfikację",
     "resultsCount": "{count, plural, one {# postać} few {# postacie} many {# postaci} other {# postaci}}",
     "previous": "Poprzednia",
     "next": "Następna",

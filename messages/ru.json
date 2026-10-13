@@ -1199,6 +1199,7 @@
     "title": "Оружейная",
     "searchPlaceholder": "Поиск персонажа...",
     "noResults": "Персонажи не найдены",
+    "showTransmog": "Показать трансмогрификацию",
     "resultsCount": "{count, plural, one {# персонаж} few {# персонажа} many {# персонажей} other {# персонажа}}",
     "previous": "Назад",
     "next": "Далее",

@@ -1199,6 +1199,7 @@
     "title": "Arsenal",
     "searchPlaceholder": "Pesquisar personagem...",
     "noResults": "Nenhum personagem encontrado",
+    "showTransmog": "Mostrar transmogrificação",
     "resultsCount": "{count, plural, one {# personagem} other {# personagens}}",
     "previous": "Anterior",
     "next": "Seguinte",

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Spinner } from "@heroui/spinner";
 import { Tabs, Tab } from "@heroui/tabs";
+import { Switch } from "@heroui/switch";
 import dynamic from "next/dynamic";
 
 import {
@@ -44,13 +45,19 @@ interface ProfileData {
   arenaTeams: ArenaTeamInfo[];
   achievementCount: number;
   equipment: EquipmentSlot[];
-  // what the 3D viewer draws (lib/armory-model.ts)
+  // what the 3D viewer draws (lib/armory-model.ts), and the same without the transmogs (null when there are none)
   model?: {
     items: [number, number, number?][];
     defaulted: number[];
     missing: number[];
     failed?: boolean;
   };
+  modelBase?: {
+    items: [number, number, number?][];
+    defaulted: number[];
+    missing: number[];
+    failed?: boolean;
+  } | null;
   // the tooltips of the items the character wears, by equipment slot (lib/tooltips/instance.ts)
   tooltips?: Record<number, GameTooltipData>;
 }
@@ -69,6 +76,7 @@ export function CharacterProfile({ name }: CharacterProfileProps) {
   const [data, setData] = useState<ProfileData | null>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
+  const [showTransmog, setShowTransmog] = useState(true);
   const realm = useRealm();
   const locale = useLocale();
 
@@ -122,8 +130,10 @@ export function CharacterProfile({ name }: CharacterProfileProps) {
     achievementCount,
     equipment,
     model,
+    modelBase,
     tooltips,
   } = data;
+  const shownModel = showTransmog || !modelBase ? model : modelBase;
   const isAlliance = ALLIANCE_RACES.includes(character.race);
   const classColor = CLASS_COLORS[character.class] || "#FFFFFF";
 
@@ -182,19 +192,32 @@ export function CharacterProfile({ name }: CharacterProfileProps) {
       <div className="max-w-[500px] mx-auto mb-8">
         <EquipmentPanel equipment={equipment} tooltips={tooltips}>
           <ModelViewer
-            defaulted={model?.defaulted}
+            defaulted={shownModel?.defaulted}
             face={character.face}
             facialStyle={character.facialStyle}
-            gearFailed={!model || model.failed}
+            gearFailed={!shownModel || shownModel.failed}
             gender={character.gender}
             hairColor={character.hairColor}
             hairStyle={character.hairStyle}
-            items={model?.items ?? []}
-            missing={model?.missing}
+            items={shownModel?.items ?? []}
+            missing={shownModel?.missing}
             race={character.race}
             skin={character.skin}
           />
         </EquipmentPanel>
+        {/* the transmogs shown by default; off, the model is drawn again with the gear as it is (Ayoub, 13/10/2026) */}
+        {modelBase && (
+          <div className="mt-3 flex justify-center">
+            <Switch
+              color="warning"
+              isSelected={showTransmog}
+              size="sm"
+              onValueChange={setShowTransmog}
+            >
+              <span className="text-sm text-gray-300">{t("showTransmog")}</span>
+            </Switch>
+          </div>
+        )}
       </div>
 
       {/* Tabs: Stats, PvP, Professions */}

@@ -167,6 +167,37 @@ export async function getItemDisplayIds(
   return map;
 }
 
+// what the character really wears, transmogs aside (the equipment cache shows the transmogs): the equipped items and their
+// enchantments (item_instance.enchantments: the permanent one first, the temporary one fourth), in the cache's shape
+export async function getEquippedItems(
+  guid: number,
+  realm: RealmSlug = DEFAULT_REALM,
+): Promise<EquipmentSlot[]> {
+  const [rows] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
+    `SELECT ci.slot, ii.itemEntry, ii.enchantments
+     FROM character_inventory ci JOIN item_instance ii ON ii.guid = ci.item
+     WHERE ci.guid = ? AND ci.bag = 0 AND ci.slot < 19
+     ORDER BY ci.slot`,
+    [guid],
+  );
+
+  return rows.map((r) => {
+    const e = String(r.enchantments ?? "")
+      .trim()
+      .split(/\s+/)
+      .map(Number);
+    const permanent = e[0] || 0;
+    const temporary = e[3] || 0;
+
+    return {
+      slot: Number(r.slot),
+      itemEntry: Number(r.itemEntry),
+      displayId: 0,
+      enchant: (permanent & 0xffff) | ((temporary & 0xffff) << 16),
+    };
+  });
+}
+
 export function parseEquipmentCache(cache: string): EquipmentSlot[] {
   const values = cache.trim().split(/\s+/).map(Number);
   const items: EquipmentSlot[] = [];

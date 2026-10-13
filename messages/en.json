@@ -1199,6 +1199,7 @@
     "title": "Armory",
     "searchPlaceholder": "Search character...",
     "noResults": "No characters found",
+    "showTransmog": "Show transmogrification",
     "resultsCount": "{count, plural, one {# character} other {# characters}}",
     "previous": "Previous",
     "next": "Next",

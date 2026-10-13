@@ -7,6 +7,7 @@ import {
   getCharacterArenaTeams,
   getCharacterAchievementCount,
   getItemDisplayIds,
+  getEquippedItems,
   parseEquipmentCache,
 } from "@/lib/queries/armory";
 import { requestRealm } from "@/lib/realms";
@@ -71,6 +72,21 @@ export async function GET(
       },
     );
 
+    // the gear without its transmogs, for the armory's toggle (Ayoub, 13/10/2026): only when a transmog changes something
+    const worn = await getEquippedItems(character.guid, realm).catch(() => []);
+    const transmogged = worn.some((w) => {
+      const shown = equipment.find((e) => e.slot === w.slot);
+
+      return !shown || shown.itemEntry !== w.itemEntry;
+    });
+    const modelBase = transmogged
+      ? await armoryModel(character.guid, worn, realm, false).catch((e) => {
+          console.error("Armory model (no transmog):", e);
+
+          return null;
+        })
+      : null;
+
     // the character's own items: their enchantments, gems, suffixes and the set pieces worn
     const tooltips = await characterItemTooltips(
       realm,
@@ -90,6 +106,7 @@ export async function GET(
       achievementCount,
       equipment,
       model,
+      modelBase,
       tooltips,
     });
   } catch (error) {

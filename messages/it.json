@@ -1199,6 +1199,7 @@
     "title": "Armeria",
     "searchPlaceholder": "Cerca personaggio...",
     "noResults": "Nessun personaggio trovato",
+    "showTransmog": "Mostra trasmogrificazione",
     "resultsCount": "{count, plural, one {# personaggio} other {# personaggi}}",
     "previous": "Precedente",
     "next": "Successiva",

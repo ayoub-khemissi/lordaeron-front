@@ -223,24 +223,29 @@ export interface ArmoryModel {
 // the viewer slots of the weapons (their enchantments glow)
 const WEAPON_SLOTS = [13, 14, 15, 17, 21, 22, 23, 25, 26];
 
+// withTransmog false: the gear as it is, without the slot transmogs (the armory's toggle, Ayoub 13/10/2026; give it the equipped items,
+// lib/queries/armory.ts getEquippedItems, as the equipment cache already shows the transmogs)
 export async function armoryModel(
   guid: number,
   equipment: EquipmentSlot[],
   realm: RealmSlug,
+  withTransmog = true,
 ): Promise<ArmoryModel> {
   const model: ArmoryModel = { items: [], defaulted: [], missing: [] };
   // the slot transmogs (absent on a realm without them); the equipment cache already shows them, this keeps an old cache right
   const transmog = new Map<number, number>();
 
-  try {
-    const [rows] = await realmCharactersDb(realm).query<RowDataPacket[]>(
-      "SELECT slot, transmog_entry FROM custom_character_slot_transmog WHERE guid = ?",
-      [guid],
-    );
+  if (withTransmog) {
+    try {
+      const [rows] = await realmCharactersDb(realm).query<RowDataPacket[]>(
+        "SELECT slot, transmog_entry FROM custom_character_slot_transmog WHERE guid = ?",
+        [guid],
+      );
 
-    for (const r of rows) transmog.set(r.slot, Number(r.transmog_entry));
-  } catch {
-    // no transmog table on this realm
+      for (const r of rows) transmog.set(r.slot, Number(r.transmog_entry));
+    } catch {
+      // no transmog table on this realm
+    }
   }
 
   const shown = equipment.flatMap((e) => {
