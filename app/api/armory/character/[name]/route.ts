@@ -15,6 +15,7 @@ import { armoryModel } from "@/lib/armory-model";
 import { characterItemTooltips } from "@/lib/tooltips/instance";
 import { isTooltipLocale } from "@/lib/tooltips";
 import { viewerSeesGm } from "@/lib/queries/realm-search";
+import { characterSpecs } from "@/lib/talents";
 
 export const dynamic = "force-dynamic";
 
@@ -40,12 +41,23 @@ export async function GET(
       return NextResponse.json({ error: "not_found" }, { status: 404 });
     }
 
-    const [stats, professions, arenaTeams, achievementCount] =
+    const [stats, professions, arenaTeams, achievementCount, specs] =
       await Promise.all([
         getCharacterStats(character.guid, realm),
         getCharacterProfessions(character.guid, realm),
         getCharacterArenaTeams(character.guid, realm),
         getCharacterAchievementCount(character.guid, realm),
+        // its specializations, from the realm's talent trees (lib/talents.ts)
+        characterSpecs(
+          realm,
+          character.guid,
+          character.class,
+          isTooltipLocale(locale) ? locale : "en",
+        ).catch((e) => {
+          console.error("Armory specs:", e);
+
+          return null;
+        }),
       ]);
 
     const equipment = parseEquipmentCache(character.equipmentCache || "");
@@ -110,6 +122,7 @@ export async function GET(
       professions,
       arenaTeams,
       achievementCount,
+      specs,
       equipment,
       model,
       modelBase,

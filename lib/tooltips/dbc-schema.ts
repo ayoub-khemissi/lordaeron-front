@@ -46,6 +46,7 @@ export const DBC_LAYOUTS = {
       ManaCost: 42,
       RangeIndex: 46,
       CumulativeAura: 49,
+      ...effects("Effect", 71),
       ...effects("EffectDieSides", 74),
       ...effects("EffectRealPointsPerLevel", 77),
       ...effects("EffectBasePoints", 80),
@@ -53,6 +54,8 @@ export const DBC_LAYOUTS = {
       ...effects("EffectAuraPeriod", 98),
       ...effects("EffectMultipleValue", 101),
       ...effects("EffectChainTargets", 104),
+      // the item a spell creates (Effect 24): the codex's crafts
+      ...effects("EffectItemType", 107),
       ...effects("EffectMiscValue", 110),
       ...effects("EffectPointsPerCombo", 119),
       SpellIconID: 133,
@@ -211,6 +214,43 @@ export const DBC_LAYOUTS = {
       ...numbered("Epic", 1, 5),
       ...numbered("Superior", 6, 5),
       ...numbered("Good", 11, 5),
+    },
+  },
+  // the talent calculator and the armory's specializations (lib/talents.ts): a talent's tree, tier, column, the spell of each rank and
+  // its prerequisite (a talent and the rank it needs, 0-based)
+  Talent: {
+    fieldCount: 23,
+    fields: {
+      ID: 0,
+      TabID: 1,
+      TierID: 2,
+      ColumnIndex: 3,
+      ...numbered("SpellRank", 4, 9),
+      ...numbered("PrereqTalent", 13, 3),
+      ...numbered("PrereqRank", 16, 3),
+    },
+  },
+  TalentTab: {
+    fieldCount: 24,
+    fields: { ID: 0, SpellIconID: 18, ClassMask: 20, PetTalentMask: 21, OrderIndex: 22 },
+    localized: { Name: 1 },
+    strings: { BackgroundFile: 23 },
+  },
+  // the codex (lib/codex.ts): the spells of a profession and the skill they ask
+  SkillLineAbility: {
+    fieldCount: 14,
+    fields: { ID: 0, SkillLine: 1, Spell: 2, MinSkillLineRank: 7, AcquireMethod: 9 },
+  },
+  // the codex: a vendor's price in honor, arena points or items
+  ItemExtendedCost: {
+    fieldCount: 16,
+    fields: {
+      ID: 0,
+      HonorPoints: 1,
+      ArenaPoints: 2,
+      ...numbered("ItemID", 4, 5),
+      ...numbered("ItemCount", 9, 5),
+      RequiredArenaRating: 14,
     },
   },
 } satisfies Record<string, DbcLayout>;

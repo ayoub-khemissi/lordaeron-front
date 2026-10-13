@@ -23,6 +23,8 @@ export type RealmSection =
   | "pvp"
   | "hall-of-fame"
   | "population"
+  | "codex"
+  | "talents"
   | "black-market"
   | "realm-firsts"
   | "calendar"
@@ -64,6 +66,8 @@ export const ALL_SECTIONS: RealmSection[] = [
   "pvp",
   "hall-of-fame",
   "population",
+  "codex",
+  "talents",
   "black-market",
   "realm-firsts",
   "calendar",
@@ -94,6 +98,8 @@ export const REALMS: Record<RealmSlug, RealmInfo> = {
       "pvp",
       "hall-of-fame",
       "population",
+      "codex",
+      "talents",
       "realm-firsts",
       "calendar",
       "progression",
@@ -121,6 +127,8 @@ export const REALMS: Record<RealmSlug, RealmInfo> = {
       "pvp",
       "hall-of-fame",
       "population",
+      "codex",
+      "talents",
       "black-market",
       "realm-firsts",
       "calendar",

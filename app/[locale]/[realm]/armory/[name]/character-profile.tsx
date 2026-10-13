@@ -20,6 +20,7 @@ import { useRealm } from "@/lib/realm-context";
 import { StatsPanel } from "@/components/armory/stats-panel";
 import { PvpPanel } from "@/components/armory/pvp-panel";
 import { ProfessionsPanel } from "@/components/armory/professions-panel";
+import { SpecsPanel, type ArmorySpecs } from "@/components/armory/specs-panel";
 import {
   ArmoryCharacter,
   ArmoryStats,
@@ -44,6 +45,8 @@ interface ProfileData {
   professions: ArmoryProfession[];
   arenaTeams: ArenaTeamInfo[];
   achievementCount: number;
+  // its specializations (lib/talents.ts), null when unreadable
+  specs?: ArmorySpecs | null;
   equipment: EquipmentSlot[];
   // what the 3D viewer draws (lib/armory-model.ts), and the same without the transmogs (null when there are none)
   model?: {
@@ -128,6 +131,7 @@ export function CharacterProfile({ name }: CharacterProfileProps) {
     professions,
     arenaTeams,
     achievementCount,
+    specs,
     equipment,
     model,
     modelBase,
@@ -226,6 +230,16 @@ export function CharacterProfile({ name }: CharacterProfileProps) {
           </div>
         )}
       </div>
+
+      {/* its specializations and their builds in the talent calculator */}
+      {specs && specs.specs.length > 0 && (
+        <div className="max-w-3xl mx-auto mb-8">
+          <h2 className="mb-3 text-center text-lg text-wow-gold">
+            {t("specializations")}
+          </h2>
+          <SpecsPanel level={character.level} specs={specs} />
+        </div>
+      )}
 
       {/* Tabs: Stats, PvP, Professions */}
       <div className="max-w-3xl mx-auto">
