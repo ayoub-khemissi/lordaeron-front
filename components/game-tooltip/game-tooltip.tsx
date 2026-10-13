@@ -155,7 +155,18 @@ export function GameTooltipBox({
             )}
             style={{ color: lineColor(l.color) }}
           >
-            <span>{l.left}</span>
+            <span>
+              {l.icon && (
+                <img
+                  alt=""
+                  className="mr-1.5 inline-block h-[14px] w-[14px] -translate-y-px rounded-[2px] align-middle"
+                  height={14}
+                  src={zamimgIcon(l.icon, 18)}
+                  width={14}
+                />
+              )}
+              {l.left}
+            </span>
             {l.right && <span className="shrink-0">{l.right}</span>}
           </p>
         ))}
@@ -169,6 +180,7 @@ type Shown = { x: number; y: number; pinned: boolean };
 /* Wraps anything: hovering (mouse) or tapping (touch) it shows the tooltip of `refId` ("item:123" / "spell:456"). */
 export function GameTip({
   refId,
+  data,
   children,
   className,
   realm,
@@ -176,6 +188,8 @@ export function GameTip({
   stopPropagation = false,
 }: {
   refId?: string;
+  // the tooltip itself, already known (the armory's character items): no request
+  data?: GameTooltipData;
   children: ReactNode;
   className?: string;
   realm?: string;
@@ -187,7 +201,12 @@ export function GameTip({
   const el = useRef<HTMLSpanElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [shown, setShown] = useState<Shown | null>(null);
-  const tip = useGameTooltip(refId, { enabled: !!shown, realm, locale });
+  const fetched = useGameTooltip(data ? undefined : refId, {
+    enabled: !!shown,
+    realm,
+    locale,
+  });
+  const tip = data ?? fetched;
 
   const clearTimer = () => {
     if (timer.current) clearTimeout(timer.current);
@@ -328,6 +347,7 @@ export function WowItemIcon({
   className,
   fallbackSrc,
   stopPropagation,
+  tip: given,
 }: {
   itemId: number;
   realm?: string;
@@ -335,9 +355,12 @@ export function WowItemIcon({
   className?: string;
   fallbackSrc?: string;
   stopPropagation?: boolean;
+  // the tooltip, already known (a character's own item: its enchantments, gems...): shown instead of the item's generic one
+  tip?: GameTooltipData;
 }) {
   const ref = `item:${itemId}`;
-  const tip = useGameTooltip(ref, { realm });
+  const fetched = useGameTooltip(given ? undefined : ref, { realm });
+  const tip = given ?? fetched;
   const src = tip
     ? zamimgIcon(tip.icon, size)
     : (fallbackSrc ?? zamimgIcon("inv_misc_questionmark", size));
@@ -345,6 +368,7 @@ export function WowItemIcon({
   return (
     <GameTip
       className={clsx("inline-flex shrink-0", className)}
+      data={given}
       realm={realm}
       refId={ref}
       stopPropagation={stopPropagation}

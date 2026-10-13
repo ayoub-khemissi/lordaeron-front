@@ -139,11 +139,13 @@ export const DBC_LAYOUTS = {
     fields: { ID: 0, Quantity: 18, Flags: 19 },
     localized: { Name: 1 },
   },
-  GemProperties: { fieldCount: 5, fields: { ID: 0, Enchant_Id: 1 } },
+  // Type: the gem's colors (1 meta, 2 red, 4 yellow, 8 blue, combined)
+  GemProperties: { fieldCount: 5, fields: { ID: 0, Enchant_Id: 1, Type: 4 } },
   SpellItemEnchantment: {
     fieldCount: 38,
     // ItemVisual: the glow a weapon shows (the armory's 3D viewer, lib/armory-model.ts)
-    fields: { ID: 0, ItemVisual: 31, Condition_Id: 34 },
+    // Src_itemID: the gem a socketed enchantment comes from
+    fields: { ID: 0, ItemVisual: 31, Src_itemID: 33, Condition_Id: 34 },
     localized: { Name: 14 },
   },
   // packed record (bytes): read with Rec.u8 / Rec.u32 (lib/tooltips/item.ts)
@@ -156,6 +158,31 @@ export const DBC_LAYOUTS = {
     localized: { DisplayName: 3 },
   },
   Faction: { fieldCount: 57, fields: { ID: 0 }, localized: { Name: 23 } },
+  // an item's random enchantments (the armory's character tooltips, lib/tooltips/instance.ts): "of the Bear" (positive
+  // item_instance.randomPropertyId) and the suffixes (negative), whose amounts come from RandPropPoints by item level
+  ItemRandomProperties: {
+    fieldCount: 24,
+    fields: { ID: 0, ...numbered("Enchantment", 2, 5) },
+    localized: { Name: 7 },
+  },
+  ItemRandomSuffix: {
+    fieldCount: 29,
+    fields: {
+      ID: 0,
+      ...numbered("Enchantment", 19, 5),
+      ...numbered("AllocationPct", 24, 5),
+    },
+    localized: { Name: 1 },
+  },
+  RandPropPoints: {
+    fieldCount: 16,
+    fields: {
+      ID: 0,
+      ...numbered("Epic", 1, 5),
+      ...numbered("Superior", 6, 5),
+      ...numbered("Good", 11, 5),
+    },
+  },
 } satisfies Record<string, DbcLayout>;
 
 export type DbcName = keyof typeof DBC_LAYOUTS;

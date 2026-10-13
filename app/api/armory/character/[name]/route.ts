@@ -11,6 +11,8 @@ import {
 } from "@/lib/queries/armory";
 import { requestRealm } from "@/lib/realms";
 import { armoryModel } from "@/lib/armory-model";
+import { characterItemTooltips } from "@/lib/tooltips/instance";
+import { isTooltipLocale } from "@/lib/tooltips";
 
 export const dynamic = "force-dynamic";
 
@@ -20,8 +22,10 @@ export async function GET(
 ) {
   try {
     const { name } = await params;
-    // the realm being browsed (?realm=<slug>), Lordaeron's by default
-    const realm = requestRealm(new URL(request.url).searchParams.get("realm"));
+    // the realm being browsed (?realm=<slug>), Lordaeron's by default; the tooltips' language (?locale=)
+    const params2 = new URL(request.url).searchParams;
+    const realm = requestRealm(params2.get("realm"));
+    const locale = params2.get("locale");
 
     const character = await getArmoryCharacter(name, realm);
 
@@ -67,6 +71,17 @@ export async function GET(
       },
     );
 
+    // the character's own items: their enchantments, gems, suffixes and the set pieces worn
+    const tooltips = await characterItemTooltips(
+      realm,
+      character.guid,
+      isTooltipLocale(locale) ? locale : "en",
+    ).catch((e) => {
+      console.error("Armory tooltips:", e);
+
+      return {};
+    });
+
     return NextResponse.json({
       character,
       stats,
@@ -75,6 +90,7 @@ export async function GET(
       achievementCount,
       equipment,
       model,
+      tooltips,
     });
   } catch (error) {
     console.error("Armory character error:", error);

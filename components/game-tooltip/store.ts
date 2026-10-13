@@ -4,7 +4,13 @@
  * route (at most 100 per request). A failed request is forgotten so a later hover retries.
  */
 
-export type GameTooltipLine = { left: string; right?: string; color?: string };
+// icon: a small icon before the text (a socketed gem's, the armory's character tooltips)
+export type GameTooltipLine = {
+  left: string;
+  right?: string;
+  color?: string;
+  icon?: string;
+};
 export type GameTooltipData = {
   icon: string;
   quality?: number;

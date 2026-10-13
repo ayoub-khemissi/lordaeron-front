@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Spinner } from "@heroui/spinner";
 import { Tabs, Tab } from "@heroui/tabs";
 import dynamic from "next/dynamic";
@@ -14,6 +14,7 @@ import {
 } from "@/lib/armory-constants";
 import { GuildInfo } from "@/components/armory/guild-info";
 import { EquipmentPanel } from "@/components/armory/equipment-panel";
+import { type GameTooltipData } from "@/components/game-tooltip";
 import { useRealm } from "@/lib/realm-context";
 import { StatsPanel } from "@/components/armory/stats-panel";
 import { PvpPanel } from "@/components/armory/pvp-panel";
@@ -50,6 +51,8 @@ interface ProfileData {
     missing: number[];
     failed?: boolean;
   };
+  // the tooltips of the items the character wears, by equipment slot (lib/tooltips/instance.ts)
+  tooltips?: Record<number, GameTooltipData>;
 }
 
 function formatPlayTime(seconds: number): string {
@@ -67,13 +70,14 @@ export function CharacterProfile({ name }: CharacterProfileProps) {
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
   const realm = useRealm();
+  const locale = useLocale();
 
   useEffect(() => {
     const fetchProfile = async () => {
       setLoading(true);
       try {
         const res = await fetch(
-          `/api/armory/character/${encodeURIComponent(name)}?realm=${realm.slug}`,
+          `/api/armory/character/${encodeURIComponent(name)}?realm=${realm.slug}&locale=${locale}`,
         );
 
         if (res.status === 404) {
@@ -92,7 +96,7 @@ export function CharacterProfile({ name }: CharacterProfileProps) {
     };
 
     fetchProfile();
-  }, [name, realm.slug]);
+  }, [name, realm.slug, locale]);
 
   if (loading) {
     return (
@@ -118,6 +122,7 @@ export function CharacterProfile({ name }: CharacterProfileProps) {
     achievementCount,
     equipment,
     model,
+    tooltips,
   } = data;
   const isAlliance = ALLIANCE_RACES.includes(character.race);
   const classColor = CLASS_COLORS[character.class] || "#FFFFFF";
@@ -175,7 +180,7 @@ export function CharacterProfile({ name }: CharacterProfileProps) {
 
       {/* Character model with equipment slots around it */}
       <div className="max-w-[500px] mx-auto mb-8">
-        <EquipmentPanel equipment={equipment}>
+        <EquipmentPanel equipment={equipment} tooltips={tooltips}>
           <ModelViewer
             defaulted={model?.defaulted}
             face={character.face}

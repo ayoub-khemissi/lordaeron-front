@@ -13,6 +13,9 @@ import { SpellRenderer, iconFile, SPELL_DBCS } from "./spell";
 
 export const ITEM_DBCS: readonly DbcName[] = [
   ...SPELL_DBCS,
+  "ItemRandomProperties",
+  "ItemRandomSuffix",
+  "RandPropPoints",
   "ItemDisplayInfo",
   "ItemSet",
   "ItemLimitCategory",
@@ -33,6 +36,26 @@ export interface ItemLocaleRow {
 }
 // names of the pieces of an item set: entry -> name in the requested locale
 export type SetPieceNames = Map<number, string>;
+
+/*
+ * An item as a character wears it (the armory, lib/tooltips/instance.ts): its random enchantment, its enchantments by slot (0 permanent,
+ * 1 temporary, 2-4 the sockets' gems, 5 the socket bonus, 6 the prismatic socket, 7-11 the random properties), its durability, and
+ * what the rest of the equipment gives it: the item set pieces worn and the gem colors counted for the meta gems.
+ */
+export interface ItemInstanceContext {
+  randomPropertyId: number;
+  enchants: { id: number; duration: number }[];
+  durability: number;
+  // the entries of the character's equipped items
+  worn: ReadonlySet<number>;
+  // the gems of the equipment by color, [meta, red, yellow, blue] (the core's Player::EnchantmentFitsRequirements)
+  gemCounts: readonly number[];
+  // the socketed gems: gem item entry -> its name (in the locale), icon and colors (GemProperties.Type)
+  gems: ReadonlyMap<number, { name: string; icon: string; colors: number }>;
+}
+
+// the enchantment slots of an item instance (the core's EnchantmentSlot)
+const ENCH = { perm: 0, temp: 1, socket: 2, bonus: 5, prismatic: 6 };
 
 const ALL_CLASSES = 1535;
 const ALL_RACES = 1791;
@@ -217,10 +240,15 @@ export class ItemRenderer {
   // the requirements of a meta gem (SpellItemEnchantmentCondition.dbc, a packed record: id, 5 colors (bytes), 5 operands (uint32,
   // unused), 5 comparators (bytes), 5 compared colors (bytes), 5 values (uint32), 5 logic bytes; comparator 2: fewer than, 3: more
   // than the compared color, 5: at least)
-  private gemConditions(conditionId: number): TipLine[] {
+  // with the equipment's gem counts (a worn meta gem): each requirement in gray when met, red when not, and whether all are met
+  private gemConditions(
+    conditionId: number,
+    counts?: readonly number[],
+  ): TipLine[] & { met?: boolean } {
     const r = this.dbcs("SpellItemEnchantmentCondition").rec(conditionId);
-    const out: TipLine[] = [];
+    const out: TipLine[] & { met?: boolean } = [];
 
+    out.met = true;
     for (let k = 0; r && k < 5; ++k) {
       const color = r.u8(4 + k);
       const op = r.u8(29 + k);
@@ -228,6 +256,15 @@ export class ItemRenderer {
       const value = r.u32(39 + k * 4);
 
       if (!color || !op) continue;
+      let met = true;
+
+      if (counts) {
+        const cur = counts[color - 1] ?? 0;
+        const cmp = other ? (counts[other - 1] ?? 0) : value;
+
+        met = op === 2 ? cur < cmp : op === 3 ? cur > cmp : cur >= cmp;
+        if (!met) out.met = false;
+      }
       const c = str(this.lc, GEM_COLORS[color] ?? "");
       const s =
         op === 3
@@ -246,22 +283,143 @@ export class ItemRenderer {
 
       out.push({
         left: str(this.lc, "ENCHANT_CONDITION_REQUIRES") + s,
-        color: "gray",
+        color: met ? "gray" : "red",
       });
     }
 
     return out;
   }
 
+  // a socketed gem's line: its icon and its enchantment (a meta gem white when its requirements are met, gray otherwise, then them)
+  private gemLines(enchantId: number, inst: ItemInstanceContext): TipLine[] {
+    const e = this.dbcs("SpellItemEnchantment").rec(enchantId);
+    const gem = e ? inst.gems.get(e.get("Src_itemID")) : undefined;
+    const name = this.enchantName(enchantId) || gem?.name || "";
+
+    if (!e || !e.get("Condition_Id"))
+      return [{ left: name, color: "white", icon: gem?.icon }];
+    const conditions = this.gemConditions(
+      e.get("Condition_Id"),
+      inst.gemCounts,
+    );
+
+    return [
+      { left: name, color: conditions.met ? "white" : "gray", icon: gem?.icon },
+      ...conditions,
+    ];
+  }
+
+  // the stats an item's random enchantment gives (an "of the Bear" or a suffix, whose amounts follow the item's level, quality and
+  // slot: the core's GenerateEnchSuffixFactor) and the suffix of its name
+  private randomEnchant(
+    row: ItemRow,
+    id: number,
+  ): { suffix: string; lines: TipLine[] } | null {
+    const n = (k: string) => Number(row[k] ?? 0) || 0;
+    const lines: TipLine[] = [];
+
+    if (id > 0) {
+      const r = this.dbcs("ItemRandomProperties").rec(id);
+
+      if (!r) return null;
+      for (let k = 1; k <= 5; ++k) {
+        const name = this.enchantName(r.get(`Enchantment_${k}`));
+
+        if (name) lines.push({ left: name, color: "white" });
+      }
+
+      return { suffix: r.loc("Name", this.lc.slot), lines };
+    }
+    const r = this.dbcs("ItemRandomSuffix").rec(-id);
+
+    if (!r) return null;
+    const points = this.dbcs("RandPropPoints").rec(n("ItemLevel"));
+    const column = (
+      {
+        1: 0,
+        4: 0,
+        5: 0,
+        7: 0,
+        17: 0,
+        20: 0,
+        3: 1,
+        6: 1,
+        8: 1,
+        10: 1,
+        12: 1,
+        2: 2,
+        9: 2,
+        11: 2,
+        14: 2,
+        16: 2,
+        23: 2,
+        13: 3,
+        21: 3,
+        22: 3,
+        15: 4,
+        25: 4,
+        26: 4,
+      } as Record<number, number>
+    )[n("InventoryType")];
+    const quality = n("Quality");
+    const tier = quality === 2 ? "Good" : quality === 3 ? "Superior" : "Epic";
+    const factor =
+      points && column !== undefined && quality >= 2
+        ? points.get(`${tier}_${column + 1}`)
+        : 0;
+
+    for (let k = 1; k <= 5; ++k) {
+      const enchant = r.get(`Enchantment_${k}`);
+      const amount = Math.floor((factor * r.get(`AllocationPct_${k}`)) / 10000);
+      const name = this.enchantName(enchant);
+
+      if (name && amount > 0)
+        lines.push({
+          left: name.replace(/\$i/g, String(amount)),
+          color: "white",
+        });
+    }
+
+    return { suffix: r.loc("Name", this.lc.slot), lines };
+  }
+
+  private enchantTime(name: string, ms: number): string {
+    if (ms <= 0) return name;
+    if (ms >= 86400000)
+      return this.s(
+        "ITEM_ENCHANT_TIME_LEFT_DAYS",
+        name,
+        Math.ceil(ms / 86400000),
+      );
+    if (ms >= 3600000)
+      return this.s(
+        "ITEM_ENCHANT_TIME_LEFT_HOURS",
+        name,
+        Math.ceil(ms / 3600000),
+      );
+    if (ms >= 60000)
+      return this.s("ITEM_ENCHANT_TIME_LEFT_MIN", name, Math.ceil(ms / 60000));
+
+    return this.s("ITEM_ENCHANT_TIME_LEFT_SEC", name, Math.ceil(ms / 1000));
+  }
+
   tooltip(
     row: ItemRow,
     locRow: ItemLocaleRow | undefined,
     setPieces: SetPieceNames,
+    // the item as a character wears it (the armory), else the item itself (the shop, the links)
+    inst?: ItemInstanceContext,
   ): { name: string; lines: TipLine[] } {
     const lc = this.lc;
     const n = (k: string) => Number(row[k] ?? 0) || 0;
     const lines: TipLine[] = [];
-    const name = locRow?.Name || String(row.name ?? "");
+    const random =
+      inst && inst.randomPropertyId
+        ? this.randomEnchant(row, inst.randomPropertyId)
+        : null;
+    const baseName = locRow?.Name || String(row.name ?? "");
+    const name = random?.suffix ? `${baseName} ${random.suffix}` : baseName;
+    const ench = (slot: number) => inst?.enchants[slot]?.id ?? 0;
     const desc = locRow?.Description || String(row.description ?? "");
     const quality = n("Quality");
     const flags = n("Flags") >>> 0;
@@ -414,8 +572,22 @@ export class ItemRenderer {
           ),
           color: "white",
         });
-    if (n("RandomProperty") || n("RandomSuffix"))
+    if (random) lines.push(...random.lines);
+    else if (n("RandomProperty") || n("RandomSuffix"))
       lines.push({ left: str(lc, "ITEM_RANDOM_ENCHANT"), color: "green" });
+
+    // a worn item's enchantments: the permanent one, then the temporary one with its time left (green, as in game)
+    if (inst) {
+      const perm = this.enchantName(ench(ENCH.perm));
+      const temp = this.enchantName(ench(ENCH.temp));
+
+      if (perm) lines.push({ left: perm, color: "green" });
+      if (temp)
+        lines.push({
+          left: this.enchantTime(temp, inst.enchants[ENCH.temp]?.duration ?? 0),
+          color: "green",
+        });
+    }
 
     // a gem: its enchantment and its requirements (meta gems)
     if (itemClass === 3 && n("GemProperties")) {
@@ -431,26 +603,47 @@ export class ItemRenderer {
       }
     }
 
-    // sockets
+    // sockets: a worn item's gems in them, its prismatic socket (a belt buckle, a blacksmith's socket: the first socket without a color)
+    let fits = !!inst;
+
     for (let k = 1; k <= 3; ++k) {
       const color = n(`socketColor_${k}`);
+      const gem = ench(ENCH.socket + k - 1);
 
-      if (color)
-        lines.push({
-          left: str(lc, SOCKETS[color] ?? "EMPTY_SOCKET_NO_COLOR"),
-          color: "gray",
-        });
+      if (color) {
+        if (gem && inst) {
+          lines.push(...this.gemLines(gem, inst));
+          const e = this.dbcs("SpellItemEnchantment").rec(gem);
+          const colors = (e && inst.gems.get(e.get("Src_itemID"))?.colors) || 0;
+
+          if (!(colors & color)) fits = false;
+        } else {
+          lines.push({
+            left: str(lc, SOCKETS[color] ?? "EMPTY_SOCKET_NO_COLOR"),
+            color: "gray",
+          });
+          fits = false;
+        }
+      } else if (inst && ench(ENCH.prismatic)) {
+        // the prismatic socket, once
+        if (gem) lines.push(...this.gemLines(gem, inst));
+        else
+          lines.push({ left: str(lc, "EMPTY_SOCKET_NO_COLOR"), color: "gray" });
+        break;
+      }
     }
     if (n("socketBonus"))
       lines.push({
         left: this.s("ITEM_SOCKET_BONUS", this.enchantName(n("socketBonus"))),
-        color: "gray",
+        color: fits ? "green" : "gray",
       });
     if (n("MaxDurability") > 0)
       lines.push({
         left: this.s(
           "DURABILITY_TEMPLATE",
-          n("MaxDurability"),
+          inst
+            ? Math.min(inst.durability, n("MaxDurability"))
+            : n("MaxDurability"),
           n("MaxDurability"),
         ),
         color: "white",
@@ -578,13 +771,22 @@ export class ItemRenderer {
 
     if (set) {
       const pieces = itemSetPieces(this.dbcs, n("itemset"));
+      // the pieces a character wears (one per name: a set lists some pieces twice, as their versions)
+      const worn = inst
+        ? new Set(
+            pieces
+              .filter((p) => inst.worn.has(p))
+              .map((p) => setPieces.get(p) ?? String(p)),
+          )
+        : new Set<string>();
+      const shown = new Set<string>();
 
       lines.push({ left: "", color: "white" });
       lines.push({
         left: this.s(
           "ITEM_SET_NAME",
           set.loc("Name", lc.slot),
-          0,
+          worn.size,
           pieces.length,
         ),
         color: "gold",
@@ -592,7 +794,12 @@ export class ItemRenderer {
       for (const p of pieces) {
         const pieceName = setPieces.get(p);
 
-        if (pieceName) lines.push({ left: `  ${pieceName}`, color: "gray" });
+        if (!pieceName || shown.has(pieceName)) continue;
+        shown.add(pieceName);
+        lines.push({
+          left: `  ${pieceName}`,
+          color: worn.has(pieceName) ? "white" : "gray",
+        });
       }
       const bonuses: [number, number][] = [];
 
@@ -604,16 +811,24 @@ export class ItemRenderer {
           ]);
       bonuses.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
       lines.push({ left: "", color: "white" });
-      for (const [count, spell] of bonuses)
+      // a bonus the worn pieces reach shows as the client's active one (green), the others gray
+      for (const [count, spell] of bonuses) {
+        const active = worn.size >= count;
+
         this.spells
           .desc(spell)
           .split("\n")
           .forEach((p, j) =>
             lines.push({
-              left: j ? p : this.s("ITEM_SET_BONUS_GRAY", count, p),
-              color: "gray",
+              left: j
+                ? p
+                : active
+                  ? this.s("ITEM_SET_BONUS", p)
+                  : this.s("ITEM_SET_BONUS_GRAY", count, p),
+              color: active ? "green" : "gray",
             }),
           );
+      }
     }
     if (desc && !learn)
       lines.push({ left: `"${cleanText(desc).trim()}"`, color: "gold" });
