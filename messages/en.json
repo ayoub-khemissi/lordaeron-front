@@ -91,7 +91,11 @@
       "usernameTaken": "Username is already taken",
       "tooManyAccounts": "Too many accounts were created from your connection today. Try again tomorrow, or contact us on Discord.",
       "serverError": "Server error. Please try again."
-    }
+    },
+    "protectTitle": "Protect your account",
+    "protectWarning": "The game will then ask for the app's code at every login, on every realm, and so will this site. You can remove it from your account at any time.",
+    "protectAction": "Protect my account",
+    "protectSkip": "Later"
   },
   "login": {
     "title": "Login",
@@ -1172,7 +1176,31 @@
       "invalidCode": "That code is not valid. Type the current code (each code works once).",
       "tooManyAttempts": "Too many failed attempts. Wait 15 minutes, then try again.",
       "tooManyAttemptsIp": "Too many failed attempts from your connection. Wait 15 minutes, then try again.",
-      "serverError": "Server error. Please try again."
-    }
+      "serverError": "Server error. Please try again.",
+      "characterNotFound": "This character was not found on this realm.",
+      "deliveryFailed": "The in-game mail could not be sent (realm unreachable). Try again in a moment.",
+      "inProgress": "A delivery is already under way. Refresh in a moment.",
+      "notEnrolled": "Protect your account first to receive the reward.",
+      "alreadyClaimed": "This reward has already been sent to your account."
+    },
+    "eyebrowPlayer": "Your account",
+    "enrolIntroPlayer": "Protect your account with an authenticator app on your phone (Google Authenticator, Microsoft Authenticator, Aegis, 1Password…): your password alone will no longer open it.",
+    "rewardTitle": "Reward: Core Hound Pup",
+    "rewardText": "The companion Blizzard gave to accounts protected by an authenticator. Once per account, mailed in game to the character of your choice.",
+    "rewardRealm": "Realm",
+    "rewardCharacter": "Character",
+    "rewardNoCharacter": "No character on this realm yet: create one, your reward waits for you here.",
+    "rewardClaim": "Receive my Core Hound Pup",
+    "rewardClaimed": "Core Hound Pup sent to {name} ({realm}): open your mailbox in game.",
+    "rewardAlreadyClaimed": "Your Core Hound Pup has already been sent.",
+    "rewardFailed": "The last delivery failed. Try again in a moment.",
+    "continue": "Continue",
+    "cardIntroPlayer": "Protect your account with an authenticator app: the game and this site will then ask for its code at every login. Reward: a Core Hound Pup.",
+    "cardEnrolledPlayer": "Your account is protected by an authenticator app: the game and this site ask for its code at every login.",
+    "removeAction": "Remove the protection",
+    "removeIntro": "Type the current code of your app to remove the protection. The game and this site will no longer ask for it.",
+    "removeConfirm": "Remove",
+    "removeCancel": "Cancel",
+    "removed": "Protection removed."
   }
 }

@@ -6,7 +6,6 @@ import { getTranslations } from "next-intl/server";
 import { SecondFactorForm } from "@/components/second-factor-form";
 import { readAdminSession } from "@/lib/admin-auth";
 import { verifySession } from "@/lib/auth";
-import { gmLevel } from "@/lib/second-factor";
 
 export const dynamic = "force-dynamic";
 
@@ -35,7 +34,7 @@ function safeNext(value: string | string[] | undefined) {
 
 /*
  * The second-factor screen (majaliss's principle, Ayoub 13/10/2026): an administrator signed in enrols an authenticator app or types
- * its code, then goes on to `next`; a game master enrols their game account (?for=account). Anyone else has no business here.
+ * its code, then goes on to `next`; a player (a game master first) protects their game account (?for=account) and claims its reward.
  */
 export default async function SecondFactorPage({
   params,
@@ -60,8 +59,10 @@ export default async function SecondFactorPage({
 
   const player = await verifySession();
 
-  if (!player) redirect(`/${locale}/login`);
-  if ((await gmLevel(player.id)) < 1) redirect(`/${locale}/account`);
+  if (!player)
+    redirect(
+      `/${locale}/login?next=${encodeURIComponent(`/${locale}/verification-2fa?for=account`)}`,
+    );
 
   return (
     <SecondFactorForm factor="account" next={next ?? `/${locale}/account`} />

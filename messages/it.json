@@ -91,7 +91,11 @@
       "usernameTaken": "Il nome utente è già in uso",
       "tooManyAccounts": "Oggi sono stati creati troppi account dalla tua connessione. Riprova domani o contattaci su Discord.",
       "serverError": "Errore del server. Riprova."
-    }
+    },
+    "protectTitle": "Proteggi il tuo account",
+    "protectWarning": "Il gioco chiederà il codice dell'app a ogni accesso, su tutti i reami, così come questo sito. Potrai rimuoverla in qualsiasi momento dal tuo account.",
+    "protectAction": "Proteggi il mio account",
+    "protectSkip": "Più tardi"
   },
   "login": {
     "title": "Accesso",
@@ -1172,7 +1176,31 @@
       "invalidCode": "Codice non valido. Inserisci il codice attuale (ogni codice vale una sola volta).",
       "tooManyAttempts": "Troppi tentativi falliti. Attendi 15 minuti e riprova.",
       "tooManyAttemptsIp": "Troppi tentativi falliti dalla tua connessione. Attendi 15 minuti e riprova.",
-      "serverError": "Errore del server. Riprova."
-    }
+      "serverError": "Errore del server. Riprova.",
+      "characterNotFound": "Personaggio non trovato su questo reame.",
+      "deliveryFailed": "Impossibile inviare la posta nel gioco (reame non raggiungibile). Riprova tra un momento.",
+      "inProgress": "Un invio è già in corso. Aggiorna tra un momento.",
+      "notEnrolled": "Proteggi prima il tuo account per ricevere la ricompensa.",
+      "alreadyClaimed": "Questa ricompensa è già stata inviata al tuo account."
+    },
+    "eyebrowPlayer": "Il tuo account",
+    "enrolIntroPlayer": "Proteggi il tuo account con un'app di autenticazione sul telefono (Google Authenticator, Microsoft Authenticator, Aegis, 1Password…): la sola password non basterà più per aprirlo.",
+    "rewardTitle": "Ricompensa: Cucciolo di Segugio del Nucleo",
+    "rewardText": "Il compagno che Blizzard regalava agli account protetti da un autenticatore. Una volta per account, spedito per posta nel gioco al personaggio che scegli.",
+    "rewardRealm": "Reame",
+    "rewardCharacter": "Personaggio",
+    "rewardNoCharacter": "Ancora nessun personaggio su questo reame: creane uno, la tua ricompensa ti aspetta qui.",
+    "rewardClaim": "Ricevi il mio Cucciolo di Segugio del Nucleo",
+    "rewardClaimed": "Cucciolo di Segugio del Nucleo spedito a {name} ({realm}): apri la cassetta della posta nel gioco.",
+    "rewardAlreadyClaimed": "Il tuo Cucciolo di Segugio del Nucleo è già stato spedito.",
+    "rewardFailed": "L'ultimo invio non è riuscito. Riprova tra un momento.",
+    "continue": "Continua",
+    "cardIntroPlayer": "Proteggi il tuo account con un'app di autenticazione: il gioco e questo sito chiederanno il suo codice a ogni accesso. Ricompensa: un Cucciolo di Segugio del Nucleo.",
+    "cardEnrolledPlayer": "Il tuo account è protetto da un'app di autenticazione: il gioco e questo sito chiedono il suo codice a ogni accesso.",
+    "removeAction": "Rimuovi la protezione",
+    "removeIntro": "Inserisci il codice attuale della tua app per rimuovere la protezione. Il gioco e questo sito non lo chiederanno più.",
+    "removeConfirm": "Rimuovi",
+    "removeCancel": "Annulla",
+    "removed": "Protezione rimossa."
   }
 }

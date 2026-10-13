@@ -91,7 +91,11 @@
       "usernameTaken": "O nome de utilizador ja esta em uso",
       "tooManyAccounts": "Foram criadas demasiadas contas a partir da tua ligação hoje. Tenta amanhã ou contacta-nos no Discord.",
       "serverError": "Erro no servidor. Por favor, tenta novamente."
-    }
+    },
+    "protectTitle": "Protege a tua conta",
+    "protectWarning": "O jogo pedirá então o código da aplicação em cada ligação, em todos os reinos, tal como este site. Podes retirá-la a qualquer momento na tua conta.",
+    "protectAction": "Proteger a minha conta",
+    "protectSkip": "Mais tarde"
   },
   "login": {
     "title": "Iniciar Sessao",
@@ -1172,7 +1176,31 @@
       "invalidCode": "Esse código não é válido. Escreve o código atual (cada código serve uma vez).",
       "tooManyAttempts": "Demasiadas tentativas falhadas. Espera 15 minutos e tenta novamente.",
       "tooManyAttemptsIp": "Demasiadas tentativas falhadas a partir da tua ligação. Espera 15 minutos e tenta novamente.",
-      "serverError": "Erro do servidor. Tenta novamente."
-    }
+      "serverError": "Erro do servidor. Tenta novamente.",
+      "characterNotFound": "Esta personagem não foi encontrada neste reino.",
+      "deliveryFailed": "Não foi possível enviar o correio no jogo (reino inacessível). Tenta de novo daqui a pouco.",
+      "inProgress": "Já há um envio em curso. Atualiza daqui a pouco.",
+      "notEnrolled": "Protege primeiro a tua conta para receber a recompensa.",
+      "alreadyClaimed": "Esta recompensa já foi enviada para a tua conta."
+    },
+    "eyebrowPlayer": "A tua conta",
+    "enrolIntroPlayer": "Protege a tua conta com uma aplicação de autenticação no telemóvel (Google Authenticator, Microsoft Authenticator, Aegis, 1Password…): a palavra-passe sozinha deixa de bastar para a abrir.",
+    "rewardTitle": "Recompensa: Filhote de Cão-do-núcleo",
+    "rewardText": "O companheiro que a Blizzard oferecia às contas protegidas por um autenticador. Uma vez por conta, enviado por correio no jogo à personagem que escolheres.",
+    "rewardRealm": "Reino",
+    "rewardCharacter": "Personagem",
+    "rewardNoCharacter": "Ainda não tens personagens neste reino: cria uma, a tua recompensa espera por ti aqui.",
+    "rewardClaim": "Receber o meu Filhote de Cão-do-núcleo",
+    "rewardClaimed": "Filhote de Cão-do-núcleo enviado a {name} ({realm}): abre a tua caixa de correio no jogo.",
+    "rewardAlreadyClaimed": "O teu Filhote de Cão-do-núcleo já foi enviado.",
+    "rewardFailed": "O último envio falhou. Tenta de novo daqui a pouco.",
+    "continue": "Continuar",
+    "cardIntroPlayer": "Protege a tua conta com uma aplicação de autenticação: o jogo e este site pedirão o código em cada ligação. Recompensa: um Filhote de Cão-do-núcleo.",
+    "cardEnrolledPlayer": "A tua conta está protegida por uma aplicação de autenticação: o jogo e este site pedem o código em cada ligação.",
+    "removeAction": "Retirar a proteção",
+    "removeIntro": "Introduz o código atual da tua aplicação para retirar a proteção. O jogo e este site deixarão de o pedir.",
+    "removeConfirm": "Retirar",
+    "removeCancel": "Cancelar",
+    "removed": "Proteção retirada."
   }
 }

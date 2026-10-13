@@ -91,7 +91,11 @@
       "usernameTaken": "Benutzername ist bereits vergeben",
       "tooManyAccounts": "Über deine Verbindung wurden heute zu viele Konten erstellt. Versuche es morgen erneut oder kontaktiere uns auf Discord.",
       "serverError": "Serverfehler. Bitte versuche es erneut."
-    }
+    },
+    "protectTitle": "Schütze dein Konto",
+    "protectWarning": "Das Spiel fragt dann bei jeder Anmeldung auf jedem Realm nach dem Code der App, ebenso diese Website. Du kannst den Schutz jederzeit in deinem Konto entfernen.",
+    "protectAction": "Mein Konto schützen",
+    "protectSkip": "Später"
   },
   "login": {
     "title": "Anmelden",
@@ -1172,7 +1176,31 @@
       "invalidCode": "Dieser Code ist ungültig. Gib den aktuellen Code ein (jeder Code gilt nur einmal).",
       "tooManyAttempts": "Zu viele Fehlversuche. Warte 15 Minuten und versuche es dann erneut.",
       "tooManyAttemptsIp": "Zu viele Fehlversuche über deine Verbindung. Warte 15 Minuten und versuche es dann erneut.",
-      "serverError": "Serverfehler. Bitte versuche es erneut."
-    }
+      "serverError": "Serverfehler. Bitte versuche es erneut.",
+      "characterNotFound": "Dieser Charakter wurde auf diesem Realm nicht gefunden.",
+      "deliveryFailed": "Die Ingame-Post konnte nicht gesendet werden (Realm nicht erreichbar). Versuche es gleich noch einmal.",
+      "inProgress": "Ein Versand läuft bereits. Aktualisiere gleich.",
+      "notEnrolled": "Schütze zuerst dein Konto, um die Belohnung zu erhalten.",
+      "alreadyClaimed": "Diese Belohnung wurde deinem Konto bereits gesendet."
+    },
+    "eyebrowPlayer": "Dein Konto",
+    "enrolIntroPlayer": "Schütze dein Konto mit einer Authenticator-App auf deinem Handy (Google Authenticator, Microsoft Authenticator, Aegis, 1Password…): Dein Passwort allein öffnet es dann nicht mehr.",
+    "rewardTitle": "Belohnung: Kernhundwelpe",
+    "rewardText": "Der Begleiter, den Blizzard Konten mit Authenticator schenkte. Einmal pro Konto, per Ingame-Post an den Charakter deiner Wahl.",
+    "rewardRealm": "Realm",
+    "rewardCharacter": "Charakter",
+    "rewardNoCharacter": "Noch kein Charakter auf diesem Realm: Erstelle einen, deine Belohnung wartet hier auf dich.",
+    "rewardClaim": "Meinen Kernhundwelpe erhalten",
+    "rewardClaimed": "Kernhundwelpe an {name} ({realm}) gesendet: Öffne deinen Briefkasten im Spiel.",
+    "rewardAlreadyClaimed": "Dein Kernhundwelpe wurde bereits gesendet.",
+    "rewardFailed": "Der letzte Versand ist fehlgeschlagen. Versuche es gleich noch einmal.",
+    "continue": "Weiter",
+    "cardIntroPlayer": "Schütze dein Konto mit einer Authenticator-App: Spiel und Website fragen dann bei jeder Anmeldung nach dem Code. Belohnung: ein Kernhundwelpe.",
+    "cardEnrolledPlayer": "Dein Konto ist durch eine Authenticator-App geschützt: Spiel und Website fragen bei jeder Anmeldung nach dem Code.",
+    "removeAction": "Schutz entfernen",
+    "removeIntro": "Gib den aktuellen Code deiner App ein, um den Schutz zu entfernen. Spiel und Website fragen dann nicht mehr danach.",
+    "removeConfirm": "Entfernen",
+    "removeCancel": "Abbrechen",
+    "removed": "Schutz entfernt."
   }
 }

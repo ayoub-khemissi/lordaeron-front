@@ -70,7 +70,17 @@ export const LoginForm = () => {
       }
 
       await refresh();
-      router.push(`/${locale}/account`);
+      // back to the page that asked for the sign-in (?next=, this site's own paths only), else the account
+      const next = new URLSearchParams(window.location.search).get("next");
+
+      router.push(
+        next &&
+          next.startsWith("/") &&
+          !next.startsWith("//") &&
+          !next.includes("\\")
+          ? next
+          : `/${locale}/account`,
+      );
     } catch {
       setErrors({ server: t("errors.serverError") });
     } finally {

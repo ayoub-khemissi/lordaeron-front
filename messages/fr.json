@@ -91,7 +91,11 @@
       "usernameTaken": "Ce nom d'utilisateur est déjà pris",
       "tooManyAccounts": "Trop de comptes ont été créés depuis votre connexion aujourd'hui. Réessayez demain ou contactez-nous sur Discord.",
       "serverError": "Erreur serveur. Veuillez réessayer."
-    }
+    },
+    "protectTitle": "Protégez votre compte",
+    "protectWarning": "Le jeu demandera alors le code de l'application à chaque connexion, sur tous les royaumes, tout comme ce site. Vous pourrez la retirer à tout moment depuis votre compte.",
+    "protectAction": "Protéger mon compte",
+    "protectSkip": "Plus tard"
   },
   "login": {
     "title": "Connexion",
@@ -1172,7 +1176,31 @@
       "invalidCode": "Ce code n'est pas valide. Saisissez le code actuel (chaque code ne sert qu'une fois).",
       "tooManyAttempts": "Trop de tentatives échouées. Attendez 15 minutes, puis réessayez.",
       "tooManyAttemptsIp": "Trop de tentatives échouées depuis votre connexion. Attendez 15 minutes, puis réessayez.",
-      "serverError": "Erreur serveur. Veuillez réessayer."
-    }
+      "serverError": "Erreur serveur. Veuillez réessayer.",
+      "characterNotFound": "Ce personnage est introuvable sur ce royaume.",
+      "deliveryFailed": "Le courrier en jeu n'a pas pu partir (royaume injoignable). Réessayez dans un instant.",
+      "inProgress": "Un envoi est déjà en cours. Actualisez dans un instant.",
+      "notEnrolled": "Protégez d'abord votre compte pour recevoir la récompense.",
+      "alreadyClaimed": "Cette récompense a déjà été envoyée à votre compte."
+    },
+    "eyebrowPlayer": "Votre compte",
+    "enrolIntroPlayer": "Protégez votre compte avec une application d'authentification sur votre téléphone (Google Authenticator, Microsoft Authenticator, Aegis, 1Password…) : votre mot de passe seul ne suffira plus pour l'ouvrir.",
+    "rewardTitle": "Récompense : Chiot du magma",
+    "rewardText": "Le compagnon que Blizzard offrait aux comptes protégés par un authentificateur. Une fois par compte, envoyé par courrier en jeu au personnage de votre choix.",
+    "rewardRealm": "Royaume",
+    "rewardCharacter": "Personnage",
+    "rewardNoCharacter": "Aucun personnage sur ce royaume pour l'instant : créez-en un, votre récompense vous attend ici.",
+    "rewardClaim": "Recevoir mon Chiot du magma",
+    "rewardClaimed": "Chiot du magma envoyé à {name} ({realm}) : ouvrez votre boîte aux lettres en jeu.",
+    "rewardAlreadyClaimed": "Votre Chiot du magma a déjà été envoyé.",
+    "rewardFailed": "Le dernier envoi a échoué. Réessayez dans un instant.",
+    "continue": "Continuer",
+    "cardIntroPlayer": "Protégez votre compte avec une application d'authentification : le jeu et ce site demanderont son code à chaque connexion. Récompense : un Chiot du magma.",
+    "cardEnrolledPlayer": "Votre compte est protégé par une application d'authentification : le jeu et ce site demandent son code à chaque connexion.",
+    "removeAction": "Retirer la protection",
+    "removeIntro": "Saisissez le code actuel de votre application pour retirer la protection. Le jeu et ce site ne le demanderont plus.",
+    "removeConfirm": "Retirer",
+    "removeCancel": "Annuler",
+    "removed": "Protection retirée."
   }
 }

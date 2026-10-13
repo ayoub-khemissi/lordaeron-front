@@ -16,17 +16,22 @@ import {
   isEnrolled,
   lockedOut,
   recordFailure,
+  removeAccountFactor,
   requestIp,
   verifyCode,
 } from "@/lib/second-factor";
+import { rewardState } from "@/lib/second-factor-reward";
 
 export const dynamic = "force-dynamic";
 
 /*
- * The second factor (lib/second-factor.ts) of the session's administrator (for=admin: the admin space waits for it) or of a game
- * master's game account (for=account: written into auth.account.totp_secret, asked at every game login and website sign-in).
- * GET: the screen's state (status=1: only whether the account may enrol and has), with the QR code to scan before enrolment.
+ * The second factor (lib/second-factor.ts) of the session's administrator (for=admin: the admin space waits for it) or of the signed-in
+ * player's game account (for=account: written into auth.account.totp_secret, asked at every game login and website sign-in; game
+ * masters are told it matters most). The account's reward: lib/second-factor-reward.ts, claimed at ./reward.
+ * GET: the screen's state (status=1: whether the account may enrol, has, is a game master, and its reward), with the QR code to scan
+ * before enrolment.
  * POST {code}: enrols with the first valid code, or verifies the administrator's session.
+ * DELETE {code}: removes the game account's factor with its current code.
  */
 
 async function subject(factor: Factor) {
@@ -39,9 +44,14 @@ async function subject(factor: Factor) {
   }
   const session = await verifySession();
 
-  if (!session || (await gmLevel(session.id)) < 1) return null;
+  if (!session) return null;
 
   return { id: session.id, label: session.username, admin: null };
+}
+
+// what the account screen and card show beside the factor: game master or player, and the reward
+async function accountExtras(id: number) {
+  return { gm: (await gmLevel(id)) >= 1, reward: await rewardState(id) };
 }
 
 const factorOf = (value: string | null | undefined): Factor =>
@@ -57,6 +67,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({
         allowed: !!who,
         enrolled: !!who && (await isEnrolled(factor, who.id)),
+        ...(who && factor === "account" ? await accountExtras(who.id) : {}),
       });
     }
     if (!who) {
@@ -65,15 +76,19 @@ export async function GET(request: NextRequest) {
     if (who.admin?.mfa) {
       return NextResponse.json({ step: "verified" });
     }
+    const extras = factor === "account" ? await accountExtras(who.id) : {};
+
     if (await isEnrolled(factor, who.id)) {
-      // an administrator types the code of the app enrolled; a game account has nothing more to do here
+      // an administrator types the code of the app enrolled; a game account has nothing more to do here (but its reward)
       return NextResponse.json({
         step: factor === "admin" ? "verify" : "done",
+        ...extras,
       });
     }
 
     return NextResponse.json({
       step: "enrol",
+      ...extras,
       ...(await enrolment(factor, who.id, who.label)),
     });
   } catch (error) {
@@ -139,6 +154,42 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error("Second factor check:", error);
+
+    return NextResponse.json({ error: "serverError" }, { status: 500 });
+  }
+}
+
+export async function DELETE(request: NextRequest) {
+  try {
+    const session = await verifySession();
+
+    if (!session) {
+      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+    }
+    const { code } = await request.json();
+    const ip = requestIp(request.headers);
+    const failures = `totp:account:${session.id}`;
+    const locked = await lockedOut(failures, ip);
+
+    if (locked) {
+      return NextResponse.json(
+        { error: locked === "ip" ? "tooManyAttemptsIp" : "tooManyAttempts" },
+        { status: 429 },
+      );
+    }
+    if (!(await isEnrolled("account", session.id))) {
+      return NextResponse.json({ success: true, enrolled: false });
+    }
+    if (!(await removeAccountFactor(session.id, String(code ?? "").trim()))) {
+      await recordFailure(failures, ip);
+
+      return NextResponse.json({ error: "invalidCode" }, { status: 400 });
+    }
+    await clearFailures(failures);
+
+    return NextResponse.json({ success: true, enrolled: false });
+  } catch (error) {
+    console.error("Second factor removal:", error);
 
     return NextResponse.json({ error: "serverError" }, { status: 500 });
   }

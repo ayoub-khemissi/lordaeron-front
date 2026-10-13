@@ -522,7 +522,7 @@ export default function AccountPage() {
                 </motion.div>
               )}
 
-              {/* Game masters: the authenticator app protecting the game account (and its website sign-in) */}
+              {/* The authenticator app protecting the game account (and its website sign-in), its reward and its removal */}
               <AccountSecondFactorCard locale={locale} />
 
               {/* Change Password */}

@@ -10,6 +10,7 @@ import clsx from "clsx";
 
 import { useSignupRealm } from "@/lib/realm-context";
 import { DEFAULT_REALM, REALMS, realmPath } from "@/lib/realms";
+import { RewardBanner } from "@/components/second-factor-form";
 
 export const RegisterForm = () => {
   const t = useTranslations("register");
@@ -27,6 +28,35 @@ export const RegisterForm = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  // after signup: the authenticator offered with its reward, or skipped (Ayoub, 13/10/2026)
+  const [protectSkipped, setProtectSkipped] = useState(false);
+  const [protecting, setProtecting] = useState(false);
+
+  // signs in with the credentials just chosen, then the second-factor screen (back to the realm's how-to, or the account)
+  const protect = async () => {
+    setProtecting(true);
+    const next = realmSignup
+      ? realmPath(locale, realm.slug, "/how-to")
+      : `/${locale}/account`;
+    const factorPage = `/${locale}/verification-2fa?for=account&next=${encodeURIComponent(next)}`;
+
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: form.username,
+          password: form.password,
+        }),
+      });
+
+      window.location.href = res.ok
+        ? factorPage
+        : `/${locale}/login?next=${encodeURIComponent(factorPage)}`;
+    } catch {
+      window.location.href = `/${locale}/login?next=${encodeURIComponent(factorPage)}`;
+    }
+  };
 
   const validate = () => {
     const errs: Record<string, string> = {};
@@ -102,6 +132,33 @@ export const RegisterForm = () => {
       >
         <div className="text-5xl mb-4">&#9989;</div>
         <p className="text-green-400 text-lg mb-6">{t("success")}</p>
+        {!protectSkipped && (
+          <div className="mb-6 flex flex-col gap-3 rounded-xl border border-wow-gold/30 bg-wow-gold/5 p-4 text-left">
+            <p className="font-heading text-lg text-wow-gold-light">
+              {t("protectTitle")}
+            </p>
+            <RewardBanner />
+            <p className="text-xs leading-relaxed text-gray-400">
+              {t("protectWarning")}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <Button
+                className="flex-1 bg-gradient-to-r from-wow-gold to-wow-gold-light font-bold text-black"
+                isLoading={protecting}
+                onPress={protect}
+              >
+                {t("protectAction")}
+              </Button>
+              <Button
+                className="text-gray-400"
+                variant="light"
+                onPress={() => setProtectSkipped(true)}
+              >
+                {t("protectSkip")}
+              </Button>
+            </div>
+          </div>
+        )}
         {realmSignup && (
           <div className="mb-6 rounded-xl border border-wow-blue-ice/30 bg-wow-blue-ice/10 p-4">
             <p className="mb-3 text-sm text-wow-blue-ice">

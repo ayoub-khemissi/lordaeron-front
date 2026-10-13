@@ -91,7 +91,11 @@
       "usernameTaken": "Nazwa użytkownika jest już zajęta",
       "tooManyAccounts": "Z twojego połączenia utworzono dziś zbyt wiele kont. Spróbuj jutro lub skontaktuj się z nami na Discordzie.",
       "serverError": "Błąd serwera. Spróbuj ponownie."
-    }
+    },
+    "protectTitle": "Chroń swoje konto",
+    "protectWarning": "Gra będzie wtedy prosić o kod z aplikacji przy każdym logowaniu, we wszystkich krainach, podobnie jak ta strona. Możesz to usunąć w każdej chwili na swoim koncie.",
+    "protectAction": "Chroń moje konto",
+    "protectSkip": "Później"
   },
   "login": {
     "title": "Logowanie",
@@ -1172,7 +1176,31 @@
       "invalidCode": "Ten kod jest nieprawidłowy. Wpisz aktualny kod (każdy kod działa raz).",
       "tooManyAttempts": "Zbyt wiele nieudanych prób. Odczekaj 15 minut i spróbuj ponownie.",
       "tooManyAttemptsIp": "Zbyt wiele nieudanych prób z twojego połączenia. Odczekaj 15 minut i spróbuj ponownie.",
-      "serverError": "Błąd serwera. Spróbuj ponownie."
-    }
+      "serverError": "Błąd serwera. Spróbuj ponownie.",
+      "characterNotFound": "Nie znaleziono tej postaci w tej krainie.",
+      "deliveryFailed": "Nie udało się wysłać poczty w grze (kraina niedostępna). Spróbuj ponownie za chwilę.",
+      "inProgress": "Wysyłka już trwa. Odśwież za chwilę.",
+      "notEnrolled": "Najpierw zabezpiecz konto, aby otrzymać nagrodę.",
+      "alreadyClaimed": "Ta nagroda została już wysłana na twoje konto."
+    },
+    "eyebrowPlayer": "Twoje konto",
+    "enrolIntroPlayer": "Chroń swoje konto aplikacją uwierzytelniającą w telefonie (Google Authenticator, Microsoft Authenticator, Aegis, 1Password…): samo hasło nie wystarczy już, by je otworzyć.",
+    "rewardTitle": "Nagroda: Szczenię Psa z Jądra",
+    "rewardText": "Towarzysz, którego Blizzard dawał kontom chronionym przez authenticator. Raz na konto, wysyłany pocztą w grze do wybranej postaci.",
+    "rewardRealm": "Kraina",
+    "rewardCharacter": "Postać",
+    "rewardNoCharacter": "Nie masz jeszcze postaci w tej krainie: utwórz ją, nagroda czeka tutaj.",
+    "rewardClaim": "Odbierz mój Szczenię Psa z Jądra",
+    "rewardClaimed": "Szczenię Psa z Jądra wysłany do {name} ({realm}): otwórz skrzynkę pocztową w grze.",
+    "rewardAlreadyClaimed": "Twój Szczenię Psa z Jądra został już wysłany.",
+    "rewardFailed": "Ostatnia wysyłka się nie powiodła. Spróbuj ponownie za chwilę.",
+    "continue": "Dalej",
+    "cardIntroPlayer": "Chroń swoje konto aplikacją uwierzytelniającą: gra i ta strona będą prosić o kod przy każdym logowaniu. Nagroda: Szczenię Psa z Jądra.",
+    "cardEnrolledPlayer": "Twoje konto jest chronione aplikacją uwierzytelniającą: gra i ta strona proszą o kod przy każdym logowaniu.",
+    "removeAction": "Usuń ochronę",
+    "removeIntro": "Wpisz aktualny kod z aplikacji, aby usunąć ochronę. Gra i ta strona przestaną o niego prosić.",
+    "removeConfirm": "Usuń",
+    "removeCancel": "Anuluj",
+    "removed": "Ochrona usunięta."
   }
 }

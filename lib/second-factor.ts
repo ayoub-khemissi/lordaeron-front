@@ -10,7 +10,8 @@ import { authDb, websiteDb } from "@/lib/db";
  * The second factor (Ayoub, 13/10/2026, on majaliss's principle): an authenticator app's 6-digit code.
  * - An administrator's (shop_admins) factor lives in second_factor; the admin space waits for it (lib/admin-auth.ts).
  * - A game account's lives in auth.account.totp_secret, raw bytes: TrinityCore's authserver asks for it at every game login (no
- *   TOTPMasterSecret, so it reads them as they are) and the website's sign-in asks for it too. Game masters enrol from the same screen.
+ *   TOTPMasterSecret, so it reads them as they are) and the website's sign-in asks for it too. Every player may enrol (offered after
+ *   signup, with a reward: lib/second-factor-reward.ts) and remove it with a current code; game masters are told it matters most.
  * The codes follow TrinityCore's TOTP exactly (src/common/Cryptography/TOTP.cpp): HMAC-SHA1, 6 digits, 30 s steps, the previous,
  * current and next step accepted; here a step serves once. Secrets are never logged.
  * Lockouts: the website's sign-ins bypass the authserver's WrongPass, so 5 failures of one subject in 15 minutes lock it, and 20
@@ -182,6 +183,22 @@ export async function enrolment(factor: Factor, id: number, label: string) {
   const uri = `otpauth://totp/${encodeURIComponent(`${issuer}:${label}`)}?secret=${secret}&issuer=${encodeURIComponent(issuer)}&algorithm=SHA1&digits=6&period=${STEP_SECONDS}`;
 
   return { secret, qr: await QRCode.toDataURL(uri, { margin: 1, width: 224 }) };
+}
+
+// removes a game account's factor once its current code is typed (a step serves once): the game and the site stop asking for it
+export async function removeAccountFactor(
+  id: number,
+  code: string,
+): Promise<boolean> {
+  if ((await verifyCode("account", id, code)) !== "ok") return false;
+  await authDb.execute("UPDATE account SET totp_secret = NULL WHERE id = ?", [
+    id,
+  ]);
+  await websiteDb.execute("DELETE FROM second_factor WHERE subject = ?", [
+    key("account", id),
+  ]);
+
+  return true;
 }
 
 /*
