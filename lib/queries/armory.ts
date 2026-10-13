@@ -63,6 +63,19 @@ export async function searchArmoryCharacters(
   };
 }
 
+// the guild's officers are the ranks that hear the officer channel (GR_RIGHT_OFFCHATLISTEN, as the game's roster), its master the leader
+const RIGHT_OFFICER_CHAT = 0x04;
+
+function guildRole(
+  leader: number | null,
+  rights: number | null,
+): ArmoryCharacter["guildRole"] {
+  if (leader) return "master";
+  if (rights != null && rights & RIGHT_OFFICER_CHAT) return "officer";
+
+  return null;
+}
+
 export async function getArmoryCharacter(
   name: string,
   realm: RealmSlug = DEFAULT_REALM,
@@ -72,7 +85,8 @@ export async function getArmoryCharacter(
     `SELECT c.guid, c.name, c.race, c.class, c.gender, c.level, c.online,
        c.totaltime, c.zone, c.skin, c.face, c.hairStyle, c.hairColor, c.facialStyle,
        c.totalKills, c.totalHonorPoints, c.arenaPoints, c.equipmentCache,
-       g.name AS guildName, g.guildid AS guildId, gr.rname AS guildRankName,
+       g.name AS guildName, g.guildid AS guildId, gr.rname AS guildRankName, gr.rights AS guildRankRights,
+       g.leaderguid = c.guid AS guildLeader,
        g.EmblemStyle AS emblemStyle, g.EmblemColor AS emblemColor, g.BorderStyle AS borderStyle,
        g.BorderColor AS borderColor, g.BackgroundColor AS backgroundColor,
        ${gmColumn("c.account")}
@@ -90,9 +104,12 @@ export async function getArmoryCharacter(
   if (rows.length === 0) return null;
   const r = rows[0];
 
+  const { guildRankRights, guildLeader, ...character } = r;
+
   return {
-    ...r,
+    ...character,
     gm: !!r.gm,
+    guildRole: guildRole(guildLeader, guildRankRights),
     guildEmblem:
       r.guildId != null
         ? {

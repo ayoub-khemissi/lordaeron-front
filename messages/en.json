@@ -1283,7 +1283,9 @@
     "primarySpec": "Primary",
     "secondarySpec": "Secondary",
     "viewTalents": "View talents",
-    "noTalents": "No talents"
+    "noTalents": "No talents",
+    "guildOfficer": "Officer",
+    "guildMaster": "Guild Master"
   },
   "raidScaling": {
     "title": "Difficulty Scaling",

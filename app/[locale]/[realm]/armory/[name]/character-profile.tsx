@@ -193,6 +193,7 @@ export function CharacterProfile({ name }: CharacterProfileProps) {
           guildEmblem={character.guildEmblem}
           guildName={character.guildName}
           guildRankName={character.guildRankName}
+          guildRole={character.guildRole}
         />
         {character.totaltime > 0 && (
           <p className="text-xs text-gray-500 mt-2">

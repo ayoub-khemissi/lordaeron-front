@@ -1283,7 +1283,9 @@
     "primarySpec": "Основная",
     "secondarySpec": "Дополнительная",
     "viewTalents": "Открыть таланты",
-    "noTalents": "Нет талантов"
+    "noTalents": "Нет талантов",
+    "guildOfficer": "Офицер",
+    "guildMaster": "Глава гильдии"
   },
   "raidScaling": {
     "title": "Масштабирование сложности",

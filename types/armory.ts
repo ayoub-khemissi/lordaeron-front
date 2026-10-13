@@ -45,6 +45,8 @@ export interface ArmoryCharacter {
   guildId: number | null;
   guildName: string | null;
   guildRankName: string | null;
+  // the guild master, or an officer (a rank on the officer channel); the rank's own name stays
+  guildRole: "master" | "officer" | null;
   guildEmblem?: GuildEmblem | null;
   gm?: boolean;
 }

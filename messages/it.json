@@ -1283,7 +1283,9 @@
     "primarySpec": "Primaria",
     "secondarySpec": "Secondaria",
     "viewTalents": "Vedi talenti",
-    "noTalents": "Nessun talento"
+    "noTalents": "Nessun talento",
+    "guildOfficer": "Ufficiale",
+    "guildMaster": "Maestro di gilda"
   },
   "raidScaling": {
     "title": "Scaling di difficoltà",
