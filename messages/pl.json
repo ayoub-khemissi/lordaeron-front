@@ -89,6 +89,7 @@
       "passwordLength": "Hasło musi mieć od 6 do 16 znaków",
       "passwordMismatch": "Hasła nie są zgodne",
       "usernameTaken": "Nazwa użytkownika jest już zajęta",
+      "tooManyAccounts": "Z twojego połączenia utworzono dziś zbyt wiele kont. Spróbuj jutro lub skontaktuj się z nami na Discordzie.",
       "serverError": "Błąd serwera. Spróbuj ponownie."
     }
   },

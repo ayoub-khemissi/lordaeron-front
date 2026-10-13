@@ -2,7 +2,7 @@ import type { Account, AccountBan, IpBan } from "@/types";
 
 import { RowDataPacket } from "mysql2";
 
-import { authDb } from "@/lib/db";
+import { authDb, websiteDb } from "@/lib/db";
 
 export async function findAccountByUsername(
   username: string,
@@ -73,6 +73,23 @@ export async function updateAccountPassword(
   await authDb.execute(
     "UPDATE account SET salt = ?, verifier = ? WHERE id = ?",
     [salt, verifier, accountId],
+  );
+}
+
+// accounts created from this IP over the last 24 hours (sql/account_registrations.sql)
+export async function countRecentRegistrations(ip: string): Promise<number> {
+  const [rows] = await websiteDb.execute<RowDataPacket[]>(
+    "SELECT COUNT(*) AS n FROM account_registrations WHERE ip = ? AND created_at > NOW() - INTERVAL 24 HOUR",
+    [ip],
+  );
+
+  return Number(rows[0]?.n ?? 0);
+}
+
+export async function recordRegistration(accountId: number, ip: string) {
+  await websiteDb.execute(
+    "INSERT INTO account_registrations (account_id, ip) VALUES (?, ?)",
+    [accountId, ip],
   );
 }
 

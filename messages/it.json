@@ -89,6 +89,7 @@
       "passwordLength": "La password deve avere 6-16 caratteri",
       "passwordMismatch": "Le password non corrispondono",
       "usernameTaken": "Il nome utente è già in uso",
+      "tooManyAccounts": "Oggi sono stati creati troppi account dalla tua connessione. Riprova domani o contattaci su Discord.",
       "serverError": "Errore del server. Riprova."
     }
   },

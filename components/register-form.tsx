@@ -76,6 +76,8 @@ export const RegisterForm = () => {
       if (!res.ok) {
         if (data.error === "usernameTaken") {
           setErrors({ username: t("errors.usernameTaken") });
+        } else if (data.error === "tooManyAccounts") {
+          setErrors({ server: t("errors.tooManyAccounts") });
         } else {
           setErrors({ server: t("errors.serverError") });
         }

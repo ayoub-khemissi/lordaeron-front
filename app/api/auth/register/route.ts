@@ -1,7 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { generateSalt, calculateVerifier } from "@/lib/srp6";
-import { findAccountByUsername, createAccount } from "@/lib/queries/account";
+import {
+  findAccountByUsername,
+  createAccount,
+  countRecentRegistrations,
+  recordRegistration,
+} from "@/lib/queries/account";
+
+// at most this many accounts per IP per 24 hours (nginx sets X-Real-IP to the visitor's address)
+const MAX_ACCOUNTS_PER_IP = 3;
 
 export async function POST(request: NextRequest) {
   try {
@@ -27,6 +35,15 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "passwordLength" }, { status: 400 });
     }
 
+    const ip =
+      request.headers.get("x-real-ip") ||
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      "unknown";
+
+    if ((await countRecentRegistrations(ip)) >= MAX_ACCOUNTS_PER_IP) {
+      return NextResponse.json({ error: "tooManyAccounts" }, { status: 429 });
+    }
+
     // Check if username exists
     const existing = await findAccountByUsername(username);
 
@@ -40,6 +57,8 @@ export async function POST(request: NextRequest) {
 
     // Create account
     const accountId = await createAccount(username, email, salt, verifier);
+
+    await recordRegistration(accountId, ip);
 
     return NextResponse.json({ success: true, accountId }, { status: 201 });
   } catch (error) {

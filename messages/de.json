@@ -89,6 +89,7 @@
       "passwordLength": "Passwort muss 6-16 Zeichen lang sein",
       "passwordMismatch": "Passwörter stimmen nicht überein",
       "usernameTaken": "Benutzername ist bereits vergeben",
+      "tooManyAccounts": "Über deine Verbindung wurden heute zu viele Konten erstellt. Versuche es morgen erneut oder kontaktiere uns auf Discord.",
       "serverError": "Serverfehler. Bitte versuche es erneut."
     }
   },
