@@ -34,11 +34,9 @@ export default async function HowToPage({
   params: Promise<{ locale: string; realm: string }>;
 }) {
   const { locale, realm } = await params;
-  // Rimeheart's client patches, published by nginx with their manifest: patch-W (its content) and patch-Z (shared with Lordaeron)
-  const realmPatches =
-    realm === "rimeheart"
-      ? await Promise.all([patchInfo("patch-W.MPQ"), patchInfo("patch-Z.MPQ")])
-      : null;
+  // Rimeheart's client patch, published by nginx with its manifest: patch-W only (Lordaeron's patch-Z is not used there)
+  const realmPatch =
+    realm === "rimeheart" ? await patchInfo("patch-W.MPQ") : null;
 
   return (
     <>
@@ -62,10 +60,7 @@ export default async function HowToPage({
           ],
         }}
       />
-      <HowToContent
-        realmPatch={realmPatches?.[0] ?? null}
-        sharedPatch={realmPatches?.[1] ?? null}
-      />
+      <HowToContent realmPatch={realmPatch} />
     </>
   );
 }

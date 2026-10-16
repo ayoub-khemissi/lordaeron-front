@@ -46,8 +46,8 @@ const steps = [
     realms: ["lordaeron"],
   },
   {
-    // Rimeheart's patches (Ayoub, 13/10/2026): patch-W, its content (lib/patches.ts manifest), and patch-Z, the guild bank tab costs and
-    // the dungeon finder's data, the same on both realms (Guild.BankTab.Cost, LFGDungeons.dbc)
+    // Rimeheart's patch (Ayoub, 16/10/2026): patch-W only, its content (lib/patches.ts manifest); Lordaeron's patch-Z (cheaper guild bank
+    // tabs, the dungeon finder's old dungeons at 80) is not used there: Rimeheart keeps Blizzard's tab costs and dungeon finder
     key: "stepPatch",
     icon: `${WOWHEAD_ICON}/inv_misc_wrench_01.jpg`,
     bg: "/img/Wrath of the Lich King Classic Reveal Screenshots 1080p/WoW_Wrath_Dalaran_007_1080p_png_jpgcopy.jpg",
@@ -104,13 +104,11 @@ function PatchDetails({ patch, locale }: { patch: PatchInfo; locale: string }) {
   );
 }
 
-// realmPatch: the realm's own client patch from the manifest (null while it is not published); sharedPatch: patch-Z's entry
+// realmPatch: the realm's own client patch from the manifest (null while it is not published)
 export default function HowToContent({
   realmPatch = null,
-  sharedPatch = null,
 }: {
   realmPatch?: PatchInfo | null;
-  sharedPatch?: PatchInfo | null;
 }) {
   const t = useTranslations("howTo");
   const tl = useTranslations("launch");
@@ -278,24 +276,11 @@ export default function HowToContent({
                             {t("stepPatchSoon")}
                           </p>
                         )}
-                        <div className="space-y-2">
-                          <a
-                            download
-                            className={DOWNLOAD}
-                            href={sharedPatch?.url ?? "/patches/patch-Z.MPQ"}
-                          >
-                            <DownloadIcon />
-                            {t("stepPatchDownload", { file: "patch-Z.MPQ" })}
-                          </a>
-                          {sharedPatch && (
-                            <PatchDetails locale={locale} patch={sharedPatch} />
-                          )}
-                        </div>
                         <p className="rounded-lg border border-wow-gold/25 bg-wow-gold/5 px-4 py-3 text-sm leading-relaxed text-gray-300">
                           <span className="font-semibold text-wow-gold">
                             {t("stepPatchFolderTitle")}
                           </span>{" "}
-                          {t("stepPatchFolder")}
+                          {t("stepPatchFolder", { realm: realm.name })}
                         </p>
                         <p className="text-xs leading-relaxed text-gray-400">
                           {t("stepPatchUpdates")}
