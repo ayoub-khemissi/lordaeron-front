@@ -185,12 +185,26 @@ export function isReservationOpen(realm: RealmInfo, now: number = Date.now()) {
 }
 
 // the realm as it is at `now`: soon, its name reservation (status "soon", reservation true), open from its opening on
+// a realm's open and name-reservation views, made once: the same object at every call, or a page whose effects depend on the realm (the
+// shop's loading) runs them again at every render, without end (Rimeheart's shop on its opening night, 16/10/2026)
+const OPENED = Object.fromEntries(
+  Object.entries(REALMS).map(([slug, realm]) => [
+    slug,
+    { ...realm, status: "open" },
+  ]),
+) as Record<RealmSlug, RealmInfo>;
+const RESERVING = Object.fromEntries(
+  Object.entries(REALMS).map(([slug, realm]) => [
+    slug,
+    { ...realm, reservation: true },
+  ]),
+) as Record<RealmSlug, RealmInfo>;
+
 export function realmAt(slug: RealmSlug, now: number = Date.now()): RealmInfo {
   const realm = REALMS[slug];
 
-  if (realm.status !== "open" && isRealmOpen(realm, now))
-    return { ...realm, status: "open" };
-  if (isReservationOpen(realm, now)) return { ...realm, reservation: true };
+  if (realm.status !== "open" && isRealmOpen(realm, now)) return OPENED[slug];
+  if (isReservationOpen(realm, now)) return RESERVING[slug];
 
   return realm;
 }
