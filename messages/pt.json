@@ -1719,7 +1719,8 @@
     "summary": "{earned} de {total} primeiros do reino conquistados",
     "unlocksTitle": "Primeiros no nível 80: {done}/{total}",
     "unlocksText": "Quando cada classe e cada raça tiver o seu primeiro do reino no nível 80, os bónus de experiência do reino desbloqueiam-se: o bónus de fim de semana e as Vials of Insight.",
-    "unlocksDone": "Cada classe e cada raça tem o seu primeiro do reino no nível 80: os bónus de experiência estão desbloqueados."
+    "unlocksDone": "Cada classe e cada raça tem o seu primeiro do reino no nível 80: os bónus de experiência estão desbloqueados.",
+    "rewardTitle": "Título: {title}"
   },
   "calendar": {
     "metaTitle": "Calendário ao vivo de {realm}",

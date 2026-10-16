@@ -1719,7 +1719,8 @@
     "summary": "{earned} « Prem's » du royaume décrochés sur {total}",
     "unlocksTitle": "Premiers niveau 80 : {done}/{total}",
     "unlocksText": "Quand chaque classe et chaque race aura son premier niveau 80 du royaume, les bonus d'expérience se débloquent : le bonus du week-end et les Fioles de perspicacité.",
-    "unlocksDone": "Chaque classe et chaque race a son premier niveau 80 du royaume : les bonus d'expérience sont débloqués."
+    "unlocksDone": "Chaque classe et chaque race a son premier niveau 80 du royaume : les bonus d'expérience sont débloqués.",
+    "rewardTitle": "Titre : {title}"
   },
   "calendar": {
     "metaTitle": "Calendrier en direct de {realm}",

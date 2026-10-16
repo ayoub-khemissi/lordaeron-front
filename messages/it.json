@@ -1719,7 +1719,8 @@
     "summary": "{earned} primati del reame ottenuti su {total}",
     "unlocksTitle": "Primi al livello 80: {done}/{total}",
     "unlocksText": "Quando ogni classe e ogni razza avrà il suo primo del reame al livello 80, si sbloccano i bonus esperienza del reame: il bonus del fine settimana e le Vials of Insight.",
-    "unlocksDone": "Ogni classe e ogni razza ha il suo primo del reame al livello 80: i bonus esperienza sono sbloccati."
+    "unlocksDone": "Ogni classe e ogni razza ha il suo primo del reame al livello 80: i bonus esperienza sono sbloccati.",
+    "rewardTitle": "Titolo: {title}"
   },
   "calendar": {
     "metaTitle": "Calendario dal vivo di {realm}",

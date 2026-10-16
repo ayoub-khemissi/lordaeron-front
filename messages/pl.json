@@ -1719,7 +1719,8 @@
     "summary": "Zdobyto {earned} z {total}",
     "unlocksTitle": "Pierwsi na 80. poziomie: {done}/{total}",
     "unlocksText": "Gdy każda klasa i każda rasa będzie miała swojego pierwszego w świecie na 80. poziomie, odblokują się premie do doświadczenia: weekendowa i Vials of Insight.",
-    "unlocksDone": "Każda klasa i każda rasa ma swojego pierwszego w świecie na 80. poziomie: premie do doświadczenia są odblokowane."
+    "unlocksDone": "Każda klasa i każda rasa ma swojego pierwszego w świecie na 80. poziomie: premie do doświadczenia są odblokowane.",
+    "rewardTitle": "Tytuł: {title}"
   },
   "calendar": {
     "metaTitle": "Kalendarz na żywo {realm}",

@@ -1719,7 +1719,8 @@
     "summary": "{earned} von {total} Realm-Ersten errungen",
     "unlocksTitle": "Erste auf Stufe 80: {done}/{total}",
     "unlocksText": "Sobald jede Klasse und jedes Volk ihren Realm-Ersten auf Stufe 80 haben, werden die Erfahrungsboni des Realms freigeschaltet: der Wochenendbonus und die Fläschchen der Einsicht.",
-    "unlocksDone": "Jede Klasse und jedes Volk hat ihren Realm-Ersten auf Stufe 80: die Erfahrungsboni sind freigeschaltet."
+    "unlocksDone": "Jede Klasse und jedes Volk hat ihren Realm-Ersten auf Stufe 80: die Erfahrungsboni sind freigeschaltet.",
+    "rewardTitle": "Titel: {title}"
   },
   "calendar": {
     "metaTitle": "Live-Kalender von {realm}",

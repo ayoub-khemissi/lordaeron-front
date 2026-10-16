@@ -1719,7 +1719,8 @@
     "summary": "{earned} of {total} realm firsts earned",
     "unlocksTitle": "Level 80 firsts: {done}/{total}",
     "unlocksText": "Once every class and every race has its level 80 realm first, the realm's experience bonuses unlock: the weekend bonus and the Vials of Insight.",
-    "unlocksDone": "Every class and every race has its level 80 realm first: the experience bonuses are unlocked."
+    "unlocksDone": "Every class and every race has its level 80 realm first: the experience bonuses are unlocked.",
+    "rewardTitle": "Title: {title}"
   },
   "calendar": {
     "metaTitle": "{realm} live calendar",

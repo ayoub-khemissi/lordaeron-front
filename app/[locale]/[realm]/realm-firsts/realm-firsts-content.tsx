@@ -108,6 +108,11 @@ function FirstCard({ first }: { first: RealmFirst }) {
             {first.label ?? first.title}
           </GameTipLink>
         </p>
+        {first.rewardTitle && (
+          <p className="truncate text-[11px] italic text-wow-gold/80">
+            {t("rewardTitle", { title: first.rewardTitle })}
+          </p>
+        )}
         {earned ? (
           <>
             <Earners first={first} />

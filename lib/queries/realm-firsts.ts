@@ -1,7 +1,11 @@
 import type { RowDataPacket } from "mysql2";
 
 import { REALMS, type RealmSlug } from "@/lib/realms";
-import { realmCharactersDb, realmServer } from "@/lib/realms-server";
+import {
+  realmCharactersDb,
+  realmServer,
+  realmWorldDb,
+} from "@/lib/realms-server";
 import {
   LEVEL_80_REALM_FIRSTS,
   realmFirstsProgress,
@@ -58,6 +62,8 @@ export interface RealmFirst {
   // a level 80 first of a class or a race: its name alone (the compact tiles)
   label?: string;
   description: string;
+  // the title it rewards, its words without the name ("Archmage", "the Lion Hearted"; Ayoub 16/10/2026: the titles Blizzard planned)
+  rewardTitle?: string;
   icon: string | null;
   group: RealmFirstGroup;
   // -1 both factions, 0 Horde, 1 Alliance
@@ -138,6 +144,7 @@ export async function getRealmFirsts(
     "SpellIcon",
     "ChrClasses",
     "ChrRaces",
+    "CharTitles",
   ]);
   const icons = dbcs("SpellIcon");
   const slot = LOCALES[isTooltipLocale(locale) ? locale : "en"].slot;
@@ -180,6 +187,28 @@ export async function getRealmFirsts(
   }
 
   if (firsts.length) {
+    // the titles they reward (the realm's achievement_reward: Lordaeron's DBC does not carry the reward line)
+    const [rewards] = await realmWorldDb(slug).query<RowDataPacket[]>(
+      "SELECT ID, TitleA FROM achievement_reward WHERE ID IN (?) AND TitleA > 0",
+      [firsts.map((f) => f.id)],
+    );
+    const titleOf = new Map(
+      rewards.map((r) => [Number(r.ID), Number(r.TitleA)] as const),
+    );
+
+    for (const f of firsts) {
+      const title = titleOf.get(f.id);
+      const words = title
+        ? dbcs("CharTitles")
+            .rec(title)
+            ?.loc("Name", slot)
+            .replace(/%s,? ?/, "")
+            .trim()
+        : undefined;
+
+      if (words) f.rewardTitle = words;
+    }
+
     const [rows] = await realmCharactersDb(slug).query<RowDataPacket[]>(
       `SELECT ca.achievement, ca.date, c.guid, c.race, c.class, c.gender,
          COALESCE(c.deleteInfos_Name, c.name) AS name, c.deleteInfos_Name IS NOT NULL AS deleted,
