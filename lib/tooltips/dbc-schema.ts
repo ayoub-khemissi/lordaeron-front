@@ -129,6 +129,12 @@ export const DBC_LAYOUTS = {
     fields: { ID: 0, InstanceType: 2, ExpansionID: 63, MaxPlayers: 65 },
     localized: { MapName: 5 },
   },
+  // the zones' names (the challenges' Wall of the Fallen: where a challenger fell, lib/queries/challenges.ts)
+  AreaTable: {
+    fieldCount: 36,
+    fields: { ID: 0, ContinentID: 1, ParentAreaID: 2 },
+    localized: { AreaName: 11 },
+  },
   // the raids' bosses (the guilds' progression)
   DungeonEncounter: {
     fieldCount: 23,

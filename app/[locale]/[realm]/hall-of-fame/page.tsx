@@ -5,7 +5,13 @@ import { getTranslations } from "next-intl/server";
 import { HallOfFameContent } from "./hall-of-fame-content";
 
 import { buildPageMetadata } from "@/lib/seo";
-import { DEFAULT_REALM, REALMS, realmBySlug } from "@/lib/realms";
+import {
+  DEFAULT_REALM,
+  REALMS,
+  isRealmSlug,
+  realmBySlug,
+  realmHasChallenges,
+} from "@/lib/realms";
 
 export async function generateMetadata({
   params,
@@ -24,11 +30,19 @@ export async function generateMetadata({
 
 export default async function HallOfFamePage({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string; realm: string }>;
+  searchParams: Promise<{ tab?: string | string[] }>;
 }) {
   const { locale, realm } = await params;
+  const { tab } = await searchParams;
   const t = await getTranslations({ locale, namespace: "hallOfFame" });
+  // ?tab=challenges: the Challenges tab, on a realm whose challenges are open (lib/realms.ts RealmInfo.challenges)
+  const initialTab =
+    tab === "challenges" && isRealmSlug(realm) && realmHasChallenges(realm)
+      ? "challenges"
+      : "ranking";
 
   return (
     <div className="container mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-12">
@@ -41,7 +55,7 @@ export default async function HallOfFamePage({
         </p>
         <div className="shimmer-line mx-auto mt-3 w-24" />
       </div>
-      <HallOfFameContent />
+      <HallOfFameContent initialTab={initialTab} />
     </div>
   );
 }

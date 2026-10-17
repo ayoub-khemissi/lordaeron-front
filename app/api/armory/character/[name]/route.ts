@@ -10,7 +10,8 @@ import {
   getEquippedItems,
   parseEquipmentCache,
 } from "@/lib/queries/armory";
-import { requestRealm } from "@/lib/realms";
+import { getCharacterChallenge } from "@/lib/queries/challenges";
+import { realmHasChallenges, requestRealm } from "@/lib/realms";
 import { armoryModel } from "@/lib/armory-model";
 import { characterItemTooltips } from "@/lib/tooltips/instance";
 import { isTooltipLocale } from "@/lib/tooltips";
@@ -41,7 +42,7 @@ export async function GET(
       return NextResponse.json({ error: "not_found" }, { status: 404 });
     }
 
-    const [stats, professions, arenaTeams, achievementCount, specs] =
+    const [stats, professions, arenaTeams, achievementCount, specs, challenge] =
       await Promise.all([
         getCharacterStats(character.guid, realm),
         getCharacterProfessions(character.guid, realm),
@@ -58,6 +59,10 @@ export async function GET(
 
           return null;
         }),
+        // its WotLK+ challenge, on a realm whose challenges are open on the site (lib/realms.ts RealmInfo.challenges; no query otherwise)
+        realmHasChallenges(realm)
+          ? getCharacterChallenge(realm, character.guid, locale ?? "en")
+          : null,
       ]);
 
     const equipment = parseEquipmentCache(character.equipmentCache || "");
@@ -123,6 +128,7 @@ export async function GET(
       arenaTeams,
       achievementCount,
       specs,
+      challenge,
       equipment,
       model,
       modelBase,

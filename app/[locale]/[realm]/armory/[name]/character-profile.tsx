@@ -15,7 +15,9 @@ import { GuildInfo } from "@/components/armory/guild-info";
 import { EquipmentPanel } from "@/components/armory/equipment-panel";
 import { CharacterSkeleton } from "@/components/armory/character-skeleton";
 import { type GameTooltipData } from "@/components/game-tooltip";
-import { useRealm } from "@/lib/realm-context";
+import { useRealm, useRealmHref } from "@/lib/realm-context";
+import { ChallengeBadge } from "@/components/challenges/challenge-parts";
+import { type CharacterChallenge } from "@/types/challenges";
 import { StatsPanel } from "@/components/armory/stats-panel";
 import { PvpPanel } from "@/components/armory/pvp-panel";
 import { ProfessionsPanel } from "@/components/armory/professions-panel";
@@ -46,6 +48,8 @@ interface ProfileData {
   achievementCount: number;
   // its specializations (lib/talents.ts), null when unreadable
   specs?: ArmorySpecs | null;
+  // its WotLK+ challenge, in progress or completed (lib/queries/challenges.ts), on a realm whose challenges are open
+  challenge?: CharacterChallenge | null;
   equipment: EquipmentSlot[];
   // what the 3D viewer draws (lib/armory-model.ts), and the same without the transmogs (null when there are none)
   model?: {
@@ -80,6 +84,7 @@ export function CharacterProfile({ name }: CharacterProfileProps) {
   const [notFound, setNotFound] = useState(false);
   const [showTransmog, setShowTransmog] = useState(true);
   const realm = useRealm();
+  const realmHref = useRealmHref();
   const locale = useLocale();
 
   useEffect(() => {
@@ -125,6 +130,7 @@ export function CharacterProfile({ name }: CharacterProfileProps) {
     arenaTeams,
     achievementCount,
     specs,
+    challenge,
     equipment,
     model,
     modelBase,
@@ -189,6 +195,15 @@ export function CharacterProfile({ name }: CharacterProfileProps) {
             </span>
           )}
         </div>
+        {/* its WotLK+ challenge (only on a realm whose challenges are open, lib/realms.ts), to the Hall of Fame's Challenges tab */}
+        {realm.challenges && challenge && (
+          <div className="mt-3 flex justify-center">
+            <ChallengeBadge
+              challenge={challenge}
+              href={realmHref("/hall-of-fame?tab=challenges")}
+            />
+          </div>
+        )}
         <GuildInfo
           guildEmblem={character.guildEmblem}
           guildName={character.guildName}

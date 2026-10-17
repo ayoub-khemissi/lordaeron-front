@@ -53,6 +53,9 @@ export interface RealmInfo {
   reservation?: boolean;
   // a progressive realm (phases): its shop follows its phase and its realm firsts (lib/realm-unlocks.ts)
   progressive?: boolean;
+  // its WotLK+ character challenges are open (realmHasChallenges): the Hall of Fame's Challenges tab, the armory's challenge badge and
+  // their queries (lib/queries/challenges.ts). Absent or false: none of them, not even in an administrator's view
+  challenges?: boolean;
 }
 
 export const ALL_SECTIONS: RealmSection[] = [
@@ -143,6 +146,10 @@ export const REALMS: Record<RealmSlug, RealmInfo> = {
     ],
     accent: "ice",
     progressive: true,
+    // its character challenges (the Archivist of Trials), hidden on the site until the game admin opens them in game. To show them: set
+    // this to true, then build and restart the site (npm run build, pm2 restart lordaeron): the Hall of Fame gets its Challenges tab
+    // (/<locale>/rimeheart/hall-of-fame?tab=challenges) and the armory its challenge badges. Back to false hides them again.
+    challenges: false,
   },
 };
 
@@ -226,6 +233,11 @@ export function isRealmSlug(
 
 export function realmHasSection(slug: RealmSlug, section: RealmSection) {
   return REALMS[slug].sections.includes(section);
+}
+
+// whether a realm's character challenges are open on the site (RealmInfo.challenges): nothing of them is shown nor queried otherwise
+export function realmHasChallenges(slug: RealmSlug) {
+  return REALMS[slug].challenges === true;
 }
 
 export function realmBySlug(slug: string | undefined | null): RealmInfo | null {

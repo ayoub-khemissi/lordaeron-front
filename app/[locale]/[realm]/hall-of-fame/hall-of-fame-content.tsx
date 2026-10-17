@@ -1,15 +1,18 @@
 "use client";
 
+import type { ReactNode } from "react";
 import type { HallOfFameEntry } from "@/types/rankings";
 
+import { useState } from "react";
 import { useFormatter, useTranslations } from "next-intl";
 
+import { ChallengeBoard } from "@/components/challenges/challenge-board";
 import { RankFilters, RankTabs } from "@/components/rankings/rank-filters";
 import { Metric, RankState, RankedRow } from "@/components/rankings/ranked-row";
 import { RankedRowsSkeleton } from "@/components/rankings/ranking-skeleton";
 import { useRanking } from "@/components/rankings/use-ranking";
 import { Pager } from "@/components/search/pager";
-import { useRealmHref } from "@/lib/realm-context";
+import { useRealm, useRealmHref } from "@/lib/realm-context";
 
 interface HallOfFamePage {
   sort: "points" | "count";
@@ -19,9 +22,14 @@ interface HallOfFamePage {
   pageSize: number;
 }
 
+export type HallOfFameTab = "ranking" | "challenges";
+
+// the boards' row: the two sorts of the ranking, and the challenges on a realm whose challenges are open (lib/realms.ts)
+type Tabs = (value: string, onSort: (sort: string) => void) => ReactNode;
+
 /* The hall of fame (app/api/hall-of-fame): the characters by achievement points or by achievements earned, the faction and class
    filters, 20 a page */
-export function HallOfFameContent() {
+function FameRanking({ tabs }: { tabs: Tabs }) {
   const t = useTranslations("hallOfFame");
   const tRank = useTranslations("rankings");
   const format = useFormatter();
@@ -35,15 +43,7 @@ export function HallOfFameContent() {
 
   return (
     <div className="space-y-5">
-      <RankTabs
-        label={t("sortLabel")}
-        options={[
-          { value: "points", label: t("byPoints") },
-          { value: "count", label: t("byCount") },
-        ]}
-        value={sort}
-        onChange={(v) => set("sort", v)}
-      />
+      {tabs(sort, (v) => set("sort", v))}
       <RankFilters
         cls={params.class}
         faction={params.faction}
@@ -108,5 +108,59 @@ export function HallOfFameContent() {
         />
       )}
     </div>
+  );
+}
+
+/* The hall of fame: its ranking and, on a realm whose WotLK+ challenges are open, its Challenges tab (?tab=challenges, the armory's
+   challenge badges link to it) */
+export function HallOfFameContent({
+  initialTab = "ranking",
+}: {
+  initialTab?: HallOfFameTab;
+}) {
+  const t = useTranslations("hallOfFame");
+  const tChallenges = useTranslations("challenges");
+  const realm = useRealm();
+  const [tab, setTab] = useState<HallOfFameTab>(initialTab);
+  const challenges = !!realm.challenges && tab === "challenges";
+
+  // a board chosen: the challenges, or a sort of the ranking (from the challenges, the ranking opens on it: it reads the address)
+  const tabs: Tabs = (value, onSort) => (
+    <RankTabs
+      label={t("sortLabel")}
+      options={[
+        { value: "points", label: t("byPoints") },
+        { value: "count", label: t("byCount") },
+        ...(realm.challenges
+          ? [{ value: "challenges", label: tChallenges("tab") }]
+          : []),
+      ]}
+      value={challenges ? "challenges" : value}
+      onChange={(v) => {
+        const url = new URL(window.location.href);
+
+        if (v === "challenges") {
+          url.searchParams.set("tab", "challenges");
+          window.history.replaceState(null, "", url);
+          setTab("challenges");
+        } else if (challenges) {
+          url.searchParams.delete("tab");
+          url.searchParams.delete("page");
+          if (v === "points") url.searchParams.delete("sort");
+          else url.searchParams.set("sort", v);
+          window.history.replaceState(null, "", url);
+          setTab("ranking");
+        } else onSort(v);
+      }}
+    />
+  );
+
+  return challenges ? (
+    <div className="space-y-5">
+      {tabs("", () => {})}
+      <ChallengeBoard />
+    </div>
+  ) : (
+    <FameRanking tabs={tabs} />
   );
 }
