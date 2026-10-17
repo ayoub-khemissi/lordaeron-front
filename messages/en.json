@@ -1569,7 +1569,10 @@
     "death_9": "Burned to death",
     "death_10": "Exhausted, swam too far out",
     "death_11": "Fell into the void",
-    "death_12": "Died"
+    "death_12": "Died",
+    "death_13": "Held Feign Death too long",
+    "death_14": "Sacrificed to save {killer}",
+    "death_15": "Lost a Mak'gora to {killer}"
   },
   "population": {
     "title": "Population",
@@ -1747,6 +1750,7 @@
       "bosses": "Bosses",
       "professions": "Professions",
       "pvp": "PvP",
+      "challenges": "Challenges",
       "feats": "Feats"
     },
     "notYet": "Still up for grabs",

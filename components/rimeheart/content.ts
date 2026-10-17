@@ -171,7 +171,7 @@ export const manifesto = {
       label: L("phases de progression", "progression phases"),
     },
     {
-      value: 228,
+      value: 283,
       suffix: "",
       label: L("nouveaux hauts faits", "new achievements"),
     },
@@ -197,7 +197,7 @@ export const manifesto = {
       label: L("apparences de transmogrification", "transmog appearances"),
     },
     { value: 297, suffix: "", label: L("questions de lore", "lore questions") },
-    { value: 43, suffix: "", label: L("nouveaux titres", "new titles") },
+    { value: 53, suffix: "", label: L("nouveaux titres", "new titles") },
   ],
 };
 
@@ -2539,14 +2539,286 @@ export const guilds = {
   image: IMG.icecrownGate,
 };
 
+/** A character challenge (Vesperine Gravewhisper, contrib/wotlk-plus content/challenges.js): its icon, stars, rules and reward. */
+export type Challenge = {
+  icon: string;
+  stars: number;
+  name: T;
+  rule: T;
+  reward: T;
+  tier: "aura" | "title" | "legend";
+};
+
+export const challenges = {
+  id: "challenges",
+  numeral: "XIX",
+  eyebrow: L("Défis de personnage", "Character Challenges"),
+  title: L(
+    "Défiez la mort, jusqu'au niveau 80.",
+    "Defy death, all the way to 80.",
+  ),
+  lede: L(
+    "**18 défis**, de ★ à ★★★★★, à prendre sur un personnage neuf auprès de Vesperine Murmetombe, gardienne des Tombés : une seule vie, ni hôtel des ventes ni talents… Ce que votre défi interdit est refusé avant de vous coûter quoi que ce soit, et chaque palier se fête avec le royaume.",
+    "**18 challenges**, from ★ to ★★★★★, taken on a fresh character from Vesperine Gravewhisper, Keeper of the Fallen: one life, no auction house, no talents… Whatever your challenge forbids is refused before it costs you anything, and every milestone is celebrated with the realm.",
+  ),
+  list: [
+    {
+      icon: "ability_hunter_pet_turtle",
+      stars: 1,
+      tier: "aura",
+      name: L("Lentement mais sûrement", "Slow and Steady"),
+      rule: L(
+        "Expérience réduite de moitié, et aucun bonus d'expérience.",
+        "Half the experience, and no experience bonus of any kind.",
+      ),
+      reward: L("Aura de réussite", "Completion aura"),
+    },
+    {
+      icon: "ability_tracking",
+      stars: 2,
+      tier: "aura",
+      name: L("Les pieds sur terre", "Grounded"),
+      rule: L(
+        "Ni maître de vol, ni monture volante, ni portail, ni téléportation. Bateaux, zeppelins et pierre de foyer permis.",
+        "No flight masters, flying mounts, portals or teleports. Boats, zeppelins and the hearthstone are fine.",
+      ),
+      reward: L("Aura de réussite", "Completion aura"),
+    },
+    {
+      icon: "inv_misc_bag_10",
+      stars: 2,
+      tier: "aura",
+      name: L("Autodidacte", "Self-Made"),
+      rule: L(
+        "Ni hôtel des ventes, ni échange, ni courrier entre joueurs, ni banque de guilde, ni héritages.",
+        "No auction house, trading, player mail, guild bank or heirlooms.",
+      ),
+      reward: L("Aura de réussite", "Completion aura"),
+    },
+    {
+      icon: "inv_shirt_grey_01",
+      stars: 2,
+      tier: "aura",
+      name: L("Va-nu-pieds", "Ragamuffin"),
+      rule: L(
+        "Équipement blanc ou gris seulement, ni enchantement ni gemme.",
+        "White or grey gear only, with no enchantments or gems.",
+      ),
+      reward: L("Aura de réussite", "Completion aura"),
+    },
+    {
+      icon: "spell_deathknight_bloodboil",
+      stars: 3,
+      tier: "aura",
+      name: L("Sang chaud", "Hot-Blooded"),
+      rule: L(
+        "Toujours marqué JcJ, sans pouvoir l'enlever. 3 vies.",
+        "Always flagged for PvP, with no way to remove it. 3 lives.",
+      ),
+      reward: L("Aura de réussite", "Completion aura"),
+    },
+    {
+      icon: "ability_hunter_pet_wolf",
+      stars: 3,
+      tier: "aura",
+      name: L("Loup solitaire", "Lone Wolf"),
+      rule: L(
+        "Autodidacte, et jamais en groupe, en raid ni en Recherche de donjons.",
+        "Self-Made, and never in a group, a raid or the Dungeon Finder.",
+      ),
+      reward: L("Aura de réussite", "Completion aura"),
+    },
+    {
+      icon: "inv_misc_rune_01",
+      stars: 3,
+      tier: "aura",
+      name: L("Sans talent", "Talentless"),
+      rule: L(
+        "Aucun point de talent. Glyphes et double spécialisation permis.",
+        "No talent points. Glyphs and dual specialization are fine.",
+      ),
+      reward: L("Aura de réussite", "Completion aura"),
+    },
+    {
+      icon: "spell_shadow_curseofmannoroth",
+      stars: 3,
+      tier: "aura",
+      name: L("Affaibli", "Weakened"),
+      rule: L(
+        "−25 % de dégâts infligés et −25 % de soins reçus, pour toujours. 3 vies.",
+        "−25% damage dealt and −25% healing received, for good. 3 lives.",
+      ),
+      reward: L("Aura de réussite", "Completion aura"),
+    },
+    {
+      icon: "inv_hammer_20",
+      stars: 3,
+      tier: "title",
+      name: L("Fait main", "Handmade"),
+      rule: L(
+        "Seulement l'équipement et les sacs fabriqués de vos mains.",
+        "Only gear and bags you crafted yourself.",
+      ),
+      reward: L("Titre : l'Artisan", "Title: the Artisan"),
+    },
+    {
+      icon: "ability_warrior_intensifyrage",
+      stars: 3,
+      tier: "title",
+      name: L("Au naturel", "Au Naturel"),
+      rule: L(
+        "Aucune armure ni bijou : armes, chemise, tabard et sacs seulement.",
+        "No armor or jewelry: weapons, shirt, tabard and bags only.",
+      ),
+      reward: L("Titre : le Nu", "Title: the Bare"),
+    },
+    {
+      icon: "ability_hunter_beastsoothe",
+      stars: 3,
+      tier: "title",
+      name: L("Ami des bêtes", "Friend of Beasts"),
+      rule: L(
+        "Ne jamais tuer de bête ni de bestiole, celles de votre familier comprises.",
+        "Never kill a beast or a critter, your pet's kills included.",
+      ),
+      reward: L("Titre : l'Ami des bêtes", "Title: Friend of Beasts"),
+    },
+    {
+      icon: "spell_shadow_twilight",
+      stars: 4,
+      tier: "title",
+      name: L("Sans repos", "Restless"),
+      rule: L(
+        "Aucune régénération naturelle ; boire et manger seulement dans les auberges et les capitales. 3 vies.",
+        "No natural regeneration; eat and drink only in inns and capitals. 3 lives.",
+      ),
+      reward: L("Titre : le Sans-Repos", "Title: the Sleepless"),
+    },
+    {
+      icon: "spell_shadow_possession",
+      stars: 4,
+      tier: "title",
+      name: L("Cauchemar", "Nightmare"),
+      rule: L(
+        "Chaque coup frappe deux fois plus fort : +100 % de dégâts subis. 3 vies.",
+        "Every blow hits twice as hard: +100% damage taken. 3 lives.",
+      ),
+      reward: L("Titre : Cauchemar éveillé", "Title: the Waking Nightmare"),
+    },
+    {
+      icon: "inv_scroll_03",
+      stars: 4,
+      tier: "title",
+      name: L("Aucune quête", "Questless"),
+      rule: L(
+        "Aucune quête rendue, sauf les quêtes de classe.",
+        "No quests turned in, except class quests.",
+      ),
+      reward: L("Titre : l'Insoumis", "Title: the Unbidden"),
+    },
+    {
+      icon: "inv_misc_bone_humanskull_01",
+      stars: 4,
+      tier: "legend",
+      name: L("Une seule vie", "One Life"),
+      rule: L("La mort est définitive.", "Death is final."),
+      reward: L("Légende : l'Impérissable", "Legend: the Deathless"),
+    },
+    {
+      icon: "spell_holy_layonhands",
+      stars: 5,
+      tier: "legend",
+      name: L("Pacifiste", "Pacifist"),
+      rule: L(
+        "Aucune mise à mort : l'expérience vient des quêtes sans combat, de l'exploration et des champs de bataille.",
+        "No killing blows: experience comes from peaceful quests, exploration and battlegrounds.",
+      ),
+      reward: L("Légende : le Pacifiste", "Legend: the Pacifist"),
+    },
+    {
+      icon: "inv_misc_organ_01",
+      stars: 5,
+      tier: "legend",
+      name: L("Cœur de fer", "Heart of Iron"),
+      rule: L(
+        "Une seule vie, Loup solitaire, Va-nu-pieds et Sans talent ; ni consommable, ni donjon, ni champ de bataille ; secourisme, cuisine et pêche seulement.",
+        "One Life, Lone Wolf, Ragamuffin and Talentless; no consumables, dungeons or battlegrounds; only First Aid, Cooking and Fishing.",
+      ),
+      reward: L("Légende : Cœur-de-fer", "Legend: Ironheart"),
+    },
+    {
+      icon: "inv_misc_dice_01",
+      stars: 5,
+      tier: "legend",
+      name: L("Le Pari du Roi-liche", "The Lich King's Wager"),
+      rule: L(
+        "Une seule vie, +100 % de dégâts subis et Autodidacte.",
+        "One Life, +100% damage taken and Self-Made.",
+      ),
+      reward: L("Légende : Fléau-du-Liche", "Legend: Lichbane"),
+    },
+  ] as Challenge[],
+  extras: [
+    {
+      icon: "spell_shadow_raisedead",
+      title: L("Vesperine Murmetombe", "Vesperine Gravewhisper"),
+      text: L(
+        "Son Écho attend dans chaque zone de départ et à Achérus. Un personnage neuf, un défi à la fois : le Livre du défi garde les règles, et Vesperine vous laisse essayer les auras de réussite.",
+        "Her Echo waits in every starting area and in Acherus. A fresh character, one challenge at a time: the challenge's Book holds the rules, and Vesperine lets you try on the completion auras.",
+      ),
+    },
+    {
+      icon: "achievement_level_80",
+      title: L("La version authentique x1", "The authentic x1"),
+      text: L(
+        "Au taux du royaume (x5) ou en x1, comme le Hardcore officiel. En x1, **chaque récompense est triplée**, avec un « Prem's » de plus par défi et le haut fait Authentique.",
+        "At the realm rate (x5), or in x1 like official Hardcore. In x1, **every reward is tripled**, with one more Realm First per challenge and the Authentic feat.",
+      ),
+    },
+    {
+      icon: "inv_misc_book_09",
+      title: L("Paliers et récompenses", "Milestones and rewards"),
+      text: L(
+        "Des Fragments de chronique tous les 10 niveaux, annoncés à votre guilde puis, dès le niveau 40, à tout le royaume. À 80, des Fragments selon les étoiles ; les légendes y ajoutent 10 Écussons de mérite et un Jeton d'ascension.",
+        "Chronicle Fragments every 10 levels, announced to your guild and, from level 40, to the whole realm. At 80, Fragments by stars; legends add 10 Commendation Badges and an Ascension Token.",
+      ),
+    },
+    {
+      icon: "spell_holy_spiritualguidence",
+      title: L("Une seule vie", "One life"),
+      text: L(
+        "Votre mort est annoncée à tout le royaume, avec la façon dont elle est arrivée. Vesperine épargne votre première chute mortelle, une seule fois.",
+        "Your death is announced to the whole realm, along with how it happened. Vesperine spares your first fatal fall, just once.",
+      ),
+    },
+    {
+      icon: "inv_misc_bone_orcskull_01",
+      title: L("Le Mak'gora", "The Mak'gora"),
+      text: L(
+        "Deux défiants à une seule vie qui se battent en duel s'affrontent à mort, sans reddition possible. Qui fuit devient **Pleutre** pendant trois jours ; le vainqueur prend une oreille pour son Collier d'oreilles.",
+        "Two one-life challengers who duel fight to the death, with no surrender. Whoever flees is a **Coward** for three days; the winner takes an ear for their String of Ears.",
+      ),
+    },
+    {
+      icon: "achievement_bg_masterofallbgs",
+      title: L("Panthéon et Prem's", "Hall of Fame and Firsts"),
+      text: L(
+        "Un « Prem's » du royaume par défi, et un onglet Défis au Panthéon : les défis en cours avec leur niveau, les réussis et les tombés.",
+        "One Realm First per challenge, and a Challenges tab in the Hall of Fame: runs in progress with their level, the completed and the fallen.",
+      ),
+    },
+  ],
+  image: IMG.icecrownHall,
+};
+
 export const glory = {
   id: "glory",
-  numeral: "XIX",
+  numeral: "XX",
   eyebrow: L("Hauts faits", "Achievements"),
   title: L("Entrez dans l'histoire du royaume.", "Make the realm's history."),
   lede: L(
-    "Un onglet « Lordaeron » de **228 hauts faits**, et les « Prem's » du royaume : des exploits qu'un seul joueur ou un seul groupe pourra jamais obtenir.",
-    'A "Lordaeron" tab of **228 achievements**, and the realm\'s Firsts: feats that only one player or one group will ever earn.',
+    "Un onglet « Lordaeron » de **283 hauts faits**, et les « Prem's » du royaume : des exploits qu'un seul joueur ou un seul groupe pourra jamais obtenir.",
+    'A "Lordaeron" tab of **283 achievements**, and the realm\'s Firsts: feats that only one player or one group will ever earn.',
   ),
   firsts: [
     {
@@ -2650,5 +2922,6 @@ export const nav = [
   { id: "transmog", label: L("Transmog", "Transmog") },
   { id: "pvp", label: L("JcJ", "PvP") },
   { id: "guilds", label: L("Guildes", "Guilds") },
+  { id: "challenges", label: L("Défis", "Challenges") },
   { id: "glory", label: L("Hauts faits", "Achievements") },
 ];

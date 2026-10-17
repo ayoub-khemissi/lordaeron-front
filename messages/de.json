@@ -1569,7 +1569,10 @@
     "death_9": "Verbrannt",
     "death_10": "Erschöpft, zu weit hinausgeschwommen",
     "death_11": "In die Leere gestürzt",
-    "death_12": "Gestorben"
+    "death_12": "Gestorben",
+    "death_13": "Zu lange totgestellt",
+    "death_14": "Geopfert, um {killer} zu retten",
+    "death_15": "Im Mak'gora von {killer} besiegt"
   },
   "population": {
     "title": "Bevölkerung",
@@ -1747,6 +1750,7 @@
       "bosses": "Bosse",
       "professions": "Berufe",
       "pvp": "PvP",
+      "challenges": "Herausforderungen",
       "feats": "Heldentaten"
     },
     "notYet": "Noch zu haben",

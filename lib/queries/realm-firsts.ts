@@ -32,6 +32,8 @@ const CRITERIA_REACH_SKILL = 7;
 const WOTLK_PROFESSIONS = [5507, 5520];
 const WOTLK_PVP = [5521, 5526];
 const WOTLK_BOSSES = [5538];
+// the character challenges' realm firsts (contrib/wotlk-plus content/challenges.js): each challenge's, and each one's in x1
+const WOTLK_CHALLENGES = [5771, 5808];
 // the server-side credits of content/firsts.js (a guild's level...): realm firsts flagged "group", not boss kills
 const CREDIT_SPELLS = [103750, 103769];
 const CRITERIA_SPELL_TARGET = 28;
@@ -43,6 +45,7 @@ export type RealmFirstGroup =
   | "bosses"
   | "professions"
   | "pvp"
+  | "challenges"
   | "feats";
 
 export interface RealmFirstEarner {
@@ -120,6 +123,7 @@ function groupOf(
   if (criteria?.type === CRITERIA_REACH_SKILL || within(id, WOTLK_PROFESSIONS))
     return "professions";
   if (within(id, WOTLK_PVP)) return "pvp";
+  if (within(id, WOTLK_CHALLENGES)) return "challenges";
   if (WOTLK_BOSSES.includes(id)) return "bosses";
   if (
     flags & REALM_FIRST_KILL &&

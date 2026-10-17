@@ -1569,7 +1569,10 @@
     "death_9": "{gender, select, female {Arsa viva} other {Arso vivo}}",
     "death_10": "{gender, select, female {Sfinita} other {Sfinito}}, troppo al largo",
     "death_11": "{gender, select, female {Caduta} other {Caduto}} nel vuoto",
-    "death_12": "{gender, select, female {Morta} other {Morto}}"
+    "death_12": "{gender, select, female {Morta} other {Morto}}",
+    "death_13": "Ha finto la morte troppo a lungo",
+    "death_14": "{gender, select, female {Sacrificata} other {Sacrificato}} per salvare {killer}",
+    "death_15": "{gender, select, female {Sconfitta} other {Sconfitto}} nel Mak'gora da {killer}"
   },
   "population": {
     "title": "Popolazione",
@@ -1747,6 +1750,7 @@
       "bosses": "Boss",
       "professions": "Professioni",
       "pvp": "PvP",
+      "challenges": "Sfide",
       "feats": "Imprese"
     },
     "notYet": "Ancora da conquistare",

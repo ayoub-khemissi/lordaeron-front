@@ -1569,7 +1569,10 @@
     "death_9": "{gender, select, female {Сгорела} other {Сгорел}} заживо",
     "death_10": "{gender, select, female {Выбилась} other {Выбился}} из сил вдали от берега",
     "death_11": "{gender, select, female {Сгинула} other {Сгинул}} в пустоте",
-    "death_12": "{gender, select, female {Погибла} other {Погиб}}"
+    "death_12": "{gender, select, female {Погибла} other {Погиб}}",
+    "death_13": "{gender, select, female {Слишком долго притворялась мёртвой} other {Слишком долго притворялся мёртвым}}",
+    "death_14": "{gender, select, female {Пожертвовала собой} other {Пожертвовал собой}} ради {killer}",
+    "death_15": "{gender, select, female {Проиграла} other {Проиграл}} мак'гору: {killer}"
   },
   "population": {
     "title": "Население",
@@ -1747,6 +1750,7 @@
       "bosses": "Боссы",
       "professions": "Профессии",
       "pvp": "PvP",
+      "challenges": "Испытания",
       "feats": "Подвиги"
     },
     "notYet": "Ещё не получено",

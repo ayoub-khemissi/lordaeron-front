@@ -1569,7 +1569,10 @@
     "death_9": "{gender, select, female {Brûlée vive} other {Brûlé vif}}",
     "death_10": "{gender, select, female {Épuisée} other {Épuisé}}, trop loin au large",
     "death_11": "{gender, select, female {Tombée} other {Tombé}} dans le vide",
-    "death_12": "{gender, select, female {Morte} other {Mort}}"
+    "death_12": "{gender, select, female {Morte} other {Mort}}",
+    "death_13": "{gender, select, female {Restée} other {Resté}} trop longtemps en Feindre la mort",
+    "death_14": "{gender, select, female {Sacrifiée} other {Sacrifié}} pour sauver {killer}",
+    "death_15": "{gender, select, female {Vaincue} other {Vaincu}} en Mak'gora par {killer}"
   },
   "population": {
     "title": "Population",
@@ -1747,6 +1750,7 @@
       "bosses": "Boss",
       "professions": "Métiers",
       "pvp": "JcJ",
+      "challenges": "Défis",
       "feats": "Exploits"
     },
     "notYet": "Encore à prendre",

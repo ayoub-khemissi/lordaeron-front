@@ -6,6 +6,7 @@ import clsx from "clsx";
 
 import {
   archivists,
+  challenges,
   artifact,
   classes,
   collections,
@@ -1350,6 +1351,71 @@ function Archivists({ lang }: { lang: Lang }) {
   );
 }
 
+function Challenges({ lang }: { lang: Lang }) {
+  // the reward's colour: a completion aura, a title (the gold of the others), a legend (the orange of legendary items)
+  const tierColor = {
+    aura: "text-white/55",
+    title: "text-wow-gold-light",
+    legend: "text-[#ff8000]",
+  } as const;
+
+  return (
+    <section className="scroll-mt-20" id={challenges.id}>
+      <ParallaxImage
+        className="flex min-h-[60vh] items-end pb-14 pt-40"
+        overlay="from-wow-darker/20 via-wow-darker/60 to-wow-darker"
+        src={challenges.image}
+      >
+        <div className={container}>
+          <ChapterHeading
+            eyebrow={challenges.eyebrow[lang]}
+            lede={<Rich text={challenges.lede[lang]} />}
+            numeral={challenges.numeral}
+            title={challenges.title[lang]}
+          />
+        </div>
+      </ParallaxImage>
+      <div className={clsx(container, "pb-24 sm:pb-32")}>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {challenges.list.map((c, i) => (
+            <Reveal key={c.icon} delay={(i % 3) * 0.07}>
+              <div className="flex h-full gap-4 rounded-xl border border-white/10 bg-white/[0.04] p-5">
+                <WowIcon icon={c.icon} size={46} />
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-baseline gap-x-2">
+                    <h3 className="font-heading text-lg text-white">
+                      {c.name[lang]}
+                    </h3>
+                    <span className="text-sm tracking-widest text-wow-gold">
+                      {"★".repeat(c.stars)}
+                    </span>
+                  </div>
+                  <p className="mt-1 text-sm text-white/60">{c.rule[lang]}</p>
+                  <p
+                    className={clsx(
+                      "mt-2 text-xs font-semibold",
+                      tierColor[c.tier],
+                    )}
+                  >
+                    {c.reward[lang]}
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {challenges.extras.map((e, i) => (
+            <Reveal key={i} delay={(i % 3) * 0.07}>
+              <Card icon={e.icon} text={e.text[lang]} title={e.title[lang]} />
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Professions({ lang }: { lang: Lang }) {
   return (
     <Section className="overflow-hidden" id={professions.id}>
@@ -2003,6 +2069,7 @@ export default function ExperienceContent({ locale }: { locale: string }) {
         <Transmog lang={lang} />
         <PvP lang={lang} />
         <Guilds lang={lang} />
+        <Challenges lang={lang} />
         <Glory lang={lang} />
         <Finale joinHref={joinHref} lang={lang} />
       </div>

@@ -146,10 +146,10 @@ export const REALMS: Record<RealmSlug, RealmInfo> = {
     ],
     accent: "ice",
     progressive: true,
-    // its character challenges (the Archivist of Trials), hidden on the site until the game admin opens them in game. To show them: set
-    // this to true, then build and restart the site (npm run build, pm2 restart lordaeron): the Hall of Fame gets its Challenges tab
-    // (/<locale>/rimeheart/hall-of-fame?tab=challenges) and the armory its challenge badges. Back to false hides them again.
-    challenges: false,
+    // its character challenges (Vesperine Gravewhisper), open in game with the update of 18/10/2026 06:00 (false hides them again, after a
+    // build and a restart of the site): the Hall of Fame's Challenges tab (/<locale>/rimeheart/hall-of-fame?tab=challenges) and the
+    // armory's challenge badges
+    challenges: true,
   },
 };
 

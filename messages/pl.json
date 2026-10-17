@@ -1569,7 +1569,10 @@
     "death_9": "{gender, select, female {Spłonęła} other {Spłonął}} żywcem",
     "death_10": "{gender, select, female {Wyczerpana, odpłynęła} other {Wyczerpany, odpłynął}} za daleko",
     "death_11": "{gender, select, female {Przepadła} other {Przepadł}} w otchłani",
-    "death_12": "{gender, select, female {Zginęła} other {Zginął}}"
+    "death_12": "{gender, select, female {Zginęła} other {Zginął}}",
+    "death_13": "{gender, select, female {Zbyt długo udawała martwą} other {Zbyt długo udawał martwego}}",
+    "death_14": "{gender, select, female {Poświęciła się} other {Poświęcił się}}, by ocalić {killer}",
+    "death_15": "{gender, select, female {Pokonana} other {Pokonany}} w Mak'gorze przez {killer}"
   },
   "population": {
     "title": "Populacja",
@@ -1747,6 +1750,7 @@
       "bosses": "Bossowie",
       "professions": "Profesje",
       "pvp": "PvP",
+      "challenges": "Wyzwania",
       "feats": "Wyczyny"
     },
     "notYet": "Wciąż do zdobycia",

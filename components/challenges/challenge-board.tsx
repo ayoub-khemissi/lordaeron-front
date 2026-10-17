@@ -48,8 +48,9 @@ const LISTS: { key: ListKey; id: string; empty: string; text: string }[] = [
   },
 ];
 
-// the deaths whose sentence names the killer (a creature, a grey one, an elite, a player, a guard)
-const NAMED_KILLER = [0, 1, 2, 3, 4];
+// the deaths whose sentence names the killer (a creature, a grey one, an elite, a player, a guard; the one a Divine Intervention saved,
+// the Mak'gora's winner)
+const NAMED_KILLER = [0, 1, 2, 3, 4, 14, 15];
 
 // a challenger: its race and class, its name in its class colour (its armory page; a deleted character's name alone), its level
 function Challenger({ run, online }: { run: ChallengeRun; online?: boolean }) {
@@ -114,7 +115,7 @@ function Death({ run }: { run: ChallengeRun }) {
       <span className="text-red-300/90">
         {named
           ? t(`death_${type}`, { killer: run.cause!, gender })
-          : t(`death_${type >= 5 && type <= 12 ? type : 12}`, { gender })}
+          : t(`death_${type >= 5 && type <= 13 ? type : 12}`, { gender })}
       </span>
       {run.zone && <span className="text-gray-400">· {run.zone}</span>}
       {run.ended > 0 && (

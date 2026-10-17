@@ -26,6 +26,7 @@ const GROUPS: RealmFirstGroup[] = [
   "bosses",
   "professions",
   "pvp",
+  "challenges",
   "feats",
 ];
 // the names shown of a group realm first (a raid): the others counted

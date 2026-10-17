@@ -1569,7 +1569,10 @@
     "death_9": "{gender, select, female {Abrasada} other {Abrasado}} por el fuego",
     "death_10": "{gender, select, female {Agotada} other {Agotado}}, nadó demasiado lejos",
     "death_11": "Cayó al vacío",
-    "death_12": "Murió"
+    "death_12": "Murió",
+    "death_13": "Fingió su muerte demasiado tiempo",
+    "death_14": "{gender, select, female {Sacrificada} other {Sacrificado}} para salvar a {killer}",
+    "death_15": "{gender, select, female {Vencida} other {Vencido}} en Mak'gora por {killer}"
   },
   "population": {
     "title": "Población",
@@ -1747,6 +1750,7 @@
       "bosses": "Jefes",
       "professions": "Profesiones",
       "pvp": "JcJ",
+      "challenges": "Desafíos",
       "feats": "Proezas"
     },
     "notYet": "Aún disponible",
