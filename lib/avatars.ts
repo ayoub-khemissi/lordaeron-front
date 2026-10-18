@@ -117,3 +117,15 @@ const ALL = new Set(AVATAR_GROUPS.flatMap((g) => g.icons));
 export function isAvatarIcon(icon: unknown): icon is string {
   return typeof icon === "string" && ALL.has(icon);
 }
+
+// the avatar drawn for an account that has none (a new account, those before avatars existed: Ayoub, 18/10/2026): a legend, a beast or
+// an arcanum, never a race, class or faction it may not play
+const RANDOM_GROUPS = ["legends", "beasts", "arcana"];
+
+export const RANDOM_AVATARS = AVATAR_GROUPS.filter((g) =>
+  RANDOM_GROUPS.includes(g.key),
+).flatMap((g) => g.icons);
+
+export function randomAvatar() {
+  return RANDOM_AVATARS[Math.floor(Math.random() * RANDOM_AVATARS.length)];
+}

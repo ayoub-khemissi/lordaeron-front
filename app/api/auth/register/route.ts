@@ -13,6 +13,7 @@ import {
   sendVerification,
   setNewsConsent,
 } from "@/lib/account-email";
+import { assignRandomAvatar } from "@/lib/queries/avatar";
 
 // at most this many accounts per IP per 24 hours (nginx sets X-Real-IP to the visitor's address)
 const MAX_ACCOUNTS_PER_IP = 3;
@@ -69,6 +70,10 @@ export async function POST(request: NextRequest) {
     const accountId = await createAccount(username, email, salt, verifier);
 
     await recordRegistration(accountId, ip);
+    // its avatar, drawn at random (lib/avatars.ts), the player changes it on its account
+    await assignRandomAvatar(accountId).catch((error) =>
+      console.error("Signup avatar:", error),
+    );
     // the language of its e-mails, the news consent as ticked (unchecked by default, logged), the welcome with its link
     await ensurePreferences(accountId, locale);
     if (body.newsConsent === true)
