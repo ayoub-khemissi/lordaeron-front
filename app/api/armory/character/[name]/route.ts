@@ -110,10 +110,11 @@ export async function GET(
         })
       : null;
 
-    // the character's own items: their enchantments, gems, suffixes and the set pieces worn
+    // the character's own items: their enchantments, gems, suffixes, the set pieces worn, the heirlooms at its level
     const tooltips = await characterItemTooltips(
       realm,
       character.guid,
+      character.level,
       isTooltipLocale(locale) ? locale : "en",
     ).catch((e) => {
       console.error("Armory tooltips:", e);

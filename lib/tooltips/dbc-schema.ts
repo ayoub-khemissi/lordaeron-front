@@ -239,6 +239,47 @@ export const DBC_LAYOUTS = {
       ...numbered("Good", 11, 5),
     },
   },
+  // the heirlooms' stats (item_template.ScalingStatDistribution): up to 10 stats, each a share (1/10000) of the level's budget, and the
+  // highest level they scale to
+  ScalingStatDistribution: {
+    fieldCount: 22,
+    fields: {
+      ID: 0,
+      ...numbered("StatID", 1, 10),
+      ...numbered("Bonus", 11, 10),
+      Maxlevel: 21,
+    },
+  },
+  // the heirlooms' budgets, armor, weapon DPS and spell power by character level (one record per level, Charlevel)
+  ScalingStatValues: {
+    fieldCount: 24,
+    fields: {
+      ID: 0,
+      Charlevel: 1,
+      ShoulderBudget: 2,
+      TrinketBudget: 3,
+      WeaponBudget1H: 4,
+      RangedBudget: 5,
+      ClothShoulderArmor: 6,
+      LeatherShoulderArmor: 7,
+      MailShoulderArmor: 8,
+      PlateShoulderArmor: 9,
+      WeaponDPS1H: 10,
+      WeaponDPS2H: 11,
+      SpellcasterDPS1H: 12,
+      SpellcasterDPS2H: 13,
+      RangedDPS: 14,
+      WandDPS: 15,
+      SpellPower: 16,
+      PrimaryBudget: 17,
+      TertiaryBudget: 18,
+      ClothCloakArmor: 19,
+      ClothChestArmor: 20,
+      LeatherChestArmor: 21,
+      MailChestArmor: 22,
+      PlateChestArmor: 23,
+    },
+  },
   // the talent calculator and the armory's specializations (lib/talents.ts): a talent's tree, tier, column, the spell of each rank and
   // its prerequisite (a talent and the rank it needs, 0-based)
   Talent: {

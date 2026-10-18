@@ -7,7 +7,8 @@ import fr from "./strings/fr.json";
  *    ruRU; an empty slot falls back to enUS;
  *  - its item_template_locale locale (names and descriptions of the items), English (item_template) when it has none;
  *  - its wordings (strings/<lang>.json, the client's GlobalStrings): English and French only (the client data is frFR), the English
- *    ones otherwise; a missing key falls back to English;
+ *    ones otherwise; a missing key falls back to English. The site's own wordings (keys starting with "_", no client one) exist in
+ *    every language: in strings/<lang>.json for English and French, in OWN below for the others;
  *  - its decimal separator.
  */
 
@@ -40,6 +41,17 @@ const EN = en as Strings;
 const FR = fr as Strings;
 // languages with client texts (DBC) but no client wordings: English wordings, except a neutral value range inside their sentences
 const LOCALIZED_TEXT_ONLY: Strings = { _VALUE_RANGE: "%s - %s" };
+// the site's own wordings in the languages without a strings file
+const OWN: Record<Exclude<TooltipLocale, "en" | "fr">, Strings> = {
+  de: { _ITEM_SCALING_LEVEL: "Skaliert mit der Stufe: Werte auf Stufe %d" },
+  es: { _ITEM_SCALING_LEVEL: "Escala con el nivel: valores a nivel %d" },
+  it: { _ITEM_SCALING_LEVEL: "Scala con il livello: valori al livello %d" },
+  pl: {
+    _ITEM_SCALING_LEVEL: "Skaluje się z poziomem: wartości na poziomie %d",
+  },
+  pt: { _ITEM_SCALING_LEVEL: "Escala com o nível: valores no nível %d" },
+  ru: { _ITEM_SCALING_LEVEL: "Зависит от уровня: значения для %d-го уровня" },
+};
 
 // 3.3.5 client locale ids (DBC string slots)
 const SLOT = { enUS: 0, frFR: 2, deDE: 3, esES: 6, ruRU: 8 } as const;
@@ -63,21 +75,21 @@ export const LOCALES: Record<TooltipLocale, LocaleConfig> = {
     locale: "de",
     slot: SLOT.deDE,
     itemLocale: "deDE",
-    strings: LOCALIZED_TEXT_ONLY,
+    strings: { ...LOCALIZED_TEXT_ONLY, ...OWN.de },
     decimalComma: true,
   },
   es: {
     locale: "es",
     slot: SLOT.esES,
     itemLocale: "esES",
-    strings: LOCALIZED_TEXT_ONLY,
+    strings: { ...LOCALIZED_TEXT_ONLY, ...OWN.es },
     decimalComma: true,
   },
   ru: {
     locale: "ru",
     slot: SLOT.ruRU,
     itemLocale: "ruRU",
-    strings: LOCALIZED_TEXT_ONLY,
+    strings: { ...LOCALIZED_TEXT_ONLY, ...OWN.ru },
     decimalComma: true,
   },
   // no client data in these languages: English
@@ -85,21 +97,21 @@ export const LOCALES: Record<TooltipLocale, LocaleConfig> = {
     locale: "it",
     slot: SLOT.enUS,
     itemLocale: null,
-    strings: EN,
+    strings: { ...EN, ...OWN.it },
     decimalComma: false,
   },
   pl: {
     locale: "pl",
     slot: SLOT.enUS,
     itemLocale: null,
-    strings: EN,
+    strings: { ...EN, ...OWN.pl },
     decimalComma: false,
   },
   pt: {
     locale: "pt",
     slot: SLOT.enUS,
     itemLocale: null,
-    strings: EN,
+    strings: { ...EN, ...OWN.pt },
     decimalComma: false,
   },
 };

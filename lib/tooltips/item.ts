@@ -1,4 +1,4 @@
-import type { Dbcs } from "./dbc";
+import type { Dbcs, Rec } from "./dbc";
 import type { DbcName } from "./dbc-schema";
 
 import { cleanText, fmt, trimBlank, type TipLine } from "./format";
@@ -8,7 +8,8 @@ import { SpellRenderer, iconFile, SPELL_DBCS } from "./spell";
 /*
  * Item tooltips (3.3.5 layout and wordings) from an item_template row (and its item_template_locale row) and the DBCs: binding,
  * uniqueness, slot and type, damage and speed, armor, stats and ratings, resistances, gems and sockets, durability, requirements, item
- * level, equip / use / chance on hit spells with their cooldowns and charges, item set with its pieces and bonuses, description.
+ * level, equip / use / chance on hit spells with their cooldowns and charges, item set with its pieces and bonuses, description; an
+ * heirloom's damage, armor and stats at a level.
  */
 
 export const ITEM_DBCS: readonly DbcName[] = [
@@ -26,6 +27,8 @@ export const ITEM_DBCS: readonly DbcName[] = [
   "ChrRaces",
   "SkillLine",
   "Faction",
+  "ScalingStatDistribution",
+  "ScalingStatValues",
 ];
 
 // item_template, as mysql2 returns it (numbers, strings)
@@ -52,6 +55,8 @@ export interface ItemInstanceContext {
   gemCounts: readonly number[];
   // the socketed gems: gem item entry -> its name (in the locale), icon and colors (GemProperties.Type)
   gems: ReadonlyMap<number, { name: string; icon: string; colors: number }>;
+  // the character's level: an heirloom's values follow it
+  level: number;
 }
 
 // the enchantment slots of an item instance (the core's EnchantmentSlot)
@@ -92,7 +97,9 @@ const INVTYPE = [
   "INVTYPE_RELIC",
 ];
 
-// primary stats (white, "+N Stat") and the others (green "Equip:" lines), by item_template stat_type
+// primary stats (white, "+N Stat", in the client's order: Strength, Agility, Stamina, Intellect, Spirit, Health, Mana) and the others
+// (green "Equip:" lines), by item_template stat_type
+const PRIMARY_ORDER = [4, 3, 7, 5, 6, 1, 0];
 const PRIMARY_STATS: Record<number, string> = {
   0: "ITEM_MOD_MANA",
   1: "ITEM_MOD_HEALTH",
@@ -160,6 +167,44 @@ const BONDING: Record<number, string> = {
   4: "ITEM_BIND_QUEST",
   5: "ITEM_BIND_QUEST",
 };
+/*
+ * Heirlooms (item_template.ScalingStatValue, flags): the item_template stats, armor and damage are placeholders, the client computes
+ * them from ScalingStatValues.dbc at the level shown (as the core does, Player::_ApplyItemBonuses): one budget shared out by the
+ * ScalingStatDistribution's stats, the armor of a slot and type, a weapon's DPS (damage spread ±30%, ±20% for a two-hand), spell power.
+ */
+const SCALING_BUDGET: Record<number, string> = {
+  0x1: "ShoulderBudget",
+  0x2: "TrinketBudget",
+  0x4: "WeaponBudget1H",
+  0x8: "PrimaryBudget",
+  0x10: "RangedBudget",
+  0x40000: "TertiaryBudget",
+};
+const SCALING_ARMOR: Record<number, string> = {
+  0x20: "ClothShoulderArmor",
+  0x40: "LeatherShoulderArmor",
+  0x80: "MailShoulderArmor",
+  0x100: "PlateShoulderArmor",
+  0x80000: "ClothCloakArmor",
+  0x100000: "ClothChestArmor",
+  0x200000: "LeatherChestArmor",
+  0x400000: "MailChestArmor",
+  0x800000: "PlateChestArmor",
+};
+const SCALING_DPS: Record<number, [string, number]> = {
+  0x200: ["WeaponDPS1H", 0.3],
+  0x400: ["WeaponDPS2H", 0.2],
+  0x800: ["SpellcasterDPS1H", 0.3],
+  0x1000: ["SpellcasterDPS2H", 0.2],
+  0x2000: ["RangedDPS", 0.3],
+  0x4000: ["WandDPS", 0.3],
+};
+const SCALING_SPELL_POWER = 0x8000;
+// the level an heirloom shows outside the armory: the highest (as Wowhead does)
+const SCALING_DEFAULT_LEVEL = 80;
+// the client computes the damage in single precision (its truncation to whole numbers depends on it)
+const f32 = Math.fround;
+
 const RESISTANCES: [string, number][] = [
   ["holy_res", 1],
   ["fire_res", 2],
@@ -383,6 +428,55 @@ export class ItemRenderer {
     return { suffix: r.loc("Name", this.lc.slot), lines };
   }
 
+  /*
+   * An heirloom at a character's level: the level shown (the client's rule: the level, kept within the item's required level and its
+   * distribution's highest), its distribution, that level's stat budget, armor, DPS with its spread, and spell power. The armor and the
+   * damage only when its flags scale them (the item's own otherwise). Null for an item that does not scale.
+   */
+  private scaling(row: ItemRow, charLevel: number) {
+    const flags = Number(row.ScalingStatValue ?? 0) >>> 0;
+
+    if (!flags) return null;
+    const ssd = this.dbcs("ScalingStatDistribution").rec(
+      Number(row.ScalingStatDistribution ?? 0),
+    );
+    const required = Number(row.RequiredLevel ?? 0) || 0;
+    let level = charLevel;
+
+    if (ssd) {
+      const max = ssd.get("Maxlevel");
+
+      if (Math.max(required, level) >= max) level = max;
+      else if (required > level) level = required;
+    }
+    level = Math.max(level, 1);
+    let ssv: Rec | null = null;
+
+    for (const r of this.dbcs("ScalingStatValues").records())
+      if (r.get("Charlevel") === level) {
+        ssv = r;
+        break;
+      }
+    const value = (field: string | undefined) =>
+      ssv && field ? ssv.get(field) : 0;
+    const dps = SCALING_DPS[flags & 0x7e00];
+
+    return {
+      level,
+      ssd,
+      // the item's values are shown at this level (its record exists)
+      known: !!ssd && !!ssv,
+      budget: value(SCALING_BUDGET[flags & 0x4001f]),
+      armor:
+        flags & 0xf801e0 ? value(SCALING_ARMOR[flags & 0xf801e0]) : undefined,
+      dps:
+        flags & 0x7e00 && ssv
+          ? ([value(dps?.[0]), dps?.[1] ?? 0.3] as const)
+          : undefined,
+      spellPower: flags & SCALING_SPELL_POWER ? value("SpellPower") : 0,
+    };
+  }
+
   private enchantTime(name: string, ms: number): string {
     if (ms <= 0) return name;
     if (ms >= 86400000)
@@ -426,6 +520,8 @@ export class ItemRenderer {
     const itemClass = n("class");
     const subclass = n("subclass");
     const invType = n("InventoryType");
+    // an heirloom: at the character's level in the armory, at the highest elsewhere
+    const scaling = this.scaling(row, inst?.level ?? SCALING_DEFAULT_LEVEL);
 
     lines.push({ left: name, color: `q${quality}` });
     if (flags & 0x8)
@@ -484,8 +580,24 @@ export class ItemRenderer {
       );
     }
 
-    // damage
-    if (itemClass === 2 && n("dmg_max1") > 0) {
+    // damage: an heirloom's from its level's DPS (no school, no second damage), in single precision and truncated as the client does
+    if (itemClass === 2 && scaling?.dps && n("delay") > 0) {
+      const [dps, spread] = scaling.dps.map(f32);
+      const delay = f32(n("delay"));
+      const min = f32(f32(f32(dps - f32(dps * spread)) * delay) * f32(0.001));
+      const max = f32(f32(0.001) * f32(delay * f32(dps * f32(spread + 1))));
+      const average = f32(f32(min + max) * 0.5);
+
+      lines.push({
+        left: this.s("DAMAGE_TEMPLATE", Math.trunc(min), Math.trunc(max)),
+        right: `${str(lc, "SPEED")} ${fmt(lc, "%.2f", delay / 1000)}`,
+        color: "white",
+      });
+      lines.push({
+        left: this.s("DPS_TEMPLATE", f32(average / f32(delay * f32(0.001)))),
+        color: "white",
+      });
+    } else if (itemClass === 2 && n("dmg_max1") > 0) {
       const speed = n("delay") / 1000;
       const school = n("dmg_type1")
         ? str(lc, `SPELL_SCHOOL${n("dmg_type1")}_CAP`)
@@ -526,41 +638,51 @@ export class ItemRenderer {
         color: "white",
       });
     }
-    if (n("armor") > 0)
-      lines.push({
-        left: this.s("ARMOR_TEMPLATE", n("armor")),
-        color: "white",
-      });
+    const armor = scaling?.armor ?? n("armor");
+
+    if (armor > 0)
+      lines.push({ left: this.s("ARMOR_TEMPLATE", armor), color: "white" });
     if (n("block") > 0)
       lines.push({
         left: this.s("SHIELD_BLOCK_TEMPLATE", n("block")),
         color: "white",
       });
 
-    // primary stats (white) and the others (green "Equip:" lines, after the requirements)
+    // primary stats (white) and the others (green "Equip:" lines, after the requirements); an heirloom's are its distribution's
+    // shares of its level's budget (its item_template stats are placeholders)
     const greens: TipLine[] = [];
     const equip = str(lc, "ITEM_SPELL_TRIGGER_ONEQUIP");
+    const stats: [number, number][] = [];
 
-    for (let k = 1; k <= 10; ++k) {
-      const type = n(`stat_type${k}`);
-      const value = n(`stat_value${k}`);
-
-      if (!value) continue;
-      if (PRIMARY_STATS[type])
-        lines.push({
-          left: this.s(
-            PRIMARY_STATS[type],
-            value < 0 ? "-" : "+",
-            Math.abs(value),
-          ),
-          color: "white",
-        });
-      else if (RATINGS[type])
+    for (let k = 1; k <= 10; ++k)
+      if (!scaling) stats.push([n(`stat_type${k}`), n(`stat_value${k}`)]);
+      else if (scaling.ssd && scaling.ssd.get(`StatID_${k}`) >= 0)
+        stats.push([
+          scaling.ssd.get(`StatID_${k}`),
+          Math.trunc((scaling.budget * scaling.ssd.get(`Bonus_${k}`)) / 10000),
+        ]);
+    for (const type of PRIMARY_ORDER)
+      for (const [t, value] of stats)
+        if (t === type && value)
+          lines.push({
+            left: this.s(
+              PRIMARY_STATS[type],
+              value < 0 ? "-" : "+",
+              Math.abs(value),
+            ),
+            color: "white",
+          });
+    for (const [type, value] of stats)
+      if (value && RATINGS[type])
         greens.push({
           left: `${equip} ${this.s(RATINGS[type], value)}`,
           color: "green",
         });
-    }
+    if (scaling?.spellPower)
+      greens.push({
+        left: `${equip} ${this.s("ITEM_MOD_SPELL_POWER", scaling.spellPower)}`,
+        color: "green",
+      });
     for (const [k, school] of RESISTANCES)
       if (n(k))
         lines.push({
@@ -666,7 +788,18 @@ export class ItemRenderer {
         left: this.s("ITEM_RACES_ALLOWED", this.maskNames("ChrRaces", races)),
         color: "white",
       });
-    if (n("RequiredLevel") > 1)
+    // an heirloom: its level range and the level shown ("Requires level 1 to 80 (80)")
+    if (scaling?.ssd)
+      lines.push({
+        left: this.s(
+          "ITEM_LEVEL_RANGE_CURRENT",
+          Math.max(n("RequiredLevel"), 1),
+          scaling.ssd.get("Maxlevel"),
+          scaling.level,
+        ),
+        color: "white",
+      });
+    else if (n("RequiredLevel") > 1)
       lines.push({
         left: this.s("ITEM_MIN_LEVEL", n("RequiredLevel")),
         color: "white",
@@ -832,6 +965,12 @@ export class ItemRenderer {
     }
     if (desc && !learn)
       lines.push({ left: `"${cleanText(desc).trim()}"`, color: "gold" });
+    // the site's note: the values above follow the level (the client shows them at the player's)
+    if (scaling?.known)
+      lines.push({
+        left: this.s("_ITEM_SCALING_LEVEL", scaling.level),
+        color: "gray",
+      });
 
     return { name, lines: trimBlank(lines) };
   }

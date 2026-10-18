@@ -79,6 +79,7 @@
   "ITEM_ENCHANT_TIME_LEFT_SEC": "%s (%d sec)",
   "ITEM_HEROIC": "Heroic",
   "ITEM_LEVEL": "Item Level %d",
+  "ITEM_LEVEL_RANGE_CURRENT": "Requires level %d to %d (%d)",
   "ITEM_LIMIT_CATEGORY": "Unique: %s (%d)",
   "ITEM_LIMIT_CATEGORY_MULTIPLE": "Unique-Equipped: %s (%d)",
   "ITEM_MIN_LEVEL": "Requires Level %d",
@@ -192,6 +193,7 @@
     "Totem",
     "Sigil"
   ],
+  "_ITEM_SCALING_LEVEL": "Scales with level: values at level %d",
   "_MANA_COST_PCT": "%d%% of base mana",
   "_SPELL_HOME": "<home>",
   "_SPELL_RECAST_TIME_HOURS": "%d |4hour:hours; cooldown",

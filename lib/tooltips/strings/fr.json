@@ -79,6 +79,7 @@
   "ITEM_ENCHANT_TIME_LEFT_SEC": "%s (%d sec.)",
   "ITEM_HEROIC": "Héroïque",
   "ITEM_LEVEL": "Niveau d'objet %d",
+  "ITEM_LEVEL_RANGE_CURRENT": "Niveau %d à %d (%d) requis",
   "ITEM_LIMIT_CATEGORY": "Unique : %s (%d)",
   "ITEM_LIMIT_CATEGORY_MULTIPLE": "Unique - Equipé : %s (%d)",
   "ITEM_MIN_LEVEL": "Niveau %d requis",
@@ -192,6 +193,7 @@
     "Totem",
     "Cachet"
   ],
+  "_ITEM_SCALING_LEVEL": "Évolue avec le niveau : valeurs au niveau %d",
   "_MANA_COST_PCT": "%d%% du mana de base",
   "_SPELL_HOME": "<foyer>",
   "_SPELL_RECAST_TIME_HOURS": "%d h de recharge",

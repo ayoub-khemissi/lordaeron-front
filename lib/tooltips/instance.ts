@@ -23,9 +23,9 @@ import {
 /*
  * Server only. The tooltips of the items a character wears (the armory, Ayoub 13/10/2026: the character's item, not the generic one):
  * each item instance's random enchantment and name suffix, its permanent and temporary enchantments, its gems with the socket bonus
- * and the meta gem's requirements counted over the whole equipment, its prismatic socket, its durability, and the item set pieces
- * the character wears with the bonuses they activate. Read from the realm's characters and world databases and its DBCs; equipment
- * slot -> tooltip. Not cached: an armory page asks once.
+ * and the meta gem's requirements counted over the whole equipment, its prismatic socket, its durability, the item set pieces the
+ * character wears with the bonuses they activate, and its heirlooms at its level. Read from the realm's characters and world
+ * databases and its DBCs; equipment slot -> tooltip. Not cached: an armory page asks once.
  */
 
 const EQUIPMENT_SLOTS = 19;
@@ -34,6 +34,8 @@ const SOCKET_SLOTS = [2, 3, 4];
 export async function characterItemTooltips(
   realm: RealmSlug,
   guid: number,
+  // the character's level (its heirlooms' values)
+  level: number,
   locale: TooltipLocale,
 ): Promise<Record<number, Tooltip>> {
   const lc = LOCALES[locale];
@@ -164,6 +166,7 @@ export async function characterItemTooltips(
       worn,
       gemCounts,
       gems,
+      level,
     };
 
     try {
