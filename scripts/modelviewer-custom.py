@@ -8,9 +8,14 @@ format under /var/www/lordaeron-modelviewer (nginx serves it before its mirror o
   a Blizzard display of it in the viewer's WotLK data;
 - the skins (CreatureDisplayInfo TextureVariation, next to the model): ours, from patch-W's files then the client's archives, in WebP
   under our own file ids (data/modelviewer/custom-files.json: kept, so a skin keeps its id from one run to the next);
+- a model of our own with no Blizzard original (the troll druid forms, the Sunwalker kodos: brought from a later client by the
+  generator, lib/m2cata.js) is converted whole (convert_model): the WotLK model (MD20, version 264) wrapped in the chunks the viewer
+  reads (MD21; SFID its .skin files, TXID its textures, AFID its external .anim files, all under our own file ids), its particle emitters
+  given the 16 bytes a later emitter has (the viewer reads them: two multi-texture parameters, unused by WotLK's particles), its skins
+  and animations as they are (the viewer reads WotLK's), its textures in WebP;
 - meta/npc/<display>.json as the viewer reads Blizzard's: the model, the skins by their slot (11, 12, 13), the scale and alpha.
 
-Re-runnable: the same files give the same output. A display whose model the viewer lacks is listed (it stays "no preview").
+Re-runnable: the same files give the same output. A display whose model cannot be read is listed (it stays "no preview").
 Usage: scripts/modelviewer-custom.py [--realm-dbc DIR] [--base-dbc DIR] [--stage DIR] [--out DIR]
 """
 import argparse
@@ -82,6 +87,105 @@ def client_file(path, stage):
     return None
 
 
+# the WotLK M2 header (MD20, version 264): the arrays the conversion reads, at their offsets
+M2_FLAGS, M2_SEQUENCES, M2_SKINS, M2_TEXTURES, M2_PARTICLES = 0x10, 0x1C, 0x44, 0x50, 0x128
+SEQUENCE_SIZE, TEXTURE_SIZE = 64, 16
+# a WotLK particle emitter (M2ParticleOld, 0x1DC bytes); the viewer reads 16 more (Cataclysm's multi-texture parameters)
+PARTICLE_SIZE, PARTICLE_EXTRA = 0x1DC, 16
+SEQUENCE_INTERNAL, SEQUENCE_ALIAS = 0x20, 0x40
+
+
+def chunk(tag, data):
+    return tag.encode() + struct.pack('<I', len(data)) + data
+
+
+def webp(blp, out):
+    Image.open(io.BytesIO(blp)).convert('RGBA').save(out + '.tmp', 'WEBP', quality=92, method=6)
+    os.replace(out + '.tmp', out)
+
+
+def convert_model(path, stage, out, file_id):
+    """a WotLK model in the viewer's format (see above): its file id, or None when the model cannot be read"""
+    m2_path = path.rsplit('.', 1)[0] + '.m2'
+    data = client_file(m2_path, stage)
+    if not data or data[:4] != b'MD20':
+        return None
+    model = bytearray(data)
+    u32 = lambda o: struct.unpack_from('<I', model, o)[0]
+    base = m2_path.rsplit('.', 1)[0]
+    folder = path.rsplit('\\', 1)[0] if '\\' in path else ''
+
+    # the textures named in the model (type 0); the creature skins (11, 12, 13...) come from the display
+    txid = []
+    count, offset = u32(M2_TEXTURES), u32(M2_TEXTURES + 4)
+    for i in range(count):
+        at = offset + i * TEXTURE_SIZE
+        kind, name_len, name_at = u32(at), u32(at + 8), u32(at + 12)
+        name = bytes(model[name_at:name_at + name_len]).split(b'\0')[0].decode('latin1') if kind == 0 and name_len else ''
+        if not name:
+            txid.append(0)
+            continue
+        fid = file_id(name.lower())
+        target = os.path.join(out, 'textures', f'{fid}.webp')
+        if not os.path.exists(target):
+            blp = client_file(name, stage)
+            if blp is None:
+                txid.append(0)
+                continue
+            webp(blp, target)
+        txid.append(fid)
+
+    # the skins, as they are
+    sfid = []
+    for i in range(u32(M2_SKINS)):
+        skin_path = f'{base}{i:02d}.skin'
+        skin = client_file(skin_path, stage)
+        if skin is None:
+            break
+        fid = file_id(skin_path.lower())
+        with open(os.path.join(out, 'skin', f'{fid}.skin'), 'wb') as fh:
+            fh.write(skin)
+        sfid.append(fid)
+    if not sfid:
+        return None
+
+    # the animations kept outside the model (a sequence neither internal nor an alias), as they are
+    afid = b''
+    count, offset = u32(M2_SEQUENCES), u32(M2_SEQUENCES + 4)
+    for i in range(count):
+        at = offset + i * SEQUENCE_SIZE
+        anim, sub_anim = struct.unpack_from('<HH', model, at)
+        flags = u32(at + 12)
+        if flags & (SEQUENCE_INTERNAL | SEQUENCE_ALIAS):
+            continue
+        anim_path = f'{base}{anim:04d}-{sub_anim:02d}.anim'
+        raw = client_file(anim_path, stage)
+        if raw is None:
+            continue
+        fid = file_id(anim_path.lower())
+        with open(os.path.join(out, 'anim', f'{fid}.anim'), 'wb') as fh:
+            fh.write(raw)
+        afid += struct.pack('<HHI', anim, sub_anim, fid)
+
+    # the particle emitters again at the end, each with the 16 bytes the viewer reads after it
+    count, offset = u32(M2_PARTICLES), u32(M2_PARTICLES + 4)
+    if count:
+        model += b'\0' * (-len(model) % 16)
+        at = len(model)
+        for i in range(count):
+            model += model[offset + i * PARTICLE_SIZE:offset + (i + 1) * PARTICLE_SIZE] + b'\0' * PARTICLE_EXTRA
+        struct.pack_into('<II', model, M2_PARTICLES, count, at)
+
+    fid = file_id(m2_path.lower())
+    blob = chunk('MD21', bytes(model)) + chunk('SFID', struct.pack(f'<{len(sfid)}I', *sfid)) \
+        + chunk('TXID', struct.pack(f'<{len(txid)}I', *txid)) + (chunk('AFID', afid) if afid else b'')
+    target = os.path.join(out, 'm2', f'{fid}.m2')
+    with open(target + '.tmp', 'wb') as fh:
+        fh.write(blob)
+    os.replace(target + '.tmp', target)
+    return fid
+
+
 def fetch_json(url):
     try:
         with urllib.request.urlopen(url, timeout=20) as r:
@@ -136,7 +240,9 @@ def main():
         return found
 
     os.makedirs(os.path.join(args.out, 'meta', 'npc'), exist_ok=True)
-    os.makedirs(os.path.join(args.out, 'textures'), exist_ok=True)
+    for folder_name in ('textures', 'm2', 'skin', 'anim'):
+        os.makedirs(os.path.join(args.out, folder_name), exist_ok=True)
+    converted = {}
     done, missing = 0, []
     for row in range(realm_cdi.count):
         display = realm_cdi.u(row, 0)
@@ -151,6 +257,10 @@ def main():
         # an edited copy draws as its original (content/exotic-mounts.js: <Model>Lordaeron<id>)
         original = stem.split('Lordaeron')[0] if 'Lordaeron' in stem else stem
         model_id = model_file(f'{folder}\\{original}.mdx') or model_file(f'{folder}\\{original}.m2')
+        if not model_id:
+            if model not in converted:
+                converted[model] = convert_model(model, args.stage, args.out, file_id)
+            model_id = converted[model]
         if not model_id:
             missing.append(f'{display} {model}')
             continue
@@ -167,8 +277,7 @@ def main():
                 if blp is None:
                     missing.append(f'{display} texture {path}')
                     continue
-                Image.open(io.BytesIO(blp)).convert('RGBA').save(out + '.tmp', 'WEBP', quality=92, method=6)
-                os.replace(out + '.tmp', out)
+                webp(blp, out)
             textures[slot] = file_id(key)
         meta = {
             'Model': model_id,
