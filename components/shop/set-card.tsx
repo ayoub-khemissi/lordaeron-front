@@ -37,7 +37,8 @@ export function SetCard({ set, onClick }: SetCardProps) {
           room && (e.ctrlKey || e.metaKey) ? room.trySet(set) : onClick()
         }
       >
-        <div className="flex items-start gap-3 mb-3">
+        {/* the magnifier's room in the corner: the discount moves left of it */}
+        <div className={`flex items-start gap-3 mb-3 ${room ? "pr-8" : ""}`}>
           {set.icon_url && (
             <div className="w-12 h-12 rounded-lg bg-wow-dark/50 border border-wow-gold/20 flex items-center justify-center overflow-hidden shrink-0">
               <img

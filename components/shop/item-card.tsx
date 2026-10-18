@@ -40,7 +40,10 @@ export function ItemCard({ item, onClick }: ItemCardProps) {
         }
       >
         <CardBody className="p-4 pb-2">
-          <div className="flex items-start justify-between gap-2 mb-3">
+          {/* the magnifier's room in the corner: the discount moves left of it */}
+          <div
+            className={`flex items-start justify-between gap-2 mb-3 ${tryable ? "pr-8" : ""}`}
+          >
             <div className="flex-1">
               {item.icon_url && (
                 <div className="w-12 h-12 rounded-lg bg-wow-dark/50 border border-wow-gold/20 flex items-center justify-center mb-2 overflow-hidden">
