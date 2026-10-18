@@ -1288,7 +1288,12 @@
     "viewTalents": "Ver talentos",
     "noTalents": "Sin talentos",
     "guildOfficer": "Oficial",
-    "guildMaster": "Maestro de hermandad"
+    "guildMaster": "Maestro de hermandad",
+    "onlineOnly": "Solo conectados",
+    "sortLabel": "Ordenar por",
+    "sortLevel": "Nivel",
+    "sortRecent": "Jugado recientemente",
+    "sortName": "Nombre"
   },
   "raidScaling": {
     "title": "Escalado de dificultad",

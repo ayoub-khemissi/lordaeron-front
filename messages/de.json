@@ -1288,7 +1288,12 @@
     "viewTalents": "Talente ansehen",
     "noTalents": "Keine Talente",
     "guildOfficer": "Offizier",
-    "guildMaster": "Gildenmeister"
+    "guildMaster": "Gildenmeister",
+    "onlineOnly": "Nur online",
+    "sortLabel": "Sortieren nach",
+    "sortLevel": "Stufe",
+    "sortRecent": "Zuletzt gespielt",
+    "sortName": "Name"
   },
   "raidScaling": {
     "title": "Schwierigkeitsskalierung",

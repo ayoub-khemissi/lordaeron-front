@@ -1288,7 +1288,12 @@
     "viewTalents": "Открыть таланты",
     "noTalents": "Нет талантов",
     "guildOfficer": "Офицер",
-    "guildMaster": "Глава гильдии"
+    "guildMaster": "Глава гильдии",
+    "onlineOnly": "Только в сети",
+    "sortLabel": "Сортировка",
+    "sortLevel": "Уровень",
+    "sortRecent": "Недавняя игра",
+    "sortName": "Имя"
   },
   "raidScaling": {
     "title": "Масштабирование сложности",

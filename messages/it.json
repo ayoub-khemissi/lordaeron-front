@@ -1288,7 +1288,12 @@
     "viewTalents": "Vedi talenti",
     "noTalents": "Nessun talento",
     "guildOfficer": "Ufficiale",
-    "guildMaster": "Maestro di gilda"
+    "guildMaster": "Maestro di gilda",
+    "onlineOnly": "Solo online",
+    "sortLabel": "Ordina per",
+    "sortLevel": "Livello",
+    "sortRecent": "Giocato di recente",
+    "sortName": "Nome"
   },
   "raidScaling": {
     "title": "Scaling di difficoltà",

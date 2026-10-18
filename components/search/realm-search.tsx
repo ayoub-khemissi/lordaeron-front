@@ -14,7 +14,9 @@ import { SEARCH_MIN, searchText } from "@/lib/search-text";
 /* A realm's name search (Ayoub, 13/10/2026: one real search for the armory and the guilds): any case or accent, the text cleaned as the
    server reads it (lib/search-text.ts), the exact name then the prefix first, 20 a page with the total; the search and the page live in
    the address (?q=&page=) so the back button and a shared link find them again. `endpoint` answers { [listKey]: T[], total, pageSize };
-   with `browse`, under SEARCH_MIN letters it lists everything (the guilds, few enough to look through). */
+   with `browse`, under SEARCH_MIN letters it lists everything (the guilds, the armory's characters). `params`: the page's own filters
+   (the armory's faction, class, online and order), sent with the search and kept in the address; a change brings back page 1.
+   `toolbar`: those filters' controls, under the search field. */
 export function RealmSearch<T>({
   endpoint,
   listKey,
@@ -25,6 +27,8 @@ export function RealmSearch<T>({
   itemKey,
   renderItem,
   browse = false,
+  params = {},
+  toolbar,
 }: {
   endpoint: string;
   listKey: string;
@@ -35,6 +39,8 @@ export function RealmSearch<T>({
   itemKey: (item: T) => string | number;
   renderItem: (item: T) => ReactNode;
   browse?: boolean;
+  params?: Record<string, string>;
+  toolbar?: ReactNode;
 }) {
   const realm = useRealm();
   const [query, setQuery] = useState("");
@@ -47,6 +53,18 @@ export function RealmSearch<T>({
   const debounceRef = useRef<ReturnType<typeof setTimeout>>();
   const pages = Math.max(1, Math.ceil(total / pageSize));
   const text = searchText(query, kind);
+  // the filters as one stable value (an effect's dependency), "" ones left out
+  const filters = new URLSearchParams(
+    Object.entries(params).filter(([, v]) => v !== ""),
+  ).toString();
+  const lastFilters = useRef<string | null>(null);
+
+  // other filters: back to the first page (not at the first render: the address's page stays)
+  useEffect(() => {
+    if (lastFilters.current !== null && lastFilters.current !== filters)
+      setPage(1);
+    lastFilters.current = filters;
+  }, [filters]);
 
   // the search of the address, once
   useEffect(() => {
@@ -73,7 +91,7 @@ export function RealmSearch<T>({
       setLoading(true);
       try {
         const res = await fetch(
-          `${endpoint}?q=${filtered ? encodeURIComponent(text) : ""}&page=${page}&realm=${realm.slug}`,
+          `${endpoint}?q=${filtered ? encodeURIComponent(text) : ""}&page=${page}&realm=${realm.slug}${filters ? `&${filters}` : ""}`,
         );
         const data = await res.json();
 
@@ -87,6 +105,9 @@ export function RealmSearch<T>({
         else url.searchParams.delete("q");
         if (page > 1) url.searchParams.set("page", String(page));
         else url.searchParams.delete("page");
+        for (const [key, value] of Object.entries(params))
+          if (value) url.searchParams.set(key, value);
+          else url.searchParams.delete(key);
         window.history.replaceState(null, "", url);
       } catch {
         setItems([]);
@@ -99,7 +120,7 @@ export function RealmSearch<T>({
     return () => {
       if (debounceRef.current) clearTimeout(debounceRef.current);
     };
-  }, [text, page, realm.slug, endpoint, listKey, browse]);
+  }, [text, page, realm.slug, endpoint, listKey, browse, filters]);
 
   return (
     <div className="space-y-6">
@@ -118,6 +139,8 @@ export function RealmSearch<T>({
           setPage(1);
         }}
       />
+
+      {toolbar}
 
       {!loading && searched && total > 0 && (
         <p className="text-sm text-gray-400">{countLabel(total)}</p>

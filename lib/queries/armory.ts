@@ -22,38 +22,71 @@ import {
 
 const NAME = "c.name";
 
-// a search: the exact name first, then the names starting with the text, then the others containing it, each by level then name; a
-// page of them and how many there are in all. showGm: a site administrator's search (lib/queries/realm-search.ts), GMs included
-export async function searchArmoryCharacters(
-  name: string,
-  page = 1,
-  pageSize = 20,
-  realm: RealmSlug = DEFAULT_REALM,
-  showGm = false,
+export type ArmoryListSort = "level" | "recent" | "name";
+
+export interface ArmoryListOptions {
+  // the name or a part of it (lib/search-text.ts), "" for every character
+  name: string;
+  faction: "" | "alliance" | "horde";
+  cls: number | null;
+  onlineOnly: boolean;
+  sort: ArmoryListSort;
+  page: number;
+  pageSize: number;
+  realm: RealmSlug;
+  showGm: boolean;
+}
+
+// the playable races of each faction (3.3.5)
+const FACTION_RACES = { alliance: [1, 3, 4, 7, 11], horde: [2, 5, 6, 8, 10] };
+
+/* The armory's list (Ayoub, 18/10/2026: "afficher des joueurs même sans recherche", with filters): every character of the realm, or
+   those whose name contains the text, narrowed by faction, class and online; a name search ranks the exact name and the prefix first,
+   then the chosen order: the online first and the highest level ("level", the default), the last played ("recent"), or by name. */
+export async function listArmoryCharacters(
+  o: ArmoryListOptions,
 ): Promise<{ characters: ArmorySearchResult[]; total: number }> {
-  const db = realmCharactersDb(realm);
+  const db = realmCharactersDb(o.realm);
+  // the living characters only: a deleted one keeps its row (deleteInfos_Name, its name emptied) for a restore
+  const where = ["c.level > 0", "c.deleteInfos_Name IS NULL"];
+  const params: string[] = [];
+
+  if (o.name) {
+    where.push(`${ci(NAME)} LIKE ?`);
+    params.push(containsPattern(o.name));
+  }
+  if (o.faction)
+    where.push(`c.race IN (${FACTION_RACES[o.faction].join(", ")})`);
+  if (o.cls) {
+    where.push("c.class = ?");
+    params.push(String(o.cls));
+  }
+  if (o.onlineOnly) where.push("c.online = 1");
+  const condition = `${where.join(" AND ")} ${hideGm("c.account", o.showGm)}`;
   const [counted] = await db.execute<RowDataPacket[]>(
-    `SELECT COUNT(*) AS total FROM characters c
-     WHERE ${ci(NAME)} LIKE ? AND c.level > 0
-       ${hideGm("c.account", showGm)}`,
-    [containsPattern(name)],
+    `SELECT COUNT(*) AS total FROM characters c WHERE ${condition}`,
+    params,
   );
   const total = Number(counted[0]?.total ?? 0);
 
   if (!total) return { characters: [], total };
+  const order = {
+    level: "c.online DESC, c.level DESC, c.name ASC",
+    recent: "c.online DESC, c.logout_time DESC, c.name ASC",
+    name: "c.name ASC",
+  }[o.sort];
   const [rows] = await db.execute<RowDataPacket[]>(
     `SELECT c.guid, c.name, c.race, c.class, c.level, c.gender, c.online,
        ${gmColumn("c.account")}
      FROM characters c
-     WHERE ${ci(NAME)} LIKE ? AND c.level > 0
-       ${hideGm("c.account", showGm)}
-     ORDER BY ${nameRank(NAME)}, c.level DESC, c.name ASC
+     WHERE ${condition}
+     ORDER BY ${o.name ? `${nameRank(NAME)}, ` : ""}${order}
      LIMIT ? OFFSET ?`,
     [
-      containsPattern(name),
-      ...nameRankParams(name),
-      String(pageSize),
-      String((page - 1) * pageSize),
+      ...params,
+      ...(o.name ? nameRankParams(o.name) : []),
+      String(o.pageSize),
+      String((o.page - 1) * o.pageSize),
     ],
   );
 

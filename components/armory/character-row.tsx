@@ -78,12 +78,18 @@ export function CharacterRow({
           )}
         </div>
         <FactionCrest alliance={isAlliance} />
-        <span
+        <svg
           aria-hidden
-          className="text-lg leading-none text-gray-500 transition-colors group-hover:text-wow-gold"
+          className="h-4 w-4 shrink-0 text-gray-500 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-wow-gold"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2.5}
+          viewBox="0 0 24 24"
         >
-          ›
-        </span>
+          <path d="M9 5l7 7-7 7" />
+        </svg>
       </CardBody>
     </Card>
   );

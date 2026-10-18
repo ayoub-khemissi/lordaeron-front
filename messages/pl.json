@@ -1288,7 +1288,12 @@
     "viewTalents": "Zobacz talenty",
     "noTalents": "Brak talentów",
     "guildOfficer": "Oficer",
-    "guildMaster": "Mistrz gildii"
+    "guildMaster": "Mistrz gildii",
+    "onlineOnly": "Tylko online",
+    "sortLabel": "Sortuj według",
+    "sortLevel": "Poziom",
+    "sortRecent": "Ostatnio grane",
+    "sortName": "Nazwa"
   },
   "raidScaling": {
     "title": "Skalowanie trudności",

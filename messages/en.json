@@ -1288,7 +1288,12 @@
     "viewTalents": "View talents",
     "noTalents": "No talents",
     "guildOfficer": "Officer",
-    "guildMaster": "Guild Master"
+    "guildMaster": "Guild Master",
+    "onlineOnly": "Online only",
+    "sortLabel": "Sort by",
+    "sortLevel": "Level",
+    "sortRecent": "Recently played",
+    "sortName": "Name"
   },
   "raidScaling": {
     "title": "Difficulty Scaling",
