@@ -25,6 +25,7 @@ import {
   type RealmInfo,
 } from "@/lib/realms";
 import { isRealmPreviewer } from "@/lib/realm-preview";
+import { challengeError, purchaseChallengeBlock } from "@/lib/challenge-shop";
 import {
   REALM_FIRSTS_CATEGORIES,
   phaseLockedItems,
@@ -89,6 +90,7 @@ async function handleSetPurchase(
 
   // Determine recipient
   let recipientName = character.name;
+  let recipientGuid = character.guid;
 
   if (body.is_gift) {
     if (!body.gift_to_character_name) {
@@ -134,6 +136,22 @@ async function handleSetPurchase(
     }
 
     recipientName = recipient.name;
+    recipientGuid = recipient.guid;
+  }
+
+  // what the recipient's challenge allows (lib/challenge-shop.ts)
+  const setBlock = await purchaseChallengeBlock(
+    realm.slug,
+    recipientGuid,
+    set.items.map((i) => i.item_id),
+    null,
+  );
+
+  if (setBlock) {
+    return NextResponse.json(
+      { error: challengeError(setBlock, !!body.is_gift) },
+      { status: 400 },
+    );
   }
 
   // Create purchase
@@ -359,6 +377,21 @@ export async function POST(request: NextRequest) {
         );
       }
 
+      // what the recipient's challenge allows (lib/challenge-shop.ts)
+      const giftBlock = await purchaseChallengeBlock(
+        realm.slug,
+        recipient.guid,
+        item.item_id ? [item.item_id] : [],
+        item.service_type,
+      );
+
+      if (giftBlock) {
+        return NextResponse.json(
+          { error: challengeError(giftBlock, true) },
+          { status: 400 },
+        );
+      }
+
       // Create purchase
       const result = await createPurchase(
         session.id,
@@ -417,6 +450,21 @@ export async function POST(request: NextRequest) {
 
     if (factionError) {
       return NextResponse.json({ error: factionError }, { status: 400 });
+    }
+
+    // what the character's challenge allows (lib/challenge-shop.ts)
+    const block = await purchaseChallengeBlock(
+      realm.slug,
+      character.guid,
+      item.item_id && item.category !== "services" ? [item.item_id] : [],
+      item.service_type,
+    );
+
+    if (block) {
+      return NextResponse.json(
+        { error: challengeError(block, false) },
+        { status: 400 },
+      );
     }
 
     // Process purchase (transactional)

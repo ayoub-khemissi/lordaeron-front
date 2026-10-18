@@ -538,7 +538,17 @@
       "purchaseNotRefundable": "Questo acquisto non è rimborsabile.",
       "recipientNotFound": "Personaggio destinatario non trovato.",
       "phaseLocked": "Questo articolo non è disponibile nella fase attuale del reame.",
-      "realmFirstsPending": "Disponibile quando tutti i primi del reame di livello 80 saranno stati ottenuti."
+      "realmFirstsPending": "Disponibile quando tutti i primi del reame di livello 80 saranno stati ottenuti.",
+      "challengeFallen": "Questo personaggio è caduto nella sua sfida: il negozio non gli invia più nulla.",
+      "challengeSelfMade": "La sfida di questo personaggio permette solo ciò che trova o crea: il negozio non può inviargli nulla.",
+      "challengeGear": "La sfida di questo personaggio vieta questo equipaggiamento: non potrebbe indossarlo.",
+      "challengeXpBonus": "Le sfide rifiutano ogni bonus all'esperienza: la fiala sarebbe sprecata.",
+      "challengeFaction": "Nessun cambio di fazione durante una sfida con il PvP Hardcore.",
+      "giftRecipientChallengeFallen": "Il destinatario è caduto nella sua sfida: il negozio non gli invia più nulla.",
+      "giftRecipientChallengeSelfMade": "La sfida del destinatario permette solo ciò che trova o crea: niente regalo.",
+      "giftRecipientChallengeGear": "La sfida del destinatario vieta questo equipaggiamento: non potrebbe indossarlo.",
+      "giftRecipientChallengeXpBonus": "Il destinatario è in una sfida: nessun bonus all'esperienza, la fiala sarebbe sprecata.",
+      "giftRecipientChallengeFaction": "Nessun cambio di fazione durante una sfida con il PvP Hardcore."
     },
     "comingSoon": "Prossimamente",
     "realmSoonTitle": "Il negozio di {realm} aprirà con il reame",
@@ -556,7 +566,13 @@
       "type": "Tipo",
       "show": "Mostra",
       "reset": "Reimposta"
-    }
+    },
+    "restrictionChallengeFallen": "Caduto nella sua sfida",
+    "restrictionChallengeSelfMade": "La sua sfida: solo trovato o creato",
+    "restrictionChallengeGear": "Vietato dalla sua sfida",
+    "restrictionChallengeXpBonus": "Nessun bonus esperienza in una sfida",
+    "restrictionChallengeFaction": "Non con il PvP Hardcore",
+    "challengeGrounded": "Utilizzabile dopo Con i piedi per terra"
   },
   "admin": {
     "login": {

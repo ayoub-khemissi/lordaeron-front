@@ -14,6 +14,13 @@ import {
   phaseLockedItems,
   realmFirstsProgress,
 } from "@/lib/realm-unlocks";
+import {
+  challengeBlocksItems,
+  challengeBlocksService,
+  challengeWarning,
+  shopChallenge,
+  shopItemFacts,
+} from "@/lib/challenge-shop";
 
 export const dynamic = "force-dynamic";
 
@@ -41,6 +48,8 @@ export async function GET(request: NextRequest) {
     const realm = requestRealm(searchParams.get("realm"));
     const hasDiscount = searchParams.get("discount") === "true";
     const hasMaxLevel = searchParams.get("has_max_level") === "true";
+    // the selected character: what its challenge allows (lib/challenge-shop.ts; shown only, the purchase checks again)
+    const guid = Number(searchParams.get("guid")) || null;
 
     const items = await getShopItems({
       category: category || undefined,
@@ -69,14 +78,28 @@ export async function GET(request: NextRequest) {
         .filter((id): id is number => !!id),
     );
     const realmId = REALMS[realm].realmId;
+    const challenge = guid ? await shopChallenge(realm, guid) : null;
+    const facts = challenge
+      ? await shopItemFacts(
+          realm,
+          offered.map((i) => i.item_id).filter((id): id is number => !!id),
+        )
+      : new Map();
 
     // Mark each item with eligibility instead of filtering (the realm's own catalogue first)
     const localized = offered.map((item) => {
       const base = localizeShopItem(item, locale);
       let eligible = true;
       let restriction_reason: string | null = null;
+      const pieces = item.item_id ? [facts.get(item.item_id)] : [];
+      const challengeBlock = item.item_id
+        ? challengeBlocksItems(challenge, pieces)
+        : challengeBlocksService(challenge, item.service_type);
 
-      if (
+      if (challengeBlock) {
+        eligible = false;
+        restriction_reason = challengeBlock;
+      } else if (
         REALM_FIRSTS_CATEGORIES.includes(item.category) &&
         firsts.done < firsts.total
       ) {
@@ -120,6 +143,9 @@ export async function GET(request: NextRequest) {
         exclusive:
           item.realm_ids?.length === 1 && item.realm_ids[0] === realmId,
         unlock_progress: restriction_reason === "realm_firsts" ? firsts : null,
+        challenge_warning: eligible
+          ? challengeWarning(challenge, pieces)
+          : null,
       };
     });
 

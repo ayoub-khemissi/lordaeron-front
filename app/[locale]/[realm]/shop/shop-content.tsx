@@ -120,6 +120,7 @@ export default function ShopContent({
         params.set("race_id", String(selectedCharacter.race));
         params.set("class_id", String(selectedCharacter.class));
         params.set("level", String(selectedCharacter.level));
+        params.set("guid", String(selectedCharacter.guid));
       }
 
       const hasMaxLevel = characters.some((c) => c.level >= 80);
@@ -132,6 +133,7 @@ export default function ShopContent({
         setParams.set("race_id", String(selectedCharacter.race));
         setParams.set("class_id", String(selectedCharacter.class));
         setParams.set("level", String(selectedCharacter.level));
+        setParams.set("guid", String(selectedCharacter.guid));
       }
 
       const [itemsRes, setsRes, charsRes, accountRes] = await Promise.all([

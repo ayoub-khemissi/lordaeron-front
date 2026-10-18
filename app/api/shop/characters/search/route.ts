@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { verifySession } from "@/lib/auth";
 import { searchCharactersByName } from "@/lib/queries/characters";
+import { requestRealm } from "@/lib/realms";
 
 export const dynamic = "force-dynamic";
 
@@ -19,7 +20,13 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ characters: [] });
     }
 
-    const characters = await searchCharactersByName(name, session.id, 5);
+    // on the realm being browsed (the gift goes to its characters)
+    const characters = await searchCharactersByName(
+      name,
+      session.id,
+      5,
+      requestRealm(request.nextUrl.searchParams.get("realm")),
+    );
 
     return NextResponse.json({ characters });
   } catch (error) {

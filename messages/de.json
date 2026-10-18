@@ -538,7 +538,17 @@
       "purchaseNotRefundable": "Dieser Kauf ist nicht erstattungsfähig.",
       "recipientNotFound": "Empfänger-Charakter nicht gefunden.",
       "phaseLocked": "Dieser Artikel ist in der aktuellen Phase des Realms nicht verfügbar.",
-      "realmFirstsPending": "Verfügbar, sobald alle Realm-Ersten der Stufe 80 errungen sind."
+      "realmFirstsPending": "Verfügbar, sobald alle Realm-Ersten der Stufe 80 errungen sind.",
+      "challengeFallen": "Dieser Charakter ist in seiner Herausforderung gefallen: Der Shop schickt ihm nichts mehr.",
+      "challengeSelfMade": "Die Herausforderung dieses Charakters erlaubt nur, was er findet oder herstellt: Der Shop kann ihm nichts schicken.",
+      "challengeGear": "Die Herausforderung dieses Charakters verbietet diese Ausrüstung: Er könnte sie nicht tragen.",
+      "challengeXpBonus": "Herausforderungen verweigern jeden Erfahrungsbonus: Die Phiole wäre verschwendet.",
+      "challengeFaction": "Kein Fraktionswechsel während einer Herausforderung mit Hardcore-PvP.",
+      "giftRecipientChallengeFallen": "Der Empfänger ist in seiner Herausforderung gefallen: Der Shop schickt ihm nichts mehr.",
+      "giftRecipientChallengeSelfMade": "Die Herausforderung des Empfängers erlaubt nur, was er findet oder herstellt: kein Geschenk.",
+      "giftRecipientChallengeGear": "Die Herausforderung des Empfängers verbietet diese Ausrüstung: Er könnte sie nicht tragen.",
+      "giftRecipientChallengeXpBonus": "Der Empfänger ist in einer Herausforderung: kein Erfahrungsbonus, die Phiole wäre verschwendet.",
+      "giftRecipientChallengeFaction": "Kein Fraktionswechsel während einer Herausforderung mit Hardcore-PvP."
     },
     "comingSoon": "Demnächst",
     "realmSoonTitle": "Der Shop von {realm} öffnet mit dem Realm",
@@ -556,7 +566,13 @@
       "type": "Typ",
       "show": "Anzeigen",
       "reset": "Zurücksetzen"
-    }
+    },
+    "restrictionChallengeFallen": "In seiner Herausforderung gefallen",
+    "restrictionChallengeSelfMade": "Herausforderung: nur Gefundenes oder Hergestelltes",
+    "restrictionChallengeGear": "Von seiner Herausforderung verboten",
+    "restrictionChallengeXpBonus": "Kein Erfahrungsbonus in einer Herausforderung",
+    "restrictionChallengeFaction": "Nicht mit Hardcore-PvP",
+    "challengeGrounded": "Nutzbar nach Bodenständig"
   },
   "admin": {
     "login": {

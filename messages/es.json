@@ -538,7 +538,17 @@
       "recipientNotFound": "Personaje destinatario no encontrado.",
       "realmNotOpen": "Este reino aún no está abierto",
       "phaseLocked": "Este artículo no está disponible en la fase actual del reino.",
-      "realmFirstsPending": "Disponible cuando se hayan conseguido todos los primeros del reino de nivel 80."
+      "realmFirstsPending": "Disponible cuando se hayan conseguido todos los primeros del reino de nivel 80.",
+      "challengeFallen": "Este personaje cayó en su desafío: la tienda ya no le envía nada.",
+      "challengeSelfMade": "El desafío de este personaje solo permite lo que encuentra o fabrica: la tienda no puede enviarle nada.",
+      "challengeGear": "El desafío de este personaje prohíbe este equipo: no podría llevarlo.",
+      "challengeXpBonus": "Los desafíos rechazan toda bonificación de experiencia: el vial se desperdiciaría.",
+      "challengeFaction": "No hay cambio de facción durante un desafío con el JcJ Hardcore.",
+      "giftRecipientChallengeFallen": "El destinatario cayó en su desafío: la tienda ya no le envía nada.",
+      "giftRecipientChallengeSelfMade": "El desafío del destinatario solo permite lo que encuentra o fabrica: sin regalo.",
+      "giftRecipientChallengeGear": "El desafío del destinatario prohíbe este equipo: no podría llevarlo.",
+      "giftRecipientChallengeXpBonus": "El destinatario está en un desafío: sin bonificación de experiencia, el vial se desperdiciaría.",
+      "giftRecipientChallengeFaction": "No hay cambio de facción durante un desafío con el JcJ Hardcore."
     },
     "comingSoon": "Próximamente",
     "realmSoonTitle": "La tienda de {realm} abrirá con el reino",
@@ -556,7 +566,13 @@
       "type": "Tipo",
       "show": "Mostrar",
       "reset": "Restablecer"
-    }
+    },
+    "restrictionChallengeFallen": "Caído en su desafío",
+    "restrictionChallengeSelfMade": "Su desafío: solo lo encontrado o fabricado",
+    "restrictionChallengeGear": "Prohibido por su desafío",
+    "restrictionChallengeXpBonus": "Sin bonificación de experiencia en un desafío",
+    "restrictionChallengeFaction": "No con el JcJ Hardcore",
+    "challengeGrounded": "Utilizable tras Con los pies en la tierra"
   },
   "admin": {
     "login": {

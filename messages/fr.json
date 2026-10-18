@@ -538,7 +538,17 @@
       "purchaseNotRefundable": "Cet achat n'est pas remboursable.",
       "recipientNotFound": "Personnage destinataire introuvable.",
       "phaseLocked": "Cet article n'est pas disponible dans la phase actuelle du royaume.",
-      "realmFirstsPending": "Disponible quand tous les « Prem's » niveau 80 du royaume auront été obtenus."
+      "realmFirstsPending": "Disponible quand tous les « Prem's » niveau 80 du royaume auront été obtenus.",
+      "challengeFallen": "Ce personnage est tombé dans son défi : la boutique ne lui envoie plus rien.",
+      "challengeSelfMade": "Le défi de ce personnage n'autorise que ce qu'il trouve ou fabrique : la boutique ne peut rien lui envoyer.",
+      "challengeGear": "Le défi de ce personnage interdit cet équipement : il ne pourrait pas le porter.",
+      "challengeXpBonus": "Les défis refusent tout bonus d'expérience : la fiole serait gâchée.",
+      "challengeFaction": "Pas de changement de faction pendant un défi avec le JcJ Hardcore.",
+      "giftRecipientChallengeFallen": "Le destinataire est tombé dans son défi : la boutique ne lui envoie plus rien.",
+      "giftRecipientChallengeSelfMade": "Le défi du destinataire n'autorise que ce qu'il trouve ou fabrique : pas de cadeau.",
+      "giftRecipientChallengeGear": "Le défi du destinataire interdit cet équipement : il ne pourrait pas le porter.",
+      "giftRecipientChallengeXpBonus": "Le destinataire est en défi : pas de bonus d'expérience, la fiole serait gâchée.",
+      "giftRecipientChallengeFaction": "Pas de changement de faction pendant un défi avec le JcJ Hardcore."
     },
     "comingSoon": "Bientôt disponible",
     "realmSoonTitle": "La boutique de {realm} ouvrira avec le royaume",
@@ -556,7 +566,13 @@
       "type": "Type",
       "show": "Afficher",
       "reset": "Réinitialiser"
-    }
+    },
+    "restrictionChallengeFallen": "Tombé dans son défi",
+    "restrictionChallengeSelfMade": "Son défi : trouvé ou fabriqué seulement",
+    "restrictionChallengeGear": "Interdit par son défi",
+    "restrictionChallengeXpBonus": "Pas de bonus d'expérience en défi",
+    "restrictionChallengeFaction": "Pas avec le JcJ Hardcore",
+    "challengeGrounded": "Utilisable après Les pieds sur terre"
   },
   "admin": {
     "login": {

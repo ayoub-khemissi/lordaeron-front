@@ -538,7 +538,17 @@
       "purchaseNotRefundable": "Ten zakup nie podlega zwrotowi.",
       "recipientNotFound": "Nie znaleziono postaci odbiorcy.",
       "phaseLocked": "Ten przedmiot nie jest dostępny w obecnej fazie krainy.",
-      "realmFirstsPending": "Dostępne, gdy wszystkie osiągnięcia „Pierwszy w krainie!” na 80 poziomie zostaną zdobyte."
+      "realmFirstsPending": "Dostępne, gdy wszystkie osiągnięcia „Pierwszy w krainie!” na 80 poziomie zostaną zdobyte.",
+      "challengeFallen": "Ta postać poległa w swoim wyzwaniu: sklep nic jej już nie wysyła.",
+      "challengeSelfMade": "Wyzwanie tej postaci pozwala tylko na to, co znajdzie lub wykona: sklep nie może nic jej wysłać.",
+      "challengeGear": "Wyzwanie tej postaci zabrania tego ekwipunku: nie mogłaby go nosić.",
+      "challengeXpBonus": "Wyzwania odrzucają wszelkie premie do doświadczenia: fiolka zostałaby zmarnowana.",
+      "challengeFaction": "Brak zmiany frakcji podczas wyzwania z Hardcore PvP.",
+      "giftRecipientChallengeFallen": "Odbiorca poległ w swoim wyzwaniu: sklep nic mu już nie wysyła.",
+      "giftRecipientChallengeSelfMade": "Wyzwanie odbiorcy pozwala tylko na to, co znajdzie lub wykona: bez prezentu.",
+      "giftRecipientChallengeGear": "Wyzwanie odbiorcy zabrania tego ekwipunku: nie mógłby go nosić.",
+      "giftRecipientChallengeXpBonus": "Odbiorca jest w trakcie wyzwania: brak premii do doświadczenia, fiolka zostałaby zmarnowana.",
+      "giftRecipientChallengeFaction": "Brak zmiany frakcji podczas wyzwania z Hardcore PvP."
     },
     "comingSoon": "Wkrótce",
     "realmSoonTitle": "Sklep {realm} otworzy się wraz ze światem",
@@ -556,7 +566,13 @@
       "type": "Typ",
       "show": "Pokaż",
       "reset": "Resetuj"
-    }
+    },
+    "restrictionChallengeFallen": "Poległ w swoim wyzwaniu",
+    "restrictionChallengeSelfMade": "Wyzwanie: tylko znalezione lub wykonane",
+    "restrictionChallengeGear": "Zakazane przez wyzwanie",
+    "restrictionChallengeXpBonus": "Brak premii do doświadczenia w wyzwaniu",
+    "restrictionChallengeFaction": "Nie z Hardcore PvP",
+    "challengeGrounded": "Do użycia po wyzwaniu Twardo na ziemi"
   },
   "admin": {
     "login": {

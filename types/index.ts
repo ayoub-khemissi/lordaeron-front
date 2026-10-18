@@ -221,6 +221,8 @@ export interface ShopItemLocalized {
   exclusive?: boolean;
   // restriction_reason "realm_firsts": how many of the realm's level 80 realm firsts are earned (lib/realm-unlocks.ts)
   unlock_progress?: { done: number; total: number } | null;
+  // sold, but usable only once the selected character's challenge is over (lib/challenge-shop.ts)
+  challenge_warning?: "challenge_grounded" | null;
 }
 
 export type ShopItemKind = "ground" | "flying" | "weapon" | "armor";

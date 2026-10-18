@@ -301,6 +301,43 @@ export async function refundPurchaseSelf(
   }
 }
 
+// a purchase never delivered that can no longer be (the recipient's challenge refuses it, lib/challenge-shop.ts): its Soul Shards back
+export async function refundUndelivered(purchaseId: number): Promise<boolean> {
+  const connection = await websiteDb.getConnection();
+
+  try {
+    await connection.beginTransaction();
+    const [rows] = await connection.execute<RowDataPacket[]>(
+      "SELECT * FROM shop_purchases WHERE id = ? AND status = 'pending_delivery' FOR UPDATE",
+      [purchaseId],
+    );
+
+    if (!rows.length) {
+      await connection.rollback();
+
+      return false;
+    }
+    const purchase = rows[0] as ShopPurchase;
+
+    await connection.execute(
+      "UPDATE soul_shards SET balance = balance + ? WHERE account_id = ?",
+      [purchase.price_paid, purchase.account_id],
+    );
+    await connection.execute(
+      "UPDATE shop_purchases SET status = 'refunded', refunded_at = NOW() WHERE id = ?",
+      [purchaseId],
+    );
+    await connection.commit();
+
+    return true;
+  } catch (error) {
+    await connection.rollback();
+    throw error;
+  } finally {
+    connection.release();
+  }
+}
+
 export async function getPendingDeliveryPurchases(): Promise<ShopPurchase[]> {
   const [rows] = await websiteDb.execute<RowDataPacket[]>(
     "SELECT * FROM shop_purchases WHERE status = 'pending_delivery'",

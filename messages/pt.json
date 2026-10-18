@@ -538,7 +538,17 @@
       "purchaseNotRefundable": "Esta compra nao e reembolsavel.",
       "recipientNotFound": "Personagem destinatario nao encontrado.",
       "phaseLocked": "Este item não está disponível na fase atual do reino.",
-      "realmFirstsPending": "Disponível quando todos os primeiros do reino de nível 80 forem conquistados."
+      "realmFirstsPending": "Disponível quando todos os primeiros do reino de nível 80 forem conquistados.",
+      "challengeFallen": "Este personagem caiu em seu desafio: a loja não lhe envia mais nada.",
+      "challengeSelfMade": "O desafio deste personagem só permite o que ele encontra ou fabrica: a loja não pode lhe enviar nada.",
+      "challengeGear": "O desafio deste personagem proíbe este equipamento: ele não poderia usá-lo.",
+      "challengeXpBonus": "Os desafios recusam todo bônus de experiência: o frasco seria desperdiçado.",
+      "challengeFaction": "Sem mudança de facção durante um desafio com o JxJ Hardcore.",
+      "giftRecipientChallengeFallen": "O destinatário caiu em seu desafio: a loja não lhe envia mais nada.",
+      "giftRecipientChallengeSelfMade": "O desafio do destinatário só permite o que ele encontra ou fabrica: sem presente.",
+      "giftRecipientChallengeGear": "O desafio do destinatário proíbe este equipamento: ele não poderia usá-lo.",
+      "giftRecipientChallengeXpBonus": "O destinatário está em um desafio: sem bônus de experiência, o frasco seria desperdiçado.",
+      "giftRecipientChallengeFaction": "Sem mudança de facção durante um desafio com o JxJ Hardcore."
     },
     "comingSoon": "Em breve",
     "realmSoonTitle": "A loja de {realm} abrirá com o reino",
@@ -556,7 +566,13 @@
       "type": "Tipo",
       "show": "Mostrar",
       "reset": "Repor"
-    }
+    },
+    "restrictionChallengeFallen": "Caído em seu desafio",
+    "restrictionChallengeSelfMade": "Seu desafio: só o encontrado ou fabricado",
+    "restrictionChallengeGear": "Proibido pelo seu desafio",
+    "restrictionChallengeXpBonus": "Sem bônus de experiência em um desafio",
+    "restrictionChallengeFaction": "Não com o JxJ Hardcore",
+    "challengeGrounded": "Utilizável após Com os pés no chão"
   },
   "admin": {
     "login": {

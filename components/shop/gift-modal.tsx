@@ -20,6 +20,7 @@ import { useTranslations } from "next-intl";
 import { PriceDisplay } from "./price-display";
 
 import { RACE_NAMES, CLASS_NAMES, getQualityColor } from "@/lib/shop-utils";
+import { useRealm } from "@/lib/realm-context";
 
 interface GiftModalProps {
   item: ShopItemLocalized | null;
@@ -41,6 +42,8 @@ export function GiftModal({
   onBuyShards,
 }: GiftModalProps) {
   const t = useTranslations("shop");
+  // the recipient is one of the browsed realm's characters
+  const realm = useRealm();
   const [query, setQuery] = useState("");
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
     null,
@@ -70,7 +73,7 @@ export function GiftModal({
       setSearching(true);
       try {
         const res = await fetch(
-          `/api/shop/characters/search?name=${encodeURIComponent(query)}`,
+          `/api/shop/characters/search?name=${encodeURIComponent(query)}&realm=${realm.slug}`,
         );
         const data = await res.json();
 
@@ -86,7 +89,7 @@ export function GiftModal({
     return () => {
       if (debounceRef.current) clearTimeout(debounceRef.current);
     };
-  }, [query, selectedCharacter]);
+  }, [query, selectedCharacter, realm.slug]);
 
   // Close suggestions on outside click
   useEffect(() => {

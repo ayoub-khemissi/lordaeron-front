@@ -10,6 +10,7 @@ import { PriceDisplay } from "./price-display";
 
 import { GameTipLink } from "@/components/game-tooltip";
 import { CardArrow } from "@/components/card-arrow";
+import { CHALLENGE_RESTRICTION_LABELS } from "@/lib/challenge-shop-labels";
 
 interface SetCardProps {
   set: ShopSetLocalized;
@@ -105,9 +106,11 @@ export function SetCard({ set, onClick }: SetCardProps) {
                 size="sm"
                 variant="bordered"
               >
-                {set.restriction_reason === "class"
-                  ? t("restrictionClass")
-                  : t("restrictionFaction")}
+                {CHALLENGE_RESTRICTION_LABELS[set.restriction_reason]
+                  ? t(CHALLENGE_RESTRICTION_LABELS[set.restriction_reason])
+                  : set.restriction_reason === "class"
+                    ? t("restrictionClass")
+                    : t("restrictionFaction")}
               </Chip>
             )}
           {set.min_level > 0 && (

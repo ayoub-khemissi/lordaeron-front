@@ -95,6 +95,7 @@ export async function searchCharactersByName(
   name: string,
   excludeAccountId?: number,
   limit: number = 5,
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<Character[]> {
   const safeLimit = Math.max(1, Math.min(Math.floor(limit), 20));
 
@@ -106,7 +107,11 @@ export async function searchCharactersByName(
     ? [`${name}%`, excludeAccountId]
     : [`${name}%`];
 
-  const [rows] = await charactersDb.execute<RowDataPacket[]>(query, params);
+  // the realm's own characters (a gift's recipient on the realm being browsed)
+  const [rows] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
+    query,
+    params,
+  );
 
   return rows as Character[];
 }

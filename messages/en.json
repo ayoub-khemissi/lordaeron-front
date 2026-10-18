@@ -538,7 +538,17 @@
       "purchaseNotRefundable": "This purchase is not refundable.",
       "recipientNotFound": "Recipient character not found.",
       "phaseLocked": "This item is not available in the realm's current phase.",
-      "realmFirstsPending": "Available once every level 80 realm first of the realm has been earned."
+      "realmFirstsPending": "Available once every level 80 realm first of the realm has been earned.",
+      "challengeFallen": "This character fell in its challenge: the shop no longer sends it anything.",
+      "challengeSelfMade": "This character's challenge allows only what it finds or makes: the shop cannot send it anything.",
+      "challengeGear": "This character's challenge forbids this gear: it could not wear it.",
+      "challengeXpBonus": "Challenges refuse every experience bonus: the Vial would be wasted.",
+      "challengeFaction": "No faction change during a challenge with the Hardcore PvP.",
+      "giftRecipientChallengeFallen": "The recipient fell in their challenge: the shop no longer sends them anything.",
+      "giftRecipientChallengeSelfMade": "The recipient's challenge allows only what they find or make: no gift.",
+      "giftRecipientChallengeGear": "The recipient's challenge forbids this gear: they could not wear it.",
+      "giftRecipientChallengeXpBonus": "The recipient is on a challenge: no experience bonus, the Vial would be wasted.",
+      "giftRecipientChallengeFaction": "No faction change during a challenge with the Hardcore PvP."
     },
     "comingSoon": "Coming soon",
     "realmSoonTitle": "The {realm} shop opens with the realm",
@@ -556,7 +566,13 @@
       "type": "Type",
       "show": "Show",
       "reset": "Reset"
-    }
+    },
+    "restrictionChallengeFallen": "Fallen in its challenge",
+    "restrictionChallengeSelfMade": "Its challenge: found or made only",
+    "restrictionChallengeGear": "Forbidden by its challenge",
+    "restrictionChallengeXpBonus": "No experience bonus in a challenge",
+    "restrictionChallengeFaction": "Not with the Hardcore PvP",
+    "challengeGrounded": "Usable once Grounded is over"
   },
   "admin": {
     "login": {

@@ -8,6 +8,11 @@ import { getShopSetItems } from "@/lib/queries/shop-sets";
 import { localizeShopSet, ALLIANCE_RACES, HORDE_RACES } from "@/lib/shop-utils";
 import { REALMS, offeredOnRealm, requestRealm } from "@/lib/realms";
 import { phaseLockedItems } from "@/lib/realm-unlocks";
+import {
+  challengeBlocksItems,
+  shopChallenge,
+  shopItemFacts,
+} from "@/lib/challenge-shop";
 
 export const dynamic = "force-dynamic";
 
@@ -32,6 +37,8 @@ export async function GET(request: NextRequest) {
       : null;
 
     const realm = requestRealm(searchParams.get("realm"));
+    // the selected character: what its challenge allows (lib/challenge-shop.ts; shown only, the purchase checks again)
+    const guid = Number(searchParams.get("guid")) || null;
     // the realm's own sets
     const sets = (await getShopSets({ activeOnly: true })).filter((set) =>
       offeredOnRealm(set.realm_ids, realm),
@@ -55,13 +62,28 @@ export async function GET(request: NextRequest) {
       (s) => !s.items.some((i) => locked.has(i.item_id)),
     );
 
+    const challenge = guid ? await shopChallenge(realm, guid) : null;
+    const facts = challenge
+      ? await shopItemFacts(
+          realm,
+          openSets.flatMap((s) => s.items.map((i) => i.item_id)),
+        )
+      : new Map();
+
     // Mark each set with eligibility instead of filtering
     const localized = openSets.map((s) => {
       const base = localizeShopSet(s, locale);
       let eligible = true;
       let restriction_reason: string | null = null;
+      const challengeBlock = challengeBlocksItems(
+        challenge,
+        s.items.map((i) => facts.get(i.item_id)),
+      );
 
-      if (level && s.min_level > 0 && level < s.min_level) {
+      if (challengeBlock) {
+        eligible = false;
+        restriction_reason = challengeBlock;
+      } else if (level && s.min_level > 0 && level < s.min_level) {
         eligible = false;
         restriction_reason = "level";
       } else if (classId && s.class_ids && !s.class_ids.includes(classId)) {

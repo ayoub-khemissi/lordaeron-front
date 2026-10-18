@@ -11,6 +11,7 @@ import { PriceDisplay } from "./price-display";
 import { GameTipLink } from "@/components/game-tooltip";
 import { getQualityColor } from "@/lib/shop-utils";
 import { CardArrow } from "@/components/card-arrow";
+import { CHALLENGE_RESTRICTION_LABELS } from "@/lib/challenge-shop-labels";
 
 interface ItemCardProps {
   item: ShopItemLocalized;
@@ -94,20 +95,31 @@ export function ItemCard({ item, onClick }: ItemCardProps) {
                 size="sm"
                 variant="bordered"
               >
-                {item.restriction_reason === "realm_firsts"
-                  ? t("restrictionRealmFirsts", {
-                      done: item.unlock_progress?.done ?? 0,
-                      total: item.unlock_progress?.total ?? 0,
-                    })
-                  : item.restriction_reason === "heirloom_max_level"
-                    ? t("restrictionHeirloomMaxLevel")
-                    : item.restriction_reason === "class"
-                      ? t("restrictionClass")
-                      : item.restriction_reason === "race"
-                        ? t("restrictionRace")
-                        : t("restrictionFaction")}
+                {CHALLENGE_RESTRICTION_LABELS[item.restriction_reason]
+                  ? t(CHALLENGE_RESTRICTION_LABELS[item.restriction_reason])
+                  : item.restriction_reason === "realm_firsts"
+                    ? t("restrictionRealmFirsts", {
+                        done: item.unlock_progress?.done ?? 0,
+                        total: item.unlock_progress?.total ?? 0,
+                      })
+                    : item.restriction_reason === "heirloom_max_level"
+                      ? t("restrictionHeirloomMaxLevel")
+                      : item.restriction_reason === "class"
+                        ? t("restrictionClass")
+                        : item.restriction_reason === "race"
+                          ? t("restrictionRace")
+                          : t("restrictionFaction")}
               </Chip>
             )}
+          {item.challenge_warning === "challenge_grounded" && (
+            <Chip
+              className="bg-amber-500/15 text-amber-300 border-amber-500/30"
+              size="sm"
+              variant="bordered"
+            >
+              {t("challengeGrounded")}
+            </Chip>
+          )}
           {item.faction !== "both" && (
             <Chip
               className={

@@ -1,10 +1,15 @@
 import type { ShopPurchase } from "@/types";
+import type { RowDataPacket } from "mysql2";
 
-import { updatePurchaseStatus } from "@/lib/queries/shop-purchases";
+import {
+  refundUndelivered,
+  updatePurchaseStatus,
+} from "@/lib/queries/shop-purchases";
 import { getShopSetItems } from "@/lib/queries/shop-sets";
 import { setAtLoginFlag, AT_LOGIN_FLAGS } from "@/lib/queries/characters";
 import { DEFAULT_REALM, realmSlugById, type RealmSlug } from "@/lib/realms";
 import { realmCharactersDb, realmServer } from "@/lib/realms-server";
+import { purchaseChallengeBlock } from "@/lib/challenge-shop";
 
 // each realm's worldserver has its own SOAP (lib/realms-server.ts); the GM account is the same, from the shared auth database
 const SOAP_USERNAME = process.env.SOAP_USERNAME || "";
@@ -176,6 +181,36 @@ export async function retryPurchaseDelivery(
     purchase.is_gift && purchase.gift_message
       ? purchase.gift_message
       : "Thank you for your purchase!";
+
+  // a challenge begun since the purchase that refuses it (lib/challenge-shop.ts): refunded rather than sent to a mailbox it cannot open
+  const recipientGuid = (
+    await realmCharactersDb(realm).execute<RowDataPacket[]>(
+      "SELECT guid FROM characters WHERE name = ?",
+      [recipient],
+    )
+  )[0][0]?.guid;
+  const itemIds = purchase.set_id_ref
+    ? (await getShopSetItems(purchase.set_id_ref)).map((i) => i.item_id)
+    : purchase.wow_item_id && !purchase.service_type
+      ? [purchase.wow_item_id]
+      : [];
+
+  if (
+    recipientGuid &&
+    (await purchaseChallengeBlock(
+      realm,
+      Number(recipientGuid),
+      itemIds,
+      purchase.service_type,
+    ))
+  ) {
+    await refundUndelivered(purchase.id);
+
+    return {
+      success: false,
+      message: "Refunded: the recipient's challenge refuses it",
+    };
+  }
 
   // Set purchase: send all set items
   if (purchase.set_id_ref) {
