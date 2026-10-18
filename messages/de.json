@@ -649,7 +649,8 @@
     "dressingMountAlone": "Nur das Reittier",
     "dressingLoading": "Wird geladen…",
     "hiddenUnavailable": "{count, plural, one {# Artikel ausgeblendet} other {# Artikel ausgeblendet}}: für {name} nicht verfügbar.",
-    "showHidden": "Anzeigen"
+    "showHidden": "Anzeigen",
+    "tryHint": "Strg + Klick: anprobieren"
   },
   "admin": {
     "login": {

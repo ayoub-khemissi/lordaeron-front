@@ -649,7 +649,8 @@
     "dressingMountAlone": "Только маунт",
     "dressingLoading": "Загрузка…",
     "hiddenUnavailable": "{count, plural, one {Скрыт # товар} few {Скрыто # товара} many {Скрыто # товаров} other {Скрыто # товара}}: недоступны для {name}.",
-    "showHidden": "Показать"
+    "showHidden": "Показать",
+    "tryHint": "Ctrl + клик: примерить"
   },
   "admin": {
     "login": {

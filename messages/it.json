@@ -649,7 +649,8 @@
     "dressingMountAlone": "Solo la cavalcatura",
     "dressingLoading": "Caricamento…",
     "hiddenUnavailable": "{count, plural, one {# articolo nascosto} other {# articoli nascosti}}: non disponibili per {name}.",
-    "showHidden": "Mostrali"
+    "showHidden": "Mostrali",
+    "tryHint": "Ctrl + clic: prova"
   },
   "admin": {
     "login": {

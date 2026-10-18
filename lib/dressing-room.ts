@@ -107,11 +107,54 @@ export async function dressingCharacter(
   };
 }
 
+// the account's character last played on the realm (online first): the site's dressing room outside the shop wears it
+export async function lastPlayedCharacter(
+  realm: RealmSlug,
+  accountId: number,
+): Promise<DressingCharacter | null> {
+  const [rows] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
+    `SELECT guid FROM characters WHERE account = ? AND deleteInfos_Name IS NULL
+     ORDER BY online DESC, logout_time DESC LIMIT 1`,
+    [accountId],
+  );
+
+  return rows[0]
+    ? dressingCharacter(realm, Number(rows[0].guid), accountId)
+    : null;
+}
+
 export type TryOn =
   | { kind: "gear"; items: ModelItem[]; missing: number }
   // a mount (the character may ride it) or a companion
   | { kind: "creature"; display: number; mount: boolean }
   | { kind: "none" };
+
+// what the room can show of each item (a piece of visible gear, a mount or companion alone), by entry; absent: nothing
+const VISIBLE = [
+  1, 3, 4, 5, 6, 7, 8, 9, 10, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 25, 26,
+];
+
+export async function tryKinds(
+  realm: RealmSlug,
+  ids: number[],
+): Promise<Map<number, "gear" | "creature">> {
+  const kinds = new Map<number, "gear" | "creature">();
+
+  if (!ids.length) return kinds;
+  const [rows] = await realmWorldDb(realm).query<RowDataPacket[]>(
+    "SELECT entry, class, subclass, InventoryType FROM item_template WHERE entry IN (?)",
+    [ids],
+  );
+
+  for (const r of rows) {
+    if (r.class === 15 && (r.subclass === 2 || r.subclass === 5))
+      kinds.set(Number(r.entry), "creature");
+    else if (VISIBLE.includes(Number(r.InventoryType)))
+      kinds.set(Number(r.entry), "gear");
+  }
+
+  return kinds;
+}
 
 // a creature display the viewer has: our mirror, else Wowhead (fetched through our own nginx, which keeps it)
 const known = new Map<number, Promise<boolean>>();

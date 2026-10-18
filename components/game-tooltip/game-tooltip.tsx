@@ -13,6 +13,7 @@ import {
 import { createPortal } from "react-dom";
 import { useLocale } from "next-intl";
 import clsx from "clsx";
+import { useTranslations } from "next-intl";
 
 import {
   QUALITY_COLORS,
@@ -25,6 +26,10 @@ import {
 } from "./store";
 
 import { useRealm } from "@/lib/realm-context";
+import {
+  TryOnBadge,
+  useDressingRoom,
+} from "@/components/shop/dressing-room/dressing-room";
 
 /*
  * In-game tooltips of a realm's items and spells, from the site's own tooltip service (app/api/tooltip): the realm's database and
@@ -179,12 +184,16 @@ export function GameTooltipBox({
   x,
   y,
   completed,
+  tryHint = false,
 }: {
   tip: GameTooltipData;
   x: number;
   y: number;
   completed?: boolean;
+  // the item can be tried on in the site's dressing room: the way told (Ctrl + click), not on a touch screen (its icon's magnifier there)
+  tryHint?: boolean;
 }) {
+  const tShop = useTranslations("shop");
   const box = useRef<HTMLDivElement>(null);
   const [pos, setPos] = useState({ left: -9999, top: -9999 });
 
@@ -280,6 +289,11 @@ export function GameTooltipBox({
           </p>
         ),
       )}
+      {tryHint && (
+        <p className="mt-1.5 border-t border-white/10 pt-1.5 text-[11px] text-wow-gold-light/80 [@media(hover:none)]:hidden">
+          {tShop("tryHint")}
+        </p>
+      )}
     </div>,
     document.body,
   );
@@ -320,6 +334,9 @@ export function GameTip({
     locale,
   });
   const tip = data ?? fetched;
+  // the site's dressing room: Ctrl / Cmd + click on an item tries it on (Ayoub, 18/10/2026: wherever an item is shown)
+  const room = useDressingRoom();
+  const entry = refId?.startsWith("item:") ? Number(refId.slice(5)) : 0;
 
   const clearTimer = () => {
     if (timer.current) clearTimeout(timer.current);
@@ -378,6 +395,13 @@ export function GameTip({
       ref={el}
       className={clsx("cursor-help", className)}
       data-game-tip={refId}
+      onClickCapture={(e) => {
+        if (!room || !entry || !(e.ctrlKey || e.metaKey)) return;
+        e.preventDefault();
+        e.stopPropagation();
+        setShown(null);
+        room.tryEntry(entry);
+      }}
       onPointerDown={(e) => {
         if (stopPropagation) e.stopPropagation();
         if (e.pointerType === "mouse") return;
@@ -411,6 +435,7 @@ export function GameTip({
         <GameTooltipBox
           completed={completed}
           tip={tip}
+          tryHint={!!room && !!tip.tryOn}
           x={shown.x}
           y={shown.y}
         />
@@ -488,18 +513,27 @@ export function WowItemIcon({
   const ref = `item:${itemId}`;
   const fetched = useGameTooltip(given ? undefined : ref, { realm });
   const tip = given ?? fetched;
+  const room = useDressingRoom();
+  const tShop = useTranslations("shop");
   const src = tip
     ? zamimgIcon(tip.icon, size)
     : (fallbackSrc ?? zamimgIcon("inv_misc_questionmark", size));
 
   return (
     <GameTip
-      className={clsx("inline-flex shrink-0", className)}
+      className={clsx("group/try relative inline-flex shrink-0", className)}
       data={given}
       realm={realm}
       refId={ref}
       stopPropagation={stopPropagation}
     >
+      {/* the dressing room's magnifier, for an item it shows */}
+      {room && tip?.tryOn && (
+        <TryOnBadge
+          label={tShop("tryOn")}
+          onPress={() => room.tryEntry(itemId)}
+        />
+      )}
       {}
       <img
         alt={tip?.name ?? ""}

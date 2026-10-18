@@ -37,6 +37,22 @@ export interface Tooltip {
   lines: TipLine[];
   // an achievement's points (its shield)
   points?: number;
+  // an item the site's dressing room shows: gear worn on a character (a visible slot), a mount or a companion alone
+  tryOn?: "gear" | "creature";
+}
+
+// the inventory types the dressing room draws on a character (no neck, finger, trinket, bag, ammo, relic)
+const VISIBLE_SLOTS = [
+  1, 3, 4, 5, 6, 7, 8, 9, 10, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 25, 26,
+];
+
+function tryOnOf(row: Record<string, unknown>): Tooltip["tryOn"] {
+  const cls = Number(row.class);
+  const sub = Number(row.subclass);
+
+  if (cls === 15 && (sub === 2 || sub === 5)) return "creature";
+
+  return VISIBLE_SLOTS.includes(Number(row.InventoryType)) ? "gear" : undefined;
 }
 
 // a mysql2 pool or connection (SELECT only)
@@ -201,6 +217,7 @@ export async function renderTooltips(
             icon: itemIconName(dbcs, Number(row.displayid)),
             quality: Number(row.Quality) || 0,
             ...t,
+            ...(tryOnOf(row) ? { tryOn: tryOnOf(row) } : {}),
           };
         }
       } else if (r.kind === "achievement") {

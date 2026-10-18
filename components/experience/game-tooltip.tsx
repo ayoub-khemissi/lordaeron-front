@@ -12,6 +12,8 @@ import {
 } from "react";
 import clsx from "clsx";
 
+import { useDressingRoom } from "@/components/shop/dressing-room/dressing-room";
+
 /* In-game tooltips of the realm's own items and spells (Wowhead does not know them).
    Data: public/data/experience-tooltips.<lang>.json (one per language of the 3.3.5 clients we have: English, French, German,
    Spanish, Russian), written by the generator's tools/site-tooltips.js. The page loads its own language's file only. */
@@ -210,6 +212,9 @@ export function Tip({
   className?: string;
 }) {
   const ctx = useContext(TipContext);
+  // the site's dressing room: Ctrl / Cmd + click on an item tries it on (Ayoub, 18/10/2026)
+  const room = useDressingRoom();
+  const entry = id?.startsWith("item:") ? Number(id.slice(5)) : 0;
 
   if (!id || !ctx) return <>{children}</>;
 
@@ -217,6 +222,13 @@ export function Tip({
     <span
       data-tip
       className={clsx("cursor-help", className)}
+      onClickCapture={(e) => {
+        if (!room || !entry || !(e.ctrlKey || e.metaKey)) return;
+        e.preventDefault();
+        e.stopPropagation();
+        ctx.hide(id);
+        room.tryEntry(entry);
+      }}
       onPointerDown={(e) => {
         if (e.pointerType !== "mouse")
           ctx.show({ id, x: e.clientX, y: e.clientY, pinned: true });

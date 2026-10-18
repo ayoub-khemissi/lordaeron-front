@@ -649,7 +649,8 @@
     "dressingMountAlone": "Sam wierzchowiec",
     "dressingLoading": "Wczytywanie…",
     "hiddenUnavailable": "{count, plural, one {# przedmiot ukryty} few {# przedmioty ukryte} many {# przedmiotów ukrytych} other {# przedmiotu ukrytego}}: niedostępne dla {name}.",
-    "showHidden": "Pokaż je"
+    "showHidden": "Pokaż je",
+    "tryHint": "Ctrl + klik: przymierz"
   },
   "admin": {
     "login": {

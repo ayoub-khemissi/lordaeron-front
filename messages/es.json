@@ -649,7 +649,8 @@
     "dressingMountAlone": "Solo la montura",
     "dressingLoading": "Cargando…",
     "hiddenUnavailable": "{count, plural, one {# artículo oculto} other {# artículos ocultos}}: no disponibles para {name}.",
-    "showHidden": "Mostrarlos"
+    "showHidden": "Mostrarlos",
+    "tryHint": "Ctrl + clic: probar"
   },
   "admin": {
     "login": {

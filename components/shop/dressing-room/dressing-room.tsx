@@ -28,6 +28,7 @@ import { useTranslations } from "next-intl";
 import { DressingViewer } from "@/components/shop/dressing-room/dressing-viewer";
 import { type RealmSlug } from "@/lib/realms";
 import { OVERLAY_POPOVER } from "@/lib/overlay-motion";
+import { DEFAULT_OUTFIT } from "@/lib/armory-constants";
 
 /*
  * The shop's dressing room (Ayoub, 18/10/2026: the game's own, on the site): a magnifier on each piece of gear, mount and companion
@@ -53,6 +54,8 @@ interface CharacterLooks {
 interface DressingRoomApi {
   tryItem: (item: ShopItemLocalized) => void;
   trySet: (set: ShopSetLocalized) => void;
+  // an item shown anywhere on the site (its tooltip's Ctrl + click, its icon's magnifier): by its entry
+  tryEntry: (entry: number) => void;
 }
 
 const DressingRoomContext = createContext<DressingRoomApi | null>(null);
@@ -113,11 +116,15 @@ function usePhone() {
 
 export function DressingRoomProvider({
   realm,
-  character,
+  character = null,
+  auto = false,
   children,
 }: {
   realm: RealmSlug;
-  character: Character | null;
+  // the shop's: its selected character
+  character?: Character | null;
+  // the site's, everywhere else (Ayoub, 18/10/2026): the character the account last played on the realm, else a human in a tuxedo
+  auto?: boolean;
   children: React.ReactNode;
 }) {
   const t = useTranslations("shop");
@@ -159,8 +166,32 @@ export function DressingRoomProvider({
   const [busy, setBusy] = useState(false);
   const phone = usePhone();
 
+  // the site's room: the character last played on the realm, read once the room opens (none signed out or without one)
+  const lastRealm = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (!auto || !open || lastRealm.current === realm) return;
+    lastRealm.current = realm;
+    setLooks(null);
+    setTried([]);
+    setBare(false);
+    setLooksLoading(true);
+    fetch(`/api/shop/dressing-room?realm=${realm}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) =>
+        setLooks(
+          data?.character
+            ? { ...data.character, guid: data.character.guid ?? 0 }
+            : null,
+        ),
+      )
+      .catch(() => setLooks(null))
+      .finally(() => setLooksLoading(false));
+  }, [auto, open, realm]);
+
   // the selected character's looks and gear, read once the room opens; another character: what was tried is taken off
   useEffect(() => {
+    if (auto) return;
     if (!character) {
       setLooks(null);
       shownGuid.current = null;
@@ -193,9 +224,13 @@ export function DressingRoomProvider({
     return () => {
       cancelled = true;
     };
-  }, [open, character, realm, looks?.guid]);
+  }, [auto, open, character, realm, looks?.guid]);
 
-  const base = useMemo(() => (bare ? [] : (looks?.items ?? [])), [bare, looks]);
+  // no character (signed out, none on the realm): a human in a tuxedo (the armory's default attire) to dress
+  const base = useMemo(
+    () => (bare ? [] : (looks?.items ?? Object.values(DEFAULT_OUTFIT))),
+    [bare, looks],
+  );
   const items = useMemo(() => tried.reduce(wear, base), [tried, base]);
 
   const show = useCallback(
@@ -234,6 +269,7 @@ export function DressingRoomProvider({
     () => ({
       tryItem: (item) => show(`item=${item.id}`),
       trySet: (set) => show(`set=${set.id}`),
+      tryEntry: (entry) => show(`entries=${entry}`),
     }),
     [show],
   );
@@ -265,7 +301,7 @@ export function DressingRoomProvider({
       <div className="relative">
         <DressingViewer
           className="h-[420px] w-full sm:h-[400px]"
-          hold={!!character && !looks && looksLoading}
+          hold={(auto || !!character) && !looks && looksLoading}
           loadingLabel={t("dressingLoading")}
           model={model}
           waiting={busy}
@@ -596,6 +632,33 @@ function MagnifierIcon({ className }: { className?: string }) {
         strokeWidth="3.2"
       />
     </svg>
+  );
+}
+
+/* The magnifier on an item's icon anywhere on the site (the black market, the codex, the features...): in its corner, shown on hover,
+   always on a touch screen (no Ctrl + click there) */
+export function TryOnBadge({
+  onPress,
+  label,
+}: {
+  onPress: () => void;
+  label: string;
+}) {
+  return (
+    <button
+      aria-label={label}
+      className="absolute -right-1.5 -top-1.5 z-10 grid h-5 w-5 place-items-center rounded-full border border-wow-gold/60 bg-[#0b0f15]/95 opacity-0 shadow-[0_1px_6px_rgba(0,0,0,0.6)] transition-opacity group-hover/try:opacity-100 focus-visible:opacity-100 [@media(hover:none)]:opacity-100"
+      title={label}
+      type="button"
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        onPress();
+      }}
+      onPointerDown={(e) => e.stopPropagation()}
+    >
+      <MagnifierIcon className="h-3 w-3" />
+    </button>
   );
 }
 

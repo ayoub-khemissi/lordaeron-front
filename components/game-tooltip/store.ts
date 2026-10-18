@@ -20,6 +20,8 @@ export type GameTooltipData = {
   name: string;
   lines: GameTooltipLine[];
   points?: number;
+  // the site's dressing room shows it (lib/tooltips/service.ts tryOnOf)
+  tryOn?: "gear" | "creature";
 };
 
 type Waiter = (tip: GameTooltipData | null | undefined) => void;

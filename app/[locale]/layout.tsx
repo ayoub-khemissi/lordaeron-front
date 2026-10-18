@@ -6,6 +6,7 @@ import clsx from "clsx";
 
 import { Providers } from "./providers";
 
+import { SiteDressingRoom } from "@/components/shop/dressing-room/site-dressing-room";
 import { routing } from "@/i18n/routing";
 import { fontSans, fontHeading } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
@@ -74,13 +75,15 @@ export default async function LocaleLayout({
             }}
           >
             <AuthProvider>
-              <div className="relative flex flex-col min-h-screen">
-                <Navbar />
-                <VotePanel />
-                <main className="page-fill flex-grow">{children}</main>
-                <Footer />
-                <CookieBanner />
-              </div>
+              <SiteDressingRoom>
+                <div className="relative flex flex-col min-h-screen">
+                  <Navbar />
+                  <VotePanel />
+                  <main className="page-fill flex-grow">{children}</main>
+                  <Footer />
+                  <CookieBanner />
+                </div>
+              </SiteDressingRoom>
             </AuthProvider>
           </Providers>
         </NextIntlClientProvider>

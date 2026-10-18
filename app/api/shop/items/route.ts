@@ -14,6 +14,7 @@ import {
   phaseLockedItems,
   realmFirstsProgress,
 } from "@/lib/realm-unlocks";
+import { tryKinds } from "@/lib/dressing-room";
 import {
   challengeBlocksItems,
   challengeBlocksService,
@@ -195,32 +196,10 @@ async function itemKinds(
   return kinds;
 }
 
-// what the dressing room can show of each item (lib/dressing-room.ts): a piece of visible gear, a mount or companion alone, else nothing
-const VISIBLE = [
-  1, 3, 4, 5, 6, 7, 8, 9, 10, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 25, 26,
-];
-
-async function tryOnKinds(
-  realm: Parameters<typeof realmWorldDb>[0],
-  ids: number[],
-): Promise<Map<number, "gear" | "creature">> {
-  const kinds = new Map<number, "gear" | "creature">();
-
-  if (!ids.length) return kinds;
-  try {
-    const [rows] = await realmWorldDb(realm).query<RowDataPacket[]>(
-      "SELECT entry, class, subclass, InventoryType FROM item_template WHERE entry IN (?)",
-      [ids],
-    );
-
-    for (const r of rows) {
-      if (r.class === 15 && (r.subclass === 2 || r.subclass === 5))
-        kinds.set(r.entry, "creature");
-      else if (VISIBLE.includes(r.InventoryType)) kinds.set(r.entry, "gear");
-    }
-  } catch (error) {
+// what the dressing room can show of each item (lib/dressing-room.ts tryKinds); the catalogue shows without it
+const tryOnKinds = (realm: Parameters<typeof tryKinds>[0], ids: number[]) =>
+  tryKinds(realm, ids).catch((error) => {
     console.error("Shop try-on kinds:", error);
-  }
 
-  return kinds;
-}
+    return new Map<number, "gear" | "creature">();
+  });

@@ -11,8 +11,16 @@ import {
   type MotionValue,
 } from "framer-motion";
 import clsx from "clsx";
+import { useTranslations } from "next-intl";
 
 import { Tip } from "./game-tooltip";
+
+import {
+  TryOnBadge,
+  useDressingRoom,
+} from "@/components/shop/dressing-room/dressing-room";
+import { useTryKind } from "@/components/shop/dressing-room/try-kinds";
+import { useRealm } from "@/lib/realm-context";
 
 /* ── Web-sized backgrounds (scripts/optimize-experience-images.py writes them) ── */
 export function bgSrc(src: string, size: "" | "-sm" | "-xl" = "") {
@@ -228,12 +236,29 @@ export function WowIcon({
   );
 
   return tip ? (
-    <Tip className={clsx("inline-block shrink-0", className)} id={tip}>
+    <Tip
+      className={clsx("group/try relative inline-block shrink-0", className)}
+      id={tip}
+    >
       {frame}
+      <IconTryOn tip={tip} />
     </Tip>
   ) : (
     frame
   );
+}
+
+// the dressing room's magnifier on an item's icon, when the room shows it (asked in batches: the features' tooltips carry no such mark)
+function IconTryOn({ tip }: { tip: string }) {
+  const room = useDressingRoom();
+  const realm = useRealm();
+  const tShop = useTranslations("shop");
+  const entry = tip.startsWith("item:") ? Number(tip.slice(5)) : 0;
+  const kind = useTryKind(realm.slug, room ? entry : 0);
+
+  return room && kind ? (
+    <TryOnBadge label={tShop("tryOn")} onPress={() => room.tryEntry(entry)} />
+  ) : null;
 }
 
 /* ── Chapter heading: numeral, eyebrow, title, lede ── */

@@ -649,7 +649,8 @@
     "dressingMountAlone": "Monture seule",
     "dressingLoading": "Chargement…",
     "hiddenUnavailable": "{count, plural, one {# article masqué} other {# articles masqués}} : indisponibles pour {name}.",
-    "showHidden": "Les afficher"
+    "showHidden": "Les afficher",
+    "tryHint": "Ctrl + clic : essayer"
   },
   "admin": {
     "login": {

@@ -16,7 +16,13 @@ export async function GET(request: NextRequest) {
     const realm = requestRealm(params.get("realm"));
     const itemId = Number(params.get("item"));
     const setId = Number(params.get("set"));
-    let entries: number[] = [];
+    // ?entries= item entries themselves (an item shown anywhere on the site: its tooltip's Ctrl + click), at most 20
+    const given = (params.get("entries") ?? "")
+      .split(",")
+      .map(Number)
+      .filter((n) => Number.isInteger(n) && n > 0)
+      .slice(0, 20);
+    let entries: number[] = given;
 
     if (setId) entries = (await getShopSetItems(setId)).map((i) => i.item_id);
     else if (itemId) {
