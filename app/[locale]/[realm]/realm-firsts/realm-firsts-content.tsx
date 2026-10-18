@@ -6,6 +6,8 @@ import type {
   RealmFirsts,
 } from "@/lib/queries/realm-firsts";
 
+import { Button } from "@heroui/button";
+import { Switch } from "@heroui/switch";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import NextLink from "next/link";
@@ -71,13 +73,14 @@ function Earners({ first }: { first: RealmFirst }) {
         </span>
       ))}
       {!all && first.earners.length > SHOWN && (
-        <button
-          className="ml-1 text-xs text-wow-gold/80 hover:text-wow-gold"
-          type="button"
-          onClick={() => setAll(true)}
+        <Button
+          className="ml-1 h-auto min-w-0 px-1 text-xs text-wow-gold/80 data-[hover=true]:bg-transparent data-[hover=true]:text-wow-gold"
+          size="sm"
+          variant="light"
+          onPress={() => setAll(true)}
         >
           {t("more", { n: first.earners.length - SHOWN })}
-        </button>
+        </Button>
       )}
     </span>
   );
@@ -177,17 +180,18 @@ export function RealmFirstsContent() {
 
       {/* the kinds, and the still-open ones alone */}
       <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0">
-        <button
-          className={`shrink-0 rounded-full border px-3 py-1 text-xs font-semibold transition ${
-            open
-              ? "border-wow-gold/70 bg-wow-gold/15 text-wow-gold-light"
-              : "border-white/10 bg-white/5 text-gray-300"
-          }`}
-          type="button"
-          onClick={() => setOpen(!open)}
+        <Switch
+          classNames={{
+            base: "shrink-0",
+            label: "text-xs font-semibold text-gray-300",
+            wrapper: "group-data-[selected=true]:bg-wow-gold/70",
+          }}
+          isSelected={open}
+          size="sm"
+          onValueChange={setOpen}
         >
           {t("openOnly")}
-        </button>
+        </Switch>
         {groups.map((g) => (
           <a
             key={g.group}

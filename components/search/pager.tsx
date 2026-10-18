@@ -1,8 +1,10 @@
 "use client";
 
+import { Pagination } from "@heroui/pagination";
 import { useTranslations } from "next-intl";
 
-/* Previous / page n of N / next, under a list (the armory's search, the guilds, a guild's members) */
+/* The pages under a list (the armory's search, the guilds, a guild's members, the rankings, the Codex): HeroUI's Pagination (Ayoub,
+   18/10/2026: HeroUI's own controls) */
 export function Pager({
   page,
   pages,
@@ -15,33 +17,27 @@ export function Pager({
   const t = useTranslations("search");
 
   if (pages <= 1) return null;
-  const button =
-    "rounded-lg border border-wow-gold/25 px-4 py-2 text-sm text-wow-gold-light transition-colors hover:border-wow-gold/50 disabled:cursor-not-allowed disabled:opacity-40";
 
   return (
     <nav
       aria-label={t("pageOf", { page, pages })}
-      className="flex items-center justify-between gap-3"
+      className="flex justify-center"
     >
-      <button
-        className={button}
-        disabled={page <= 1}
-        type="button"
-        onClick={() => onPage(Math.max(1, page - 1))}
-      >
-        ← {t("previous")}
-      </button>
-      <span className="text-sm text-gray-400">
-        {t("pageOf", { page, pages })}
-      </span>
-      <button
-        className={button}
-        disabled={page >= pages}
-        type="button"
-        onClick={() => onPage(Math.min(pages, page + 1))}
-      >
-        {t("next")} →
-      </button>
+      <Pagination
+        showControls
+        classNames={{
+          item: "border-wow-gold/25 bg-transparent text-gray-200 data-[hover=true]:border-wow-gold/50",
+          prev: "border-wow-gold/25 bg-transparent text-wow-gold-light",
+          next: "border-wow-gold/25 bg-transparent text-wow-gold-light",
+          cursor:
+            "border border-wow-gold/60 bg-wow-gold/20 font-semibold text-wow-gold-light",
+        }}
+        page={page}
+        size="sm"
+        total={pages}
+        variant="bordered"
+        onChange={onPage}
+      />
     </nav>
   );
 }

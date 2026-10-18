@@ -31,6 +31,7 @@ import {
 import { ToolError } from "@/components/tools/tool-page";
 import { useToolData } from "@/components/tools/use-tool-data";
 import { RaceClassIcons, classColor } from "@/components/character-identity";
+import { ToolTabs } from "@/components/tools/tool-tabs";
 import { useRealm } from "@/lib/realm-context";
 
 interface BlackMarketData extends BlackMarketShowcase {
@@ -140,42 +141,31 @@ export function BlackMarketContent() {
           <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">
             {t("pickCharacter")}
           </p>
-          <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0">
-            {data.characters.map((c) => {
-              const selected = view?.character.guid === c.guid;
-
-              return (
-                <button
-                  key={c.guid}
-                  className={`shrink-0 rounded-full border px-3.5 py-1.5 text-sm transition ${
-                    selected
-                      ? "border-wow-gold/70 bg-wow-gold/15"
-                      : "border-white/10 bg-white/5 hover:border-white/25"
-                  }`}
-                  type="button"
-                  onClick={() => setCharacter(c.guid)}
-                >
-                  <span className="inline-flex items-center gap-1.5">
-                    <RaceClassIcons
-                      cls={c.class}
-                      gender={c.gender}
-                      race={c.race}
-                      size={16}
-                    />
-                    <span
-                      className="font-semibold"
-                      style={{ color: classColor(c.class) }}
-                    >
-                      {c.name}
-                    </span>
+          <ToolTabs
+            label={t("pickCharacter")}
+            options={data.characters.map((c) => ({
+              value: String(c.guid),
+              label: (
+                <span className="inline-flex items-center gap-1.5">
+                  <RaceClassIcons
+                    cls={c.class}
+                    gender={c.gender}
+                    race={c.race}
+                    size={16}
+                  />
+                  <span
+                    className="font-semibold"
+                    style={{ color: classColor(c.class) }}
+                  >
+                    {c.name}
                   </span>
-                  <span className="ml-1.5 text-xs text-gray-400">
-                    {c.level}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+                  <span className="text-xs text-gray-400">{c.level}</span>
+                </span>
+              ),
+            }))}
+            value={String(view?.character.guid ?? "")}
+            onChange={(guid) => setCharacter(Number(guid))}
+          />
           {view && (
             <div
               className={`rounded-xl border p-3 text-sm ${

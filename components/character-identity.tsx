@@ -55,13 +55,14 @@ export function RaceClassIcons({
   );
 }
 
-// "Level 60 Draenei Paladin": the level, the race, the class in its colour
+// "Level 60 Draenei Paladin": the level, the race, the class in its colour; `separated`: "Level 60 · Draenei · Paladin", for one line
 export function LevelRaceClass({
   level,
   race,
   cls,
   className,
   short = false,
+  separated = false,
 }: {
   level: number;
   race: number;
@@ -69,17 +70,113 @@ export function LevelRaceClass({
   className?: string;
   // the number alone, without "Level"
   short?: boolean;
+  separated?: boolean;
 }) {
   const tArmory = useTranslations("armory");
   const tRace = useTranslations("rankings");
   const tClass = useTranslations("shop");
+  const gap = separated ? " · " : " ";
 
   return (
     <span className={clsx("text-sm text-gray-400", className)}>
-      {short ? level : `${tArmory("level")} ${level}`} {tRace(`race_${race}`)}{" "}
+      {short ? level : `${tArmory("level")} ${level}`}
+      {gap}
+      {tRace(`race_${race}`)}
+      {gap}
       <span style={{ color: classColor(cls) }}>
         {tClass(`className_${cls}`)}
       </span>
     </span>
+  );
+}
+
+/* A character's portrait in the tools' lists (Ayoub, 18/10/2026: the rows laid out again): its race icon, its class icon set in the
+   corner, and a dot for online (green) or offline (grey) when known */
+export function CharacterPortrait({
+  race,
+  gender,
+  cls,
+  online,
+  size = 40,
+}: {
+  race: number;
+  gender?: number | null;
+  cls: number;
+  online?: boolean;
+  size?: number;
+}) {
+  const tRace = useTranslations("rankings");
+  const tClass = useTranslations("shop");
+  const tArmory = useTranslations("armory");
+  const race_ = raceIcon(race, gender ?? 0);
+  const class_ = classIcon(cls);
+  const badge = Math.round(size * 0.48);
+
+  return (
+    <span
+      className="relative inline-block shrink-0"
+      style={{ width: size, height: size }}
+    >
+      {race_ && (
+        <img
+          alt={tRace(`race_${race}`)}
+          className="h-full w-full rounded-lg border border-black/60 object-cover shadow-[0_1px_3px_rgba(0,0,0,0.6)]"
+          height={size}
+          loading="lazy"
+          src={race_}
+          title={tRace(`race_${race}`)}
+          width={size}
+        />
+      )}
+      {class_ && (
+        <img
+          alt={tClass(`className_${cls}`)}
+          className="absolute -bottom-1 -right-1 rounded-full border-2 border-[#0b1020]"
+          height={badge}
+          loading="lazy"
+          src={class_}
+          style={{ width: badge, height: badge }}
+          title={tClass(`className_${cls}`)}
+          width={badge}
+        />
+      )}
+      {online !== undefined && (
+        <span
+          aria-label={online ? tArmory("online") : tArmory("offline")}
+          className={clsx(
+            "absolute -left-1 -top-1 h-3 w-3 rounded-full border-2 border-[#0b1020]",
+            online ? "bg-green-500" : "bg-gray-600",
+          )}
+          role="img"
+          title={online ? tArmory("online") : tArmory("offline")}
+        />
+      )}
+    </span>
+  );
+}
+
+// a faction's crest (the game's honor icons), its name as title
+export function FactionCrest({
+  alliance,
+  size = 22,
+  className,
+}: {
+  alliance: boolean;
+  size?: number;
+  className?: string;
+}) {
+  const name = alliance ? "Alliance" : "Horde";
+
+  return (
+    <img
+      alt={name}
+      className={clsx("shrink-0 rounded-md border border-black/60", className)}
+      height={size}
+      loading="lazy"
+      src={alliance ? "/img/factions/alliance.jpg" : "/img/factions/horde.jpg"}
+      style={{ width: size, height: size }}
+      title={name}
+      width={size}
+    />
   );
 }

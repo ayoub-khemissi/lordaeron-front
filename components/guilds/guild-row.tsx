@@ -2,13 +2,16 @@
 
 import type { GuildSummary } from "@/types/guild";
 
+import { Card, CardBody } from "@heroui/card";
+import { Chip } from "@heroui/chip";
 import NextLink from "next/link";
 import { useTranslations } from "next-intl";
 
 import { GuildEmblem } from "@/components/guild-emblem";
 import { FactionCounts } from "@/components/guilds/faction-counts";
 
-/* A guild in the search: its crest, name, members by faction, its leader and, on a progressive realm, its level. Opens its page. */
+/* A guild in the search: its crest, name and, on a progressive realm, its level, its members and leader on one line, its members by
+   faction (the factions' crests). Opens its page. Laid out again on 18/10/2026 (Ayoub: the tools' rows, HeroUI's Card). */
 export function GuildRow({
   guild,
   href,
@@ -19,21 +22,31 @@ export function GuildRow({
   const t = useTranslations("guilds");
 
   return (
-    <NextLink className="group block" href={href}>
-      <div className="glass flex items-center gap-3 rounded-xl border border-white/5 px-3 py-2.5 transition-all hover:border-wow-gold/30 active:scale-[0.99] sm:gap-4 sm:px-4">
+    <Card
+      isPressable
+      as={NextLink}
+      className="glass group w-full border border-white/5 bg-transparent shadow-none data-[hover=true]:border-wow-gold/30"
+      href={href}
+      radius="lg"
+    >
+      <CardBody className="flex flex-row items-center gap-3 px-3 py-2.5 sm:gap-4 sm:px-4">
         <GuildEmblem emblem={guild.emblem} size={44} />
-        <div className="min-w-0 flex-1">
-          <span className="flex flex-wrap items-center gap-x-3 gap-y-0.5">
-            <span className="font-semibold text-wow-gold transition-colors group-hover:text-wow-gold-light">
+        <div className="min-w-0 flex-1 text-left">
+          <div className="flex min-w-0 items-center gap-2">
+            <span className="truncate font-semibold text-wow-gold transition-colors group-hover:text-wow-gold-light">
               {guild.name}
             </span>
             {guild.level && (
-              <span className="rounded-full border border-wow-blue-ice/40 bg-wow-blue-ice/10 px-2 py-px text-[11px] font-semibold text-wow-blue-ice">
+              <Chip
+                className="h-5 shrink-0 border-wow-blue-ice/40 text-[11px] font-semibold text-wow-blue-ice"
+                size="sm"
+                variant="bordered"
+              >
                 {t("levelShort", { level: guild.level.level })}
-              </span>
+              </Chip>
             )}
-          </span>
-          <span className="mt-0.5 block text-xs text-gray-400">
+          </div>
+          <span className="block truncate text-xs text-gray-400">
             {t("membersCount", { count: guild.members })}
             {guild.leaderName && (
               <>
@@ -50,7 +63,7 @@ export function GuildRow({
         >
           ›
         </span>
-      </div>
-    </NextLink>
+      </CardBody>
+    </Card>
   );
 }

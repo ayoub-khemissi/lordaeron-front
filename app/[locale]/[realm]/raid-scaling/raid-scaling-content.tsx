@@ -3,6 +3,8 @@
 import { useState, useMemo, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
+import { Button } from "@heroui/button";
+import { Slider } from "@heroui/slider";
 
 const WOWHEAD_ICON = "https://wow.zamimg.com/images/wow/icons/large";
 const IMG = "/img/epic-progressive";
@@ -479,21 +481,31 @@ export default function RaidScalingContent() {
                 <div className="flex flex-col items-center">
                   {/* Boss navigation */}
                   <div className="flex items-center gap-4 mb-6">
-                    <button
-                      className="w-8 h-8 rounded-full border border-wow-gold/40 bg-wow-darker/80 text-wow-gold hover:bg-wow-gold/20 transition-colors flex items-center justify-center text-lg font-bold"
-                      onClick={() => changeBoss(-1)}
+                    <Button
+                      isIconOnly
+                      aria-label={t("changeBoss")}
+                      className="h-8 w-8 min-w-0 border border-wow-gold/40 bg-wow-darker/80 text-lg font-bold text-wow-gold data-[hover=true]:bg-wow-gold/20"
+                      radius="full"
+                      size="sm"
+                      variant="bordered"
+                      onPress={() => changeBoss(-1)}
                     >
                       &lsaquo;
-                    </button>
+                    </Button>
                     <span className="text-gray-400 text-sm">
                       {t("changeBoss")}
                     </span>
-                    <button
-                      className="w-8 h-8 rounded-full border border-wow-gold/40 bg-wow-darker/80 text-wow-gold hover:bg-wow-gold/20 transition-colors flex items-center justify-center text-lg font-bold"
-                      onClick={() => changeBoss(1)}
+                    <Button
+                      isIconOnly
+                      aria-label={t("changeBoss")}
+                      className="h-8 w-8 min-w-0 border border-wow-gold/40 bg-wow-darker/80 text-lg font-bold text-wow-gold data-[hover=true]:bg-wow-gold/20"
+                      radius="full"
+                      size="sm"
+                      variant="bordered"
+                      onPress={() => changeBoss(1)}
                     >
                       &rsaquo;
-                    </button>
+                    </Button>
                   </div>
 
                   {/* Unit Frame */}
@@ -557,17 +569,20 @@ export default function RaidScalingContent() {
                             {boss.difficulties.length > 1 && (
                               <div className="flex gap-1.5 mt-1.5">
                                 {boss.difficulties.map((d, i) => (
-                                  <button
+                                  <Button
                                     key={d.label}
-                                    className={`px-2 py-0.5 rounded text-[10px] font-bold transition-colors ${
+                                    aria-pressed={i === diffIndex}
+                                    className={`h-5 min-w-0 rounded px-2 text-[10px] font-bold ${
                                       i === diffIndex
                                         ? "bg-wow-gold/20 text-wow-gold border border-wow-gold/40"
-                                        : "bg-wow-darker/50 text-gray-500 border border-gray-700/30 hover:text-gray-300"
+                                        : "bg-wow-darker/50 text-gray-500 border border-gray-700/30 data-[hover=true]:text-gray-300"
                                     }`}
-                                    onClick={() => changeDifficulty(i)}
+                                    size="sm"
+                                    variant="flat"
+                                    onPress={() => changeDifficulty(i)}
                                   >
                                     {d.label}
-                                  </button>
+                                  </Button>
                                 ))}
                               </div>
                             )}
@@ -671,13 +686,22 @@ export default function RaidScalingContent() {
                       </label>
                     </div>
                     <div className="flex items-center gap-4">
-                      <input
-                        className="flex-1 h-2 rounded-lg appearance-none cursor-pointer bg-gray-700 accent-[#c79c3e]"
-                        max={diff.maxPlayers}
-                        min={1}
-                        type="range"
+                      <Slider
+                        aria-label={t("playerCount")}
+                        className="flex-1"
+                        classNames={{
+                          track: "bg-gray-700 border-s-wow-gold",
+                          filler: "bg-wow-gold",
+                          thumb: "bg-wow-gold after:bg-wow-gold-light",
+                        }}
+                        maxValue={diff.maxPlayers}
+                        minValue={1}
+                        size="sm"
+                        step={1}
                         value={playerCount}
-                        onChange={(e) => setPlayerCount(Number(e.target.value))}
+                        onChange={(v) =>
+                          setPlayerCount(Array.isArray(v) ? v[0] : v)
+                        }
                       />
                       <div className="glass-lite border-wow-gold/20 rounded-lg px-3 py-1.5 min-w-[4.5rem] text-center">
                         <span className="text-wow-gold font-bold text-lg">

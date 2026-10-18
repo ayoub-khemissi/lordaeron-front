@@ -6,7 +6,11 @@ import NextLink from "next/link";
 import { useFormatter, useTranslations } from "next-intl";
 import clsx from "clsx";
 
-import { RaceClassIcons, classColor } from "@/components/character-identity";
+import {
+  FactionCrest,
+  RaceClassIcons,
+  classColor,
+} from "@/components/character-identity";
 import { useRealmHref } from "@/lib/realm-context";
 
 /* An arena team of the PvP ladder: its place, name and faction, its rating, the season's wins and losses, its members (their armory
@@ -30,22 +34,13 @@ export function ArenaTeamRow({ team }: { team: RankedArenaTeam }) {
           {team.rank}
         </span>
         <div className="min-w-0 flex-1">
-          <span className="flex flex-wrap items-center gap-x-3 gap-y-0.5">
+          <span className="flex min-w-0 items-center gap-2">
+            <FactionCrest alliance={team.faction === "alliance"} size={20} />
             <span className="truncate text-base font-semibold text-white">
               {team.name}
             </span>
-            <span
-              className={clsx(
-                "shrink-0 rounded-full px-2 py-0.5 text-xs font-medium",
-                team.faction === "alliance"
-                  ? "bg-blue-500/20 text-blue-400"
-                  : "bg-red-500/20 text-red-400",
-              )}
-            >
-              {team.faction === "alliance" ? "Alliance" : "Horde"}
-            </span>
           </span>
-          <span className="block text-sm text-gray-400">
+          <span className="block truncate text-xs text-gray-400 sm:text-sm">
             {t("winsLosses", { wins: team.wins, losses })}
             {team.games > 0 &&
               ` · ${format.number(team.wins / team.games, { style: "percent" })}`}

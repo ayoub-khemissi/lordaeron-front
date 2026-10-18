@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { Button } from "@heroui/button";
 import { Spinner } from "@heroui/spinner";
 import clsx from "clsx";
 
@@ -12,6 +13,7 @@ import { CLASS_COLORS } from "@/lib/armory-constants";
 import { zamimgIcon } from "@/components/game-tooltip";
 import { lineColor } from "@/components/game-tooltip/store";
 import { useRealm } from "@/lib/realm-context";
+import { ToolSelect } from "@/components/tools/tool-select";
 import {
   CLASS_IDS,
   MAX_LEVEL,
@@ -161,12 +163,13 @@ export function TalentCalculator({
       <div className="-mx-4 -my-2 overflow-x-auto px-4 py-3 sm:mx-0 sm:px-2">
         <div className="mx-auto flex w-max gap-2 sm:flex-wrap sm:justify-center">
           {classes.map((c) => (
-            <button
+            <Button
               key={c.key}
+              isIconOnly
               aria-label={c.name}
               aria-pressed={c.key === cls.key}
               className={clsx(
-                "relative h-11 w-11 shrink-0 overflow-hidden rounded-full border-2 transition-all sm:h-12 sm:w-12",
+                "relative h-11 w-11 min-w-0 shrink-0 overflow-hidden rounded-full border-2 bg-transparent p-0 transition-all sm:h-12 sm:w-12",
                 c.key === cls.key
                   ? "scale-110 shadow-[0_0_14px_rgba(255,255,255,0.25)]"
                   : "border-white/10 opacity-60 hover:opacity-100",
@@ -177,8 +180,8 @@ export function TalentCalculator({
                   : undefined
               }
               title={c.name}
-              type="button"
-              onClick={() => pickClass(c.key)}
+              variant="bordered"
+              onPress={() => pickClass(c.key)}
             >
               {/* the game's square class icon filling the round (the round framed icons were cut at the top and the bottom) */}
               <img
@@ -191,7 +194,7 @@ export function TalentCalculator({
                   <Spinner color="warning" size="sm" />
                 </span>
               )}
-            </button>
+            </Button>
           ))}
         </div>
       </div>
@@ -216,39 +219,40 @@ export function TalentCalculator({
             )}
           </p>
         </div>
-        <label className="flex items-center gap-2 text-sm text-gray-300">
-          {t("level")}
-          <select
-            className="rounded-md border border-white/15 bg-black/60 px-2 py-1 text-white"
-            value={level}
-            onChange={(e) => setLevel(Number(e.target.value))}
-          >
-            {levels.map((l) => (
-              <option key={l} value={l}>
-                {l}
-              </option>
-            ))}
-          </select>
-        </label>
+        <div className="flex items-center gap-2 text-sm text-gray-300">
+          <span aria-hidden>{t("level")}</span>
+          <ToolSelect
+            className="w-24 sm:w-24"
+            label={t("level")}
+            options={levels.map((l) => ({
+              value: String(l),
+              label: String(l),
+            }))}
+            value={String(level)}
+            onChange={(v) => setLevel(Number(v))}
+          />
+        </div>
         <div className="flex gap-2">
-          <button
-            className="rounded-md border border-white/15 px-3 py-1.5 text-sm text-gray-200 transition-colors hover:border-wow-gold/50 hover:text-wow-gold disabled:opacity-40"
-            disabled={!total}
-            type="button"
-            onClick={() => {
+          <Button
+            className="border-white/15 text-gray-200 data-[hover=true]:border-wow-gold/50 data-[hover=true]:text-wow-gold"
+            isDisabled={!total}
+            size="sm"
+            variant="bordered"
+            onPress={() => {
               setPoints(emptyBuild(cls));
               setSelected(null);
             }}
           >
             {t("reset")}
-          </button>
-          <button
-            className="rounded-md border border-wow-gold/40 bg-wow-gold/10 px-3 py-1.5 text-sm text-wow-gold-light transition-colors hover:bg-wow-gold/20"
-            type="button"
-            onClick={copy}
+          </Button>
+          <Button
+            className="border border-wow-gold/40 bg-wow-gold/10 text-wow-gold-light data-[hover=true]:bg-wow-gold/20"
+            size="sm"
+            variant="flat"
+            onPress={copy}
           >
             {copied ? t("copied") : t("copyLink")}
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -262,16 +266,17 @@ export function TalentCalculator({
       {/* phones: one tree at a time */}
       <div className="grid grid-cols-3 gap-1.5 lg:hidden">
         {cls.trees.map((tree, i) => (
-          <button
+          <Button
             key={tree.id}
+            aria-pressed={tab === i}
             className={clsx(
-              "flex min-w-0 flex-col items-center gap-1 rounded-lg border px-1.5 py-1.5 text-center transition-colors",
+              "flex h-auto min-w-0 flex-col items-center gap-1 rounded-lg border px-1.5 py-1.5 text-center",
               tab === i
                 ? "border-wow-gold/50 bg-wow-gold/10"
                 : "border-white/10 bg-black/30",
             )}
-            type="button"
-            onClick={() => {
+            variant="bordered"
+            onPress={() => {
               setTab(i);
               setSelected(null);
             }}
@@ -290,7 +295,7 @@ export function TalentCalculator({
             <span className="line-clamp-2 w-full break-words text-[11px] leading-tight text-gray-200">
               {tree.name}
             </span>
-          </button>
+          </Button>
         ))}
       </div>
 
@@ -373,14 +378,16 @@ function TalentSheet({
           <p className="min-w-0 flex-1 pt-1 font-semibold text-white">
             {tip.name}
           </p>
-          <button
+          <Button
+            isIconOnly
             aria-label={t("close")}
-            className="-mr-1 px-2 text-2xl leading-none text-gray-400 hover:text-white"
-            type="button"
-            onClick={onClose}
+            className="-mr-1 text-2xl leading-none text-gray-400 data-[hover=true]:text-white"
+            size="sm"
+            variant="light"
+            onPress={onClose}
           >
             ×
-          </button>
+          </Button>
         </div>
         <div className="mt-2 max-h-[38vh] overflow-y-auto text-[13px] leading-snug">
           {tip.lines.map((l, i) => (
@@ -398,25 +405,25 @@ function TalentSheet({
           ))}
         </div>
         <div className="mt-3 grid grid-cols-2 gap-2">
-          <button
-            className="rounded-lg border border-white/15 py-2.5 text-lg text-gray-100 disabled:opacity-30"
-            disabled={!canRemove(cls, points, selection.tree, selection.j)}
-            type="button"
-            onClick={onRemove}
+          <Button
+            className="h-11 border-white/15 text-lg text-gray-100"
+            isDisabled={!canRemove(cls, points, selection.tree, selection.j)}
+            variant="bordered"
+            onPress={onRemove}
           >
             −
-          </button>
-          <button
-            className="rounded-lg border border-[#3fd64f]/50 bg-[#3fd64f]/10 py-2.5 text-lg text-[#7dff8a] disabled:opacity-30"
-            disabled={
+          </Button>
+          <Button
+            className="h-11 border border-[#3fd64f]/50 bg-[#3fd64f]/10 text-lg text-[#7dff8a]"
+            isDisabled={
               state === "maxed" ||
               !canAdd(cls, points, selection.tree, selection.j, available)
             }
-            type="button"
-            onClick={onAdd}
+            variant="flat"
+            onPress={onAdd}
           >
             +
-          </button>
+          </Button>
         </div>
       </div>
     </div>

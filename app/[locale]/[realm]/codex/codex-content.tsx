@@ -9,6 +9,8 @@ import { CodexRowsSkeleton } from "./codex-skeleton";
 
 import { CodexRow } from "@/components/codex/codex-row";
 import { Pager } from "@/components/search/pager";
+import { ToolSelect } from "@/components/tools/tool-select";
+import { ToolTabs } from "@/components/tools/tool-tabs";
 import { useRealm } from "@/lib/realm-context";
 import {
   CODEX_PHASES,
@@ -31,9 +33,6 @@ interface Result {
   phases: boolean;
   custom: boolean;
 }
-
-const SELECT =
-  "w-full rounded-lg border border-wow-gold/20 bg-black/60 px-3 py-2 text-sm text-white outline-none transition-colors hover:border-wow-gold/40 focus:border-wow-gold/60";
 
 export function CodexContent({ initial }: { initial: CodexQuery }) {
   const t = useTranslations("codex");
@@ -118,25 +117,17 @@ export function CodexContent({ initial }: { initial: CodexQuery }) {
       />
 
       {/* the kinds */}
-      <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
-        <div className="flex w-max gap-1.5 sm:w-auto sm:flex-wrap">
-          {[null, ...(result?.kinds ?? [])].map((k) => (
-            <button
-              key={k ?? "all"}
-              className={clsx(
-                "shrink-0 rounded-full border px-3 py-1 text-sm transition-colors",
-                query.kind === k
-                  ? "border-wow-gold/60 bg-wow-gold/15 text-wow-gold-light"
-                  : "border-white/10 bg-black/30 text-gray-300 hover:border-wow-gold/30",
-              )}
-              type="button"
-              onClick={() => set({ kind: k })}
-            >
-              {k ? t(`kinds.${k}`) : t("all")}
-            </button>
-          ))}
-        </div>
-      </div>
+      <ToolTabs
+        label={t("all")}
+        options={[null, ...(result?.kinds ?? [])].map((k) => ({
+          value: k ?? "all",
+          label: k ? t(`kinds.${k}`) : t("all"),
+        }))}
+        value={query.kind ?? "all"}
+        onChange={(k) =>
+          set({ kind: k === "all" ? null : (k as CodexQuery["kind"]) })
+        }
+      />
 
       <div
         className={clsx(
@@ -147,71 +138,57 @@ export function CodexContent({ initial }: { initial: CodexQuery }) {
             : "grid-cols-1 sm:grid-cols-2",
         )}
       >
-        <label className="block">
-          <span className="mb-1 block text-xs text-gray-400">
-            {t("source")}
-          </span>
-          <select
-            className={SELECT}
-            value={query.source ?? ""}
-            onChange={(e) =>
-              set({
-                source: (e.target.value || null) as CodexSourceType | null,
-              })
-            }
-          >
-            <option value="">{t("allSources")}</option>
-            {(result?.sources ?? []).map((s) => (
-              <option key={s} value={s}>
-                {t(`sourceFilters.${s}`)}
-              </option>
-            ))}
-          </select>
-        </label>
+        <ToolSelect
+          showLabel
+          label={t("source")}
+          options={[
+            { value: "", label: t("allSources") },
+            ...(result?.sources ?? []).map((s) => ({
+              value: s,
+              label: t(`sourceFilters.${s}`),
+            })),
+          ]}
+          value={query.source ?? ""}
+          onChange={(v) =>
+            set({ source: (v || null) as CodexSourceType | null })
+          }
+        />
         {result?.phases && (
-          <label className="block">
-            <span className="mb-1 block text-xs text-gray-400">
-              {t("phaseLabel")}
-            </span>
-            <select
-              className={SELECT}
-              value={query.phase ?? ""}
-              onChange={(e) =>
-                set({
-                  phase: e.target.value === "" ? null : Number(e.target.value),
-                })
-              }
-            >
-              <option value="">{t("allPhases")}</option>
-              {CODEX_PHASES.map((p) => (
-                <option key={p} value={p}>
-                  {t("phase", { phase: p })}
-                </option>
-              ))}
-            </select>
-          </label>
+          <ToolSelect
+            showLabel
+            label={t("phaseLabel")}
+            options={[
+              { value: "", label: t("allPhases") },
+              ...CODEX_PHASES.map((p) => ({
+                value: String(p),
+                label: t("phase", { phase: p }),
+              })),
+            ]}
+            value={
+              query.phase === null || query.phase === undefined
+                ? ""
+                : String(query.phase)
+            }
+            onChange={(v) => set({ phase: v === "" ? null : Number(v) })}
+          />
         )}
         {result?.custom && (
-          <label className="block">
-            <span className="mb-1 block text-xs text-gray-400">
-              {t("origin")}
-            </span>
-            <select
-              className={SELECT}
-              value={query.origin ?? ""}
-              onChange={(e) =>
-                set({
-                  origin: (e.target.value || null) as CodexQuery["origin"],
-                })
-              }
-            >
-              <option value="">{t("allOrigins")}</option>
-              <option value="custom">
-                {t("originCustom", { realm: realm.name })}
-              </option>
-              <option value="blizzard">{t("originBlizzard")}</option>
-            </select>
-          </label>
+          <ToolSelect
+            showLabel
+            label={t("origin")}
+            options={[
+              { value: "", label: t("allOrigins") },
+              {
+                value: "custom",
+                label: t("originCustom", { realm: realm.name }),
+              },
+              { value: "blizzard", label: t("originBlizzard") },
+            ]}
+            value={query.origin ?? ""}
+            onChange={(v) =>
+              set({ origin: (v || null) as CodexQuery["origin"] })
+            }
+          />
         )}
       </div>
 

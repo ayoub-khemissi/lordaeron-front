@@ -8,6 +8,7 @@ import type {
 } from "@/lib/queries/progression";
 import type { RealmFirst } from "@/lib/queries/realm-firsts";
 
+import { Button } from "@heroui/button";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import NextLink from "next/link";
@@ -114,13 +115,14 @@ function GuildCard({
           );
         })}
       </div>
-      <button
-        className="mt-3 text-xs text-wow-gold/80 hover:text-wow-gold"
-        type="button"
-        onClick={() => setOpen(!open)}
+      <Button
+        className="mt-3 h-auto min-w-0 px-0 text-xs text-wow-gold/80 data-[hover=true]:bg-transparent data-[hover=true]:text-wow-gold"
+        size="sm"
+        variant="light"
+        onPress={() => setOpen(!open)}
       >
         {open ? t("hideBosses") : t("showBosses")}
-      </button>
+      </Button>
     </li>
   );
 }

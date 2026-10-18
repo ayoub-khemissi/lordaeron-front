@@ -8,6 +8,7 @@ import type {
 } from "@/types/challenges";
 import type { ReactNode } from "react";
 
+import { Chip } from "@heroui/chip";
 import NextLink from "next/link";
 import { useTranslations } from "next-intl";
 import clsx from "clsx";
@@ -15,8 +16,8 @@ import clsx from "clsx";
 import { ChallengeLabel, ChallengeTags } from "./challenge-parts";
 
 import {
+  CharacterPortrait,
   LevelRaceClass,
-  RaceClassIcons,
   classColor,
 } from "@/components/character-identity";
 import { RankState } from "@/components/rankings/ranked-row";
@@ -59,17 +60,15 @@ function Challenger({ run, online }: { run: ChallengeRun; online?: boolean }) {
 
   return (
     <div className="flex min-w-0 flex-1 items-center gap-3">
-      {online !== undefined && (
-        <span
-          className={clsx(
-            "h-2 w-2 shrink-0 rounded-full",
-            online ? "bg-green-500" : "bg-gray-600",
-          )}
-        />
-      )}
-      <RaceClassIcons cls={run.class} gender={run.gender} race={run.race} />
+      <CharacterPortrait
+        cls={run.class}
+        gender={run.gender}
+        online={online}
+        race={run.race}
+        size={36}
+      />
       <div className="min-w-0">
-        <span className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
+        <span className="flex min-w-0 items-center gap-2">
           {run.deleted ? (
             <span
               className="truncate text-base font-semibold"
@@ -87,13 +86,19 @@ function Challenger({ run, online }: { run: ChallengeRun; online?: boolean }) {
             </NextLink>
           )}
           {run.gm && (
-            <span className="rounded border border-red-400/40 bg-red-500/15 px-1.5 py-px text-[10px] font-bold uppercase tracking-wider text-red-300">
+            <Chip
+              className="h-5 shrink-0 text-[10px] font-bold uppercase"
+              color="danger"
+              size="sm"
+              variant="flat"
+            >
               {tArmory("gm")}
-            </span>
+            </Chip>
           )}
         </span>
         <LevelRaceClass
-          className="block text-xs"
+          separated
+          className="block truncate text-xs"
           cls={run.class}
           level={run.level}
           race={run.race}
