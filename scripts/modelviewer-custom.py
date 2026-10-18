@@ -3,9 +3,9 @@
 room, without Wowhead): every creature display of the realm's DBC that Blizzard's 3.3.5 does not have, written in the viewer's own data
 format under /var/www/lordaeron-modelviewer (nginx serves it before its mirror of Wowhead's data, /etc/nginx/conf.d/lordaeron.conf).
 
-- the model: the realm's custom models are edited copies of Blizzard's (a seat, a sound, a preview camera: the generator's
-  content/exotic-mounts.js, named <Model>Lordaeron<id>), drawn the same: the viewer takes Blizzard's own model, its file found through
-  a Blizzard display of it in the viewer's WotLK data;
+- the model: Blizzard's own (its file found through a Blizzard display of it in the viewer's WotLK data) when the realm only gave it
+  other skins; ours converted whole (below) when patch-W has it: the generator's edited copies of Blizzard's (content/exotic-mounts.js,
+  <Model>Lordaeron<id>: a seat, a preview camera, a sound) and the models brought from a later client;
 - the skins (CreatureDisplayInfo TextureVariation, next to the model): ours, from patch-W's files then the client's archives, in WebP
   under our own file ids (data/modelviewer/custom-files.json: kept, so a skin keeps its id from one run to the next);
 - a model of our own with no Blizzard original (the troll druid forms, the Sunwalker kodos: brought from a later client by the
@@ -186,6 +186,20 @@ def convert_model(path, stage, out, file_id):
     return fid
 
 
+def in_stage(path, stage):
+    """patch-W has this file (the generator's stage; the client's lookups ignore case)"""
+    rel = path.replace('\\', '/')
+    if os.path.exists(os.path.join(stage, rel)):
+        return True
+    folder = os.path.join(stage, os.path.dirname(rel))
+    parent = os.path.dirname(folder)
+    for base in {folder, *(os.path.join(parent, d) for d in (os.listdir(parent) if os.path.isdir(parent) else [])
+                           if d.lower() == os.path.basename(folder).lower())}:
+        if os.path.isdir(base) and any(f.lower() == os.path.basename(rel).lower() for f in os.listdir(base)):
+            return True
+    return False
+
+
 def fetch_json(url):
     try:
         with urllib.request.urlopen(url, timeout=20) as r:
@@ -200,6 +214,8 @@ def main():
     ap.add_argument('--base-dbc', default='/home/ubuntu/server/data/dbc')
     ap.add_argument('--stage', default='/home/ubuntu/lordaeron/lordaeron-core-lab/contrib/wotlk-plus/out/stage')
     ap.add_argument('--out', default='/var/www/lordaeron-modelviewer/modelviewer/wrath')
+    # every model converted from our own files, Blizzard's too (their particles' textures ours as well)
+    ap.add_argument('--all', action='store_true')
     args = ap.parse_args()
 
     realm_cdi = Dbc(os.path.join(args.realm_dbc, 'CreatureDisplayInfo.dbc'))
@@ -254,9 +270,11 @@ def main():
         model = realm_cmd.s(model_row, CMD_NAME)
         folder, name = model.rsplit('\\', 1) if '\\' in model else ('', model)
         stem = name.rsplit('.', 1)[0]
-        # an edited copy draws as its original (content/exotic-mounts.js: <Model>Lordaeron<id>)
-        original = stem.split('Lordaeron')[0] if 'Lordaeron' in stem else stem
-        model_id = model_file(f'{folder}\\{original}.mdx') or model_file(f'{folder}\\{original}.m2')
+        # our own model (patch-W: the generator's edited copies, <Model>Lordaeron<id>, with their seat, camera and sounds; the models
+        # brought from a later client) converted whole, so the rider sits as in game (Ayoub, 18/10/2026: the Dragonmaw fel drake's seat);
+        # a Blizzard model with our skins: Blizzard's own file, else converted too
+        ours = in_stage(f'{folder}\\{stem}.m2', args.stage)
+        model_id = None if ours or args.all else model_file(f'{folder}\\{stem}.mdx') or model_file(f'{folder}\\{stem}.m2')
         if not model_id:
             if model not in converted:
                 converted[model] = convert_model(model, args.stage, args.out, file_id)

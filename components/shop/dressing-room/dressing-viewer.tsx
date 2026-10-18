@@ -61,8 +61,23 @@ export function DressingViewer({
   const latest = useRef(model);
   // the reader's view: its last one in this browser (Ayoub, 18/10/2026: kept across visits), else a three-quarter view from a little above
   const kept = useRef<Camera | null>(null);
+  // the zoom of each view (a character, a creature alone, a character riding): a mount's rider is framed on the rider alone by the
+  // viewer, so its view steps further back (Ayoub, 18/10/2026: the drake ridden filled the room)
+  const zooms = useRef<Zooms | null>(null);
+  const viewShown = useRef<View>("character");
 
   if (kept.current === null) kept.current = savedCamera();
+  if (zooms.current === null) zooms.current = savedZooms();
+
+  // the camera of the model shown, kept: its angles for every view, its zoom for its own
+  const keep = () => {
+    const camera = cameraOf(viewer.current);
+
+    if (!camera) return;
+    kept.current = camera;
+    zooms.current = { ...zooms.current!, [viewShown.current]: camera.zoom };
+    saveCamera(camera, zooms.current);
+  };
 
   latest.current = model;
   const [ready, setReady] = useState(false);
@@ -108,7 +123,7 @@ export function DressingViewer({
   };
 
   const destroy = () => {
-    kept.current = cameraOf(viewer.current) ?? kept.current;
+    keep();
     try {
       viewer.current?.destroy?.();
     } catch {
@@ -154,13 +169,11 @@ export function DressingViewer({
   useEffect(() => {
     let last = "";
     const timer = window.setInterval(() => {
-      const camera = cameraOf(viewer.current);
-      const key = JSON.stringify(camera);
+      const key = JSON.stringify(cameraOf(viewer.current));
 
-      if (camera && key !== last) {
+      if (key !== "null" && key !== last) {
         last = key;
-        kept.current = camera;
-        saveCamera(camera);
+        keep();
       }
     }, 1000);
 
@@ -195,11 +208,17 @@ export function DressingViewer({
 
         return;
       }
-      // the reader's view kept from one model to the next (Ayoub, 18/10/2026): its angles and zoom; the distance fits each model
-      const camera = cameraOf(viewer.current) ?? kept.current;
-
+      // the reader's view kept from one model to the next (Ayoub, 18/10/2026): its angles, and the zoom of the new model's view; the
+      // distance fits each model
       destroy();
       const model = latest.current;
+      const view = viewOf(model);
+      const camera = {
+        ...(kept.current ?? DEFAULT_CAMERA),
+        zoom: zooms.current?.[view] ?? DEFAULT_ZOOMS[view],
+      };
+
+      viewShown.current = view;
 
       try {
         if (model.kind === "creature") {
@@ -329,6 +348,17 @@ export function DressingViewer({
   );
 }
 
+type View = "character" | "creature" | "mounted";
+type Zooms = Record<View, number>;
+
+function viewOf(model: DressingModel): View {
+  return model.kind === "creature"
+    ? "creature"
+    : model.mount
+      ? "mounted"
+      : "character";
+}
+
 // the viewer's camera (its renderer: azimuth and zenith in radians, a zoom over the distance it fits to each model)
 interface Camera {
   azimuth: number;
@@ -373,6 +403,21 @@ const DEFAULT_CAMERA: Camera = {
   zoom: -1,
 };
 const CAMERA_KEY = "lordaeron.dressingRoom.camera";
+const ZOOMS_KEY = "lordaeron.dressingRoom.zooms";
+// a rider framed alone: about twice as far for the whole mount in view
+const DEFAULT_ZOOMS: Zooms = { character: -1, creature: -1, mounted: -8 };
+
+function savedZooms(): Zooms {
+  try {
+    const z = JSON.parse(localStorage.getItem(ZOOMS_KEY) ?? "null");
+
+    if (z && typeof z === "object") return { ...DEFAULT_ZOOMS, ...z };
+  } catch {
+    // a private window: the default zooms
+  }
+
+  return DEFAULT_ZOOMS;
+}
 
 function savedCamera(): Camera {
   try {
@@ -386,10 +431,10 @@ function savedCamera(): Camera {
   return DEFAULT_CAMERA;
 }
 
-function saveCamera(camera: Camera | null) {
-  if (!camera) return;
+function saveCamera(camera: Camera, zooms: Zooms) {
   try {
     localStorage.setItem(CAMERA_KEY, JSON.stringify(camera));
+    localStorage.setItem(ZOOMS_KEY, JSON.stringify(zooms));
   } catch {
     // a private window: kept for the visit only
   }
