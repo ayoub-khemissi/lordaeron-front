@@ -177,6 +177,22 @@ export function ShopToolbar({
             popoverContent: "bg-[#161b22] border border-wow-gold/15",
           }}
           popoverProps={OVERLAY_POPOVER}
+          // the chosen category with its icon, as in the list (Ayoub, 18/10/2026)
+          renderValue={(items) =>
+            items.map((item) => (
+              <span key={item.key} className="flex items-center gap-2">
+                <CategoryIcon
+                  category={
+                    String(item.key) as Parameters<
+                      typeof CategoryIcon
+                    >[0]["category"]
+                  }
+                  size={20}
+                />
+                {item.textValue}
+              </span>
+            ))
+          }
           selectedKeys={[category ?? "all"]}
           onSelectionChange={(keys) => {
             const key = Array.from(keys)[0] as string | undefined;

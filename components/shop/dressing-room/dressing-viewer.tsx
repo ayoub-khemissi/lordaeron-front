@@ -31,6 +31,7 @@ const SCRIPTS_TIMEOUT = 30_000;
 // a model not drawn within this time is made again once, then said lost (Ayoub, 18/10/2026: a set showed only at the second try)
 const DRAW_TIMEOUT = 20_000;
 const DRAW_CHECK = 700;
+const HEALTH_CHECK = 2500;
 // lit pixels (of 64 x 64) that make a drawn model
 const LIT_MIN = 60;
 
@@ -61,21 +62,27 @@ export function DressingViewer({
   const latest = useRef(model);
   // the reader's view: its last one in this browser (Ayoub, 18/10/2026: kept across visits), else a three-quarter view from a little above
   const kept = useRef<Camera | null>(null);
-  // the zoom of each view (a character, a creature alone, a character riding): a mount's rider is framed on the rider alone by the
-  // viewer, so its view steps further back (Ayoub, 18/10/2026: the drake ridden filled the room)
-  const zooms = useRef<Zooms | null>(null);
-  const viewShown = useRef<View>("character");
+  // the framing (zoom, drag) of each model, as the reader left it: the character's, each creature's, each mount ridden (Ayoub,
+  // 18/10/2026: closed and opened again, the same view); a mount ridden for the first time framed on its picture (the viewer frames the
+  // rider alone: the mount fell out of the frame)
+  const zooms = useRef<Framings | null>(null);
+  const viewShown = useRef<string>("character");
+  // while the room frames a new mount, the reader's framing is not saved over it
+  const framing = useRef(false);
 
   if (kept.current === null) kept.current = savedCamera();
-  if (zooms.current === null) zooms.current = savedZooms();
+  if (zooms.current === null) zooms.current = savedFramings();
 
   // the camera of the model shown, kept: its angles for every view, its zoom for its own
   const keep = () => {
     const camera = cameraOf(viewer.current);
 
-    if (!camera) return;
+    if (!camera || framing.current) return;
     kept.current = camera;
-    zooms.current = { ...zooms.current!, [viewShown.current]: camera.zoom };
+    zooms.current = {
+      ...zooms.current!,
+      [viewShown.current]: { zoom: camera.zoom, pan: camera.pan },
+    };
     saveCamera(camera, zooms.current);
   };
 
@@ -105,6 +112,16 @@ export function DressingViewer({
       if (lit >= LIT_MIN) {
         setDrawn(true);
         retries.current = 0;
+        if (framing.current)
+          // the mount's own time to come, then framed on what is drawn
+          window.setTimeout(
+            () =>
+              autoFrame(v, () => token === watching.current).finally(() => {
+                framing.current = false;
+                if (token === watching.current) keep();
+              }),
+            1200,
+          );
 
         return;
       }
@@ -165,6 +182,36 @@ export function DressingViewer({
     if (failed || lost) onFailed?.();
   }, [failed, lost, onFailed]);
 
+  // the model kept alive while the room stays open (Ayoub, 18/10/2026: after many outfits the room stayed black until closed): its frame
+  // checked every few seconds once drawn, and its WebGL context watched; black twice in a row, or the context lost, and the model is made
+  // again where it was (its outfit, its camera)
+  useEffect(() => {
+    if (!drawn) return;
+    let strikes = 0;
+    let busy = false;
+    const watched = new WeakSet<HTMLCanvasElement>();
+    const remake = () => {
+      strikes = 0;
+      setGeneration((g) => g + 1);
+    };
+    const timer = window.setInterval(async () => {
+      box.current?.querySelectorAll("canvas").forEach((canvas) => {
+        if (watched.has(canvas)) return;
+        watched.add(canvas);
+        canvas.addEventListener("webglcontextlost", remake);
+      });
+      if (busy || framing.current || !viewer.current) return;
+      busy = true;
+      const lit = await litPixels(viewer.current).catch(() => 0);
+
+      busy = false;
+      strikes = lit >= LIT_MIN ? 0 : strikes + 1;
+      if (strikes >= 2) remake();
+    }, HEALTH_CHECK);
+
+    return () => window.clearInterval(timer);
+  }, [drawn]);
+
   // the view saved as the reader turns and zooms (read every second: the viewer has no camera event)
   useEffect(() => {
     let last = "";
@@ -213,12 +260,15 @@ export function DressingViewer({
       destroy();
       const model = latest.current;
       const view = viewOf(model);
+      const key = framingKey(model);
+      const own = zooms.current?.[key];
       const camera = {
         ...(kept.current ?? DEFAULT_CAMERA),
-        zoom: zooms.current?.[view] ?? DEFAULT_ZOOMS[view],
+        ...(own ?? DEFAULT_FRAMINGS[view]),
       };
 
-      viewShown.current = view;
+      viewShown.current = key;
+      framing.current = view === "mounted" && !own;
 
       try {
         if (model.kind === "creature") {
@@ -349,7 +399,98 @@ export function DressingViewer({
 }
 
 type View = "character" | "creature" | "mounted";
-type Zooms = Record<View, number>;
+// a view's own framing: its zoom, and where the reader dragged it (the viewer's translation, a right-button drag)
+interface Framing {
+  zoom: number;
+  pan: number[];
+}
+// by model: "character", "creature:<display>", "mounted:<display>"
+type Framings = Record<string, Framing>;
+
+function framingKey(model: DressingModel) {
+  return model.kind === "creature"
+    ? `creature:${model.display}`
+    : model.mount
+      ? `mounted:${model.mount}`
+      : "character";
+}
+
+// the frame's lit box (64 x 64, the viewer's screenshot hook), null when nothing is drawn or the hook never answers
+function litBox(
+  viewer: any,
+): Promise<{ x0: number; y0: number; x1: number; y1: number } | null> {
+  return new Promise((resolve) => {
+    const r = viewer?.renderer;
+
+    if (!r) return resolve(null);
+    const timer = window.setTimeout(() => resolve(null), 1500);
+
+    r.makeDataURL = ["image/png"];
+    r.screenshotCallback = () => {
+      const img = new Image();
+
+      img.onload = () => {
+        window.clearTimeout(timer);
+        const c = document.createElement("canvas");
+
+        c.width = c.height = 64;
+        const ctx = c.getContext("2d");
+
+        if (!ctx) return resolve(null);
+        ctx.drawImage(img, 0, 0, 64, 64);
+        const d = ctx.getImageData(0, 0, 64, 64).data;
+        let x0 = 64,
+          y0 = 64,
+          x1 = -1,
+          y1 = -1;
+
+        for (let y = 0; y < 64; y++)
+          for (let x = 0; x < 64; x++) {
+            const o = (y * 64 + x) * 4;
+
+            if (d[o] + d[o + 1] + d[o + 2] > 60) {
+              x0 = Math.min(x0, x);
+              x1 = Math.max(x1, x);
+              y0 = Math.min(y0, y);
+              y1 = Math.max(y1, y);
+            }
+          }
+        resolve(x1 < 0 ? null : { x0, y0, x1, y1 });
+      };
+      img.onerror = () => resolve(null);
+      img.src = r.screenshotDataURL;
+    };
+  });
+}
+
+// the model drawn centred and filling 80% of the frame: its lit box moved to the middle (the viewer's drag, in the world's units at the
+// camera's distance) and the zoom set to fit it; three passes, each measured on the frame (checked on renders, 18/10/2026)
+async function autoFrame(viewer: any, alive: () => boolean) {
+  for (let pass = 0; pass < 3 && alive(); pass++) {
+    const box = await litBox(viewer);
+    const r = viewer?.renderer;
+
+    if (!box || !r || !alive()) return;
+    const cx = (box.x0 + box.x1 + 1) / 128 - 0.5;
+    const cy = (box.y0 + box.y1 + 1) / 128 - 0.5;
+    const size = Math.max(box.x1 - box.x0 + 1, box.y1 - box.y0 + 1) / 64;
+    const distance = r.distance * Math.pow(1.1, -r.zoom.current);
+    const height = 2 * distance * Math.tan(((r.fov / 2) * Math.PI) / 180);
+    const width = (height * r.width) / r.height;
+    const t = Array.from(r.translation ?? [0, 0, 0]) as number[];
+
+    if (
+      Math.abs(cx) < 0.03 &&
+      Math.abs(cy) < 0.03 &&
+      Math.abs(size - 0.8) < 0.08
+    )
+      return;
+    r.setTranslation(t[0] - cx * width, t[1] - cy * height, t[2]);
+    r.zoom.current = r.zoom.target =
+      r.zoom.current - Math.log(size / 0.8) / Math.log(1.1);
+    await new Promise((resolve) => window.setTimeout(resolve, 400));
+  }
+}
 
 function viewOf(model: DressingModel): View {
   return model.kind === "creature"
@@ -360,17 +501,21 @@ function viewOf(model: DressingModel): View {
 }
 
 // the viewer's camera (its renderer: azimuth and zenith in radians, a zoom over the distance it fits to each model)
-interface Camera {
+interface Camera extends Framing {
   azimuth: number;
   zenith: number;
-  zoom: number;
 }
 
 function cameraOf(viewer: any): Camera | null {
   const r = viewer?.renderer;
 
   return r && typeof r.azimuth === "number"
-    ? { azimuth: r.azimuth, zenith: r.zenith, zoom: r.zoom?.target ?? 0 }
+    ? {
+        azimuth: r.azimuth,
+        zenith: r.zenith,
+        zoom: r.zoom?.target ?? 0,
+        pan: Array.from(r.translation ?? [0, 0, 0]),
+      }
     : null;
 }
 
@@ -389,6 +534,8 @@ function restoreCamera(viewer: any, camera: Camera | null) {
     r.azimuth = camera.azimuth;
     r.zenith = camera.zenith;
     if (r.zoom) r.zoom.current = r.zoom.target = camera.zoom;
+    if (camera.pan?.length === 3 && r.setTranslation)
+      r.setTranslation(camera.pan[0], camera.pan[1], camera.pan[2]);
   };
 
   apply();
@@ -401,29 +548,47 @@ const DEFAULT_CAMERA: Camera = {
   azimuth: 1.5 * Math.PI - 0.6,
   zenith: Math.PI / 2 + 0.2,
   zoom: -1,
+  pan: [0, 0, 0],
 };
 const CAMERA_KEY = "lordaeron.dressingRoom.camera";
-const ZOOMS_KEY = "lordaeron.dressingRoom.zooms";
+const FRAMINGS_KEY = "lordaeron.dressingRoom.framings";
 // a rider framed alone: about twice as far for the whole mount in view
-const DEFAULT_ZOOMS: Zooms = { character: -1, creature: -1, mounted: -8 };
+const DEFAULT_FRAMINGS: Framings = {
+  character: { zoom: -1, pan: [0, 0, 0] },
+  creature: { zoom: -1, pan: [0, 0, 0] },
+  mounted: { zoom: -8, pan: [0, 0, 0] },
+};
 
-function savedZooms(): Zooms {
+function savedFramings(): Framings {
   try {
-    const z = JSON.parse(localStorage.getItem(ZOOMS_KEY) ?? "null");
+    const f = JSON.parse(localStorage.getItem(FRAMINGS_KEY) ?? "null");
 
-    if (z && typeof z === "object") return { ...DEFAULT_ZOOMS, ...z };
+    if (f && typeof f === "object") {
+      const ok = (v: any) =>
+        v &&
+        Number.isFinite(v.zoom) &&
+        Array.isArray(v.pan) &&
+        v.pan.length === 3;
+
+      return Object.fromEntries(
+        Object.entries(f)
+          .filter(([, v]) => ok(v))
+          .slice(-200),
+      ) as Framings;
+    }
   } catch {
-    // a private window: the default zooms
+    // a private window: the default framings
   }
 
-  return DEFAULT_ZOOMS;
+  return DEFAULT_FRAMINGS;
 }
 
 function savedCamera(): Camera {
   try {
     const c = JSON.parse(localStorage.getItem(CAMERA_KEY) ?? "null");
 
-    if (c && [c.azimuth, c.zenith, c.zoom].every(Number.isFinite)) return c;
+    if (c && [c.azimuth, c.zenith].every(Number.isFinite))
+      return { ...DEFAULT_CAMERA, ...c };
   } catch {
     // a private window: the presentation view
   }
@@ -431,10 +596,13 @@ function savedCamera(): Camera {
   return DEFAULT_CAMERA;
 }
 
-function saveCamera(camera: Camera, zooms: Zooms) {
+function saveCamera(camera: Camera, framings: Framings) {
   try {
-    localStorage.setItem(CAMERA_KEY, JSON.stringify(camera));
-    localStorage.setItem(ZOOMS_KEY, JSON.stringify(zooms));
+    localStorage.setItem(
+      CAMERA_KEY,
+      JSON.stringify({ azimuth: camera.azimuth, zenith: camera.zenith }),
+    );
+    localStorage.setItem(FRAMINGS_KEY, JSON.stringify(framings));
   } catch {
     // a private window: kept for the visit only
   }
