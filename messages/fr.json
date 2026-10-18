@@ -647,7 +647,9 @@
     "viewIn3d": "Aperçu 3D",
     "dressingRide": "Le monter",
     "dressingMountAlone": "Monture seule",
-    "dressingLoading": "Chargement…"
+    "dressingLoading": "Chargement…",
+    "hiddenUnavailable": "{count, plural, one {# article masqué} other {# articles masqués}} : indisponibles pour {name}.",
+    "showHidden": "Les afficher"
   },
   "admin": {
     "login": {

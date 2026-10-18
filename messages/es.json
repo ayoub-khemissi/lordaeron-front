@@ -647,7 +647,9 @@
     "viewIn3d": "Vista 3D",
     "dressingRide": "Montarla",
     "dressingMountAlone": "Solo la montura",
-    "dressingLoading": "Cargando…"
+    "dressingLoading": "Cargando…",
+    "hiddenUnavailable": "{count, plural, one {# artículo oculto} other {# artículos ocultos}}: no disponibles para {name}.",
+    "showHidden": "Mostrarlos"
   },
   "admin": {
     "login": {

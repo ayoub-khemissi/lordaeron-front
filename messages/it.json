@@ -647,7 +647,9 @@
     "viewIn3d": "Anteprima 3D",
     "dressingRide": "Cavalcala",
     "dressingMountAlone": "Solo la cavalcatura",
-    "dressingLoading": "Caricamento…"
+    "dressingLoading": "Caricamento…",
+    "hiddenUnavailable": "{count, plural, one {# articolo nascosto} other {# articoli nascosti}}: non disponibili per {name}.",
+    "showHidden": "Mostrali"
   },
   "admin": {
     "login": {

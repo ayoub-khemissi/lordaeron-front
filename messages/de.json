@@ -647,7 +647,9 @@
     "viewIn3d": "3D-Vorschau",
     "dressingRide": "Aufsitzen",
     "dressingMountAlone": "Nur das Reittier",
-    "dressingLoading": "Wird geladen…"
+    "dressingLoading": "Wird geladen…",
+    "hiddenUnavailable": "{count, plural, one {# Artikel ausgeblendet} other {# Artikel ausgeblendet}}: für {name} nicht verfügbar.",
+    "showHidden": "Anzeigen"
   },
   "admin": {
     "login": {

@@ -375,6 +375,26 @@ export default function ShopContent({
   // Show sets only on the transmog category, combined with user filter
   const showSetsSection = selectedCategory === "transmog" && showSetFilter;
 
+  // the articles hidden only because the selected character cannot have them (a level, a class...): told under the bar, with the way to
+  // show them (Ayoub, 18/10/2026: a level 11 character saw two transmogs of 81 and thought the shop broken)
+  const searched = (name: string) =>
+    !search || name.toLowerCase().includes(search.toLowerCase());
+  const hiddenUnavailable = showUnavailable
+    ? 0
+    : items.filter(
+        (i) =>
+          i.eligible === false && matchesFacets(i, facets) && searched(i.name),
+      ).length +
+      (showSetsSection
+        ? sets.filter(
+            (st) =>
+              st.eligible === false &&
+              !facets.kind &&
+              matchesFacets(st, facets) &&
+              searched(st.name),
+          ).length
+        : 0);
+
   // Build a virtual ShopItemLocalized for the PurchaseModal/GiftModal when buying a set
   const setAsPurchaseItem: ShopItemLocalized | null = purchaseSet
     ? {
@@ -518,6 +538,24 @@ export default function ShopContent({
               }
             : {})}
         />
+        {hiddenUnavailable > 0 && (
+          <div className="-mt-3 mb-5 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-xl border border-white/[0.06] bg-white/[0.03] px-4 py-2.5 text-sm text-gray-400">
+            <span>
+              {t("hiddenUnavailable", {
+                count: hiddenUnavailable,
+                name: selectedCharacter?.name ?? "",
+              })}
+            </span>
+            <Button
+              className="h-7 min-w-0 px-2 text-wow-gold-light"
+              size="sm"
+              variant="light"
+              onPress={() => setShowUnavailable(true)}
+            >
+              {t("showHidden")}
+            </Button>
+          </div>
+        )}
 
         {loading ? (
           <ShopItemsSkeleton />

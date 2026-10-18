@@ -335,13 +335,27 @@ export function DressingViewer({
     // a model still loading takes its new gear once drawn (this effect runs again then): never made again for it, each new model a
     // new WebGL context (Ayoub, 18/10/2026: outfits switched fast drew black)
     if (!drawn) return;
-    try {
-      const slots = [...new Set([...shown.current, ...items].map((i) => i[0]))];
+    // a slot left bare (reset, undress, a two-hander taking the off hand, a robe over a chest): the model made again in its new gear.
+    // The viewer's own clearSlots is not used: it mixes its two loops' indices and throws after a few outfits, the frame then black
+    // until the room was closed (Ayoub, 18/10/2026, Chrome and Firefox; reproduced on the shop)
+    const bare = shown.current.some(
+      ([slot]) => !items.some(([other]) => other === slot),
+    );
 
-      v.method("clearSlots", slots.join(","));
-      if (items.length)
+    if (bare) {
+      setGeneration((g) => g + 1);
+
+      return;
+    }
+    // the pieces new or changed set on the model drawn (a slot's piece replaces the one it had)
+    const changed = items.filter(
+      (i) => !shown.current.some((j) => j.join(":") === i.join(":")),
+    );
+
+    try {
+      if (changed.length)
         v.method("setItems", [
-          items.map(([slot, display, visual]) => ({
+          changed.map(([slot, display, visual]) => ({
             slot,
             display,
             visual: visual ?? 0,
@@ -349,11 +363,8 @@ export function DressingViewer({
         ]);
       shown.current = items;
     } catch (e) {
-      // the viewer without its methods: the character drawn again in its new gear
       console.error("Dressing room items:", e);
-      destroy();
-      setReady(false);
-      requestAnimationFrame(() => setReady(true));
+      setGeneration((g) => g + 1);
     }
   }, [items, drawn]);
 

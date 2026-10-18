@@ -7,6 +7,7 @@ import { Select, SelectItem } from "@heroui/select";
 import { Button } from "@heroui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@heroui/popover";
 import { Switch } from "@heroui/switch";
+import { Chip } from "@heroui/chip";
 import { useTranslations } from "next-intl";
 import clsx from "clsx";
 
@@ -143,202 +144,248 @@ export function ShopToolbar({
   );
   const field = "glass border-wow-gold/20 hover:border-wow-gold/30 h-10";
 
-  return (
-    <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-center">
-      <Input
-        isClearable
-        aria-label={t("search")}
-        className="sm:flex-1"
-        classNames={{ inputWrapper: field }}
-        placeholder={t("searchPlaceholder")}
-        startContent={
-          <svg
-            aria-hidden
-            className="h-4 w-4 shrink-0 text-gray-500"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            <circle cx="11" cy="11" r="7" />
-            <path d="m20 20-3.5-3.5" />
-          </svg>
-        }
-        value={search}
-        onClear={() => onSearchChange("")}
-        onValueChange={onSearchChange}
-      />
-      <div className="flex gap-2">
-        <Select
-          aria-label={t("categoryLabel")}
-          className="min-w-0 flex-1 sm:w-56 sm:flex-none"
-          classNames={{
-            trigger: field,
-            popoverContent: "bg-[#161b22] border border-wow-gold/15",
-          }}
-          popoverProps={OVERLAY_POPOVER}
-          // the chosen category with its icon, as in the list (Ayoub, 18/10/2026)
-          renderValue={(items) =>
-            items.map((item) => (
-              <span key={item.key} className="flex items-center gap-2">
-                <CategoryIcon
-                  category={
-                    String(item.key) as Parameters<
-                      typeof CategoryIcon
-                    >[0]["category"]
-                  }
-                  size={20}
-                />
-                {item.textValue}
-              </span>
-            ))
-          }
-          selectedKeys={[category ?? "all"]}
-          onSelectionChange={(keys) => {
-            const key = Array.from(keys)[0] as string | undefined;
+  // the filters narrowing the list, shown under the bar with their cross (Ayoub, 18/10/2026: an exclusives filter left on looked like a
+  // shop with two items)
+  const narrowing = [
+    ...(facets.kind
+      ? [
+          {
+            key: "kind",
+            label: t(`facets.${facets.kind}`),
+            clear: () => onFacetsChange({ ...facets, kind: null }),
+          },
+        ]
+      : []),
+    ...(facets.exclusive
+      ? [
+          {
+            key: "exclusive",
+            label: t("facets.exclusive", { realm: realm.name }),
+            clear: () => onFacetsChange({ ...facets, exclusive: false }),
+          },
+        ]
+      : []),
+  ];
 
-            if (key) onCategoryChange(key === "all" ? null : (key as ShopView));
-          }}
-        >
-          {[
-            <SelectItem key="all" textValue={t("allItems")}>
-              <span className="flex items-center gap-2">
-                <CategoryIcon category="all" size={22} />
-                {t("allItems")}
-              </span>
-            </SelectItem>,
-            <SelectItem key="highlighted" textValue={t("highlights")}>
-              <span className="flex items-center gap-2">
-                <CategoryIcon category="highlighted" size={22} />
-                {t("highlights")}
-              </span>
-            </SelectItem>,
-            ...SHOP_CATEGORIES.map((cat) => (
-              <SelectItem key={cat} textValue={t(`categories.${cat}`)}>
-                <span className="flex items-center gap-2">
-                  <CategoryIcon category={cat} size={22} />
-                  {t(`categories.${cat}`)}
-                </span>
-              </SelectItem>
-            )),
-          ]}
-        </Select>
-        <Popover {...OVERLAY_POPOVER} placement="bottom-end">
-          <PopoverTrigger>
-            <Button
-              className={clsx(
-                "glass h-10 shrink-0 border",
-                active
-                  ? ice
-                    ? "border-wow-blue-ice/50 text-wow-blue-ice"
-                    : "border-wow-gold/50 text-wow-gold-light"
-                  : "border-wow-gold/20 text-gray-300",
-              )}
-              startContent={
-                <svg
-                  aria-hidden
-                  className="h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M3 5h18M6 12h12M10 19h4" />
-                </svg>
-              }
-              variant="bordered"
+  return (
+    <div className="mb-6">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+        <Input
+          isClearable
+          aria-label={t("search")}
+          className="sm:flex-1"
+          classNames={{ inputWrapper: field }}
+          placeholder={t("searchPlaceholder")}
+          startContent={
+            <svg
+              aria-hidden
+              className="h-4 w-4 shrink-0 text-gray-500"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
             >
-              {t("filters.title")}
-              {active > 0 && (
-                <span
-                  className={clsx(
-                    "ml-0.5 flex h-5 min-w-5 items-center justify-center rounded-full px-1 text-[11px] font-bold text-black",
-                    ice ? "bg-wow-blue-ice" : "bg-wow-gold",
-                  )}
-                >
-                  {active}
+              <circle cx="11" cy="11" r="7" />
+              <path d="m20 20-3.5-3.5" />
+            </svg>
+          }
+          value={search}
+          onClear={() => onSearchChange("")}
+          onValueChange={onSearchChange}
+        />
+        <div className="flex gap-2">
+          <Select
+            aria-label={t("categoryLabel")}
+            className="min-w-0 flex-1 sm:w-56 sm:flex-none"
+            classNames={{
+              trigger: field,
+              popoverContent: "bg-[#161b22] border border-wow-gold/15",
+            }}
+            popoverProps={OVERLAY_POPOVER}
+            // the chosen category with its icon, as in the list (Ayoub, 18/10/2026)
+            renderValue={(items) =>
+              items.map((item) => (
+                <span key={item.key} className="flex items-center gap-2">
+                  <CategoryIcon
+                    category={
+                      String(item.key) as Parameters<
+                        typeof CategoryIcon
+                      >[0]["category"]
+                    }
+                    size={20}
+                  />
+                  {item.textValue}
                 </span>
-              )}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-[min(25rem,calc(100vw-2rem))] border border-wow-gold/15 bg-[#161b22] p-4">
-            <div className="flex w-full flex-col gap-4">
-              {section(
-                t("sortBy"),
-                <div className="grid grid-cols-2 gap-1.5">
-                  {SORTS.map(([key, label]) =>
-                    choice(
-                      sortBy === key,
-                      t(label),
-                      () => onSortChange(key),
-                      key,
-                    ),
-                  )}
-                </div>,
-              )}
-              {kinds.length > 1 &&
-                section(
-                  t("filters.type"),
-                  <div className="flex flex-wrap gap-1.5">
-                    {choice(!facets.kind, t("facets.all"), () =>
-                      onFacetsChange({ ...facets, kind: null }),
+              ))
+            }
+            selectedKeys={[category ?? "all"]}
+            onSelectionChange={(keys) => {
+              const key = Array.from(keys)[0] as string | undefined;
+
+              if (key)
+                onCategoryChange(key === "all" ? null : (key as ShopView));
+            }}
+          >
+            {[
+              <SelectItem key="all" textValue={t("allItems")}>
+                <span className="flex items-center gap-2">
+                  <CategoryIcon category="all" size={22} />
+                  {t("allItems")}
+                </span>
+              </SelectItem>,
+              <SelectItem key="highlighted" textValue={t("highlights")}>
+                <span className="flex items-center gap-2">
+                  <CategoryIcon category="highlighted" size={22} />
+                  {t("highlights")}
+                </span>
+              </SelectItem>,
+              ...SHOP_CATEGORIES.map((cat) => (
+                <SelectItem key={cat} textValue={t(`categories.${cat}`)}>
+                  <span className="flex items-center gap-2">
+                    <CategoryIcon category={cat} size={22} />
+                    {t(`categories.${cat}`)}
+                  </span>
+                </SelectItem>
+              )),
+            ]}
+          </Select>
+          <Popover {...OVERLAY_POPOVER} placement="bottom-end">
+            <PopoverTrigger>
+              <Button
+                className={clsx(
+                  "glass h-10 shrink-0 border",
+                  active
+                    ? ice
+                      ? "border-wow-blue-ice/50 text-wow-blue-ice"
+                      : "border-wow-gold/50 text-wow-gold-light"
+                    : "border-wow-gold/20 text-gray-300",
+                )}
+                startContent={
+                  <svg
+                    aria-hidden
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M3 5h18M6 12h12M10 19h4" />
+                  </svg>
+                }
+                variant="bordered"
+              >
+                {t("filters.title")}
+                {active > 0 && (
+                  <span
+                    className={clsx(
+                      "ml-0.5 flex h-5 min-w-5 items-center justify-center rounded-full px-1 text-[11px] font-bold text-black",
+                      ice ? "bg-wow-blue-ice" : "bg-wow-gold",
                     )}
-                    {kinds.map((kind) =>
+                  >
+                    {active}
+                  </span>
+                )}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-[min(25rem,calc(100vw-2rem))] border border-wow-gold/15 bg-[#161b22] p-4">
+              <div className="flex w-full flex-col gap-4">
+                {section(
+                  t("sortBy"),
+                  <div className="grid grid-cols-2 gap-1.5">
+                    {SORTS.map(([key, label]) =>
                       choice(
-                        facets.kind === kind,
-                        t(`facets.${kind}`),
-                        () => onFacetsChange({ ...facets, kind }),
-                        kind,
+                        sortBy === key,
+                        t(label),
+                        () => onSortChange(key),
+                        key,
                       ),
                     )}
                   </div>,
                 )}
-              {section(
-                t("filters.show"),
-                <div className="flex flex-col gap-2">
-                  {withSets &&
-                    toggle(!!showSets, t("filterSets"), () =>
-                      onShowSetsChange!(!showSets),
-                    )}
-                  {withSets &&
-                    toggle(!!showItems, t("filterItems"), () =>
-                      onShowItemsChange!(!showItems),
-                    )}
-                  {showExclusive &&
-                    toggle(
-                      facets.exclusive,
-                      t("facets.exclusive", { realm: realm.name }),
-                      () =>
-                        onFacetsChange({
-                          ...facets,
-                          exclusive: !facets.exclusive,
-                        }),
-                    )}
-                  {toggle(showUnavailable, t("showUnavailable"), () =>
-                    onShowUnavailableChange(!showUnavailable),
+                {kinds.length > 1 &&
+                  section(
+                    t("filters.type"),
+                    <div className="flex flex-wrap gap-1.5">
+                      {choice(!facets.kind, t("facets.all"), () =>
+                        onFacetsChange({ ...facets, kind: null }),
+                      )}
+                      {kinds.map((kind) =>
+                        choice(
+                          facets.kind === kind,
+                          t(`facets.${kind}`),
+                          () => onFacetsChange({ ...facets, kind }),
+                          kind,
+                        ),
+                      )}
+                    </div>,
                   )}
-                </div>,
-              )}
-              {active > 0 && (
-                <Button
-                  className="h-auto min-w-0 self-end px-1 text-xs text-gray-400 data-[hover=true]:bg-transparent data-[hover=true]:text-gray-200"
-                  size="sm"
-                  variant="light"
-                  onPress={() => {
-                    onSortChange(DEFAULT_SORT);
-                    onFacetsChange(NO_FACETS);
-                    onShowUnavailableChange(false);
-                    onShowSetsChange?.(true);
-                    onShowItemsChange?.(true);
-                  }}
-                >
-                  {t("filters.reset")}
-                </Button>
-              )}
-            </div>
-          </PopoverContent>
-        </Popover>
+                {section(
+                  t("filters.show"),
+                  <div className="flex flex-col gap-2">
+                    {withSets &&
+                      toggle(!!showSets, t("filterSets"), () =>
+                        onShowSetsChange!(!showSets),
+                      )}
+                    {withSets &&
+                      toggle(!!showItems, t("filterItems"), () =>
+                        onShowItemsChange!(!showItems),
+                      )}
+                    {showExclusive &&
+                      toggle(
+                        facets.exclusive,
+                        t("facets.exclusive", { realm: realm.name }),
+                        () =>
+                          onFacetsChange({
+                            ...facets,
+                            exclusive: !facets.exclusive,
+                          }),
+                      )}
+                    {toggle(showUnavailable, t("showUnavailable"), () =>
+                      onShowUnavailableChange(!showUnavailable),
+                    )}
+                  </div>,
+                )}
+                {active > 0 && (
+                  <Button
+                    className="h-auto min-w-0 self-end px-1 text-xs text-gray-400 data-[hover=true]:bg-transparent data-[hover=true]:text-gray-200"
+                    size="sm"
+                    variant="light"
+                    onPress={() => {
+                      onSortChange(DEFAULT_SORT);
+                      onFacetsChange(NO_FACETS);
+                      onShowUnavailableChange(false);
+                      onShowSetsChange?.(true);
+                      onShowItemsChange?.(true);
+                    }}
+                  >
+                    {t("filters.reset")}
+                  </Button>
+                )}
+              </div>
+            </PopoverContent>
+          </Popover>
+        </div>
       </div>
+      {narrowing.length > 0 && (
+        <div className="mt-2 flex flex-wrap gap-2">
+          {narrowing.map((f) => (
+            <Chip
+              key={f.key}
+              className={clsx(
+                "border",
+                ice
+                  ? "border-wow-blue-ice/40 bg-wow-blue-ice/10 text-wow-blue-ice"
+                  : "border-wow-gold/40 bg-wow-gold/10 text-wow-gold-light",
+              )}
+              size="sm"
+              variant="flat"
+              onClose={f.clear}
+            >
+              {f.label}
+            </Chip>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

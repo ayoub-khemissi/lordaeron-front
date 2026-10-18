@@ -647,7 +647,9 @@
     "viewIn3d": "Pré-visualização 3D",
     "dressingRide": "Montar",
     "dressingMountAlone": "Só a montada",
-    "dressingLoading": "A carregar…"
+    "dressingLoading": "A carregar…",
+    "hiddenUnavailable": "{count, plural, one {# artigo oculto} other {# artigos ocultos}}: indisponíveis para {name}.",
+    "showHidden": "Mostrar"
   },
   "admin": {
     "login": {

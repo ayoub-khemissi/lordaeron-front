@@ -647,7 +647,9 @@
     "viewIn3d": "3D-просмотр",
     "dressingRide": "Сесть верхом",
     "dressingMountAlone": "Только маунт",
-    "dressingLoading": "Загрузка…"
+    "dressingLoading": "Загрузка…",
+    "hiddenUnavailable": "{count, plural, one {Скрыт # товар} few {Скрыто # товара} many {Скрыто # товаров} other {Скрыто # товара}}: недоступны для {name}.",
+    "showHidden": "Показать"
   },
   "admin": {
     "login": {

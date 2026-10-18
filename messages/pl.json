@@ -647,7 +647,9 @@
     "viewIn3d": "Podgląd 3D",
     "dressingRide": "Dosiądź",
     "dressingMountAlone": "Sam wierzchowiec",
-    "dressingLoading": "Wczytywanie…"
+    "dressingLoading": "Wczytywanie…",
+    "hiddenUnavailable": "{count, plural, one {# przedmiot ukryty} few {# przedmioty ukryte} many {# przedmiotów ukrytych} other {# przedmiotu ukrytego}}: niedostępne dla {name}.",
+    "showHidden": "Pokaż je"
   },
   "admin": {
     "login": {
