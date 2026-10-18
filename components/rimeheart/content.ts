@@ -2779,8 +2779,8 @@ export const challenges = {
       icon: "inv_misc_book_09",
       title: L("Paliers et récompenses", "Milestones and rewards"),
       text: L(
-        "Des Fragments de chronique tous les 10 niveaux, annoncés à votre guilde puis, dès le niveau 40, à tout le royaume. À 80, des Fragments selon les étoiles ; les légendes y ajoutent 10 Écussons de mérite et un Jeton d'ascension.",
-        "Chronicle Fragments every 10 levels, announced to your guild and, from level 40, to the whole realm. At 80, Fragments by stars; legends add 10 Commendation Badges and an Ascension Token.",
+        "Des Fragments de chronique tous les 10 niveaux ; tout le royaume entend votre nom dès le niveau 10 en x1, dès le niveau 40 en x5 (votre guilde avant). À 80, des Fragments selon les étoiles ; les légendes y ajoutent 10 Écussons de mérite et un Jeton d'ascension.",
+        "Chronicle Fragments every 10 levels; the whole realm hears your name from level 10 in x1, from level 40 in x5 (your guild before that). At 80, Fragments by stars; legends add 10 Commendation Badges and an Ascension Token.",
       ),
     },
     {
@@ -2795,8 +2795,8 @@ export const challenges = {
       icon: "inv_misc_bone_orcskull_01",
       title: L("Le Mak'gora", "The Mak'gora"),
       text: L(
-        "Deux défiants à une seule vie qui se battent en duel s'affrontent à mort, sans reddition possible. Qui fuit devient **Pleutre** pendant trois jours ; le vainqueur prend une oreille pour son Collier d'oreilles.",
-        "Two one-life challengers who duel fight to the death, with no surrender. Whoever flees is a **Coward** for three days; the winner takes an ear for their String of Ears.",
+        "Deux défiants à une seule vie qui se battent en duel s'affrontent à mort, sans reddition possible. Qui fuit devient **Pleutre** pendant trois jours ; le vainqueur prend une oreille pour son Collier d'oreilles, payée en Fragments de chronique au niveau 80.",
+        "Two one-life challengers who duel fight to the death, with no surrender. Whoever flees is a **Coward** for three days; the winner takes an ear for their String of Ears, paid in Chronicle Fragments at level 80.",
       ),
     },
     {
