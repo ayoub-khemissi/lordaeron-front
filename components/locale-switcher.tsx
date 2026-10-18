@@ -1,6 +1,6 @@
 "use client";
 
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter, usePathname } from "next/navigation";
 import {
   Dropdown,
@@ -28,6 +28,7 @@ export function LocaleSwitcher() {
   const router = useRouter();
   const pathname = usePathname();
 
+  const t = useTranslations("nav");
   const currentLocale = locales.find((l) => l.code === locale) || locales[0];
 
   const switchLocale = (newLocale: string) => {
@@ -49,7 +50,7 @@ export function LocaleSwitcher() {
         </Button>
       </DropdownTrigger>
       <DropdownMenu
-        aria-label="Select language"
+        aria-label={t("selectLanguage")}
         onAction={(key) => switchLocale(key as string)}
       >
         {locales.map((l) => (

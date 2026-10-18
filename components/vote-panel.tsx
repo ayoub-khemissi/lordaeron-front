@@ -450,7 +450,7 @@ export function VotePanel() {
           <>
             {/* Backdrop */}
             <button
-              aria-label="Close vote panel"
+              aria-label={t("closePanel")}
               className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm cursor-default"
               type="button"
               onClick={() => setMobileOpen(false)}

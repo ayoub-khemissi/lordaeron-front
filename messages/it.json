@@ -86,7 +86,9 @@
       "realmFirsts": "Chi ha ottenuto ogni primato del reame, e quando",
       "calendar": "Wintergrasp, torneo, boss e reset in tempo reale",
       "progression": "Le gilde classificate per boss d'incursione sconfitti"
-    }
+    },
+    "selectLanguage": "Scegli la lingua",
+    "userMenu": "Menu utente"
   },
   "home": {
     "title": "Benvenuto su Lordaeron",
@@ -1148,7 +1150,8 @@
     "login": "Accedi",
     "register": "Registrati",
     "collapse": "Nascondi",
-    "expand": "Vota"
+    "expand": "Vota",
+    "closePanel": "Chiudi il pannello di voto"
   },
   "epicProgression": {
     "title": "Epic Progression",

@@ -45,7 +45,7 @@
   "nav": {
     "home": "Startseite",
     "howTo": "Verbindung",
-    "features": "Features",
+    "features": "Funktionen",
     "register": "Registrieren",
     "login": "Anmelden",
     "account": "Mein Konto",
@@ -86,7 +86,9 @@
       "realmFirsts": "Wer welchen Realm-Ersten errungen hat, und wann",
       "calendar": "Tausendwintersee, Turnier, Bosse und Resets live",
       "progression": "Gilden nach besiegten Schlachtzugsbossen"
-    }
+    },
+    "selectLanguage": "Sprache wählen",
+    "userMenu": "Benutzermenü"
   },
   "home": {
     "title": "Willkommen auf Lordaeron",
@@ -424,7 +426,7 @@
     "factionRestriction": "Fraktionseinschränkung",
     "refundable": "Erstattbar",
     "nonRefundable": "Nicht erstattbar",
-    "reqLevel": "Lvl {level}+",
+    "reqLevel": "Stufe {level}+",
     "refundPolicy": "Erstattbar innerhalb von 2h, Gegenstand muss im Inventar bleiben",
     "refundPolicyNote": "Erstattbar innerhalb von 2 Stunden, wenn der Gegenstand in deinem Inventar bleibt.",
     "confirmPurchase": "Kauf bestätigen",
@@ -558,7 +560,7 @@
   },
   "admin": {
     "login": {
-      "title": "Admin Login",
+      "title": "Admin-Anmeldung",
       "username": "Benutzername",
       "password": "Passwort",
       "submit": "Anmelden",
@@ -1148,7 +1150,8 @@
     "login": "Anmelden",
     "register": "Registrieren",
     "collapse": "Ausblenden",
-    "expand": "Vote"
+    "expand": "Vote",
+    "closePanel": "Abstimmungsfenster schließen"
   },
   "epicProgression": {
     "title": "Epic Progression",

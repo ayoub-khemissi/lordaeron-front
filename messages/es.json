@@ -86,7 +86,9 @@
       "realmFirsts": "Quién logró cada primero del reino, y cuándo",
       "calendar": "Conquista del Invierno, torneo, jefes y reinicios en vivo",
       "progression": "Hermandades clasificadas por jefes de banda derrotados"
-    }
+    },
+    "selectLanguage": "Elegir idioma",
+    "userMenu": "Menú de usuario"
   },
   "home": {
     "title": "Bienvenido a Lordaeron",
@@ -1148,7 +1150,8 @@
     "login": "Iniciar sesión",
     "register": "Registrarse",
     "collapse": "Ocultar",
-    "expand": "Votar"
+    "expand": "Votar",
+    "closePanel": "Cerrar el panel de votación"
   },
   "epicProgression": {
     "title": "Epic Progression",

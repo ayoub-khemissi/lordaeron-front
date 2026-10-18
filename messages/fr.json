@@ -86,7 +86,9 @@
       "realmFirsts": "Qui a décroché chaque « Prem's » du royaume",
       "calendar": "Joug-d'hiver, tournoi, boss et réinitialisations en direct",
       "progression": "Les guildes classées par boss de raid vaincus"
-    }
+    },
+    "selectLanguage": "Choisir la langue",
+    "userMenu": "Menu du compte"
   },
   "home": {
     "title": "Bienvenue sur Lordaeron",
@@ -249,7 +251,7 @@
     "value": "Valeur",
     "xp": "Expérience (XP)",
     "honor": "Honneur",
-    "professions": "Professions",
+    "professions": "Métiers",
     "reputation": "Réputation",
     "fourProfessions": "4 Métiers principaux",
     "fourProfessionsDesc": "Apprenez jusqu'à 4 métiers principaux au lieu de 2 — maîtrisez plus d'artisanats sur un seul personnage",
@@ -1148,7 +1150,8 @@
     "login": "Connexion",
     "register": "Inscription",
     "collapse": "Masquer",
-    "expand": "Vote"
+    "expand": "Vote",
+    "closePanel": "Fermer le panneau de vote"
   },
   "epicProgression": {
     "title": "Epic Progression",
@@ -1238,7 +1241,7 @@
     "equipment": "Équipement",
     "stats": "Statistiques",
     "pvp": "JcJ",
-    "professions": "Professions",
+    "professions": "Métiers",
     "achievements": "Hauts faits",
     "honorKills": "Victoires honorables",
     "arenaPoints": "Points d'arène",

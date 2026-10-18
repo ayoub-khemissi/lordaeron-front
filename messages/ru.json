@@ -86,7 +86,9 @@
       "realmFirsts": "Кто первым в мире получил каждое достижение и когда",
       "calendar": "Озеро Ледяных Оков, турнир, боссы и сбросы в реальном времени",
       "progression": "Гильдии по числу побеждённых рейдовых боссов"
-    }
+    },
+    "selectLanguage": "Выбрать язык",
+    "userMenu": "Меню пользователя"
   },
   "home": {
     "title": "Добро пожаловать в Lordaeron",
@@ -319,7 +321,7 @@
     "realmInfo": "Информация о мире",
     "realmName": "Название мира",
     "realmStatus": "Статус",
-    "soulShards": "Soul Shards",
+    "soulShards": "Осколки души",
     "banned": "Аккаунт заблокирован",
     "ipBanned": "IP заблокирован",
     "banReason": "Причина",
@@ -496,7 +498,7 @@
     "buyShardsTitle": "Купить Soul Shards",
     "buyShardsSubtitle": "Выберите пакет для пополнения баланса",
     "needMoreShards": "Вам нужно ещё {count} Soul Shards",
-    "soulShards": "Soul Shards",
+    "soulShards": "Осколки души",
     "bestValue": "Лучшее предложение",
     "recommended": "Рекомендуемый",
     "popular": "Популярный",
@@ -653,7 +655,7 @@
       "reason_recipientNotFound": "Получатель не найден",
       "reason_serverError": "Ошибка сервера",
       "reason_characterOnline": "Персонаж в сети",
-      "soulShards": "Soul Shards"
+      "soulShards": "Осколки души"
     },
     "bans": {
       "title": "Блокировки магазина",
@@ -1139,7 +1141,7 @@
   },
   "vote": {
     "title": "Голосуйте за нас",
-    "reward": "+{shards} Soul Shards",
+    "reward": "+{shards} осколков души",
     "vote": "Голосовать",
     "voted": "Проголосовано",
     "cooldown": "Следующий голос через",
@@ -1148,7 +1150,8 @@
     "login": "Вход",
     "register": "Регистрация",
     "collapse": "Скрыть",
-    "expand": "Голосовать"
+    "expand": "Голосовать",
+    "closePanel": "Закрыть панель голосования"
   },
   "epicProgression": {
     "title": "Эпическая прогрессия",
@@ -1661,7 +1664,7 @@
     "honor": "{count} чести",
     "arena": "{count} очков арены",
     "rating": "рейтинг {rating}",
-    "shards": "{count} Soul Shards",
+    "shards": "{count} осколков души",
     "worldDrop": "существа по всему миру (мировая добыча)"
   },
   "talents": {

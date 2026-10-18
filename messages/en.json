@@ -86,7 +86,9 @@
       "realmFirsts": "Who earned each realm first, and when",
       "calendar": "Wintergrasp, tournament, bosses and resets, live",
       "progression": "Guilds ranked by the raid bosses they killed"
-    }
+    },
+    "selectLanguage": "Select language",
+    "userMenu": "User menu"
   },
   "home": {
     "title": "Welcome to Lordaeron",
@@ -1148,7 +1150,8 @@
     "login": "Login",
     "register": "Register",
     "collapse": "Hide",
-    "expand": "Vote"
+    "expand": "Vote",
+    "closePanel": "Close vote panel"
   },
   "epicProgression": {
     "title": "Epic Progression",

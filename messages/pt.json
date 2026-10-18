@@ -86,7 +86,9 @@
       "realmFirsts": "Quem conquistou cada primeiro do reino, e quando",
       "calendar": "Wintergrasp, torneio, bosses e resets ao vivo",
       "progression": "Guildas classificadas pelos bosses de raide derrotados"
-    }
+    },
+    "selectLanguage": "Escolher idioma",
+    "userMenu": "Menu do utilizador"
   },
   "home": {
     "title": "Bem-vindo a Lordaeron",
@@ -319,7 +321,7 @@
     "realmInfo": "Informacoes do Reino",
     "realmName": "Nome do Reino",
     "realmStatus": "Estado",
-    "soulShards": "Soul Shards",
+    "soulShards": "Fragmentos de Alma",
     "banned": "Conta Banida",
     "ipBanned": "IP Banido",
     "banReason": "Motivo",
@@ -441,7 +443,7 @@
     "history": "Historico de Compras",
     "noHistory": "Ainda sem compras",
     "date": "Data",
-    "item": "Item",
+    "item": "Artigo",
     "character": "Personagem",
     "status": "Estado",
     "pricePaid": "Preco Pago",
@@ -496,7 +498,7 @@
     "buyShardsTitle": "Comprar Soul Shards",
     "buyShardsSubtitle": "Seleciona um pacote para recarregar o teu saldo",
     "needMoreShards": "Precisas de mais {count} Soul Shards",
-    "soulShards": "Soul Shards",
+    "soulShards": "Fragmentos de Alma",
     "bestValue": "Melhor Valor",
     "recommended": "Recomendado",
     "popular": "Popular",
@@ -630,7 +632,7 @@
       "title": "Historico de Compras",
       "account": "Conta",
       "character": "Personagem",
-      "item": "Item",
+      "item": "Artigo",
       "price": "Preco",
       "status": "Estado",
       "date": "Data",
@@ -653,7 +655,7 @@
       "reason_recipientNotFound": "Destinatario nao encontrado",
       "reason_serverError": "Erro no servidor",
       "reason_characterOnline": "Personagem esta online",
-      "soulShards": "Soul Shards"
+      "soulShards": "Fragmentos de Alma"
     },
     "bans": {
       "title": "Banimentos da Loja",
@@ -684,7 +686,7 @@
       "action_delete_ban": "Eliminar banimento",
       "action_retry_delivery": "Tentar entrega novamente",
       "action_refund_purchase": "Reembolsar compra",
-      "target_shop_item": "Item",
+      "target_shop_item": "Artigo",
       "target_shop_set": "Conjunto",
       "target_shop_ban": "Banimento",
       "target_shop_purchase": "Compra",
@@ -1139,7 +1141,7 @@
   },
   "vote": {
     "title": "Vota por Nos",
-    "reward": "+{shards} Soul Shards",
+    "reward": "+{shards} Fragmentos de Alma",
     "vote": "Votar",
     "voted": "Votado",
     "cooldown": "Proximo voto em",
@@ -1148,7 +1150,8 @@
     "login": "Entrar",
     "register": "Registar",
     "collapse": "Ocultar",
-    "expand": "Votar"
+    "expand": "Votar",
+    "closePanel": "Fechar o painel de votação"
   },
   "epicProgression": {
     "title": "Epic Progression",
@@ -1301,7 +1304,7 @@
     "clampedTo": "Minimo: tratado como {min} jogadores",
     "statHP": "Vida",
     "statDamage": "Dano",
-    "statLoot": "Loot",
+    "statLoot": "Saque",
     "statGold": "Ouro",
     "itemsKept": "itens mantidos",
     "formula": "Formula de Escala",
@@ -1310,7 +1313,7 @@
     "colDamage": "Dano",
     "colScaledHP": "PV escalados",
     "colHP": "Vida",
-    "colLoot": "Loot",
+    "colLoot": "Saque",
     "scaledTitle": "O Que e Escalado",
     "scaled_health": "Vida — escalada a partir da base, preservando a % de vida atual",
     "scaled_melee": "Dano corpo a corpo — reduzido antes da exibicao no registo de combate",
@@ -1620,7 +1623,7 @@
       "glyph": "Glifo",
       "gear": "Equipamento",
       "appearance": "Aparência",
-      "item": "Item"
+      "item": "Objeto"
     },
     "sources": {
       "vendor": "Vendido por",
@@ -1661,7 +1664,7 @@
     "honor": "{count} de honra",
     "arena": "{count} pontos de arena",
     "rating": "classificação {rating}",
-    "shards": "{count} Soul Shards",
+    "shards": "{count} Fragmentos de Alma",
     "worldDrop": "criaturas de todo o mundo (saque global)"
   },
   "talents": {
@@ -1747,7 +1750,7 @@
       "level": "Nível 80",
       "classes": "Nível 80 por classe",
       "races": "Nível 80 por raça",
-      "bosses": "Bosses",
+      "bosses": "Chefes",
       "professions": "Profissões",
       "pvp": "JxJ",
       "challenges": "Desafios",
@@ -1778,8 +1781,8 @@
     "upcoming": "Brevemente",
     "running": "A decorrer",
     "defender": "Nas mãos da {faction}",
-    "alliance": "Alliance",
-    "horde": "Horde",
+    "alliance": "a Aliança",
+    "horde": "a Horda",
     "registration": "Inscrições a partir das",
     "events": {
       "opening": "Abertura do reino",

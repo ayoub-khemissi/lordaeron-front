@@ -86,7 +86,9 @@
       "realmFirsts": "Kto zdobył każde „pierwszy w świecie” i kiedy",
       "calendar": "Wintergrasp, turniej, bossowie i resety na żywo",
       "progression": "Gildie według pokonanych bossów rajdowych"
-    }
+    },
+    "selectLanguage": "Wybierz język",
+    "userMenu": "Menu użytkownika"
   },
   "home": {
     "title": "Witaj w Lordaeron",
@@ -319,7 +321,7 @@
     "realmInfo": "Informacje o realmie",
     "realmName": "Nazwa realmu",
     "realmStatus": "Status",
-    "soulShards": "Soul Shards",
+    "soulShards": "Odłamki Dusz",
     "banned": "Konto zbanowane",
     "ipBanned": "IP zbanowane",
     "banReason": "Powód",
@@ -496,7 +498,7 @@
     "buyShardsTitle": "Kup Soul Shards",
     "buyShardsSubtitle": "Wybierz pakiet, aby doładować saldo",
     "needMoreShards": "Potrzebujesz jeszcze {count} Soul Shards",
-    "soulShards": "Soul Shards",
+    "soulShards": "Odłamki Dusz",
     "bestValue": "Najlepsza oferta",
     "recommended": "Polecany",
     "popular": "Popularny",
@@ -653,7 +655,7 @@
       "reason_recipientNotFound": "Odbiorca nie znaleziony",
       "reason_serverError": "Błąd serwera",
       "reason_characterOnline": "Postać jest online",
-      "soulShards": "Soul Shards"
+      "soulShards": "Odłamki Dusz"
     },
     "bans": {
       "title": "Bany sklepowe",
@@ -1139,7 +1141,7 @@
   },
   "vote": {
     "title": "Zagłosuj na nas",
-    "reward": "+{shards} Soul Shards",
+    "reward": "+{shards} Odłamków Dusz",
     "vote": "Głosuj",
     "voted": "Zagłosowano",
     "cooldown": "Następne głosowanie za",
@@ -1148,7 +1150,8 @@
     "login": "Zaloguj się",
     "register": "Zarejestruj się",
     "collapse": "Ukryj",
-    "expand": "Głosuj"
+    "expand": "Głosuj",
+    "closePanel": "Zamknij panel głosowania"
   },
   "epicProgression": {
     "title": "Epicka Progresja",
@@ -1661,7 +1664,7 @@
     "honor": "{count} honoru",
     "arena": "{count} pkt. areny",
     "rating": "ranking {rating}",
-    "shards": "{count} Soul Shards",
+    "shards": "{count} Odłamków Dusz",
     "worldDrop": "stworzenia z całego świata (łup światowy)"
   },
   "talents": {
@@ -1778,8 +1781,8 @@
     "upcoming": "Wkrótce",
     "running": "Trwa",
     "defender": "W rękach: {faction}",
-    "alliance": "Alliance",
-    "horde": "Horde",
+    "alliance": "Przymierze",
+    "horde": "Horda",
     "registration": "Zapisy od",
     "events": {
       "opening": "Otwarcie świata",

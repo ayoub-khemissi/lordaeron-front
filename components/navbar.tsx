@@ -257,7 +257,7 @@ export const Navbar = () => {
                 </Button>
               </DropdownTrigger>
               <DropdownMenu
-                aria-label="User menu"
+                aria-label={t("nav.userMenu")}
                 classNames={{
                   base: "bg-[#161b22] border border-wow-gold/15",
                 }}
