@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { verifySession } from "@/lib/auth";
+import { requestRealm } from "@/lib/realms";
 import {
   getCharacterGuidsForAccount,
   updateCharacterSlots,
@@ -18,6 +19,8 @@ export async function POST(request: Request) {
 
     const body = await request.json();
     const { order } = body;
+    // the characters of one realm, in its own database
+    const realm = requestRealm(body.realm);
 
     if (!Array.isArray(order) || order.length === 0 || order.length > 10) {
       return NextResponse.json({ error: "invalidOrder" }, { status: 400 });
@@ -28,7 +31,7 @@ export async function POST(request: Request) {
     }
 
     // Verify all guids belong to this account
-    const accountGuids = await getCharacterGuidsForAccount(session.id);
+    const accountGuids = await getCharacterGuidsForAccount(session.id, realm);
     const guidSet = new Set(accountGuids);
 
     if (
@@ -38,7 +41,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "invalidOrder" }, { status: 400 });
     }
 
-    const success = await updateCharacterSlots(session.id, order);
+    const success = await updateCharacterSlots(session.id, order, realm);
 
     if (!success) {
       return NextResponse.json({ error: "updateFailed" }, { status: 500 });

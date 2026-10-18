@@ -30,7 +30,7 @@ export const ContactContent = () => {
 
     const fetchAccount = async () => {
       try {
-        const res = await fetch("/api/account");
+        const res = await fetch("/api/account?summary=1");
 
         if (res.status === 401) {
           router.replace(`/${locale}/login`);

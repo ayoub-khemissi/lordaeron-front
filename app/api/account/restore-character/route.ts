@@ -10,6 +10,7 @@ import {
 } from "@/lib/queries/characters";
 import { websiteDb } from "@/lib/db";
 import { RESTORE_CHARACTER_COST } from "@/lib/shop-utils";
+import { requestRealm } from "@/lib/realms";
 
 export const dynamic = "force-dynamic";
 
@@ -23,13 +24,15 @@ export async function POST(request: Request) {
 
     const body = await request.json();
     const { guid } = body;
+    // the realm whose characters database holds it (each realm keeps its own deleted characters)
+    const realm = requestRealm(body.realm);
 
     if (!guid || typeof guid !== "number") {
       return NextResponse.json({ error: "missingFields" }, { status: 400 });
     }
 
     // Get the deleted character
-    const deletedChar = await getDeletedCharacterByGuid(guid);
+    const deletedChar = await getDeletedCharacterByGuid(guid, realm);
 
     if (!deletedChar) {
       return NextResponse.json({ error: "characterNotFound" }, { status: 404 });
@@ -41,7 +44,7 @@ export async function POST(request: Request) {
     }
 
     // Check active character count
-    const activeCount = await getActiveCharacterCount(session.id);
+    const activeCount = await getActiveCharacterCount(session.id, realm);
 
     if (activeCount >= 10) {
       return NextResponse.json({ error: "tooManyCharacters" }, { status: 400 });
@@ -50,7 +53,7 @@ export async function POST(request: Request) {
     // Check name availability — no rename allowed (rename is a paid service)
     const finalName = deletedChar.name;
 
-    if (await isCharacterNameTaken(finalName)) {
+    if (await isCharacterNameTaken(finalName, realm)) {
       return NextResponse.json({ error: "originalNameTaken" }, { status: 409 });
     }
 
@@ -94,7 +97,7 @@ export async function POST(request: Request) {
     let restored = false;
 
     try {
-      restored = await restoreCharacter(guid, finalName, session.id);
+      restored = await restoreCharacter(guid, finalName, session.id, realm);
     } catch (restoreError) {
       console.error("Restore character error:", restoreError);
     }

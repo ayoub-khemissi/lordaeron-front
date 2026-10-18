@@ -17,17 +17,21 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 
 import { getQualityColor } from "@/lib/shop-utils";
+import { realmById } from "@/lib/realms";
 
 interface PurchaseHistoryProps {
   purchases: ShopPurchaseWithItem[];
   locale: string;
   onRefund?: (purchase: ShopPurchaseWithItem) => void;
+  // the realm of each purchase, beside its character (an account that bought on several realms)
+  showRealm?: boolean;
 }
 
 const STATUS_COLORS: Record<string, string> = {
   completed: "bg-green-500/10 text-green-400",
   refunded: "bg-orange-500/10 text-orange-400",
   pending_refund: "bg-yellow-500/10 text-yellow-400",
+  pending_delivery: "bg-sky-500/10 text-sky-300",
   cancelled: "bg-red-500/10 text-red-400",
 };
 
@@ -35,6 +39,7 @@ export function PurchaseHistory({
   purchases,
   locale,
   onRefund,
+  showRealm = false,
 }: PurchaseHistoryProps) {
   const t = useTranslations("shop");
 
@@ -57,6 +62,7 @@ export function PurchaseHistory({
       completed: t("statusCompleted"),
       refunded: t("statusRefunded"),
       pending_refund: t("statusPending"),
+      pending_delivery: t("statusPendingDelivery"),
       cancelled: t("statusCancelled"),
     };
 
@@ -78,7 +84,7 @@ export function PurchaseHistory({
     <Table
       aria-label={t("history")}
       classNames={{
-        wrapper: "glass border-wow-gold/10",
+        wrapper: "bg-transparent p-0 shadow-none",
         th: "bg-wow-dark/50 text-gray-400 border-b border-wow-gold/10",
         td: "text-gray-300",
       }}
@@ -123,6 +129,11 @@ export function PurchaseHistory({
                 </div>
               </TableCell>
               <TableCell className="text-sm">
+                {showRealm && (
+                  <span className="block text-xs text-gray-500">
+                    {realmById(p.realm_id)?.name}
+                  </span>
+                )}
                 {p.character_name}
                 {!!p.is_gift && (
                   <span className="text-purple-400 text-xs ml-1">

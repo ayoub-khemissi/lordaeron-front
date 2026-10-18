@@ -1,28 +1,37 @@
 import { Bone, SkeletonArea, SkeletonPanel } from "@/components/skeleton";
 
-/* The account while the session and its data load (page.tsx): its title, its tabs, the account's card (the avatar, its rows) */
+/* The account while the session and its data load (page.tsx): its identity's card, its sections' column, the overview's tiles and realms */
 export function AccountSkeleton() {
   return (
-    <div className="container mx-auto max-w-5xl px-6 py-16">
+    <div className="container mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
       <SkeletonArea>
-        <div className="mb-12 flex flex-col items-center">
-          <Bone className="mb-3 h-10 w-56" />
-          <Bone className="h-4 w-72 max-w-full" />
-          <div className="shimmer-line mx-auto mt-4 w-24" />
-        </div>
-        <Bone className="mb-6 h-12 w-full rounded-xl sm:mb-8 sm:h-10 sm:rounded-none" />
-        <SkeletonPanel className="mx-auto w-full max-w-2xl p-6">
-          <Bone className="mb-5 h-6 w-40" />
-          <Bone className="mx-auto mb-6 h-20 w-20 rounded-full" />
-          <div className="space-y-4">
-            {Array.from({ length: 6 }, (_, i) => (
-              <div key={i} className="flex items-center justify-between gap-4">
-                <Bone className="h-4 w-28" />
-                <Bone className="h-4 w-40" />
-              </div>
-            ))}
+        <SkeletonPanel className="flex items-center gap-4 p-5 sm:p-6">
+          <Bone className="h-16 w-16 rounded-2xl" />
+          <div className="flex-1 space-y-2">
+            <Bone className="h-7 w-48" />
+            <Bone className="h-4 w-72 max-w-full" />
           </div>
+          <Bone className="hidden h-14 w-56 rounded-xl md:block" />
         </SkeletonPanel>
+        <div className="mt-6 grid gap-6 lg:mt-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-8">
+          <div className="space-y-2">
+            <Bone className="h-10 w-full rounded-xl" />
+            <Bone className="hidden h-10 w-full rounded-xl lg:block" />
+            <Bone className="hidden h-10 w-full rounded-xl lg:block" />
+            <Bone className="hidden h-10 w-full rounded-xl lg:block" />
+          </div>
+          <div className="space-y-6">
+            <div className="grid gap-3 sm:grid-cols-3">
+              {Array.from({ length: 3 }, (_, i) => (
+                <Bone key={i} className="h-[4.5rem] rounded-2xl" />
+              ))}
+            </div>
+            <div className="grid gap-4 md:grid-cols-2">
+              <Bone className="h-48 rounded-2xl" />
+              <Bone className="h-48 rounded-2xl" />
+            </div>
+          </div>
+        </div>
       </SkeletonArea>
     </div>
   );

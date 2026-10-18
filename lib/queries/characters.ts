@@ -2,7 +2,6 @@ import type { Character, DeletedCharacter } from "@/types";
 
 import { RowDataPacket } from "mysql2";
 
-import { charactersDb } from "@/lib/db";
 import { DEFAULT_REALM, type RealmSlug } from "@/lib/realms";
 import { realmCharactersDb } from "@/lib/realms-server";
 
@@ -212,8 +211,9 @@ export async function removeInventoryItem(
 
 export async function getDeletedCharactersByAccount(
   accountId: number,
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<DeletedCharacter[]> {
-  const [rows] = await charactersDb.execute<RowDataPacket[]>(
+  const [rows] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
     `SELECT guid, deleteInfos_Name AS name, deleteDate, race, class, level, gender
      FROM characters
      WHERE deleteDate IS NOT NULL AND deleteInfos_Account = ?
@@ -226,8 +226,9 @@ export async function getDeletedCharactersByAccount(
 
 export async function getDeletedCharacterByGuid(
   guid: number,
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<(DeletedCharacter & { accountId: number }) | null> {
-  const [rows] = await charactersDb.execute<RowDataPacket[]>(
+  const [rows] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
     `SELECT guid, deleteInfos_Name AS name, deleteInfos_Account AS accountId,
             deleteDate, race, class, level, gender
      FROM characters WHERE guid = ? AND deleteDate IS NOT NULL`,
@@ -241,8 +242,9 @@ export async function getDeletedCharacterByGuid(
 
 export async function getActiveCharacterCount(
   accountId: number,
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<number> {
-  const [rows] = await charactersDb.execute<RowDataPacket[]>(
+  const [rows] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
     "SELECT COUNT(*) AS count FROM characters WHERE account = ? AND deleteDate IS NULL",
     [accountId],
   );
@@ -250,8 +252,11 @@ export async function getActiveCharacterCount(
   return rows[0].count;
 }
 
-export async function isCharacterNameTaken(name: string): Promise<boolean> {
-  const [rows] = await charactersDb.execute<RowDataPacket[]>(
+export async function isCharacterNameTaken(
+  name: string,
+  realm: RealmSlug = DEFAULT_REALM,
+): Promise<boolean> {
+  const [rows] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
     "SELECT 1 FROM characters WHERE name = ? LIMIT 1",
     [name],
   );
@@ -285,8 +290,9 @@ export async function setAtLoginFlag(
 
 export async function getCharacterGuidsForAccount(
   accountId: number,
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<number[]> {
-  const [rows] = await charactersDb.execute<RowDataPacket[]>(
+  const [rows] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
     "SELECT guid FROM characters WHERE account = ? AND deleteInfos_Name IS NULL ORDER BY slot, guid",
     [accountId],
   );
@@ -297,8 +303,9 @@ export async function getCharacterGuidsForAccount(
 export async function updateCharacterSlots(
   accountId: number,
   guidOrder: number[],
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<boolean> {
-  const connection = await charactersDb.getConnection();
+  const connection = await realmCharactersDb(realm).getConnection();
 
   try {
     await connection.beginTransaction();
@@ -332,15 +339,16 @@ export async function restoreCharacter(
   guid: number,
   name: string,
   accountId: number,
+  realm: RealmSlug = DEFAULT_REALM,
 ): Promise<boolean> {
   // Get next slot position
-  const [slotRows] = await charactersDb.execute<RowDataPacket[]>(
+  const [slotRows] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
     "SELECT COALESCE(MAX(slot), -1) + 1 AS nextSlot FROM characters WHERE account = ? AND deleteInfos_Name IS NULL",
     [accountId],
   );
   const nextSlot = slotRows[0].nextSlot;
 
-  const [result] = await charactersDb.execute<RowDataPacket[]>(
+  const [result] = await realmCharactersDb(realm).execute<RowDataPacket[]>(
     `UPDATE characters
      SET name = ?, account = ?, slot = ?, deleteDate = NULL,
          deleteInfos_Name = NULL, deleteInfos_Account = NULL

@@ -143,7 +143,7 @@ export default function ShopContent({
         realm.status === "open"
           ? fetch(`/api/shop/characters?realm=${realm.slug}`)
           : Promise.resolve(Response.json({ characters: [] })),
-        fetch("/api/account"),
+        fetch("/api/account?summary=1"),
       ]);
 
       const itemsData = await itemsRes.json();

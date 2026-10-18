@@ -1,12 +1,13 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import { verifySession } from "@/lib/auth";
 import { getDeletedCharactersByAccount } from "@/lib/queries/characters";
 import { RESTORE_CHARACTER_COST } from "@/lib/shop-utils";
+import { requestRealm } from "@/lib/realms";
 
 export const dynamic = "force-dynamic";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
     const session = await verifySession();
 
@@ -14,7 +15,10 @@ export async function GET() {
       return NextResponse.json({ error: "unauthorized" }, { status: 401 });
     }
 
-    const deletedCharacters = await getDeletedCharactersByAccount(session.id);
+    const deletedCharacters = await getDeletedCharactersByAccount(
+      session.id,
+      requestRealm(request.nextUrl.searchParams.get("realm")),
+    );
 
     return NextResponse.json({
       deletedCharacters,
