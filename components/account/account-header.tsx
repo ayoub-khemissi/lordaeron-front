@@ -97,8 +97,10 @@ export function AccountHeader({
             <h1 className="truncate text-2xl font-bold text-gray-50">
               {username}
             </h1>
-            <p className="truncate text-sm text-gray-400">
-              {security?.email ? `${security.email} · ` : ""}
+            {security?.email && (
+              <p className="truncate text-sm text-gray-400">{security.email}</p>
+            )}
+            <p className="truncate text-xs text-gray-500">
               {t("memberSince", { date: since })}
             </p>
             {security && (

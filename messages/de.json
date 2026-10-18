@@ -643,7 +643,11 @@
     "dressingFemale": "Weiblich",
     "dressingBack": "Zurück zu meinem Charakter",
     "dressingReset": "Zurücksetzen",
-    "dressingUndress": "Ausziehen"
+    "dressingUndress": "Ausziehen",
+    "viewIn3d": "3D-Vorschau",
+    "dressingRide": "Aufsitzen",
+    "dressingMountAlone": "Nur das Reittier",
+    "dressingLoading": "Wird geladen…"
   },
   "admin": {
     "login": {

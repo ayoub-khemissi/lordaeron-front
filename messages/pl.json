@@ -643,7 +643,11 @@
     "dressingFemale": "Kobieta",
     "dressingBack": "Wróć do mojej postaci",
     "dressingReset": "Resetuj",
-    "dressingUndress": "Rozbierz"
+    "dressingUndress": "Rozbierz",
+    "viewIn3d": "Podgląd 3D",
+    "dressingRide": "Dosiądź",
+    "dressingMountAlone": "Sam wierzchowiec",
+    "dressingLoading": "Wczytywanie…"
   },
   "admin": {
     "login": {

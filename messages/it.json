@@ -643,7 +643,11 @@
     "dressingFemale": "Femmina",
     "dressingBack": "Torna al mio personaggio",
     "dressingReset": "Ripristina",
-    "dressingUndress": "Spoglia"
+    "dressingUndress": "Spoglia",
+    "viewIn3d": "Anteprima 3D",
+    "dressingRide": "Cavalcala",
+    "dressingMountAlone": "Solo la cavalcatura",
+    "dressingLoading": "Caricamento…"
   },
   "admin": {
     "login": {

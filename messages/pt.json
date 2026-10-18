@@ -643,7 +643,11 @@
     "dressingFemale": "Feminino",
     "dressingBack": "Voltar ao meu personagem",
     "dressingReset": "Repor",
-    "dressingUndress": "Despir"
+    "dressingUndress": "Despir",
+    "viewIn3d": "Pré-visualização 3D",
+    "dressingRide": "Montar",
+    "dressingMountAlone": "Só a montada",
+    "dressingLoading": "A carregar…"
   },
   "admin": {
     "login": {

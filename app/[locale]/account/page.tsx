@@ -211,8 +211,9 @@ export default function AccountPage() {
           </div>
         )}
 
-        <div className="mt-6 grid gap-6 lg:mt-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-8">
-          <aside>
+        <div className="mt-6 grid grid-cols-[minmax(0,1fr)] gap-6 lg:mt-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-8">
+          {/* min-w-0: the phone's tabs scroll in their own row instead of widening the page (Ayoub, 18/10/2026) */}
+          <aside className="min-w-0">
             <AccountNav
               items={[
                 { key: "overview", label: t("navOverview") },

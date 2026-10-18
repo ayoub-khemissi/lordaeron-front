@@ -88,7 +88,7 @@ export function AccountNav({
         })}
       </nav>
 
-      <div className="-mx-4 overflow-x-auto px-4 lg:hidden">
+      <div className="-mx-4 overflow-x-auto px-4 [scrollbar-width:none] lg:hidden [&::-webkit-scrollbar]:hidden">
         <Tabs
           aria-label={label}
           classNames={{

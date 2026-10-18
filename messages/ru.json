@@ -643,7 +643,11 @@
     "dressingFemale": "Женский",
     "dressingBack": "Вернуться к персонажу",
     "dressingReset": "Сбросить",
-    "dressingUndress": "Раздеть"
+    "dressingUndress": "Раздеть",
+    "viewIn3d": "3D-просмотр",
+    "dressingRide": "Сесть верхом",
+    "dressingMountAlone": "Только маунт",
+    "dressingLoading": "Загрузка…"
   },
   "admin": {
     "login": {

@@ -18,6 +18,10 @@ import { PriceDisplay } from "./price-display";
 import { GameTipLink } from "@/components/game-tooltip";
 import { getQualityColor } from "@/lib/shop-utils";
 import { useRealm } from "@/lib/realm-context";
+import {
+  TryOnModalButton,
+  useDressingRoom,
+} from "@/components/shop/dressing-room/dressing-room";
 
 interface SetDetailModalProps {
   set: ShopSetLocalized | null;
@@ -37,6 +41,7 @@ export function SetDetailModal({
   hasCharacter,
 }: SetDetailModalProps) {
   const t = useTranslations("shop");
+  const room = useDressingRoom();
   // a realm not open yet: the catalogue only (lib/realms.ts)
   const realmClosed = useRealm().status !== "open";
 
@@ -159,7 +164,16 @@ export function SetDetailModal({
               {t("noCharacterSelected")}
             </p>
           )}
-          <div className="flex justify-end gap-2">
+          <div className="flex flex-wrap justify-end gap-2">
+            {room && (
+              <TryOnModalButton
+                label={t("viewIn3d")}
+                onPress={() => {
+                  onClose();
+                  room.trySet(set);
+                }}
+              />
+            )}
             <Button className="text-gray-400" variant="light" onPress={onClose}>
               {t("close")}
             </Button>

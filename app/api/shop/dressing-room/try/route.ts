@@ -8,7 +8,8 @@ import { requestRealm } from "@/lib/realms";
 export const dynamic = "force-dynamic";
 
 /* What the dressing room draws of a shop item or set (lib/dressing-room.ts): ?realm= &item= (a shop item's id) or &set= (a set's id):
-   its gear for the character's slots, or the mount or companion alone, or nothing it can draw. The same for everyone: cached an hour */
+   its gear for the character's slots, or the mount or companion alone, or nothing it can draw. Never kept by the browser (a creature
+   converted since stayed "no preview" an hour, Ayoub 18/10/2026); the server keeps its own lookups */
 export async function GET(request: NextRequest) {
   try {
     const params = request.nextUrl.searchParams;
@@ -25,7 +26,7 @@ export async function GET(request: NextRequest) {
     }
 
     return NextResponse.json(await tryOn(realm, entries), {
-      headers: { "Cache-Control": "public, max-age=3600" },
+      headers: { "Cache-Control": "no-store" },
     });
   } catch (error) {
     console.error("Dressing room try-on:", error);

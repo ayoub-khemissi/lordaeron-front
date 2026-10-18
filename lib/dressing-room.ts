@@ -109,7 +109,8 @@ export async function dressingCharacter(
 
 export type TryOn =
   | { kind: "gear"; items: ModelItem[]; missing: number }
-  | { kind: "creature"; display: number }
+  // a mount (the character may ride it) or a companion
+  | { kind: "creature"; display: number; mount: boolean }
   | { kind: "none" };
 
 // a creature display the viewer has: our mirror, else Wowhead (fetched through our own nginx, which keeps it)
@@ -201,7 +202,7 @@ export async function tryOn(
       : undefined;
 
     return display && (await npcDrawable(display))
-      ? { kind: "creature", display }
+      ? { kind: "creature", display, mount: Number(pet.subclass) === 5 }
       : { kind: "none" };
   }
 

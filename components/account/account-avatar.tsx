@@ -9,11 +9,12 @@ import {
   ModalHeader,
 } from "@heroui/modal";
 import { Button } from "@heroui/button";
-import { Tab, Tabs } from "@heroui/tabs";
+import { Select, SelectItem } from "@heroui/select";
 import clsx from "clsx";
 import { useTranslations } from "next-intl";
 
 import { AVATAR_GROUPS } from "@/lib/avatars";
+import { OVERLAY_POPOVER } from "@/lib/overlay-motion";
 
 const iconUrl = (icon: string, size: number) =>
   `https://wow.zamimg.com/images/wow/icons/${size > 36 ? "large" : "medium"}/${icon}.jpg`;
@@ -132,25 +133,31 @@ export function AvatarPicker({
           </div>
         </ModalHeader>
         <ModalBody className="py-4">
-          <Tabs
+          {/* the group: a dropdown (Ayoub, 18/10/2026: tabs took the room of the icons) */}
+          <Select
+            disallowEmptySelection
             aria-label={t("avatarTitle")}
+            className="max-w-xs"
             classNames={{
-              tabList:
-                "flex-wrap gap-1 rounded-xl border border-white/[0.06] bg-black/30 p-1",
-              cursor: "bg-wow-gold/15 shadow-none",
-              tab: "h-8 px-3",
-              tabContent:
-                "text-xs text-gray-400 group-data-[selected=true]:text-wow-gold-light",
+              trigger:
+                "border border-white/[0.08] bg-black/30 data-[hover=true]:bg-black/40",
+              value: "text-sm text-wow-gold-light",
             }}
-            selectedKey={group}
-            variant="solid"
-            onSelectionChange={(key) => setGroup(String(key))}
+            popoverProps={OVERLAY_POPOVER}
+            selectedKeys={[group]}
+            size="sm"
+            onSelectionChange={(keys) => {
+              const key = Array.from(keys)[0];
+
+              if (key) setGroup(String(key));
+            }}
           >
             {AVATAR_GROUPS.map((g) => (
-              <Tab key={g.key} title={t(`avatarGroups.${g.key}`)} />
+              <SelectItem key={g.key}>{t(`avatarGroups.${g.key}`)}</SelectItem>
             ))}
-          </Tabs>
-          <div className="grid grid-cols-6 gap-2 sm:grid-cols-8">
+          </Select>
+          {/* the icons at their own size (56 px, Wowhead's large ones): stretched, they showed their pixels */}
+          <div className="flex flex-wrap gap-2">
             {icons.map((icon) => {
               const active = icon === selected;
 
@@ -159,7 +166,7 @@ export function AvatarPicker({
                   key={icon}
                   aria-pressed={active}
                   className={clsx(
-                    "group relative aspect-square overflow-hidden rounded-lg border transition-all",
+                    "group relative h-14 w-14 shrink-0 overflow-hidden rounded-lg border transition-all",
                     active
                       ? "border-wow-gold shadow-[0_0_0_2px_rgba(199,156,62,0.45),0_0_16px_rgba(199,156,62,0.35)]"
                       : "border-white/10 hover:border-wow-gold/50",
@@ -169,7 +176,7 @@ export function AvatarPicker({
                 >
                   <img
                     alt=""
-                    className="h-full w-full scale-[1.08] object-cover transition-transform group-hover:scale-[1.15]"
+                    className="h-full w-full object-cover"
                     draggable={false}
                     loading="lazy"
                     src={iconUrl(icon, 56)}

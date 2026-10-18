@@ -643,7 +643,11 @@
     "dressingFemale": "Female",
     "dressingBack": "Back to my character",
     "dressingReset": "Reset",
-    "dressingUndress": "Undress"
+    "dressingUndress": "Undress",
+    "viewIn3d": "3D preview",
+    "dressingRide": "Ride it",
+    "dressingMountAlone": "Mount alone",
+    "dressingLoading": "Loading…"
   },
   "admin": {
     "login": {

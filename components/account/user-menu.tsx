@@ -270,11 +270,12 @@ export function UserMenuMobile({
           )}
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-1.5">
+      {/* one section per row: the narrowest phones keep their labels whole (Ayoub, 18/10/2026: two columns overflowed) */}
+      <div className="flex flex-col divide-y divide-white/[0.05] overflow-hidden rounded-xl bg-white/[0.03]">
         {SECTIONS.map((s) => (
           <button
             key={s.tab}
-            className="flex items-center gap-2.5 rounded-xl bg-white/[0.03] px-3 py-2.5 text-left text-sm text-gray-200 active:bg-white/[0.08]"
+            className="flex min-w-0 items-center gap-3 px-3 py-3 text-left text-[15px] text-gray-200 active:bg-white/[0.08]"
             type="button"
             onClick={() => {
               onNavigate();
@@ -282,12 +283,22 @@ export function UserMenuMobile({
             }}
           >
             <GameGlyph name={s.icon} />
-            {t(s.label)}
+            <span className="min-w-0 flex-1 truncate">{t(s.label)}</span>
+            <svg
+              aria-hidden
+              className="h-3.5 w-3.5 shrink-0 text-gray-600"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2.5}
+              viewBox="0 0 24 24"
+            >
+              <path d="M9 5l7 7-7 7" />
+            </svg>
           </button>
         ))}
       </div>
       <button
-        className="mt-1.5 flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-left text-sm text-red-300 active:bg-red-500/10"
+        className="mt-2 flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-[15px] text-red-300 active:bg-red-500/10"
         type="button"
         onClick={() => {
           onNavigate();

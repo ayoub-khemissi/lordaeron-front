@@ -13,7 +13,7 @@ export function AccountSkeleton() {
           </div>
           <Bone className="hidden h-14 w-56 rounded-xl md:block" />
         </SkeletonPanel>
-        <div className="mt-6 grid gap-6 lg:mt-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-8">
+        <div className="mt-6 grid grid-cols-[minmax(0,1fr)] gap-6 lg:mt-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-8">
           <div className="space-y-2">
             <Bone className="h-10 w-full rounded-xl" />
             <Bone className="hidden h-10 w-full rounded-xl lg:block" />

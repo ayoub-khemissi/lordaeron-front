@@ -208,7 +208,8 @@ function RealmCard({
         ice ? "border-wow-blue-ice/20" : "border-wow-gold/20",
       )}
     >
-      <div className="flex items-start justify-between gap-3">
+      {/* the name, then its state beside it, or under it on a narrow card */}
+      <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
         <h4
           className={clsx(
             "text-lg font-bold",
@@ -217,7 +218,7 @@ function RealmCard({
         >
           {realm.name}
         </h4>
-        <span className="flex items-center gap-2 text-xs text-gray-300">
+        <span className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-gray-300">
           {realm.error ? (
             <span className="text-gray-500">{t("realmUnavailable")}</span>
           ) : !realm.open ? (
@@ -271,7 +272,7 @@ function RealmCard({
       </div>
 
       {best && (
-        <p className="mt-3 truncate text-sm text-gray-400">
+        <p className="mt-3 text-sm text-gray-400">
           {t("highestLevel")}{" "}
           <span
             className="font-semibold"

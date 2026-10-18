@@ -38,6 +38,7 @@ import { OVERLAY_POPOVER } from "@/lib/overlay-motion";
  */
 
 interface CharacterLooks {
+  guid: number;
   name: string;
   race: number;
   gender: number;
@@ -88,6 +89,7 @@ function wear(items: ModelItem[], piece: ModelItem): ModelItem[] {
 // the races a character without the account's own may take (3.3.5: 1-8, 10, 11)
 const RACES = [1, 2, 3, 4, 5, 6, 7, 8, 10, 11];
 const POSITION_KEY = "lordaeron.dressingRoom.position";
+const RIDING_KEY = "lordaeron.dressingRoom.riding";
 const WIDTH = 340;
 
 type Notice = "unavailable" | "partial" | null;
@@ -124,55 +126,98 @@ export function DressingRoomProvider({
   const [looks, setLooks] = useState<CharacterLooks | null>(null);
   // the race and gender of a reader without a character on the realm
   const [stand, setStand] = useState({ race: 1, gender: 0 });
-  const [worn, setWorn] = useState<ModelItem[] | null>(null);
-  const [creature, setCreature] = useState<number | null>(null);
+  // the pieces tried on, worn over the character's own gear (or over nothing once undressed): kept apart from it, so a set tried before
+  // the character's gear arrived is still worn once it has (Ayoub, 18/10/2026: a set showed only at the second try)
+  const [tried, setTried] = useState<ModelItem[]>([]);
+  const [bare, setBare] = useState(false);
+  const [looksLoading, setLooksLoading] = useState(false);
+  const shownGuid = useRef<number | null>(null);
+  const [creature, setCreature] = useState<{
+    display: number;
+    mount: boolean;
+  } | null>(null);
+  // a mount ridden by the character (Ayoub, 18/10/2026), the reader's choice kept in this browser
+  const [riding, setRiding] = useState(false);
+
+  useEffect(() => {
+    try {
+      setRiding(localStorage.getItem(RIDING_KEY) === "1");
+    } catch {
+      // a private window: the mount alone
+    }
+  }, []);
+  const ride = (on: boolean) => {
+    setRiding(on);
+    try {
+      localStorage.setItem(RIDING_KEY, on ? "1" : "0");
+    } catch {
+      // kept for the visit only
+    }
+  };
   const [notice, setNotice] = useState<Notice>(null);
   const [failed, setFailed] = useState(false);
   const [busy, setBusy] = useState(false);
   const phone = usePhone();
 
-  // the selected character's looks and gear, read when the room first opens and when the selection changes
+  // the selected character's looks and gear, read once the room opens; another character: what was tried is taken off
   useEffect(() => {
-    if (!open || !character) {
-      if (!character) setLooks(null);
+    if (!character) {
+      setLooks(null);
+      shownGuid.current = null;
 
       return;
     }
+    if (character.guid !== shownGuid.current) {
+      shownGuid.current = character.guid;
+      setLooks(null);
+      setTried([]);
+      setBare(false);
+    }
+    if (!open || looks?.guid === character.guid) return;
     let cancelled = false;
 
+    setLooksLoading(true);
     fetch(`/api/shop/dressing-room?realm=${realm}&guid=${character.guid}`)
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
-        if (cancelled) return;
-        setLooks(data?.character ?? null);
-        setWorn(null);
+        if (!cancelled)
+          setLooks(
+            data?.character
+              ? { ...data.character, guid: character.guid }
+              : null,
+          );
       })
-      .catch(() => !cancelled && setLooks(null));
+      .catch(() => !cancelled && setLooks(null))
+      .finally(() => !cancelled && setLooksLoading(false));
 
     return () => {
       cancelled = true;
     };
-  }, [open, character, realm]);
+  }, [open, character, realm, looks?.guid]);
 
-  const base = looks?.items ?? [];
-  const items = worn ?? base;
+  const base = useMemo(() => (bare ? [] : (looks?.items ?? [])), [bare, looks]);
+  const items = useMemo(() => tried.reduce(wear, base), [tried, base]);
 
   const show = useCallback(
     async (query: string) => {
       setOpen(true);
       setBusy(true);
       setNotice(null);
+      // a new try: the last model's failure no longer stands
+      setFailed(false);
       try {
         const res = await fetch(
-          `/api/shop/dressing-room/try?realm=${realm}&${query}`,
+          // v=2: past the answers the browser kept an hour before (18/10/2026)
+          `/api/shop/dressing-room/try?realm=${realm}&${query}&v=2`,
         );
         const data = await res.json();
 
-        if (data.kind === "creature") setCreature(data.display);
+        if (data.kind === "creature")
+          setCreature({ display: data.display, mount: !!data.mount });
         else if (data.kind === "gear") {
           setCreature(null);
-          setWorn((current) =>
-            (data.items as ModelItem[]).reduce(wear, current ?? base),
+          setTried((current) =>
+            (data.items as ModelItem[]).reduce(wear, current),
           );
           if (data.missing) setNotice("partial");
         } else setNotice("unavailable");
@@ -182,7 +227,7 @@ export function DressingRoomProvider({
         setBusy(false);
       }
     },
-    [realm, base],
+    [realm],
   );
 
   const api = useMemo<DressingRoomApi>(
@@ -193,36 +238,39 @@ export function DressingRoomProvider({
     [show],
   );
 
-  const model = useMemo<DressingModel>(
-    () =>
-      creature
-        ? { kind: "creature", display: creature }
-        : looks
-          ? { kind: "character", ...looks, items }
-          : {
-              kind: "character",
-              ...stand,
-              skin: 0,
-              face: 0,
-              hairStyle: 0,
-              hairColor: 0,
-              facialStyle: 0,
-              items,
-            },
-    [creature, looks, stand, items],
-  );
+  const model = useMemo<DressingModel>(() => {
+    // the character, riding the mount shown when the reader chose so
+    const mount = creature?.mount && riding ? { mount: creature.display } : {};
+
+    if (creature && !mount.mount)
+      return { kind: "creature", display: creature.display };
+
+    return looks
+      ? { kind: "character", ...looks, items, ...mount }
+      : {
+          kind: "character",
+          ...stand,
+          skin: 0,
+          face: 0,
+          hairStyle: 0,
+          hairColor: 0,
+          facialStyle: 0,
+          items,
+          ...mount,
+        };
+  }, [creature, riding, looks, stand, items]);
 
   const body = (
     <>
       <div className="relative">
         <DressingViewer
           className="h-[420px] w-full sm:h-[400px]"
+          hold={!!character && !looks && looksLoading}
+          loadingLabel={t("dressingLoading")}
           model={model}
+          waiting={busy}
           onFailed={() => setFailed(true)}
         />
-        {busy && (
-          <span className="absolute right-3 top-3 h-2 w-2 animate-ping rounded-full bg-wow-gold" />
-        )}
         {failed && (
           <div className="absolute inset-0 flex items-center justify-center bg-black/80 p-6 text-center text-sm text-gray-300">
             {t("dressingFailed")}
@@ -277,26 +325,43 @@ export function DressingRoomProvider({
   const actions = (
     <div className="flex w-full flex-wrap gap-2">
       {creature ? (
-        <Button
-          className="flex-1 bg-white/[0.06] text-gray-200"
-          size="sm"
-          variant="flat"
-          onPress={() => {
-            setCreature(null);
-            setNotice(null);
-          }}
-        >
-          {t("dressingBack")}
-        </Button>
+        <>
+          {creature.mount && (
+            <Button
+              className={
+                riding
+                  ? "flex-1 bg-wow-gold/15 font-semibold text-wow-gold-light"
+                  : "flex-1 bg-white/[0.06] text-gray-200"
+              }
+              size="sm"
+              variant="flat"
+              onPress={() => ride(!riding)}
+            >
+              {riding ? t("dressingMountAlone") : t("dressingRide")}
+            </Button>
+          )}
+          <Button
+            className="flex-1 bg-white/[0.06] text-gray-200"
+            size="sm"
+            variant="flat"
+            onPress={() => {
+              setCreature(null);
+              setNotice(null);
+            }}
+          >
+            {t("dressingBack")}
+          </Button>
+        </>
       ) : (
         <>
           <Button
             className="flex-1 bg-white/[0.06] text-gray-200"
-            isDisabled={worn === null}
+            isDisabled={tried.length === 0 && !bare}
             size="sm"
             variant="flat"
             onPress={() => {
-              setWorn(null);
+              setTried([]);
+              setBare(false);
               setNotice(null);
             }}
           >
@@ -308,7 +373,8 @@ export function DressingRoomProvider({
             size="sm"
             variant="flat"
             onPress={() => {
-              setWorn([]);
+              setTried([]);
+              setBare(true);
               setNotice(null);
             }}
           >
@@ -319,11 +385,12 @@ export function DressingRoomProvider({
     </div>
   );
 
-  const title = creature
-    ? t("dressingTitle")
-    : looks
-      ? t("dressingOn", { name: looks.name })
-      : t("dressingTitle");
+  const title =
+    creature && !(creature.mount && riding)
+      ? t("dressingTitle")
+      : looks
+        ? t("dressingOn", { name: looks.name })
+        : t("dressingTitle");
 
   return (
     <DressingRoomContext.Provider value={api}>
@@ -492,36 +559,62 @@ export function TryOnButton({
         onPress();
       }}
     >
-      <svg aria-hidden className="h-[18px] w-[18px]" viewBox="0 0 24 24">
-        {/* the game's magnifier: a gilded rim, a pale lens, a dark handle */}
-        <circle
-          cx="10"
-          cy="10"
-          fill="rgba(170,210,255,0.25)"
-          r="6.2"
-          stroke="#e8c36a"
-          strokeWidth="2.2"
-        />
-        <path
-          d="M8 7.5a3 3 0 0 1 2.5-1.4"
-          fill="none"
-          stroke="rgba(255,255,255,0.7)"
-          strokeLinecap="round"
-          strokeWidth="1.2"
-        />
-        <path
-          d="M14.6 14.6 20 20"
-          stroke="#8a5a22"
-          strokeLinecap="round"
-          strokeWidth="3.2"
-        />
-        <path
-          d="M14.6 14.6 16 16"
-          stroke="#e8c36a"
-          strokeLinecap="round"
-          strokeWidth="3.2"
-        />
-      </svg>
+      <MagnifierIcon className="h-[18px] w-[18px]" />
     </button>
+  );
+}
+
+// the game's magnifier (its inspect cursor): a gilded rim, a pale lens, a dark handle
+function MagnifierIcon({ className }: { className?: string }) {
+  return (
+    <svg aria-hidden className={className} viewBox="0 0 24 24">
+      <circle
+        cx="10"
+        cy="10"
+        fill="rgba(170,210,255,0.25)"
+        r="6.2"
+        stroke="#e8c36a"
+        strokeWidth="2.2"
+      />
+      <path
+        d="M8 7.5a3 3 0 0 1 2.5-1.4"
+        fill="none"
+        stroke="rgba(255,255,255,0.7)"
+        strokeLinecap="round"
+        strokeWidth="1.2"
+      />
+      <path
+        d="M14.6 14.6 20 20"
+        stroke="#8a5a22"
+        strokeLinecap="round"
+        strokeWidth="3.2"
+      />
+      <path
+        d="M14.6 14.6 16 16"
+        stroke="#e8c36a"
+        strokeLinecap="round"
+        strokeWidth="3.2"
+      />
+    </svg>
+  );
+}
+
+/* The detail windows' way to the room (Ayoub, 18/10/2026: the mount seen from its window too): the window closes, the room shows it */
+export function TryOnModalButton({
+  label,
+  onPress,
+}: {
+  label: string;
+  onPress: () => void;
+}) {
+  return (
+    <Button
+      className="mr-auto border-wow-gold/30 text-wow-gold-light"
+      startContent={<MagnifierIcon className="h-4 w-4" />}
+      variant="bordered"
+      onPress={onPress}
+    >
+      {label}
+    </Button>
   );
 }
