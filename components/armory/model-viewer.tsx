@@ -145,11 +145,31 @@ export async function customization(
   });
 }
 
+// a viewer's WebGL contexts handed back before its canvas goes (the browser keeps about 16 alive: models made one after another without
+// it drew black once past them, Ayoub 18/10/2026)
+export function releaseCanvases(container: HTMLElement | null) {
+  container?.querySelectorAll("canvas").forEach((canvas) => {
+    try {
+      const gl = (canvas.getContext("webgl2") ||
+        canvas.getContext("webgl")) as WebGLRenderingContext | null;
+
+      gl?.getExtension("WEBGL_lose_context")?.loseContext();
+    } catch {
+      // a canvas without WebGL
+    }
+  });
+}
+
+// the test's own context handed back at once (one per viewer opened, else: the dressing room opened often ran out of them)
 export function webglAvailable() {
   try {
     const canvas = document.createElement("canvas");
+    const gl = (canvas.getContext("webgl2") ||
+      canvas.getContext("webgl")) as WebGLRenderingContext | null;
 
-    return !!(canvas.getContext("webgl2") || canvas.getContext("webgl"));
+    gl?.getExtension("WEBGL_lose_context")?.loseContext();
+
+    return !!gl;
   } catch {
     return false;
   }
@@ -246,6 +266,7 @@ export function ModelViewer({
       }
     }
     viewerRef.current = null;
+    releaseCanvases(containerRef.current);
     if (containerRef.current) containerRef.current.innerHTML = "";
   };
 

@@ -11,6 +11,7 @@ import {
   VIEWER_SCRIPT,
   customization,
   litPixels,
+  releaseCanvases,
   setupGlobals,
   webglAvailable,
 } from "@/components/armory/model-viewer";
@@ -114,6 +115,7 @@ export function DressingViewer({
       // the viewer's own cleanup
     }
     viewer.current = null;
+    releaseCanvases(box.current);
     if (box.current) box.current.innerHTML = "";
   };
 
@@ -261,12 +263,9 @@ export function DressingViewer({
         .join("|");
 
     if (key(items) === key(shown.current)) return;
-    // a model still loading takes no new gear (the viewer drops it): made again, in it
-    if (!drawn) {
-      setGeneration((g) => g + 1);
-
-      return;
-    }
+    // a model still loading takes its new gear once drawn (this effect runs again then): never made again for it, each new model a
+    // new WebGL context (Ayoub, 18/10/2026: outfits switched fast drew black)
+    if (!drawn) return;
     try {
       const slots = [...new Set([...shown.current, ...items].map((i) => i[0]))];
 
