@@ -394,7 +394,24 @@
     "securityIntro": "O teu endereço de e-mail, a autenticação de dois fatores e a tua palavra-passe.",
     "purchasesIntro": "Tudo o que compraste na loja, em cada reino.",
     "allRealms": "Todos os reinos",
-    "slotsFull": "Vagas cheias"
+    "slotsFull": "Vagas cheias",
+    "loadError": "Não foi possível carregar a tua conta.",
+    "loadErrorHint": "Verifica a tua ligação e tenta novamente.",
+    "retry": "Tentar novamente",
+    "avatarTitle": "Escolhe o teu avatar",
+    "avatarHint": "O ícone que te representa no site.",
+    "avatarInitial": "Usar a minha inicial",
+    "avatarSave": "Guardar",
+    "avatarError": "Não foi possível guardar o avatar.",
+    "avatarChange": "Mudar de avatar",
+    "avatarGroups": {
+      "classes": "Classes",
+      "races": "Raças",
+      "factions": "Facções",
+      "legends": "Lendas",
+      "beasts": "Feras e montadas",
+      "arcana": "Arcano e relíquias"
+    }
   },
   "shop": {
     "title": "Loja",

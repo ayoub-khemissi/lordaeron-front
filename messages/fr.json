@@ -394,7 +394,24 @@
     "securityIntro": "Votre adresse e-mail, la double authentification et votre mot de passe.",
     "purchasesIntro": "Tout ce que vous avez acheté à la boutique, sur chaque royaume.",
     "allRealms": "Tous les royaumes",
-    "slotsFull": "Emplacements pleins"
+    "slotsFull": "Emplacements pleins",
+    "loadError": "Impossible de charger votre compte.",
+    "loadErrorHint": "Vérifiez votre connexion, puis réessayez.",
+    "retry": "Réessayer",
+    "avatarTitle": "Choisissez votre avatar",
+    "avatarHint": "L'icône qui vous représente sur le site.",
+    "avatarInitial": "Utiliser mon initiale",
+    "avatarSave": "Enregistrer",
+    "avatarError": "Impossible d'enregistrer l'avatar.",
+    "avatarChange": "Changer d'avatar",
+    "avatarGroups": {
+      "classes": "Classes",
+      "races": "Races",
+      "factions": "Factions",
+      "legends": "Légendes",
+      "beasts": "Bêtes et montures",
+      "arcana": "Arcanes et reliques"
+    }
   },
   "shop": {
     "title": "Boutique",

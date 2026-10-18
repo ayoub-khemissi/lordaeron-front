@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@heroui/button";
 import { Chip } from "@heroui/chip";
 import Image from "next/image";
@@ -12,6 +13,11 @@ import {
   WarningIcon,
 } from "@/components/account/account-icons";
 import { DEFAULT_REALM, realmPath } from "@/lib/realms";
+import {
+  AccountAvatar,
+  AvatarPicker,
+} from "@/components/account/account-avatar";
+import { useAuth } from "@/lib/auth-context";
 
 export interface AccountSecurity {
   email: string | null;
@@ -38,6 +44,9 @@ export function AccountHeader({
   onSecurity: () => void;
 }) {
   const t = useTranslations("account");
+  const { user, refresh } = useAuth();
+  const [picking, setPicking] = useState(false);
+  const avatar = user?.avatar ?? null;
   const since = new Date(joindate).toLocaleDateString(locale, {
     month: "long",
     year: "numeric",
@@ -51,11 +60,39 @@ export function AccountHeader({
       />
       <div className="relative flex flex-col gap-5 p-5 sm:p-6 md:flex-row md:items-center">
         <div className="flex min-w-0 flex-1 items-center gap-4">
-          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-wow-gold/40 bg-gradient-to-br from-wow-gold/25 to-wow-gold-dark/10 shadow-[0_0_24px_rgba(199,156,62,0.18)]">
-            <span className="text-2xl font-black wow-gradient-text">
-              {username.charAt(0).toUpperCase()}
+          {/* the avatar: a click chooses another (its pencil on hover, always on a phone) */}
+          <button
+            aria-label={t("avatarChange")}
+            className="group relative shrink-0 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-wow-gold"
+            title={t("avatarChange")}
+            type="button"
+            onClick={() => setPicking(true)}
+          >
+            <AccountAvatar icon={avatar} name={username} size={64} />
+            <span className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full border border-wow-gold/50 bg-[#0d1117] text-wow-gold-light transition-opacity md:opacity-0 md:group-hover:opacity-100">
+              <svg
+                aria-hidden
+                className="h-3 w-3"
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2.2}
+                viewBox="0 0 24 24"
+              >
+                <path d="M4 20h4L19 9l-4-4L4 16v4ZM14 6l4 4" />
+              </svg>
             </span>
-          </div>
+          </button>
+          {picking && (
+            <AvatarPicker
+              isOpen
+              current={avatar}
+              name={username}
+              onClose={() => setPicking(false)}
+              onSaved={refresh}
+            />
+          )}
           <div className="min-w-0">
             <h1 className="truncate text-2xl font-bold text-gray-50">
               {username}

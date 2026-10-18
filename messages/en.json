@@ -394,7 +394,24 @@
     "securityIntro": "Your e-mail address, two-factor authentication and password.",
     "purchasesIntro": "Everything bought in the shop, on every realm.",
     "allRealms": "All realms",
-    "slotsFull": "Slots full"
+    "slotsFull": "Slots full",
+    "loadError": "Your account could not be loaded.",
+    "loadErrorHint": "Check your connection, then try again.",
+    "retry": "Try again",
+    "avatarTitle": "Choose your avatar",
+    "avatarHint": "The icon that represents you on the site.",
+    "avatarInitial": "Use my initial",
+    "avatarSave": "Save",
+    "avatarError": "The avatar could not be saved.",
+    "avatarChange": "Change avatar",
+    "avatarGroups": {
+      "classes": "Classes",
+      "races": "Races",
+      "factions": "Factions",
+      "legends": "Legends",
+      "beasts": "Beasts & mounts",
+      "arcana": "Arcana & relics"
+    }
   },
   "shop": {
     "title": "Shop",

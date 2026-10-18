@@ -32,6 +32,7 @@ import { useAuth } from "@/lib/auth-context";
 import { RealmSwitcher } from "@/components/realm-switcher";
 import { registerPath } from "@/lib/realms";
 import { OVERLAY_MOTION } from "@/lib/overlay-motion";
+import { UserMenu, UserMenuMobile } from "@/components/account/user-menu";
 
 /* The top bar (Ayoub, 13/10/2026: simple and coherent, one menu for the bar, the burger and the footer, components/navigation):
    - in a realm: its switcher, its groups as dropdowns (a game icon and a one-line hint per entry) and the shop; on the right the vote,
@@ -235,51 +236,8 @@ export const Navbar = () => {
           {loading ? (
             <div className="w-24 h-8 rounded-lg bg-white/5 animate-pulse" />
           ) : user ? (
-            /* Logged in: user dropdown */
-            <Dropdown
-              motionProps={OVERLAY_MOTION}
-              placement="bottom-end"
-              shouldBlockScroll={false}
-            >
-              <DropdownTrigger>
-                <Button
-                  className="glass border-wow-gold/20 hover:border-wow-gold/40 transition-colors gap-2 px-3"
-                  size="sm"
-                  variant="flat"
-                >
-                  <div className="w-6 h-6 rounded-full bg-gradient-to-br from-wow-gold/40 to-wow-gold-dark/40 flex items-center justify-center border border-wow-gold/30">
-                    <span className="text-xs font-bold wow-gradient-text">
-                      {user.username.charAt(0).toUpperCase()}
-                    </span>
-                  </div>
-                  <span className="text-wow-gold text-sm font-medium">
-                    {user.username}
-                  </span>
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu
-                aria-label={t("nav.userMenu")}
-                classNames={{
-                  base: "bg-[#161b22] border border-wow-gold/15",
-                }}
-              >
-                <DropdownItem
-                  key="account"
-                  className="text-gray-300 hover:text-wow-gold"
-                  onPress={() => router.push(`/${locale}/account`)}
-                >
-                  {t("nav.account")}
-                </DropdownItem>
-                <DropdownItem
-                  key="logout"
-                  className="text-red-400"
-                  color="danger"
-                  onPress={handleLogout}
-                >
-                  {t("nav.logout")}
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
+            /* Logged in: the account menu (components/account/user-menu.tsx) */
+            <UserMenu realm={realm?.slug ?? null} onLogout={handleLogout} />
           ) : (
             /* Not logged in: login/register buttons */
             <>
@@ -386,29 +344,12 @@ export const Navbar = () => {
             </Button>
           </NavbarMenuItem>
           {!loading && user ? (
-            <>
-              <NavbarMenuItem>
-                <NextLink
-                  className="text-wow-gold hover:text-wow-gold-light transition-all text-lg block py-2 px-3 rounded-lg hover:bg-wow-gold/5 font-medium"
-                  href={`/${locale}/account`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {t("nav.account")}
-                </NextLink>
-              </NavbarMenuItem>
-              <NavbarMenuItem>
-                <Button
-                  className="h-auto min-w-0 justify-start whitespace-normal text-red-400 hover:text-red-300 transition-all text-lg block py-2 px-3 rounded-lg hover:bg-red-500/5 w-full text-left"
-                  variant="light"
-                  onPress={() => {
-                    setIsMenuOpen(false);
-                    handleLogout();
-                  }}
-                >
-                  {t("nav.logout")}
-                </Button>
-              </NavbarMenuItem>
-            </>
+            <NavbarMenuItem>
+              <UserMenuMobile
+                onLogout={handleLogout}
+                onNavigate={() => setIsMenuOpen(false)}
+              />
+            </NavbarMenuItem>
           ) : !loading ? (
             <>
               <NavbarMenuItem>

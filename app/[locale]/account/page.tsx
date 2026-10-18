@@ -8,6 +8,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { Button } from "@heroui/button";
 
 import { AccountSkeleton } from "./account-skeleton";
 
@@ -54,6 +55,8 @@ export default function AccountPage() {
   const [purchases, setPurchases] = useState<ShopPurchaseWithItem[]>([]);
   const [security, setSecurity] = useState<SecurityState | null>(null);
   const [loading, setLoading] = useState(true);
+  // the account could not be read (not a lost session: that one goes to the sign-in): said, with a retry, never a loop to the sign-in
+  const [failed, setFailed] = useState(false);
   const [tab, setTab] = useState<AccountTab>("overview");
   const [realm, setRealm] = useState<AccountRealm["slug"]>("lordaeron");
 
@@ -65,6 +68,7 @@ export default function AccountPage() {
 
       return null;
     }
+    if (!res.ok) throw new Error(`account ${res.status}`);
     const next = (await res.json()) as AccountData;
 
     setData(next);
@@ -110,14 +114,22 @@ export default function AccountPage() {
 
       return;
     }
-    Promise.all([loadAccount(), loadPurchases(), loadSecurity()])
+    setFailed(false);
+    Promise.all([
+      loadAccount(),
+      loadPurchases().catch(() => undefined),
+      loadSecurity().catch(() => undefined),
+    ])
       .then(([account]) => {
         // the characters' realm: the first where the account has some
-        const first = account?.realms.find((r) => r.characters.length);
+        const first = account?.realms?.find((r) => r.characters.length);
 
         if (first) setRealm(first.slug);
       })
-      .catch(() => router.replace(`/${locale}/login`))
+      .catch((e) => {
+        console.error("Account:", e);
+        setFailed(true);
+      })
       .finally(() => setLoading(false));
   }, [
     authUser,
@@ -137,7 +149,20 @@ export default function AccountPage() {
   };
 
   if (authLoading || loading) return <AccountSkeleton />;
-  if (!data?.account) return null;
+  if (failed || !data?.account)
+    return (
+      <div className="container mx-auto flex max-w-lg flex-col items-center px-4 py-24 text-center">
+        <p className="text-lg font-semibold text-gray-100">{t("loadError")}</p>
+        <p className="mt-1 text-sm text-gray-400">{t("loadErrorHint")}</p>
+        <Button
+          className="mt-5 bg-wow-gold/15 font-semibold text-wow-gold-light"
+          variant="flat"
+          onPress={() => window.location.reload()}
+        >
+          {t("retry")}
+        </Button>
+      </div>
+    );
 
   const characterCount = data.realms.reduce(
     (sum, r) => sum + r.characters.length,

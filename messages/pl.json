@@ -394,7 +394,24 @@
     "securityIntro": "Twój adres e-mail, weryfikacja dwuetapowa i hasło.",
     "purchasesIntro": "Wszystko, co kupiłeś w sklepie, w każdej krainie.",
     "allRealms": "Wszystkie krainy",
-    "slotsFull": "Brak miejsc"
+    "slotsFull": "Brak miejsc",
+    "loadError": "Nie udało się wczytać konta.",
+    "loadErrorHint": "Sprawdź połączenie i spróbuj ponownie.",
+    "retry": "Spróbuj ponownie",
+    "avatarTitle": "Wybierz awatar",
+    "avatarHint": "Ikona, która reprezentuje cię na stronie.",
+    "avatarInitial": "Użyj mojego inicjału",
+    "avatarSave": "Zapisz",
+    "avatarError": "Nie udało się zapisać awatara.",
+    "avatarChange": "Zmień awatar",
+    "avatarGroups": {
+      "classes": "Klasy",
+      "races": "Rasy",
+      "factions": "Frakcje",
+      "legends": "Legendy",
+      "beasts": "Bestie i wierzchowce",
+      "arcana": "Magia i relikwie"
+    }
   },
   "shop": {
     "title": "Sklep",

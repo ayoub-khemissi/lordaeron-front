@@ -394,7 +394,24 @@
     "securityIntro": "Deine E-Mail-Adresse, die Zwei-Faktor-Authentifizierung und dein Passwort.",
     "purchasesIntro": "Alles, was du im Shop gekauft hast, auf jedem Realm.",
     "allRealms": "Alle Realms",
-    "slotsFull": "Plätze voll"
+    "slotsFull": "Plätze voll",
+    "loadError": "Dein Konto konnte nicht geladen werden.",
+    "loadErrorHint": "Prüfe deine Verbindung und versuche es erneut.",
+    "retry": "Erneut versuchen",
+    "avatarTitle": "Wähle deinen Avatar",
+    "avatarHint": "Das Symbol, das dich auf der Seite darstellt.",
+    "avatarInitial": "Meine Initiale verwenden",
+    "avatarSave": "Speichern",
+    "avatarError": "Der Avatar konnte nicht gespeichert werden.",
+    "avatarChange": "Avatar ändern",
+    "avatarGroups": {
+      "classes": "Klassen",
+      "races": "Völker",
+      "factions": "Fraktionen",
+      "legends": "Legenden",
+      "beasts": "Bestien & Reittiere",
+      "arcana": "Arkanes & Relikte"
+    }
   },
   "shop": {
     "title": "Shop",

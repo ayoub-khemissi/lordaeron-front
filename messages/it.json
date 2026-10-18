@@ -394,7 +394,24 @@
     "securityIntro": "Il tuo indirizzo e-mail, l'autenticazione a due fattori e la tua password.",
     "purchasesIntro": "Tutto ciò che hai acquistato nel negozio, su ogni reame.",
     "allRealms": "Tutti i reami",
-    "slotsFull": "Slot pieni"
+    "slotsFull": "Slot pieni",
+    "loadError": "Impossibile caricare il tuo account.",
+    "loadErrorHint": "Controlla la connessione e riprova.",
+    "retry": "Riprova",
+    "avatarTitle": "Scegli il tuo avatar",
+    "avatarHint": "L'icona che ti rappresenta sul sito.",
+    "avatarInitial": "Usa la mia iniziale",
+    "avatarSave": "Salva",
+    "avatarError": "Impossibile salvare l'avatar.",
+    "avatarChange": "Cambia avatar",
+    "avatarGroups": {
+      "classes": "Classi",
+      "races": "Razze",
+      "factions": "Fazioni",
+      "legends": "Leggende",
+      "beasts": "Bestie e cavalcature",
+      "arcana": "Arcano e reliquie"
+    }
   },
   "shop": {
     "title": "Negozio",

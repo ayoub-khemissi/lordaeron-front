@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 
 import { LoginForm } from "@/components/login-form";
@@ -10,14 +9,14 @@ import { FormSkeleton } from "@/components/skeleton";
 
 export default function LoginPage() {
   const { user, loading } = useAuth();
-  const router = useRouter();
   const locale = useLocale();
 
   useEffect(() => {
     if (!loading && user) {
-      router.replace(`/${locale}/account`);
+      // a full load (a tab opened before a deploy: its old build cannot reach the new account page)
+      window.location.replace(`/${locale}/account`);
     }
-  }, [user, loading, router, locale]);
+  }, [user, loading, locale]);
 
   if (loading || user) {
     return <FormSkeleton fields={2} />;

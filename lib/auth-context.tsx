@@ -11,6 +11,10 @@ import {
 interface User {
   id: number;
   username: string;
+  // the icon chosen as its avatar (lib/avatars.ts), null: its initial
+  avatar?: string | null;
+  // its Soul Shards (the bar's account menu)
+  soulShards?: number;
 }
 
 interface AuthContextType {

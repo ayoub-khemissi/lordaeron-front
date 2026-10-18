@@ -5,7 +5,6 @@ import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
 import { useTranslations, useLocale } from "next-intl";
 import NextLink from "next/link";
-import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
 import { useAuth } from "@/lib/auth-context";
@@ -13,7 +12,6 @@ import { useAuth } from "@/lib/auth-context";
 export const LoginForm = () => {
   const t = useTranslations("login");
   const locale = useLocale();
-  const router = useRouter();
   const { refresh } = useAuth();
   const [form, setForm] = useState({ username: "", password: "" });
   // an account protected by an authenticator app (the game asks for it too): its code, asked after the password
@@ -70,10 +68,11 @@ export const LoginForm = () => {
       }
 
       await refresh();
-      // back to the page that asked for the sign-in (?next=, this site's own paths only), else the account
+      // back to the page that asked for the sign-in (?next=, this site's own paths only), else the account; a full load, not the router's
+      // (Ayoub, 18/10/2026: a tab opened before a deploy stayed on the sign-in's skeleton, its old build unable to reach the new pages)
       const next = new URLSearchParams(window.location.search).get("next");
 
-      router.push(
+      window.location.assign(
         next &&
           next.startsWith("/") &&
           !next.startsWith("//") &&
