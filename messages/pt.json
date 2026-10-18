@@ -629,7 +629,21 @@
     "restrictionChallengeGear": "Proibido pelo seu desafio",
     "restrictionChallengeXpBonus": "Sem bônus de experiência em um desafio",
     "restrictionChallengeFaction": "Não com o JxJ Hardcore",
-    "challengeGrounded": "Utilizável após Com os pés no chão"
+    "challengeGrounded": "Utilizável após Com os pés no chão",
+    "tryOn": "Experimentar (Ctrl + clique)",
+    "dressingTitle": "Provador",
+    "dressingOn": "Provador · {name}",
+    "dressingMove": "Arrasta para mover",
+    "dressingFailed": "Não foi possível carregar a vista 3D neste dispositivo.",
+    "dressingUnavailable": "Sem pré-visualização para este objeto.",
+    "dressingPartial": "Algumas peças não têm pré-visualização.",
+    "dressingRace": "Raça",
+    "dressingGender": "Sexo",
+    "dressingMale": "Masculino",
+    "dressingFemale": "Feminino",
+    "dressingBack": "Voltar ao meu personagem",
+    "dressingReset": "Repor",
+    "dressingUndress": "Despir"
   },
   "admin": {
     "login": {

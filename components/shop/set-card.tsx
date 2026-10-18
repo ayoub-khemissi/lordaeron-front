@@ -11,6 +11,10 @@ import { PriceDisplay } from "./price-display";
 import { GameTipLink } from "@/components/game-tooltip";
 import { CardArrow } from "@/components/card-arrow";
 import { CHALLENGE_RESTRICTION_LABELS } from "@/lib/challenge-shop-labels";
+import {
+  TryOnButton,
+  useDressingRoom,
+} from "@/components/shop/dressing-room/dressing-room";
 
 interface SetCardProps {
   set: ShopSetLocalized;
@@ -20,139 +24,148 @@ interface SetCardProps {
 export function SetCard({ set, onClick }: SetCardProps) {
   const t = useTranslations("shop");
   const isIneligible = set.eligible === false;
+  // the dressing room (the shop's): its magnifier, and Ctrl + click (Cmd + click on a Mac) on the card
+  const room = useDressingRoom();
 
   return (
-    <Card
-      isPressable
-      className={`glass group w-full rounded-xl border border-wow-gold/10 bg-transparent p-4 text-left shadow-none transition-all duration-200 data-[hover=true]:border-wow-gold/30 ${isIneligible ? "opacity-75 saturate-[0.25]" : ""}`}
-      isDisabled={isIneligible}
-      onPress={onClick}
-    >
-      <div className="flex items-start gap-3 mb-3">
-        {set.icon_url && (
-          <div className="w-12 h-12 rounded-lg bg-wow-dark/50 border border-wow-gold/20 flex items-center justify-center overflow-hidden shrink-0">
-            <img
-              alt={set.name}
-              className="w-10 h-10 object-contain"
-              src={set.icon_url}
-            />
+    <div className="relative h-full">
+      <Card
+        isPressable
+        className={`glass group h-full w-full rounded-xl border border-wow-gold/10 bg-transparent p-4 text-left shadow-none transition-all duration-200 data-[hover=true]:border-wow-gold/30 ${isIneligible ? "opacity-75 saturate-[0.25]" : ""}`}
+        isDisabled={isIneligible}
+        onPress={(e) =>
+          room && (e.ctrlKey || e.metaKey) ? room.trySet(set) : onClick()
+        }
+      >
+        <div className="flex items-start gap-3 mb-3">
+          {set.icon_url && (
+            <div className="w-12 h-12 rounded-lg bg-wow-dark/50 border border-wow-gold/20 flex items-center justify-center overflow-hidden shrink-0">
+              <img
+                alt={set.name}
+                className="w-10 h-10 object-contain"
+                src={set.icon_url}
+              />
+            </div>
+          )}
+          <div className="flex-1 min-w-0">
+            <h3 className="text-sm font-medium text-purple-400 group-hover:text-wow-gold transition-colors truncate">
+              {set.name}
+            </h3>
+            <p className="text-xs text-gray-500 mt-0.5">
+              {t("setPieces", { count: set.items.length })}
+            </p>
           </div>
-        )}
-        <div className="flex-1 min-w-0">
-          <h3 className="text-sm font-medium text-purple-400 group-hover:text-wow-gold transition-colors truncate">
-            {set.name}
-          </h3>
-          <p className="text-xs text-gray-500 mt-0.5">
-            {t("setPieces", { count: set.items.length })}
-          </p>
+          {set.discount_percentage > 0 && (
+            <Chip className="bg-green-500/10 text-green-400 shrink-0" size="sm">
+              -{set.discount_percentage}%
+            </Chip>
+          )}
         </div>
-        {set.discount_percentage > 0 && (
-          <Chip className="bg-green-500/10 text-green-400 shrink-0" size="sm">
-            -{set.discount_percentage}%
-          </Chip>
+
+        {set.description && (
+          <p className="text-xs text-gray-400 mb-3 line-clamp-2">
+            {set.description}
+          </p>
         )}
-      </div>
 
-      {set.description && (
-        <p className="text-xs text-gray-400 mb-3 line-clamp-2">
-          {set.description}
-        </p>
-      )}
-
-      {/* Mini piece icons with Wowhead tooltips */}
-      <div className="flex flex-wrap gap-1 mb-3">
-        {set.items.slice(0, 9).map((piece) => (
-          <div
-            key={piece.id}
-            className={`w-7 h-7 rounded border border-gray-700/50 bg-wow-dark/30 flex items-center justify-center overflow-hidden ${
-              piece.icon_url ? "" : "text-[10px] text-gray-600"
-            }`}
-          >
-            {piece.icon_url && piece.item_id ? (
-              <GameTipLink
-                className="flex items-center justify-center"
-                itemId={piece.item_id}
-              >
+        {/* Mini piece icons with Wowhead tooltips */}
+        <div className="flex flex-wrap gap-1 mb-3">
+          {set.items.slice(0, 9).map((piece) => (
+            <div
+              key={piece.id}
+              className={`w-7 h-7 rounded border border-gray-700/50 bg-wow-dark/30 flex items-center justify-center overflow-hidden ${
+                piece.icon_url ? "" : "text-[10px] text-gray-600"
+              }`}
+            >
+              {piece.icon_url && piece.item_id ? (
+                <GameTipLink
+                  className="flex items-center justify-center"
+                  itemId={piece.item_id}
+                >
+                  <img
+                    alt=""
+                    className="w-6 h-6 object-contain"
+                    src={piece.icon_url}
+                  />
+                </GameTipLink>
+              ) : piece.icon_url ? (
                 <img
                   alt=""
                   className="w-6 h-6 object-contain"
                   src={piece.icon_url}
                 />
-              </GameTipLink>
-            ) : piece.icon_url ? (
-              <img
-                alt=""
-                className="w-6 h-6 object-contain"
-                src={piece.icon_url}
-              />
-            ) : (
-              "?"
-            )}
-          </div>
-        ))}
-      </div>
+              ) : (
+                "?"
+              )}
+            </div>
+          ))}
+        </div>
 
-      {/* Restriction chips */}
-      {(isIneligible ||
-        set.class_ids ||
-        set.faction !== "both" ||
-        set.min_level > 0) && (
-        <div className="flex flex-wrap gap-1 mb-3">
-          {isIneligible &&
-            set.restriction_reason &&
-            set.restriction_reason !== "level" && (
+        {/* Restriction chips */}
+        {(isIneligible ||
+          set.class_ids ||
+          set.faction !== "both" ||
+          set.min_level > 0) && (
+          <div className="flex flex-wrap gap-1 mb-3">
+            {isIneligible &&
+              set.restriction_reason &&
+              set.restriction_reason !== "level" && (
+                <Chip
+                  className="bg-red-500/20 text-red-400 border-red-500/30 text-[10px]"
+                  size="sm"
+                  variant="bordered"
+                >
+                  {CHALLENGE_RESTRICTION_LABELS[set.restriction_reason]
+                    ? t(CHALLENGE_RESTRICTION_LABELS[set.restriction_reason])
+                    : set.restriction_reason === "class"
+                      ? t("restrictionClass")
+                      : t("restrictionFaction")}
+                </Chip>
+              )}
+            {set.min_level > 0 && (
               <Chip
-                className="bg-red-500/20 text-red-400 border-red-500/30 text-[10px]"
+                className="bg-orange-500/10 text-orange-300 text-[10px]"
                 size="sm"
-                variant="bordered"
               >
-                {CHALLENGE_RESTRICTION_LABELS[set.restriction_reason]
-                  ? t(CHALLENGE_RESTRICTION_LABELS[set.restriction_reason])
-                  : set.restriction_reason === "class"
-                    ? t("restrictionClass")
-                    : t("restrictionFaction")}
+                {t("reqLevel", { level: set.min_level })}
               </Chip>
             )}
-          {set.min_level > 0 && (
-            <Chip
-              className="bg-orange-500/10 text-orange-300 text-[10px]"
-              size="sm"
-            >
-              {t("reqLevel", { level: set.min_level })}
-            </Chip>
-          )}
-          {set.class_ids && (
-            <Chip
-              className="bg-cyan-500/10 text-cyan-300 text-[10px]"
-              size="sm"
-            >
-              {set.class_ids.map((id) => t(`className_${id}`)).join(", ")}
-            </Chip>
-          )}
-          {set.faction !== "both" && (
-            <Chip
-              className={
-                set.faction === "alliance"
-                  ? "bg-wow-alliance/20 text-blue-300 text-[10px]"
-                  : "bg-wow-horde/20 text-red-300 text-[10px]"
-              }
-              size="sm"
-            >
-              {set.faction}
-            </Chip>
-          )}
-        </div>
-      )}
+            {set.class_ids && (
+              <Chip
+                className="bg-cyan-500/10 text-cyan-300 text-[10px]"
+                size="sm"
+              >
+                {set.class_ids.map((id) => t(`className_${id}`)).join(", ")}
+              </Chip>
+            )}
+            {set.faction !== "both" && (
+              <Chip
+                className={
+                  set.faction === "alliance"
+                    ? "bg-wow-alliance/20 text-blue-300 text-[10px]"
+                    : "bg-wow-horde/20 text-red-300 text-[10px]"
+                }
+                size="sm"
+              >
+                {set.faction}
+              </Chip>
+            )}
+          </div>
+        )}
 
-      <div className="flex items-center justify-between gap-2">
-        <PriceDisplay
-          discountPercentage={set.discount_percentage}
-          discountedPrice={set.discounted_price}
-          price={set.price}
-          size="sm"
-        />
-        {!isIneligible && <CardArrow inline />}
-      </div>
-    </Card>
+        <div className="flex items-center justify-between gap-2">
+          <PriceDisplay
+            discountPercentage={set.discount_percentage}
+            discountedPrice={set.discounted_price}
+            price={set.price}
+            size="sm"
+          />
+          {!isIneligible && <CardArrow inline />}
+        </div>
+      </Card>
+      {room && (
+        <TryOnButton label={t("tryOn")} onPress={() => room.trySet(set)} />
+      )}
+    </div>
   );
 }

@@ -629,7 +629,21 @@
     "restrictionChallengeGear": "Vietato dalla sua sfida",
     "restrictionChallengeXpBonus": "Nessun bonus esperienza in una sfida",
     "restrictionChallengeFaction": "Non con il PvP Hardcore",
-    "challengeGrounded": "Utilizzabile dopo Con i piedi per terra"
+    "challengeGrounded": "Utilizzabile dopo Con i piedi per terra",
+    "tryOn": "Prova (Ctrl + clic)",
+    "dressingTitle": "Camerino",
+    "dressingOn": "Camerino · {name}",
+    "dressingMove": "Trascina per spostare",
+    "dressingFailed": "Impossibile caricare la vista 3D su questo dispositivo.",
+    "dressingUnavailable": "Nessuna anteprima per questo oggetto.",
+    "dressingPartial": "Alcuni pezzi non hanno anteprima.",
+    "dressingRace": "Razza",
+    "dressingGender": "Sesso",
+    "dressingMale": "Maschio",
+    "dressingFemale": "Femmina",
+    "dressingBack": "Torna al mio personaggio",
+    "dressingReset": "Ripristina",
+    "dressingUndress": "Spoglia"
   },
   "admin": {
     "login": {

@@ -629,7 +629,21 @@
     "restrictionChallengeGear": "Prohibido por su desafío",
     "restrictionChallengeXpBonus": "Sin bonificación de experiencia en un desafío",
     "restrictionChallengeFaction": "No con el JcJ Hardcore",
-    "challengeGrounded": "Utilizable tras Con los pies en la tierra"
+    "challengeGrounded": "Utilizable tras Con los pies en la tierra",
+    "tryOn": "Probar (Ctrl + clic)",
+    "dressingTitle": "Probador",
+    "dressingOn": "Probador · {name}",
+    "dressingMove": "Arrastra para mover",
+    "dressingFailed": "La vista 3D no pudo cargarse en este dispositivo.",
+    "dressingUnavailable": "No hay vista previa para este objeto.",
+    "dressingPartial": "Algunas piezas no tienen vista previa.",
+    "dressingRace": "Raza",
+    "dressingGender": "Sexo",
+    "dressingMale": "Hombre",
+    "dressingFemale": "Mujer",
+    "dressingBack": "Volver a mi personaje",
+    "dressingReset": "Restablecer",
+    "dressingUndress": "Desvestir"
   },
   "admin": {
     "login": {

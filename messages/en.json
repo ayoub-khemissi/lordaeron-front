@@ -629,7 +629,21 @@
     "restrictionChallengeGear": "Forbidden by its challenge",
     "restrictionChallengeXpBonus": "No experience bonus in a challenge",
     "restrictionChallengeFaction": "Not with the Hardcore PvP",
-    "challengeGrounded": "Usable once Grounded is over"
+    "challengeGrounded": "Usable once Grounded is over",
+    "tryOn": "Try on (Ctrl + click)",
+    "dressingTitle": "Dressing room",
+    "dressingOn": "Dressing room · {name}",
+    "dressingMove": "Drag to move",
+    "dressingFailed": "The 3D view could not load on this device.",
+    "dressingUnavailable": "No preview for this item.",
+    "dressingPartial": "Some pieces have no preview.",
+    "dressingRace": "Race",
+    "dressingGender": "Gender",
+    "dressingMale": "Male",
+    "dressingFemale": "Female",
+    "dressingBack": "Back to my character",
+    "dressingReset": "Reset",
+    "dressingUndress": "Undress"
   },
   "admin": {
     "login": {

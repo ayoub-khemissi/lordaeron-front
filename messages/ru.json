@@ -629,7 +629,21 @@
     "restrictionChallengeGear": "Запрещено его испытанием",
     "restrictionChallengeXpBonus": "Без бонуса к опыту в испытании",
     "restrictionChallengeFaction": "Не с хардкорным PvP",
-    "challengeGrounded": "Доступно после испытания «Твёрдо на земле»"
+    "challengeGrounded": "Доступно после испытания «Твёрдо на земле»",
+    "tryOn": "Примерить (Ctrl + клик)",
+    "dressingTitle": "Примерочная",
+    "dressingOn": "Примерочная · {name}",
+    "dressingMove": "Перетащите, чтобы переместить",
+    "dressingFailed": "Не удалось загрузить 3D-вид на этом устройстве.",
+    "dressingUnavailable": "Для этого предмета нет предпросмотра.",
+    "dressingPartial": "Для некоторых частей нет предпросмотра.",
+    "dressingRace": "Раса",
+    "dressingGender": "Пол",
+    "dressingMale": "Мужской",
+    "dressingFemale": "Женский",
+    "dressingBack": "Вернуться к персонажу",
+    "dressingReset": "Сбросить",
+    "dressingUndress": "Раздеть"
   },
   "admin": {
     "login": {

@@ -629,7 +629,21 @@
     "restrictionChallengeGear": "Von seiner Herausforderung verboten",
     "restrictionChallengeXpBonus": "Kein Erfahrungsbonus in einer Herausforderung",
     "restrictionChallengeFaction": "Nicht mit Hardcore-PvP",
-    "challengeGrounded": "Nutzbar nach Bodenständig"
+    "challengeGrounded": "Nutzbar nach Bodenständig",
+    "tryOn": "Anprobieren (Strg + Klick)",
+    "dressingTitle": "Anprobe",
+    "dressingOn": "Anprobe · {name}",
+    "dressingMove": "Zum Verschieben ziehen",
+    "dressingFailed": "Die 3D-Ansicht konnte auf diesem Gerät nicht geladen werden.",
+    "dressingUnavailable": "Keine Vorschau für diesen Gegenstand.",
+    "dressingPartial": "Einige Teile haben keine Vorschau.",
+    "dressingRace": "Volk",
+    "dressingGender": "Geschlecht",
+    "dressingMale": "Männlich",
+    "dressingFemale": "Weiblich",
+    "dressingBack": "Zurück zu meinem Charakter",
+    "dressingReset": "Zurücksetzen",
+    "dressingUndress": "Ausziehen"
   },
   "admin": {
     "login": {

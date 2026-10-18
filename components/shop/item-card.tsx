@@ -12,6 +12,10 @@ import { GameTipLink } from "@/components/game-tooltip";
 import { getQualityColor } from "@/lib/shop-utils";
 import { CardArrow } from "@/components/card-arrow";
 import { CHALLENGE_RESTRICTION_LABELS } from "@/lib/challenge-shop-labels";
+import {
+  TryOnButton,
+  useDressingRoom,
+} from "@/components/shop/dressing-room/dressing-room";
 
 interface ItemCardProps {
   item: ShopItemLocalized;
@@ -22,138 +26,150 @@ export function ItemCard({ item, onClick }: ItemCardProps) {
   const t = useTranslations("shop");
   const tHome = useTranslations("home");
   const isIneligible = item.eligible === false;
+  // the dressing room (the shop's): its magnifier, and Ctrl + click (Cmd + click on a Mac) on the card
+  const room = useDressingRoom();
+  const tryable = !!room && !!item.try_on;
 
   return (
-    <Card
-      className={`glass border-wow-gold/10 hover:border-wow-gold/30 transition-all duration-300 hover:glow-gold group ${isIneligible ? "opacity-75 saturate-[0.25]" : ""}`}
-      isPressable={!isIneligible}
-      onPress={onClick}
-    >
-      <CardBody className="p-4 pb-2">
-        <div className="flex items-start justify-between gap-2 mb-3">
-          <div className="flex-1">
-            {item.icon_url && (
-              <div className="w-12 h-12 rounded-lg bg-wow-dark/50 border border-wow-gold/20 flex items-center justify-center mb-2 overflow-hidden">
-                {item.item_id ? (
-                  <GameTipLink
-                    className="flex items-center justify-center"
-                    itemId={item.item_id}
-                  >
+    <div className="relative h-full">
+      <Card
+        className={`glass h-full w-full border-wow-gold/10 hover:border-wow-gold/30 transition-all duration-300 hover:glow-gold group ${isIneligible ? "opacity-75 saturate-[0.25]" : ""}`}
+        isPressable={!isIneligible}
+        onPress={(e) =>
+          tryable && (e.ctrlKey || e.metaKey) ? room.tryItem(item) : onClick()
+        }
+      >
+        <CardBody className="p-4 pb-2">
+          <div className="flex items-start justify-between gap-2 mb-3">
+            <div className="flex-1">
+              {item.icon_url && (
+                <div className="w-12 h-12 rounded-lg bg-wow-dark/50 border border-wow-gold/20 flex items-center justify-center mb-2 overflow-hidden">
+                  {item.item_id ? (
+                    <GameTipLink
+                      className="flex items-center justify-center"
+                      itemId={item.item_id}
+                    >
+                      <img
+                        alt={item.name}
+                        className="w-10 h-10 object-contain"
+                        src={item.icon_url}
+                      />
+                    </GameTipLink>
+                  ) : (
                     <img
                       alt={item.name}
                       className="w-10 h-10 object-contain"
                       src={item.icon_url}
                     />
+                  )}
+                </div>
+              )}
+              <h3
+                className={`font-medium ${getQualityColor(item.quality)} ${item.quality == null ? "group-hover:text-wow-gold" : ""} transition-colors line-clamp-2`}
+              >
+                {item.item_id ? (
+                  <GameTipLink
+                    className="text-inherit hover:text-wow-gold"
+                    itemId={item.item_id}
+                  >
+                    {item.name}
                   </GameTipLink>
                 ) : (
-                  <img
-                    alt={item.name}
-                    className="w-10 h-10 object-contain"
-                    src={item.icon_url}
-                  />
+                  item.name
                 )}
-              </div>
-            )}
-            <h3
-              className={`font-medium ${getQualityColor(item.quality)} ${item.quality == null ? "group-hover:text-wow-gold" : ""} transition-colors line-clamp-2`}
-            >
-              {item.item_id ? (
-                <GameTipLink
-                  className="text-inherit hover:text-wow-gold"
-                  itemId={item.item_id}
-                >
-                  {item.name}
-                </GameTipLink>
-              ) : (
-                item.name
-              )}
-            </h3>
-          </div>
-          {item.discount_percentage > 0 && (
-            <Chip
-              className="bg-green-500/20 text-green-400 border-green-500/30"
-              size="sm"
-              variant="bordered"
-            >
-              -{item.discount_percentage}%
-            </Chip>
-          )}
-        </div>
-
-        {item.description && (
-          <p className="text-xs text-gray-500 line-clamp-2 mb-2">
-            {item.description}
-          </p>
-        )}
-
-        <div className="flex flex-wrap gap-1">
-          {isIneligible &&
-            item.restriction_reason &&
-            item.restriction_reason !== "level" && (
+              </h3>
+            </div>
+            {item.discount_percentage > 0 && (
               <Chip
-                className="bg-red-500/20 text-red-400 border-red-500/30"
+                className="bg-green-500/20 text-green-400 border-green-500/30"
                 size="sm"
                 variant="bordered"
               >
-                {CHALLENGE_RESTRICTION_LABELS[item.restriction_reason]
-                  ? t(CHALLENGE_RESTRICTION_LABELS[item.restriction_reason])
-                  : item.restriction_reason === "realm_firsts"
-                    ? t("restrictionRealmFirsts", {
-                        done: item.unlock_progress?.done ?? 0,
-                        total: item.unlock_progress?.total ?? 0,
-                      })
-                    : item.restriction_reason === "heirloom_max_level"
-                      ? t("restrictionHeirloomMaxLevel")
-                      : item.restriction_reason === "class"
-                        ? t("restrictionClass")
-                        : item.restriction_reason === "race"
-                          ? t("restrictionRace")
-                          : t("restrictionFaction")}
+                -{item.discount_percentage}%
               </Chip>
             )}
-          {item.challenge_warning === "challenge_grounded" && (
-            <Chip
-              className="bg-amber-500/15 text-amber-300 border-amber-500/30"
-              size="sm"
-              variant="bordered"
-            >
-              {t("challengeGrounded")}
-            </Chip>
-          )}
-          {item.faction !== "both" && (
-            <Chip
-              className={
-                item.faction === "alliance"
-                  ? "bg-wow-alliance/20 text-blue-300"
-                  : "bg-wow-horde/20 text-red-300"
-              }
-              size="sm"
-            >
-              {item.faction === "alliance" ? tHome("alliance") : tHome("horde")}
-            </Chip>
-          )}
-          {item.min_level > 0 && (
-            <Chip className="bg-orange-500/10 text-orange-300" size="sm">
-              {t("reqLevel", { level: item.min_level })}
-            </Chip>
-          )}
-          {!item.is_refundable && (
-            <Chip className="bg-red-500/10 text-red-400" size="sm">
-              {t("nonRefundable")}
-            </Chip>
-          )}
-        </div>
-      </CardBody>
+          </div>
 
-      <CardFooter className="flex items-center justify-between gap-2 px-4 pb-4 pt-2">
-        <PriceDisplay
-          discountPercentage={item.discount_percentage}
-          discountedPrice={item.discounted_price}
-          price={item.price}
-          size="sm"
-        />
-        {!isIneligible && <CardArrow inline />}
-      </CardFooter>
-    </Card>
+          {item.description && (
+            <p className="text-xs text-gray-500 line-clamp-2 mb-2">
+              {item.description}
+            </p>
+          )}
+
+          <div className="flex flex-wrap gap-1">
+            {isIneligible &&
+              item.restriction_reason &&
+              item.restriction_reason !== "level" && (
+                <Chip
+                  className="bg-red-500/20 text-red-400 border-red-500/30"
+                  size="sm"
+                  variant="bordered"
+                >
+                  {CHALLENGE_RESTRICTION_LABELS[item.restriction_reason]
+                    ? t(CHALLENGE_RESTRICTION_LABELS[item.restriction_reason])
+                    : item.restriction_reason === "realm_firsts"
+                      ? t("restrictionRealmFirsts", {
+                          done: item.unlock_progress?.done ?? 0,
+                          total: item.unlock_progress?.total ?? 0,
+                        })
+                      : item.restriction_reason === "heirloom_max_level"
+                        ? t("restrictionHeirloomMaxLevel")
+                        : item.restriction_reason === "class"
+                          ? t("restrictionClass")
+                          : item.restriction_reason === "race"
+                            ? t("restrictionRace")
+                            : t("restrictionFaction")}
+                </Chip>
+              )}
+            {item.challenge_warning === "challenge_grounded" && (
+              <Chip
+                className="bg-amber-500/15 text-amber-300 border-amber-500/30"
+                size="sm"
+                variant="bordered"
+              >
+                {t("challengeGrounded")}
+              </Chip>
+            )}
+            {item.faction !== "both" && (
+              <Chip
+                className={
+                  item.faction === "alliance"
+                    ? "bg-wow-alliance/20 text-blue-300"
+                    : "bg-wow-horde/20 text-red-300"
+                }
+                size="sm"
+              >
+                {item.faction === "alliance"
+                  ? tHome("alliance")
+                  : tHome("horde")}
+              </Chip>
+            )}
+            {item.min_level > 0 && (
+              <Chip className="bg-orange-500/10 text-orange-300" size="sm">
+                {t("reqLevel", { level: item.min_level })}
+              </Chip>
+            )}
+            {!item.is_refundable && (
+              <Chip className="bg-red-500/10 text-red-400" size="sm">
+                {t("nonRefundable")}
+              </Chip>
+            )}
+          </div>
+        </CardBody>
+
+        <CardFooter className="flex items-center justify-between gap-2 px-4 pb-4 pt-2">
+          <PriceDisplay
+            discountPercentage={item.discount_percentage}
+            discountedPrice={item.discounted_price}
+            price={item.price}
+            size="sm"
+          />
+          {!isIneligible && <CardArrow inline />}
+        </CardFooter>
+      </Card>
+      {tryable && (
+        <TryOnButton label={t("tryOn")} onPress={() => room.tryItem(item)} />
+      )}
+    </div>
   );
 }

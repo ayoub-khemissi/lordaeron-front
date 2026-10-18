@@ -223,6 +223,8 @@ export interface ShopItemLocalized {
   unlock_progress?: { done: number; total: number } | null;
   // sold, but usable only once the selected character's challenge is over (lib/challenge-shop.ts)
   challenge_warning?: "challenge_grounded" | null;
+  // what the shop's dressing room shows of it (app/api/shop/items): gear on the character, a mount or companion alone
+  try_on?: "gear" | "creature" | null;
 }
 
 export type ShopItemKind = "ground" | "flying" | "weapon" | "armor";

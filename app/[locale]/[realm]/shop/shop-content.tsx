@@ -46,6 +46,7 @@ import { CategoryIcon } from "@/components/shop/category-icon";
 import { ShopToolbar, type ShopView } from "@/components/shop/shop-toolbar";
 import { useRealm, useRealmHref } from "@/lib/realm-context";
 import { RealmSoonBanner } from "@/components/shop/realm-soon-banner";
+import { DressingRoomProvider } from "@/components/shop/dressing-room/dressing-room";
 
 // the shop, all of it or one category (app/[locale]/[realm]/shop/[category]: the same page, opened on that category)
 export default function ShopContent({
@@ -437,333 +438,338 @@ export default function ShopContent({
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      {checkoutResult && (
-        <div
-          className={`mb-4 rounded-xl px-4 py-3 text-sm font-medium flex items-center justify-between ${
-            checkoutResult === "success"
-              ? "bg-green-500/10 border border-green-500/20 text-green-400"
-              : "bg-yellow-500/10 border border-yellow-500/20 text-yellow-400"
-          }`}
-        >
-          <span>
-            {checkoutResult === "success"
-              ? t("checkoutSuccess")
-              : t("checkoutCancelled")}
-          </span>
-          <Button
-            className="h-auto min-w-0 text-current opacity-60 hover:opacity-100"
-            variant="light"
-            onPress={() => setCheckoutResult(null)}
+    // the dressing room: the cards' magnifier and Ctrl + click dress the selected character
+    <DressingRoomProvider character={selectedCharacter} realm={realm.slug}>
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        {checkoutResult && (
+          <div
+            className={`mb-4 rounded-xl px-4 py-3 text-sm font-medium flex items-center justify-between ${
+              checkoutResult === "success"
+                ? "bg-green-500/10 border border-green-500/20 text-green-400"
+                : "bg-yellow-500/10 border border-yellow-500/20 text-yellow-400"
+            }`}
           >
-            &#x2715;
-          </Button>
-        </div>
-      )}
+            <span>
+              {checkoutResult === "success"
+                ? t("checkoutSuccess")
+                : t("checkoutCancelled")}
+            </span>
+            <Button
+              className="h-auto min-w-0 text-current opacity-60 hover:opacity-100"
+              variant="light"
+              onPress={() => setCheckoutResult(null)}
+            >
+              &#x2715;
+            </Button>
+          </div>
+        )}
 
-      <ShopHeader balance={balance} onBuyShards={() => handleBuyShards()} />
+        <ShopHeader balance={balance} onBuyShards={() => handleBuyShards()} />
 
-      {realm.status === "open" ? (
-        <RealmCharacterSelector
-          characters={characters}
-          selectedCharacter={selectedCharacter}
-          onCharacterSelect={setSelectedCharacter}
-        />
-      ) : (
-        <RealmSoonBanner />
-      )}
+        {realm.status === "open" ? (
+          <RealmCharacterSelector
+            characters={characters}
+            selectedCharacter={selectedCharacter}
+            onCharacterSelect={setSelectedCharacter}
+          />
+        ) : (
+          <RealmSoonBanner />
+        )}
 
-      <ShopToolbar
-        category={selectedCategory}
-        entries={[
-          ...items.filter(
-            (i) =>
-              !selectedCategory ||
-              selectedCategory === "highlighted" ||
-              i.category === selectedCategory,
-          ),
-          ...(selectedCategory === "transmog" ? sets : []),
-        ]}
-        facets={facets}
-        search={search}
-        showUnavailable={showUnavailable}
-        sortBy={sortBy}
-        onCategoryChange={(category) => {
-          setSelectedCategory(category);
-          setFacets(NO_FACETS);
-          // the address follows the category (a category has its own page), without reloading the shop
-          window.history.replaceState(
-            null,
-            "",
-            realmHref(
-              category && category !== "highlighted"
-                ? `/shop/${category}`
-                : "/shop",
+        <ShopToolbar
+          category={selectedCategory}
+          entries={[
+            ...items.filter(
+              (i) =>
+                !selectedCategory ||
+                selectedCategory === "highlighted" ||
+                i.category === selectedCategory,
             ),
-          );
-        }}
-        onFacetsChange={setFacets}
-        onSearchChange={setSearch}
-        onShowUnavailableChange={setShowUnavailable}
-        onSortChange={setSortBy}
-        {...(selectedCategory === "transmog"
-          ? {
-              showSets: showSetFilter,
-              onShowSetsChange: setShowSetFilter,
-              showItems: showItemFilter,
-              onShowItemsChange: setShowItemFilter,
-            }
-          : {})}
-      />
-
-      {loading ? (
-        <ShopItemsSkeleton />
-      ) : selectedCategory === "highlighted" ? (
-        /* ── Highlighted tab ── */
-        <ItemGrid
-          items={filteredItems.filter((i) => i.is_highlighted)}
-          onItemClick={setDetailItem}
-        />
-      ) : selectedCategory ? (
-        /* ── Single category tab ── */
-        <>
-          {showSetsSection && filteredSets.length > 0 && (
-            <div className="mb-8 pb-6 border-b border-wow-gold/10">
-              <h2 className="text-lg font-heading text-purple-400 mb-4">
-                {t("itemSets")}
-              </h2>
-              <SetGrid sets={filteredSets} onSetClick={setDetailSet} />
-            </div>
-          )}
-          {(selectedCategory !== "transmog" || showItemFilter) && (
-            <ItemGrid items={filteredItems} onItemClick={setDetailItem} />
-          )}
-        </>
-      ) : (
-        /* ── All items — grouped by section ── */
-        <>
-          {/* Highlighted section */}
-          {filteredItems.filter((i) => i.is_highlighted).length > 0 && (
-            <div className="mb-8 pb-6 border-b border-wow-gold/10">
-              <h2 className="text-lg font-heading wow-gradient-text mb-4 flex items-center gap-2">
-                <CategoryIcon category="highlighted" /> {t("highlights")}
-              </h2>
-              <ItemGrid
-                items={filteredItems.filter((i) => i.is_highlighted)}
-                onItemClick={setDetailItem}
-              />
-            </div>
-          )}
-          {/* Each category section */}
-          {(
-            [
-              "services",
-              "bags",
-              "heirlooms",
-              "transmog",
-              "mounts",
-              "tabards",
-              "pets",
-              "toys",
-              "consumables",
-            ] as const
-          ).map((cat) => {
-            const catItems = filteredItems.filter((i) => i.category === cat);
-
-            if (catItems.length === 0) return null;
-
-            return (
-              <div
-                key={cat}
-                className="mb-8 pb-6 border-b border-wow-gold/10 last:border-b-0"
-              >
-                <h2 className="text-lg font-heading text-wow-gold mb-4 flex items-center gap-2">
-                  <CategoryIcon category={cat} /> {t(`categories.${cat}`)}
-                </h2>
-                <ItemGrid items={catItems} onItemClick={setDetailItem} />
-              </div>
+            ...(selectedCategory === "transmog" ? sets : []),
+          ]}
+          facets={facets}
+          search={search}
+          showUnavailable={showUnavailable}
+          sortBy={sortBy}
+          onCategoryChange={(category) => {
+            setSelectedCategory(category);
+            setFacets(NO_FACETS);
+            // the address follows the category (a category has its own page), without reloading the shop
+            window.history.replaceState(
+              null,
+              "",
+              realmHref(
+                category && category !== "highlighted"
+                  ? `/shop/${category}`
+                  : "/shop",
+              ),
             );
-          })}
-        </>
-      )}
+          }}
+          onFacetsChange={setFacets}
+          onSearchChange={setSearch}
+          onShowUnavailableChange={setShowUnavailable}
+          onSortChange={setSortBy}
+          {...(selectedCategory === "transmog"
+            ? {
+                showSets: showSetFilter,
+                onShowSetsChange: setShowSetFilter,
+                showItems: showItemFilter,
+                onShowItemsChange: setShowItemFilter,
+              }
+            : {})}
+        />
 
-      <ItemDetailModal
-        hasCharacter={!!selectedCharacter}
-        isOpen={!!detailItem}
-        item={detailItem}
-        onBuy={() => {
-          setPurchaseItem(detailItem);
-          setDetailItem(null);
-        }}
-        onClose={() => setDetailItem(null)}
-        onGift={() => {
-          setGiftItem(detailItem);
-          setDetailItem(null);
-        }}
-      />
-
-      <SetDetailModal
-        hasCharacter={!!selectedCharacter}
-        isOpen={!!detailSet}
-        set={detailSet}
-        onBuy={() => {
-          setPurchaseSet(detailSet);
-          setDetailSet(null);
-        }}
-        onClose={() => setDetailSet(null)}
-        onGift={() => {
-          setGiftSet(detailSet);
-          setDetailSet(null);
-        }}
-      />
-
-      <PurchaseModal
-        balance={balance}
-        character={selectedCharacter}
-        isOpen={!!purchaseItem}
-        item={purchaseItem}
-        onBuyShards={handleBuyShards}
-        onClose={() => setPurchaseItem(null)}
-        onConfirm={handlePurchase}
-      />
-
-      {/* Set Purchase Modal — reuse PurchaseModal with virtual item */}
-      <PurchaseModal
-        balance={balance}
-        character={selectedCharacter}
-        isOpen={!!purchaseSet}
-        item={setAsPurchaseItem}
-        onBuyShards={handleBuyShards}
-        onClose={() => setPurchaseSet(null)}
-        onConfirm={handleSetPurchase}
-      />
-
-      <GiftModal
-        balance={balance}
-        character={selectedCharacter}
-        isOpen={!!giftItem}
-        item={giftItem}
-        onBuyShards={handleBuyShards}
-        onClose={() => setGiftItem(null)}
-        onConfirm={handleGift}
-      />
-
-      {/* Set Gift Modal — reuse GiftModal with virtual item */}
-      <GiftModal
-        balance={balance}
-        character={selectedCharacter}
-        isOpen={!!giftSet}
-        item={setAsGiftItem}
-        onBuyShards={handleBuyShards}
-        onClose={() => setGiftSet(null)}
-        onConfirm={handleSetGift}
-      />
-
-      {/* Refund Modal */}
-      <Modal
-        classNames={{
-          base: "bg-[#0d1117] border border-wow-gold/20",
-          header: "border-b border-wow-gold/10",
-          footer: "border-t border-wow-gold/10",
-        }}
-        isOpen={!!refundTarget}
-        onClose={handleRefundClose}
-      >
-        <ModalContent>
-          <ModalHeader>{t("confirmRefund")}</ModalHeader>
-          <ModalBody className="py-6">
-            {refundResult === "success" ? (
-              <div className="text-center py-4">
-                <div className="text-4xl mb-3">&#x2705;</div>
-                <h3 className="text-lg font-medium text-green-400 mb-1">
-                  {t("refundSuccess")}
-                </h3>
-                <p className="text-gray-400 text-sm">
-                  {t("refundSuccessDesc")}
-                </p>
+        {loading ? (
+          <ShopItemsSkeleton />
+        ) : selectedCategory === "highlighted" ? (
+          /* ── Highlighted tab ── */
+          <ItemGrid
+            items={filteredItems.filter((i) => i.is_highlighted)}
+            onItemClick={setDetailItem}
+          />
+        ) : selectedCategory ? (
+          /* ── Single category tab ── */
+          <>
+            {showSetsSection && filteredSets.length > 0 && (
+              <div className="mb-8 pb-6 border-b border-wow-gold/10">
+                <h2 className="text-lg font-heading text-purple-400 mb-4">
+                  {t("itemSets")}
+                </h2>
+                <SetGrid sets={filteredSets} onSetClick={setDetailSet} />
               </div>
-            ) : refundResult === "error" ? (
-              <div className="text-center py-4">
-                <div className="text-4xl mb-3">&#x274C;</div>
-                <p className="text-red-400">{t(`errors.${refundError}`)}</p>
+            )}
+            {(selectedCategory !== "transmog" || showItemFilter) && (
+              <ItemGrid items={filteredItems} onItemClick={setDetailItem} />
+            )}
+          </>
+        ) : (
+          /* ── All items — grouped by section ── */
+          <>
+            {/* Highlighted section */}
+            {filteredItems.filter((i) => i.is_highlighted).length > 0 && (
+              <div className="mb-8 pb-6 border-b border-wow-gold/10">
+                <h2 className="text-lg font-heading wow-gradient-text mb-4 flex items-center gap-2">
+                  <CategoryIcon category="highlighted" /> {t("highlights")}
+                </h2>
+                <ItemGrid
+                  items={filteredItems.filter((i) => i.is_highlighted)}
+                  onItemClick={setDetailItem}
+                />
               </div>
-            ) : refundTarget ? (
-              <>
-                <p className="text-gray-300 text-sm mb-4">
-                  {t("confirmRefundDesc")}
-                </p>
-                <div className="bg-[#161b22] rounded-lg p-4 mb-4">
-                  <p className="text-sm text-gray-400 mb-1">{t("item")}</p>
-                  <div className="flex items-center gap-2">
-                    {refundTarget.item_icon_url && (
-                      <img
-                        alt=""
-                        className="w-6 h-6 rounded"
-                        src={refundTarget.item_icon_url}
-                      />
-                    )}
-                    <p className="text-gray-100 font-medium">
-                      {(refundTarget[
-                        `item_name_${locale}` as keyof ShopPurchaseWithItem
-                      ] as string) || refundTarget.item_name_en}
+            )}
+            {/* Each category section */}
+            {(
+              [
+                "services",
+                "bags",
+                "heirlooms",
+                "transmog",
+                "mounts",
+                "tabards",
+                "pets",
+                "toys",
+                "consumables",
+              ] as const
+            ).map((cat) => {
+              const catItems = filteredItems.filter((i) => i.category === cat);
+
+              if (catItems.length === 0) return null;
+
+              return (
+                <div
+                  key={cat}
+                  className="mb-8 pb-6 border-b border-wow-gold/10 last:border-b-0"
+                >
+                  <h2 className="text-lg font-heading text-wow-gold mb-4 flex items-center gap-2">
+                    <CategoryIcon category={cat} /> {t(`categories.${cat}`)}
+                  </h2>
+                  <ItemGrid items={catItems} onItemClick={setDetailItem} />
+                </div>
+              );
+            })}
+          </>
+        )}
+
+        <ItemDetailModal
+          hasCharacter={!!selectedCharacter}
+          isOpen={!!detailItem}
+          item={detailItem}
+          onBuy={() => {
+            setPurchaseItem(detailItem);
+            setDetailItem(null);
+          }}
+          onClose={() => setDetailItem(null)}
+          onGift={() => {
+            setGiftItem(detailItem);
+            setDetailItem(null);
+          }}
+        />
+
+        <SetDetailModal
+          hasCharacter={!!selectedCharacter}
+          isOpen={!!detailSet}
+          set={detailSet}
+          onBuy={() => {
+            setPurchaseSet(detailSet);
+            setDetailSet(null);
+          }}
+          onClose={() => setDetailSet(null)}
+          onGift={() => {
+            setGiftSet(detailSet);
+            setDetailSet(null);
+          }}
+        />
+
+        <PurchaseModal
+          balance={balance}
+          character={selectedCharacter}
+          isOpen={!!purchaseItem}
+          item={purchaseItem}
+          onBuyShards={handleBuyShards}
+          onClose={() => setPurchaseItem(null)}
+          onConfirm={handlePurchase}
+        />
+
+        {/* Set Purchase Modal — reuse PurchaseModal with virtual item */}
+        <PurchaseModal
+          balance={balance}
+          character={selectedCharacter}
+          isOpen={!!purchaseSet}
+          item={setAsPurchaseItem}
+          onBuyShards={handleBuyShards}
+          onClose={() => setPurchaseSet(null)}
+          onConfirm={handleSetPurchase}
+        />
+
+        <GiftModal
+          balance={balance}
+          character={selectedCharacter}
+          isOpen={!!giftItem}
+          item={giftItem}
+          onBuyShards={handleBuyShards}
+          onClose={() => setGiftItem(null)}
+          onConfirm={handleGift}
+        />
+
+        {/* Set Gift Modal — reuse GiftModal with virtual item */}
+        <GiftModal
+          balance={balance}
+          character={selectedCharacter}
+          isOpen={!!giftSet}
+          item={setAsGiftItem}
+          onBuyShards={handleBuyShards}
+          onClose={() => setGiftSet(null)}
+          onConfirm={handleSetGift}
+        />
+
+        {/* Refund Modal */}
+        <Modal
+          classNames={{
+            base: "bg-[#0d1117] border border-wow-gold/20",
+            header: "border-b border-wow-gold/10",
+            footer: "border-t border-wow-gold/10",
+          }}
+          isOpen={!!refundTarget}
+          onClose={handleRefundClose}
+        >
+          <ModalContent>
+            <ModalHeader>{t("confirmRefund")}</ModalHeader>
+            <ModalBody className="py-6">
+              {refundResult === "success" ? (
+                <div className="text-center py-4">
+                  <div className="text-4xl mb-3">&#x2705;</div>
+                  <h3 className="text-lg font-medium text-green-400 mb-1">
+                    {t("refundSuccess")}
+                  </h3>
+                  <p className="text-gray-400 text-sm">
+                    {t("refundSuccessDesc")}
+                  </p>
+                </div>
+              ) : refundResult === "error" ? (
+                <div className="text-center py-4">
+                  <div className="text-4xl mb-3">&#x274C;</div>
+                  <p className="text-red-400">{t(`errors.${refundError}`)}</p>
+                </div>
+              ) : refundTarget ? (
+                <>
+                  <p className="text-gray-300 text-sm mb-4">
+                    {t("confirmRefundDesc")}
+                  </p>
+                  <div className="bg-[#161b22] rounded-lg p-4 mb-4">
+                    <p className="text-sm text-gray-400 mb-1">{t("item")}</p>
+                    <div className="flex items-center gap-2">
+                      {refundTarget.item_icon_url && (
+                        <img
+                          alt=""
+                          className="w-6 h-6 rounded"
+                          src={refundTarget.item_icon_url}
+                        />
+                      )}
+                      <p className="text-gray-100 font-medium">
+                        {(refundTarget[
+                          `item_name_${locale}` as keyof ShopPurchaseWithItem
+                        ] as string) || refundTarget.item_name_en}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="bg-[#161b22] rounded-lg p-4">
+                    <p className="text-sm text-gray-400 mb-2">
+                      {t("pricePaid")}
                     </p>
+                    <div className="flex items-center gap-1">
+                      <Image
+                        alt=""
+                        height={18}
+                        src="/img/icons/soul-shard.svg"
+                        width={18}
+                      />
+                      <span className="text-lg text-purple-400 font-bold">
+                        {refundTarget.price_paid}
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <div className="bg-[#161b22] rounded-lg p-4">
-                  <p className="text-sm text-gray-400 mb-2">{t("pricePaid")}</p>
-                  <div className="flex items-center gap-1">
-                    <Image
-                      alt=""
-                      height={18}
-                      src="/img/icons/soul-shard.svg"
-                      width={18}
-                    />
-                    <span className="text-lg text-purple-400 font-bold">
-                      {refundTarget.price_paid}
-                    </span>
-                  </div>
-                </div>
-              </>
-            ) : null}
-          </ModalBody>
-          <ModalFooter>
-            {refundResult ? (
-              <Button
-                className="bg-wow-gold text-black font-bold"
-                onPress={handleRefundClose}
-              >
-                {t("close")}
-              </Button>
-            ) : (
-              <>
+                </>
+              ) : null}
+            </ModalBody>
+            <ModalFooter>
+              {refundResult ? (
                 <Button
-                  className="text-gray-400"
-                  variant="light"
+                  className="bg-wow-gold text-black font-bold"
                   onPress={handleRefundClose}
                 >
-                  {t("cancel")}
+                  {t("close")}
                 </Button>
-                <Button
-                  className="bg-gradient-to-r from-orange-500 to-orange-400 text-black font-bold"
-                  isLoading={refundLoading}
-                  onPress={handleRefund}
-                >
-                  {t("confirmRefund")}
-                </Button>
-              </>
-            )}
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+              ) : (
+                <>
+                  <Button
+                    className="text-gray-400"
+                    variant="light"
+                    onPress={handleRefundClose}
+                  >
+                    {t("cancel")}
+                  </Button>
+                  <Button
+                    className="bg-gradient-to-r from-orange-500 to-orange-400 text-black font-bold"
+                    isLoading={refundLoading}
+                    onPress={handleRefund}
+                  >
+                    {t("confirmRefund")}
+                  </Button>
+                </>
+              )}
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
 
-      <BuyShardsModal
-        isOpen={buyShardOpen}
-        recommendedShards={recommendedShards}
-        onClose={() => {
-          setBuyShardOpen(false);
-          setRecommendedShards(undefined);
-        }}
-      />
-    </div>
+        <BuyShardsModal
+          isOpen={buyShardOpen}
+          recommendedShards={recommendedShards}
+          onClose={() => {
+            setBuyShardOpen(false);
+            setRecommendedShards(undefined);
+          }}
+        />
+      </div>
+    </DressingRoomProvider>
   );
 }

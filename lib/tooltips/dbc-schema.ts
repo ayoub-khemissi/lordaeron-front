@@ -51,6 +51,8 @@ export const DBC_LAYOUTS = {
       ...effects("EffectRealPointsPerLevel", 77),
       ...effects("EffectBasePoints", 80),
       ...effects("EffectRadiusIndex", 92),
+      // the aura an effect applies (78: mounted, its creature in EffectMiscValue): the shop's dressing room
+      ...effects("EffectApplyAuraName", 95),
       ...effects("EffectAuraPeriod", 98),
       ...effects("EffectMultipleValue", 101),
       ...effects("EffectChainTargets", 104),

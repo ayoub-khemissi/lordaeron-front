@@ -78,6 +78,10 @@ export async function GET(request: NextRequest) {
         .filter((id): id is number => !!id),
     );
     const realmId = REALMS[realm].realmId;
+    const tryable = await tryOnKinds(
+      realm,
+      offered.map((i) => i.item_id).filter((id): id is number => !!id),
+    );
     const challenge = guid ? await shopChallenge(realm, guid) : null;
     const facts = challenge
       ? await shopItemFacts(
@@ -146,6 +150,7 @@ export async function GET(request: NextRequest) {
         challenge_warning: eligible
           ? challengeWarning(challenge, pieces)
           : null,
+        try_on: (item.item_id && tryable.get(item.item_id)) || null,
       };
     });
 
@@ -185,6 +190,36 @@ async function itemKinds(
   } catch (error) {
     // the filters are a convenience: the catalogue shows without them
     console.error("Shop item kinds:", error);
+  }
+
+  return kinds;
+}
+
+// what the dressing room can show of each item (lib/dressing-room.ts): a piece of visible gear, a mount or companion alone, else nothing
+const VISIBLE = [
+  1, 3, 4, 5, 6, 7, 8, 9, 10, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 25, 26,
+];
+
+async function tryOnKinds(
+  realm: Parameters<typeof realmWorldDb>[0],
+  ids: number[],
+): Promise<Map<number, "gear" | "creature">> {
+  const kinds = new Map<number, "gear" | "creature">();
+
+  if (!ids.length) return kinds;
+  try {
+    const [rows] = await realmWorldDb(realm).query<RowDataPacket[]>(
+      "SELECT entry, class, subclass, InventoryType FROM item_template WHERE entry IN (?)",
+      [ids],
+    );
+
+    for (const r of rows) {
+      if (r.class === 15 && (r.subclass === 2 || r.subclass === 5))
+        kinds.set(r.entry, "creature");
+      else if (VISIBLE.includes(r.InventoryType)) kinds.set(r.entry, "gear");
+    }
+  } catch (error) {
+    console.error("Shop try-on kinds:", error);
   }
 
   return kinds;

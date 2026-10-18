@@ -56,7 +56,7 @@ const CHECK_EVERY = 2_000;
 const LIT_MIN = 150;
 
 // how much of the frame the viewer drew: its screenshot hook (renderer.makeDataURL / screenshotCallback), sampled at 64 x 64
-function litPixels(viewer: any): Promise<number> {
+export function litPixels(viewer: any): Promise<number> {
   return new Promise((resolve) => {
     const r = viewer?.renderer;
 
@@ -90,13 +90,13 @@ function litPixels(viewer: any): Promise<number> {
   });
 }
 
-type Looks = Pick<
+export type Looks = Pick<
   ModelViewerProps,
   "skin" | "face" | "hairStyle" | "hairColor" | "facialStyle"
 >;
 
-const CONTENT_PATH = "/modelviewer/wrath/";
-const VIEWER_SCRIPT = "/modelviewer/live/viewer/viewer.min.js";
+export const CONTENT_PATH = "/modelviewer/wrath/";
+export const VIEWER_SCRIPT = "/modelviewer/live/viewer/viewer.min.js";
 const TAUREN = 6;
 
 // the 3.3.5 look each WotLK Classic option stands for
@@ -120,7 +120,11 @@ interface Customization {
   }[];
 }
 
-async function customization(modelId: number, race: number, looks: Looks) {
+export async function customization(
+  modelId: number,
+  race: number,
+  looks: Looks,
+) {
   const res = await fetch(
     `${CONTENT_PATH}meta/charactercustomization/${modelId}.json`,
   );
@@ -141,7 +145,7 @@ async function customization(modelId: number, race: number, looks: Looks) {
   });
 }
 
-function webglAvailable() {
+export function webglAvailable() {
   try {
     const canvas = document.createElement("canvas");
 
@@ -151,7 +155,7 @@ function webglAvailable() {
   }
 }
 
-function setupGlobals() {
+export function setupGlobals() {
   window.CONTENT_PATH = CONTENT_PATH;
 
   if (!(window as any).WH) {

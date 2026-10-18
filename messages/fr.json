@@ -629,7 +629,21 @@
     "restrictionChallengeGear": "Interdit par son défi",
     "restrictionChallengeXpBonus": "Pas de bonus d'expérience en défi",
     "restrictionChallengeFaction": "Pas avec le JcJ Hardcore",
-    "challengeGrounded": "Utilisable après Les pieds sur terre"
+    "challengeGrounded": "Utilisable après Les pieds sur terre",
+    "tryOn": "Essayer (Ctrl + clic)",
+    "dressingTitle": "Cabine d'essayage",
+    "dressingOn": "Cabine d'essayage · {name}",
+    "dressingMove": "Glisser pour déplacer",
+    "dressingFailed": "La vue 3D n'a pas pu se charger sur cet appareil.",
+    "dressingUnavailable": "Aperçu indisponible pour cet objet.",
+    "dressingPartial": "Certaines pièces n'ont pas d'aperçu.",
+    "dressingRace": "Race",
+    "dressingGender": "Sexe",
+    "dressingMale": "Homme",
+    "dressingFemale": "Femme",
+    "dressingBack": "Revenir à mon personnage",
+    "dressingReset": "Réinitialiser",
+    "dressingUndress": "Déshabiller"
   },
   "admin": {
     "login": {

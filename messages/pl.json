@@ -629,7 +629,21 @@
     "restrictionChallengeGear": "Zakazane przez wyzwanie",
     "restrictionChallengeXpBonus": "Brak premii do doświadczenia w wyzwaniu",
     "restrictionChallengeFaction": "Nie z Hardcore PvP",
-    "challengeGrounded": "Do użycia po wyzwaniu Twardo na ziemi"
+    "challengeGrounded": "Do użycia po wyzwaniu Twardo na ziemi",
+    "tryOn": "Przymierz (Ctrl + klik)",
+    "dressingTitle": "Przymierzalnia",
+    "dressingOn": "Przymierzalnia · {name}",
+    "dressingMove": "Przeciągnij, aby przesunąć",
+    "dressingFailed": "Nie udało się wczytać widoku 3D na tym urządzeniu.",
+    "dressingUnavailable": "Brak podglądu tego przedmiotu.",
+    "dressingPartial": "Niektóre części nie mają podglądu.",
+    "dressingRace": "Rasa",
+    "dressingGender": "Płeć",
+    "dressingMale": "Mężczyzna",
+    "dressingFemale": "Kobieta",
+    "dressingBack": "Wróć do mojej postaci",
+    "dressingReset": "Resetuj",
+    "dressingUndress": "Rozbierz"
   },
   "admin": {
     "login": {
