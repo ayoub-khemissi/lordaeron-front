@@ -20,7 +20,9 @@ import { DEFAULT_OUTFIT } from "@/lib/armory-constants";
  * once, then served from our disk).
  */
 
-// where nginx keeps the viewer's files (/etc/nginx/conf.d/lordaeron.conf: /modelviewer/ mirrored)
+// where nginx finds the viewer's files (/etc/nginx/conf.d/lordaeron.conf): our own creatures first (scripts/modelviewer-custom.py), then
+// its mirror of Wowhead's data
+const CUSTOM = "/var/www/lordaeron-modelviewer/modelviewer/wrath/";
 const MIRROR = "/var/cache/lordaeron-modelviewer/modelviewer/wrath/";
 const ORIGIN = "https://wow.zamimg.com/modelviewer/wrath/";
 
@@ -117,14 +119,19 @@ function npcDrawable(display: number) {
   let k = known.get(display);
 
   if (!k) {
+    const file = `meta/npc/${display}.json`;
+
     k = fsp
-      .access(`${MIRROR}meta/npc/${display}.json`)
+      .access(`${CUSTOM}${file}`)
+      .catch(() => fsp.access(`${MIRROR}${file}`))
       .then(() => true)
       .catch(() =>
-        fetch(`${ORIGIN}meta/npc/${display}.json`, { method: "HEAD" })
+        fetch(`${ORIGIN}${file}`, { method: "HEAD" })
           .then((r) => r.ok)
           .catch(() => false),
       );
+    // a creature without its look is asked again later (our own converted since)
+    k.then((ok) => !ok && known.delete(display));
     known.set(display, k);
     if (known.size > 5000) known.clear();
   }
