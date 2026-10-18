@@ -10,7 +10,6 @@ import {
   ModalFooter,
 } from "@heroui/modal";
 import { Button } from "@heroui/button";
-import { Chip } from "@heroui/chip";
 import { useTranslations } from "next-intl";
 
 import { PriceDisplay } from "./price-display";
@@ -18,6 +17,7 @@ import { PriceDisplay } from "./price-display";
 import { GameTipLink } from "@/components/game-tooltip";
 import { getQualityColor } from "@/lib/shop-utils";
 import { useRealm } from "@/lib/realm-context";
+import { RestrictionList } from "@/components/shop/restriction-badges";
 import {
   TryOnModalButton,
   useDressingRoom,
@@ -128,34 +128,10 @@ export function SetDetailModal({
             </div>
           </div>
 
-          {/* Restrictions */}
-          {(!!set.class_ids?.length || set.faction !== "both") && (
-            <div className="bg-[#161b22] rounded-lg p-4 mb-4">
-              <p className="text-xs text-gray-400 uppercase tracking-wider mb-2">
-                {t("restrictions")}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {set.faction !== "both" && (
-                  <Chip
-                    className={
-                      set.faction === "alliance"
-                        ? "bg-wow-alliance/20 text-blue-300"
-                        : "bg-wow-horde/20 text-red-300"
-                    }
-                    size="sm"
-                  >
-                    {t("factionRestriction")}: {set.faction}
-                  </Chip>
-                )}
-                {!!set.class_ids?.length && (
-                  <Chip className="bg-cyan-500/10 text-cyan-300" size="sm">
-                    {t("classRestriction")}:{" "}
-                    {set.class_ids.map((id) => t(`className_${id}`)).join(", ")}
-                  </Chip>
-                )}
-              </div>
-            </div>
-          )}
+          {/* Restrictions, with the game's icons */}
+          <div className="mb-4">
+            <RestrictionList classIds={set.class_ids} faction={set.faction} />
+          </div>
         </ModalBody>
 
         <ModalFooter className="flex-col items-stretch gap-3">

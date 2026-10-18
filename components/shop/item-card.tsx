@@ -12,6 +12,7 @@ import { GameTipLink } from "@/components/game-tooltip";
 import { getQualityColor } from "@/lib/shop-utils";
 import { CardArrow } from "@/components/card-arrow";
 import { CHALLENGE_RESTRICTION_LABELS } from "@/lib/challenge-shop-labels";
+import { RestrictionIcons } from "@/components/shop/restriction-badges";
 import {
   TryOnButton,
   useDressingRoom,
@@ -24,7 +25,6 @@ interface ItemCardProps {
 
 export function ItemCard({ item, onClick }: ItemCardProps) {
   const t = useTranslations("shop");
-  const tHome = useTranslations("home");
   const isIneligible = item.eligible === false;
   // the dressing room (the shop's): its magnifier, and Ctrl + click (Cmd + click on a Mac) on the card
   const room = useDressingRoom();
@@ -144,20 +144,13 @@ export function ItemCard({ item, onClick }: ItemCardProps) {
                 {t("challengeGrounded")}
               </Chip>
             )}
-            {item.faction !== "both" && (
-              <Chip
-                className={
-                  item.faction === "alliance"
-                    ? "bg-wow-alliance/20 text-blue-300"
-                    : "bg-wow-horde/20 text-red-300"
-                }
-                size="sm"
-              >
-                {item.faction === "alliance"
-                  ? tHome("alliance")
-                  : tHome("horde")}
-              </Chip>
-            )}
+            {/* its faction, races and classes: their icons (their names as titles) */}
+            <RestrictionIcons
+              classIds={item.class_ids}
+              className="mr-0.5"
+              faction={item.faction}
+              raceIds={item.race_ids}
+            />
             {item.min_level > 0 && (
               <Chip className="bg-orange-500/10 text-orange-300" size="sm">
                 {t("reqLevel", { level: item.min_level })}

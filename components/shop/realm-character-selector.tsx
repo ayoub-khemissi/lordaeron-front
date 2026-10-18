@@ -6,8 +6,8 @@ import { Select, SelectItem } from "@heroui/select";
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 
-import { RACE_NAMES, CLASS_NAMES } from "@/lib/shop-utils";
 import { OVERLAY_POPOVER } from "@/lib/overlay-motion";
+import { CharacterLine } from "@/components/character-identity";
 
 interface RealmCharacterSelectorProps {
   characters: Character[];
@@ -37,13 +37,14 @@ export function RealmCharacterSelector({
     <div className="sticky top-16 z-30 glass rounded-xl p-4 mb-6 border border-wow-gold/10">
       <div className="flex flex-col sm:flex-row items-center gap-4">
         <Select
+          aria-label={t("selectCharacter")}
           className="flex-1 sm:max-w-sm"
           classNames={{
+            // the character's portrait and two lines: room for them, no label over them (the placeholder says it)
             trigger:
-              "glass border-wow-gold/20 hover:border-wow-gold/40 data-[open=true]:border-wow-gold/40",
+              "glass h-14 min-h-14 border-wow-gold/20 hover:border-wow-gold/40 data-[open=true]:border-wow-gold/40",
             popoverContent: "bg-[#161b22] border border-wow-gold/15",
           }}
-          label={t("selectCharacter")}
           placeholder={t("selectCharacter")}
           popoverProps={OVERLAY_POPOVER}
           renderValue={(_items) => {
@@ -51,15 +52,7 @@ export function RealmCharacterSelector({
 
             if (!char) return null;
 
-            return (
-              <div className="flex items-center gap-2">
-                <span className="font-medium text-wow-gold">{char.name}</span>
-                <span className="text-xs text-wow-gold/60">
-                  Lv.{char.level} {RACE_NAMES[char.race]}{" "}
-                  {CLASS_NAMES[char.class]}
-                </span>
-              </div>
-            );
+            return <CharacterLine char={char} size={28} />;
           }}
           selectedKeys={
             selectedCharacter ? [String(selectedCharacter.guid)] : []
@@ -73,17 +66,8 @@ export function RealmCharacterSelector({
           }}
         >
           {characters.map((char) => (
-            <SelectItem
-              key={String(char.guid)}
-              textValue={`${char.name} Lv.${char.level} ${RACE_NAMES[char.race]} ${CLASS_NAMES[char.class]}`}
-            >
-              <div className="flex items-center gap-2">
-                <span className="font-medium text-wow-gold">{char.name}</span>
-                <span className="text-xs text-gray-400">
-                  Lv.{char.level} {RACE_NAMES[char.race]}{" "}
-                  {CLASS_NAMES[char.class]}
-                </span>
-              </div>
+            <SelectItem key={String(char.guid)} textValue={char.name}>
+              <CharacterLine char={char} />
             </SelectItem>
           ))}
         </Select>

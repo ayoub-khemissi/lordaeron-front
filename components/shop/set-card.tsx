@@ -11,6 +11,7 @@ import { PriceDisplay } from "./price-display";
 import { GameTipLink } from "@/components/game-tooltip";
 import { CardArrow } from "@/components/card-arrow";
 import { CHALLENGE_RESTRICTION_LABELS } from "@/lib/challenge-shop-labels";
+import { RestrictionIcons } from "@/components/shop/restriction-badges";
 import {
   TryOnButton,
   useDressingRoom,
@@ -141,26 +142,8 @@ export function SetCard({ set, onClick }: SetCardProps) {
                 {t("reqLevel", { level: set.min_level })}
               </Chip>
             )}
-            {set.class_ids && (
-              <Chip
-                className="bg-cyan-500/10 text-cyan-300 text-[10px]"
-                size="sm"
-              >
-                {set.class_ids.map((id) => t(`className_${id}`)).join(", ")}
-              </Chip>
-            )}
-            {set.faction !== "both" && (
-              <Chip
-                className={
-                  set.faction === "alliance"
-                    ? "bg-wow-alliance/20 text-blue-300 text-[10px]"
-                    : "bg-wow-horde/20 text-red-300 text-[10px]"
-                }
-                size="sm"
-              >
-                {set.faction}
-              </Chip>
-            )}
+            {/* its faction and classes: their icons (their names as titles) */}
+            <RestrictionIcons classIds={set.class_ids} faction={set.faction} />
           </div>
         )}
 

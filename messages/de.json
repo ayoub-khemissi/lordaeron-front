@@ -650,7 +650,10 @@
     "dressingLoading": "Wird geladen…",
     "hiddenUnavailable": "{count, plural, one {# Artikel ausgeblendet} other {# Artikel ausgeblendet}}: für {name} nicht verfügbar.",
     "showHidden": "Anzeigen",
-    "tryHint": "Strg + Klick: anprobieren"
+    "tryHint": "Strg + Klick: anprobieren",
+    "classesLabel": "Klassen",
+    "racesLabel": "Völker",
+    "factionLabel": "Fraktion"
   },
   "admin": {
     "login": {

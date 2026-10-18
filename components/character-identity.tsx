@@ -180,3 +180,46 @@ export function FactionCrest({
     />
   );
 }
+
+// a character on one line (the shop's selector, a gift's recipient; Ayoub, 18/10/2026: icons and class colours, the race and class in the
+// reader's language): its
+// portrait (race, class in the corner), its name in its class colour, "Level · race · class"
+export function CharacterLine({
+  char,
+  size = 30,
+}: {
+  char: {
+    name: string;
+    race: number;
+    class: number;
+    level: number;
+    gender?: number | null;
+  };
+  size?: number;
+}) {
+  return (
+    <span className="flex min-w-0 items-center gap-2.5">
+      <CharacterPortrait
+        cls={char.class}
+        gender={char.gender}
+        race={char.race}
+        size={size}
+      />
+      <span className="flex min-w-0 flex-col leading-tight">
+        <span
+          className="truncate text-sm font-semibold"
+          style={{ color: classColor(char.class) }}
+        >
+          {char.name}
+        </span>
+        <LevelRaceClass
+          separated
+          className="truncate text-[11px]"
+          cls={char.class}
+          level={char.level}
+          race={char.race}
+        />
+      </span>
+    </span>
+  );
+}

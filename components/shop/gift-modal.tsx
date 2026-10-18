@@ -19,7 +19,8 @@ import { useTranslations } from "next-intl";
 
 import { PriceDisplay } from "./price-display";
 
-import { RACE_NAMES, CLASS_NAMES, getQualityColor } from "@/lib/shop-utils";
+import { getQualityColor } from "@/lib/shop-utils";
+import { CharacterLine } from "@/components/character-identity";
 import { useRealm } from "@/lib/realm-context";
 
 interface GiftModalProps {
@@ -213,16 +214,8 @@ export function GiftModal({
 
                 {/* Selected character info */}
                 {selectedCharacter && (
-                  <div className="flex items-center gap-2 mt-2 px-1 text-sm">
-                    <span className="text-wow-gold font-medium">
-                      {selectedCharacter.name}
-                    </span>
-                    <span className="text-gray-500">-</span>
-                    <span className="text-gray-400">
-                      Lv.{selectedCharacter.level}{" "}
-                      {RACE_NAMES[selectedCharacter.race]}{" "}
-                      {CLASS_NAMES[selectedCharacter.class]}
-                    </span>
+                  <div className="mt-2 px-1">
+                    <CharacterLine char={selectedCharacter} />
                   </div>
                 )}
 
@@ -256,15 +249,7 @@ export function GiftModal({
                             className="px-3 py-2 data-[hover=true]:bg-wow-gold/10"
                             textValue={char.name}
                           >
-                            <span className="flex items-center gap-3">
-                              <span className="text-wow-gold font-medium text-sm">
-                                {char.name}
-                              </span>
-                              <span className="text-xs text-gray-400">
-                                Lv.{char.level} {RACE_NAMES[char.race]}{" "}
-                                {CLASS_NAMES[char.class]}
-                              </span>
-                            </span>
+                            <CharacterLine char={char} size={28} />
                           </ListboxItem>
                         ))}
                       </Listbox>

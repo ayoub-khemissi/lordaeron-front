@@ -16,8 +16,10 @@ import { useTranslations } from "next-intl";
 import { PriceDisplay } from "./price-display";
 
 import { GameTipLink } from "@/components/game-tooltip";
-import { RACE_NAMES, getQualityColor } from "@/lib/shop-utils";
+import { getQualityColor } from "@/lib/shop-utils";
 import { useRealm } from "@/lib/realm-context";
+import { RestrictionList } from "@/components/shop/restriction-badges";
+import { CategoryIcon } from "@/components/shop/category-icon";
 import {
   TryOnModalButton,
   useDressingRoom,
@@ -99,7 +101,8 @@ export function ItemDetailModal({
                 item.name
               )}
             </h3>
-            <p className="text-xs text-gray-400">
+            <p className="flex items-center gap-1.5 text-xs text-gray-400">
+              <CategoryIcon category={item.category} size={16} />
               {t(`categories.${item.category}`)}
             </p>
           </div>
@@ -119,44 +122,12 @@ export function ItemDetailModal({
             />
           </div>
 
-          {/* Restrictions: only those it has (its realms are the page's) */}
-          {(!!item.race_ids?.length ||
-            !!item.class_ids?.length ||
-            item.faction !== "both") && (
-            <div className="bg-[#161b22] rounded-lg p-4">
-              <p className="text-xs text-gray-400 uppercase tracking-wider mb-2">
-                {t("restrictions")}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {item.faction !== "both" && (
-                  <Chip
-                    className={
-                      item.faction === "alliance"
-                        ? "bg-wow-alliance/20 text-blue-300"
-                        : "bg-wow-horde/20 text-red-300"
-                    }
-                    size="sm"
-                  >
-                    {t("factionRestriction")}: {item.faction}
-                  </Chip>
-                )}
-                {!!item.race_ids?.length && (
-                  <Chip className="bg-orange-500/10 text-orange-300" size="sm">
-                    {t("raceRestriction")}:{" "}
-                    {item.race_ids.map((id) => RACE_NAMES[id]).join(", ")}
-                  </Chip>
-                )}
-                {!!item.class_ids?.length && (
-                  <Chip className="bg-cyan-500/10 text-cyan-300" size="sm">
-                    {t("classRestriction")}:{" "}
-                    {item.class_ids
-                      .map((id) => t(`className_${id}`))
-                      .join(", ")}
-                  </Chip>
-                )}
-              </div>
-            </div>
-          )}
+          {/* Restrictions: only those it has (its realms are the page's), with the game's icons */}
+          <RestrictionList
+            classIds={item.class_ids}
+            faction={item.faction}
+            raceIds={item.race_ids}
+          />
 
           <div className="mt-3">
             <Chip

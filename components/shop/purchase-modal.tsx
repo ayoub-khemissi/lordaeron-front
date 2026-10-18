@@ -17,6 +17,7 @@ import { useTranslations } from "next-intl";
 import { PriceDisplay } from "./price-display";
 
 import { getQualityColor } from "@/lib/shop-utils";
+import { CharacterLine } from "@/components/character-identity";
 
 interface PurchaseModalProps {
   item: ShopItemLocalized | null;
@@ -106,7 +107,7 @@ export function PurchaseModal({
               </div>
               <div className="bg-[#161b22] rounded-lg p-4 mb-4">
                 <p className="text-sm text-gray-400 mb-1">{t("purchaseFor")}</p>
-                <p className="text-wow-gold font-medium">{character.name}</p>
+                <CharacterLine char={character} />
               </div>
               <div className="bg-[#161b22] rounded-lg p-4">
                 <p className="text-sm text-gray-400 mb-2">{t("price")}</p>

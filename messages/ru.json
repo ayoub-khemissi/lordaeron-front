@@ -650,7 +650,10 @@
     "dressingLoading": "Загрузка…",
     "hiddenUnavailable": "{count, plural, one {Скрыт # товар} few {Скрыто # товара} many {Скрыто # товаров} other {Скрыто # товара}}: недоступны для {name}.",
     "showHidden": "Показать",
-    "tryHint": "Ctrl + клик: примерить"
+    "tryHint": "Ctrl + клик: примерить",
+    "classesLabel": "Классы",
+    "racesLabel": "Расы",
+    "factionLabel": "Фракция"
   },
   "admin": {
     "login": {

@@ -650,7 +650,10 @@
     "dressingLoading": "Chargement…",
     "hiddenUnavailable": "{count, plural, one {# article masqué} other {# articles masqués}} : indisponibles pour {name}.",
     "showHidden": "Les afficher",
-    "tryHint": "Ctrl + clic : essayer"
+    "tryHint": "Ctrl + clic : essayer",
+    "classesLabel": "Classes",
+    "racesLabel": "Races",
+    "factionLabel": "Faction"
   },
   "admin": {
     "login": {

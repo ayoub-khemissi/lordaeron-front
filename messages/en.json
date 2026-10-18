@@ -650,7 +650,10 @@
     "dressingLoading": "Loading…",
     "hiddenUnavailable": "{count, plural, one {# article hidden} other {# articles hidden}}: unavailable to {name}.",
     "showHidden": "Show them",
-    "tryHint": "Ctrl + click: try it on"
+    "tryHint": "Ctrl + click: try it on",
+    "classesLabel": "Classes",
+    "racesLabel": "Races",
+    "factionLabel": "Faction"
   },
   "admin": {
     "login": {

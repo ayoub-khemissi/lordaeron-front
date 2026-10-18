@@ -650,7 +650,10 @@
     "dressingLoading": "A carregar…",
     "hiddenUnavailable": "{count, plural, one {# artigo oculto} other {# artigos ocultos}}: indisponíveis para {name}.",
     "showHidden": "Mostrar",
-    "tryHint": "Ctrl + clique: experimentar"
+    "tryHint": "Ctrl + clique: experimentar",
+    "classesLabel": "Classes",
+    "racesLabel": "Raças",
+    "factionLabel": "Facção"
   },
   "admin": {
     "login": {

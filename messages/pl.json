@@ -650,7 +650,10 @@
     "dressingLoading": "Wczytywanie…",
     "hiddenUnavailable": "{count, plural, one {# przedmiot ukryty} few {# przedmioty ukryte} many {# przedmiotów ukrytych} other {# przedmiotu ukrytego}}: niedostępne dla {name}.",
     "showHidden": "Pokaż je",
-    "tryHint": "Ctrl + klik: przymierz"
+    "tryHint": "Ctrl + klik: przymierz",
+    "classesLabel": "Klasy",
+    "racesLabel": "Rasy",
+    "factionLabel": "Frakcja"
   },
   "admin": {
     "login": {
