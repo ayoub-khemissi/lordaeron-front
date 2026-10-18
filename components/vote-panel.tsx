@@ -4,6 +4,13 @@ import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
+import { Button } from "@heroui/button";
+import {
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  DrawerHeader,
+} from "@heroui/drawer";
 
 import { useAuth } from "@/lib/auth-context";
 import { OPEN_VOTE_EVENT } from "@/components/navigation/vote-event";
@@ -155,8 +162,8 @@ function VoteSiteCard({
       )}
 
       {/* Shard button / Cooldown timer */}
-      <button
-        className={`relative flex-1 rounded py-1.5 px-2 text-xs font-semibold transition-all duration-300 ${
+      <Button
+        className={`relative h-auto min-w-0 flex-1 rounded px-2 py-1.5 text-xs font-semibold transition-all duration-300 data-[disabled=true]:opacity-100 ${
           claimState === "claimed"
             ? "vote-claim-active bg-purple-500/20 text-purple-300 border border-purple-400/40"
             : isClickable
@@ -165,8 +172,9 @@ function VoteSiteCard({
                 ? "bg-purple-500/10 text-purple-400/50 border border-purple-400/20 cursor-wait"
                 : "bg-white/5 text-gray-500 border border-white/5 cursor-default"
         }`}
-        disabled={!isClickable}
-        onClick={handleClick}
+        isDisabled={!isClickable}
+        variant="flat"
+        onPress={handleClick}
       >
         {claimState === "claiming" ? (
           <span className="flex items-center justify-center">
@@ -222,7 +230,7 @@ function VoteSiteCard({
             <ShardIcon className="w-3.5 h-3.5" />
           </span>
         )}
-      </button>
+      </Button>
     </div>
   );
 }
@@ -366,9 +374,11 @@ export function VotePanel() {
       {/* ── Desktop ── */}
       <div className="fixed right-3 top-20 z-40 hidden lg:block">
         {desktopCollapsed ? (
-          <button
-            className="glass border-wow-gold/20 hover:border-wow-gold/40 rounded-lg px-3 py-2 text-xs text-wow-gold font-medium transition-all hover:bg-wow-gold/5 flex items-center gap-1.5"
-            onClick={() => toggleDesktop(false)}
+          <Button
+            className="glass h-auto min-w-0 gap-1.5 rounded-lg border border-wow-gold/20 px-3 py-2 text-xs font-medium text-wow-gold data-[hover=true]:border-wow-gold/40 data-[hover=true]:bg-wow-gold/5"
+            size="sm"
+            variant="bordered"
+            onPress={() => toggleDesktop(false)}
           >
             <svg
               className="w-3 h-3"
@@ -384,16 +394,20 @@ export function VotePanel() {
               />
             </svg>
             {t("expand")}
-          </button>
+          </Button>
         ) : (
           <div className="glass border-wow-gold/15 rounded-xl w-48 overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
             <div className="flex items-center justify-between px-3 py-2 border-b border-white/5">
               <span className="text-xs font-semibold wow-gradient-text uppercase tracking-wider">
                 {t("title")}
               </span>
-              <button
-                className="text-gray-500 hover:text-gray-300 transition-colors"
-                onClick={() => toggleDesktop(true)}
+              <Button
+                isIconOnly
+                aria-label={t("collapse")}
+                className="h-6 w-6 min-w-0 text-gray-500 data-[hover=true]:text-gray-300"
+                size="sm"
+                variant="light"
+                onPress={() => toggleDesktop(true)}
               >
                 <svg
                   className="w-3 h-3"
@@ -408,7 +422,7 @@ export function VotePanel() {
                     strokeWidth={2}
                   />
                 </svg>
-              </button>
+              </Button>
             </div>
 
             {isGuest ? (
@@ -431,11 +445,14 @@ export function VotePanel() {
       {/* ── Mobile ── */}
       <div className="lg:hidden">
         {/* FAB */}
-        <button
-          className={`fixed bottom-4 right-4 z-40 glass border-purple-400/30 rounded-full w-12 h-12 flex items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.4)] transition-all active:scale-95 ${
+        <Button
+          isIconOnly
+          aria-label={t("title")}
+          className={`glass fixed bottom-4 right-4 z-40 h-12 w-12 min-w-0 overflow-visible rounded-full border border-purple-400/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)] ${
             mobileOpen ? "pointer-events-none opacity-0" : ""
           }`}
-          onClick={() => setMobileOpen(true)}
+          variant="bordered"
+          onPress={() => setMobileOpen(true)}
         >
           <ShardIcon className="w-6 h-6" />
           {!isGuest && availableCount > 0 && (
@@ -443,49 +460,31 @@ export function VotePanel() {
               {availableCount}
             </span>
           )}
-        </button>
+        </Button>
 
-        {/* Bottom sheet */}
-        {mobileOpen && (
-          <>
-            {/* Backdrop */}
-            <button
-              aria-label={t("closePanel")}
-              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm cursor-default"
-              type="button"
-              onClick={() => setMobileOpen(false)}
-            />
-
-            {/* Sheet */}
-            <div className="fixed bottom-0 left-0 right-0 z-50 glass border-t border-wow-gold/15 rounded-t-2xl shadow-[0_-4px_30px_rgba(0,0,0,0.5)] animate-slide-up">
-              <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/5">
-                <span className="text-xs font-semibold wow-gradient-text uppercase tracking-wider">
-                  {t("title")}
-                </span>
-                <button
-                  className="text-gray-400 hover:text-gray-200 transition-colors p-1"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M6 18L18 6M6 6l12 12"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                    />
-                  </svg>
-                </button>
-              </div>
-
+        {/* the bottom sheet: HeroUI's Drawer (Ayoub, 18/10/2026: HeroUI's own components) */}
+        <Drawer
+          classNames={{
+            base: "glass rounded-t-2xl border-t border-wow-gold/15 bg-[#0b1020]/95 shadow-[0_-4px_30px_rgba(0,0,0,0.5)]",
+            header: "border-b border-white/5 px-4 py-2.5",
+            closeButton: "text-gray-400 hover:text-gray-200",
+            body: "max-h-[60vh] overflow-y-auto p-4",
+          }}
+          isOpen={mobileOpen}
+          placement="bottom"
+          onOpenChange={setMobileOpen}
+        >
+          <DrawerContent aria-label={t("title")}>
+            <DrawerHeader>
+              <span className="text-xs font-semibold wow-gradient-text uppercase tracking-wider">
+                {t("title")}
+              </span>
+            </DrawerHeader>
+            <DrawerBody>
               {isGuest ? (
                 <GuestPrompt onNavigate={() => setMobileOpen(false)} />
               ) : (
-                <div className="p-4 space-y-2.5 max-h-[60vh] overflow-y-auto">
+                <div className="space-y-2.5">
                   {sites.map((site) => (
                     <VoteSiteCard
                       key={site.id}
@@ -495,9 +494,9 @@ export function VotePanel() {
                   ))}
                 </div>
               )}
-            </div>
-          </>
-        )}
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
       </div>
     </>
   );

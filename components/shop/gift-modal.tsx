@@ -11,7 +11,8 @@ import {
   ModalFooter,
 } from "@heroui/modal";
 import { Button } from "@heroui/button";
-import { Input } from "@heroui/input";
+import { Input, Textarea } from "@heroui/input";
+import { Listbox, ListboxItem } from "@heroui/listbox";
 import { Spinner } from "@heroui/spinner";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -235,22 +236,35 @@ export function GiftModal({
                         {t("giftNoResults")}
                       </div>
                     ) : (
-                      suggestions.map((char) => (
-                        <button
-                          key={char.guid}
-                          className="w-full px-4 py-2.5 flex items-center gap-3 hover:bg-wow-gold/10 transition-colors text-left"
-                          type="button"
-                          onClick={() => handleSelect(char)}
-                        >
-                          <span className="text-wow-gold font-medium text-sm">
-                            {char.name}
-                          </span>
-                          <span className="text-xs text-gray-400">
-                            Lv.{char.level} {RACE_NAMES[char.race]}{" "}
-                            {CLASS_NAMES[char.class]}
-                          </span>
-                        </button>
-                      ))
+                      <Listbox
+                        aria-label={t("giftCharacterName")}
+                        className="p-1"
+                        onAction={(key) => {
+                          const char = suggestions.find(
+                            (c) => String(c.guid) === String(key),
+                          );
+
+                          if (char) handleSelect(char);
+                        }}
+                      >
+                        {suggestions.map((char) => (
+                          <ListboxItem
+                            key={char.guid}
+                            className="px-3 py-2 data-[hover=true]:bg-wow-gold/10"
+                            textValue={char.name}
+                          >
+                            <span className="flex items-center gap-3">
+                              <span className="text-wow-gold font-medium text-sm">
+                                {char.name}
+                              </span>
+                              <span className="text-xs text-gray-400">
+                                Lv.{char.level} {RACE_NAMES[char.race]}{" "}
+                                {CLASS_NAMES[char.class]}
+                              </span>
+                            </span>
+                          </ListboxItem>
+                        ))}
+                      </Listbox>
                     )}
                   </div>
                 )}
@@ -258,16 +272,21 @@ export function GiftModal({
 
               {/* Gift message */}
               <div className="mb-4">
-                <label className="block text-sm text-gray-400 mb-1.5">
-                  {t("giftMessageLabel")}
-                </label>
-                <textarea
-                  className="w-full rounded-lg bg-[#161b22] border border-wow-gold/20 px-3 py-2 text-sm text-gray-100 placeholder-gray-500 outline-none focus:border-wow-gold/40 resize-none"
+                <Textarea
+                  classNames={{
+                    label: "text-sm text-gray-400",
+                    inputWrapper:
+                      "bg-[#161b22] border border-wow-gold/20 data-[hover=true]:bg-[#161b22] group-data-[focus=true]:border-wow-gold/40",
+                    input: "text-sm text-gray-100 placeholder:text-gray-500",
+                  }}
+                  label={t("giftMessageLabel")}
+                  labelPlacement="outside"
                   maxLength={200}
+                  maxRows={3}
+                  minRows={3}
                   placeholder={t("giftMessagePlaceholder")}
-                  rows={3}
                   value={giftMessage}
-                  onChange={(e) => setGiftMessage(e.target.value)}
+                  onValueChange={setGiftMessage}
                 />
                 <p className="text-xs text-gray-500 mt-1 text-right">
                   {giftMessage.length}/200

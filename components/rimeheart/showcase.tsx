@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@heroui/button";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import clsx from "clsx";
@@ -799,10 +800,11 @@ function Classes({ lang }: { lang: Lang }) {
         />
         <div className="no-scrollbar -mx-5 mt-12 flex gap-3 overflow-x-auto px-6 py-2 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
           {classes.list.map((k, i) => (
-            <button
+            <Button
               key={k.key}
               aria-pressed={i === active}
               className={clsx(
+                "h-auto min-w-0",
                 "flex shrink-0 items-center gap-3 rounded-lg border py-1.5 pl-2.5 pr-4 text-sm transition",
                 i === active
                   ? "border-transparent bg-white/10 text-white"
@@ -813,7 +815,8 @@ function Classes({ lang }: { lang: Lang }) {
                   ? { boxShadow: `0 0 0 1px ${k.color}, 0 0 22px ${k.color}55` }
                   : undefined
               }
-              onClick={() => setActive(i)}
+              variant="light"
+              onPress={() => setActive(i)}
             >
               <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-[5px] ring-1 ring-white/25 ring-offset-1 ring-offset-black/70">
                 <img
@@ -825,7 +828,7 @@ function Classes({ lang }: { lang: Lang }) {
                 />
               </span>
               {k.name[lang]}
-            </button>
+            </Button>
           ))}
         </div>
         <AnimatePresence mode="wait">
@@ -1801,9 +1804,10 @@ function Quiz({ lang }: { lang: Lang }) {
                         : "idle";
 
                 return (
-                  <button
+                  <Button
                     key={i}
                     className={clsx(
+                      "h-auto min-w-0 justify-start whitespace-normal",
                       "flex w-full items-center gap-3 rounded-lg border px-4 py-3 text-left transition",
                       state === "right" &&
                         "border-green-400/70 bg-green-500/15 text-green-200",
@@ -1812,12 +1816,13 @@ function Quiz({ lang }: { lang: Lang }) {
                       state === "idle" &&
                         "border-white/10 bg-black/30 text-white/80 hover:border-wow-gold/50",
                     )}
-                    disabled={picked !== null}
-                    onClick={() => setPicked(i)}
+                    isDisabled={picked !== null}
+                    variant="light"
+                    onPress={() => setPicked(i)}
                   >
                     <span className="h-2 w-2 rounded-full bg-wow-gold/60" />
                     {quiz.sample.answers[i][lang]}
-                  </button>
+                  </Button>
                 );
               })}
             </div>

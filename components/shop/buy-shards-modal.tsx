@@ -1,5 +1,6 @@
 "use client";
 
+import { Card } from "@heroui/card";
 import { useState } from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody } from "@heroui/modal";
 import { Spinner } from "@heroui/spinner";
@@ -87,15 +88,15 @@ export function BuyShardsModal({
               const isDisabled = loadingId !== null && !isLoading;
 
               return (
-                <button
+                <Card
                   key={pkg.id}
-                  className={`relative flex flex-col items-center gap-2 rounded-xl p-4 transition-all
-                    ${isRecommended ? "glass-gold glow-pulse-gold ring-1 ring-wow-gold/40" : "glass hover:border-wow-gold/30 hover:bg-white/[0.03]"}
-                    ${isDisabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
+                  isPressable
+                  className={`relative flex flex-col items-center gap-2 overflow-visible rounded-xl bg-transparent p-4 shadow-none transition-all
+                    ${isRecommended ? "glass-gold glow-pulse-gold ring-1 ring-wow-gold/40" : "glass data-[hover=true]:border-wow-gold/30 data-[hover=true]:bg-white/[0.03]"}
+                    ${isDisabled ? "opacity-50" : ""}
                   `}
-                  disabled={isDisabled}
-                  type="button"
-                  onClick={() => handleSelect(pkg.id)}
+                  isDisabled={isDisabled}
+                  onPress={() => handleSelect(pkg.id)}
                 >
                   {isRecommended && (
                     <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-wow-gold text-black text-[10px] font-bold uppercase px-2 py-0.5 rounded-full tracking-wider whitespace-nowrap">
@@ -150,7 +151,7 @@ export function BuyShardsModal({
                       </span>
                     </>
                   )}
-                </button>
+                </Card>
               );
             })}
           </div>

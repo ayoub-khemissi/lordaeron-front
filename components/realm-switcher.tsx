@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@heroui/button";
 import {
   Dropdown,
   DropdownItem,
@@ -67,12 +68,13 @@ export function RealmSwitcher({ onNavigate }: { onNavigate?: () => void }) {
       shouldBlockScroll={false}
     >
       <DropdownTrigger>
-        <button
+        <Button
           className={clsx(
+            "h-auto min-w-0",
             "flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] transition",
             ACCENT[realm.accent],
           )}
-          type="button"
+          variant="light"
         >
           <span
             className={clsx(
@@ -100,7 +102,7 @@ export function RealmSwitcher({ onNavigate }: { onNavigate?: () => void }) {
           >
             <path d="M6 9l6 6 6-6" />
           </svg>
-        </button>
+        </Button>
       </DropdownTrigger>
       <DropdownMenu
         aria-label={t("switch")}

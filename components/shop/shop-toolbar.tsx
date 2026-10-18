@@ -6,6 +6,7 @@ import { Input } from "@heroui/input";
 import { Select, SelectItem } from "@heroui/select";
 import { Button } from "@heroui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@heroui/popover";
+import { Switch } from "@heroui/switch";
 import { useTranslations } from "next-intl";
 import clsx from "clsx";
 
@@ -98,19 +99,39 @@ export function ShopToolbar({
           : "border-wow-gold/60 bg-wow-gold/15 text-wow-gold-light"
         : "border-white/10 text-gray-400 hover:border-white/25 hover:text-gray-200",
     );
+  // an on/off choice: HeroUI's Switch (Ayoub, 18/10/2026: HeroUI's own components)
   const toggle = (on: boolean, label: string, onPress: () => void) => (
-    <button className={chip(on)} type="button" onClick={onPress}>
-      <span
-        aria-hidden
-        className={clsx(
-          "flex h-3.5 w-3.5 items-center justify-center rounded-[3px] border text-[10px] leading-none",
-          on ? "border-current" : "border-white/25",
-        )}
-      >
-        {on ? "✓" : ""}
-      </span>
+    <Switch
+      classNames={{
+        label: "text-xs text-gray-300",
+        wrapper: ice
+          ? "group-data-[selected=true]:bg-wow-blue-ice/70"
+          : "group-data-[selected=true]:bg-wow-gold/70",
+      }}
+      isSelected={on}
+      size="sm"
+      onValueChange={onPress}
+    >
       {label}
-    </button>
+    </Switch>
+  );
+  // one choice among a few, its chip pressed
+  const choice = (
+    on: boolean,
+    label: string,
+    onPress: () => void,
+    key?: string,
+  ) => (
+    <Button
+      key={key}
+      aria-pressed={on}
+      className={clsx(chip(on), "h-auto min-w-0 bg-transparent")}
+      size="sm"
+      variant="bordered"
+      onPress={onPress}
+    >
+      {label}
+    </Button>
   );
   const section = (label: string, children: React.ReactNode) => (
     <div>
@@ -229,44 +250,36 @@ export function ShopToolbar({
               {section(
                 t("sortBy"),
                 <div className="grid grid-cols-2 gap-1.5">
-                  {SORTS.map(([key, label]) => (
-                    <button
-                      key={key}
-                      className={chip(sortBy === key)}
-                      type="button"
-                      onClick={() => onSortChange(key)}
-                    >
-                      {t(label)}
-                    </button>
-                  ))}
+                  {SORTS.map(([key, label]) =>
+                    choice(
+                      sortBy === key,
+                      t(label),
+                      () => onSortChange(key),
+                      key,
+                    ),
+                  )}
                 </div>,
               )}
               {kinds.length > 1 &&
                 section(
                   t("filters.type"),
                   <div className="flex flex-wrap gap-1.5">
-                    <button
-                      className={chip(!facets.kind)}
-                      type="button"
-                      onClick={() => onFacetsChange({ ...facets, kind: null })}
-                    >
-                      {t("facets.all")}
-                    </button>
-                    {kinds.map((kind) => (
-                      <button
-                        key={kind}
-                        className={chip(facets.kind === kind)}
-                        type="button"
-                        onClick={() => onFacetsChange({ ...facets, kind })}
-                      >
-                        {t(`facets.${kind}`)}
-                      </button>
-                    ))}
+                    {choice(!facets.kind, t("facets.all"), () =>
+                      onFacetsChange({ ...facets, kind: null }),
+                    )}
+                    {kinds.map((kind) =>
+                      choice(
+                        facets.kind === kind,
+                        t(`facets.${kind}`),
+                        () => onFacetsChange({ ...facets, kind }),
+                        kind,
+                      ),
+                    )}
                   </div>,
                 )}
               {section(
                 t("filters.show"),
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-col gap-2">
                   {withSets &&
                     toggle(!!showSets, t("filterSets"), () =>
                       onShowSetsChange!(!showSets),
@@ -291,10 +304,11 @@ export function ShopToolbar({
                 </div>,
               )}
               {active > 0 && (
-                <button
-                  className="self-end text-xs text-gray-400 underline-offset-2 hover:text-gray-200 hover:underline"
-                  type="button"
-                  onClick={() => {
+                <Button
+                  className="h-auto min-w-0 self-end px-1 text-xs text-gray-400 data-[hover=true]:bg-transparent data-[hover=true]:text-gray-200"
+                  size="sm"
+                  variant="light"
+                  onPress={() => {
                     onSortChange(DEFAULT_SORT);
                     onFacetsChange(NO_FACETS);
                     onShowUnavailableChange(false);
@@ -303,7 +317,7 @@ export function ShopToolbar({
                   }}
                 >
                   {t("filters.reset")}
-                </button>
+                </Button>
               )}
             </div>
           </PopoverContent>

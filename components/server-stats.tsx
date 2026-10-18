@@ -5,6 +5,7 @@ import type { ServerStats as ServerStatsType } from "@/types";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
+import { Tab, Tabs } from "@heroui/tabs";
 
 import { useRealm } from "@/lib/realm-context";
 
@@ -141,40 +142,39 @@ export const ServerStats = () => {
 
           {/* Toggle pill */}
           <div className="flex justify-center mb-4">
-            <div className="inline-flex glass rounded-full p-1 border border-white/5">
+            <Tabs
+              aria-label={t("factionBalance")}
+              classNames={{
+                tabList: "glass rounded-full border border-white/5 p-1",
+                tab: "h-7 rounded-full px-4",
+                cursor: "glass-gold rounded-full border border-wow-gold/20",
+                tabContent:
+                  "text-xs font-semibold uppercase tracking-wider text-gray-400 group-data-[selected=true]:text-wow-gold-light",
+              }}
+              radius="full"
+              selectedKey={factionMode}
+              variant="light"
+              onSelectionChange={(key) =>
+                setFactionMode(key as typeof factionMode)
+              }
+            >
               {(["live", "total"] as const).map((mode) => (
-                <button
+                <Tab
                   key={mode}
-                  className={`relative px-4 py-1.5 text-xs font-semibold uppercase tracking-wider rounded-full transition-colors duration-200 ${
-                    factionMode === mode
-                      ? "text-wow-gold-light"
-                      : "text-gray-400 hover:text-gray-200"
-                  }`}
-                  onClick={() => setFactionMode(mode)}
-                >
-                  {factionMode === mode && (
-                    <motion.div
-                      className="absolute inset-0 glass-gold rounded-full border border-wow-gold/20"
-                      layoutId="factionToggle"
-                      transition={{
-                        type: "spring",
-                        stiffness: 400,
-                        damping: 30,
-                      }}
-                    />
-                  )}
-                  <span className="relative flex items-center gap-1.5">
-                    {mode === "live" && (
-                      <span className="relative flex h-1.5 w-1.5">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-                        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-green-500" />
-                      </span>
-                    )}
-                    {t(mode)}
-                  </span>
-                </button>
+                  title={
+                    <span className="flex items-center gap-1.5">
+                      {mode === "live" && (
+                        <span className="relative flex h-1.5 w-1.5">
+                          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+                          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-green-500" />
+                        </span>
+                      )}
+                      {t(mode)}
+                    </span>
+                  }
+                />
               ))}
-            </div>
+            </Tabs>
           </div>
 
           {/* Faction bar */}

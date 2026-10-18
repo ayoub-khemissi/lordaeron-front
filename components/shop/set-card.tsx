@@ -2,6 +2,7 @@
 
 import type { ShopSetLocalized } from "@/types";
 
+import { Card } from "@heroui/card";
 import { Chip } from "@heroui/chip";
 import { useTranslations } from "next-intl";
 
@@ -20,11 +21,11 @@ export function SetCard({ set, onClick }: SetCardProps) {
   const isIneligible = set.eligible === false;
 
   return (
-    <button
-      className={`glass border-wow-gold/10 hover:border-wow-gold/30 rounded-xl p-4 text-left transition-all duration-200 cursor-pointer group w-full active:scale-[0.98] ${isIneligible ? "opacity-75 saturate-[0.25]" : ""}`}
-      disabled={isIneligible}
-      type="button"
-      onClick={onClick}
+    <Card
+      isPressable
+      className={`glass group w-full rounded-xl border border-wow-gold/10 bg-transparent p-4 text-left shadow-none transition-all duration-200 data-[hover=true]:border-wow-gold/30 ${isIneligible ? "opacity-75 saturate-[0.25]" : ""}`}
+      isDisabled={isIneligible}
+      onPress={onClick}
     >
       <div className="flex items-start gap-3 mb-3">
         {set.icon_url && (
@@ -149,6 +150,6 @@ export function SetCard({ set, onClick }: SetCardProps) {
         />
         {!isIneligible && <CardArrow inline />}
       </div>
-    </button>
+    </Card>
   );
 }

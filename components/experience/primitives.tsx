@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@heroui/button";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   animate,
@@ -348,14 +349,16 @@ export function Carousel({
       </div>
       <div className="mt-4 flex justify-end gap-3">
         {[-1, 1].map((dir) => (
-          <button
+          <Button
             key={dir}
             aria-label={dir < 0 ? "Previous" : "Next"}
             className={clsx(
-              "grid h-11 w-11 place-items-center rounded-full border border-wow-gold/40 text-wow-gold-light transition hover:border-wow-gold hover:bg-wow-gold/10 disabled:opacity-25",
+              "h-auto min-w-0",
+              "grid h-11 w-11 place-items-center rounded-full border border-wow-gold/40 text-wow-gold-light transition hover:border-wow-gold hover:bg-wow-gold/10 data-[disabled=true]:opacity-25",
             )}
-            disabled={dir < 0 ? edge.start : edge.end}
-            onClick={() => go(dir)}
+            isDisabled={dir < 0 ? edge.start : edge.end}
+            variant="light"
+            onPress={() => go(dir)}
           >
             <svg
               fill="none"
@@ -367,7 +370,7 @@ export function Carousel({
             >
               <path d={dir < 0 ? "M15 6l-6 6 6 6" : "M9 6l6 6-6 6"} />
             </svg>
-          </button>
+          </Button>
         ))}
       </div>
     </div>

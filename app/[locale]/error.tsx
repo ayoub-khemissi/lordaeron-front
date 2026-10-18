@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@heroui/button";
 import { useTranslations } from "next-intl";
 
 export default function ErrorPage({
@@ -32,12 +33,13 @@ export default function ErrorPage({
         </h1>
         <p className="text-gray-400 mb-10 leading-relaxed">{t("errorDesc")}</p>
 
-        <button
-          className="glass-gold glow-gold-strong rounded-full px-10 py-3.5 text-wow-gold font-bold text-sm tracking-wide uppercase hover:brightness-125 transition-all duration-300 cursor-pointer"
-          onClick={reset}
+        <Button
+          className="h-auto min-w-0 glass-gold glow-gold-strong rounded-full px-10 py-3.5 text-wow-gold font-bold text-sm tracking-wide uppercase hover:brightness-125 transition-all duration-300 cursor-pointer"
+          variant="light"
+          onPress={reset}
         >
           {t("retry")}
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -449,13 +449,13 @@ export default function ShopContent({
               ? t("checkoutSuccess")
               : t("checkoutCancelled")}
           </span>
-          <button
-            className="text-current opacity-60 hover:opacity-100"
-            type="button"
-            onClick={() => setCheckoutResult(null)}
+          <Button
+            className="h-auto min-w-0 text-current opacity-60 hover:opacity-100"
+            variant="light"
+            onPress={() => setCheckoutResult(null)}
           >
             &#x2715;
-          </button>
+          </Button>
         </div>
       )}
 

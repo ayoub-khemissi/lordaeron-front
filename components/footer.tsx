@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import { useTranslations, useLocale } from "next-intl";
 import NextLink from "next/link";
@@ -108,10 +109,10 @@ export const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <button
-                    className="inline-flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-purple-300"
-                    type="button"
-                    onClick={openVote}
+                  <Button
+                    className="h-auto min-w-0 inline-flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-purple-300"
+                    variant="light"
+                    onPress={openVote}
                   >
                     <img
                       alt=""
@@ -121,7 +122,7 @@ export const Footer = () => {
                       width={20}
                     />
                     {tNav("vote")}
-                  </button>
+                  </Button>
                 </li>
               </ul>
             </div>

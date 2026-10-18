@@ -2,6 +2,8 @@
 
 import { FormEvent, useCallback, useEffect, useId, useState } from "react";
 import { Button } from "@heroui/button";
+import { Checkbox } from "@heroui/checkbox";
+import { Input } from "@heroui/input";
 import { Spinner } from "@heroui/spinner";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
@@ -58,7 +60,6 @@ export function SecondFactorForm({
   // the pups mailed right after the enrolment
   const [sentNow, setSentNow] = useState(0);
   const inputId = useId();
-  const hintId = useId();
 
   const load = useCallback(async () => {
     setStep({ kind: "loading" });
@@ -217,21 +218,22 @@ export function SecondFactorForm({
                     {factor === "account" && (
                       <div className="rounded-lg border border-wow-gold/30 bg-wow-gold/5 p-3 text-sm leading-relaxed text-wow-gold-light">
                         <p>{t("gameWarning")}</p>
-                        <label className="mt-3 flex items-start gap-2 text-gray-200">
-                          <input
-                            aria-required
-                            checked={understood}
-                            className="mt-1 accent-[#c79c3e]"
-                            type="checkbox"
-                            onChange={(e) => setUnderstood(e.target.checked)}
-                          />
-                          <span>
-                            {t("gameWarningConfirm")}
-                            <span aria-hidden className="ms-0.5 text-danger">
-                              *
-                            </span>
+                        <Checkbox
+                          isRequired
+                          classNames={{
+                            base: "mt-3 max-w-none items-start",
+                            label: "text-sm text-gray-200",
+                            wrapper: "mt-0.5 after:bg-wow-gold",
+                          }}
+                          isSelected={understood}
+                          size="sm"
+                          onValueChange={setUnderstood}
+                        >
+                          {t("gameWarningConfirm")}
+                          <span aria-hidden className="ms-0.5 text-danger">
+                            *
                           </span>
-                        </label>
+                        </Checkbox>
                       </div>
                     )}
                     <p className="text-sm font-semibold text-white">
@@ -263,38 +265,34 @@ export function SecondFactorForm({
                   </p>
                 )}
 
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm text-gray-400" htmlFor={inputId}>
-                    {t("codeLabel")}
-                    <span aria-hidden className="ms-0.5 text-danger">
-                      *
-                    </span>
-                  </label>
-                  <input
-                    aria-required
-                    // eslint-disable-next-line jsx-a11y/no-autofocus
-                    autoFocus
-                    aria-describedby={hintId}
-                    aria-invalid={error ? true : undefined}
-                    autoComplete="one-time-code"
-                    className="h-12 rounded-lg border border-white/10 bg-white/[0.03] text-center font-mono text-xl tracking-[0.5em] text-white outline-none focus:border-wow-gold/60"
-                    id={inputId}
-                    inputMode="numeric"
-                    maxLength={CODE_LENGTH}
-                    name="code"
-                    pattern="[0-9]*"
-                    type="text"
-                    value={code}
-                    onChange={(e) =>
-                      setCode(
-                        e.target.value.replace(/\D/g, "").slice(0, CODE_LENGTH),
-                      )
-                    }
-                  />
-                  <p className="text-xs text-gray-500" id={hintId}>
-                    {t("codeHint")}
-                  </p>
-                </div>
+                <Input
+                  // eslint-disable-next-line jsx-a11y/no-autofocus
+                  autoFocus
+                  isRequired
+                  autoComplete="one-time-code"
+                  classNames={{
+                    label: "text-sm text-gray-400",
+                    inputWrapper:
+                      "h-12 border border-white/10 bg-white/[0.03] data-[hover=true]:bg-white/[0.05] group-data-[focus=true]:border-wow-gold/60",
+                    input:
+                      "text-center font-mono text-xl tracking-[0.5em] text-white",
+                    description: "text-xs text-gray-500",
+                  }}
+                  description={t("codeHint")}
+                  id={inputId}
+                  inputMode="numeric"
+                  isInvalid={!!error}
+                  label={t("codeLabel")}
+                  labelPlacement="outside"
+                  maxLength={CODE_LENGTH}
+                  name="code"
+                  pattern="[0-9]*"
+                  type="text"
+                  value={code}
+                  onValueChange={(v) =>
+                    setCode(v.replace(/\D/g, "").slice(0, CODE_LENGTH))
+                  }
+                />
 
                 {error && (
                   <p className="text-sm text-danger" role="alert">
@@ -551,22 +549,24 @@ export function AccountSecondFactorCard({ locale }: { locale: string }) {
       {state.enrolled &&
         (removing ? (
           <form className="flex flex-col gap-2" onSubmit={remove}>
-            <label className="text-xs text-gray-400" htmlFor={codeId}>
-              {t("removeIntro")}
-              <span aria-hidden className="ms-0.5 text-danger">
-                *
-              </span>
-            </label>
-            <input
-              aria-required
+            <Input
+              isRequired
               autoComplete="one-time-code"
-              className="h-10 rounded-lg border border-white/10 bg-white/[0.03] text-center font-mono text-lg tracking-[0.4em] text-white outline-none focus:border-wow-gold/60"
+              classNames={{
+                label: "text-xs text-gray-400",
+                inputWrapper:
+                  "h-10 border border-white/10 bg-white/[0.03] data-[hover=true]:bg-white/[0.05] group-data-[focus=true]:border-wow-gold/60",
+                input:
+                  "text-center font-mono text-lg tracking-[0.4em] text-white",
+              }}
               id={codeId}
               inputMode="numeric"
+              label={t("removeIntro")}
+              labelPlacement="outside"
               maxLength={CODE_LENGTH}
               value={code}
-              onChange={(e) =>
-                setCode(e.target.value.replace(/\D/g, "").slice(0, CODE_LENGTH))
+              onValueChange={(v) =>
+                setCode(v.replace(/\D/g, "").slice(0, CODE_LENGTH))
               }
             />
             {error && (
@@ -597,13 +597,14 @@ export function AccountSecondFactorCard({ locale }: { locale: string }) {
             </div>
           </form>
         ) : (
-          <button
-            className="self-start text-xs text-gray-500 underline-offset-2 hover:text-gray-300 hover:underline"
-            type="button"
-            onClick={() => setRemoving(true)}
+          <Button
+            className="h-auto min-w-0 self-start px-0 text-xs text-gray-500 data-[hover=true]:bg-transparent data-[hover=true]:text-gray-300"
+            size="sm"
+            variant="light"
+            onPress={() => setRemoving(true)}
           >
             {t("removeAction")}
-          </button>
+          </Button>
         ))}
     </div>
   );

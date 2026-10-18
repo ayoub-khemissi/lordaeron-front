@@ -134,8 +134,9 @@ export const Navbar = () => {
                   shouldBlockScroll={false}
                 >
                   <DropdownTrigger>
-                    <button
+                    <Button
                       className={clsx(
+                        "h-auto min-w-0",
                         "flex items-center gap-1 px-2.5 py-2 rounded-lg text-sm font-medium transition-all duration-300 outline-none focus-visible:ring-2",
                         // open: the realm's colour, not HeroUI's dimmed trigger
                         "aria-expanded:scale-100 aria-expanded:opacity-100",
@@ -146,7 +147,7 @@ export const Navbar = () => {
                           ? clsx(accentText, accentBg)
                           : "text-gray-200 hover:bg-white/5",
                       )}
-                      type="button"
+                      variant="light"
                     >
                       {node.label}
                       <svg
@@ -159,7 +160,7 @@ export const Navbar = () => {
                       >
                         <path d="m6 9 6 6 6-6" />
                       </svg>
-                    </button>
+                    </Button>
                   </DropdownTrigger>
                   <DropdownMenu
                     aria-label={node.label}
@@ -211,10 +212,10 @@ export const Navbar = () => {
         justify="end"
       >
         <NavbarItem className="hidden sm:flex gap-2 items-center">
-          <button
-            className="flex shrink-0 items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm font-medium text-purple-300 transition-colors hover:bg-purple-500/10"
-            type="button"
-            onClick={openVote}
+          <Button
+            className="h-auto min-w-0 flex shrink-0 items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm font-medium text-purple-300 transition-colors hover:bg-purple-500/10"
+            variant="light"
+            onPress={openVote}
           >
             <img
               alt=""
@@ -224,7 +225,7 @@ export const Navbar = () => {
               width={20}
             />
             <span className="hidden xl:inline">{t("nav.vote")}</span>
-          </button>
+          </Button>
           <div className="w-px h-5 shrink-0 bg-default-700/50 mx-1" />
           <LocaleSwitcher />
         </NavbarItem>
@@ -366,10 +367,10 @@ export const Navbar = () => {
           <div className="shimmer-line w-full my-4" />
 
           <NavbarMenuItem>
-            <button
-              className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-lg text-purple-300 transition-all hover:bg-purple-500/10"
-              type="button"
-              onClick={() => {
+            <Button
+              className="h-auto min-w-0 justify-start whitespace-normal flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-lg text-purple-300 transition-all hover:bg-purple-500/10"
+              variant="light"
+              onPress={() => {
                 setIsMenuOpen(false);
                 openVote();
               }}
@@ -382,7 +383,7 @@ export const Navbar = () => {
                 width={20}
               />
               {t("nav.vote")}
-            </button>
+            </Button>
           </NavbarMenuItem>
           {!loading && user ? (
             <>
@@ -396,15 +397,16 @@ export const Navbar = () => {
                 </NextLink>
               </NavbarMenuItem>
               <NavbarMenuItem>
-                <button
-                  className="text-red-400 hover:text-red-300 transition-all text-lg block py-2 px-3 rounded-lg hover:bg-red-500/5 w-full text-left"
-                  onClick={() => {
+                <Button
+                  className="h-auto min-w-0 justify-start whitespace-normal text-red-400 hover:text-red-300 transition-all text-lg block py-2 px-3 rounded-lg hover:bg-red-500/5 w-full text-left"
+                  variant="light"
+                  onPress={() => {
                     setIsMenuOpen(false);
                     handleLogout();
                   }}
                 >
                   {t("nav.logout")}
-                </button>
+                </Button>
               </NavbarMenuItem>
             </>
           ) : !loading ? (

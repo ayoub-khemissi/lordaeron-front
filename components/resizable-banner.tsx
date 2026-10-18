@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@heroui/button";
+import { Input } from "@heroui/input";
 import { useCallback, useRef, useState } from "react";
 
 const DEFAULT_W = 468;
@@ -62,53 +64,65 @@ export const ResizableBanner = () => {
       {/* Controls */}
       <div className="flex items-center gap-4 flex-wrap">
         {/* Width input */}
-        <label className="flex items-center gap-1.5 text-sm text-gray-400">
-          W
-          <input
-            className="w-20 bg-wow-dark/50 border border-white/10 rounded-lg px-2 py-1 text-sm text-gray-200 font-mono text-center focus:border-wow-gold/40 focus:outline-none"
-            min={MIN_W}
-            type="number"
-            value={Math.round(width)}
-            onChange={(e) => handleWidthInput(e.target.value)}
-          />
-          px
-        </label>
+        <Input
+          aria-label="W"
+          className="w-28"
+          classNames={{
+            inputWrapper:
+              "h-8 min-h-8 border border-white/10 bg-wow-dark/50 data-[hover=true]:bg-wow-dark/60 group-data-[focus=true]:border-wow-gold/40",
+            input: "text-center font-mono text-sm text-gray-200",
+          }}
+          endContent={<span className="text-sm text-gray-400">px</span>}
+          min={MIN_W}
+          size="sm"
+          startContent={<span className="text-sm text-gray-400">W</span>}
+          type="number"
+          value={String(Math.round(width))}
+          onValueChange={handleWidthInput}
+        />
 
         {/* Height input */}
-        <label className="flex items-center gap-1.5 text-sm text-gray-400">
-          H
-          <input
-            className="w-20 bg-wow-dark/50 border border-white/10 rounded-lg px-2 py-1 text-sm text-gray-200 font-mono text-center focus:border-wow-gold/40 focus:outline-none"
-            min={MIN_H}
-            type="number"
-            value={Math.round(height)}
-            onChange={(e) => handleHeightInput(e.target.value)}
-          />
-          px
-        </label>
+        <Input
+          aria-label="H"
+          className="w-28"
+          classNames={{
+            inputWrapper:
+              "h-8 min-h-8 border border-white/10 bg-wow-dark/50 data-[hover=true]:bg-wow-dark/60 group-data-[focus=true]:border-wow-gold/40",
+            input: "text-center font-mono text-sm text-gray-200",
+          }}
+          endContent={<span className="text-sm text-gray-400">px</span>}
+          min={MIN_H}
+          size="sm"
+          startContent={<span className="text-sm text-gray-400">H</span>}
+          type="number"
+          value={String(Math.round(height))}
+          onValueChange={handleHeightInput}
+        />
 
         {/* Resize toggle */}
-        <button
-          className={`text-xs px-3 py-1.5 rounded-lg border transition-colors ${
+        <Button
+          className={`h-auto min-w-0 text-xs px-3 py-1.5 rounded-lg border transition-colors ${
             resizable
               ? "border-wow-gold/30 text-wow-gold bg-wow-gold/5"
               : "border-white/10 text-gray-500 bg-transparent"
           }`}
-          onClick={() => setResizable(!resizable)}
+          variant="light"
+          onPress={() => setResizable(!resizable)}
         >
           {resizable ? "Resize ON" : "Resize OFF"}
-        </button>
+        </Button>
 
         {/* Reset */}
-        <button
-          className="text-xs text-gray-500 hover:text-wow-gold transition-colors"
-          onClick={() => {
+        <Button
+          className="h-auto min-w-0 text-xs text-gray-500 hover:text-wow-gold transition-colors"
+          variant="light"
+          onPress={() => {
             setWidth(DEFAULT_W);
             setHeight(DEFAULT_H);
           }}
         >
           Reset
-        </button>
+        </Button>
       </div>
 
       {/* Banner + resize handle */}

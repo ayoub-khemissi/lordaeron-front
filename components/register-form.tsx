@@ -1,5 +1,6 @@
 "use client";
 
+import { Checkbox } from "@heroui/checkbox";
 import { useState } from "react";
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
@@ -295,24 +296,24 @@ export const RegisterForm = () => {
             />
 
             {/* the news, unchecked by default; the terms and the privacy policy the signup accepts */}
-            <label
-              className="flex cursor-pointer items-start gap-3 rounded-xl border border-wow-blue-ice/15 bg-wow-blue-ice/[0.04] p-3 transition-colors hover:border-wow-blue-ice/35"
-              htmlFor="register-news"
-            >
-              <input
-                checked={newsConsent}
-                className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-[#d9a845]"
+            <div className="rounded-xl border border-wow-blue-ice/15 bg-wow-blue-ice/[0.04] p-3 transition-colors hover:border-wow-blue-ice/35">
+              <Checkbox
+                classNames={{
+                  base: "max-w-none items-start",
+                  label: "text-sm leading-snug text-gray-300",
+                  wrapper: "mt-0.5 after:bg-wow-gold",
+                }}
                 id="register-news"
-                type="checkbox"
-                onChange={(e) => setNewsConsent(e.target.checked)}
-              />
-              <span className="text-sm leading-snug text-gray-300">
+                isSelected={newsConsent}
+                size="sm"
+                onValueChange={setNewsConsent}
+              >
                 {tPrefs("consent")}
                 <span className="mt-1 block text-xs text-gray-500">
                   {tPrefs("consentHint")}
                 </span>
-              </span>
-            </label>
+              </Checkbox>
+            </div>
             <p className="text-center text-xs leading-relaxed text-gray-500">
               {tPrefs.rich("legal", {
                 terms: (chunks) => (
