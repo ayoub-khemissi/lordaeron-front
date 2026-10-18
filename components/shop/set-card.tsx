@@ -28,14 +28,24 @@ export function SetCard({ set, onClick }: SetCardProps) {
   const room = useDressingRoom();
 
   return (
-    <div className="relative h-full">
+    // Ctrl / Cmd + click anywhere on the card, its icon and name included, available or not (Ayoub, 18/10/2026)
+    <div
+      className="relative h-full"
+      onClickCapture={(e) => {
+        if (!room || !(e.ctrlKey || e.metaKey)) return;
+        e.preventDefault();
+        e.stopPropagation();
+        room.trySet(set);
+      }}
+    >
       <Card
         isPressable
         className={`glass group h-full w-full rounded-xl border border-wow-gold/10 bg-transparent p-4 text-left shadow-none transition-all duration-200 data-[hover=true]:border-wow-gold/30 ${isIneligible ? "opacity-75 saturate-[0.25]" : ""}`}
         isDisabled={isIneligible}
-        onPress={(e) =>
-          room && (e.ctrlKey || e.metaKey) ? room.trySet(set) : onClick()
-        }
+        onPress={(e) => {
+          // the try-on is the click's (above)
+          if (!(room && (e.ctrlKey || e.metaKey))) onClick();
+        }}
       >
         {/* the magnifier's room in the corner: the discount moves left of it */}
         <div className={`flex items-start gap-3 mb-3 ${room ? "pr-8" : ""}`}>

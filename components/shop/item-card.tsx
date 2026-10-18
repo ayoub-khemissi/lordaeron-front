@@ -31,13 +31,24 @@ export function ItemCard({ item, onClick }: ItemCardProps) {
   const tryable = !!room && !!item.try_on;
 
   return (
-    <div className="relative h-full">
+    // Ctrl / Cmd + click anywhere on the card, its icon and name included, whether the selected character may have it or not (Ayoub,
+    // 18/10/2026): caught before the tooltip's link or the card itself take it
+    <div
+      className="relative h-full"
+      onClickCapture={(e) => {
+        if (!tryable || !(e.ctrlKey || e.metaKey)) return;
+        e.preventDefault();
+        e.stopPropagation();
+        room.tryItem(item);
+      }}
+    >
       <Card
         className={`glass h-full w-full border-wow-gold/10 hover:border-wow-gold/30 transition-all duration-300 hover:glow-gold group ${isIneligible ? "opacity-75 saturate-[0.25]" : ""}`}
         isPressable={!isIneligible}
-        onPress={(e) =>
-          tryable && (e.ctrlKey || e.metaKey) ? room.tryItem(item) : onClick()
-        }
+        onPress={(e) => {
+          // the try-on is the click's (above)
+          if (!(tryable && (e.ctrlKey || e.metaKey))) onClick();
+        }}
       >
         <CardBody className="p-4 pb-2">
           {/* the magnifier's room in the corner: the discount moves left of it */}
