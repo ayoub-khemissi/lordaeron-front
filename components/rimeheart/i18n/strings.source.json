@@ -3855,8 +3855,8 @@
   ]
  },
  {
-  "en": "The race and class pairs **Cataclysm** opened are playable **from character creation**: each has **class trainers of its own race**, its class quests, its starting outfit and its mounts. And for everyone, **the racial traits of another people**.",
-  "fr": "Les combinaisons de race et de classe que **Cataclysm** a ouvertes sont jouables **dès la création du personnage** : chacune a ses **maîtres de classe de sa race**, ses quêtes de classe, sa tenue de départ et ses montures. Et pour tous, **les traits raciaux d'un autre peuple**.",
+  "en": "**New race and class pairs** are playable **from character creation**: each has **class trainers of its own race**, its class quests, its starting outfit and its mounts. And for everyone, **the racial traits of another people**.",
+  "fr": "De **nouvelles combinaisons de race et de classe** sont jouables **dès la création du personnage** : chacune a ses **maîtres de classe de sa race**, ses quêtes de classe, sa tenue de départ et ses montures. Et pour tous, **les traits raciaux d'un autre peuple**.",
   "ctx": [
    "races.lede"
   ]
@@ -3897,8 +3897,8 @@
   ]
  },
  {
-  "en": "Their class quests are open to them: beast taming for the hunters, the blood elf paladins' path for the tauren, the bear and aquatic forms for the troll. With **Cataclysm**'s starting outfit, and the dwarf shaman's four totems from creation.",
-  "fr": "Leurs quêtes de classe leur sont ouvertes : le dressage des bêtes pour les chasseurs, la voie des paladins elfes de sang pour le tauren, les formes d'ours et aquatique pour le troll. Avec la tenue de départ de **Cataclysm**, et les quatre totems du chaman nain dès la création.",
+  "en": "Their class quests are open to them: beast taming for the hunters, the blood elf paladins' path for the tauren, the bear and aquatic forms for the troll. With their own starting outfit, and the dwarf shaman's four totems from creation.",
+  "fr": "Leurs quêtes de classe leur sont ouvertes : le dressage des bêtes pour les chasseurs, la voie des paladins elfes de sang pour le tauren, les formes d'ours et aquatique pour le troll. Avec leur propre tenue de départ, et les quatre totems du chaman nain dès la création.",
   "ctx": [
    "races.text"
   ]
@@ -3911,8 +3911,8 @@
   ]
  },
  {
-  "en": "The tauren paladin rides the **Sunwalker Kodo** at level 20 and the **Great Sunwalker Kodo** at level 40, Cataclysm's models, with a kodo's call.",
-  "fr": "Le paladin tauren monte le **kodo marche-soleil** au niveau 20 et le **grand kodo marche-soleil** au niveau 40, les modèles de Cataclysm, avec leur cri de kodo.",
+  "en": "The tauren paladin rides the **Sunwalker Kodo** at level 20 and the **Great Sunwalker Kodo** at level 40, with a kodo's call.",
+  "fr": "Le paladin tauren monte le **kodo marche-soleil** au niveau 20 et le **grand kodo marche-soleil** au niveau 40, avec leur cri de kodo.",
   "ctx": [
    "races.text"
   ]
@@ -3925,8 +3925,8 @@
   ]
  },
  {
-  "en": "The troll druid has their own **cat**, **bear** and **swift flight** forms, Cataclysm's. Their color follows the hair color, as for night elves and tauren.",
-  "fr": "Le druide troll a ses propres formes de **félin**, d'**ours** et de **vol rapide**, celles de Cataclysm. Leur couleur suit celle de ses cheveux, comme pour les elfes de la nuit et les taurens.",
+  "en": "The troll druid has their own **cat**, **bear** and **swift flight** forms. Their color follows the hair color, as for night elves and tauren.",
+  "fr": "Le druide troll a ses propres formes de **félin**, d'**ours** et de **vol rapide**. Leur couleur suit celle de ses cheveux, comme pour les elfes de la nuit et les taurens.",
   "ctx": [
    "races.text"
   ]

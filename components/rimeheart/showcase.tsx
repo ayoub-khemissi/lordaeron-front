@@ -93,8 +93,34 @@ const inlineEn: Record<string, string> = {
   "Whispering Saronite Vein": refByInlineText["Veine de saronite murmurante"],
   "Keepers' Bloom": refByInlineText["Fleur des Gardiens"],
   "Aurora Rose": refByInlineText["Rose des aurores"],
+  Coward: refByInlineText["Pleutre"],
+  "String of Ears": refByInlineText["Collier d'oreilles"],
+  "first fatal fall": refByInlineText["première chute mortelle"],
+  "Commendation Badges": refByInlineText["Écussons de mérite"],
+  "Ascension Token": refByInlineText["Jeton d'ascension"],
 };
-const inlineAll: Record<string, string> = { ...refByInlineText, ...inlineEn };
+// the challenges' names in the other languages with a tooltip of their own (de, es, ru: the game's names)
+const inlineOther: Record<string, string> = {
+  Feigling: refByInlineText["Pleutre"],
+  Cobarde: refByInlineText["Pleutre"],
+  Трус: refByInlineText["Pleutre"],
+  Ohrenkette: refByInlineText["Collier d'oreilles"],
+  "Collar de orejas": refByInlineText["Collier d'oreilles"],
+  "Ожерелья из ушей": refByInlineText["Collier d'oreilles"],
+  "ersten tödlichen Sturz": refByInlineText["première chute mortelle"],
+  "primera caída mortal": refByInlineText["première chute mortelle"],
+  "первое смертельное падение": refByInlineText["première chute mortelle"],
+  Belobigungsabzeichen: refByInlineText["Écussons de mérite"],
+  "Distintivos de mención": refByInlineText["Écussons de mérite"],
+  Aufstiegsmarke: refByInlineText["Jeton d'ascension"],
+  "Ficha de ascensión": refByInlineText["Jeton d'ascension"],
+  "Жетон возвышения": refByInlineText["Jeton d'ascension"],
+};
+const inlineAll: Record<string, string> = {
+  ...refByInlineText,
+  ...inlineEn,
+  ...inlineOther,
+};
 const inlineRe = new RegExp(
   `(${Object.keys(inlineAll)
     .sort((a, b) => b.length - a.length)
@@ -1380,7 +1406,7 @@ function Challenges({ lang }: { lang: Lang }) {
           {challenges.list.map((c, i) => (
             <Reveal key={c.icon} delay={(i % 3) * 0.07}>
               <div className="flex h-full gap-4 rounded-xl border border-white/10 bg-white/[0.04] p-5">
-                <WowIcon icon={c.icon} size={46} />
+                <WowIcon icon={c.icon} size={46} tip={c.ref} />
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-baseline gap-x-2">
                     <h3 className="font-heading text-lg text-white">

@@ -144,12 +144,20 @@ export const refByInlineText: Record<string, string> = {
   "Veine de saronite murmurante": "item:900500", // Whispering Saronite (from the vein)
   "Fleur des Gardiens": "item:900511", // Keepers' Petal
   "Rose des aurores": "item:900512", // Aurora Petal
+  // the character challenges (Vesperine Gravewhisper)
+  Pleutre: "spell:105920", // Coward! (fleeing a Mak'gora)
+  "Collier d'oreilles": "spell:105919", // String of Ears
+  "première chute mortelle": "spell:105939", // Vesperine's Reprieve
+  "Écussons de mérite": "item:901950", // Archivist's Commendation Badge
+  "Jeton d'ascension": "item:901960", // Ascension Token
 };
 
 // icon name (as used in content.ts marquee lists collections.marquee / collections.marquee2, lowercase) -> ref
 // a card's icon that pictures one item of a card about several things: the tooltip on the icon only (lowercase icon name -> ref)
 export const refByCardIcon: Record<string, string> = {
   inv_mace_37: "item:900204", // Master Mason's Trowel (Deadmines), on the "Deadmines and Molten Core revisited" card
+  inv_misc_bone_orcskull_01: "spell:105919", // String of Ears, on the challenges' "The Mak'gora" card
+  spell_holy_spiritualguidence: "spell:105939", // Vesperine's Reprieve, on the challenges' "One life" card
 };
 
 export const refByIcon: Record<string, string> = {

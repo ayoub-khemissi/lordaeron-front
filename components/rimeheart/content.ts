@@ -640,7 +640,7 @@ export const classes = {
   },
 };
 
-/** A race and class pair Cataclysm opened (lordaeron-core-lab contrib/wotlk-plus content/race-class.js PAIRS): the race's portrait, the
+/** A new race and class pair (lordaeron-core-lab contrib/wotlk-plus content/race-class.js PAIRS): the race's portrait, the
     class (its name and colour: classes.list) and the faction. */
 export type RacePair = { race: T; icon: string; cls: string; horde: boolean };
 
@@ -666,8 +666,8 @@ export const raceClasses = {
     "Eleven pairs 3.3.5 never had.",
   ),
   lede: L(
-    "Les combinaisons de race et de classe que **Cataclysm** a ouvertes sont jouables **dès la création du personnage** : chacune a ses **maîtres de classe de sa race**, ses quêtes de classe, sa tenue de départ et ses montures. Et pour tous, **les traits raciaux d'un autre peuple**.",
-    "The race and class pairs **Cataclysm** opened are playable **from character creation**: each has **class trainers of its own race**, its class quests, its starting outfit and its mounts. And for everyone, **the racial traits of another people**.",
+    "De **nouvelles combinaisons de race et de classe** sont jouables **dès la création du personnage** : chacune a ses **maîtres de classe de sa race**, ses quêtes de classe, sa tenue de départ et ses montures. Et pour tous, **les traits raciaux d'un autre peuple**.",
+    "**New race and class pairs** are playable **from character creation**: each has **class trainers of its own race**, its class quests, its starting outfit and its mounts. And for everyone, **the racial traits of another people**.",
   ),
   pairs: [
     {
@@ -752,24 +752,24 @@ export const raceClasses = {
       icon: "ability_hunter_beasttaming",
       title: L("Leur propre parcours", "Their own path"),
       text: L(
-        "Leurs quêtes de classe leur sont ouvertes : le dressage des bêtes pour les chasseurs, la voie des paladins elfes de sang pour le tauren, les formes d'ours et aquatique pour le troll. Avec la tenue de départ de **Cataclysm**, et les quatre totems du chaman nain dès la création.",
-        "Their class quests are open to them: beast taming for the hunters, the blood elf paladins' path for the tauren, the bear and aquatic forms for the troll. With **Cataclysm**'s starting outfit, and the dwarf shaman's four totems from creation.",
+        "Leurs quêtes de classe leur sont ouvertes : le dressage des bêtes pour les chasseurs, la voie des paladins elfes de sang pour le tauren, les formes d'ours et aquatique pour le troll. Avec leur propre tenue de départ, et les quatre totems du chaman nain dès la création.",
+        "Their class quests are open to them: beast taming for the hunters, the blood elf paladins' path for the tauren, the bear and aquatic forms for the troll. With their own starting outfit, and the dwarf shaman's four totems from creation.",
       ),
     },
     {
       icon: "ability_mount_kodo_01",
       title: L("Kodos marche-soleil", "Sunwalker Kodos"),
       text: L(
-        "Le paladin tauren monte le **kodo marche-soleil** au niveau 20 et le **grand kodo marche-soleil** au niveau 40, les modèles de Cataclysm, avec leur cri de kodo.",
-        "The tauren paladin rides the **Sunwalker Kodo** at level 20 and the **Great Sunwalker Kodo** at level 40, Cataclysm's models, with a kodo's call.",
+        "Le paladin tauren monte le **kodo marche-soleil** au niveau 20 et le **grand kodo marche-soleil** au niveau 40, avec leur cri de kodo.",
+        "The tauren paladin rides the **Sunwalker Kodo** at level 20 and the **Great Sunwalker Kodo** at level 40, with a kodo's call.",
       ),
     },
     {
       icon: "ability_racial_bearform",
       title: L("Formes du druide troll", "Troll druid forms"),
       text: L(
-        "Le druide troll a ses propres formes de **félin**, d'**ours** et de **vol rapide**, celles de Cataclysm. Leur couleur suit celle de ses cheveux, comme pour les elfes de la nuit et les taurens.",
-        "The troll druid has their own **cat**, **bear** and **swift flight** forms, Cataclysm's. Their color follows the hair color, as for night elves and tauren.",
+        "Le druide troll a ses propres formes de **félin**, d'**ours** et de **vol rapide**. Leur couleur suit celle de ses cheveux, comme pour les elfes de la nuit et les taurens.",
+        "The troll druid has their own **cat**, **bear** and **swift flight** forms. Their color follows the hair color, as for night elves and tauren.",
       ),
     },
     {
@@ -2541,6 +2541,7 @@ export const guilds = {
 
 /** A character challenge (Vesperine Gravewhisper, contrib/wotlk-plus content/challenges.js): its icon, stars, rules and reward. */
 export type Challenge = {
+  ref: string;
   icon: string;
   stars: number;
   name: T;
@@ -2563,6 +2564,7 @@ export const challenges = {
   ),
   list: [
     {
+      ref: "spell:105901",
       icon: "ability_hunter_pet_turtle",
       stars: 1,
       tier: "aura",
@@ -2574,6 +2576,7 @@ export const challenges = {
       reward: L("Aura de réussite", "Completion aura"),
     },
     {
+      ref: "spell:105902",
       icon: "ability_tracking",
       stars: 2,
       tier: "aura",
@@ -2585,6 +2588,7 @@ export const challenges = {
       reward: L("Aura de réussite", "Completion aura"),
     },
     {
+      ref: "spell:105903",
       icon: "inv_misc_bag_10",
       stars: 2,
       tier: "aura",
@@ -2596,6 +2600,7 @@ export const challenges = {
       reward: L("Aura de réussite", "Completion aura"),
     },
     {
+      ref: "spell:105904",
       icon: "inv_shirt_grey_01",
       stars: 2,
       tier: "aura",
@@ -2607,6 +2612,7 @@ export const challenges = {
       reward: L("Aura de réussite", "Completion aura"),
     },
     {
+      ref: "spell:105905",
       icon: "spell_deathknight_bloodboil",
       stars: 3,
       tier: "aura",
@@ -2618,6 +2624,7 @@ export const challenges = {
       reward: L("Aura de réussite", "Completion aura"),
     },
     {
+      ref: "spell:105906",
       icon: "ability_hunter_pet_wolf",
       stars: 3,
       tier: "aura",
@@ -2629,6 +2636,7 @@ export const challenges = {
       reward: L("Aura de réussite", "Completion aura"),
     },
     {
+      ref: "spell:105907",
       icon: "inv_misc_rune_01",
       stars: 3,
       tier: "aura",
@@ -2640,6 +2648,7 @@ export const challenges = {
       reward: L("Aura de réussite", "Completion aura"),
     },
     {
+      ref: "spell:105908",
       icon: "spell_shadow_curseofmannoroth",
       stars: 3,
       tier: "aura",
@@ -2651,6 +2660,7 @@ export const challenges = {
       reward: L("Aura de réussite", "Completion aura"),
     },
     {
+      ref: "spell:105909",
       icon: "inv_hammer_20",
       stars: 3,
       tier: "title",
@@ -2662,6 +2672,7 @@ export const challenges = {
       reward: L("Titre : l'Artisan", "Title: the Artisan"),
     },
     {
+      ref: "spell:105910",
       icon: "ability_warrior_intensifyrage",
       stars: 3,
       tier: "title",
@@ -2673,6 +2684,7 @@ export const challenges = {
       reward: L("Titre : le Nu", "Title: the Bare"),
     },
     {
+      ref: "spell:105911",
       icon: "ability_hunter_beastsoothe",
       stars: 3,
       tier: "title",
@@ -2684,6 +2696,7 @@ export const challenges = {
       reward: L("Titre : l'Ami des bêtes", "Title: Friend of Beasts"),
     },
     {
+      ref: "spell:105912",
       icon: "spell_shadow_twilight",
       stars: 4,
       tier: "title",
@@ -2695,6 +2708,7 @@ export const challenges = {
       reward: L("Titre : le Sans-Repos", "Title: the Sleepless"),
     },
     {
+      ref: "spell:105913",
       icon: "spell_shadow_possession",
       stars: 4,
       tier: "title",
@@ -2706,6 +2720,7 @@ export const challenges = {
       reward: L("Titre : Cauchemar éveillé", "Title: the Waking Nightmare"),
     },
     {
+      ref: "spell:105914",
       icon: "inv_scroll_03",
       stars: 4,
       tier: "title",
@@ -2717,6 +2732,7 @@ export const challenges = {
       reward: L("Titre : l'Insoumis", "Title: the Unbidden"),
     },
     {
+      ref: "spell:105915",
       icon: "inv_misc_bone_humanskull_01",
       stars: 4,
       tier: "legend",
@@ -2725,6 +2741,7 @@ export const challenges = {
       reward: L("Légende : l'Impérissable", "Legend: the Deathless"),
     },
     {
+      ref: "spell:105916",
       icon: "spell_holy_layonhands",
       stars: 5,
       tier: "legend",
@@ -2736,6 +2753,7 @@ export const challenges = {
       reward: L("Légende : le Pacifiste", "Legend: the Pacifist"),
     },
     {
+      ref: "spell:105917",
       icon: "inv_misc_organ_01",
       stars: 5,
       tier: "legend",
@@ -2747,6 +2765,7 @@ export const challenges = {
       reward: L("Légende : Cœur-de-fer", "Legend: Ironheart"),
     },
     {
+      ref: "spell:105918",
       icon: "inv_misc_dice_01",
       stars: 5,
       tier: "legend",
