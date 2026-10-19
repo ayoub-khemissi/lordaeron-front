@@ -45,3 +45,6 @@ bun.lockb
 
 # output
 sql/generators/output
+
+# Python bytecode of the scripts (modelviewer-custom.py)
+__pycache__/
