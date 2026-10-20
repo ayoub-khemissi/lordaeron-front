@@ -23,9 +23,9 @@ import {
   formatPlayTime,
 } from "@/components/account/account-ui";
 import {
+  CharacterInline,
   CharacterPortrait,
   LevelRaceClass,
-  classColor,
 } from "@/components/character-identity";
 import { launchLine } from "@/lib/launch";
 import { realmById, realmPath } from "@/lib/realms";
@@ -274,12 +274,14 @@ function RealmCard({
       {best && (
         <p className="mt-3 text-sm text-gray-400">
           {t("highestLevel")}{" "}
-          <span
-            className="font-semibold"
-            style={{ color: classColor(best.class) }}
-          >
-            {best.name}
-          </span>{" "}
+          <CharacterInline
+            character={best}
+            href={realmPath(
+              locale,
+              realm.slug,
+              `/armory/${encodeURIComponent(best.name)}`,
+            )}
+          />{" "}
           <LevelRaceClass
             separated
             className="text-xs"

@@ -8,18 +8,12 @@ import type {
 } from "@/types/challenges";
 import type { ReactNode } from "react";
 
-import { Chip } from "@heroui/chip";
-import NextLink from "next/link";
 import { useTranslations } from "next-intl";
 import clsx from "clsx";
 
 import { ChallengeLabel, ChallengeTags } from "./challenge-parts";
 
-import {
-  CharacterPortrait,
-  LevelRaceClass,
-  classColor,
-} from "@/components/character-identity";
+import { CharacterBlock, GmBadge } from "@/components/character-identity";
 import { RankState } from "@/components/rankings/ranked-row";
 import { RankedRowsSkeleton } from "@/components/rankings/ranking-skeleton";
 import { Day } from "@/components/tools/time";
@@ -53,58 +47,22 @@ const LISTS: { key: ListKey; id: string; empty: string; text: string }[] = [
 // the Mak'gora's winner)
 const NAMED_KILLER = [0, 1, 2, 3, 4, 14, 15];
 
-// a challenger: its race and class, its name in its class colour (its armory page; a deleted character's name alone), its level
+// a challenger: the site's character block (its armory page; a deleted character's without a link)
 function Challenger({ run, online }: { run: ChallengeRun; online?: boolean }) {
-  const tArmory = useTranslations("armory");
   const realmHref = useRealmHref();
 
   return (
-    <div className="flex min-w-0 flex-1 items-center gap-3">
-      <CharacterPortrait
-        cls={run.class}
-        gender={run.gender}
-        online={online}
-        race={run.race}
-        size={36}
-      />
-      <div className="min-w-0">
-        <span className="flex min-w-0 items-center gap-2">
-          {run.deleted ? (
-            <span
-              className="truncate text-base font-semibold"
-              style={{ color: classColor(run.class) }}
-            >
-              {run.name}
-            </span>
-          ) : (
-            <NextLink
-              className="truncate text-base font-semibold transition-all hover:brightness-125 hover:underline"
-              href={realmHref(`/armory/${encodeURIComponent(run.name)}`)}
-              style={{ color: classColor(run.class) }}
-            >
-              {run.name}
-            </NextLink>
-          )}
-          {run.gm && (
-            <Chip
-              className="h-5 shrink-0 text-[10px] font-bold uppercase"
-              color="danger"
-              size="sm"
-              variant="flat"
-            >
-              {tArmory("gm")}
-            </Chip>
-          )}
-        </span>
-        <LevelRaceClass
-          separated
-          className="block truncate text-xs"
-          cls={run.class}
-          level={run.level}
-          race={run.race}
-        />
-      </div>
-    </div>
+    <CharacterBlock
+      badges={run.gm && <GmBadge />}
+      character={run}
+      className="flex-1"
+      href={
+        run.deleted
+          ? undefined
+          : realmHref(`/armory/${encodeURIComponent(run.name)}`)
+      }
+      online={online}
+    />
   );
 }
 

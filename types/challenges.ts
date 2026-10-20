@@ -13,6 +13,9 @@ export interface ChallengeInfo {
   // Interface\Icons textures: while it lasts, once completed
   icon: string;
   doneIcon: string;
+  // the spells of its aura and of its completion's (their tooltips: what it asks, what it gave), 0 when none
+  aura: number;
+  doneAura: number;
 }
 
 // one character's challenge (characters wotlkplus_challenge) and the character

@@ -1,5 +1,9 @@
 "use client";
 
+import type { ReactNode } from "react";
+
+import { Chip } from "@heroui/chip";
+import NextLink from "next/link";
 import { useTranslations } from "next-intl";
 import clsx from "clsx";
 
@@ -181,9 +185,165 @@ export function FactionCrest({
   );
 }
 
-// a character on one line (the shop's selector, a gift's recipient; Ayoub, 18/10/2026: icons and class colours, the race and class in the
-// reader's language): its
-// portrait (race, class in the corner), its name in its class colour, "Level · race · class"
+// a game master's character (shown to a site administrator only): its badge after the name
+export function GmBadge() {
+  const t = useTranslations("armory");
+
+  return (
+    <Chip
+      className="h-5 shrink-0 text-[10px] font-bold uppercase"
+      color="danger"
+      size="sm"
+      variant="flat"
+    >
+      {t("gm")}
+    </Chip>
+  );
+}
+
+/* A character's block, the same everywhere on the site (Ayoub, 20/10/2026): its portrait (race, class in the corner, the online dot
+   when known), its name in its class colour with its badges (a GM chip), "Level · race · class" and, under it, what the place adds (a
+   guild rank, a challenge). With `href` the whole block is the link to its armory page and hovering anywhere in it underlines the name;
+   `stretch` spreads the link over its positioned row (a ranking: the whole row opens the page). In a row that is itself the link (a card),
+   leave `href` out and give the row the class "group/char": hovering the row underlines the name. A deleted character has no page: no
+   `href`. `compact`: the selectors' smaller lines. */
+export function CharacterBlock({
+  character,
+  href,
+  online,
+  size = 36,
+  badges,
+  children,
+  stretch = false,
+  compact = false,
+  className,
+}: {
+  character: {
+    name: string;
+    race: number;
+    class: number;
+    level: number;
+    gender?: number | null;
+  };
+  href?: string;
+  online?: boolean;
+  size?: number;
+  badges?: ReactNode;
+  children?: ReactNode;
+  stretch?: boolean;
+  compact?: boolean;
+  className?: string;
+}) {
+  const body = (
+    <>
+      <CharacterPortrait
+        cls={character.class}
+        gender={character.gender}
+        online={online}
+        race={character.race}
+        size={size}
+      />
+      <span className="flex min-w-0 flex-1 flex-col text-left leading-tight">
+        <span className="flex min-w-0 items-center gap-2">
+          <span
+            className={clsx(
+              "truncate font-semibold decoration-1 underline-offset-2 transition-[filter] group-hover/char:underline group-hover/char:brightness-125",
+              compact ? "text-sm" : "text-base",
+            )}
+            style={{ color: classColor(character.class) }}
+          >
+            {character.name}
+          </span>
+          {badges}
+        </span>
+        <LevelRaceClass
+          separated
+          className={clsx(
+            "block truncate",
+            compact ? "text-[11px]" : "mt-0.5 text-xs sm:text-sm",
+          )}
+          cls={character.class}
+          level={character.level}
+          race={character.race}
+        />
+        {children}
+      </span>
+    </>
+  );
+  const layout = clsx(
+    "flex min-w-0 items-center",
+    compact ? "gap-2.5" : "gap-3",
+    className,
+  );
+
+  return href ? (
+    <NextLink
+      className={clsx(
+        "group/char outline-none focus-visible:ring-2 focus-visible:ring-wow-gold/60",
+        stretch
+          ? "after:absolute after:inset-0 after:rounded-xl"
+          : "rounded-lg",
+        layout,
+      )}
+      href={href}
+    >
+      {body}
+    </NextLink>
+  ) : (
+    <span className={layout}>{body}</span>
+  );
+}
+
+/* A character in a list of names (an arena team's members, a realm first's earners): its race and class icons and its name in its class
+   colour, the whole of it the link to its armory page (its name underlined on hover); a deleted character's without a link */
+export function CharacterInline({
+  character,
+  href,
+  badges,
+  size = 16,
+}: {
+  character: {
+    name: string;
+    race: number;
+    class: number;
+    gender?: number | null;
+  };
+  href?: string;
+  badges?: ReactNode;
+  size?: number;
+}) {
+  const body = (
+    <>
+      <RaceClassIcons
+        cls={character.class}
+        gender={character.gender}
+        race={character.race}
+        size={size}
+      />
+      <span
+        className="font-semibold decoration-1 underline-offset-2 group-hover/char:underline"
+        style={{ color: classColor(character.class) }}
+      >
+        {character.name}
+      </span>
+      {badges}
+    </>
+  );
+
+  return href ? (
+    <NextLink
+      className="group/char inline-flex items-center gap-1.5 rounded outline-none focus-visible:ring-2 focus-visible:ring-wow-gold/60"
+      href={href}
+    >
+      {body}
+    </NextLink>
+  ) : (
+    <span className="inline-flex items-center gap-1.5">{body}</span>
+  );
+}
+
+// a character on one line, no link (the shop's selector, a gift's recipient; Ayoub, 18/10/2026: icons and class colours, the race and
+// class in the reader's language): the same block, smaller
 export function CharacterLine({
   char,
   size = 30,
@@ -197,29 +357,5 @@ export function CharacterLine({
   };
   size?: number;
 }) {
-  return (
-    <span className="flex min-w-0 items-center gap-2.5">
-      <CharacterPortrait
-        cls={char.class}
-        gender={char.gender}
-        race={char.race}
-        size={size}
-      />
-      <span className="flex min-w-0 flex-col leading-tight">
-        <span
-          className="truncate text-sm font-semibold"
-          style={{ color: classColor(char.class) }}
-        >
-          {char.name}
-        </span>
-        <LevelRaceClass
-          separated
-          className="truncate text-[11px]"
-          cls={char.class}
-          level={char.level}
-          race={char.race}
-        />
-      </span>
-    </span>
-  );
+  return <CharacterBlock compact character={char} size={size} />;
 }

@@ -51,7 +51,7 @@ async function challengeInfos(
     ? `COALESCE(NULLIF(s.${column}, ''), s.content_default)`
     : "s.content_default";
   const [rows] = await realmWorldDb(slug).query<RowDataPacket[]>(
-    `SELECT ch.ID, ch.Stars, ch.Reward, ch.Lives, ch.Icon, ch.DoneIcon, ${name} AS name
+    `SELECT ch.ID, ch.Stars, ch.Reward, ch.Lives, ch.Icon, ch.DoneIcon, ch.Aura, ch.DoneAura, ${name} AS name
      FROM wotlk_plus_challenge ch
      LEFT JOIN trinity_string s ON s.entry = ch.Name`,
   );
@@ -67,6 +67,8 @@ async function challengeInfos(
         lives: Number(r.Lives),
         icon: String(r.Icon ?? ""),
         doneIcon: String(r.DoneIcon ?? ""),
+        aura: Number(r.Aura ?? 0),
+        doneAura: Number(r.DoneAura ?? 0),
       },
     ]),
   );

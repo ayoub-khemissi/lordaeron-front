@@ -30,7 +30,7 @@ import {
 } from "@/components/tools/time";
 import { ToolError } from "@/components/tools/tool-page";
 import { useToolData } from "@/components/tools/use-tool-data";
-import { RaceClassIcons, classColor } from "@/components/character-identity";
+import { CharacterInline } from "@/components/character-identity";
 import { ToolTabs } from "@/components/tools/tool-tabs";
 import { useRealm } from "@/lib/realm-context";
 
@@ -146,21 +146,12 @@ export function BlackMarketContent() {
             options={data.characters.map((c) => ({
               value: String(c.guid),
               label: (
-                <span className="inline-flex items-center gap-1.5">
-                  <RaceClassIcons
-                    cls={c.class}
-                    gender={c.gender}
-                    race={c.race}
-                    size={16}
-                  />
-                  <span
-                    className="font-semibold"
-                    style={{ color: classColor(c.class) }}
-                  >
-                    {c.name}
-                  </span>
-                  <span className="text-xs text-gray-400">{c.level}</span>
-                </span>
+                <CharacterInline
+                  badges={
+                    <span className="text-xs text-gray-400">{c.level}</span>
+                  }
+                  character={c}
+                />
               ),
             }))}
             value={String(view?.character.guid ?? "")}

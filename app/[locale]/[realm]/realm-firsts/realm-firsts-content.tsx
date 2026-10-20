@@ -10,7 +10,6 @@ import { Button } from "@heroui/button";
 import { Switch } from "@heroui/switch";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import NextLink from "next/link";
 
 import { RealmFirstsSkeleton } from "./realm-firsts-skeleton";
 
@@ -18,7 +17,7 @@ import { GameTipLink } from "@/components/game-tooltip";
 import { Day } from "@/components/tools/time";
 import { GameIcon, ToolError } from "@/components/tools/tool-page";
 import { useToolData } from "@/components/tools/use-tool-data";
-import { RaceClassIcons, classColor } from "@/components/character-identity";
+import { CharacterInline } from "@/components/character-identity";
 import { useRealmHref } from "@/lib/realm-context";
 
 const GROUPS: RealmFirstGroup[] = [
@@ -45,28 +44,21 @@ function Earners({ first }: { first: RealmFirst }) {
       {shown.map((e, i) => (
         <span key={e.guid} className="inline-flex items-center gap-1">
           {i > 0 && <span className="text-gray-600">, </span>}
-          <RaceClassIcons
-            cls={e.class}
-            gender={e.gender}
-            race={e.race}
-            size={16}
+          <CharacterInline
+            badges={
+              e.gm && (
+                <span className="ml-1 rounded border border-red-400/40 bg-red-500/15 px-1 text-[9px] font-bold uppercase text-red-300">
+                  GM
+                </span>
+              )
+            }
+            character={e}
+            href={
+              e.deleted
+                ? undefined
+                : realmHref(`/armory/${encodeURIComponent(e.name)}`)
+            }
           />
-          {e.deleted ? (
-            <span style={{ color: classColor(e.class) }}>{e.name}</span>
-          ) : (
-            <NextLink
-              className="font-semibold hover:underline"
-              href={realmHref(`/armory/${encodeURIComponent(e.name)}`)}
-              style={{ color: classColor(e.class) }}
-            >
-              {e.name}
-            </NextLink>
-          )}
-          {e.gm && (
-            <span className="ml-1 rounded border border-red-400/40 bg-red-500/15 px-1 text-[9px] font-bold uppercase text-red-300">
-              GM
-            </span>
-          )}
           {first.earners.length === 1 && e.guild && (
             <span className="text-gray-400"> &lt;{e.guild}&gt;</span>
           )}

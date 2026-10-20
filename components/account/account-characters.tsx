@@ -26,12 +26,15 @@ import {
   formatPlayTime,
 } from "@/components/account/account-ui";
 import {
+  CharacterBlock,
   CharacterPortrait,
   LevelRaceClass,
   classColor,
 } from "@/components/character-identity";
-import { ChallengeTags } from "@/components/challenges/challenge-parts";
-import { GameIcon } from "@/components/tools/tool-page";
+import {
+  ChallengeIcon,
+  ChallengeTags,
+} from "@/components/challenges/challenge-parts";
 import { RestoreCharacterModal } from "@/components/restore-character-modal";
 import { realmPath } from "@/lib/realms";
 
@@ -389,7 +392,8 @@ export function AccountCharacters({
   );
 }
 
-// a character: its portrait (online or not), its name in its class color, "Level · race · class", its challenge, its play time
+// a character: the site's character block (the whole line opens its armory page, its name underlined on hover) with its challenge, its
+// play time
 function CharacterLine({
   character: c,
   href,
@@ -405,39 +409,22 @@ function CharacterLine({
     <Card
       isPressable
       as={NextLink}
-      className="group w-full rounded-none bg-transparent shadow-none data-[hover=true]:bg-white/[0.03]"
+      className="group group/char w-full rounded-none bg-transparent shadow-none data-[hover=true]:bg-white/[0.03]"
       href={href}
       radius="none"
     >
       <CardBody className="flex flex-row items-center gap-3 overflow-visible px-5 py-3 sm:gap-4 sm:px-6">
-        <CharacterPortrait
-          cls={c.class}
-          gender={c.gender}
+        <CharacterBlock
+          character={c}
+          className="flex-1"
           online={!!c.online}
-          race={c.race}
           size={42}
-        />
-        <div className="min-w-0 flex-1 text-left">
-          <p
-            className="truncate font-semibold transition-all group-hover:brightness-125"
-            style={{ color: classColor(c.class) }}
-          >
-            {c.name}
-          </p>
-          <LevelRaceClass
-            separated
-            className="block truncate text-xs sm:text-sm"
-            cls={c.class}
-            level={c.level}
-            race={c.race}
-          />
+        >
           {challenge && (
             <span className="mt-1 flex min-w-0 items-center gap-1.5">
-              <GameIcon
-                icon={
-                  (challenge.completed && challenge.challenge.doneIcon) ||
-                  challenge.challenge.icon
-                }
+              <ChallengeIcon
+                challenge={challenge.challenge}
+                done={challenge.completed}
                 size={16}
               />
               <span
@@ -459,7 +446,7 @@ function CharacterLine({
               />
             </span>
           )}
-        </div>
+        </CharacterBlock>
         <div className="hidden shrink-0 flex-col items-end gap-1 text-xs sm:flex">
           <span className="flex items-center gap-1.5 text-gray-300">
             <ClockIcon className="h-3.5 w-3.5 text-gray-500" />

@@ -6,6 +6,7 @@ import NextLink from "next/link";
 import { useTranslations } from "next-intl";
 import clsx from "clsx";
 
+import { GameTip } from "@/components/game-tooltip";
 import { GameIcon } from "@/components/tools/tool-page";
 
 /* The pieces of a WotLK+ character challenge (the Hall of Fame's Challenges tab, the armory's badge): its difficulty in stars, the
@@ -88,6 +89,34 @@ export function ChallengeTags({
   );
 }
 
+// a challenge's icon (its completion's once done) with the tooltip of its aura (what it asks) or of its completion's (what it gave, Ayoub
+// 20/10/2026: the icons alone said nothing)
+export function ChallengeIcon({
+  challenge,
+  done = false,
+  size = 36,
+}: {
+  challenge: ChallengeInfo;
+  done?: boolean;
+  size?: number;
+}) {
+  const spell = (done && challenge.doneAura) || challenge.aura;
+  const icon = (
+    <GameIcon
+      icon={(done && challenge.doneIcon) || challenge.icon}
+      size={size}
+    />
+  );
+
+  return spell ? (
+    <GameTip className="shrink-0" refId={`spell:${spell}`}>
+      {icon}
+    </GameTip>
+  ) : (
+    icon
+  );
+}
+
 // the armory's badge (Ayoub, 17/10/2026): the challenge a character is in, or the one it completed (its completion's icon), linking to
 // the Hall of Fame's Challenges tab
 export function ChallengeBadge({
@@ -106,7 +135,7 @@ export function ChallengeBadge({
       href={href}
       title={t("seeAll")}
     >
-      <GameIcon icon={(completed && info.doneIcon) || info.icon} size={32} />
+      <ChallengeIcon challenge={info} done={completed} size={32} />
       <span className="min-w-0">
         <span className="block text-[10px] uppercase tracking-wider text-gray-500">
           {completed ? t("armoryCompleted") : t("armoryInProgress")}
@@ -138,10 +167,7 @@ export function ChallengeLabel({
 }) {
   return (
     <span className="flex min-w-0 items-center gap-2.5">
-      <GameIcon
-        icon={(done && challenge.doneIcon) || challenge.icon}
-        size={size}
-      />
+      <ChallengeIcon challenge={challenge} done={done} size={size} />
       <span className="min-w-0">
         <span className="block truncate text-sm font-semibold leading-snug text-wow-gold-light">
           {challenge.name}

@@ -3,23 +3,19 @@
 import type { ReactNode } from "react";
 import type { ArmorySearchResult } from "@/types/armory";
 
-import { Chip } from "@heroui/chip";
 import NextLink from "next/link";
-import { useTranslations } from "next-intl";
 import clsx from "clsx";
 
 import { ALLIANCE_RACES } from "@/lib/armory-constants";
 import {
-  CharacterPortrait,
+  CharacterBlock,
   FactionCrest,
-  LevelRaceClass,
-  classColor,
+  GmBadge,
 } from "@/components/character-identity";
 
-/* A character of a ranking (the PvP ladder, the hall of fame): its place, online or not, its name in its class colour (its armory page:
-   the whole row opens it), "level · race · class" on one line, its guild (its page, a link of its own above the row's), the ranked value,
-   its faction's crest (laid out again on 18/10/2026: the portrait carries the class and the online dot). A game master's (an
-   administrator's view only) carries a GM badge. */
+/* A character of a ranking (the PvP ladder, the hall of fame): its place, the site's character block (its armory page: the whole row
+   opens it, its name underlined on hover), its guild (its page, a link of its own above the row's), the ranked value, its faction's
+   crest. A game master's (an administrator's view only) carries a GM badge. */
 export function RankedRow({
   rank,
   character,
@@ -37,7 +33,6 @@ export function RankedRow({
   metric: ReactNode;
   faded?: boolean;
 }) {
-  const tArmory = useTranslations("armory");
   const isAlliance = ALLIANCE_RACES.includes(character.race);
 
   return (
@@ -55,43 +50,17 @@ export function RankedRow({
       >
         {rank}
       </span>
-      <CharacterPortrait
-        cls={character.class}
-        gender={character.gender}
-        online={!!character.online}
-        race={character.race}
-        size={36}
-      />
       <div className="min-w-0 flex-1">
-        <span className="flex min-w-0 items-center gap-2">
-          <NextLink
-            className="truncate text-base font-semibold transition-all after:absolute after:inset-0 after:rounded-xl group-hover:brightness-125"
-            href={href}
-            style={{ color: classColor(character.class) }}
-          >
-            {character.name}
-          </NextLink>
-          {character.gm && (
-            <Chip
-              className="h-5 shrink-0 text-[10px] font-bold uppercase"
-              color="danger"
-              size="sm"
-              variant="flat"
-            >
-              {tArmory("gm")}
-            </Chip>
-          )}
-        </span>
-        <LevelRaceClass
-          separated
-          className="block truncate text-xs sm:text-sm"
-          cls={character.class}
-          level={character.level}
-          race={character.race}
+        <CharacterBlock
+          stretch
+          badges={character.gm && <GmBadge />}
+          character={character}
+          href={href}
+          online={!!character.online}
         />
         {guildName && guildHref && (
           <NextLink
-            className="relative z-10 mt-0.5 inline-block max-w-full truncate text-xs text-wow-gold/80 hover:text-wow-gold hover:underline"
+            className="relative z-10 ml-12 mt-0.5 inline-block max-w-[calc(100%-3rem)] truncate text-xs text-wow-gold/80 hover:text-wow-gold hover:underline"
             href={guildHref}
           >
             &lt;{guildName}&gt;

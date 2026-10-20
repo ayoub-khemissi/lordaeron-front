@@ -2,15 +2,10 @@
 
 import type { RankedArenaTeam } from "@/types/rankings";
 
-import NextLink from "next/link";
 import { useFormatter, useTranslations } from "next-intl";
 import clsx from "clsx";
 
-import {
-  FactionCrest,
-  RaceClassIcons,
-  classColor,
-} from "@/components/character-identity";
+import { CharacterInline, FactionCrest } from "@/components/character-identity";
 import { useRealmHref } from "@/lib/realm-context";
 
 /* An arena team of the PvP ladder: its place, name and faction, its rating, the season's wins and losses, its members (their armory
@@ -59,24 +54,17 @@ export function ArenaTeamRow({ team }: { team: RankedArenaTeam }) {
         <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 pl-10 sm:pl-11">
           {team.members.map((m) => (
             <li key={m.guid} className="flex items-center gap-1.5 text-sm">
-              <RaceClassIcons
-                cls={m.class}
-                gender={m.gender}
-                race={m.race}
-                size={16}
-              />
-              <NextLink
-                className="font-medium hover:underline"
+              <CharacterInline
+                badges={
+                  m.gm && (
+                    <span className="ml-1 text-[10px] font-bold uppercase text-red-300">
+                      {tArmory("gm")}
+                    </span>
+                  )
+                }
+                character={m}
                 href={realmHref(`/armory/${encodeURIComponent(m.name)}`)}
-                style={{ color: classColor(m.class) }}
-              >
-                {m.name}
-              </NextLink>
-              {m.gm && (
-                <span className="ml-1 text-[10px] font-bold uppercase text-red-300">
-                  {tArmory("gm")}
-                </span>
-              )}{" "}
+              />
               <span
                 className="tabular-nums text-gray-500"
                 title={t("personalRating")}
