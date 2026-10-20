@@ -143,7 +143,8 @@ const CATEGORIES: CategoryDef[] = [
       SELECT entry, name, class, subclass, Quality, InventoryType,
              RequiredLevel, ItemLevel, ContainerSlots, AllowableClass, AllowableRace
       FROM item_template
-      WHERE Quality = 7
+      WHERE Quality = 7 AND class IN (2, 4) AND InventoryType <> 0
+        AND entry NOT IN (38691, 44090) -- Ancestral Claymore, Test Mail Shoulder 2: never in the game
       ORDER BY class, subclass, InventoryType, name
     `,
     priceFormula: (item) => {
@@ -246,7 +247,6 @@ const CATEGORIES: CategoryDef[] = [
     },
     refundable: true,
     sortBase: 100,
-    limit: 30,
   },
 
   // ── MOUNTS ──
