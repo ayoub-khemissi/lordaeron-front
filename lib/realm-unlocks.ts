@@ -6,7 +6,7 @@ import { realmCharactersDb, realmWorldDb } from "@/lib/realms-server";
 /*
  * What a progressive realm's progress opens in its shop (lib/realms.ts `progressive`, Rimeheart):
  * - an item its phase keeps locked in the game (the world's wotlk_plus_phase, type 4: never looted nor sold outside its phase window) is not
- *   sold outside it either, so the shop never gets ahead of the realm; it shows by itself the day its phase opens;
+ *   sold outside it either, so the shop never gets ahead of the realm; it shows by itself the day its phase opens (save SHOP_PHASE_EXEMPT);
  * - the consumables (the Vials of Insight, experience +50%) wait for every level 80 realm first of a race and of a class (Ayoub, 13/10/2026:
  *   they never weigh on the race for them).
  * Read from the realm's databases, kept a minute.
@@ -14,6 +14,10 @@ import { realmCharactersDb, realmWorldDb } from "@/lib/realms-server";
 
 const WORLDSTATE_PHASE = 20100; // game/Conditions/WotLKPlusPhase: the realm's phase
 const CONTENT_ITEM = 4;
+// sold in the shop whatever the phase (Ayoub, 20/10/2026: "make them available regardless of the phase"): the heirloom chests, which the
+// game locks to phase 3 (patch 3.2, the Argent Tournament) but the core lets a player own and wear (its phase only gates loot, vendors
+// and quest rewards)
+const SHOP_PHASE_EXEMPT = new Set([48677, 48683, 48685, 48687, 48689, 48691]);
 
 // Realm First! Level 80 <class> (458-467) and <race> (1404-1413), Blizzard's achievements
 export const LEVEL_80_REALM_FIRSTS = [
@@ -80,7 +84,9 @@ export async function phaseLockedItems(
     ids.filter((id) => {
       const w = windows.get(id);
 
-      return !!w && (phase < w[0] || phase > w[1]);
+      return (
+        !!w && !SHOP_PHASE_EXEMPT.has(id) && (phase < w[0] || phase > w[1])
+      );
     }),
   );
 }
