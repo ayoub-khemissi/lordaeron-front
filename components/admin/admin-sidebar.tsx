@@ -17,6 +17,13 @@ const NAV_ITEMS = [
   { key: "realMoney", href: "/real-money", icon: "\uD83D\uDCB0" },
 ];
 
+// the map editor, its own site (mapper.lordaeron.eu): opened through /api/admin/map-editor, which hands it the admin's session
+const MAP_EDITOR = {
+  key: "mapEditor",
+  href: "/api/admin/map-editor",
+  icon: "\uD83D\uDDFA\uFE0F",
+};
+
 export function AdminSidebar() {
   const t = useTranslations("admin.nav");
   const locale = useLocale();
@@ -66,6 +73,20 @@ export function AdminSidebar() {
               </li>
             );
           })}
+          <li>
+            <a
+              className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors text-gray-400 hover:text-gray-200 hover:bg-gray-800/50"
+              href={MAP_EDITOR.href}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <span>{MAP_EDITOR.icon}</span>
+              <span>{t(MAP_EDITOR.key)}</span>
+              <span aria-hidden className="ml-auto text-xs">
+                {"\u2197"}
+              </span>
+            </a>
+          </li>
         </ul>
       </nav>
     </aside>
