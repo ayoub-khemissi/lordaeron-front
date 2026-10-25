@@ -18,6 +18,7 @@ import {
   glory,
   guilds,
   hero,
+  heroes,
   manifesto,
   nav,
   phases,
@@ -1380,6 +1381,87 @@ function Archivists({ lang }: { lang: Lang }) {
   );
 }
 
+function Heroes({ lang }: { lang: Lang }) {
+  return (
+    <section className="scroll-mt-20" id={heroes.id}>
+      <ParallaxImage
+        className="flex min-h-[60vh] items-end pb-14 pt-40"
+        overlay="from-wow-darker/20 via-wow-darker/60 to-wow-darker"
+        src={heroes.image}
+      >
+        <div className={container}>
+          <ChapterHeading
+            eyebrow={heroes.eyebrow[lang]}
+            lede={<Rich text={heroes.lede[lang]} />}
+            numeral={heroes.numeral}
+            title={heroes.title[lang]}
+          />
+        </div>
+      </ParallaxImage>
+      <div className={clsx(container, "pb-24 sm:pb-32")}>
+        <h3 className="mb-6 font-heading text-2xl text-wow-gold">
+          {heroes.roadTitle[lang]}
+        </h3>
+        <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          {heroes.road.map((step, i) => (
+            <Reveal key={step.icon} delay={i * 0.07}>
+              <li
+                className={clsx(
+                  "flex h-full flex-col rounded-xl border p-5",
+                  i < 2
+                    ? "border-wow-blue-ice/40 bg-wow-blue-ice/[0.07]"
+                    : "border-white/10 bg-white/[0.04]",
+                )}
+              >
+                <div className="mb-4 flex items-center justify-between">
+                  <span className="grid h-9 w-9 place-items-center rounded-full bg-wow-gold font-heading text-lg text-wow-darker">
+                    {i + 1}
+                  </span>
+                  <WowIcon icon={step.icon} size={46} />
+                </div>
+                <h4 className="font-heading text-lg text-white">
+                  {step.title[lang]}
+                </h4>
+                <p className="mt-1 flex-1 text-sm text-white/60">
+                  <Rich text={step.text[lang]} />
+                </p>
+                <p
+                  className={clsx(
+                    "mt-4 text-[11px] font-semibold uppercase tracking-[0.2em]",
+                    i < 2 ? "text-wow-blue-ice" : "text-white/45",
+                  )}
+                >
+                  {step.tag[lang]}
+                </p>
+              </li>
+            </Reveal>
+          ))}
+        </ol>
+        <Reveal>
+          <div className="mt-6 rounded-xl border border-wow-blue-ice/40 bg-gradient-to-r from-wow-blue-ice/[0.12] to-transparent p-6">
+            <h4 className="font-heading text-xl text-white">
+              {heroes.musts.title[lang]}
+            </h4>
+            <p className="mt-1 text-white/65">
+              <Rich text={heroes.musts.text[lang]} />
+            </p>
+          </div>
+        </Reveal>
+        <h3 className="mb-6 mt-14 font-heading text-2xl text-wow-gold">
+          {heroes.playTitle[lang]}
+        </h3>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {heroes.play.map((c, i) => (
+            <Reveal key={c.icon} delay={(i % 3) * 0.07}>
+              <Card icon={c.icon} text={c.text[lang]} title={c.title[lang]} />
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Challenges({ lang }: { lang: Lang }) {
   // the reward's colour: a completion aura, a title (the gold of the others), a legend (the orange of legendary items)
   const tierColor = {
@@ -2091,6 +2173,7 @@ export default function ExperienceContent({ locale }: { locale: string }) {
         <WorldBosses lang={lang} />
         <Loot lang={lang} />
         <Archivists lang={lang} />
+        <Heroes lang={lang} />
         <Professions lang={lang} />
         <Fishing lang={lang} />
         <Treasures lang={lang} />

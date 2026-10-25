@@ -1121,6 +1121,131 @@ export const archivists = {
   image: IMG.ulduarArchive,
 };
 
+/** The heroes (solo with bots, launched on 25/10/2026): who takes the empty seats, the road to the raids, how they play. */
+export const heroes = {
+  id: "heroes",
+  numeral: "X",
+  eyebrow: L("Héros", "Heroes"),
+  title: L("Jamais sans groupe.", "Never short of a group."),
+  lede: L(
+    "Pas de groupe sous la main ? **Levez le vôtre.** Les héros prennent chaque place qu'aucun joueur n'occupe, en donjon comme en raid, et jouent comme des joueurs.",
+    "No group at hand? **Raise your own.** Heroes take every seat no player fills, in your dungeons and your raids, and play like players.",
+  ),
+  roadTitle: L("Votre route vers les raids", "Your road to the raids"),
+  road: [
+    {
+      icon: "achievement_dungeon_classicdungeonmaster",
+      tag: L("Donjons · tous niveaux", "Dungeons · every level"),
+      title: L(
+        "Montez de niveau avec quatre héros",
+        "Level up with four heroes",
+      ),
+      text: L(
+        "Dès votre tout premier donjon : **un tank, un soigneur et deux autres**, tirés pour vous dans les deux factions. Quel que soit votre rôle, ils complètent votre groupe de cinq.",
+        "From your very first dungeon: **a tank, a healer and two more**, drawn for you from both factions. Whatever your role, they complete your group of five.",
+      ),
+    },
+    {
+      icon: "inv_inscription_parchmentvar06",
+      tag: L("Donjons · niveau 80", "Dungeons · level 80"),
+      title: L("Écumez les donjons", "Farm the dungeons"),
+      text: L(
+        "Au niveau 80, chaque boss de donjon laisse des **Fragments de chronique** et de la réputation auprès de l'Ordre des Archivistes.",
+        "At level 80, every dungeon boss drops **Chronicle Fragments** and reputation with the Archivist Order.",
+      ),
+    },
+    {
+      icon: "inv_misc_book_09",
+      tag: L("Dalaran", "Dalaran"),
+      title: L("Débloquez le Compendium", "Unlock the Compendium"),
+      text: L(
+        "Les Archivistes de Dalaran le vendent au rang **Révéré** : 50 Fragments de chronique et 500 pièces d'or. Il ouvre la fenêtre des héros, partout.",
+        "The Archivists of Dalaran sell it at **Revered**: 50 Chronicle Fragments and 500 gold. It opens the heroes' window, anywhere.",
+      ),
+    },
+    {
+      icon: "inv_misc_groupneedmore",
+      tag: L("Compendium des héros", "Heroes' Compendium"),
+      title: L("Recrutez", "Recruit"),
+      text: L(
+        "146 héros : chaque couple race et classe, les deux sexes, les deux factions. Lisez la fiche de chacun, puis recrutez ceux que vous voulez : **20, 30, puis 40 fragments**.",
+        "146 heroes: every race and class pair, both genders, both factions. Read each one's sheet, then recruit the ones you want: **20, 30, then 40 fragments**.",
+      ),
+    },
+    {
+      icon: "achievement_dungeon_naxxramas_10man",
+      tag: L("Raids · 10 et 25", "Raids · 10 and 25"),
+      title: L("Menez votre raid", "Lead your raid"),
+      text: L(
+        "Jusqu'à 20 compositions, et la fenêtre vérifie chaque amélioration et affaiblissement de raid. Entrez : **vos héros prennent les places vides**, de Naxxramas au Sanctum rubis.",
+        "Up to 20 compositions, and the window checks every raid buff and debuff. Walk in: **your heroes take the empty seats**, from Naxxramas to the Ruby Sanctum.",
+      ),
+    },
+  ],
+  musts: {
+    title: L(
+      "Chaque raid commence en donjon",
+      "Every raid starts in the dungeons",
+    ),
+    text: L(
+      "Pas de raccourci : le Compendium et chaque recrue se paient en Fragments de chronique, et c'est en donjon qu'ils tombent. Les vrais joueurs passent toujours en premier : un héros ne prend qu'une place libre.",
+      "No shortcut: the Compendium and every recruit are paid in Chronicle Fragments, and the dungeons are where they drop. Real players always come first: a hero only takes a seat nobody holds.",
+    ),
+  },
+  playTitle: L("Ils jouent comme des joueurs", "They play like players"),
+  play: [
+    {
+      icon: "spell_nature_timestop",
+      title: L("Des réflexes humains", "Human reflexes"),
+      text: L(
+        "Chacun réagit avec son propre temps de réaction et ses habitudes : deux héros ne jouent jamais pareil.",
+        "Each reacts with their own reaction time and habits: no two heroes play alike.",
+      ),
+    },
+    {
+      icon: "inv_chest_plate_25",
+      title: L("Un équipement qui suit le vôtre", "Gear that follows yours"),
+      text: L(
+        "Autour du vôtre et de celui de l'instance, comme des joueurs croisés dans la file, jamais au-dessus de ce qu'offre la phase du royaume.",
+        "Around yours and the instance's, like players met in the queue, never above what the realm's phase offers.",
+      ),
+    },
+    {
+      icon: "spell_nature_bloodlust",
+      title: L("La hâte au bon moment", "Haste right on time"),
+      text: L(
+        "Furie sanguinaire, Héroïsme et Afflux chronique quand les raids les utilisaient, boss par boss ; les améliorations de groupe lancées une fois pour tous.",
+        "Bloodlust, Heroism and Chronal Surge when raids used them, boss by boss; group buffs cast once for everyone.",
+      ),
+    },
+    {
+      icon: "spell_holy_resurrection",
+      title: L("Tous debout", "Back on your feet"),
+      text: L(
+        "Après un wipe, un soigneur s'éloigne du danger et relève tout le groupe d'un coup.",
+        "After a wipe, a healer walks out of danger and raises the whole group at once.",
+      ),
+    },
+    {
+      icon: "spell_shadow_auraofdarkness",
+      title: L("Désespoir", "Despair"),
+      text: L(
+        "Laissez-les seuls face à un boss et ils perdent courage : moins de dégâts et de soins, plus de dégâts subis, cumul après cumul.",
+        "Leave them alone at a boss and they lose heart: less damage and healing, more damage taken, stack after stack.",
+      ),
+    },
+    {
+      icon: "spell_misc_emotionangry",
+      title: L("Mécontent", "Discontent"),
+      text: L(
+        "Laissez-les tout faire et ils deviennent mécontents, de plus en plus vite, jusqu'à ce que vous repreniez votre part.",
+        "Let them carry you and they grow discontent, faster and faster, until you pull your weight again.",
+      ),
+    },
+  ],
+  image: IMG.coliseum,
+};
+
 /** A signature craft of a specialization: its tooltip ref (item or spell), icon and quality (the name's colour). */
 export type ProfessionCraft = { ref: string; icon: string; q: number; name: T };
 /** A specialization: its passive spell (real icon and in-game tooltip), one line, its signature crafts and, for the
@@ -1142,7 +1267,7 @@ export type Profession = {
 
 export const professions = {
   id: "professions",
-  numeral: "X",
+  numeral: "XI",
   eyebrow: L("Métiers", "Professions"),
   title: L("Les métiers réinventés.", "Professions reinvented."),
   lede: L(
@@ -2143,7 +2268,7 @@ export const professions = {
 
 export const fishing = {
   id: "fishing",
-  numeral: "XI",
+  numeral: "XII",
   eyebrow: L("Pêche et récolte", "Fishing and gathering"),
   title: L(
     "Chaque ligne lancée peut changer une vie.",
@@ -2192,7 +2317,7 @@ export const fishing = {
 
 export const treasures = {
   id: "treasures",
-  numeral: "XII",
+  numeral: "XIII",
   eyebrow: L("Trésors", "Treasures"),
   title: L("Le Norfendre cache ses secrets.", "Northrend hides its secrets."),
   lede: L(
@@ -2239,7 +2364,7 @@ export const treasures = {
 
 export const collections = {
   id: "collections",
-  numeral: "XIII",
+  numeral: "XIV",
   eyebrow: L("Collections", "Collections"),
   title: L(
     "Des montures que personne n'a jamais montées.",
@@ -2314,7 +2439,7 @@ export const collections = {
 
 export const economy = {
   id: "economy",
-  numeral: "XIV",
+  numeral: "XV",
   eyebrow: L("Les bas-fonds de Dalaran", "Dalaran's underbelly"),
   title: L("Une économie qui vit.", "An economy that lives."),
   lede: L(
@@ -2364,7 +2489,7 @@ export const economy = {
 
 export const quiz = {
   id: "quiz",
-  numeral: "XV",
+  numeral: "XVI",
   eyebrow: L("Le quiz du Kirin Tor", "The Kirin Tor quiz"),
   title: L("Connaissez-vous vraiment Azeroth ?", "Do you really know Azeroth?"),
   lede: L(
@@ -2394,7 +2519,7 @@ export const quiz = {
 
 export const transmog = {
   id: "transmog",
-  numeral: "XVI",
+  numeral: "XVII",
   eyebrow: L("Transmogrification", "Transmogrification"),
   title: L("16 302 façons d'être unique.", "16,302 ways to stand out."),
   lede: L(
@@ -2417,7 +2542,7 @@ export const transmog = {
 
 export const pvp = {
   id: "pvp",
-  numeral: "XVII",
+  numeral: "XVIII",
   eyebrow: L("JcJ", "PvP"),
   title: L("Chaque phase, une campagne.", "Every phase, a campaign."),
   lede: L(
@@ -2463,7 +2588,7 @@ export const pvp = {
 
 export const guilds = {
   id: "guilds",
-  numeral: "XVIII",
+  numeral: "XIX",
   eyebrow: L("Guildes", "Guilds"),
   title: L("Votre guilde grandit avec vous.", "Your guild grows with you."),
   lede: L(
@@ -2552,7 +2677,7 @@ export type Challenge = {
 
 export const challenges = {
   id: "challenges",
-  numeral: "XIX",
+  numeral: "XX",
   eyebrow: L("Défis de personnage", "Character Challenges"),
   title: L(
     "Défiez la mort, jusqu'au niveau 80.",
@@ -2832,7 +2957,7 @@ export const challenges = {
 
 export const glory = {
   id: "glory",
-  numeral: "XX",
+  numeral: "XXI",
   eyebrow: L("Hauts faits", "Achievements"),
   title: L("Entrez dans l'histoire du royaume.", "Make the realm's history."),
   lede: L(
@@ -2932,6 +3057,7 @@ export const nav = [
   { id: "world-bosses", label: L("Boss du monde", "World bosses") },
   { id: "loot", label: L("Butin", "Loot") },
   { id: "archivists", label: L("Archivistes", "Archivists") },
+  { id: "heroes", label: L("Héros", "Heroes") },
   { id: "professions", label: L("Métiers", "Professions") },
   { id: "fishing", label: L("Pêche", "Fishing") },
   { id: "treasures", label: L("Trésors", "Treasures") },
