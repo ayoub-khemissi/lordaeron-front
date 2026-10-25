@@ -13,6 +13,7 @@ import { usePathname } from "next/navigation";
 import {
   ADMIN_PREVIEW_COOKIE,
   DEFAULT_REALM,
+  LAST_REALM_COOKIE,
   REALMS,
   isRealmSlug,
   realmView,
@@ -118,6 +119,22 @@ export function readSignupRealm(): RealmSlug | null {
   }
 
   return null;
+}
+
+// the realm whose pages the visitor saw last (LAST_REALM_COOKIE), known after the first render; the default realm until then
+export function useLastRealm(): RealmSlug {
+  const [realm, setRealm] = useState<RealmSlug>(DEFAULT_REALM);
+
+  useEffect(() => {
+    const value = document.cookie
+      .split("; ")
+      .find((c) => c.startsWith(`${LAST_REALM_COOKIE}=`))
+      ?.split("=")[1];
+
+    if (isRealmSlug(value)) setRealm(value);
+  }, []);
+
+  return realm;
 }
 
 // readSignupRealm, known after the first render (like the preview)

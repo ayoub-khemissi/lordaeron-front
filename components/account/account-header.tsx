@@ -12,7 +12,8 @@ import {
   ShieldIcon,
   WarningIcon,
 } from "@/components/account/account-icons";
-import { DEFAULT_REALM, realmPath } from "@/lib/realms";
+import { realmPath } from "@/lib/realms";
+import { useLastRealm } from "@/lib/realm-context";
 import {
   AccountAvatar,
   AvatarPicker,
@@ -45,6 +46,8 @@ export function AccountHeader({
 }) {
   const t = useTranslations("account");
   const { user, refresh } = useAuth();
+  // the shop of the realm he played last on the site (Ayoub, 25/10/2026: always Lordaeron's before)
+  const lastRealm = useLastRealm();
   const [picking, setPicking] = useState(false);
   const avatar = user?.avatar ?? null;
   const since = new Date(joindate).toLocaleDateString(locale, {
@@ -147,7 +150,7 @@ export function AccountHeader({
           <Button
             as={NextLink}
             className="bg-purple-500/15 font-semibold text-purple-200 data-[hover=true]:bg-purple-500/25"
-            href={realmPath(locale, DEFAULT_REALM, "/shop")}
+            href={realmPath(locale, lastRealm, "/shop")}
             size="sm"
             variant="flat"
           >

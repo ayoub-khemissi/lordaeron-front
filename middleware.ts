@@ -3,7 +3,12 @@ import createMiddleware from "next-intl/middleware";
 
 import { routing } from "./i18n/routing";
 
-import { DEFAULT_REALM, REALM_SLUGS } from "@/lib/realms";
+import {
+  DEFAULT_REALM,
+  LAST_REALM_COOKIE,
+  REALM_SLUGS,
+  isRealmSlug,
+} from "@/lib/realms";
 import { ADMIN_SESSION_COOKIE, isAdminToken } from "@/lib/admin-secret";
 
 const intlMiddleware = createMiddleware(routing);
@@ -38,12 +43,14 @@ export default async function middleware(request: NextRequest) {
   const under = (path: string, p: string) =>
     path === p || path.startsWith(p + "/");
 
-  // the addresses from before the realms' portals: a realm's section without its realm is Lordaeron's, the showcase is Rimeheart's
+  // the addresses from before the realms' portals: a realm's section without its realm is the realm seen last (else Lordaeron's), the
+  // showcase is Rimeheart's
   if (localeMatch) {
     if (legacyRealmSections.some((p) => under(pathWithoutLocale, p))) {
       const url = request.nextUrl.clone();
+      const last = request.cookies.get(LAST_REALM_COOKIE)?.value;
 
-      url.pathname = `/${locale}/${DEFAULT_REALM}${pathWithoutLocale}`;
+      url.pathname = `/${locale}/${isRealmSlug(last) ? last : DEFAULT_REALM}${pathWithoutLocale}`;
 
       return NextResponse.redirect(url, 308);
     }
@@ -84,7 +91,18 @@ export default async function middleware(request: NextRequest) {
   // the login, signup and password pages send a signed-in player on themselves (Ayoub, 13/10/2026: a stale session cookie made the
   // middleware send "Register" back to the home page while the site showed the visitor signed out)
 
-  return intlMiddleware(request);
+  const response = intlMiddleware(request);
+
+  // the realm seen last (LAST_REALM_COOKIE)
+  if (realm && request.cookies.get(LAST_REALM_COOKIE)?.value !== realm) {
+    response.cookies.set(LAST_REALM_COOKIE, realm, {
+      path: "/",
+      maxAge: 60 * 60 * 24 * 365,
+      sameSite: "lax",
+    });
+  }
+
+  return response;
 }
 
 export const config = {

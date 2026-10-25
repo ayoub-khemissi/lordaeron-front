@@ -155,6 +155,10 @@ export const REALMS: Record<RealmSlug, RealmInfo> = {
 
 export const DEFAULT_REALM: RealmSlug = "lordaeron";
 
+// the realm whose pages the visitor saw last (set by the middleware): the links without a realm open it, not always the default one
+// (Ayoub, 25/10/2026: a Rimeheart player's account page sent him to Lordaeron's shop, his gifts went to his Lordaeron namesake)
+export const LAST_REALM_COOKIE = "lordaeron_realm";
+
 // what an administrator sees of a realm (Ayoub, 09/10/2026: to build a realm's site as if it were open): every section, its shop selling
 const PREVIEWS = Object.fromEntries(
   Object.values(REALMS).map((realm) => [
