@@ -661,5 +661,11 @@
   "Despair": "Despair",
   "Leave them alone at a boss and they lose heart: less damage and healing, more damage taken, stack after stack.": "Deixe-os sozinhos diante de um chefe e perdem a coragem: menos dano e cura, mais dano sofrido, acúmulo após acúmulo.",
   "Discontent": "Discontent",
-  "Let them carry you and they grow discontent, faster and faster, until you pull your weight again.": "Deixe que o carreguem e ficam descontentes, cada vez mais depressa, até voltar a fazer a sua parte."
+  "Let them carry you and they grow discontent, faster and faster, until you pull your weight again.": "Deixe que o carreguem e ficam descontentes, cada vez mais depressa, até voltar a fazer a sua parte.",
+  "Your four heroes": "Os seus quatro heróis",
+  "A tank, a healer and two more, of four different classes, drawn once for each character. The tank and the healer can deal damage too: whatever your role, the Dungeon Finder makes a group of five.": "Um tanque, um curandeiro e mais dois, de quatro classes diferentes, sorteados uma única vez para cada personagem. O tanque e o curandeiro também sabem causar dano: seja qual for o seu papel, o Dungeon Finder forma um grupo de cinco.",
+  "Compositions": "Composições",
+  "Up to 20 named compositions per character, plus balanced ready-made ones; one in use for dungeons, one for 10-man raids, one for 25-man raids. Saved inside a raid, its heroes take their seats between two pulls.": "Até 20 composições com nome por personagem, mais composições equilibradas já prontas; uma em uso para masmorras, uma para raides de 10 e uma para raides de 25. Guardada dentro de uma raide, os seus heróis ocupam os lugares entre dois pulls.",
+  "Every hero has their own reaction time, a little different each time: taunts, interrupts, dispels and heals come like a player's, never instantly.": "Cada herói tem o seu próprio tempo de reação, um pouco diferente de cada vez: provocações, interrupções, dissipações e curas chegam como as de um jogador, nunca instantaneamente.",
+  "Drawn around halfway between your average item level and the instance's, never above the best gear of the realm's phase. When your gear changes, theirs follows, piece by piece.": "Escolhido a meio caminho entre o seu nível médio de item e o da instância, nunca acima do melhor equipamento da fase do reino. Quando o seu equipamento muda, o deles acompanha, peça a peça."
 }

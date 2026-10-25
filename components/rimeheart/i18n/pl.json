@@ -661,5 +661,11 @@
   "Despair": "Despair",
   "Leave them alone at a boss and they lose heart: less damage and healing, more damage taken, stack after stack.": "Zostaw ich samych przy bossie, a stracą ducha: mniej obrażeń i leczenia, więcej otrzymywanych obrażeń, ładunek po ładunku.",
   "Discontent": "Discontent",
-  "Let them carry you and they grow discontent, faster and faster, until you pull your weight again.": "Pozwól im się nieść, a rośnie ich niezadowolenie, coraz szybciej, dopóki znów nie weźmiesz się do roboty."
+  "Let them carry you and they grow discontent, faster and faster, until you pull your weight again.": "Pozwól im się nieść, a rośnie ich niezadowolenie, coraz szybciej, dopóki znów nie weźmiesz się do roboty.",
+  "Your four heroes": "Twoi czterej bohaterowie",
+  "A tank, a healer and two more, of four different classes, drawn once for each character. The tank and the healer can deal damage too: whatever your role, the Dungeon Finder makes a group of five.": "Tank, uzdrowiciel i dwóch kolejnych, z czterech różnych klas, losowani raz dla każdej postaci. Tank i uzdrowiciel potrafią też zadawać obrażenia: bez względu na twoją rolę Dungeon Finder tworzy pięcioosobową drużynę.",
+  "Compositions": "Składy",
+  "Up to 20 named compositions per character, plus balanced ready-made ones; one in use for dungeons, one for 10-man raids, one for 25-man raids. Saved inside a raid, its heroes take their seats between two pulls.": "Do 20 nazwanych składów na postać oraz gotowe, zrównoważone składy; jeden w użyciu dla lochów, jeden dla rajdów 10-osobowych, jeden dla 25-osobowych. Po zapisaniu składu w rajdzie jego bohaterowie zajmują miejsca między pullami.",
+  "Every hero has their own reaction time, a little different each time: taunts, interrupts, dispels and heals come like a player's, never instantly.": "Każdy bohater ma własny czas reakcji, za każdym razem nieco inny: prowokacje, przerwania, rozproszenia i leczenie przychodzą jak u gracza, nigdy natychmiast.",
+  "Drawn around halfway between your average item level and the instance's, never above the best gear of the realm's phase. When your gear changes, theirs follows, piece by piece.": "Dobierany mniej więcej w połowie między twoim średnim poziomem przedmiotów a poziomem instancji, nigdy powyżej najlepszego ekwipunku fazy krainy. Gdy zmienia się twój ekwipunek, ich podąża za nim, część po części."
 }

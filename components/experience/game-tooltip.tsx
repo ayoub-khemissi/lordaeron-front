@@ -35,7 +35,10 @@ export type TipEntry = {
   // language-free facts of an item (a treasure mount's card)
   flying?: boolean;
   reqLevel?: number;
-} & Partial<Record<TipLang, TipText>>;
+} & Partial<Record<TipLang | PageOnlyLang, TipText>>;
+/** The site's languages with no 3.3.5 client: the generated tooltips show English there, the page's own ones (registerTips) their
+    translation. */
+type PageOnlyLang = "it" | "pl" | "pt";
 type TipData = Record<string, TipEntry>;
 
 // tooltips a page writes itself, for icons that are no item nor spell (the heroes' road): looked up when the generated files lack the id
@@ -95,9 +98,12 @@ const TipContext = createContext<{
 
 export function TooltipProvider({
   lang,
+  pageLang,
   children,
 }: {
   lang: TipLang;
+  // the page's own language, when the tooltips have none (Italian, Polish, Portuguese: the page's own tooltips are translated)
+  pageLang?: string;
   children: ReactNode;
 }) {
   const [data, setData] = useState<TipData>({});
@@ -159,7 +165,10 @@ export function TooltipProvider({
 
   const value = useMemo(() => ({ lang, show, hide }), [lang, show, hide]);
   const entry = shown ? (data[shown.id] ?? LOCAL[shown.id]) : undefined;
-  const text = entry?.[lang] ?? entry?.en;
+  const text =
+    (pageLang ? entry?.[pageLang as PageOnlyLang] : undefined) ??
+    entry?.[lang] ??
+    entry?.en;
 
   return (
     <TipContext.Provider value={value}>

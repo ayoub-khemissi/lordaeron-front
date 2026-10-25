@@ -48,7 +48,6 @@ import {
 
 import {
   QUALITY,
-  TIP_LANGS,
   registerTips,
   Tip,
   TooltipProvider,
@@ -1392,7 +1391,7 @@ registerTips(
       {
         icon: t.icon,
         ...Object.fromEntries(
-          TIP_LANGS.map((l) => [
+          LANGS.map((l) => [
             l,
             {
               name: t.name[l],
@@ -2165,7 +2164,7 @@ export default function ExperienceContent({ locale }: { locale: string }) {
   const joinHref = realmPath(locale, "rimeheart", "/how-to");
 
   return (
-    <TooltipProvider lang={tipLang}>
+    <TooltipProvider lang={tipLang} pageLang={lang}>
       <div className="relative overflow-x-clip bg-wow-darker text-white">
         <ChapterNav
           chapters={nav.map((n) => ({ id: n.id, label: n.label[lang] }))}
