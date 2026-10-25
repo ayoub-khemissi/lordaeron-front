@@ -38,6 +38,13 @@ export type TipEntry = {
 } & Partial<Record<TipLang, TipText>>;
 type TipData = Record<string, TipEntry>;
 
+// tooltips a page writes itself, for icons that are no item nor spell (the heroes' road): looked up when the generated files lack the id
+const LOCAL: TipData = {};
+
+export function registerTips(tips: TipData) {
+  Object.assign(LOCAL, tips);
+}
+
 /** Item quality colours (0 poor … 6 artifact), as in the game. */
 export const QUALITY = [
   "#9d9d9d",
@@ -151,7 +158,7 @@ export function TooltipProvider({
   }, [shown, data]);
 
   const value = useMemo(() => ({ lang, show, hide }), [lang, show, hide]);
-  const entry = shown ? data[shown.id] : undefined;
+  const entry = shown ? (data[shown.id] ?? LOCAL[shown.id]) : undefined;
   const text = entry?.[lang] ?? entry?.en;
 
   return (

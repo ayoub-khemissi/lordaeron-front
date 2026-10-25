@@ -661,5 +661,11 @@
   "Despair": "Verzweiflung",
   "Leave them alone at a boss and they lose heart: less damage and healing, more damage taken, stack after stack.": "Lasst sie bei einem Boss allein, und sie verlieren den Mut: weniger Schaden und Heilung, mehr erlittener Schaden, Stapel um Stapel.",
   "Discontent": "Unmut",
-  "Let them carry you and they grow discontent, faster and faster, until you pull your weight again.": "Lasst Euch von ihnen tragen, und ihr Unmut wächst, immer schneller, bis Ihr wieder Euren Teil leistet."
+  "Let them carry you and they grow discontent, faster and faster, until you pull your weight again.": "Lasst Euch von ihnen tragen, und ihr Unmut wächst, immer schneller, bis Ihr wieder Euren Teil leistet.",
+  "Your four heroes": "Eure vier Helden",
+  "A tank, a healer and two more, of four different classes, drawn once for each character. The tank and the healer can deal damage too: whatever your role, the Dungeon Finder makes a group of five.": "Ein Tank, ein Heiler und zwei weitere aus vier verschiedenen Klassen, einmal für jeden Charakter gezogen. Tank und Heiler können auch Schaden verursachen: Welche Rolle Ihr auch spielt, der Dungeonbrowser bildet eine Fünfergruppe.",
+  "Compositions": "Aufstellungen",
+  "Up to 20 named compositions per character, plus balanced ready-made ones; one in use for dungeons, one for 10-man raids, one for 25-man raids. Saved inside a raid, its heroes take their seats between two pulls.": "Bis zu 20 benannte Aufstellungen pro Charakter, dazu ausgewogene vorgefertigte; eine in Gebrauch für Dungeons, eine für Schlachtzüge mit 10 und eine für Schlachtzüge mit 25 Spielern. In einem Schlachtzug gespeichert, nehmen ihre Helden zwischen zwei Pulls ihre Plätze ein.",
+  "Every hero has their own reaction time, a little different each time: taunts, interrupts, dispels and heals come like a player's, never instantly.": "Jeder Held hat seine eigene Reaktionszeit, jedes Mal ein wenig anders: Spott, Unterbrechungen, Bannungen und Heilungen kommen wie bei einem Spieler, nie sofort.",
+  "Drawn around halfway between your average item level and the instance's, never above the best gear of the realm's phase. When your gear changes, theirs follows, piece by piece.": "Gezogen etwa in der Mitte zwischen Eurer durchschnittlichen Gegenstandsstufe und der der Instanz, nie über der besten Ausrüstung der Phase des Realms. Ändert sich Eure Ausrüstung, folgt ihre, Stück für Stück."
 }

@@ -72,7 +72,7 @@ export async function rimeheartHome(
       eyebrow: manifesto.eyebrow[lang],
       title: manifesto.title[lang].replace(/\n/g, " "),
       items: [
-        chapter(heroes, "inv_misc_book_09"),
+        chapter(heroes, "inv_misc_book_15"),
         chapter(raceClasses, "achievement_character_tauren_male"),
         chapter(challenges, "inv_misc_bone_humanskull_01"),
         chapter(raids, "achievement_dungeon_ulduarraid_misc_01"),

@@ -19,6 +19,7 @@ import {
   guilds,
   hero,
   heroes,
+  heroesTips,
   manifesto,
   nav,
   phases,
@@ -47,6 +48,8 @@ import {
 
 import {
   QUALITY,
+  TIP_LANGS,
+  registerTips,
   Tip,
   TooltipProvider,
   tipLangOf,
@@ -1381,6 +1384,30 @@ function Archivists({ lang }: { lang: Lang }) {
   );
 }
 
+// the heroes' own tooltips (no item nor spell behind them), in the tooltips' languages
+registerTips(
+  Object.fromEntries(
+    Object.entries(heroesTips).map(([id, t]) => [
+      id,
+      {
+        icon: t.icon,
+        ...Object.fromEntries(
+          TIP_LANGS.map((l) => [
+            l,
+            {
+              name: t.name[l],
+              lines: [
+                { left: t.name[l], color: "white" },
+                { left: t.text[l], color: "gold" },
+              ],
+            },
+          ]),
+        ),
+      },
+    ]),
+  ),
+);
+
 function Heroes({ lang }: { lang: Lang }) {
   return (
     <section className="scroll-mt-20" id={heroes.id}>
@@ -1417,7 +1444,7 @@ function Heroes({ lang }: { lang: Lang }) {
                   <span className="grid h-9 w-9 place-items-center rounded-full bg-wow-gold font-heading text-lg text-wow-darker">
                     {i + 1}
                   </span>
-                  <WowIcon icon={step.icon} size={46} />
+                  <WowIcon icon={step.icon} size={46} tip={step.tip} />
                 </div>
                 <h4 className="font-heading text-lg text-white">
                   {step.title[lang]}
@@ -1453,7 +1480,12 @@ function Heroes({ lang }: { lang: Lang }) {
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {heroes.play.map((c, i) => (
             <Reveal key={c.icon} delay={(i % 3) * 0.07}>
-              <Card icon={c.icon} text={c.text[lang]} title={c.title[lang]} />
+              <Card
+                icon={c.icon}
+                text={c.text[lang]}
+                tip={c.tip}
+                title={c.title[lang]}
+              />
             </Reveal>
           ))}
         </div>

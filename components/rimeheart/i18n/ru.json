@@ -661,5 +661,11 @@
   "Despair": "Отчаяние",
   "Leave them alone at a boss and they lose heart: less damage and healing, more damage taken, stack after stack.": "Оставьте их одних с боссом, и они падут духом: меньше урона и исцеления, больше получаемого урона, эффект за эффектом.",
   "Discontent": "Недовольство",
-  "Let them carry you and they grow discontent, faster and faster, until you pull your weight again.": "Позвольте им тащить вас, и их недовольство будет расти всё быстрее, пока вы снова не возьмётесь за дело."
+  "Let them carry you and they grow discontent, faster and faster, until you pull your weight again.": "Позвольте им тащить вас, и их недовольство будет расти всё быстрее, пока вы снова не возьмётесь за дело.",
+  "Your four heroes": "Ваши четыре героя",
+  "A tank, a healer and two more, of four different classes, drawn once for each character. The tank and the healer can deal damage too: whatever your role, the Dungeon Finder makes a group of five.": "Танк, лекарь и ещё двое, четырёх разных классов, выбираются один раз для каждого персонажа. Танк и лекарь умеют и наносить урон: какую бы роль вы ни играли, поиск подземелий соберёт группу из пяти.",
+  "Compositions": "Составы",
+  "Up to 20 named compositions per character, plus balanced ready-made ones; one in use for dungeons, one for 10-man raids, one for 25-man raids. Saved inside a raid, its heroes take their seats between two pulls.": "До 20 именных составов на персонажа, а также готовые сбалансированные; один используется для подземелий, один для рейдов на 10 и один для рейдов на 25 игроков. Если сохранить состав в рейде, его герои займут места между пуллами.",
+  "Every hero has their own reaction time, a little different each time: taunts, interrupts, dispels and heals come like a player's, never instantly.": "У каждого героя своё время реакции, каждый раз немного разное: провокации, прерывания, рассеивания и исцеления приходят как у игрока, никогда мгновенно.",
+  "Drawn around halfway between your average item level and the instance's, never above the best gear of the realm's phase. When your gear changes, theirs follows, piece by piece.": "Подбирается примерно посередине между вашим средним уровнем предметов и уровнем подземелья и никогда не превышает лучшее снаряжение текущей фазы мира. Когда меняется ваше снаряжение, их следует за ним, предмет за предметом."
 }

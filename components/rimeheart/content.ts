@@ -1135,6 +1135,7 @@ export const heroes = {
   road: [
     {
       icon: "achievement_dungeon_classicdungeonmaster",
+      tip: "text:heroes-starters",
       tag: L("Donjons · tous niveaux", "Dungeons · every level"),
       title: L(
         "Montez de niveau avec quatre héros",
@@ -1147,6 +1148,7 @@ export const heroes = {
     },
     {
       icon: "inv_inscription_parchmentvar06",
+      tip: "item:900100",
       tag: L("Donjons · niveau 80", "Dungeons · level 80"),
       title: L("Écumez les donjons", "Farm the dungeons"),
       text: L(
@@ -1155,7 +1157,8 @@ export const heroes = {
       ),
     },
     {
-      icon: "inv_misc_book_09",
+      icon: "inv_misc_book_15",
+      tip: "item:902650",
       tag: L("Dalaran", "Dalaran"),
       title: L("Débloquez le Compendium", "Unlock the Compendium"),
       text: L(
@@ -1165,6 +1168,7 @@ export const heroes = {
     },
     {
       icon: "inv_misc_groupneedmore",
+      tip: "spell:107000",
       tag: L("Compendium des héros", "Heroes' Compendium"),
       title: L("Recrutez", "Recruit"),
       text: L(
@@ -1174,6 +1178,7 @@ export const heroes = {
     },
     {
       icon: "achievement_dungeon_naxxramas_10man",
+      tip: "text:heroes-raids",
       tag: L("Raids · 10 et 25", "Raids · 10 and 25"),
       title: L("Menez votre raid", "Lead your raid"),
       text: L(
@@ -1196,6 +1201,7 @@ export const heroes = {
   play: [
     {
       icon: "spell_nature_timestop",
+      tip: "text:heroes-reflexes",
       title: L("Des réflexes humains", "Human reflexes"),
       text: L(
         "Chacun réagit avec son propre temps de réaction et ses habitudes : deux héros ne jouent jamais pareil.",
@@ -1204,6 +1210,7 @@ export const heroes = {
     },
     {
       icon: "inv_chest_plate_25",
+      tip: "text:heroes-gear",
       title: L("Un équipement qui suit le vôtre", "Gear that follows yours"),
       text: L(
         "Autour du vôtre et de celui de l'instance, comme des joueurs croisés dans la file, jamais au-dessus de ce qu'offre la phase du royaume.",
@@ -1212,6 +1219,7 @@ export const heroes = {
     },
     {
       icon: "spell_nature_bloodlust",
+      tip: "spell:2825",
       title: L("La hâte au bon moment", "Haste right on time"),
       text: L(
         "Furie sanguinaire, Héroïsme et Afflux chronique quand les raids les utilisaient, boss par boss ; les améliorations de groupe lancées une fois pour tous.",
@@ -1220,6 +1228,7 @@ export const heroes = {
     },
     {
       icon: "spell_holy_resurrection",
+      tip: "spell:103634",
       title: L("Tous debout", "Back on your feet"),
       text: L(
         "Après un wipe, un soigneur s'éloigne du danger et relève tout le groupe d'un coup.",
@@ -1228,6 +1237,7 @@ export const heroes = {
     },
     {
       icon: "spell_shadow_auraofdarkness",
+      tip: "spell:107010",
       title: L("Désespoir", "Despair"),
       text: L(
         "Laissez-les seuls face à un boss et ils perdent courage : moins de dégâts et de soins, plus de dégâts subis, cumul après cumul.",
@@ -1236,6 +1246,7 @@ export const heroes = {
     },
     {
       icon: "spell_misc_emotionangry",
+      tip: "spell:107011",
       title: L("Mécontent", "Discontent"),
       text: L(
         "Laissez-les tout faire et ils deviennent mécontents, de plus en plus vite, jusqu'à ce que vous repreniez votre part.",
@@ -1244,6 +1255,42 @@ export const heroes = {
     },
   ],
   image: IMG.coliseum,
+};
+
+/** The heroes' tooltips that are no item nor spell (the page writes them: showcase.tsx registerTips). */
+export const heroesTips: Record<string, { icon: string; name: T; text: T }> = {
+  "text:heroes-starters": {
+    icon: "achievement_dungeon_classicdungeonmaster",
+    name: L("Vos quatre héros", "Your four heroes"),
+    text: L(
+      "Un tank, un soigneur et deux autres, de quatre classes différentes, tirés une fois pour chaque personnage. Le tank et le soigneur savent aussi infliger des dégâts : quel que soit votre rôle, la recherche de donjons forme un groupe de cinq.",
+      "A tank, a healer and two more, of four different classes, drawn once for each character. The tank and the healer can deal damage too: whatever your role, the Dungeon Finder makes a group of five.",
+    ),
+  },
+  "text:heroes-raids": {
+    icon: "achievement_dungeon_naxxramas_10man",
+    name: L("Compositions", "Compositions"),
+    text: L(
+      "Jusqu'à 20 compositions nommées par personnage, plus des compositions équilibrées toutes prêtes ; une en usage pour les donjons, une pour les raids à 10, une pour les raids à 25. Enregistrée dans un raid, ses héros prennent place entre deux pulls.",
+      "Up to 20 named compositions per character, plus balanced ready-made ones; one in use for dungeons, one for 10-man raids, one for 25-man raids. Saved inside a raid, its heroes take their seats between two pulls.",
+    ),
+  },
+  "text:heroes-reflexes": {
+    icon: "spell_nature_timestop",
+    name: L("Des réflexes humains", "Human reflexes"),
+    text: L(
+      "Chaque héros a son propre temps de réaction, un peu différent à chaque fois : provocations, interruptions, dissipations et soins viennent comme ceux d'un joueur, jamais instantanément.",
+      "Every hero has their own reaction time, a little different each time: taunts, interrupts, dispels and heals come like a player's, never instantly.",
+    ),
+  },
+  "text:heroes-gear": {
+    icon: "inv_chest_plate_25",
+    name: L("Un équipement qui suit le vôtre", "Gear that follows yours"),
+    text: L(
+      "Tiré à mi-chemin entre votre niveau d'objet moyen et celui de l'instance, jamais au-dessus du meilleur équipement de la phase du royaume. Quand votre équipement change, le leur suit, pièce par pièce.",
+      "Drawn around halfway between your average item level and the instance's, never above the best gear of the realm's phase. When your gear changes, theirs follows, piece by piece.",
+    ),
+  },
 };
 
 /** A signature craft of a specialization: its tooltip ref (item or spell), icon and quality (the name's colour). */
