@@ -26,8 +26,9 @@ export const nameRank = (column: string) =>
   `${ci(column)} = ? DESC, ${ci(column)} LIKE ? DESC`;
 export const nameRankParams = (text: string) => [text, `${likeEscape(text)}%`];
 
+// the game masters' accounts, and 4000000: Steamwheedle's, the auction house's seller (a character nobody plays, WotLK+ auction house)
 const GM_ACCOUNTS =
-  "SELECT AccountID FROM auth.account_access WHERE SecurityLevel >= 1";
+  "SELECT AccountID FROM auth.account_access WHERE SecurityLevel >= 1 UNION SELECT 4000000";
 
 // the condition hiding the game masters' characters (empty for an administrator)
 export const hideGm = (accountColumn: string, showGm: boolean) =>
