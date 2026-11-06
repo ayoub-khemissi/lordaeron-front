@@ -39,3 +39,40 @@ export async function patchInfo(file: string): Promise<PatchInfo | null> {
     return null;
   }
 }
+
+export interface LauncherInfo {
+  version: string;
+  date: string;
+  url: string;
+  size: number;
+  sha256: string;
+  source: string;
+}
+
+// the Lordaeron launcher, as scripts/launcher-publish.sh publishes it (launcher/latest.json); null until a first
+// build is published, so its card on the how-to pages shows only once there is something to download
+export async function launcherInfo(): Promise<LauncherInfo | null> {
+  try {
+    const info = JSON.parse(
+      await fs.readFile(
+        path.join(PATCHES_DIR, "launcher", "latest.json"),
+        "utf8",
+      ),
+    ) as Partial<LauncherInfo>;
+
+    if (!info.sha256 || !info.version) return null;
+
+    return {
+      version: String(info.version),
+      date: String(info.date ?? ""),
+      url: "/patches/launcher/Lordaeron-Setup.exe",
+      size: Number(info.size ?? 0),
+      sha256: String(info.sha256),
+      source: String(
+        info.source ?? "https://github.com/ayoub-khemissi/lordaeron-launcher",
+      ),
+    };
+  } catch {
+    return null;
+  }
+}

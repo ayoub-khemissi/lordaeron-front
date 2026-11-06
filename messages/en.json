@@ -140,7 +140,19 @@
     "realmlist": "set realmlist logon.lordaeron.eu",
     "copied": "Copied!",
     "copyRealmlist": "Click to copy",
-    "version": "Client Version: 3.3.5a (Build 12340)"
+    "version": "Client Version: 3.3.5a (Build 12340)",
+    "launcherBadge": "New · Beta",
+    "launcherTitle": "The Lordaeron launcher",
+    "launcherText": "One program does every step below for you. Pick your realm, press Play: the launcher takes care of the rest, and keeps your game up to date.",
+    "launcherPoint1": "The right client patch for your realm, downloaded and updated by itself",
+    "launcherPoint2": "The realm list set, the cache cleared at every start",
+    "launcherPoint3": "Enhanced graphics (Lumenveil): installed in one click, with presets and every setting",
+    "launcherPoint4": "The latest announcements and patch notes, right in the launcher",
+    "launcherDownload": "Download the launcher (Windows)",
+    "launcherDetails": "Version {version} · {size} · {date}",
+    "launcherSmartScreen": "Windows may show “Windows protected your PC” for a new program: click “More info”, then “Run anyway”. You can check the file against the SHA-256 above.",
+    "launcherCredits": "Open source: <source>launcher code</source>. Enhanced graphics by <lumenveil>Lumenveil</lumenveil> (GNU GPL v2), in <fork>Lordaeron's version</fork> of it.",
+    "launcherManual": "Prefer to do it by hand? The steps below still work."
   },
   "register": {
     "title": "Create Account",

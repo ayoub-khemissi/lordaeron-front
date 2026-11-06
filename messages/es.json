@@ -140,7 +140,19 @@
     "realmlist": "set realmlist logon.lordaeron.eu",
     "copied": "¡Copiado!",
     "copyRealmlist": "Haz clic para copiar",
-    "version": "Versión del cliente: 3.3.5a (Build 12340)"
+    "version": "Versión del cliente: 3.3.5a (Build 12340)",
+    "launcherBadge": "Nuevo · Beta",
+    "launcherTitle": "El launcher de Lordaeron",
+    "launcherText": "Un solo programa hace por ti todos los pasos de abajo. Elige tu reino y pulsa Jugar: el launcher se encarga del resto y mantiene tu juego al día.",
+    "launcherPoint1": "El parche de cliente correcto para tu reino, descargado y actualizado solo",
+    "launcherPoint2": "La lista de reinos configurada y la caché vaciada en cada inicio",
+    "launcherPoint3": "Gráficos mejorados (Lumenveil): instalados con un clic, con preajustes y todos los ajustes",
+    "launcherPoint4": "Los últimos anuncios y notas del parche, en el propio launcher",
+    "launcherDownload": "Descargar el launcher (Windows)",
+    "launcherDetails": "Versión {version} · {size} · {date}",
+    "launcherSmartScreen": "Windows puede mostrar «Windows protegió su PC» con un programa nuevo: haz clic en «Más información» y después en «Ejecutar de todas formas». Puedes comprobar el archivo con el SHA-256 de arriba.",
+    "launcherCredits": "Código abierto: <source>código del launcher</source>. Gráficos mejorados de <lumenveil>Lumenveil</lumenveil> (GNU GPL v2), en <fork>la versión de Lordaeron</fork>.",
+    "launcherManual": "¿Prefieres hacerlo a mano? Los pasos de abajo siguen funcionando."
   },
   "register": {
     "title": "Crear cuenta",

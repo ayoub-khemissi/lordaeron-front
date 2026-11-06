@@ -5,7 +5,7 @@ import { getTranslations } from "next-intl/server";
 import HowToContent from "./how-to-content";
 
 import { JsonLd } from "@/components/json-ld";
-import { patchInfo } from "@/lib/patches";
+import { launcherInfo, patchInfo } from "@/lib/patches";
 import { buildPageMetadata } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
 import { DEFAULT_REALM, REALMS, realmBySlug } from "@/lib/realms";
@@ -37,6 +37,8 @@ export default async function HowToPage({
   // Rimeheart's client patch, published by nginx with its manifest: patch-W only (Lordaeron's patch-Z is not used there)
   const realmPatch =
     realm === "rimeheart" ? await patchInfo("patch-W.MPQ") : null;
+  // the launcher does every step below by itself: its card leads the page once a build is published
+  const launcher = await launcherInfo();
 
   return (
     <>
@@ -60,7 +62,7 @@ export default async function HowToPage({
           ],
         }}
       />
-      <HowToContent realmPatch={realmPatch} />
+      <HowToContent launcher={launcher} realmPatch={realmPatch} />
     </>
   );
 }

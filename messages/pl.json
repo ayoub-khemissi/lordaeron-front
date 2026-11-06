@@ -140,7 +140,19 @@
     "realmlist": "set realmlist logon.lordaeron.eu",
     "copied": "Skopiowano!",
     "copyRealmlist": "Kliknij, aby skopiować",
-    "version": "Wersja klienta: 3.3.5a (Build 12340)"
+    "version": "Wersja klienta: 3.3.5a (Build 12340)",
+    "launcherBadge": "Nowość · Beta",
+    "launcherTitle": "Launcher Lordaeron",
+    "launcherText": "Jeden program wykona za ciebie wszystkie kroki poniżej. Wybierz krainę i kliknij Graj: launcher zajmie się resztą i będzie aktualizował grę.",
+    "launcherPoint1": "Właściwa łatka klienta dla twojej krainy, pobierana i aktualizowana automatycznie",
+    "launcherPoint2": "Ustawiona lista krain, pamięć podręczna czyszczona przy każdym uruchomieniu",
+    "launcherPoint3": "Ulepszona grafika (Lumenveil): instalowana jednym kliknięciem, z ustawieniami wstępnymi i wszystkimi opcjami",
+    "launcherPoint4": "Najnowsze ogłoszenia i informacje o łatkach prosto w launcherze",
+    "launcherDownload": "Pobierz launcher (Windows)",
+    "launcherDetails": "Wersja {version} · {size} · {date}",
+    "launcherSmartScreen": "Przy nowym programie Windows może wyświetlić „System Windows ochronił ten komputer”: kliknij „Więcej informacji”, a potem „Uruchom mimo to”. Plik możesz sprawdzić za pomocą SHA-256 powyżej.",
+    "launcherCredits": "Otwarty kod: <source>kod launchera</source>. Ulepszona grafika dzięki <lumenveil>Lumenveil</lumenveil> (GNU GPL v2), w <fork>wersji Lordaeron</fork>.",
+    "launcherManual": "Wolisz ręcznie? Kroki poniżej nadal działają."
   },
   "register": {
     "title": "Utwórz konto",

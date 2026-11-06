@@ -1,6 +1,6 @@
 "use client";
 
-import type { PatchInfo } from "@/lib/patches";
+import type { LauncherInfo, PatchInfo } from "@/lib/patches";
 
 import { Snippet } from "@heroui/snippet";
 import { useLocale, useTranslations } from "next-intl";
@@ -13,6 +13,7 @@ import { useAuth } from "@/lib/auth-context";
 import { useRealm } from "@/lib/realm-context";
 import { registerPath } from "@/lib/realms";
 import { RealmStatusPill } from "@/components/realm-status-pill";
+import { LauncherCard } from "@/components/launcher-card";
 
 const WOWHEAD_ICON = "https://wow.zamimg.com/images/wow/icons/large";
 
@@ -107,8 +108,10 @@ function PatchDetails({ patch, locale }: { patch: PatchInfo; locale: string }) {
 // realmPatch: the realm's own client patch from the manifest (null while it is not published)
 export default function HowToContent({
   realmPatch = null,
+  launcher = null,
 }: {
   realmPatch?: PatchInfo | null;
+  launcher?: LauncherInfo | null;
 }) {
   const t = useTranslations("howTo");
   const tl = useTranslations("launch");
@@ -176,6 +179,8 @@ export default function HowToContent({
             </p>
           )}
         </motion.div>
+
+        {launcher && <LauncherCard launcher={launcher} />}
 
         <div className="space-y-6">
           {realmSteps.map((step, index) => (
