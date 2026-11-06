@@ -102,7 +102,7 @@ export function LauncherPage({
         <img
           alt=""
           className="absolute inset-0 h-full w-full object-cover opacity-25"
-          src="/img/experience/bg/wrath-of-the-lich-king-classic-cinematic-still-4.webp"
+          src="/img/Wrath of the Lich King Classic Reveal Screenshots 1080p/WoW_Wrath_Dalaran_004_1080p_png_jpgcopy.jpg"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-wow-darker/40 via-wow-darker/80 to-wow-darker" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-6 pb-16 pt-16 lg:grid-cols-[1fr_1.25fr] lg:pt-24">

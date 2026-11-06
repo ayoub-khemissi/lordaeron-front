@@ -33,7 +33,7 @@ export function LauncherCard({ launcher }: { launcher: LauncherInfo }) {
         alt=""
         className="absolute inset-0 h-full w-full object-cover opacity-25"
         loading="lazy"
-        src="/img/Wrath of the Lich King Classic Cinematic Stills/Wrath_of_the_Lich_King_Classic_Cinematic_Still__(4).jpg"
+        src="/img/Wrath of the Lich King Classic Reveal Screenshots 1080p/WoW_Wrath_Ulduar_000_1080p_png_jpgcopy.jpg"
       />
       <div className="relative glass rounded-2xl p-6 sm:p-8">
         <div className="flex flex-wrap items-center gap-3">
