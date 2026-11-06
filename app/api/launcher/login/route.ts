@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { createDevice } from "@/lib/launcher-devices";
+import { createDevice, securityLevel } from "@/lib/launcher-devices";
 import { checkLogin } from "@/lib/login";
 import { requestIp } from "@/lib/second-factor";
 
@@ -24,7 +24,11 @@ export async function POST(request: NextRequest) {
       ip,
     );
 
-    return NextResponse.json({ token, username: check.account.username });
+    return NextResponse.json({
+      token,
+      username: check.account.username,
+      security: await securityLevel(check.account.id),
+    });
   } catch (error) {
     console.error("Launcher login error:", error);
 

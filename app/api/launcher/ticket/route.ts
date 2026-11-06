@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   findDevice,
   issueTicket,
+  securityLevel,
   TICKET_LIMIT,
   ticketsLastHour,
 } from "@/lib/launcher-devices";
@@ -33,7 +34,11 @@ export async function POST(request: NextRequest) {
       requestIp(request.headers),
     );
 
-    return NextResponse.json({ username: account.username, ticket });
+    return NextResponse.json({
+      username: account.username,
+      ticket,
+      security: await securityLevel(account.id),
+    });
   } catch (error) {
     console.error("Launcher ticket error:", error);
 

@@ -114,3 +114,14 @@ export async function issueTicket(
 
   return ticket;
 }
+
+// the account's highest security level (auth.account_access), which shows the team's realms (the Lab) in the launcher;
+// the realm itself still checks it at login
+export async function securityLevel(accountId: number): Promise<number> {
+  const [rows] = await authDb.query<RowDataPacket[]>(
+    "SELECT MAX(SecurityLevel) level FROM account_access WHERE AccountID = ?",
+    [accountId],
+  );
+
+  return Number(rows[0]?.level ?? 0);
+}
