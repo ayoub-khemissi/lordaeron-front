@@ -14,8 +14,9 @@ import { calculateVerifier, generateSalt } from "@/lib/srp6";
 const UNUSED_DAYS = 30;
 const TICKET_SECONDS = 60;
 const TICKETS_AN_HOUR = 30;
-// letters and digits only: the game uppercases a password, and 16 of these are about 82 bits
-const ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+// letters only (the launcher types them as keys: digits need Shift on an AZERTY keyboard); the game uppercases a
+// password, and 16 of these 24 letters are about 73 bits
+const ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ";
 const TICKET_LENGTH = 16;
 
 const hash = (token: string) =>
