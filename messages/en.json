@@ -85,10 +85,12 @@
       "blackMarket": "Zar'haam's showcase and what is still for you",
       "realmFirsts": "Who earned each realm first, and when",
       "calendar": "Wintergrasp, tournament, bosses and resets, live",
-      "progression": "Guilds ranked by the raid bosses they killed"
+      "progression": "Guilds ranked by the raid bosses they killed",
+      "launcher": "Patches, graphics and login in one click"
     },
     "selectLanguage": "Select language",
-    "userMenu": "User menu"
+    "userMenu": "User menu",
+    "launcher": "Launcher"
   },
   "home": {
     "title": "Welcome to Lordaeron",
@@ -152,7 +154,8 @@
     "launcherDetails": "Version {version} · {size} · {date}",
     "launcherSmartScreen": "Windows may show “Windows protected your PC” for a new program: click “More info”, then “Run anyway”. You can check the file against the SHA-256 above.",
     "launcherCredits": "Open source: <source>launcher code</source>. Enhanced graphics by <lumenveil>Lumenveil</lumenveil> (GNU GPL v2), in <fork>Lordaeron's version</fork> of it.",
-    "launcherManual": "Prefer to do it by hand? The steps below still work."
+    "launcherManual": "Prefer to do it by hand? The steps below still work.",
+    "launcherMore": "Everything about the launcher"
   },
   "register": {
     "title": "Create Account",
@@ -1240,6 +1243,10 @@
     "raidScaling": {
       "title": "Difficulty Scaling — Lordaeron WoW Server",
       "description": "Understand Lordaeron's dynamic raid and dungeon difficulty scaling: creature stats and loot adjust automatically based on group size. Interactive simulator included."
+    },
+    "launcher": {
+      "title": "Lordaeron launcher",
+      "description": "Download the Lordaeron launcher: the right patches, the realm list, enhanced graphics and automatic login, then just press Play."
     }
   },
   "branding": {
@@ -1941,5 +1948,109 @@
     },
     "showBosses": "Show the bosses",
     "hideBosses": "Hide the bosses"
+  },
+  "launcherPage": {
+    "kicker": "Windows · Free",
+    "title": "The Lordaeron launcher",
+    "subtitle": "One click on Play: the right patches for your realm, the realm list, the enhanced graphics, the news and the login. Everything else is done for you.",
+    "download": "Download for Windows",
+    "details": "Version {version} · {size} · {date} · Windows 10 and 11",
+    "soon": "The launcher will be available here very soon.",
+    "bannerText": "Patches, realm list, enhanced graphics and automatic login: install it once, then just press Play.",
+    "bannerButton": "Discover the launcher",
+    "featuresTitle": "Everything to play, in one place",
+    "features": {
+      "realms": {
+        "title": "Both realms, one game folder",
+        "text": "Pick Lordaeron or Rimeheart: the launcher puts the right patch in place, sets the realm list and the realm, and clears the cache at every start."
+      },
+      "updates": {
+        "title": "Always up to date",
+        "text": "The patches, the enhanced graphics and the launcher itself update by themselves. Downloads show their speed and can be paused, resumed and capped."
+      },
+      "graphics": {
+        "title": "Enhanced graphics",
+        "text": "Lumenveil in one click: volumetric fog, sun shafts, lamps, water and rain. Three presets, the essentials, and every setting explained and applied live in the game."
+      },
+      "login": {
+        "title": "Automatic login",
+        "text": "Sign in once, two-factor included: the game then logs you in by itself with a one-time code. Your password never leaves the launcher's sign-in."
+      },
+      "news": {
+        "title": "News from the realms",
+        "text": "The latest announcements and patch notes of our Discord, right in the launcher, your realm's first."
+      },
+      "reports": {
+        "title": "Report a display problem",
+        "text": "Something looks wrong? Press Ctrl+F5 there in the game, then send it from the launcher with a few words and your screenshot."
+      }
+    },
+    "shotsTitle": "A look inside",
+    "shots": {
+      "home": "Play",
+      "graphics": "Graphics",
+      "all": "All settings",
+      "news": "News",
+      "settings": "Settings"
+    },
+    "shotsText": {
+      "home": "Your realm, the latest announcement and patch notes, and one big Play button.",
+      "graphics": "Presets that trade the look for smoothness, and the settings that change the most.",
+      "all": "Every setting of the enhanced graphics, translated and explained, with search and an expert mode.",
+      "news": "Announcements and patch notes from Discord, ten at a time.",
+      "settings": "Game folder, account, client patches, downloads and updates."
+    },
+    "stepsTitle": "Ready in three steps",
+    "steps": {
+      "1": {
+        "title": "Install",
+        "text": "Download the launcher and run it: it installs like any program, then keeps itself up to date."
+      },
+      "2": {
+        "title": "Choose",
+        "text": "It finds your World of Warcraft 3.3.5a folder; pick your realm and your graphics."
+      },
+      "3": {
+        "title": "Play",
+        "text": "Press Play: the patches, the realm list and the cache are set, and the game logs you in."
+      }
+    },
+    "securityTitle": "Safe by design",
+    "securityText": "The launcher only touches your game folder, and only with files it has checked.",
+    "security": {
+      "password": "Your password is never kept: the launcher holds a revocable token in Windows' credential manager.",
+      "ticket": "Each game start logs in with a one-time code, valid for one minute and accepted once.",
+      "downloads": "Every file comes from lordaeron.eu over HTTPS and is checked against its SHA-256 before it is used.",
+      "updates": "The launcher's own updates are signed: an unsigned one is refused.",
+      "data": "Nothing is sent about you, except the reports you choose to send."
+    },
+    "faqTitle": "Questions",
+    "faq": {
+      "smartscreen": {
+        "q": "Windows says it protected my PC",
+        "a": "Windows shows this for new programs that are not widely downloaded yet. Click “More info”, then “Run anyway”. You can check the file against the SHA-256 above."
+      },
+      "antivirus": {
+        "q": "My antivirus distrusts the enhanced graphics",
+        "a": "The enhanced graphics load into the game like any graphics mod, which some antiviruses distrust. Their code is open (see below), and you can play without them: turn them off in the Graphics tab."
+      },
+      "requirements": {
+        "q": "What do I need?",
+        "a": "Windows 10 or 11 and the World of Warcraft 3.3.5a client (build 12340). The launcher itself weighs a few megabytes."
+      },
+      "manual": {
+        "q": "Can I play without the launcher?",
+        "a": "Yes: the <link>how-to page</link> explains every step by hand."
+      },
+      "uninstall": {
+        "q": "How do I remove it?",
+        "a": "Like any program, from the Apps settings of Windows. The enhanced graphics are removed from the launcher's Graphics tab."
+      },
+      "data": {
+        "q": "What does the launcher send?",
+        "a": "To lordaeron.eu only: your sign-in when you sign in, a request for a one-time code when you play, and the reports you send. Nothing else."
+      }
+    },
+    "credits": "Open source: the <source>launcher's code</source>. Enhanced graphics by <lumenveil>Lumenveil</lumenveil> (GNU GPL v2), in <fork>Lordaeron's version</fork>."
   }
 }

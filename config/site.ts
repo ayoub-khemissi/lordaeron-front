@@ -45,6 +45,14 @@ export const siteConfig = {
           icon: "inv_misc_book_09",
         },
         {
+          key: "launcher",
+          labelKey: "nav.launcher",
+          hintKey: "nav.hints.launcher",
+          href: "/launcher",
+          scope: "shared",
+          icon: "spell_arcane_portaldalaran",
+        },
+        {
           key: "features",
           labelKey: "nav.features",
           hintKey: "nav.hints.features",

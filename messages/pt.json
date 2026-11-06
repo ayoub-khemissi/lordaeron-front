@@ -85,10 +85,12 @@
       "blackMarket": "A montra de Zar'haam e o que ainda resta para ti",
       "realmFirsts": "Quem conquistou cada primeiro do reino, e quando",
       "calendar": "Wintergrasp, torneio, bosses e resets ao vivo",
-      "progression": "Guildas classificadas pelos bosses de raide derrotados"
+      "progression": "Guildas classificadas pelos bosses de raide derrotados",
+      "launcher": "Patches, gráficos e login em um clique"
     },
     "selectLanguage": "Escolher idioma",
-    "userMenu": "Menu do utilizador"
+    "userMenu": "Menu do utilizador",
+    "launcher": "Launcher"
   },
   "home": {
     "title": "Bem-vindo a Lordaeron",
@@ -152,7 +154,8 @@
     "launcherDetails": "Versão {version} · {size} · {date}",
     "launcherSmartScreen": "O Windows pode exibir “O Windows protegeu o computador” para um programa novo: clique em “Mais informações” e depois em “Executar assim mesmo”. Você pode conferir o arquivo com o SHA-256 acima.",
     "launcherCredits": "Código aberto: <source>código do launcher</source>. Gráficos aprimorados por <lumenveil>Lumenveil</lumenveil> (GNU GPL v2), na <fork>versão do Lordaeron</fork>.",
-    "launcherManual": "Prefere fazer à mão? Os passos abaixo continuam funcionando."
+    "launcherManual": "Prefere fazer à mão? Os passos abaixo continuam funcionando.",
+    "launcherMore": "Tudo sobre o launcher"
   },
   "register": {
     "title": "Criar Conta",
@@ -1240,6 +1243,10 @@
     "raidScaling": {
       "title": "Escala de Dificuldade — Servidor WoW Lordaeron",
       "description": "Compreende a escala dinamica de dificuldade de raids e dungeons de Lordaeron: estatisticas das criaturas e loot ajustam-se automaticamente com base no tamanho do grupo. Simulador interativo incluido."
+    },
+    "launcher": {
+      "title": "Launcher do Lordaeron",
+      "description": "Baixe o launcher do Lordaeron: os patches certos, a lista de reinos, gráficos aprimorados e login automático, e depois é só clicar em Jogar."
     }
   },
   "branding": {
@@ -1941,5 +1948,109 @@
     },
     "showBosses": "Ver os bosses",
     "hideBosses": "Esconder os bosses"
+  },
+  "launcherPage": {
+    "kicker": "Windows · Grátis",
+    "title": "O launcher do Lordaeron",
+    "subtitle": "Um clique em Jogar: os patches certos para o seu reino, a lista de reinos, os gráficos aprimorados, as novidades e o login. Todo o resto ele faz por você.",
+    "download": "Baixar para Windows",
+    "details": "Versão {version} · {size} · {date} · Windows 10 e 11",
+    "soon": "O launcher estará disponível aqui muito em breve.",
+    "bannerText": "Patches, lista de reinos, gráficos aprimorados e login automático: instale uma vez e depois é só clicar em Jogar.",
+    "bannerButton": "Conhecer o launcher",
+    "featuresTitle": "Tudo para jogar, em um só lugar",
+    "features": {
+      "realms": {
+        "title": "Dois reinos, uma só pasta",
+        "text": "Escolha Lordaeron ou Rimeheart: o launcher coloca o patch certo, configura a lista de reinos e o reino, e limpa o cache a cada início."
+      },
+      "updates": {
+        "title": "Sempre atualizado",
+        "text": "Os patches, os gráficos aprimorados e o próprio launcher se atualizam sozinhos. Os downloads mostram a velocidade e podem ser pausados, retomados e limitados."
+      },
+      "graphics": {
+        "title": "Gráficos aprimorados",
+        "text": "Lumenveil em um clique: névoa volumétrica, raios de sol, lâmpadas, água e chuva. Três predefinições, o essencial e cada opção explicada e aplicada ao vivo no jogo."
+      },
+      "login": {
+        "title": "Login automático",
+        "text": "Entre uma vez, com dois fatores incluído: depois o jogo conecta você sozinho com um código de uso único. Sua senha nunca sai do login do launcher."
+      },
+      "news": {
+        "title": "Novidades dos reinos",
+        "text": "Os últimos anúncios e notas de atualização do nosso Discord, no próprio launcher, primeiro os do seu reino."
+      },
+      "reports": {
+        "title": "Relatar um problema visual",
+        "text": "Algo parece errado? Aperte Ctrl+F5 nesse lugar do jogo e envie pelo launcher com algumas palavras e sua captura de tela."
+      }
+    },
+    "shotsTitle": "Uma olhada por dentro",
+    "shots": {
+      "home": "Jogar",
+      "graphics": "Gráficos",
+      "all": "Todas as opções",
+      "news": "Novidades",
+      "settings": "Configurações"
+    },
+    "shotsText": {
+      "home": "Seu reino, o último anúncio e as notas de atualização, e um grande botão Jogar.",
+      "graphics": "Predefinições entre visual e fluidez, e as opções que mais mudam a imagem.",
+      "all": "Cada opção dos gráficos aprimorados, traduzida e explicada, com busca e modo especialista.",
+      "news": "Anúncios e notas de atualização do Discord, de dez em dez.",
+      "settings": "Pasta do jogo, conta, patches do cliente, downloads e atualizações."
+    },
+    "stepsTitle": "Pronto em três passos",
+    "steps": {
+      "1": {
+        "title": "Instalar",
+        "text": "Baixe o launcher e abra: ele se instala como qualquer programa e depois se mantém atualizado sozinho."
+      },
+      "2": {
+        "title": "Escolher",
+        "text": "Ele encontra sua pasta do World of Warcraft 3.3.5a; escolha seu reino e seus gráficos."
+      },
+      "3": {
+        "title": "Jogar",
+        "text": "Clique em Jogar: patches, lista de reinos e cache ficam prontos, e o jogo conecta você."
+      }
+    },
+    "securityTitle": "Seguro desde a concepção",
+    "securityText": "O launcher só mexe na pasta do seu jogo, e só com arquivos que ele verificou.",
+    "security": {
+      "password": "Sua senha nunca é guardada: o launcher mantém um token revogável no gerenciador de credenciais do Windows.",
+      "ticket": "Cada início do jogo conecta com um código de uso único, válido por um minuto e aceito uma só vez.",
+      "downloads": "Cada arquivo vem de lordaeron.eu por HTTPS e é verificado pelo seu SHA-256 antes de ser usado.",
+      "updates": "As atualizações do launcher são assinadas: uma sem assinatura é recusada.",
+      "data": "Nada é enviado sobre você, exceto os relatórios que você escolhe enviar."
+    },
+    "faqTitle": "Perguntas",
+    "faq": {
+      "smartscreen": {
+        "q": "O Windows diz que protegeu meu computador",
+        "a": "O Windows mostra isso para programas novos ainda pouco baixados. Clique em “Mais informações” e depois em “Executar assim mesmo”. Você pode conferir o arquivo com o SHA-256 acima."
+      },
+      "antivirus": {
+        "q": "Meu antivírus desconfia dos gráficos aprimorados",
+        "a": "Os gráficos aprimorados são carregados no jogo como qualquer mod gráfico, o que alguns antivírus desconfiam. O código deles é aberto (veja abaixo), e você pode jogar sem eles: desative-os na aba Gráficos."
+      },
+      "requirements": {
+        "q": "Do que eu preciso?",
+        "a": "Windows 10 ou 11 e o cliente do World of Warcraft 3.3.5a (build 12340). O launcher pesa só alguns megabytes."
+      },
+      "manual": {
+        "q": "Posso jogar sem o launcher?",
+        "a": "Sim: o <link>guia de conexão</link> explica cada passo à mão."
+      },
+      "uninstall": {
+        "q": "Como removo?",
+        "a": "Como qualquer programa, pelas configurações de Aplicativos do Windows. Os gráficos aprimorados são removidos pela aba Gráficos do launcher."
+      },
+      "data": {
+        "q": "O que o launcher envia?",
+        "a": "Somente para lordaeron.eu: seus dados de login quando você entra, um pedido de código de uso único quando joga e os relatórios que você envia. Nada mais."
+      }
+    },
+    "credits": "Código aberto: o <source>código do launcher</source>. Gráficos aprimorados por <lumenveil>Lumenveil</lumenveil> (GNU GPL v2), na <fork>versão do Lordaeron</fork>."
   }
 }

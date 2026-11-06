@@ -5,6 +5,7 @@ import { getTranslations } from "next-intl/server";
 import clsx from "clsx";
 
 import { JsonLd } from "@/components/json-ld";
+import { LauncherBanner } from "@/components/launcher/launcher-banner";
 import { LaunchCountdown } from "@/components/launch-countdown";
 import { RealmStatusPill } from "@/components/realm-status-pill";
 import { siteConfig } from "@/config/site";
@@ -188,6 +189,8 @@ export default async function RealmPortalPage({
           })}
         </div>
       </div>
+
+      <LauncherBanner locale={locale} />
     </div>
   );
 }

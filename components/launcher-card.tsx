@@ -4,6 +4,7 @@ import type { LauncherInfo } from "@/lib/patches";
 
 import { Chip } from "@heroui/chip";
 import { motion } from "framer-motion";
+import NextLink from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 
 // "25.4 MB"
@@ -130,6 +131,12 @@ export function LauncherCard({ launcher }: { launcher: LauncherInfo }) {
             ),
           })}
         </p>
+        <NextLink
+          className="mt-4 inline-block text-sm font-medium text-wow-gold hover:underline"
+          href={`/${locale}/launcher`}
+        >
+          {t("launcherMore")} →
+        </NextLink>
         <p className="mt-4 text-sm text-gray-400">{t("launcherManual")}</p>
       </div>
     </motion.div>

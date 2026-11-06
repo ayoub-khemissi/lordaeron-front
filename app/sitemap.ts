@@ -35,6 +35,7 @@ type PageEntry = {
 const sharedPages: PageEntry[] = [
   { path: "", priority: 1.0, changeFrequency: "daily" },
   { path: "/news", priority: 0.8, changeFrequency: "daily" },
+  { path: "/launcher", priority: 0.9, changeFrequency: "weekly" },
   { path: "/contact", priority: 0.5, changeFrequency: "yearly" },
   { path: "/terms-of-use", priority: 0.3, changeFrequency: "yearly" },
   { path: "/terms-of-sale", priority: 0.3, changeFrequency: "yearly" },
