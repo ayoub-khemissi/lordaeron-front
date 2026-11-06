@@ -10,7 +10,7 @@ export const refByName: Record<string, string> = {
   "Le Jeton d'ascension": "item:901960", // Ascension Token
   // Classes (the 31 specialization talents' spells, also in classSpellRefs) and the mage raid haste
   "Bannière de l'Aube d'argent": "spell:100400", // Banner of the Argent Dawn
-  "Veillée du chevalier": "spell:100402", // Knight's Vigil
+  "Ferveur vindicative": "spell:100402", // Vindicator's Fervor
   "Serment de protection": "spell:100404", // Oath of Protection
   "Vertu de ténacité": "spell:100450", // Virtue of Tenacity
   "Litanie de Faol": "spell:100451", // Litany of Faol
@@ -191,7 +191,7 @@ export const refByIcon: Record<string, string> = {
 export const classSpellRefs: Record<string, { ref: string; icon: string }[]> = {
   paladin: [
     { ref: "spell:100400", icon: "inv_misc_token_argentdawn" }, // Banner of the Argent Dawn
-    { ref: "spell:100402", icon: "spell_holy_proclaimchampion_02" }, // Knight's Vigil
+    { ref: "spell:100402", icon: "spell_holy_sealofblood" }, // Vindicator's Fervor
     { ref: "spell:100404", icon: "spell_holy_championsbond" }, // Oath of Protection
   ],
   priest: [

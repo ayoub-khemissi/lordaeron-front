@@ -435,7 +435,7 @@ export const classes = {
           spec: L("Sacré", "Holy"),
         },
         {
-          name: L("Veillée du chevalier", "Knight's Vigil"),
+          name: L("Ferveur vindicative", "Vindicator's Fervor"),
           spec: L("Vindicte", "Retribution"),
         },
         {
