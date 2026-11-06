@@ -315,33 +315,23 @@ export function LauncherPage({
         {/* credits */}
         <p className="mx-auto max-w-3xl text-center text-xs leading-relaxed text-gray-500">
           {t.rich("credits", {
-            source: (chunks) => (
-              <a
-                className="text-wow-gold hover:underline"
-                href={
-                  launcher?.source ??
-                  "https://github.com/ayoub-khemissi/lordaeron-launcher"
-                }
-                rel="noreferrer"
-                target="_blank"
-              >
-                {chunks}
-              </a>
-            ),
+            source: (chunks) =>
+              launcher?.lumenveilSource ? (
+                <a
+                  className="text-wow-gold hover:underline"
+                  href={launcher?.lumenveilSource}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  {chunks}
+                </a>
+              ) : (
+                chunks
+              ),
             lumenveil: (chunks) => (
               <a
                 className="text-wow-gold hover:underline"
                 href="https://github.com/lumenveil/Lumenveil"
-                rel="noreferrer"
-                target="_blank"
-              >
-                {chunks}
-              </a>
-            ),
-            fork: (chunks) => (
-              <a
-                className="text-wow-gold hover:underline"
-                href="https://github.com/ayoub-khemissi/Lumenveil"
                 rel="noreferrer"
                 target="_blank"
               >

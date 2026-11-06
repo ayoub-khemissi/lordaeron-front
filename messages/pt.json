@@ -153,7 +153,7 @@
     "launcherDownload": "Baixar o launcher (Windows)",
     "launcherDetails": "Versão {version} · {size} · {date}",
     "launcherSmartScreen": "O Windows pode exibir “O Windows protegeu o computador” para um programa novo: clique em “Mais informações” e depois em “Executar assim mesmo”. Você pode conferir o arquivo com o SHA-256 acima.",
-    "launcherCredits": "Código aberto: <source>código do launcher</source>. Gráficos aprimorados por <lumenveil>Lumenveil</lumenveil> (GNU GPL v2), na <fork>versão do Lordaeron</fork>.",
+    "launcherCredits": "Gráficos aprimorados por <lumenveil>Lumenveil</lumenveil> (software livre, GNU GPL v2), em uma versão adaptada ao Lordaeron (<source>código-fonte</source>).",
     "launcherManual": "Prefere fazer à mão? Os passos abaixo continuam funcionando.",
     "launcherMore": "Tudo sobre o launcher"
   },
@@ -2051,6 +2051,6 @@
         "a": "Somente para lordaeron.eu: seus dados de login quando você entra, um pedido de código de uso único quando joga e os relatórios que você envia. Nada mais."
       }
     },
-    "credits": "Código aberto: o <source>código do launcher</source>. Gráficos aprimorados por <lumenveil>Lumenveil</lumenveil> (GNU GPL v2), na <fork>versão do Lordaeron</fork>."
+    "credits": "Gráficos aprimorados por <lumenveil>Lumenveil</lumenveil> (software livre, GNU GPL v2), em uma versão adaptada ao Lordaeron (<source>código-fonte</source>)."
   }
 }

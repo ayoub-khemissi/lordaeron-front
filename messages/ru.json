@@ -153,7 +153,7 @@
     "launcherDownload": "Скачать лаунчер (Windows)",
     "launcherDetails": "Версия {version} · {size} · {date}",
     "launcherSmartScreen": "Для новой программы Windows может показать «Система Windows защитила ваш компьютер»: нажмите «Подробнее», затем «Выполнить в любом случае». Файл можно проверить по SHA-256 выше.",
-    "launcherCredits": "Открытый код: <source>код лаунчера</source>. Улучшенная графика — <lumenveil>Lumenveil</lumenveil> (GNU GPL v2), в <fork>версии Lordaeron</fork>.",
+    "launcherCredits": "Улучшенная графика — <lumenveil>Lumenveil</lumenveil> (свободная программа, GNU GPL v2), в версии, адаптированной для Lordaeron (<source>исходный код</source>).",
     "launcherManual": "Предпочитаете вручную? Шаги ниже по-прежнему работают.",
     "launcherMore": "Всё о лаунчере"
   },
@@ -2051,6 +2051,6 @@
         "a": "Только на lordaeron.eu: ваши данные для входа, когда вы входите, запрос одноразового кода, когда вы играете, и сообщения, которые вы отправляете. Больше ничего."
       }
     },
-    "credits": "Открытый код: <source>код лаунчера</source>. Улучшенная графика — <lumenveil>Lumenveil</lumenveil> (GNU GPL v2), в <fork>версии Lordaeron</fork>."
+    "credits": "Улучшенная графика — <lumenveil>Lumenveil</lumenveil> (свободная программа, GNU GPL v2), в версии, адаптированной для Lordaeron (<source>исходный код</source>)."
   }
 }

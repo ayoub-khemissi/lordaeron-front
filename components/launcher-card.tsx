@@ -99,30 +99,23 @@ export function LauncherCard({ launcher }: { launcher: LauncherInfo }) {
         </p>
         <p className="mt-4 text-xs text-gray-500">
           {t.rich("launcherCredits", {
-            source: (chunks) => (
-              <a
-                className="text-wow-gold hover:underline"
-                href={launcher.source}
-                rel="noreferrer"
-                target="_blank"
-              >
-                {chunks}
-              </a>
-            ),
+            source: (chunks) =>
+              launcher.lumenveilSource ? (
+                <a
+                  className="text-wow-gold hover:underline"
+                  href={launcher.lumenveilSource}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  {chunks}
+                </a>
+              ) : (
+                chunks
+              ),
             lumenveil: (chunks) => (
               <a
                 className="text-wow-gold hover:underline"
                 href="https://github.com/lumenveil/Lumenveil"
-                rel="noreferrer"
-                target="_blank"
-              >
-                {chunks}
-              </a>
-            ),
-            fork: (chunks) => (
-              <a
-                className="text-wow-gold hover:underline"
-                href="https://github.com/ayoub-khemissi/Lumenveil"
                 rel="noreferrer"
                 target="_blank"
               >

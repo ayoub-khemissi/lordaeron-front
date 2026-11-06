@@ -153,7 +153,7 @@
     "launcherDownload": "Download the launcher (Windows)",
     "launcherDetails": "Version {version} · {size} · {date}",
     "launcherSmartScreen": "Windows may show “Windows protected your PC” for a new program: click “More info”, then “Run anyway”. You can check the file against the SHA-256 above.",
-    "launcherCredits": "Open source: <source>launcher code</source>. Enhanced graphics by <lumenveil>Lumenveil</lumenveil> (GNU GPL v2), in <fork>Lordaeron's version</fork> of it.",
+    "launcherCredits": "Enhanced graphics by <lumenveil>Lumenveil</lumenveil> (free software, GNU GPL v2), in a version adapted for Lordaeron (<source>source code</source>).",
     "launcherManual": "Prefer to do it by hand? The steps below still work.",
     "launcherMore": "Everything about the launcher"
   },
@@ -2051,6 +2051,6 @@
         "a": "To lordaeron.eu only: your sign-in when you sign in, a request for a one-time code when you play, and the reports you send. Nothing else."
       }
     },
-    "credits": "Open source: the <source>launcher's code</source>. Enhanced graphics by <lumenveil>Lumenveil</lumenveil> (GNU GPL v2), in <fork>Lordaeron's version</fork>."
+    "credits": "Enhanced graphics by <lumenveil>Lumenveil</lumenveil> (free software, GNU GPL v2), in a version adapted for Lordaeron (<source>source code</source>)."
   }
 }

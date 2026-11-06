@@ -46,7 +46,29 @@ export interface LauncherInfo {
   url: string;
   size: number;
   sha256: string;
-  source: string;
+  // the source of the Lumenveil build the launcher installs (the GNU GPL v2's due), hosted beside it; null if unknown
+  lumenveilSource: string | null;
+}
+
+// the Lumenveil feed the launcher's stable channel names (launcher/launcher.json), and its "source": an archive on lordaeron.eu
+// (scripts/lumenveil-publish.sh), never a GitHub account (Ayoub, 06/11/2026: no name of his on the site)
+async function lumenveilSource(): Promise<string | null> {
+  try {
+    const launcher = JSON.parse(
+      await fs.readFile(path.join(PATCHES_DIR, "launcher", "launcher.json"), "utf8"),
+    );
+    const feed = path.basename(String(launcher?.lumenveil?.stable ?? ""));
+
+    if (!/^[\w.-]+\.json$/.test(feed)) return null;
+    const info = JSON.parse(
+      await fs.readFile(path.join(PATCHES_DIR, "lumenveil", feed), "utf8"),
+    );
+    const source = String(info?.source ?? "");
+
+    return source.startsWith("https://lordaeron.eu/") ? source : null;
+  } catch {
+    return null;
+  }
 }
 
 // the Lordaeron launcher, as scripts/launcher-publish.sh publishes it (launcher/latest.json); null until a first
@@ -68,9 +90,7 @@ export async function launcherInfo(): Promise<LauncherInfo | null> {
       url: "/patches/launcher/Lordaeron-Setup.exe",
       size: Number(info.size ?? 0),
       sha256: String(info.sha256),
-      source: String(
-        info.source ?? "https://github.com/ayoub-khemissi/lordaeron-launcher",
-      ),
+      lumenveilSource: await lumenveilSource(),
     };
   } catch {
     return null;
