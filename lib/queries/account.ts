@@ -2,6 +2,7 @@ import type { Account, AccountBan, IpBan } from "@/types";
 
 import { RowDataPacket } from "mysql2";
 
+import { revokeAccountDevices } from "@/lib/launcher-devices";
 import { authDb, websiteDb } from "@/lib/db";
 
 export async function findAccountByUsername(
@@ -74,6 +75,8 @@ export async function updateAccountPassword(
     "UPDATE account SET salt = ?, verifier = ? WHERE id = ?",
     [salt, verifier, accountId],
   );
+  // a new password signs every launcher of the account out (lib/launcher-devices.ts)
+  await revokeAccountDevices(accountId);
 }
 
 // accounts created from this IP over the last 24 hours (sql/account_registrations.sql)
