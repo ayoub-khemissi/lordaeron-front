@@ -9,3 +9,6 @@ CREATE TABLE IF NOT EXISTS launcher_tickets (
   verifier BINARY(32) NOT NULL,
   expires_at TIMESTAMP NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- the website's user replaces (REPLACE: delete then insert) and deletes tickets; it already has SELECT and INSERT on auth.*
+GRANT DELETE ON auth.launcher_tickets TO 'lordaeron'@'localhost';
