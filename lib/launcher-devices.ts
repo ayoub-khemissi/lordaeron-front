@@ -125,3 +125,11 @@ export async function securityLevel(accountId: number): Promise<number> {
 
   return Number(rows[0]?.level ?? 0);
 }
+
+// a launcher that opens keeps its sign-in alive (30 days without use sign it out)
+export async function touchDevice(deviceId: number, ip: string) {
+  await websiteDb.execute(
+    "UPDATE launcher_devices SET last_used_at = NOW(), last_ip = ? WHERE id = ?",
+    [ip, deviceId],
+  );
+}
