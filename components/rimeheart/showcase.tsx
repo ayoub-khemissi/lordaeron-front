@@ -1488,6 +1488,62 @@ function Heroes({ lang }: { lang: Lang }) {
             </Reveal>
           ))}
         </div>
+        <h3
+          className="mb-3 mt-14 scroll-mt-24 font-heading text-2xl text-wow-gold"
+          id="hero-orders"
+        >
+          {heroes.ordersTitle[lang]}
+        </h3>
+        <p className="mb-6 max-w-3xl leading-relaxed text-white/65">
+          <Rich text={heroes.ordersLede[lang]} />
+        </p>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {heroes.orders.map((c, i) => (
+            <Reveal key={c.icon} delay={(i % 4) * 0.07}>
+              <Card
+                icon={c.icon}
+                text={c.text[lang]}
+                tip={c.tip}
+                title={c.title[lang]}
+              />
+            </Reveal>
+          ))}
+        </div>
+        <Reveal>
+          <div className="mt-8 rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] p-6 backdrop-blur-sm">
+            <h4 className="mb-5 font-heading text-xl text-wow-gold-light">
+              {heroes.marksTitle[lang]}
+            </h4>
+            <ul className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
+              {heroes.marks.map((m) => (
+                <li key={m.mark} className="flex items-center gap-4">
+                  <img
+                    alt=""
+                    className="h-9 w-9 shrink-0"
+                    height={36}
+                    src={`/img/experience/marks/${m.mark}.png`}
+                    width={36}
+                  />
+                  <span>
+                    <span className="block font-semibold text-white/90">
+                      {m.name[lang]}
+                    </span>
+                    <span className="text-sm text-white/60">
+                      {m.text[lang]}
+                    </span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <ul className="mt-6 space-y-3 border-t border-white/10 pt-5 text-sm leading-relaxed text-white/65">
+              {heroes.marksRules.map((r, i) => (
+                <li key={i}>
+                  <Rich text={r[lang]} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
