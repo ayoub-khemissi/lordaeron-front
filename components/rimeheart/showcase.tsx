@@ -1497,9 +1497,9 @@ function Heroes({ lang }: { lang: Lang }) {
         <p className="mb-6 max-w-3xl leading-relaxed text-white/65">
           <Rich text={heroes.ordersLede[lang]} />
         </p>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {heroes.orders.map((c, i) => (
-            <Reveal key={c.icon} delay={(i % 4) * 0.07}>
+            <Reveal key={c.icon} delay={(i % 5) * 0.07}>
               <Card
                 icon={c.icon}
                 text={c.text[lang]}

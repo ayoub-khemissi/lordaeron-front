@@ -1297,6 +1297,15 @@ export const heroes = {
         "Always on: your heroes follow the symbols you put on enemies, from the Skull to the Star.",
       ),
     },
+    {
+      icon: "ability_hunter_snipershot",
+      tip: "spell:107036",
+      title: L("Cibles marquées seulement", "Marked Targets Only"),
+      text: L(
+        "Vos héros ne lancent plus de peur, d'immobilisation ou de Métamorphose d'eux-mêmes : seuls les ennemis que vous marquez sont contrôlés. Rien ne change face aux boss.",
+        "Your heroes no longer fear, root or Polymorph on their own: only the enemies you mark are controlled. Nothing changes against bosses.",
+      ),
+    },
   ],
   /** The target symbols (warcraft.wiki.gg Target marker convention), the client's own textures (public/img/experience/marks). */
   marksTitle: L("Un symbole, un rôle", "One symbol, one job"),
