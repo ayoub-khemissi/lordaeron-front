@@ -1254,6 +1254,126 @@ export const heroes = {
       ),
     },
   ],
+  /** The heroes' orders: the spellbook's Heroes tab (contrib/wotlk-plus/design/solo-bots/ordres.md, 06/11/2026). */
+  ordersTitle: L("Donnez vos ordres", "Give your orders"),
+  ordersLede: L(
+    "Un onglet **• Héros •** dans votre grimoire, dès le niveau 1. Chaque ordre qui dure s'affiche en aura sur vous.",
+    "A **• Heroes •** tab in your spellbook, from level 1. Every order that lasts shows as an aura on you.",
+  ),
+  orders: [
+    {
+      icon: "spell_nature_timestop",
+      tip: "spell:107030",
+      title: L("Tenir la position", "Hold Position"),
+      text: L(
+        "Vos héros s'arrêtent là où ils sont. Au combat suivant, ils laissent venir les ennemis pendant **10 s** au plus, sauf face à un boss.",
+        "Your heroes stop where they stand. In the next fight, they let the enemies come to them for up to **10 sec**, except against a boss.",
+      ),
+    },
+    {
+      icon: "ability_marksmanship",
+      tip: "spell:107032",
+      title: L("Je tire", "My Pull"),
+      text: L(
+        "Le pull est à vous : leur tank ne tire plus avant vous, et aucun héros n'attaque un ennemi qui ne se bat pas encore avec votre groupe.",
+        "The pull is yours: their tank no longer pulls before you, and no hero attacks an enemy that is not yet fighting your group.",
+      ),
+    },
+    {
+      icon: "ability_tracking",
+      tip: "spell:107034",
+      title: L("À moi !", "To Me!"),
+      text: L(
+        "Vos héros vous rejoignent aussitôt ; ceux qui sont loin ou hors de vue apparaissent à vos côtés.",
+        "Your heroes come to you at once; those far away or out of sight appear at your side.",
+      ),
+    },
+    {
+      icon: "inv_misc_bone_humanskull_01",
+      tip: "spell:107035",
+      title: L("Icônes de cible", "Target Icons"),
+      text: L(
+        "Toujours actif : vos héros suivent les symboles que vous posez sur les ennemis, du crâne à l'étoile.",
+        "Always on: your heroes follow the symbols you put on enemies, from the Skull to the Star.",
+      ),
+    },
+    {
+      icon: "ability_hunter_snipershot",
+      tip: "spell:107036",
+      title: L("Cibles marquées seulement", "Marked Targets Only"),
+      text: L(
+        "Vos héros ne lancent plus de peur, d'immobilisation ou de Métamorphose d'eux-mêmes : seuls les ennemis que vous marquez sont contrôlés. Rien ne change face aux boss.",
+        "Your heroes no longer fear, root or Polymorph on their own: only the enemies you mark are controlled. Nothing changes against bosses.",
+      ),
+    },
+  ],
+  /** The target symbols (warcraft.wiki.gg Target marker convention), the client's own textures (public/img/experience/marks). */
+  marksTitle: L("Un symbole, un rôle", "One symbol, one job"),
+  marks: [
+    {
+      mark: "skull",
+      name: L("Crâne", "Skull"),
+      text: L("Tué en premier", "Killed first"),
+    },
+    {
+      mark: "cross",
+      name: L("Croix", "Cross"),
+      text: L("Tuée en deuxième", "Killed second"),
+    },
+    {
+      mark: "moon",
+      name: L("Lune", "Moon"),
+      text: L("Mage : Métamorphose", "Mage: Polymorph"),
+    },
+    {
+      mark: "square",
+      name: L("Carré", "Square"),
+      text: L(
+        "Chasseur : Flèche givrante, Piqûre de wyverne",
+        "Hunter: Freezing Arrow, Wyvern Sting",
+      ),
+    },
+    {
+      mark: "triangle",
+      name: L("Triangle", "Triangle"),
+      text: L(
+        "Chaman : Maléfice · Druide : Hibernation, Cyclone",
+        "Shaman: Hex · Druid: Hibernate, Cyclone",
+      ),
+    },
+    {
+      mark: "diamond",
+      name: L("Losange", "Diamond"),
+      text: L("Démoniste : Bannir, Peur", "Warlock: Banish, Fear"),
+    },
+    {
+      mark: "circle",
+      name: L("Cercle", "Circle"),
+      text: L(
+        "Prêtre : Entraves des morts-vivants · Paladin : Repentir",
+        "Priest: Shackle Undead · Paladin: Repentance",
+      ),
+    },
+    {
+      mark: "star",
+      name: L("Étoile", "Star"),
+      text: L("Voleur : Cécité", "Rogue: Blind"),
+    },
+  ],
+  marksRules: [
+    L(
+      "**Prise de relais** : si la classe du symbole manque, si son contrôle est en recharge ou ne prend pas sur la cible, un autre héros s'en charge, avec son contrôle le plus dur : contrôles longs, puis peurs, étourdissements et ralentissements.",
+      "**Taking over**: if the symbol's class is missing, or its control is on cooldown or does not work on the target, another hero takes it with their hardest control: long controls first, then fears, stuns and slows.",
+    ),
+    L(
+      "**Tuée en dernier** : personne ne frappe une cible contrôlée tant qu'un autre ennemi se bat avec votre groupe. Si elle se libère, le tank la reprend jusqu'au contrôle suivant.",
+      "**Killed last**: nobody hits a controlled target while another enemy fights your group. If it breaks free, the tank takes it until the next control.",
+    ),
+    L(
+      "**Les boss d'abord** : jamais sur un boss ni pendant son combat, où vos addons posent leurs propres symboles. Une cible qu'aucun héros ne peut contrôler est une cible comme une autre.",
+      "**Bosses first**: never on a boss nor during its fight, where your addons place their own symbols. A target no hero can control is a target like any other.",
+    ),
+  ],
   image: IMG.coliseum,
 };
 
