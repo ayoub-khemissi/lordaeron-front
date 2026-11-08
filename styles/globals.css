@@ -530,3 +530,40 @@ h4 {
   min-height: calc(100vh - 4rem);
   min-height: calc(100svh - 4rem);
 }
+
+/* the realms' portal: each realm's pictures in turn (3 of them, 8 s each), a slow zoom while shown (app/[locale]/page.tsx) */
+@keyframes portal-slide {
+  0% {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+
+  6% {
+    opacity: 1;
+  }
+
+  33% {
+    opacity: 1;
+  }
+
+  40% {
+    opacity: 0;
+    transform: scale(1.14);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.14);
+  }
+}
+
+.portal-slide {
+  opacity: 0;
+  animation: portal-slide 24s linear infinite both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portal-slide {
+    animation: none;
+  }
+}

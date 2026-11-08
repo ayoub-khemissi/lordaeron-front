@@ -1488,6 +1488,7 @@
     "rimeheart": {
       "tagline": "Wrath of the Lich King · des centaines de nouveautés",
       "points": [
+        "Jouez seul avec 146 héros en donjon et en raid",
         "Cinq phases de trois mois",
         "Raids héroïques, qualité Artefact, boss du monde",
         "31 talents de spécialisation, 277 nouvelles recettes",
@@ -1495,7 +1496,12 @@
       ]
     },
     "label": "Royaumes",
-    "adminPreview": "Aperçu admin"
+    "adminPreview": "Aperçu admin",
+    "gallery": {
+      "kicker": "En jeu",
+      "title": "Azeroth, telle que nos joueurs la voient",
+      "subtitle": "Captures prises en jeu sur nos royaumes."
+    }
   },
   "realmHome": {
     "featuresEyebrow": "Le royaume",

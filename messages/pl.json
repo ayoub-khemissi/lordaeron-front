@@ -1488,6 +1488,7 @@
     "rimeheart": {
       "tagline": "Wrath of the Lich King · setki nowości",
       "points": [
+        "Graj solo ze 146 bohaterami w lochach i rajdach",
         "Pięć faz po trzy miesiące",
         "Heroiczne wczesne rajdy, jakość Artefakt, światowi bossowie",
         "31 talentów specjalizacji, 277 nowych przepisów",
@@ -1495,7 +1496,12 @@
       ]
     },
     "label": "Światy",
-    "adminPreview": "Podgląd admina"
+    "adminPreview": "Podgląd admina",
+    "gallery": {
+      "kicker": "W grze",
+      "title": "Azeroth oczami naszych graczy",
+      "subtitle": "Zrzuty ekranu zrobione w grze na naszych światach."
+    }
   },
   "realmHome": {
     "featuresEyebrow": "Kraina",

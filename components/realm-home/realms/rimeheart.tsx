@@ -55,7 +55,15 @@ export async function rimeheartHome(
     slug: "rimeheart",
     theme: {
       accent: "ice",
-      heroImages: [IMG.lk],
+      // the Lich King's art, then pictures taken on the realm (Icecrown Citadel, the aurora over the fjord, a city under the snow,
+      // Valgarde's harbour; 07/11/2026)
+      heroImages: [
+        IMG.lk,
+        "/img/experience/bg/ingame-09.webp",
+        "/img/experience/bg/ingame-30.webp",
+        "/img/experience/bg/ingame-12.webp",
+        "/img/experience/bg/ingame-01.webp",
+      ],
       responsive: true,
       ambience: "snow",
       crest: { src: icon("achievement_boss_lichking"), ring: true },

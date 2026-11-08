@@ -1488,6 +1488,7 @@
     "rimeheart": {
       "tagline": "Wrath of the Lich King · hundreds of additions",
       "points": [
+        "Play solo with 146 heroes in dungeons and raids",
         "Five phases, three months each",
         "Heroic early raids, Artifact quality, world bosses",
         "31 specialization talents, 277 new recipes",
@@ -1495,7 +1496,12 @@
       ]
     },
     "label": "Realms",
-    "adminPreview": "Admin preview"
+    "adminPreview": "Admin preview",
+    "gallery": {
+      "kicker": "In game",
+      "title": "Azeroth, as our players see it",
+      "subtitle": "Screenshots taken in game on our realms."
+    }
   },
   "realmHome": {
     "featuresEyebrow": "The realm",

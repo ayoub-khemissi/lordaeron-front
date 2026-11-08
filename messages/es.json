@@ -1488,6 +1488,7 @@
     "rimeheart": {
       "tagline": "Wrath of the Lich King · cientos de novedades",
       "points": [
+        "Juega en solitario con 146 héroes en mazmorras y bandas",
         "Cinco fases de tres meses",
         "Bandas heroicas, calidad Artefacto, jefes del mundo",
         "31 talentos de especialización, 277 recetas nuevas",
@@ -1495,7 +1496,12 @@
       ]
     },
     "label": "Reinos",
-    "adminPreview": "Vista admin"
+    "adminPreview": "Vista admin",
+    "gallery": {
+      "kicker": "En el juego",
+      "title": "Azeroth, tal como la ven nuestros jugadores",
+      "subtitle": "Capturas tomadas en el juego en nuestros reinos."
+    }
   },
   "realmHome": {
     "featuresEyebrow": "El reino",

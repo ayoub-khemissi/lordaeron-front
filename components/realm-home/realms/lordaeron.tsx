@@ -29,7 +29,13 @@ export async function lordaeronHome(
     slug: "lordaeron",
     theme: {
       accent: "gold",
-      heroImages: heroBackgrounds,
+      // Blizzard's art, then pictures taken in game (Stranglethorn's lagoon, Karazhan at night, Netherstorm; 07/11/2026)
+      heroImages: [
+        ...heroBackgrounds,
+        "/img/experience/bg/ingame-07.webp",
+        "/img/experience/bg/ingame-29.webp",
+        "/img/experience/bg/ingame-28.webp",
+      ],
       ambience: "none",
       crest: { src: "/img/logo/logo.png" },
     },

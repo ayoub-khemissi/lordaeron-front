@@ -1488,6 +1488,7 @@
     "rimeheart": {
       "tagline": "Wrath of the Lich King · Hunderte Neuerungen",
       "points": [
+        "Solo mit 146 Helden in Dungeons und Schlachtzügen",
         "Fünf Phasen zu je drei Monaten",
         "Heroische frühe Schlachtzüge, Artefaktqualität, Weltbosse",
         "31 Spezialisierungstalente, 277 neue Rezepte",
@@ -1495,7 +1496,12 @@
       ]
     },
     "label": "Realms",
-    "adminPreview": "Admin-Vorschau"
+    "adminPreview": "Admin-Vorschau",
+    "gallery": {
+      "kicker": "Im Spiel",
+      "title": "Azeroth, wie unsere Spieler es sehen",
+      "subtitle": "Screenshots, im Spiel auf unseren Realms aufgenommen."
+    }
   },
   "realmHome": {
     "featuresEyebrow": "Das Reich",

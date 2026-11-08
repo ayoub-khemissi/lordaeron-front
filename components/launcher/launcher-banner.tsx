@@ -12,7 +12,7 @@ export async function LauncherBanner({ locale }: { locale: string }) {
 
   return (
     <NextLink
-      className="group relative mt-10 flex flex-col items-center gap-6 overflow-hidden rounded-2xl border border-wow-gold/30 bg-gradient-to-r from-wow-gold/[0.08] via-black/40 to-black/60 p-6 transition-all duration-500 hover:border-wow-gold/70 hover:shadow-[0_0_60px_-10px_rgba(199,156,62,0.5)] sm:flex-row sm:p-8"
+      className="group relative flex flex-col items-center gap-6 overflow-hidden rounded-2xl border border-wow-gold/30 bg-gradient-to-r from-wow-gold/[0.08] via-black/40 to-black/60 p-6 transition-all duration-500 hover:border-wow-gold/70 hover:shadow-[0_0_60px_-10px_rgba(199,156,62,0.5)] sm:flex-row sm:p-8"
       href={`/${locale}/launcher`}
     >
       <img

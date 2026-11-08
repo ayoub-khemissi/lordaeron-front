@@ -1488,6 +1488,7 @@
     "rimeheart": {
       "tagline": "Wrath of the Lich King · centinaia di novità",
       "points": [
+        "Gioca in solitaria con 146 eroi in spedizioni e incursioni",
         "Cinque fasi da tre mesi",
         "Incursioni eroiche, qualità Artefatto, boss del mondo",
         "31 talenti di specializzazione, 277 nuove ricette",
@@ -1495,7 +1496,12 @@
       ]
     },
     "label": "Reami",
-    "adminPreview": "Anteprima admin"
+    "adminPreview": "Anteprima admin",
+    "gallery": {
+      "kicker": "In gioco",
+      "title": "Azeroth, come la vedono i nostri giocatori",
+      "subtitle": "Screenshot catturati in gioco sui nostri reami."
+    }
   },
   "realmHome": {
     "featuresEyebrow": "Il reame",
