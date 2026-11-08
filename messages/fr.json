@@ -1468,7 +1468,13 @@
     "portal": {
       "kicker": "Un compte · deux royaumes",
       "title": "Choisissez votre royaume",
-      "subtitle": "Un compte, une boutique, deux façons de vivre Azeroth."
+      "subtitle": "Un compte, une boutique, deux façons de vivre Azeroth.",
+      "rows": {
+        "progression": "Progression",
+        "raids": "Raids",
+        "solo": "Solo",
+        "xp": "Expérience"
+      }
     },
     "switch": "Changer de royaume",
     "allRealms": "Tous les royaumes",
@@ -1479,21 +1485,21 @@
     "discover": "Découvrir",
     "lordaeron": {
       "tagline": "Epic Progressive · de Vanilla à WotLK",
-      "points": [
-        "Vanilla, puis TBC, puis WotLK : chaque palier se débloque à son tour",
-        "XP x5, transmogrification, cross-faction",
-        "Raids réinitialisés deux fois par semaine, voie solo du Champion solitaire"
-      ]
+      "facts": {
+        "progression": "Vanilla, puis TBC, puis WotLK",
+        "raids": "Réinitialisés deux fois par semaine",
+        "solo": "La voie du Champion solitaire à travers les raids",
+        "xp": "×5"
+      }
     },
     "rimeheart": {
       "tagline": "Wrath of the Lich King · des centaines de nouveautés",
-      "points": [
-        "Jouez seul avec 146 héros en donjon et en raid",
-        "Cinq phases de trois mois",
-        "Raids héroïques, qualité Artefact, boss du monde",
-        "31 talents de spécialisation, 277 nouvelles recettes",
-        "28 spécialisations de métier et leurs coups de maître"
-      ]
+      "facts": {
+        "progression": "Cinq phases de trois mois",
+        "raids": "Modes héroïques et qualité Artefact",
+        "solo": "146 héros à vos côtés en donjon et en raid",
+        "xp": "×5"
+      }
     },
     "label": "Royaumes",
     "adminPreview": "Aperçu admin",
@@ -1501,7 +1507,8 @@
       "kicker": "En jeu",
       "title": "Azeroth, telle que nos joueurs la voient",
       "subtitle": "Captures prises en jeu sur nos royaumes."
-    }
+    },
+    "features": "Voir les fonctionnalités"
   },
   "realmHome": {
     "featuresEyebrow": "Le royaume",

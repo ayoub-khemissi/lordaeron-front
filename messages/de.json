@@ -1468,7 +1468,13 @@
     "portal": {
       "kicker": "Ein Konto · zwei Realms",
       "title": "Wähle deinen Realm",
-      "subtitle": "Ein Konto, ein Shop, zwei Arten, Azeroth zu erleben."
+      "subtitle": "Ein Konto, ein Shop, zwei Arten, Azeroth zu erleben.",
+      "rows": {
+        "progression": "Fortschritt",
+        "raids": "Schlachtzüge",
+        "solo": "Solo",
+        "xp": "Erfahrung"
+      }
     },
     "switch": "Realm wechseln",
     "allRealms": "Alle Realms",
@@ -1479,21 +1485,21 @@
     "discover": "Entdecken",
     "lordaeron": {
       "tagline": "Epic Progressive · von Vanilla bis WotLK",
-      "points": [
-        "Vanilla, dann TBC, dann WotLK: jede Stufe wird nacheinander freigeschaltet",
-        "XP x5, Transmogrifikation, fraktionsübergreifend",
-        "Schlachtzüge zweimal pro Woche zurückgesetzt, Pfad des Einsamen Champions für Solospieler"
-      ]
+      "facts": {
+        "progression": "Vanilla, dann TBC, dann WotLK",
+        "raids": "Zweimal pro Woche zurückgesetzt",
+        "solo": "Der Pfad des Einsamen Champions durch die Schlachtzüge",
+        "xp": "×5"
+      }
     },
     "rimeheart": {
       "tagline": "Wrath of the Lich King · Hunderte Neuerungen",
-      "points": [
-        "Solo mit 146 Helden in Dungeons und Schlachtzügen",
-        "Fünf Phasen zu je drei Monaten",
-        "Heroische frühe Schlachtzüge, Artefaktqualität, Weltbosse",
-        "31 Spezialisierungstalente, 277 neue Rezepte",
-        "28 Berufsspezialisierungen mit ihren Meisterwerken"
-      ]
+      "facts": {
+        "progression": "Fünf Phasen zu je drei Monaten",
+        "raids": "Heroische Modi und Artefaktqualität",
+        "solo": "146 Helden an deiner Seite in Dungeons und Schlachtzügen",
+        "xp": "×5"
+      }
     },
     "label": "Realms",
     "adminPreview": "Admin-Vorschau",
@@ -1501,7 +1507,8 @@
       "kicker": "Im Spiel",
       "title": "Azeroth, wie unsere Spieler es sehen",
       "subtitle": "Screenshots, im Spiel auf unseren Realms aufgenommen."
-    }
+    },
+    "features": "Funktionen ansehen"
   },
   "realmHome": {
     "featuresEyebrow": "Das Reich",

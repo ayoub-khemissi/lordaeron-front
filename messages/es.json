@@ -1468,7 +1468,13 @@
     "portal": {
       "kicker": "Una cuenta · dos reinos",
       "title": "Elige tu reino",
-      "subtitle": "Una cuenta, una tienda, dos formas de vivir Azeroth."
+      "subtitle": "Una cuenta, una tienda, dos formas de vivir Azeroth.",
+      "rows": {
+        "progression": "Progresión",
+        "raids": "Bandas",
+        "solo": "En solitario",
+        "xp": "Experiencia"
+      }
     },
     "switch": "Cambiar de reino",
     "allRealms": "Todos los reinos",
@@ -1479,21 +1485,21 @@
     "discover": "Descubrir",
     "lordaeron": {
       "tagline": "Epic Progressive · de Vanilla a WotLK",
-      "points": [
-        "Vanilla, luego TBC, luego WotLK: cada etapa se desbloquea a su vez",
-        "XP x5, transfiguración, juego entre facciones",
-        "Reinicio de bandas dos veces por semana, senda del Campeón Solitario"
-      ]
+      "facts": {
+        "progression": "Vanilla, luego TBC, luego WotLK",
+        "raids": "Se reinician dos veces por semana",
+        "solo": "La senda del Campeón Solitario por las bandas",
+        "xp": "×5"
+      }
     },
     "rimeheart": {
       "tagline": "Wrath of the Lich King · cientos de novedades",
-      "points": [
-        "Juega en solitario con 146 héroes en mazmorras y bandas",
-        "Cinco fases de tres meses",
-        "Bandas heroicas, calidad Artefacto, jefes del mundo",
-        "31 talentos de especialización, 277 recetas nuevas",
-        "28 especializaciones de profesión y sus obras maestras"
-      ]
+      "facts": {
+        "progression": "Cinco fases de tres meses",
+        "raids": "Modos heroicos y calidad Artefacto",
+        "solo": "146 héroes a tu lado en mazmorras y bandas",
+        "xp": "×5"
+      }
     },
     "label": "Reinos",
     "adminPreview": "Vista admin",
@@ -1501,7 +1507,8 @@
       "kicker": "En el juego",
       "title": "Azeroth, tal como la ven nuestros jugadores",
       "subtitle": "Capturas tomadas en el juego en nuestros reinos."
-    }
+    },
+    "features": "Ver las funciones"
   },
   "realmHome": {
     "featuresEyebrow": "El reino",

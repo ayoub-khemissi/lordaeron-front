@@ -1468,7 +1468,13 @@
     "portal": {
       "kicker": "One account · two realms",
       "title": "Choose your realm",
-      "subtitle": "One account, one shop, two ways to live Azeroth."
+      "subtitle": "One account, one shop, two ways to live Azeroth.",
+      "rows": {
+        "progression": "Progression",
+        "raids": "Raids",
+        "solo": "Solo",
+        "xp": "Experience"
+      }
     },
     "switch": "Change realm",
     "allRealms": "All realms",
@@ -1479,21 +1485,21 @@
     "discover": "Discover",
     "lordaeron": {
       "tagline": "Epic Progressive · from Vanilla to WotLK",
-      "points": [
-        "Vanilla, then TBC, then WotLK: every tier unlocked in turn",
-        "x5 XP, transmogrification, cross-faction",
-        "Raid resets twice a week, solo path of the Lone Champion"
-      ]
+      "facts": {
+        "progression": "Vanilla, then TBC, then WotLK",
+        "raids": "Reset twice a week",
+        "solo": "The Lone Champion's path through the raids",
+        "xp": "×5"
+      }
     },
     "rimeheart": {
       "tagline": "Wrath of the Lich King · hundreds of additions",
-      "points": [
-        "Play solo with 146 heroes in dungeons and raids",
-        "Five phases, three months each",
-        "Heroic early raids, Artifact quality, world bosses",
-        "31 specialization talents, 277 new recipes",
-        "28 profession specializations and their masterworks"
-      ]
+      "facts": {
+        "progression": "Five phases of three months",
+        "raids": "Heroic modes and Artifact quality",
+        "solo": "146 heroes at your side in dungeons and raids",
+        "xp": "×5"
+      }
     },
     "label": "Realms",
     "adminPreview": "Admin preview",
@@ -1501,7 +1507,8 @@
       "kicker": "In game",
       "title": "Azeroth, as our players see it",
       "subtitle": "Screenshots taken in game on our realms."
-    }
+    },
+    "features": "See the features"
   },
   "realmHome": {
     "featuresEyebrow": "The realm",

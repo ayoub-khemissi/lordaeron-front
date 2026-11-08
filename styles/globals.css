@@ -531,11 +531,11 @@ h4 {
   min-height: calc(100svh - 4rem);
 }
 
-/* the realms' portal: each realm's pictures in turn (3 of them, 8 s each), a slow zoom while shown (app/[locale]/page.tsx) */
+/* the realms' portal (app/[locale]/page.tsx): each realm's pictures cross-faded in turn (3 of them, 8 s each; no zoom, a capture
+   scaled up shows its pixels); on a wide screen with a pointer, the realm not pointed at dims */
 @keyframes portal-slide {
   0% {
     opacity: 0;
-    transform: scale(1.04);
   }
 
   6% {
@@ -548,18 +548,26 @@ h4 {
 
   40% {
     opacity: 0;
-    transform: scale(1.14);
   }
 
   100% {
     opacity: 0;
-    transform: scale(1.14);
   }
 }
 
 .portal-slide {
   opacity: 0;
   animation: portal-slide 24s linear infinite both;
+}
+
+.portal-media {
+  transition: filter 0.6s ease;
+}
+
+@media (hover: hover) and (min-width: 1024px) {
+  .portal-split:has(.portal-panel:hover) .portal-panel:not(:hover) .portal-media {
+    filter: brightness(0.45) saturate(0.7);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

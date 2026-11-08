@@ -1468,7 +1468,13 @@
     "portal": {
       "kicker": "Jedno konto · dwa światy",
       "title": "Wybierz swój świat",
-      "subtitle": "Jedno konto, jeden sklep, dwa sposoby na przeżycie Azeroth."
+      "subtitle": "Jedno konto, jeden sklep, dwa sposoby na przeżycie Azeroth.",
+      "rows": {
+        "progression": "Postęp",
+        "raids": "Rajdy",
+        "solo": "Solo",
+        "xp": "Doświadczenie"
+      }
     },
     "switch": "Zmień świat",
     "allRealms": "Wszystkie światy",
@@ -1479,21 +1485,21 @@
     "discover": "Odkryj",
     "lordaeron": {
       "tagline": "Epic Progressive · od Vanilla do WotLK",
-      "points": [
-        "Vanilla, potem TBC, potem WotLK: każdy etap odblokowuje się po kolei",
-        "XP x5, transmogryfikacja, międzyfrakcyjność",
-        "Reset rajdów dwa razy w tygodniu, solowa ścieżka Samotnego Czempiona"
-      ]
+      "facts": {
+        "progression": "Vanilla, potem TBC, potem WotLK",
+        "raids": "Resetowane dwa razy w tygodniu",
+        "solo": "Ścieżka Samotnego Czempiona przez rajdy",
+        "xp": "×5"
+      }
     },
     "rimeheart": {
       "tagline": "Wrath of the Lich King · setki nowości",
-      "points": [
-        "Graj solo ze 146 bohaterami w lochach i rajdach",
-        "Pięć faz po trzy miesiące",
-        "Heroiczne wczesne rajdy, jakość Artefakt, światowi bossowie",
-        "31 talentów specjalizacji, 277 nowych przepisów",
-        "28 specjalizacji profesji i ich arcydzieła"
-      ]
+      "facts": {
+        "progression": "Pięć faz po trzy miesiące",
+        "raids": "Tryby heroiczne i jakość Artefaktu",
+        "solo": "146 bohaterów u twojego boku w lochach i rajdach",
+        "xp": "×5"
+      }
     },
     "label": "Światy",
     "adminPreview": "Podgląd admina",
@@ -1501,7 +1507,8 @@
       "kicker": "W grze",
       "title": "Azeroth oczami naszych graczy",
       "subtitle": "Zrzuty ekranu zrobione w grze na naszych światach."
-    }
+    },
+    "features": "Zobacz funkcje"
   },
   "realmHome": {
     "featuresEyebrow": "Kraina",

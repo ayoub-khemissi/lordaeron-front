@@ -1468,7 +1468,13 @@
     "portal": {
       "kicker": "Un account · due reami",
       "title": "Scegli il tuo reame",
-      "subtitle": "Un account, un negozio, due modi di vivere Azeroth."
+      "subtitle": "Un account, un negozio, due modi di vivere Azeroth.",
+      "rows": {
+        "progression": "Progressione",
+        "raids": "Incursioni",
+        "solo": "In solitaria",
+        "xp": "Esperienza"
+      }
     },
     "switch": "Cambia reame",
     "allRealms": "Tutti i reami",
@@ -1479,21 +1485,21 @@
     "discover": "Scopri",
     "lordaeron": {
       "tagline": "Epic Progressive · da Vanilla a WotLK",
-      "points": [
-        "Vanilla, poi TBC, poi WotLK: ogni livello si sblocca a turno",
-        "XP x5, trasmogrificazione, interfazione",
-        "Reset delle incursioni due volte a settimana, Sentiero del Campione Solitario per chi gioca da solo"
-      ]
+      "facts": {
+        "progression": "Vanilla, poi TBC, poi WotLK",
+        "raids": "Resettate due volte a settimana",
+        "solo": "Il Sentiero del Campione Solitario attraverso le incursioni",
+        "xp": "×5"
+      }
     },
     "rimeheart": {
       "tagline": "Wrath of the Lich King · centinaia di novità",
-      "points": [
-        "Gioca in solitaria con 146 eroi in spedizioni e incursioni",
-        "Cinque fasi da tre mesi",
-        "Incursioni eroiche, qualità Artefatto, boss del mondo",
-        "31 talenti di specializzazione, 277 nuove ricette",
-        "28 specializzazioni di professione e i loro capolavori"
-      ]
+      "facts": {
+        "progression": "Cinque fasi da tre mesi",
+        "raids": "Modalità eroiche e qualità Artefatto",
+        "solo": "146 eroi al tuo fianco in spedizioni e incursioni",
+        "xp": "×5"
+      }
     },
     "label": "Reami",
     "adminPreview": "Anteprima admin",
@@ -1501,7 +1507,8 @@
       "kicker": "In gioco",
       "title": "Azeroth, come la vedono i nostri giocatori",
       "subtitle": "Screenshot catturati in gioco sui nostri reami."
-    }
+    },
+    "features": "Vedi le funzionalità"
   },
   "realmHome": {
     "featuresEyebrow": "Il reame",

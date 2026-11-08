@@ -1468,7 +1468,13 @@
     "portal": {
       "kicker": "Uma conta · dois reinos",
       "title": "Escolhe o teu reino",
-      "subtitle": "Uma conta, uma loja, duas maneiras de viver Azeroth."
+      "subtitle": "Uma conta, uma loja, duas maneiras de viver Azeroth.",
+      "rows": {
+        "progression": "Progressão",
+        "raids": "Raides",
+        "solo": "A solo",
+        "xp": "Experiência"
+      }
     },
     "switch": "Mudar de reino",
     "allRealms": "Todos os reinos",
@@ -1479,21 +1485,21 @@
     "discover": "Descobrir",
     "lordaeron": {
       "tagline": "Epic Progressive · de Vanilla a WotLK",
-      "points": [
-        "Vanilla, depois TBC, depois WotLK: cada etapa desbloqueia-se à vez",
-        "XP x5, transmogrificação, entre facções",
-        "Reinício de raides duas vezes por semana, Senda do Campeão Solitário"
-      ]
+      "facts": {
+        "progression": "Vanilla, depois TBC, depois WotLK",
+        "raids": "Reiniciadas duas vezes por semana",
+        "solo": "A Senda do Campeão Solitário pelas raides",
+        "xp": "×5"
+      }
     },
     "rimeheart": {
       "tagline": "Wrath of the Lich King · centenas de novidades",
-      "points": [
-        "Joga a solo com 146 heróis em masmorras e raides",
-        "Cinco fases de três meses",
-        "Raides heroicas iniciais, qualidade Artefacto, world bosses",
-        "31 talentos de especialização, 277 novas receitas",
-        "28 especializações de profissão e as suas obras-primas"
-      ]
+      "facts": {
+        "progression": "Cinco fases de três meses",
+        "raids": "Modos heroicos e qualidade Artefacto",
+        "solo": "146 heróis ao teu lado em masmorras e raides",
+        "xp": "×5"
+      }
     },
     "label": "Reinos",
     "adminPreview": "Pré-visualização admin",
@@ -1501,7 +1507,8 @@
       "kicker": "No jogo",
       "title": "Azeroth, tal como os nossos jogadores a veem",
       "subtitle": "Capturas tiradas no jogo nos nossos reinos."
-    }
+    },
+    "features": "Ver as funcionalidades"
   },
   "realmHome": {
     "featuresEyebrow": "O reino",
