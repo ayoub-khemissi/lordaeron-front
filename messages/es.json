@@ -620,7 +620,8 @@
       "giftRecipientChallengeSelfMade": "El desafío del destinatario solo permite lo que encuentra o fabrica: sin regalo.",
       "giftRecipientChallengeGear": "El desafío del destinatario prohíbe este equipo: no podría llevarlo.",
       "giftRecipientChallengeXpBonus": "El destinatario está en un desafío: sin bonificación de experiencia, el vial se desperdiciaría.",
-      "giftRecipientChallengeFaction": "No hay cambio de facción durante un desafío con el JcJ Hardcore."
+      "giftRecipientChallengeFaction": "No hay cambio de facción durante un desafío con el JcJ Hardcore.",
+      "alreadyInCollection": "Esta montura o mascota ya está en la colección de tu cuenta en este reino. Aún puedes regalarla."
     },
     "comingSoon": "Próximamente",
     "realmSoonTitle": "La tienda de {realm} abrirá con el reino",
@@ -645,6 +646,8 @@
     "restrictionChallengeXpBonus": "Sin bonificación de experiencia en un desafío",
     "restrictionChallengeFaction": "No con el JcJ Hardcore",
     "challengeGrounded": "Utilizable tras Con los pies en la tierra",
+    "inCollection": "Ya en tu colección",
+    "inCollectionTooltip": "Tu cuenta ya lo tiene en este reino, compartido por todos tus personajes allí. Aún puedes regalarlo.",
     "tryOn": "Probar (Ctrl + clic)",
     "dressingTitle": "Probador",
     "dressingOn": "Probador · {name}",

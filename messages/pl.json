@@ -620,7 +620,8 @@
       "giftRecipientChallengeSelfMade": "Wyzwanie odbiorcy pozwala tylko na to, co znajdzie lub wykona: bez prezentu.",
       "giftRecipientChallengeGear": "Wyzwanie odbiorcy zabrania tego ekwipunku: nie mógłby go nosić.",
       "giftRecipientChallengeXpBonus": "Odbiorca jest w trakcie wyzwania: brak premii do doświadczenia, fiolka zostałaby zmarnowana.",
-      "giftRecipientChallengeFaction": "Brak zmiany frakcji podczas wyzwania z Hardcore PvP."
+      "giftRecipientChallengeFaction": "Brak zmiany frakcji podczas wyzwania z Hardcore PvP.",
+      "alreadyInCollection": "Ten wierzchowiec lub towarzysz jest już w kolekcji twojego konta w tej krainie. Nadal możesz go podarować."
     },
     "comingSoon": "Wkrótce",
     "realmSoonTitle": "Sklep {realm} otworzy się wraz ze światem",
@@ -645,6 +646,8 @@
     "restrictionChallengeXpBonus": "Brak premii do doświadczenia w wyzwaniu",
     "restrictionChallengeFaction": "Nie z Hardcore PvP",
     "challengeGrounded": "Do użycia po wyzwaniu Twardo na ziemi",
+    "inCollection": "Już w twojej kolekcji",
+    "inCollectionTooltip": "Twoje konto ma go już w tej krainie, wspólnego dla wszystkich twoich postaci. Nadal możesz go podarować.",
     "tryOn": "Przymierz (Ctrl + klik)",
     "dressingTitle": "Przymierzalnia",
     "dressingOn": "Przymierzalnia · {name}",

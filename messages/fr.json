@@ -620,7 +620,8 @@
       "giftRecipientChallengeSelfMade": "Le défi du destinataire n'autorise que ce qu'il trouve ou fabrique : pas de cadeau.",
       "giftRecipientChallengeGear": "Le défi du destinataire interdit cet équipement : il ne pourrait pas le porter.",
       "giftRecipientChallengeXpBonus": "Le destinataire est en défi : pas de bonus d'expérience, la fiole serait gâchée.",
-      "giftRecipientChallengeFaction": "Pas de changement de faction pendant un défi avec le JcJ Hardcore."
+      "giftRecipientChallengeFaction": "Pas de changement de faction pendant un défi avec le JcJ Hardcore.",
+      "alreadyInCollection": "Cette monture ou mascotte est déjà dans la collection de votre compte sur ce royaume. Vous pouvez toujours l'offrir."
     },
     "comingSoon": "Bientôt disponible",
     "realmSoonTitle": "La boutique de {realm} ouvrira avec le royaume",
@@ -645,6 +646,8 @@
     "restrictionChallengeXpBonus": "Pas de bonus d'expérience en défi",
     "restrictionChallengeFaction": "Pas avec le JcJ Hardcore",
     "challengeGrounded": "Utilisable après Les pieds sur terre",
+    "inCollection": "Déjà dans votre collection",
+    "inCollectionTooltip": "Votre compte la possède déjà sur ce royaume, partagée par tous vos personnages. Vous pouvez toujours l'offrir.",
     "tryOn": "Essayer (Ctrl + clic)",
     "dressingTitle": "Cabine d'essayage",
     "dressingOn": "Cabine d'essayage · {name}",

@@ -11,6 +11,7 @@ import {
 } from "@heroui/modal";
 import { Button } from "@heroui/button";
 import { Chip } from "@heroui/chip";
+import { Tooltip } from "@heroui/tooltip";
 import { useTranslations } from "next-intl";
 
 import { PriceDisplay } from "./price-display";
@@ -110,6 +111,16 @@ export function ItemDetailModal({
         </ModalHeader>
 
         <ModalBody className="py-6">
+          {item.in_collection && (
+            <Chip
+              className="mb-4 bg-emerald-500/15 text-emerald-300 border-emerald-500/30"
+              size="sm"
+              variant="bordered"
+            >
+              {t("inCollection")}
+            </Chip>
+          )}
+
           {item.description && <ItemDescription text={item.description} />}
 
           <div className="mb-4">
@@ -182,15 +193,28 @@ export function ItemDetailModal({
                 {t("gift")}
               </Button>
             )}
-            <Button
-              className="bg-gradient-to-r from-wow-gold to-wow-gold-light text-black font-bold"
-              isDisabled={
-                realmClosed || !hasCharacter || item.eligible === false
-              }
-              onPress={onBuy}
+            {/* already in the account's collection: not bought twice (the gift stays); a disabled button takes no pointer, its wrapper
+                shows the tooltip */}
+            <Tooltip
+              className="max-w-xs"
+              content={t("inCollectionTooltip")}
+              isDisabled={!item.in_collection}
             >
-              {realmClosed ? t("comingSoon") : t("buyNow")}
-            </Button>
+              <span className="inline-flex">
+                <Button
+                  className="bg-gradient-to-r from-wow-gold to-wow-gold-light text-black font-bold"
+                  isDisabled={
+                    realmClosed ||
+                    !hasCharacter ||
+                    item.eligible === false ||
+                    !!item.in_collection
+                  }
+                  onPress={onBuy}
+                >
+                  {realmClosed ? t("comingSoon") : t("buyNow")}
+                </Button>
+              </span>
+            </Tooltip>
           </div>
         </ModalFooter>
       </ModalContent>

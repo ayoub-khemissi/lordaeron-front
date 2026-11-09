@@ -620,7 +620,8 @@
       "giftRecipientChallengeSelfMade": "O desafio do destinatário só permite o que ele encontra ou fabrica: sem presente.",
       "giftRecipientChallengeGear": "O desafio do destinatário proíbe este equipamento: ele não poderia usá-lo.",
       "giftRecipientChallengeXpBonus": "O destinatário está em um desafio: sem bônus de experiência, o frasco seria desperdiçado.",
-      "giftRecipientChallengeFaction": "Sem mudança de facção durante um desafio com o JxJ Hardcore."
+      "giftRecipientChallengeFaction": "Sem mudança de facção durante um desafio com o JxJ Hardcore.",
+      "alreadyInCollection": "Esta montada ou mascote já está na coleção da tua conta neste reino. Podes sempre oferecê-la."
     },
     "comingSoon": "Em breve",
     "realmSoonTitle": "A loja de {realm} abrirá com o reino",
@@ -645,6 +646,8 @@
     "restrictionChallengeXpBonus": "Sem bônus de experiência em um desafio",
     "restrictionChallengeFaction": "Não com o JxJ Hardcore",
     "challengeGrounded": "Utilizável após Com os pés no chão",
+    "inCollection": "Já na tua coleção",
+    "inCollectionTooltip": "A tua conta já o tem neste reino, partilhado por todas as tuas personagens. Podes sempre oferecê-lo.",
     "tryOn": "Experimentar (Ctrl + clique)",
     "dressingTitle": "Provador",
     "dressingOn": "Provador · {name}",

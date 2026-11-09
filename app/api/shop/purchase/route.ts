@@ -27,6 +27,10 @@ import {
 import { isRealmPreviewer } from "@/lib/realm-preview";
 import { challengeError, purchaseChallengeBlock } from "@/lib/challenge-shop";
 import {
+  COLLECTION_CATEGORIES,
+  ownedCollectionItems,
+} from "@/lib/account-collection";
+import {
   REALM_FIRSTS_CATEGORIES,
   phaseLockedItems,
   realmFirstsProgress,
@@ -438,6 +442,21 @@ export async function POST(request: NextRequest) {
     }
 
     // Normal (non-gift) flow — restrictions on buyer's character
+
+    // a mount or companion the account already has on the realm: its characters all get it (lib/account-collection.ts); a gift stays open
+    if (
+      item.item_id &&
+      COLLECTION_CATEGORIES.includes(item.category) &&
+      (await ownedCollectionItems(realm.slug, session.id, [item.item_id])).has(
+        item.item_id,
+      )
+    ) {
+      return NextResponse.json(
+        { error: "alreadyInCollection" },
+        { status: 400 },
+      );
+    }
+
     if (item.race_ids && !item.race_ids.includes(character.race)) {
       return NextResponse.json({ error: "raceRestricted" }, { status: 400 });
     }

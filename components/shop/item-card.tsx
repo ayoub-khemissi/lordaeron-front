@@ -136,6 +136,15 @@ export function ItemCard({ item, onClick }: ItemCardProps) {
                             : t("restrictionFaction")}
                 </Chip>
               )}
+            {item.in_collection && (
+              <Chip
+                className="bg-emerald-500/15 text-emerald-300 border-emerald-500/30"
+                size="sm"
+                variant="bordered"
+              >
+                {t("inCollection")}
+              </Chip>
+            )}
             {item.challenge_warning === "challenge_grounded" && (
               <Chip
                 className="bg-amber-500/15 text-amber-300 border-amber-500/30"

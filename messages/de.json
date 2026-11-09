@@ -620,7 +620,8 @@
       "giftRecipientChallengeSelfMade": "Die Herausforderung des Empfängers erlaubt nur, was er findet oder herstellt: kein Geschenk.",
       "giftRecipientChallengeGear": "Die Herausforderung des Empfängers verbietet diese Ausrüstung: Er könnte sie nicht tragen.",
       "giftRecipientChallengeXpBonus": "Der Empfänger ist in einer Herausforderung: kein Erfahrungsbonus, die Phiole wäre verschwendet.",
-      "giftRecipientChallengeFaction": "Kein Fraktionswechsel während einer Herausforderung mit Hardcore-PvP."
+      "giftRecipientChallengeFaction": "Kein Fraktionswechsel während einer Herausforderung mit Hardcore-PvP.",
+      "alreadyInCollection": "Dieses Reittier oder dieser Begleiter ist bereits in der Sammlung deines Accounts auf diesem Realm. Verschenken kannst du es weiterhin."
     },
     "comingSoon": "Demnächst",
     "realmSoonTitle": "Der Shop von {realm} öffnet mit dem Realm",
@@ -645,6 +646,8 @@
     "restrictionChallengeXpBonus": "Kein Erfahrungsbonus in einer Herausforderung",
     "restrictionChallengeFaction": "Nicht mit Hardcore-PvP",
     "challengeGrounded": "Nutzbar nach Bodenständig",
+    "inCollection": "Bereits in deiner Sammlung",
+    "inCollectionTooltip": "Dein Account besitzt es auf diesem Realm bereits, geteilt mit all deinen Charakteren dort. Verschenken kannst du es weiterhin.",
     "tryOn": "Anprobieren (Strg + Klick)",
     "dressingTitle": "Anprobe",
     "dressingOn": "Anprobe · {name}",

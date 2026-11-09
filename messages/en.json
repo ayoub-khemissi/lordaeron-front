@@ -620,7 +620,8 @@
       "giftRecipientChallengeSelfMade": "The recipient's challenge allows only what they find or make: no gift.",
       "giftRecipientChallengeGear": "The recipient's challenge forbids this gear: they could not wear it.",
       "giftRecipientChallengeXpBonus": "The recipient is on a challenge: no experience bonus, the Vial would be wasted.",
-      "giftRecipientChallengeFaction": "No faction change during a challenge with the Hardcore PvP."
+      "giftRecipientChallengeFaction": "No faction change during a challenge with the Hardcore PvP.",
+      "alreadyInCollection": "This mount or companion is already in your account's collection on this realm. You can still give it as a gift."
     },
     "comingSoon": "Coming soon",
     "realmSoonTitle": "The {realm} shop opens with the realm",
@@ -645,6 +646,8 @@
     "restrictionChallengeXpBonus": "No experience bonus in a challenge",
     "restrictionChallengeFaction": "Not with the Hardcore PvP",
     "challengeGrounded": "Usable once Grounded is over",
+    "inCollection": "Already in your collection",
+    "inCollectionTooltip": "Your account already has it on this realm, shared by all your characters there. You can still give it as a gift.",
     "tryOn": "Try on (Ctrl + click)",
     "dressingTitle": "Dressing room",
     "dressingOn": "Dressing room · {name}",

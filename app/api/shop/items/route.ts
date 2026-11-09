@@ -16,6 +16,10 @@ import {
 } from "@/lib/realm-unlocks";
 import { tryKinds } from "@/lib/dressing-room";
 import {
+  COLLECTION_CATEGORIES,
+  ownedCollectionItems,
+} from "@/lib/account-collection";
+import {
   challengeBlocksItems,
   challengeBlocksService,
   challengeWarning,
@@ -84,6 +88,15 @@ export async function GET(request: NextRequest) {
       offered.map((i) => i.item_id).filter((id): id is number => !!id),
     );
     const challenge = guid ? await shopChallenge(realm, guid) : null;
+    // the mounts and companions the account already has on the realm (lib/account-collection.ts): marked, still giftable
+    const owned = await ownedCollectionItems(
+      realm,
+      session.id,
+      offered
+        .filter((i) => COLLECTION_CATEGORIES.includes(i.category))
+        .map((i) => i.item_id)
+        .filter((id): id is number => !!id),
+    );
     const facts = challenge
       ? await shopItemFacts(
           realm,
@@ -152,6 +165,7 @@ export async function GET(request: NextRequest) {
           ? challengeWarning(challenge, pieces)
           : null,
         try_on: (item.item_id && tryable.get(item.item_id)) || null,
+        in_collection: !!item.item_id && owned.has(item.item_id),
       };
     });
 

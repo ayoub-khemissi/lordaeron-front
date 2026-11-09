@@ -620,7 +620,8 @@
       "giftRecipientChallengeSelfMade": "La sfida del destinatario permette solo ciò che trova o crea: niente regalo.",
       "giftRecipientChallengeGear": "La sfida del destinatario vieta questo equipaggiamento: non potrebbe indossarlo.",
       "giftRecipientChallengeXpBonus": "Il destinatario è in una sfida: nessun bonus all'esperienza, la fiala sarebbe sprecata.",
-      "giftRecipientChallengeFaction": "Nessun cambio di fazione durante una sfida con il PvP Hardcore."
+      "giftRecipientChallengeFaction": "Nessun cambio di fazione durante una sfida con il PvP Hardcore.",
+      "alreadyInCollection": "Questa cavalcatura o questo animale è già nella collezione del tuo account in questo reame. Puoi comunque regalarlo."
     },
     "comingSoon": "Prossimamente",
     "realmSoonTitle": "Il negozio di {realm} aprirà con il reame",
@@ -645,6 +646,8 @@
     "restrictionChallengeXpBonus": "Nessun bonus esperienza in una sfida",
     "restrictionChallengeFaction": "Non con il PvP Hardcore",
     "challengeGrounded": "Utilizzabile dopo Con i piedi per terra",
+    "inCollection": "Già nella tua collezione",
+    "inCollectionTooltip": "Il tuo account lo possiede già in questo reame, condiviso da tutti i tuoi personaggi. Puoi comunque regalarlo.",
     "tryOn": "Prova (Ctrl + clic)",
     "dressingTitle": "Camerino",
     "dressingOn": "Camerino · {name}",

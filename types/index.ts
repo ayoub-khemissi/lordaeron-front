@@ -232,6 +232,8 @@ export interface ShopItemLocalized {
   challenge_warning?: "challenge_grounded" | null;
   // what the shop's dressing room shows of it (app/api/shop/items): gear on the character, a mount or companion alone
   try_on?: "gear" | "creature" | null;
+  // a mount or companion already in the account's collection on the realm (lib/account-collection.ts): not bought again, still giftable
+  in_collection?: boolean;
 }
 
 export type ShopItemKind = "ground" | "flying" | "weapon" | "armor";
