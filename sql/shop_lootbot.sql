@@ -52,7 +52,7 @@ Calibration, from Mark I to Mark V:
 • Mark III: it keeps collecting while you ride a ground mount.
 • Mark IV: it sells the poor items it collects on the spot.
 • Mark V: a 12-slot hold keeps what your full bags cannot take.
-• Each upgrade plays a level-up and gives it its new name, up to Collect-a-tron Mark V.
+• Each upgrade plays a level-up, and its title under its name shows its Mark, from Mark I to Mark V.
 • Bought here, it starts at Mark I, like everyone''s: the modules are earned in game only.
 
 In game, the Archivists also sell it for 40 Chronicle Fragments.',
@@ -75,7 +75,7 @@ Calibration, du Mark I au Mark V :
 • Mark III : il continue de ramasser quand vous êtes sur une monture terrestre.
 • Mark IV : il revend sur place les objets médiocres qu''il ramasse.
 • Mark V : une soute de 12 emplacements garde ce que vos sacs pleins ne peuvent pas prendre.
-• Chaque amélioration joue une montée de niveau et lui donne son nouveau nom, jusqu''au Collect-o-tron Mark V.
+• Chaque amélioration joue une montée de niveau, et le titre sous son nom indique son Mark, du Mark I au Mark V.
 • Acheté ici, il démarre au Mark I comme celui de tout le monde : les modules se gagnent uniquement en jeu.
 
 En jeu, les Archivistes le vendent aussi pour 40 Fragments de chronique.',
@@ -98,7 +98,7 @@ Calibración, del Mark I al Mark V:
 • Mark III: sigue recogiendo cuando vas en una montura terrestre.
 • Mark IV: vende en el acto los objetos pobres que recoge.
 • Mark V: un compartimento de 12 huecos guarda lo que tus bolsas llenas no pueden llevar.
-• Cada mejora muestra una subida de nivel y le da su nuevo nombre, hasta el Recolect-a-trón Mark V.
+• Cada mejora muestra una subida de nivel, y el título bajo su nombre indica su Mark, del Mark I al Mark V.
 • Comprado aquí, empieza en el Mark I como el de todos: los módulos solo se consiguen en el juego.
 
 En el juego, los Archiveros también lo venden por 40 Fragmentos de crónica.',
@@ -121,7 +121,7 @@ Kalibrierung, von Mark I bis Mark V:
 • Mark III: Er sammelt weiter, während du ein Bodenreittier reitest.
 • Mark IV: Er verkauft die gesammelten schlechten Gegenstände an Ort und Stelle.
 • Mark V: Ein Laderaum mit 12 Plätzen bewahrt auf, was deine vollen Taschen nicht aufnehmen können.
-• Jede Aufrüstung zeigt einen Stufenaufstieg und gibt ihm seinen neuen Namen, bis zum Samm-lo-Mat Mark V.
+• Jede Aufrüstung zeigt einen Stufenaufstieg, und der Titel unter seinem Namen zeigt seine Mark, von Mark I bis Mark V.
 • Hier gekauft, beginnt er wie jeder andere bei Mark I: Die Module gibt es nur im Spiel.
 
 Im Spiel verkaufen ihn auch die Archivare für 40 Chronikfragmente.',
@@ -144,7 +144,7 @@ Calibrazione, dal Mark I al Mark V:
 • Mark III: continua a raccogliere mentre cavalchi una cavalcatura terrestre.
 • Mark IV: vende sul posto gli oggetti scadenti che raccoglie.
 • Mark V: una stiva da 12 posti custodisce ciò che le tue borse piene non possono prendere.
-• Ogni potenziamento mostra un salto di livello e gli dà il suo nuovo nome, fino al Raccogli-tron Mark V.
+• Ogni potenziamento mostra un salto di livello, e il titolo sotto il suo nome indica il suo Mark, dal Mark I al Mark V.
 • Acquistato qui, parte dal Mark I come quello di tutti: i moduli si ottengono solo in gioco.
 
 In gioco, anche gli Archivisti lo vendono per 40 Frammenti di cronaca.',
@@ -167,7 +167,7 @@ In gioco, anche gli Archivisti lo vendono per 40 Frammenti di cronaca.',
 • Модель III: он продолжает собирать, когда вы на наземном транспорте.
 • Модель IV: он сразу продает собранные предметы низкого качества.
 • Модель V: отсек на 12 ячеек хранит то, что не помещается в полные сумки.
-• Каждое улучшение сопровождается эффектом нового уровня и дает ему новое имя, вплоть до «Собериметр, модель V».
+• Каждое улучшение сопровождается эффектом нового уровня, а подпись под его именем показывает модель — от I до V.
 • Купленный здесь, он начинает с модели I, как у всех: модули добываются только в игре.
 
 В игре его также продают Архивариусы за 40 фрагментов хроники.',
@@ -190,7 +190,7 @@ Kalibracja, od Mark I do Mark V:
 • Mark III: zbiera dalej, gdy jedziesz na wierzchowcu naziemnym.
 • Mark IV: od razu sprzedaje zebrane przedmioty słabej jakości.
 • Mark V: ładownia na 12 miejsc przechowuje to, czego nie zmieszczą twoje pełne torby.
-• Każde ulepszenie pokazuje efekt awansu i daje mu nową nazwę, aż do Collect-a-tron Mark V.
+• Każde ulepszenie pokazuje efekt awansu, a tytuł pod jego nazwą pokazuje jego Mark, od Mark I do Mark V.
 • Kupiony tutaj zaczyna od Mark I, jak każdy: moduły zdobywa się tylko w grze.
 
 W grze sprzedają go też Archiwiści za 40 Fragmentów Kroniki.',
@@ -213,7 +213,7 @@ Calibração, do Mark I ao Mark V:
 • Mark III: continua a recolher enquanto montas uma montada terrestre.
 • Mark IV: vende no momento os objetos fracos que recolhe.
 • Mark V: um porão de 12 espaços guarda o que os teus sacos cheios não conseguem levar.
-• Cada melhoria mostra uma subida de nível e dá-lhe o seu novo nome, até ao Recolhe-tron Mark V.
+• Cada melhoria mostra uma subida de nível, e o título sob o seu nome indica o seu Mark, do Mark I ao Mark V.
 • Comprado aqui, começa no Mark I como o de todos: os módulos só se ganham no jogo.
 
 No jogo, os Arquivistas também o vendem por 40 Fragmentos de Crónica.',
