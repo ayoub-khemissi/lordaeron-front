@@ -13,6 +13,7 @@ import { getQualityColor } from "@/lib/shop-utils";
 import { CardArrow } from "@/components/card-arrow";
 import { CHALLENGE_RESTRICTION_LABELS } from "@/lib/challenge-shop-labels";
 import { RestrictionIcons } from "@/components/shop/restriction-badges";
+import { firstParagraph } from "@/components/shop/item-description";
 import {
   TryOnButton,
   useDressingRoom,
@@ -106,7 +107,7 @@ export function ItemCard({ item, onClick }: ItemCardProps) {
 
           {item.description && (
             <p className="text-xs text-gray-500 line-clamp-2 mb-2">
-              {item.description}
+              {firstParagraph(item.description)}
             </p>
           )}
 

@@ -20,6 +20,7 @@ import { getQualityColor } from "@/lib/shop-utils";
 import { useRealm } from "@/lib/realm-context";
 import { RestrictionList } from "@/components/shop/restriction-badges";
 import { CategoryIcon } from "@/components/shop/category-icon";
+import { ItemDescription } from "@/components/shop/item-description";
 import {
   TryOnModalButton,
   useDressingRoom,
@@ -109,9 +110,7 @@ export function ItemDetailModal({
         </ModalHeader>
 
         <ModalBody className="py-6">
-          {item.description && (
-            <p className="text-gray-300 text-sm mb-4">{item.description}</p>
-          )}
+          {item.description && <ItemDescription text={item.description} />}
 
           <div className="mb-4">
             <PriceDisplay

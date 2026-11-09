@@ -172,11 +172,18 @@ export interface ShopItem {
   name_es: string;
   name_de: string;
   name_it: string;
+  // the site's other languages (sql/shop_items_more_locales.sql): empty, or absent before it, shows the English
+  name_ru?: string;
+  name_pl?: string;
+  name_pt?: string;
   description_en: string | null;
   description_fr: string | null;
   description_es: string | null;
   description_de: string | null;
   description_it: string | null;
+  description_ru?: string | null;
+  description_pl?: string | null;
+  description_pt?: string | null;
   price: number;
   discount_percentage: number;
   realm_ids: number[] | null;

@@ -46,11 +46,17 @@ export function ItemForm({ item, onSubmit, loading }: ItemFormProps) {
     name_es: item?.name_es || "",
     name_de: item?.name_de || "",
     name_it: item?.name_it || "",
+    name_ru: item?.name_ru || "",
+    name_pl: item?.name_pl || "",
+    name_pt: item?.name_pt || "",
     description_en: item?.description_en || "",
     description_fr: item?.description_fr || "",
     description_es: item?.description_es || "",
     description_de: item?.description_de || "",
     description_it: item?.description_it || "",
+    description_ru: item?.description_ru || "",
+    description_pl: item?.description_pl || "",
+    description_pt: item?.description_pt || "",
     price: item?.price?.toString() || "",
     discount_percentage: item?.discount_percentage?.toString() || "0",
     faction: item?.faction || "both",
@@ -79,11 +85,17 @@ export function ItemForm({ item, onSubmit, loading }: ItemFormProps) {
       name_es: form.name_es,
       name_de: form.name_de,
       name_it: form.name_it,
+      name_ru: form.name_ru,
+      name_pl: form.name_pl,
+      name_pt: form.name_pt,
       description_en: form.description_en || null,
       description_fr: form.description_fr || null,
       description_es: form.description_es || null,
       description_de: form.description_de || null,
       description_it: form.description_it || null,
+      description_ru: form.description_ru || null,
+      description_pl: form.description_pl || null,
+      description_pt: form.description_pt || null,
       price: parseInt(form.price) || 0,
       discount_percentage: parseInt(form.discount_percentage) || 0,
       faction: form.faction as ShopItem["faction"],
@@ -322,6 +334,16 @@ export function ItemForm({ item, onSubmit, loading }: ItemFormProps) {
             value={form.name_it}
             onValueChange={(v) => setForm({ ...form, name_it: v })}
           />
+          {/* the site's other languages: optional, the English shows when empty */}
+          {(["ru", "pl", "pt"] as const).map((l) => (
+            <Input
+              key={l}
+              classNames={{ inputWrapper: inputClass }}
+              label={l.toUpperCase()}
+              value={form[`name_${l}`]}
+              onValueChange={(v) => setForm({ ...form, [`name_${l}`]: v })}
+            />
+          ))}
         </div>
       </div>
 
@@ -366,6 +388,18 @@ export function ItemForm({ item, onSubmit, loading }: ItemFormProps) {
             value={form.description_it}
             onValueChange={(v) => setForm({ ...form, description_it: v })}
           />
+          {(["ru", "pl", "pt"] as const).map((l) => (
+            <Textarea
+              key={l}
+              classNames={{ inputWrapper: inputClass }}
+              label={l.toUpperCase()}
+              minRows={2}
+              value={form[`description_${l}`]}
+              onValueChange={(v) =>
+                setForm({ ...form, [`description_${l}`]: v })
+              }
+            />
+          ))}
         </div>
       </div>
 
