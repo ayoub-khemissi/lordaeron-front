@@ -220,5 +220,23 @@
     "Arbalète",
     "Baguette",
     "Canne à pêche"
+  ],
+  "CONTAINER_SLOTS": "%2$s %1$d |4emplacement:emplacements;",
+  "_CONTAINER_SUBCLASS": [
+    "Sac",
+    "Sac d'âme",
+    "Sac d'herbes",
+    "Sac d'enchanteur",
+    "Sac d'ingénieur",
+    "Sac de gemmes",
+    "Sac de mineur",
+    "Sac de travail du cuir",
+    "Sac de calligraphie"
+  ],
+  "_QUIVER_SUBCLASS": [
+    "Carquois",
+    "Carquois",
+    "Carquois",
+    "Giberne"
   ]
 }

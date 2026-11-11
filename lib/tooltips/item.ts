@@ -559,8 +559,23 @@ export class ItemRenderer {
     if (n("startquest"))
       lines.push({ left: str(lc, "ITEM_STARTS_QUEST"), color: "white" });
 
+    // a bag, a quiver: its slots and its kind ("36 Slot Bag"), where the client writes no slot
+    const containerSlots = n("ContainerSlots");
+
+    if (containerSlots > 0 && (itemClass === 1 || itemClass === 11)) {
+      const kind =
+        strList(
+          lc,
+          itemClass === 1 ? "_CONTAINER_SUBCLASS" : "_QUIVER_SUBCLASS",
+        )[subclass] ?? "";
+
+      lines.push({
+        left: this.s("CONTAINER_SLOTS", containerSlots, kind),
+        color: "white",
+      });
+    }
     // slot and type
-    if (invType > 0 && invType < INVTYPE.length) {
+    else if (invType > 0 && invType < INVTYPE.length) {
       let type = "";
 
       if (itemClass === 2 && ![14, 16].includes(subclass))

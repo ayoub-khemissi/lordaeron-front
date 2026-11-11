@@ -220,5 +220,23 @@
     "Crossbow",
     "Wand",
     "Fishing Pole"
+  ],
+  "CONTAINER_SLOTS": "%d Slot %s",
+  "_CONTAINER_SUBCLASS": [
+    "Bag",
+    "Soul Bag",
+    "Herb Bag",
+    "Enchanting Bag",
+    "Engineering Bag",
+    "Gem Bag",
+    "Mining Bag",
+    "Leatherworking Bag",
+    "Inscription Bag"
+  ],
+  "_QUIVER_SUBCLASS": [
+    "Quiver",
+    "Quiver",
+    "Quiver",
+    "Ammo Pouch"
   ]
 }
