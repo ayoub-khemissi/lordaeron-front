@@ -151,8 +151,10 @@
     "launcherPoint3": "Enhanced graphics (Lumenveil): installed in one click, with presets and every setting",
     "launcherPoint4": "The latest announcements and patch notes, right in the launcher",
     "launcherDownload": "Download the launcher (Windows)",
+    "launcherDownloadMac": "Download the launcher (Mac, beta)",
     "launcherDetails": "Version {version} · {size} · {date}",
     "launcherSmartScreen": "Windows may show “Windows protected your PC” for a new program: click “More info”, then “Run anyway”. You can check the file against the SHA-256 above.",
+    "launcherGatekeeper": "The first time, macOS may say it cannot check the app: click “Done”, then in System Settings → Privacy & Security, click “Open Anyway”. You can check the file against the SHA-256 above.",
     "launcherCredits": "Enhanced graphics by <lumenveil>Lumenveil</lumenveil> (free software, GNU GPL v2), in a version adapted for Lordaeron (<source>source code</source>).",
     "launcherManual": "Prefer to do it by hand? The steps below still work.",
     "launcherMore": "Everything about the launcher"
@@ -1967,10 +1969,15 @@
   },
   "launcherPage": {
     "kicker": "Windows · Free",
+    "kickerMac": "Windows · Mac · Free",
     "title": "The Lordaeron launcher",
     "subtitle": "One click on Play: the right patches for your realm, the realm list, the enhanced graphics, the news and the login. Everything else is done for you.",
     "download": "Download for Windows",
+    "downloadMac": "Download for Mac",
     "details": "Version {version} · {size} · {date} · Windows 10 and 11",
+    "detailsMac": "Version {version} · {size} · {date} · macOS 11 or later · beta",
+    "alsoMac": "Also for Mac (beta)",
+    "alsoWindows": "Also for Windows",
     "soon": "The launcher will be available here very soon.",
     "bannerText": "Patches, realm list, enhanced graphics and automatic login: install it once, then just press Play.",
     "bannerButton": "Discover the launcher",
@@ -2034,7 +2041,7 @@
     "securityTitle": "Safe by design",
     "securityText": "The launcher only touches your game folder, and only with files it has checked.",
     "security": {
-      "password": "Your password is never kept: the launcher holds a revocable token in Windows' credential manager.",
+      "password": "Your password is never kept: the launcher holds a revocable token in your system's safe (Windows' credential manager, the Mac's keychain).",
       "ticket": "Each game start logs in with a one-time code, valid for one minute and accepted once.",
       "downloads": "Every file comes from lordaeron.eu over HTTPS and is checked against its SHA-256 before it is used.",
       "updates": "The launcher's own updates are signed: an unsigned one is refused.",
@@ -2052,7 +2059,11 @@
       },
       "requirements": {
         "q": "What do I need?",
-        "a": "Windows 10 or 11 and the World of Warcraft 3.3.5a client (build 12340). The launcher itself weighs a few megabytes."
+        "a": "Windows 10 or 11, or a Mac with macOS 11 or later, and the World of Warcraft 3.3.5a client (build 12340). The launcher itself weighs a few megabytes."
+      },
+      "mac": {
+        "q": "Does it work on a Mac?",
+        "a": "Yes, in beta, on macOS 11 or later. On a Mac the game is the Windows client, played through CrossOver, Whisky or an app that holds it: the launcher finds it there, patches it and starts it the same way. The enhanced graphics and the automatic login are on Windows only. The first time, macOS says it cannot check the app: click “Done”, then in System Settings → Privacy & Security, click “Open Anyway”."
       },
       "manual": {
         "q": "Can I play without the launcher?",

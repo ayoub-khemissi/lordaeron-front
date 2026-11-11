@@ -151,8 +151,10 @@
     "launcherPoint3": "Graphismes améliorés (Lumenveil) : installés en un clic, avec préréglages et tous les réglages",
     "launcherPoint4": "Les dernières annonces et notes de mise à jour, directement dans le launcher",
     "launcherDownload": "Télécharger le launcher (Windows)",
+    "launcherDownloadMac": "Télécharger le launcher (Mac, bêta)",
     "launcherDetails": "Version {version} · {size} · {date}",
     "launcherSmartScreen": "Windows peut afficher « Windows a protégé votre ordinateur » pour un nouveau programme : cliquez sur « Informations complémentaires », puis « Exécuter quand même ». Vous pouvez vérifier le fichier avec le SHA-256 ci-dessus.",
+    "launcherGatekeeper": "La première fois, macOS peut dire qu'il ne peut pas vérifier l'app : cliquez sur « Terminé », puis dans Réglages Système → Confidentialité et sécurité, cliquez sur « Ouvrir quand même ». Vous pouvez vérifier le fichier avec le SHA-256 ci-dessus.",
     "launcherCredits": "Graphismes améliorés par <lumenveil>Lumenveil</lumenveil> (logiciel libre, GNU GPL v2), dans une version adaptée à Lordaeron (<source>code source</source>).",
     "launcherManual": "Vous préférez faire à la main ? Les étapes ci-dessous fonctionnent toujours.",
     "launcherMore": "Tout sur le launcher"
@@ -1967,10 +1969,15 @@
   },
   "launcherPage": {
     "kicker": "Windows · Gratuit",
+    "kickerMac": "Windows · Mac · Gratuit",
     "title": "Le launcher Lordaeron",
     "subtitle": "Un clic sur Jouer : les bons patchs pour votre royaume, la liste des royaumes, les graphismes améliorés, les nouveautés et la connexion. Tout le reste est fait pour vous.",
     "download": "Télécharger pour Windows",
+    "downloadMac": "Télécharger pour Mac",
     "details": "Version {version} · {size} · {date} · Windows 10 et 11",
+    "detailsMac": "Version {version} · {size} · {date} · macOS 11 ou plus récent · bêta",
+    "alsoMac": "Aussi pour Mac (bêta)",
+    "alsoWindows": "Aussi pour Windows",
     "soon": "Le launcher sera disponible ici très bientôt.",
     "bannerText": "Patchs, liste des royaumes, graphismes améliorés et connexion automatique : installez-le une fois, puis cliquez simplement sur Jouer.",
     "bannerButton": "Découvrir le launcher",
@@ -2034,7 +2041,7 @@
     "securityTitle": "Sûr par conception",
     "securityText": "Le launcher ne touche qu'à votre dossier du jeu, et seulement avec des fichiers qu'il a vérifiés.",
     "security": {
-      "password": "Votre mot de passe n'est jamais gardé : le launcher conserve un jeton révocable dans le gestionnaire d'identification de Windows.",
+      "password": "Votre mot de passe n'est jamais gardé : le launcher conserve un jeton révocable dans le coffre de votre système (le gestionnaire d'identification de Windows, le trousseau du Mac).",
       "ticket": "Chaque lancement du jeu se connecte avec un code à usage unique, valable une minute et accepté une seule fois.",
       "downloads": "Chaque fichier vient de lordaeron.eu en HTTPS et est vérifié par son SHA-256 avant d'être utilisé.",
       "updates": "Les mises à jour du launcher sont signées : une mise à jour non signée est refusée.",
@@ -2052,7 +2059,11 @@
       },
       "requirements": {
         "q": "De quoi ai-je besoin ?",
-        "a": "Windows 10 ou 11 et le client World of Warcraft 3.3.5a (build 12340). Le launcher lui-même ne pèse que quelques mégaoctets."
+        "a": "Windows 10 ou 11, ou un Mac sous macOS 11 ou plus récent, et le client World of Warcraft 3.3.5a (build 12340). Le launcher lui-même ne pèse que quelques mégaoctets."
+      },
+      "mac": {
+        "q": "Est-ce que ça marche sur Mac ?",
+        "a": "Oui, en bêta, sur macOS 11 ou plus récent. Sur Mac, le jeu est le client Windows, joué avec CrossOver, Whisky ou une app qui le contient : le launcher le trouve là, le patche et le lance de la même façon. Les graphismes améliorés et la connexion automatique sont réservés à Windows. La première fois, macOS dit qu'il ne peut pas vérifier l'app : cliquez sur « Terminé », puis dans Réglages Système → Confidentialité et sécurité, cliquez sur « Ouvrir quand même »."
       },
       "manual": {
         "q": "Puis-je jouer sans le launcher ?",

@@ -9,6 +9,8 @@ import NextLink from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 
+import { launcherBuild, usePlatform } from "@/lib/platform";
+
 const WOWHEAD_ICON = "https://wow.zamimg.com/images/wow/icons/large";
 
 // the launcher's screens (public/img/launcher, rendered from the launcher itself): French ones for French, English otherwise
@@ -34,6 +36,7 @@ const FAQ = [
   "smartscreen",
   "antivirus",
   "requirements",
+  "mac",
   "manual",
   "uninstall",
   "data",
@@ -43,13 +46,10 @@ const FAQ = [
 const megabytes = (bytes: number, locale: string) =>
   `${new Intl.NumberFormat(locale, { maximumFractionDigits: 1 }).format(bytes / 1_000_000)} MB`;
 
-function DownloadButton({
-  launcher,
-  big,
-}: {
-  launcher: LauncherInfo;
-  big?: boolean;
-}) {
+type Build = ReturnType<typeof launcherBuild>;
+
+// the download for the visitor's system (a Mac's, when there is one, else Windows')
+function DownloadButton({ build, big }: { build: Build; big?: boolean }) {
   const t = useTranslations("launcherPage");
 
   return (
@@ -58,7 +58,7 @@ function DownloadButton({
       className={`inline-flex items-center gap-3 rounded-xl bg-gradient-to-b from-[#e9c66f] via-wow-gold to-[#9a7429] font-semibold text-black shadow-[0_10px_40px_-10px_rgba(199,156,62,0.7)] transition-all hover:brightness-110 ${
         big ? "px-7 py-4 text-lg" : "px-5 py-3"
       }`}
-      href={launcher.url}
+      href={build.url}
     >
       <svg
         className="h-5 w-5"
@@ -73,7 +73,30 @@ function DownloadButton({
           strokeLinejoin="round"
         />
       </svg>
-      {t("download")}
+      {build.mac ? t("downloadMac") : t("download")}
+    </a>
+  );
+}
+
+// the other system's download, under the button
+function OtherSystem({
+  launcher,
+  build,
+}: {
+  launcher: LauncherInfo;
+  build: Build;
+}) {
+  const t = useTranslations("launcherPage");
+
+  if (!launcher.mac) return null;
+
+  return (
+    <a
+      download
+      className="mt-2 inline-block text-sm font-medium text-wow-gold hover:underline"
+      href={build.mac ? launcher.url : launcher.mac.url}
+    >
+      {build.mac ? t("alsoWindows") : t("alsoMac")}
     </a>
   );
 }
@@ -89,6 +112,8 @@ export function LauncherPage({
   const locale = useLocale();
   const lang = locale === "fr" ? "fr" : "en";
   const [shot, setShot] = useState<(typeof SHOTS)[number]>("home");
+  const platform = usePlatform();
+  const build = launcher ? launcherBuild(launcher, platform) : null;
   const date = launcher?.date
     ? new Intl.DateTimeFormat(locale, { dateStyle: "long" }).format(
         new Date(launcher.date),
@@ -112,7 +137,7 @@ export function LauncherPage({
             transition={{ duration: 0.6 }}
           >
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-wow-gold-light/80">
-              {t("kicker")}
+              {launcher?.mac ? t("kickerMac") : t("kicker")}
             </p>
             <h1 className="mt-4 font-heading text-5xl leading-tight text-white sm:text-6xl">
               <span className="wow-gradient-text">{t("title")}</span>
@@ -120,19 +145,20 @@ export function LauncherPage({
             <p className="mt-5 max-w-xl text-lg text-gray-300">
               {t("subtitle")}
             </p>
-            {launcher ? (
+            {launcher && build ? (
               <div className="mt-8">
-                <DownloadButton big launcher={launcher} />
+                <DownloadButton big build={build} />
                 <p className="mt-4 text-sm text-gray-400">
-                  {t("details", {
+                  {t(build.mac ? "detailsMac" : "details", {
                     version: launcher.version,
-                    size: megabytes(launcher.size, locale),
+                    size: megabytes(build.size, locale),
                     date,
                   })}
                 </p>
                 <p className="mt-1 break-all font-mono text-[11px] text-gray-500">
-                  SHA-256 {launcher.sha256}
+                  SHA-256 {build.sha256}
                 </p>
+                <OtherSystem build={build} launcher={launcher} />
               </div>
             ) : (
               <p className="mt-8 text-sm text-gray-400">{t("soon")}</p>
@@ -241,9 +267,9 @@ export function LauncherPage({
               </li>
             ))}
           </ol>
-          {launcher && (
+          {build && (
             <div className="mt-10 flex justify-center">
-              <DownloadButton launcher={launcher} />
+              <DownloadButton build={build} />
             </div>
           )}
         </section>
@@ -285,7 +311,7 @@ export function LauncherPage({
             {t("faqTitle")}
           </h2>
           <Accordion className="mx-auto mt-8 max-w-3xl" variant="splitted">
-            {FAQ.map((k) => (
+            {FAQ.filter((k) => k !== "mac" || launcher?.mac).map((k) => (
               <AccordionItem
                 key={k}
                 classNames={{

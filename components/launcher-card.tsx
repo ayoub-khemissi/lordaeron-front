@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 import NextLink from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 
+import { launcherBuild, usePlatform } from "@/lib/platform";
+
 // "25.4 MB"
 const megabytes = (bytes: number, locale: string) =>
   `${new Intl.NumberFormat(locale, { maximumFractionDigits: 1 }).format(bytes / 1_000_000)} MB`;
@@ -15,7 +17,9 @@ const megabytes = (bytes: number, locale: string) =>
 // itself (the realm's patches, the realm list, the cache) and keeps the enhanced graphics (Lumenveil) up to date
 export function LauncherCard({ launcher }: { launcher: LauncherInfo }) {
   const t = useTranslations("howTo");
+  const page = useTranslations("launcherPage");
   const locale = useLocale();
+  const build = launcherBuild(launcher, usePlatform());
   const date = launcher.date
     ? new Intl.DateTimeFormat(locale, { dateStyle: "long" }).format(
         new Date(launcher.date),
@@ -64,7 +68,7 @@ export function LauncherCard({ launcher }: { launcher: LauncherInfo }) {
           <a
             download
             className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-b from-[#e9c66f] via-wow-gold to-[#9a7429] px-6 py-3 font-semibold text-black shadow-lg transition-all hover:brightness-110"
-            href={launcher.url}
+            href={build.url}
           >
             <svg
               className="h-5 w-5"
@@ -79,23 +83,32 @@ export function LauncherCard({ launcher }: { launcher: LauncherInfo }) {
                 strokeLinejoin="round"
               />
             </svg>
-            {t("launcherDownload")}
+            {build.mac ? t("launcherDownloadMac") : t("launcherDownload")}
           </a>
           <div className="text-xs text-gray-400">
             <p>
               {t("launcherDetails", {
                 version: launcher.version,
-                size: megabytes(launcher.size, locale),
+                size: megabytes(build.size, locale),
                 date,
               })}
             </p>
             <p className="break-all font-mono text-[11px] text-gray-500">
-              SHA-256 {launcher.sha256}
+              SHA-256 {build.sha256}
             </p>
+            {launcher.mac && (
+              <a
+                download
+                className="mt-1 inline-block font-medium text-wow-gold hover:underline"
+                href={build.mac ? launcher.url : launcher.mac.url}
+              >
+                {build.mac ? page("alsoWindows") : page("alsoMac")}
+              </a>
+            )}
           </div>
         </div>
         <p className="mt-5 rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-xs text-gray-400">
-          {t("launcherSmartScreen")}
+          {build.mac ? t("launcherGatekeeper") : t("launcherSmartScreen")}
         </p>
         <p className="mt-4 text-xs text-gray-500">
           {t.rich("launcherCredits", {

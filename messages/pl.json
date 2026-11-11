@@ -151,8 +151,10 @@
     "launcherPoint3": "Ulepszona grafika (Lumenveil): instalowana jednym kliknięciem, z ustawieniami wstępnymi i wszystkimi opcjami",
     "launcherPoint4": "Najnowsze ogłoszenia i informacje o łatkach prosto w launcherze",
     "launcherDownload": "Pobierz launcher (Windows)",
+    "launcherDownloadMac": "Pobierz launcher (Mac, beta)",
     "launcherDetails": "Wersja {version} · {size} · {date}",
     "launcherSmartScreen": "Przy nowym programie Windows może wyświetlić „System Windows ochronił ten komputer”: kliknij „Więcej informacji”, a potem „Uruchom mimo to”. Plik możesz sprawdzić za pomocą SHA-256 powyżej.",
+    "launcherGatekeeper": "Za pierwszym razem macOS może poinformować, że nie może zweryfikować aplikacji: kliknij „Gotowe”, a potem w Ustawieniach systemowych → Prywatność i ochrona kliknij „Otwórz mimo to”. Plik możesz sprawdzić za pomocą SHA-256 powyżej.",
     "launcherCredits": "Ulepszona grafika dzięki <lumenveil>Lumenveil</lumenveil> (wolne oprogramowanie, GNU GPL v2), w wersji dostosowanej do Lordaeron (<source>kod źródłowy</source>).",
     "launcherManual": "Wolisz ręcznie? Kroki poniżej nadal działają.",
     "launcherMore": "Wszystko o launcherze"
@@ -1967,10 +1969,15 @@
   },
   "launcherPage": {
     "kicker": "Windows · Za darmo",
+    "kickerMac": "Windows · Mac · Za darmo",
     "title": "Launcher Lordaeron",
     "subtitle": "Jedno kliknięcie w Graj: właściwe łatki dla twojej krainy, lista krain, ulepszona grafika, nowości i logowanie. Resztą zajmie się za ciebie.",
     "download": "Pobierz dla Windows",
+    "downloadMac": "Pobierz dla Maca",
     "details": "Wersja {version} · {size} · {date} · Windows 10 i 11",
+    "detailsMac": "Wersja {version} · {size} · {date} · macOS 11 lub nowszy · beta",
+    "alsoMac": "Także dla Maca (beta)",
+    "alsoWindows": "Także dla Windows",
     "soon": "Launcher będzie tu dostępny już wkrótce.",
     "bannerText": "Łatki, lista krain, ulepszona grafika i automatyczne logowanie: zainstaluj raz, a potem tylko klikaj Graj.",
     "bannerButton": "Poznaj launcher",
@@ -2034,7 +2041,7 @@
     "securityTitle": "Bezpieczny z założenia",
     "securityText": "Launcher dotyka tylko folderu twojej gry i tylko plikami, które sprawdził.",
     "security": {
-      "password": "Twoje hasło nigdy nie jest przechowywane: launcher trzyma odwoływalny token w menedżerze poświadczeń Windows.",
+      "password": "Twoje hasło nigdy nie jest przechowywane: launcher trzyma odwoływalny token w bezpiecznym magazynie systemu (menedżer poświadczeń Windows, pęk kluczy Maca).",
       "ticket": "Każde uruchomienie gry loguje się jednorazowym kodem, ważnym minutę i przyjmowanym tylko raz.",
       "downloads": "Każdy plik pochodzi z lordaeron.eu przez HTTPS i jest sprawdzany po SHA-256 przed użyciem.",
       "updates": "Aktualizacje launchera są podpisane: niepodpisana jest odrzucana.",
@@ -2052,7 +2059,11 @@
       },
       "requirements": {
         "q": "Czego potrzebuję?",
-        "a": "Windows 10 lub 11 i klienta World of Warcraft 3.3.5a (build 12340). Sam launcher waży kilka megabajtów."
+        "a": "Windows 10 lub 11 albo Maca z macOS 11 lub nowszym oraz klienta World of Warcraft 3.3.5a (build 12340). Sam launcher waży kilka megabajtów."
+      },
+      "mac": {
+        "q": "Czy działa na Macu?",
+        "a": "Tak, w wersji beta, na macOS 11 lub nowszym. Na Macu gra to klient Windows uruchamiany przez CrossOver, Whisky lub aplikację, która go zawiera: launcher znajduje go tam, aktualizuje i uruchamia tak samo. Ulepszona grafika i automatyczne logowanie są dostępne tylko w Windows. Za pierwszym razem macOS informuje, że nie może zweryfikować aplikacji: kliknij „Gotowe”, a potem w Ustawieniach systemowych → Prywatność i ochrona kliknij „Otwórz mimo to”."
       },
       "manual": {
         "q": "Czy mogę grać bez launchera?",

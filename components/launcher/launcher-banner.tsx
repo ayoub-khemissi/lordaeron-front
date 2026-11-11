@@ -21,7 +21,7 @@ export async function LauncherBanner({ locale }: { locale: string }) {
       />
       <div className="relative">
         <p className="text-[11px] font-semibold uppercase tracking-[0.42em] text-wow-gold-light/80">
-          {t("kicker")}
+          {launcher.mac ? t("kickerMac") : t("kicker")}
         </p>
         <h2 className="mt-3 font-heading text-3xl text-white sm:text-4xl">
           {t("title")}

@@ -40,12 +40,20 @@ export async function patchInfo(file: string): Promise<PatchInfo | null> {
   }
 }
 
+export interface LauncherBuild {
+  url: string;
+  size: number;
+  sha256: string;
+}
+
 export interface LauncherInfo {
   version: string;
   date: string;
   url: string;
   size: number;
   sha256: string;
+  // the Mac app (latest.json "mac"), when the build has one
+  mac: LauncherBuild | null;
   // the source of the Lumenveil build the launcher installs (the GNU GPL v2's due), hosted beside it; null if unknown
   lumenveilSource: string | null;
 }
@@ -90,6 +98,13 @@ export async function launcherInfo(): Promise<LauncherInfo | null> {
       url: "/patches/launcher/Lordaeron-Setup.exe",
       size: Number(info.size ?? 0),
       sha256: String(info.sha256),
+      mac: info.mac?.sha256
+        ? {
+            url: "/patches/launcher/Lordaeron.dmg",
+            size: Number(info.mac.size ?? 0),
+            sha256: String(info.mac.sha256),
+          }
+        : null,
       lumenveilSource: await lumenveilSource(),
     };
   } catch {
