@@ -135,14 +135,6 @@ export const hero = {
     "Rimeheart · Wrath of the Lich King 3.3.5",
     "Rimeheart · Wrath of the Lich King 3.3.5",
   ),
-  // the realm is not open yet (Ayoub, 10/10/2026: opens on 16 October 2026, 19:00 Paris time); {date}: lib/launch.ts. Ayoub,
-  // 13/10/2026: the names are reserved from Wednesday 14 October, 19:00 Paris time (the character screen opens, the world on Friday);
-  // {reserve}: that day in the page's language
-  status: L(
-    "Nouveau royaume · Réservation des noms le {reserve}, ouverture le {date}",
-    "New realm · Name reservation {reserve}, opens {date}",
-  ),
-  reservationAt: "2026-10-14T17:00:00Z",
   title: L("Le Norfendre", "Northrend"),
   titleAccent: L("comme jamais vécu.", "as never lived before."),
   subtitle: L(
@@ -3205,10 +3197,6 @@ export const finale = {
   text: L(
     "Un serveur fidèle, des butins vérifiés boss par boss, des textes traduits d'après les versions officielles. Et **des centaines de nouveautés** qui n'existent nulle part ailleurs.",
     "A faithful server, loot verified boss by boss, texts translated from the official versions. And **hundreds of additions** found nowhere else.",
-  ),
-  reservation: L(
-    "Réservation des noms dès le **mercredi 14 octobre à 19:00 CEST (17:00 UTC)** : créez vos personnages et réservez vos noms. Le monde ouvre le **vendredi 16 octobre à 19:00 CEST**.",
-    "Name reservation from **Wednesday, October 14 at 19:00 CEST (17:00 UTC)**: create your characters and reserve your names. The world opens on **Friday, October 16 at 19:00 CEST**.",
   ),
   cta: L("Rejoindre Rimeheart", "Join Rimeheart"),
   image: IMG.throne,

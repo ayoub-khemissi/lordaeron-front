@@ -2,7 +2,8 @@ import NextLink from "next/link";
 
 /* A progressive realm's phases at a glance (Rimeheart's home): one card per phase, its icon, number, name and length; a row that scrolls
    sideways on a phone, six columns on a desktop; the full timeline is on the realm's features page. The Burning Crusade raid a phase
-   brings to level 80 sits at the foot of its card in a gold capsule (Ayoub, 13/10/2026: stylish, little room), "planned" until built. */
+   brings to level 80 sits at the foot of its card in a gold capsule (Ayoub, 13/10/2026: stylish, little room), "planned" until built.
+   The realm's current phase is lit (LezChap, 12/11/2026: still the launch's in phase 1). */
 export type PhaseCard = {
   n: string;
   tag: string;
@@ -19,6 +20,7 @@ export function PhaseStrip({
   phases,
   more,
   classic,
+  current,
 }: {
   eyebrow: string;
   title: string;
@@ -26,6 +28,8 @@ export function PhaseStrip({
   more: { label: string; href: string };
   // the capsule's "planned" tag and the legend under the row (it names the raids once for all the capsules)
   classic?: { planned: string; legend: string };
+  // the phase the realm is in (its n), none lit when unknown
+  current?: string;
 }) {
   return (
     <section className="relative overflow-hidden border-y border-wow-blue-ice/10 bg-[linear-gradient(180deg,rgba(4,16,28,0.0),rgba(4,16,28,0.85)_30%,rgba(4,16,28,0.85)_70%,rgba(4,16,28,0))] py-14 sm:py-20">
@@ -47,11 +51,11 @@ export function PhaseStrip({
           </NextLink>
         </div>
         <ol className="-mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:grid-cols-3 sm:overflow-visible sm:px-0 lg:grid-cols-6">
-          {phases.map((p, i) => (
+          {phases.map((p) => (
             <li
               key={p.n}
               className={`relative flex w-[70%] shrink-0 snap-start flex-col rounded-xl border p-4 sm:w-auto ${
-                i === 0
+                p.n === current
                   ? "border-wow-blue-ice/50 bg-wow-blue-ice/[0.08] shadow-[0_0_30px_-10px_rgba(79,195,247,0.7)]"
                   : "border-white/10 bg-white/[0.03]"
               }`}

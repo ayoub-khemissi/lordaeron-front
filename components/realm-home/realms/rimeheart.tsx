@@ -22,6 +22,7 @@ import {
   worldBosses,
 } from "@/components/rimeheart/content";
 import { realmPath } from "@/lib/realms";
+import { realmPhase } from "@/lib/realm-unlocks";
 
 const icon = (name: string) => `/img/experience/icons/${name}.jpg`;
 
@@ -36,6 +37,8 @@ export async function rimeheartHome(
     : "en";
   const tr = await getTranslations({ locale, namespace: "realmHome" });
   const href = (path: string) => realmPath(locale, "rimeheart", path);
+  // the phase the realm is in, lit on the strip (none when the game's database does not answer)
+  const current = await realmPhase("rimeheart").catch(() => null);
   // a chapter of the showcase as a card: its eyebrow as the title, its headline as the line
   const chapter = (
     section: {
@@ -97,6 +100,7 @@ export async function rimeheartHome(
           planned: phases.plannedTag[lang],
           legend: `${phases.track[0][lang]} ${phases.track[1][lang]}`,
         }}
+        current={current === null ? undefined : String(current)}
         eyebrow={phases.eyebrow[lang]}
         more={{ label: tr("allPhases"), href: href("/features#phases") }}
         phases={phases.steps.map((s) => ({
@@ -120,7 +124,7 @@ export async function rimeheartHome(
     ),
     join: {
       title: finale.title[lang],
-      text: finale.reservation[lang],
+      text: finale.text[lang],
       cta: { label: finale.cta[lang], href: href("/how-to") },
       image: finale.image,
     },

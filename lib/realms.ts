@@ -121,11 +121,10 @@ export const REALMS: Record<RealmSlug, RealmInfo> = {
     // its own row in auth.realmlist, its own worldserver and databases (lib/realms-server.ts)
     realmId: Number(process.env.RIMEHEART_REALM_ID || 4),
     name: "Rimeheart",
-    status: "soon",
-    // Ayoub, 10/10/2026: opens on 16 October 2026 at 19:00 Paris time (CEST, UTC+2); the site switches by itself (realmAt)
+    // opened on 16 October 2026 at 19:00 Paris time: "open" from now on, or the pages served before the browser's first render still
+    // showed the countdown and the name reservation (12/11/2026); launchAt stays for the showcase's timeline ("Launch · Oct 16")
+    status: "open",
     launchAt: "2026-10-16T17:00:00Z",
-    // Ayoub, 13/10/2026: the names are reserved from Wednesday 14 October 2026, 19:00 Paris time
-    reservationAt: "2026-10-14T17:00:00Z",
     // features: its long showcase ("Discover the realm", 13/10/2026), its home being the realm-home template's
     sections: [
       "home",

@@ -9,6 +9,10 @@ import { RatesSection } from "@/components/rates-table";
 import { JsonLd } from "@/components/json-ld";
 import { buildPageMetadata } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
+import { realmPhase } from "@/lib/realm-unlocks";
+
+// Rimeheart's showcase lights the realm's current phase: read again every minute, not frozen at the build
+export const revalidate = 60;
 
 export async function generateMetadata({
   params,
@@ -48,7 +52,13 @@ export default async function FeaturesPage({
 }) {
   const { locale, realm } = await params;
 
-  if (realm === "rimeheart") return <ExperienceContent locale={locale} />;
+  if (realm === "rimeheart")
+    return (
+      <ExperienceContent
+        locale={locale}
+        phase={await realmPhase("rimeheart").catch(() => null)}
+      />
+    );
 
   return (
     <div

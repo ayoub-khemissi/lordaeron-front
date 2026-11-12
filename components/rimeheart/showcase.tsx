@@ -56,9 +56,8 @@ import {
   useTipText,
 } from "@/components/experience/game-tooltip";
 import { ChapterNav, ExperienceHero } from "@/components/experience/hero";
-import { LaunchCountdown } from "@/components/launch-countdown";
 import { RealmStatusPill } from "@/components/realm-status-pill";
-import { LAUNCH_TZ, launchLine, launchParts } from "@/lib/launch";
+import { launchParts } from "@/lib/launch";
 import { REALMS, realmPath } from "@/lib/realms";
 import {
   BgImg,
@@ -360,7 +359,8 @@ function Manifesto({ lang }: { lang: Lang }) {
   );
 }
 
-function Phases({ lang }: { lang: Lang }) {
+// the timeline, the realm's current phase lit in gold (LezChap, 12/11/2026: still the launch's in phase 1)
+function Phases({ lang, current }: { lang: Lang; current: string | null }) {
   const launch = launchParts(LAUNCH_AT, lang);
   const classics = phases.steps.flatMap((s) =>
     s.classic ? [{ n: s.n, ...s.classic }] : [],
@@ -389,26 +389,29 @@ function Phases({ lang }: { lang: Lang }) {
           <ol className="grid gap-10 sm:grid-cols-2 lg:grid-cols-6 lg:gap-4">
             {phases.steps.map((s, i) => {
               const first = i === 0;
+              const lit = s.n === current;
 
               return (
                 <Reveal key={s.n} className="h-full" delay={i * 0.08}>
                   <li className="flex h-full flex-col">
                     <div className="flex items-center gap-4 lg:flex-col-reverse lg:gap-3">
                       <WowIcon
-                        glow={first ? "gold" : "ice"}
+                        glow={lit ? "gold" : "ice"}
                         icon={s.icon}
                         size={56}
                       />
                       <div className="lg:flex lg:h-16 lg:flex-col lg:items-center lg:justify-end lg:text-center">
-                        {first ? (
-                          <span className="inline-block rounded-full bg-gradient-to-b from-[#f6dc8f] to-[#c79c3e] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-[#2b1a04] shadow-[0_0_18px_rgba(240,214,138,0.5)]">
-                            {phases.launchTag[lang]} · {launch.short}
-                          </span>
-                        ) : (
-                          <span className="block text-xs font-bold uppercase tracking-[0.22em] text-wow-gold-light">
-                            {phases.phaseTag[lang]} {s.n}
-                          </span>
-                        )}
+                        <span
+                          className={
+                            lit
+                              ? "inline-block rounded-full bg-gradient-to-b from-[#f6dc8f] to-[#c79c3e] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-[#2b1a04] shadow-[0_0_18px_rgba(240,214,138,0.5)]"
+                              : "block text-xs font-bold uppercase tracking-[0.22em] text-wow-gold-light"
+                          }
+                        >
+                          {first
+                            ? `${phases.launchTag[lang]} · ${launch.short}`
+                            : `${phases.phaseTag[lang]} ${s.n}`}
+                        </span>
                         <span className="mt-1 block text-sm text-white/65">
                           {first
                             ? `${phases.phaseTag[lang]} 0 · ${s.length[lang]}`
@@ -419,7 +422,7 @@ function Phases({ lang }: { lang: Lang }) {
                     <div
                       className={clsx(
                         "relative mt-5 flex flex-1 flex-col rounded-xl border bg-white/[0.04] p-5 backdrop-blur-sm",
-                        first
+                        lit
                           ? "border-wow-gold/60 shadow-[0_0_30px_rgba(240,214,138,0.15)]"
                           : "border-white/10",
                       )}
@@ -432,7 +435,7 @@ function Phases({ lang }: { lang: Lang }) {
                       <h3
                         className={clsx(
                           "font-heading text-xl",
-                          first ? "text-wow-gold-light" : "wow-ice-text",
+                          lit ? "text-wow-gold-light" : "wow-ice-text",
                         )}
                       >
                         {s.title[lang]}
@@ -444,7 +447,7 @@ function Phases({ lang }: { lang: Lang }) {
                             <span
                               className={clsx(
                                 "mt-[7px] h-1.5 w-1.5 shrink-0 rotate-45",
-                                first ? "bg-wow-gold-light" : "bg-wow-blue-ice",
+                                lit ? "bg-wow-gold-light" : "bg-wow-blue-ice",
                               )}
                             />
                             {l[lang]}
@@ -2186,9 +2189,6 @@ function Finale({ lang, joinHref }: { lang: Lang; joinHref: string }) {
           <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-white/75">
             <Rich text={finale.text[lang]} />
           </p>
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-wow-blue-ice/90">
-            <Rich text={finale.reservation[lang]} />
-          </p>
         </Reveal>
         <Reveal delay={0.2}>
           <CtaButton className="mt-12" href={joinHref}>
@@ -2202,15 +2202,14 @@ function Finale({ lang, joinHref }: { lang: Lang; joinHref: string }) {
 
 const LAUNCH_AT = REALMS.rimeheart.launchAt as string;
 
-// the day the names are reserved, in the page's language ("14 octobre", "October 14")
-const reserveDay = (lang: Lang) =>
-  new Intl.DateTimeFormat(lang, {
-    timeZone: LAUNCH_TZ,
-    day: "numeric",
-    month: "long",
-  }).format(new Date(hero.reservationAt));
-
-export default function ExperienceContent({ locale }: { locale: string }) {
+// phase: the phase the realm is in (features/page.tsx), null when the game's database does not answer
+export default function ExperienceContent({
+  locale,
+  phase,
+}: {
+  locale: string;
+  phase: number | null;
+}) {
   const lang: Lang = (LANGS as readonly string[]).includes(locale)
     ? (locale as Lang)
     : "en";
@@ -2218,6 +2217,12 @@ export default function ExperienceContent({ locale }: { locale: string }) {
   const tipLang = tipLangOf(lang);
   // the realm's how-to: the account, the client, the patch and the realm list, in order
   const joinHref = realmPath(locale, "rimeheart", "/how-to");
+  // the hero's status: the phase the realm is in and what it opened ("Phase 1 · Naxxramas, Obsidian Sanctum, Eye of Eternity"; the launch's
+  // countdown and name reservation until 12/11/2026)
+  const step = phases.steps.find((s) => s.n === String(phase));
+  const status = step
+    ? `${step.n === "0" ? ui.prelude[lang] : `${ui.phase[lang]} ${step.n}`} · ${step.lines.map((l) => l[lang]).join(", ")}`
+    : phases.eyebrow[lang];
 
   return (
     <TooltipProvider lang={tipLang} pageLang={lang}>
@@ -2234,24 +2239,14 @@ export default function ExperienceContent({ locale }: { locale: string }) {
             ctaPrimary: hero.ctaPrimary[lang],
             ctaSecondary: hero.ctaSecondary[lang],
             scroll: hero.scroll[lang],
-            status: hero.status[lang]
-              .replace("{reserve}", reserveDay(lang))
-              .replace("{date}", launchLine(LAUNCH_AT, lang)),
+            status,
           }}
           image="/img/Wrath of the Lich King Classic Cinematic Stills/Wrath_of_the_Lich_King_Classic_Cinematic_Still__(4).jpg"
           joinHref={joinHref}
-          launch={
-            <LaunchCountdown
-              align="start"
-              className="mt-1"
-              iso={LAUNCH_AT}
-              showDate={false}
-            />
-          }
           pill={<RealmStatusPill realm="rimeheart" />}
         />
         <Manifesto lang={lang} />
-        <Phases lang={lang} />
+        <Phases current={step?.n ?? null} lang={lang} />
         <Artifact lang={lang} />
         <Classes lang={lang} />
         <Races guideHref={joinHref} lang={lang} />
