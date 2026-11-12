@@ -38,11 +38,20 @@ function Earners({ first }: { first: RealmFirst }) {
   const realmHref = useRealmHref();
   const [all, setAll] = useState(false);
   const shown = all ? first.earners : first.earners.slice(0, SHOWN);
+  // a lone earner's guild after the name, cut to the tile's width (Ayoub, 12/11/2026: it ran over the name in the narrow tiles)
+  const single = first.earners.length === 1;
 
   return (
     <span className="block text-sm leading-relaxed">
       {shown.map((e, i) => (
-        <span key={e.guid} className="inline-flex items-center gap-1">
+        <span
+          key={e.guid}
+          className={
+            single
+              ? "flex min-w-0 items-center gap-1"
+              : "inline-flex items-center gap-1"
+          }
+        >
           {i > 0 && <span className="text-gray-600">, </span>}
           <CharacterInline
             badges={
@@ -59,8 +68,10 @@ function Earners({ first }: { first: RealmFirst }) {
                 : realmHref(`/armory/${encodeURIComponent(e.name)}`)
             }
           />
-          {first.earners.length === 1 && e.guild && (
-            <span className="text-gray-400"> &lt;{e.guild}&gt;</span>
+          {single && e.guild && (
+            <span className="min-w-0 truncate text-gray-400" title={e.guild}>
+              &lt;{e.guild}&gt;
+            </span>
           )}
         </span>
       ))}
