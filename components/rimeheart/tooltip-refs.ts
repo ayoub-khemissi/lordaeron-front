@@ -248,7 +248,8 @@ export const surgeRef = "spell:100771";
 export const voidSabre = { epic: "item:46036", artifact: "item:646036" };
 
 // the classes' new talents (Talent.dbc rows of ours beyond the specialization spells above), their tooltip at max rank: the tree (its card's
-// index in classes.list's spells, the druid's Feral Combat on its cat card), the ranks, new with the class balance update (19/11/2026)
+// index in classes.list's spells, not the game's tree order: the paladin's cards are Holy, Retribution, Protection; the druid's Feral
+// Combat on its cat card), the ranks, new with the class balance update (19/11/2026)
 export const classTalentRefs: Record<
   string,
   { ref: string; icon: string; spec: number; ranks: number; isNew?: boolean }[]
@@ -262,8 +263,8 @@ export const classTalentRefs: Record<
   ],
   paladin: [
     { ref: "spell:105721", icon: "spell_holy_searinglight", spec: 0, ranks: 2 }, // Rhythm of the Light
-    { ref: "spell:105724", icon: "inv_shield_04", spec: 1, ranks: 3 }, // Living Bulwark
-    { ref: "spell:105726", icon: "spell_holy_crusaderstrike", spec: 2, ranks: 2 }, // Crusader's Momentum
+    { ref: "spell:105726", icon: "spell_holy_crusaderstrike", spec: 1, ranks: 2 }, // Crusader's Momentum (Retribution: its card's index)
+    { ref: "spell:105724", icon: "inv_shield_04", spec: 2, ranks: 3 }, // Living Bulwark (Protection)
   ],
   hunter: [
     { ref: "spell:105761", icon: "spell_nature_healingtouch", spec: 0, ranks: 2 }, // Shared Mending
