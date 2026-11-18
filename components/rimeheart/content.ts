@@ -52,6 +52,12 @@ export const ui = {
     "Nouveau talent · après {points} points en {spec}",
     "New talent · after {points} points in {spec}",
   ),
+  classSpellsTab: L("Sorts", "Spells"),
+  classTalentsTab: L("Talents", "Talents"),
+  classGlyphs: L("Glyphes", "Glyphs"),
+  newBadge: L("Nouveau", "New"),
+  maxRank: L("{ranks} rangs", "{ranks} ranks"),
+  oneRank: L("1 rang", "1 rank"),
   prelude: L("Prélude", "Prelude"),
   phase: L("Phase", "Phase"),
   flyingMount: L("Monture volante", "Flying mount"),
@@ -384,8 +390,8 @@ export const classes = {
     "Every specialization gets its moment.",
   ),
   lede: L(
-    "Chaque arbre de talents gagne **son talent de spécialisation** : un nouveau sort, à prendre dans l'arbre comme un talent Blizzard (deux pour le druide farouche, félin et ours). Chaque classe reçoit aussi **trois nouveaux talents**, ajoutés à ceux de Blizzard **sans en retirer aucun**, et **deux glyphes**. Pensés pour leur identité et leur lore, équilibrés entre eux, **jamais une copie d'un sort existant**.",
-    "Every talent tree gains **its specialization talent**: a new spell, picked in the tree like any Blizzard talent (two for the feral druid, cat and bear). Every class also receives **three new talents**, added to Blizzard's **without removing any**, and **two glyphs**. Built for their identity and lore, balanced against each other, **never a copy of an existing spell**.",
+    "Chaque arbre de talents gagne **son talent de spécialisation** : un nouveau sort, à prendre dans l'arbre comme un talent Blizzard (deux pour le druide farouche, félin et ours). Chaque classe reçoit aussi **de nouveaux talents**, ajoutés à ceux de Blizzard **sans en retirer aucun**, et **ses glyphes**, avec un **équilibrage des spécialisations** qui étaient à la traîne. Pensés pour leur identité et leur lore, équilibrés entre eux, **jamais une copie d'un sort existant**.",
+    "Every talent tree gains **its specialization talent**: a new spell, picked in the tree like any Blizzard talent (two for the feral druid, cat and bear). Every class also receives **new talents**, added to Blizzard's **without removing any**, and **its glyphs**, with a **balance pass for the specializations** that lagged behind. Built for their identity and lore, balanced against each other, **never a copy of an existing spell**.",
   ),
   list: [
     {

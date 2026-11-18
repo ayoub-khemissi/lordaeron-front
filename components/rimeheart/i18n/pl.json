@@ -526,7 +526,6 @@
   "Quiz": "Quiz",
   "Transmog": "Transmog",
   "Level {level}": "Poziom {level}",
-  "Every talent tree gains **its specialization talent**: a new spell, picked in the tree like any Blizzard talent (two for the feral druid, cat and bear). Every class also receives **three new talents**, added to Blizzard's **without removing any**, and **two glyphs**. Built for their identity and lore, balanced against each other, **never a copy of an existing spell**.": "Każde drzewko talentów zyskuje **swój talent specjalizacji**: nowe zaklęcie wybierane w drzewku jak każdy talent Blizzarda (dwa dla druida feralnego: kot i niedźwiedź). Każda klasa otrzymuje też **trzy nowe talenty**, dodane do talentów Blizzarda **bez usuwania żadnego**, oraz **dwa glify**. Zaprojektowane z myślą o tożsamości i fabule, zrównoważone względem siebie, **nigdy kopia istniejącego zaklęcia**.",
   "New talent · after {points} points in {spec}": "Nowy talent · po {points} punktach w {spec}",
   "First raid to defeat Lazulygos, Ley Siphon · title Breaker of Colossi": "Pierwszy rajd, który pokona Lazulygosa, Ley Siphon · tytuł „Pogromca kolosów”",
   "First raid to defeat Thul'gorah, Whisper of Yogg-Saron · title Breaker of Colossi": "Pierwszy rajd, który pokona Thul'goraha, Whisper of Yogg-Saron · tytuł „Pogromca kolosów”",
@@ -699,5 +698,12 @@
   "**Killed last**: nobody hits a controlled target while another enemy fights your group. If it breaks free, the tank takes it until the next control.": "**Ginie ostatni**: nikt nie bije kontrolowanego celu, dopóki inny wróg walczy z twoją grupą. Jeśli się uwolni, tank przejmuje go do następnej kontroli.",
   "**Bosses first**: never on a boss nor during its fight, where your addons place their own symbols. A target no hero can control is a target like any other.": "**Najpierw bossowie**: nigdy na bossie ani podczas jego walki, w której twoje addony stawiają własne symbole. Cel, którego żaden bohater nie może kontrolować, jest celem jak każdy inny.",
   "Marked Targets Only": "Marked Targets Only",
-  "Your heroes no longer fear, root or Polymorph on their own: only the enemies you mark are controlled. Nothing changes against bosses.": "Twoi bohaterowie nie rzucają już sami strachu, unieruchomienia ani Polymorph: kontrolowani są tylko wrogowie, których oznaczysz. Przeciw bossom nic się nie zmienia."
+  "Your heroes no longer fear, root or Polymorph on their own: only the enemies you mark are controlled. Nothing changes against bosses.": "Twoi bohaterowie nie rzucają już sami strachu, unieruchomienia ani Polymorph: kontrolowani są tylko wrogowie, których oznaczysz. Przeciw bossom nic się nie zmienia.",
+  "Every talent tree gains **its specialization talent**: a new spell, picked in the tree like any Blizzard talent (two for the feral druid, cat and bear). Every class also receives **new talents**, added to Blizzard's **without removing any**, and **its glyphs**, with a **balance pass for the specializations** that lagged behind. Built for their identity and lore, balanced against each other, **never a copy of an existing spell**.": "Każde drzewko talentów otrzymuje **swój talent specjalizacji**: nowe zaklęcie wybierane w drzewku jak każdy talent Blizzarda (dwa dla druida feral, kot i niedźwiedź). Każda klasa otrzymuje też **nowe talenty**, dodane do talentów Blizzarda **bez usuwania żadnego**, oraz **swoje glify**, a do tego **wyrównanie specjalizacji**, które zostawały w tyle. Zaprojektowane z myślą o ich tożsamości i lore, zrównoważone między sobą, **nigdy kopia istniejącego zaklęcia**.",
+  "Spells": "Zaklęcia",
+  "Talents": "Talenty",
+  "Glyphs": "Glify",
+  "New": "Nowość",
+  "{ranks} ranks": "{ranks} rangi",
+  "1 rank": "1 ranga"
 }

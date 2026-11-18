@@ -246,3 +246,128 @@ export const classSpellRefs: Record<string, { ref: string; icon: string }[]> = {
 export const surgeRef = "spell:100771";
 // Void Sabre: the Ulduar epic and its Artifact copy
 export const voidSabre = { epic: "item:46036", artifact: "item:646036" };
+
+// the classes' new talents (Talent.dbc rows of ours beyond the specialization spells above), their tooltip at max rank: the tree (its card's
+// index in classes.list's spells, the druid's Feral Combat on its cat card), the ranks, new with the class balance update (19/11/2026)
+export const classTalentRefs: Record<
+  string,
+  { ref: string; icon: string; spec: number; ranks: number; isNew?: boolean }[]
+> = {
+  warrior: [
+    { ref: "spell:105735", icon: "ability_warrior_strengthofarms", spec: 0, ranks: 2 }, // Invigorating Charge
+    { ref: "spell:100543", icon: "ability_gouge", spec: 0, ranks: 2, isNew: true }, // Reopened Wound
+    { ref: "spell:100541", icon: "ability_warrior_bloodbath", spec: 0, ranks: 2, isNew: true }, // Bottomless Rage
+    { ref: "spell:105738", icon: "spell_nature_bloodlust", spec: 1, ranks: 3 }, // Berserker's Thirst
+    { ref: "spell:105740", icon: "ability_warrior_shieldguard", spec: 2, ranks: 2 }, // Brothers in Arms
+  ],
+  paladin: [
+    { ref: "spell:105721", icon: "spell_holy_searinglight", spec: 0, ranks: 2 }, // Rhythm of the Light
+    { ref: "spell:105724", icon: "inv_shield_04", spec: 1, ranks: 3 }, // Living Bulwark
+    { ref: "spell:105726", icon: "spell_holy_crusaderstrike", spec: 2, ranks: 2 }, // Crusader's Momentum
+  ],
+  hunter: [
+    { ref: "spell:105761", icon: "spell_nature_healingtouch", spec: 0, ranks: 2 }, // Shared Mending
+    { ref: "spell:100731", icon: "ability_hunter_pet_wolf", spec: 0, ranks: 2, isNew: true }, // Pack Instinct
+    { ref: "spell:100734", icon: "inv_misc_horn_01", spec: 0, ranks: 2, isNew: true }, // Thrill of the Kill
+    { ref: "spell:105756", icon: "ability_hunter_pet_cat", spec: 1, ranks: 2 }, // Stalking
+    { ref: "spell:105759", icon: "spell_frost_chainsofice", spec: 2, ranks: 3 }, // Shattered Ice
+  ],
+  rogue: [
+    { ref: "spell:105769", icon: "ability_rogue_dualweild", spec: 0, ranks: 2 }, // Grim Harvest
+    { ref: "spell:100817", icon: "ability_creature_poison_04", spec: 0, ranks: 2, isNew: true }, // Piercing Venom
+    { ref: "spell:100819", icon: "ability_rogue_rupture", spec: 0, ranks: 2, isNew: true }, // Bleeding Gash
+    { ref: "spell:105772", icon: "ability_rogue_sprint", spec: 1, ranks: 3 }, // Tactical Retreat
+    { ref: "spell:105774", icon: "ability_vanish", spec: 2, ranks: 2 }, // Protective Shadows
+    { ref: "spell:100822", icon: "spell_shadow_twilight", spec: 2, ranks: 2, isNew: true }, // Dusk Mark
+  ],
+  priest: [
+    { ref: "spell:105728", icon: "spell_holy_consumemagic", spec: 0, ranks: 2 }, // Shared Absolution
+    { ref: "spell:105730", icon: "spell_holy_greaterblessingoflight", spec: 1, ranks: 2 }, // Lingering Light
+    { ref: "spell:105733", icon: "inv_enchant_voidsphere", spec: 2, ranks: 3 }, // Void Hunger
+  ],
+  deathknight: [
+    { ref: "spell:105743", icon: "spell_deathknight_strangulate", spec: 0, ranks: 3 }, // Debilitating Grip
+    { ref: "spell:100607", icon: "inv_misc_organ_01", spec: 0, ranks: 2, isNew: true }, // Pierced Heart
+    { ref: "spell:100614", icon: "spell_shadow_bloodboil", spec: 0, ranks: 2, isNew: true }, // Overflowing Blood
+    { ref: "spell:105745", icon: "spell_frost_chillingarmor", spec: 1, ranks: 2 }, // Biting Cold
+    { ref: "spell:100617", icon: "spell_frost_frostshock", spec: 1, ranks: 2, isNew: true }, // Ravenous Frost
+    { ref: "spell:105747", icon: "spell_deathknight_explode_ghoul", spec: 2, ranks: 2 }, // Last Gasp
+  ],
+  shaman: [
+    { ref: "spell:105776", icon: "spell_shaman_thunderstorm", spec: 0, ranks: 2 }, // Thunder Echoes
+    { ref: "spell:105778", icon: "ability_mount_whitedirewolf", spec: 1, ranks: 2 }, // Pack Spirit
+    { ref: "spell:105795", icon: "spell_nature_lightningshield", spec: 1, ranks: 2, isNew: true }, // Mantle of Lightning
+    { ref: "spell:105797", icon: "spell_lightning_lightningbolt01", spec: 1, ranks: 2, isNew: true }, // Piercing Lightning
+    { ref: "spell:105781", icon: "spell_frost_summonwaterelemental", spec: 2, ranks: 3 }, // Healing Tide
+  ],
+  mage: [
+    { ref: "spell:105763", icon: "spell_arcane_manatap", spec: 0, ranks: 2 }, // Tactical Absorption
+    { ref: "spell:105791", icon: "spell_arcane_teleportdalaran", spec: 0, ranks: 2, isNew: true }, // Arcane Shortcut
+    { ref: "spell:105789", icon: "inv_enchant_essencearcanesmall", spec: 0, ranks: 2, isNew: true }, // Last Reserves
+    { ref: "spell:105793", icon: "spell_arcane_arcane04", spec: 0, ranks: 2, isNew: true }, // Arcane Overflow
+    { ref: "spell:105765", icon: "inv_elemental_primal_fire", spec: 1, ranks: 2 }, // Burning Heart
+    { ref: "spell:105767", icon: "spell_ice_rune", spec: 2, ranks: 2 }, // Instinctive Nova
+    { ref: "spell:100775", icon: "spell_frost_frostward", spec: 2, ranks: 2, isNew: true }, // Creeping Winter
+    { ref: "spell:100778", icon: "spell_frost_iceclaw", spec: 2, ranks: 2, isNew: true }, // Glacial Bond
+  ],
+  warlock: [
+    { ref: "spell:105783", icon: "spell_shadow_deathscream", spec: 0, ranks: 2 }, // Lingering Howl
+    { ref: "spell:105787", icon: "spell_shadow_soulleech_1", spec: 1, ranks: 2 }, // Fel Link
+    { ref: "spell:100927", icon: "spell_shadow_unholystrength", spec: 1, ranks: 2, isNew: true }, // Pact of Swiftness
+    { ref: "spell:100929", icon: "spell_fire_felimmolation", spec: 1, ranks: 2, isNew: true }, // Unbound Demon
+    { ref: "spell:105785", icon: "spell_fire_felfireward", spec: 2, ranks: 2 }, // Fel Feedback
+    { ref: "spell:100923", icon: "spell_fire_burnout", spec: 2, ranks: 2, isNew: true }, // Banked Embers
+    { ref: "spell:100921", icon: "spell_fire_felflamestrike", spec: 2, ranks: 2, isNew: true }, // Stoked Chaos
+  ],
+  druid: [
+    { ref: "spell:105749", icon: "spell_nature_starfall", spec: 0, ranks: 2 }, // Guiding Stars
+    { ref: "spell:105751", icon: "ability_hunter_pet_bear", spec: 1, ranks: 2 }, // Predator's Momentum
+    { ref: "spell:105754", icon: "inv_misc_root_02", spec: 3, ranks: 3 }, // Deep Roots
+  ],
+};
+
+// the classes' glyphs of ours (GlyphProperties.dbc), their spell's tooltip
+export const classGlyphRefs: Record<string, { ref: string; icon: string; isNew?: boolean }[]> = {
+  warrior: [
+    { ref: "spell:100530", icon: "ability_warrior_intervene" }, // Glyph of the Gladiator
+    { ref: "spell:100533", icon: "inv_axe_114" }, // Glyph of the Whirling Axe
+  ],
+  paladin: [
+    { ref: "spell:100420", icon: "spell_holy_proclaimchampion_02" }, // Glyph of Vindicator's Fervor
+    { ref: "spell:100423", icon: "inv_misc_token_argentdawn" }, // Glyph of the Argent Dawn
+    { ref: "spell:100426", icon: "spell_holy_unyieldingfaith", isNew: true }, // Glyph of Reckoning
+  ],
+  hunter: [
+    { ref: "spell:100720", icon: "ability_mount_spectraltiger" }, // Glyph of the Wild Echo
+    { ref: "spell:100723", icon: "inv_mask_02" }, // Glyph of the Decoy
+  ],
+  rogue: [
+    { ref: "spell:100810", icon: "ability_rogue_disguise" }, // Glyph of the Shadow Double
+    { ref: "spell:100813", icon: "inv_throwingknife_01" }, // Glyph of the Ricochet Knife
+  ],
+  priest: [
+    { ref: "spell:100470", icon: "spell_holy_proclaimchampion" }, // Glyph of the Litany
+    { ref: "spell:100473", icon: "spell_holy_championsgrace" }, // Glyph of Tenacity
+  ],
+  deathknight: [
+    { ref: "spell:100640", icon: "achievement_boss_lanathel" }, // Glyph of the San'layn
+    { ref: "spell:100643", icon: "inv_jewelcrafting_shadowspirit_02" }, // Glyph of Vile Spirits
+  ],
+  shaman: [
+    { ref: "spell:100870", icon: "inv_elemental_primal_air" }, // Glyph of Stormgust
+    { ref: "spell:100873", icon: "inv_elemental_mote_water01" }, // Glyph of Undertow
+  ],
+  mage: [
+    { ref: "spell:100765", icon: "spell_fire_rune" }, // Glyph of Scorched Earth
+    { ref: "spell:100768", icon: "inv_misc_frostemblem_01" }, // Glyph of Winter's Mark
+  ],
+  warlock: [
+    { ref: "spell:100910", icon: "spell_shadow_lastingafflictions" }, // Glyph of Chains of Torment
+    { ref: "spell:100913", icon: "ability_warlock_demonicpower" }, // Glyph of Demon's Quarry
+  ],
+  druid: [
+    { ref: "spell:100670", icon: "spell_nature_brilliance" }, // Glyph of Starseed
+    { ref: "spell:100673", icon: "inv_enchant_dustdream" }, // Glyph of the Grove Wisp
+    { ref: "spell:100676", icon: "spell_nature_crystalball", isNew: true }, // Glyph of Omen of Clarity
+  ],
+};

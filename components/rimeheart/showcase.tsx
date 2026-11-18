@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@heroui/button";
+import { Tab, Tabs } from "@heroui/tabs";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import clsx from "clsx";
@@ -38,7 +39,9 @@ import {
   ui,
 } from "./content";
 import {
+  classGlyphRefs,
   classSpellRefs,
+  classTalentRefs,
   refByCardIcon,
   refByIcon,
   refByInlineText,
@@ -791,9 +794,121 @@ function ClassSpell({
   );
 }
 
+/* a new talent of the class (Talents tab): its icon and tooltip at max rank, its tree, its ranks and effect, readable without hovering */
+function ClassTalent({
+  talent,
+  spec,
+  tree,
+  color,
+  lang,
+}: {
+  talent: { ref: string; icon: string; ranks: number; isNew?: boolean };
+  spec: string;
+  tree?: string;
+  color: string;
+  lang: Lang;
+}) {
+  const tip = useTipText(talent.ref);
+  const name = tip?.lines[0]?.left ?? "…";
+  const effect = tip?.lines
+    .filter((l) => l.color === "gold" || l.color === "yellow")
+    .map((l) => l.left)
+    .join(" ");
+
+  return (
+    <div className="relative h-full overflow-hidden rounded-xl border border-white/10 bg-white/[0.04] p-5">
+      <span
+        className="absolute inset-x-0 top-0 h-0.5"
+        style={{
+          background: `linear-gradient(90deg, transparent, ${color}, transparent)`,
+        }}
+      />
+      <div className="flex items-center gap-4">
+        <WowIcon glow="none" icon={talent.icon} size={44} tip={talent.ref} />
+        <div className="min-w-0">
+          <p
+            className="flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[0.22em]"
+            style={{ color }}
+          >
+            {tree && (
+              <img
+                alt=""
+                className="h-4 w-4 rounded-sm border border-white/20"
+                height={16}
+                src={`/img/experience/icons/${tree}.jpg`}
+                width={16}
+              />
+            )}
+            {spec}
+            <span className="tracking-normal text-white/40">
+              ·{" "}
+              {talent.ranks === 1
+                ? ui.oneRank[lang]
+                : ui.maxRank[lang].replace("{ranks}", String(talent.ranks))}
+            </span>
+          </p>
+          <h3 className="mt-1 flex flex-wrap items-center gap-2 font-heading text-lg leading-tight text-white">
+            <Tip id={talent.ref}>{name}</Tip>
+            {talent.isNew && (
+              <span className="rounded-full border border-wow-gold/40 bg-wow-gold/10 px-2 py-0.5 font-sans text-[10px] uppercase tracking-[0.18em] text-wow-gold-light">
+                {ui.newBadge[lang]}
+              </span>
+            )}
+          </h3>
+        </div>
+      </div>
+      <p className="mt-3 text-sm leading-relaxed text-[#ffd100]/85">
+        {effect ?? "…"}
+      </p>
+    </div>
+  );
+}
+
+/* a glyph of the class (Talents tab): icon, name, effect */
+function ClassGlyph({
+  glyph,
+  lang,
+}: {
+  glyph: { ref: string; icon: string; isNew?: boolean };
+  lang: Lang;
+}) {
+  const tip = useTipText(glyph.ref);
+  const effect = tip?.lines
+    .filter((l) => l.color === "gold" || l.color === "yellow")
+    .map((l) => l.left)
+    .join(" ");
+
+  return (
+    <div className="flex h-full gap-3 rounded-lg border border-white/10 bg-black/20 p-4">
+      <WowIcon glow="none" icon={glyph.icon} size={36} tip={glyph.ref} />
+      <div className="min-w-0">
+        <p className="flex flex-wrap items-center gap-2 text-sm font-semibold text-white">
+          <Tip id={glyph.ref}>{tip?.lines[0]?.left ?? "…"}</Tip>
+          {glyph.isNew && (
+            <span className="rounded-full border border-wow-gold/40 bg-wow-gold/10 px-2 py-0.5 text-[10px] uppercase tracking-[0.18em] text-wow-gold-light">
+              {ui.newBadge[lang]}
+            </span>
+          )}
+        </p>
+        <p className="mt-1 text-xs leading-relaxed text-[#ffd100]/80">
+          {effect ?? "…"}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 function Classes({ lang }: { lang: Lang }) {
   const [active, setActive] = useState(0);
+  const [view, setView] = useState<"spells" | "talents">("spells");
   const c = classes.list[active];
+  const talents = classTalentRefs[c.key] ?? [];
+  const glyphs = classGlyphRefs[c.key] ?? [];
+  // a tree's label: its specialization card's, the feral druid's without "(cat)"
+  const specLabel = (i: number) =>
+    c.key === "druid" && i === 1
+      ? c.spells[1].spec[lang].replace(/\s*\(.*\)\s*$/, "")
+      : (c.spells[i]?.spec[lang] ?? "");
 
   return (
     <Section id={classes.id}>
@@ -837,7 +952,60 @@ function Classes({ lang }: { lang: Lang }) {
             </Button>
           ))}
         </div>
+        <Tabs
+          aria-label={classes.title[lang]}
+          className="mt-8"
+          classNames={{
+            tabList: "glass rounded-full border border-white/5 p-1",
+            tab: "h-8 rounded-full px-5",
+            cursor: "glass-gold rounded-full border border-wow-gold/20",
+            tabContent:
+              "text-xs font-semibold uppercase tracking-wider text-gray-400 group-data-[selected=true]:text-wow-gold-light",
+          }}
+          radius="full"
+          selectedKey={view}
+          variant="light"
+          onSelectionChange={(key) => setView(key as "spells" | "talents")}
+        >
+          <Tab key="spells" title={ui.classSpellsTab[lang]} />
+          <Tab key="talents" title={ui.classTalentsTab[lang]} />
+        </Tabs>
         <AnimatePresence mode="wait">
+          {view === "talents" ? (
+            <motion.div
+              key={`${c.key}-talents`}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-8"
+              exit={{ opacity: 0, y: -12 }}
+              initial={{ opacity: 0, y: 16 }}
+              transition={{ duration: 0.35 }}
+            >
+              <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                {talents.map((t) => (
+                  <ClassTalent
+                    key={t.ref}
+                    color={c.color}
+                    lang={lang}
+                    spec={specLabel(t.spec)}
+                    talent={t}
+                    tree={SPEC_TALENT[c.key]?.[t.spec]?.tree}
+                  />
+                ))}
+              </div>
+              {glyphs.length > 0 && (
+                <>
+                  <h3 className="mt-10 font-heading text-xl text-white/85">
+                    {ui.classGlyphs[lang]}
+                  </h3>
+                  <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                    {glyphs.map((g) => (
+                      <ClassGlyph key={g.ref} glyph={g} lang={lang} />
+                    ))}
+                  </div>
+                </>
+              )}
+            </motion.div>
+          ) : (
           <motion.div
             key={c.key}
             animate={{ opacity: 1, y: 0 }}
@@ -866,6 +1034,7 @@ function Classes({ lang }: { lang: Lang }) {
               « {c.flavor[lang]} »
             </p>
           </motion.div>
+          )}
         </AnimatePresence>
         <Reveal className="mt-14">
           <div className="flex flex-col gap-6 rounded-2xl border border-wow-blue/30 bg-gradient-to-r from-wow-blue-dark/60 to-transparent p-6 sm:flex-row sm:items-center sm:p-8">
