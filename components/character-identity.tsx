@@ -296,6 +296,7 @@ export function CharacterBlock({
 
 /* A character in a list of names (an arena team's members, a realm first's earners): its race and class icons and its name in its class
    colour, the whole of it the link to its armory page (its name underlined on hover); a deleted character's without a link */
+// never squeezed by a flex row (a name ran under the guild after it in /realm-firsts' narrow tiles, Ayoub 19/11/2026): what follows it gives way
 export function CharacterInline({
   character,
   href,
@@ -321,7 +322,7 @@ export function CharacterInline({
         size={size}
       />
       <span
-        className="font-semibold decoration-1 underline-offset-2 group-hover/char:underline"
+        className="whitespace-nowrap font-semibold decoration-1 underline-offset-2 group-hover/char:underline"
         style={{ color: classColor(character.class) }}
       >
         {character.name}
@@ -332,13 +333,13 @@ export function CharacterInline({
 
   return href ? (
     <NextLink
-      className="group/char inline-flex items-center gap-1.5 rounded outline-none focus-visible:ring-2 focus-visible:ring-wow-gold/60"
+      className="group/char inline-flex shrink-0 items-center gap-1.5 rounded outline-none focus-visible:ring-2 focus-visible:ring-wow-gold/60"
       href={href}
     >
       {body}
     </NextLink>
   ) : (
-    <span className="inline-flex items-center gap-1.5">{body}</span>
+    <span className="inline-flex shrink-0 items-center gap-1.5">{body}</span>
   );
 }
 
