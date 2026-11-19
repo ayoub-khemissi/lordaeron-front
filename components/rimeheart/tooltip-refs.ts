@@ -99,6 +99,13 @@ export const refByName: Record<string, string> = {
   "La carte": "item:902232", // Treasure Map of the Dragonblight
   "La fouille": "spell:103902", // Dig Up the Treasure
   "Le Grand coffre enfoui": "item:902240", // Buried Coffer
+  // Treasures: the world epics
+  "Saccageur de Jotunheim": "item:81608", // Jotunheim Reaver
+  "Pourpoint d'embusqué anub'ar": "item:81605", // Jerkin of the Anub'ar Ambusher
+  "Flèche de Frimarra": "item:81613", // Spire of Coldarra
+  "Heaume du sculpterune-de-fer": "item:81615", // Greathelm of the Iron Rune-Shaper
+  "Arc long de vaillant d'argent": "item:81622", // Argent Valiant's Longbow
+  "Sceptre de l'Espoir de Lumière": "item:81626", // Scepter of Light's Hope
   "Kodo des caravanes": "item:902350", // Caravan Kodo
   "Destrier de la mort": "item:902351", // Deathcharger
   "Trotteur des fouilles bleu": "item:902352", // Blue Excavation Strider

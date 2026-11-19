@@ -2532,6 +2532,19 @@ export const treasures = {
     L("Drake crépusculaire rubis", "Ruby Twilight Drake"),
   ],
   mountsTitle: L("Une monture par phase", "One mount per phase"),
+  epicsTitle: L("Les épiques du monde", "Northrend's world epics"),
+  epicsText: L(
+    "**27 épiques liés quand équipés**, chacun avec son histoire, peuvent tomber de **toute créature hostile du Norfendre de niveau 77 et plus**, un peu plus souvent des rares. De nouveaux rejoignent le butin à chaque phase.",
+    "**27 Bind on Equip epics**, each with its own story, can drop from **any hostile creature of level 77 and above in Northrend**, a little more often from rares. New ones join the loot with each phase.",
+  ),
+  epics: [
+    { name: L("Saccageur de Jotunheim", "Jotunheim Reaver"), phase: 0 },
+    { name: L("Pourpoint d'embusqué anub'ar", "Jerkin of the Anub'ar Ambusher"), phase: 0 },
+    { name: L("Flèche de Frimarra", "Spire of Coldarra"), phase: 1 },
+    { name: L("Heaume du sculpterune-de-fer", "Greathelm of the Iron Rune-Shaper"), phase: 2 },
+    { name: L("Arc long de vaillant d'argent", "Argent Valiant's Longbow"), phase: 3 },
+    { name: L("Sceptre de l'Espoir de Lumière", "Scepter of Light's Hope"), phase: 4 },
+  ],
   image: IMG.fjordVillage,
 };
 

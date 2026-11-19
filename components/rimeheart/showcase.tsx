@@ -1972,6 +1972,36 @@ function TreasureMount({
   );
 }
 
+// a world epic: its phase, its name, its tooltip (icon and stats from the tooltip data)
+function TreasureEpic({
+  name,
+  phase,
+  lang,
+}: {
+  name: T;
+  phase: number;
+  lang: Lang;
+}) {
+  const ref = tipOf(name);
+  const entry = useTipEntry(ref);
+
+  return (
+    <Tip className="block h-full" id={ref}>
+      <div className="group flex h-full items-center gap-4 rounded-xl border border-wow-gold/20 bg-black/45 p-4 backdrop-blur-sm transition-colors hover:border-wow-gold/50">
+        {entry && <WowIcon glow="none" icon={entry.icon} size={52} />}
+        <div className="min-w-0">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-wow-gold/80">
+            {phase === 0 ? ui.prelude[lang] : `${ui.phase[lang]} ${phase}`}
+          </p>
+          <p className="font-heading text-lg leading-tight text-[#c69bff]">
+            {name[lang]}
+          </p>
+        </div>
+      </div>
+    </Tip>
+  );
+}
+
 function Treasures({ lang }: { lang: Lang }) {
   return (
     <section className="scroll-mt-20" id={treasures.id}>
@@ -2019,6 +2049,19 @@ function Treasures({ lang }: { lang: Lang }) {
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {treasures.mounts.map((m, i) => (
                 <TreasureMount key={i} lang={lang} name={m} phase={i} />
+              ))}
+            </div>
+          </Reveal>
+          <Reveal className="mt-16">
+            <p className="text-center text-xs uppercase tracking-[0.3em] text-wow-gold-light/70">
+              {treasures.epicsTitle[lang]}
+            </p>
+            <p className="mx-auto mt-4 max-w-2xl text-center text-white/65">
+              <Rich text={treasures.epicsText[lang]} />
+            </p>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {treasures.epics.map((e, i) => (
+                <TreasureEpic key={i} lang={lang} name={e.name} phase={e.phase} />
               ))}
             </div>
           </Reveal>

@@ -3993,5 +3993,61 @@
   "ctx": [
    "archivists.extras.text"
   ]
+ },
+ {
+  "en": "Northrend's world epics",
+  "fr": "Les épiques du monde",
+  "ctx": [
+   "treasures.epicsTitle"
+  ]
+ },
+ {
+  "en": "**27 Bind on Equip epics**, each with its own story, can drop from **any hostile creature of level 77 and above in Northrend**, a little more often from rares. New ones join the loot with each phase.",
+  "fr": "**27 épiques liés quand équipés**, chacun avec son histoire, peuvent tomber de **toute créature hostile du Norfendre de niveau 77 et plus**, un peu plus souvent des rares. De nouveaux rejoignent le butin à chaque phase.",
+  "ctx": [
+   "treasures.epicsText"
+  ]
+ },
+ {
+  "en": "Jotunheim Reaver",
+  "fr": "Saccageur de Jotunheim",
+  "ctx": [
+   "treasures.epics.name"
+  ]
+ },
+ {
+  "en": "Jerkin of the Anub'ar Ambusher",
+  "fr": "Pourpoint d'embusqué anub'ar",
+  "ctx": [
+   "treasures.epics.name"
+  ]
+ },
+ {
+  "en": "Spire of Coldarra",
+  "fr": "Flèche de Frimarra",
+  "ctx": [
+   "treasures.epics.name"
+  ]
+ },
+ {
+  "en": "Greathelm of the Iron Rune-Shaper",
+  "fr": "Heaume du sculpterune-de-fer",
+  "ctx": [
+   "treasures.epics.name"
+  ]
+ },
+ {
+  "en": "Argent Valiant's Longbow",
+  "fr": "Arc long de vaillant d'argent",
+  "ctx": [
+   "treasures.epics.name"
+  ]
+ },
+ {
+  "en": "Scepter of Light's Hope",
+  "fr": "Sceptre de l'Espoir de Lumière",
+  "ctx": [
+   "treasures.epics.name"
+  ]
  }
 ]
