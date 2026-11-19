@@ -61,6 +61,7 @@ export const refByName: Record<string, string> = {
   "Destrier de l'Archive": "item:900104", // Reins of the Archive Steed
   "Jeton d'ascension": "item:901960", // Ascension Token
   "Caveau d'Archavon": "item:43228", // Stone Keeper's Shard
+  "Le Collect-o-tron reprogrammé": "item:902660", // Reprogrammed Collect-a-tron
   // Professions (highlights)
   "8 diamants méta des Titans": "item:900620", // Relentless Titansiege Diamond
   "Yeux de dragon bicolores et Prisme de lumière stellaire": "item:900716", // Starlight Prism
