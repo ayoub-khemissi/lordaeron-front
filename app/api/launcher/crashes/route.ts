@@ -16,7 +16,8 @@ import { requestIp } from "@/lib/second-factor";
  * go by the launcher's installation and the IP.
  *
  *   POST { installId, accountName?, realm?, language?, launcherVersion, lumenveilVersion?, platform?, fileName,
- *          report: the .txt's text, dump?: the .dmp in base64, dumpSize?: its size when it was too big to send }
+ *          report: the .txt's text, dump?: the .dmp in base64, dumpSize?: its size when it was too big to send,
+ *          largeAddressAware?: whether Wow.exe may use 4 GB (launcher 0.1.38) }
  *     -> { id }   (the same report sent again answers its first id)
  */
 
@@ -48,7 +49,8 @@ export async function POST(request: NextRequest) {
     const fileName = text(body.fileName, 80).trim();
 
     if (!/^[\w .()-]{1,80}$/.test(fileName)) return fail("badRequest");
-    const report = typeof body.report === "string" ? body.report.replace(/\0/g, "") : "";
+    const report =
+      typeof body.report === "string" ? body.report.replace(/\0/g, "") : "";
 
     if (report.length > MAX_REPORT || !report.includes("World of WarCraft"))
       return fail("badRequest");
@@ -105,8 +107,8 @@ export async function POST(request: NextRequest) {
 
     const [result] = await websiteDb.query<ResultSetHeader>(
       `INSERT INTO launcher_crashes (ip, install_id, account_name, realm, language, launcher_version, lumenveil_version,
-         platform, file_name, dump_size)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+         platform, large_address_aware, file_name, dump_size)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         ip,
         installId,
@@ -116,6 +118,9 @@ export async function POST(request: NextRequest) {
         text(body.launcherVersion, 16) || "?",
         text(body.lumenveilVersion, 16) || null,
         text(body.platform, 16) || null,
+        typeof body.largeAddressAware === "boolean"
+          ? Number(body.largeAddressAware)
+          : null,
         fileName,
         dumpSize,
       ],
