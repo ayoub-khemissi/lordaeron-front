@@ -1115,6 +1115,14 @@ export const archivists = {
         "Opens in phase 1, with one more watcher each phase: they give Stone Keeper's Shards to the faction holding Wintergrasp.",
       ),
     },
+    {
+      icon: "inv_gizmo_02",
+      title: L("Le Collect-o-tron reprogrammé", "The Reprogrammed Collect-a-tron"),
+      text: L(
+        "Pour 40 fragments, une mascotte qui **ramasse le butin des cadavres** autour de vous. Améliorez-la du **Mark I au Mark V** : plus rapide, plus loin, plusieurs cadavres à la fois, même en monture, la camelote revendue sur place et une soute de 12 places.",
+        "For 40 fragments, a pet that **loots the corpses** around you. Upgrade it from **Mark I to Mark V**: faster, farther, several corpses at once, even while mounted, junk sold on the spot and a 12-slot hold.",
+      ),
+    },
   ],
   image: IMG.ulduarArchive,
 };

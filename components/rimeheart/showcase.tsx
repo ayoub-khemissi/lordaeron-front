@@ -1538,7 +1538,7 @@ function Archivists({ lang }: { lang: Lang }) {
             </Reveal>
           ))}
         </div>
-        <div className="mt-6 grid gap-5 lg:grid-cols-3">
+        <div className="mt-6 grid gap-5 md:grid-cols-2">
           {archivists.extras.map((e, i) => (
             <Reveal key={i} delay={i * 0.07}>
               <Card
