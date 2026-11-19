@@ -17,7 +17,7 @@ import { requestIp } from "@/lib/second-factor";
  *
  *   POST { installId, accountName?, realm?, language?, launcherVersion, lumenveilVersion?, platform?, fileName,
  *          report: the .txt's text, dump?: the .dmp in base64, dumpSize?: its size when it was too big to send,
- *          largeAddressAware?: whether Wow.exe may use 4 GB (launcher 0.1.38) }
+ *          largeAddressAware?: whether Wow.exe may use 4 GB (launcher 0.1.39) }
  *     -> { id }   (the same report sent again answers its first id)
  */
 

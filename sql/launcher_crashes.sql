@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS launcher_crashes (
   launcher_version VARCHAR(16) NOT NULL,
   lumenveil_version VARCHAR(16) NULL,
   platform VARCHAR(16) NULL,
-  -- whether Wow.exe may use 4 GB of memory (large address aware; the launcher sets it from 0.1.38), when it said
+  -- whether Wow.exe may use 4 GB of memory (large address aware; the launcher sets it from 0.1.39), when it said
   large_address_aware TINYINT(1) NULL,
   -- the report's name in the Errors folder, without .txt: "2026-11-19 00.37.28 Error"
   file_name VARCHAR(80) NOT NULL,
