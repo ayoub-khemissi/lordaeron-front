@@ -1972,14 +1972,17 @@ function TreasureMount({
   );
 }
 
-// a world epic: its phase, its name, its tooltip (icon and stats from the tooltip data)
+// a world epic in the showcase: its render (the site's model viewer, on black: screen-blended over the card's glow), its phase, its
+// name and its icon, its tooltip on the whole card (Ctrl + click tries it on in the dressing room)
 function TreasureEpic({
   name,
   phase,
+  image,
   lang,
 }: {
   name: T;
   phase: number;
+  image: string;
   lang: Lang;
 }) {
   const ref = tipOf(name);
@@ -1987,15 +1990,27 @@ function TreasureEpic({
 
   return (
     <Tip className="block h-full" id={ref}>
-      <div className="group flex h-full items-center gap-4 rounded-xl border border-wow-gold/20 bg-black/45 p-4 backdrop-blur-sm transition-colors hover:border-wow-gold/50">
-        {entry && <WowIcon glow="none" icon={entry.icon} size={52} />}
-        <div className="min-w-0">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-wow-gold/80">
-            {phase === 0 ? ui.prelude[lang] : `${ui.phase[lang]} ${phase}`}
-          </p>
-          <p className="font-heading text-lg leading-tight text-[#c69bff]">
-            {name[lang]}
-          </p>
+      <div className="group flex h-full flex-col overflow-hidden rounded-xl border border-[#a335ee]/25 bg-black/70 backdrop-blur-sm transition-colors hover:border-[#a335ee]/70">
+        <div className="relative aspect-[4/3] bg-[radial-gradient(ellipse_at_center,rgba(163,53,238,0.22),rgba(0,0,0,0)_70%)]">
+          <img
+            alt={name[lang]}
+            className="absolute inset-0 h-full w-full object-contain mix-blend-screen transition-transform duration-500 group-hover:scale-105"
+            height={600}
+            loading="lazy"
+            src={`/img/experience/epics/${image}.webp`}
+            width={800}
+          />
+        </div>
+        <div className="flex flex-1 items-center gap-3 border-t border-white/5 px-4 py-3">
+          {entry && <WowIcon glow="none" icon={entry.icon} size={36} />}
+          <div className="min-w-0">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-wow-gold/80">
+              {phase === 0 ? ui.prelude[lang] : `${ui.phase[lang]} ${phase}`}
+            </p>
+            <p className="font-heading text-base leading-tight text-[#c69bff]">
+              {name[lang]}
+            </p>
+          </div>
         </div>
       </div>
     </Tip>
@@ -2059,9 +2074,15 @@ function Treasures({ lang }: { lang: Lang }) {
             <p className="mx-auto mt-4 max-w-2xl text-center text-white/65">
               <Rich text={treasures.epicsText[lang]} />
             </p>
-            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
               {treasures.epics.map((e, i) => (
-                <TreasureEpic key={i} lang={lang} name={e.name} phase={e.phase} />
+                <TreasureEpic
+                  key={i}
+                  image={e.image}
+                  lang={lang}
+                  name={e.name}
+                  phase={e.phase}
+                />
               ))}
             </div>
           </Reveal>

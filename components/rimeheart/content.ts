@@ -2537,13 +2537,16 @@ export const treasures = {
     "**27 épiques liés quand équipés**, chacun avec son histoire, peuvent tomber de **toute créature hostile du Norfendre de niveau 77 et plus**, un peu plus souvent des rares. De nouveaux rejoignent le butin à chaque phase.",
     "**27 Bind on Equip epics**, each with its own story, can drop from **any hostile creature of level 77 and above in Northrend**, a little more often from rares. New ones join the loot with each phase.",
   ),
+  // the showcase: a few of the most striking, drawn by the site's model viewer (renders in public/img/experience/epics/<entry>.webp)
   epics: [
-    { name: L("Saccageur de Jotunheim", "Jotunheim Reaver"), phase: 0 },
-    { name: L("Pourpoint d'embusqué anub'ar", "Jerkin of the Anub'ar Ambusher"), phase: 0 },
-    { name: L("Flèche de Frimarra", "Spire of Coldarra"), phase: 1 },
-    { name: L("Heaume du sculpterune-de-fer", "Greathelm of the Iron Rune-Shaper"), phase: 2 },
-    { name: L("Arc long de vaillant d'argent", "Argent Valiant's Longbow"), phase: 3 },
-    { name: L("Sceptre de l'Espoir de Lumière", "Scepter of Light's Hope"), phase: 4 },
+    { name: L("Saccageur de Jotunheim", "Jotunheim Reaver"), phase: 0, image: "81608" },
+    { name: L("Espauliers de la Cime des Croisés", "Pauldrons of the Crusaders' Pinnacle"), phase: 0, image: "81602" },
+    { name: L("Flèche de Frimarra", "Spire of Coldarra"), phase: 1, image: "81613" },
+    { name: L("Heaume du sculpterune-de-fer", "Greathelm of the Iron Rune-Shaper"), phase: 2, image: "81615" },
+    { name: L("Rempart du défenseur du Fort du Givre", "Frosthold Defender's Bulwark"), phase: 2, image: "81618" },
+    { name: L("Arc long de vaillant d'argent", "Argent Valiant's Longbow"), phase: 3, image: "81622" },
+    { name: L("Mantelet de Malykriss", "Mantle of Malykriss"), phase: 3, image: "81621" },
+    { name: L("Sceptre de l'Espoir de Lumière", "Scepter of Light's Hope"), phase: 4, image: "81626" },
   ],
   image: IMG.fjordVillage,
 };

@@ -106,6 +106,9 @@ export const refByName: Record<string, string> = {
   "Heaume du sculpterune-de-fer": "item:81615", // Greathelm of the Iron Rune-Shaper
   "Arc long de vaillant d'argent": "item:81622", // Argent Valiant's Longbow
   "Sceptre de l'Espoir de Lumière": "item:81626", // Scepter of Light's Hope
+  "Espauliers de la Cime des Croisés": "item:81602", // Pauldrons of the Crusaders' Pinnacle
+  "Rempart du défenseur du Fort du Givre": "item:81618", // Frosthold Defender's Bulwark
+  "Mantelet de Malykriss": "item:81621", // Mantle of Malykriss
   "Kodo des caravanes": "item:902350", // Caravan Kodo
   "Destrier de la mort": "item:902351", // Deathcharger
   "Trotteur des fouilles bleu": "item:902352", // Blue Excavation Strider

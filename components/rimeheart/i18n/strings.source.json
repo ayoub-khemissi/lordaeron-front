@@ -4044,6 +4044,27 @@
   ]
  },
  {
+  "en": "Pauldrons of the Crusaders' Pinnacle",
+  "fr": "Espauliers de la Cime des Croisés",
+  "ctx": [
+   "treasures.epics.name"
+  ]
+ },
+ {
+  "en": "Frosthold Defender's Bulwark",
+  "fr": "Rempart du défenseur du Fort du Givre",
+  "ctx": [
+   "treasures.epics.name"
+  ]
+ },
+ {
+  "en": "Mantle of Malykriss",
+  "fr": "Mantelet de Malykriss",
+  "ctx": [
+   "treasures.epics.name"
+  ]
+ },
+ {
   "en": "Scepter of Light's Hope",
   "fr": "Sceptre de l'Espoir de Lumière",
   "ctx": [
