@@ -346,8 +346,8 @@ export const artifact = {
   ],
   points: [
     L(
-      "18 592 versions supérieures d'équipements existants, dont 7 143 en qualité Artefact.",
-      "18,592 higher-quality versions of existing gear, 7,143 of them Artifact.",
+      "24 548 versions supérieures d'équipements existants, dont 11 449 en qualité Artefact.",
+      "24,548 higher-quality versions of existing gear, 11,449 of them Artifact.",
     ),
     L(
       "Un Artefact a 15 % de statistiques en plus qu'un épique du même niveau, et ses effets montent avec lui.",
