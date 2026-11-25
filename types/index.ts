@@ -412,6 +412,61 @@ export interface ContactMessage {
   created_at: string;
 }
 
+// ── Players' feedback (Discord) ──
+
+export type FeedbackStatus =
+  | "new"
+  | "not_a_bug"
+  | "needs_info"
+  | "duplicate"
+  | "investigating"
+  | "fix_queued"
+  | "shipped"
+  | "awaiting_decision"
+  | "accepted"
+  | "rejected"
+  | "later"
+  | "in_progress"
+  | "done"
+  | "wont_fix"
+  | "merged"
+  | "closed";
+
+export interface FeedbackAttachment {
+  file: string | null;
+  name: string;
+  type: string | null;
+  size: number;
+  skipped?: string;
+}
+
+export interface FeedbackReport {
+  id: number;
+  realm: "lordaeron" | "rimeheart";
+  channel_kind: "bug" | "suggestion";
+  kind: "bug" | "suggestion" | "question" | "other";
+  channel_id: string;
+  first_message_id: string;
+  author_name: string;
+  content: string;
+  attachments: FeedbackAttachment[];
+  reported_at: string;
+  status: FeedbackStatus;
+  followup: number;
+  title: string | null;
+  verdict: string | null;
+  analysis: string | null;
+  reply_draft: string | null;
+  commits: string | null;
+  duplicate_of: number | null;
+  decision: "accepted" | "rejected" | "later" | null;
+  decision_note: string | null;
+  decided_at: string | null;
+  decision_handled_at: string | null;
+  replied: number;
+  updated_at: string;
+}
+
 // ── Shard Transaction Types ──
 
 export type ShardTransactionStatus =

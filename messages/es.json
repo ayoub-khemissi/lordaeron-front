@@ -695,7 +695,8 @@
       "news": "Noticias",
       "realMoney": "Dinero real",
       "mapEditor": "Editor de mapas",
-      "logout": "Salir"
+      "logout": "Salir",
+      "feedback": "Player feedback"
     },
     "dashboard": {
       "title": "Panel",
@@ -908,6 +909,70 @@
       "minLevel": "Nivel min.",
       "minLevelDesc": "El personaje debe tener al menos este nivel para comprar",
       "quality": "Calidad"
+    },
+    "feedback": {
+      "title": "Player feedback",
+      "subtitle": "Bug reports and suggestions from Discord, qualified by Claude. Bugs get fixed and shipped; suggestions wait for your decision.",
+      "realm": "Realm",
+      "bothRealms": "Both realms",
+      "views": {
+        "mine": "For you",
+        "bugs": "Bugs",
+        "suggestions": "Suggestions",
+        "all": "All"
+      },
+      "nothingForYou": "Nothing waiting for you.",
+      "noReports": "No reports",
+      "followup": "Follow-up",
+      "replyToPost": "Reply to post",
+      "openInDiscord": "Open in Discord",
+      "verdict": "Verdict",
+      "messages": "Messages",
+      "analysis": "Analysis",
+      "reply": "Reply for the player",
+      "copy": "Copy",
+      "copied": "Copied",
+      "replied": "Replied",
+      "yourDecision": "Your decision",
+      "notePlaceholder": "What to do, or why not (Claude reads it)",
+      "undo": "Undo",
+      "decisionPending": "Claude acts on it at its next run",
+      "decisionHandled": "Handled by Claude",
+      "close": "Close",
+      "decide": {
+        "accepted": "Accept",
+        "rejected": "Reject",
+        "later": "Later"
+      },
+      "decision": {
+        "accepted": "Accepted",
+        "rejected": "Rejected",
+        "later": "Later"
+      },
+      "kind": {
+        "bug": "Bug",
+        "suggestion": "Suggestion",
+        "question": "Question",
+        "other": "Other"
+      },
+      "status": {
+        "new": "New",
+        "investigating": "Investigating",
+        "not_a_bug": "Not a bug",
+        "needs_info": "Needs info",
+        "duplicate": "Duplicate",
+        "merged": "Merged",
+        "closed": "Closed",
+        "fix_queued": "Fix queued",
+        "shipped": "Shipped",
+        "awaiting_decision": "Awaiting decision",
+        "accepted": "Accepted",
+        "in_progress": "In progress",
+        "done": "Done",
+        "rejected": "Rejected",
+        "wont_fix": "Won't fix",
+        "later": "Later"
+      }
     }
   },
   "news": {

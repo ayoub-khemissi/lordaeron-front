@@ -695,7 +695,8 @@
       "news": "Actualités",
       "realMoney": "Argent réel",
       "mapEditor": "Éditeur de cartes",
-      "logout": "Déconnexion"
+      "logout": "Déconnexion",
+      "feedback": "Retours des joueurs"
     },
     "dashboard": {
       "title": "Tableau de bord",
@@ -908,6 +909,70 @@
       "minLevel": "Niveau min.",
       "minLevelDesc": "Le personnage doit avoir au moins ce niveau pour acheter",
       "quality": "Qualité"
+    },
+    "feedback": {
+      "title": "Retours des joueurs",
+      "subtitle": "Bugs et suggestions des canaux Discord, qualifiés par Claude. Les bugs sont corrigés et déployés ; les suggestions attendent ta décision.",
+      "realm": "Royaume",
+      "bothRealms": "Les deux royaumes",
+      "views": {
+        "mine": "Pour toi",
+        "bugs": "Bugs",
+        "suggestions": "Suggestions",
+        "all": "Tout"
+      },
+      "nothingForYou": "Rien ne t'attend.",
+      "noReports": "Aucun retour",
+      "followup": "Relance",
+      "replyToPost": "Réponse à poster",
+      "openInDiscord": "Ouvrir dans Discord",
+      "verdict": "Verdict",
+      "messages": "Messages",
+      "analysis": "Analyse",
+      "reply": "Réponse pour le joueur",
+      "copy": "Copier",
+      "copied": "Copié",
+      "replied": "Répondu",
+      "yourDecision": "Ta décision",
+      "notePlaceholder": "Quoi faire, ou pourquoi pas (Claude la lit)",
+      "undo": "Annuler",
+      "decisionPending": "Claude l'applique à son prochain passage",
+      "decisionHandled": "Traitée par Claude",
+      "close": "Fermer",
+      "decide": {
+        "accepted": "Accepter",
+        "rejected": "Refuser",
+        "later": "Plus tard"
+      },
+      "decision": {
+        "accepted": "Acceptée",
+        "rejected": "Refusée",
+        "later": "Plus tard"
+      },
+      "kind": {
+        "bug": "Bug",
+        "suggestion": "Suggestion",
+        "question": "Question",
+        "other": "Autre"
+      },
+      "status": {
+        "new": "Nouveau",
+        "investigating": "En cours d'analyse",
+        "not_a_bug": "Pas un bug",
+        "needs_info": "Infos manquantes",
+        "duplicate": "Doublon",
+        "merged": "Fusionné",
+        "closed": "Clos",
+        "fix_queued": "Correctif planifié",
+        "shipped": "Déployé",
+        "awaiting_decision": "À trancher",
+        "accepted": "Acceptée",
+        "in_progress": "En cours",
+        "done": "Fait",
+        "rejected": "Refusée",
+        "wont_fix": "Ne sera pas corrigé",
+        "later": "Plus tard"
+      }
     }
   },
   "news": {

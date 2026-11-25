@@ -13,6 +13,7 @@ const NAV_ITEMS = [
   { key: "bans", href: "/bans", icon: "\uD83D\uDEAB" },
   { key: "audit", href: "/audit", icon: "\uD83D\uDCDD" },
   { key: "contactMessages", href: "/contact-messages", icon: "\uD83D\uDCE7" },
+  { key: "feedback", href: "/feedback", icon: "\uD83D\uDCAC" },
   { key: "news", href: "/news", icon: "\uD83D\uDCF0" },
   { key: "realMoney", href: "/real-money", icon: "\uD83D\uDCB0" },
 ];
